@@ -3,7 +3,6 @@
 *.exe
 *.exp
 *.pdb
-*.dll
 *.user
 *.aps
 *.pch
@@ -20,18 +19,19 @@
 *.log
 *.zip
 [Dd]ebug*/
-*.lib
 *.sbr
 Thumbs.db
-[Ll]ib/
 [Rr]elease*/
 [Tt]est[Rr]esults/
 _UpgradeReport_Files/
 _ReSharper.*/
+gltest3/
+lib-mingw/
+docs/
+doc/
 
 #own
 [Oo]bj*/
-[Bb]in*/
 [Ii]pch/
 *.*sdf*
 #*.PIXExp
