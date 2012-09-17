@@ -1,7 +1,7 @@
 #version 140
-uniform vec2 ScreenSize = vec2(800, 600);
-uniform vec2 HalfScale = vec2(50, 50);
-uniform vec2 CenterPosition = vec2(400, 300);
+uniform vec2 ScreenSize;
+uniform vec2 HalfScale;
+uniform vec2 CenterPosition;
 in vec3 MCVertex;
 in vec2 MCTexCoord;
 out vec3 Pos;

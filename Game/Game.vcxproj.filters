@@ -69,6 +69,9 @@
     <ClCompile Include="src\DxSpriteShader.cpp">
       <Filter>Source Files\DxPipeline</Filter>
     </ClCompile>
+    <ClCompile Include="src\GlSpriteShader.cpp">
+      <Filter>Source Files\GlPipeline</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DxContext.h">
@@ -103,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="src\DxSpriteShader.h">
       <Filter>Header Files\DxPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlSpriteShader.h">
+      <Filter>Header Files\GlPipeline</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

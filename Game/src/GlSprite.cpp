@@ -2,90 +2,16 @@
 
 GlSprite::GlSprite()
 {
-	initializeShaders();
+	m_spriteShader = new GlSpriteShader();
 	initializeGeometry();
 	
 	m_positionX = 0;
 	m_positionY = 0;
 	load("LogoGL.png");
-	m_sampler = glGetUniformLocation(m_shader, "gSampler");
 }
-char* GlSprite::readShader(char* p_path)
+GlSprite::~GlSprite()
 {
-    FILE* file;
-    long length;
- 
-	//Open file for binary reading
-    file = fopen(p_path, "rb");
-    if (!file)
-        return NULL;
-
-	//Determine the size of the file
-    fseek(file, 0, SEEK_END);
-    length = ftell(file);
-
-	//Allocate a buffer for the data
-    char* data = (char*)malloc(length+1);
-
-	//Read the file into the data buffer
-    fseek(file, 0, SEEK_SET);
-    fread(data, length, 1, file);
-    data[length] = 0;
-
-	//Close the file
-	fclose(file);
- 
-    return data;
-}
-int GlSprite::initializeShaders()
-{
-	//Variables holding shader data
-	GLuint vertexShader, fragmentShader;
-	GLint vsCompiled, fsCompiled, linked;
-
-	//Load the shader code
-	const char* vsCode = readShader("testGL.vert");
-	const char* fsCode = readShader("testGL.frag");
-
-	if (!vsCode || !fsCode)
-		return 1;
-
-	//Create the shaders
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-
-	//Initialize and compile the shaders with the given source
-	glShaderSource(vertexShader, 1, (const GLchar**)&vsCode, NULL);
-	glShaderSource(fragmentShader, 1, (const GLchar**)&fsCode, NULL);	
-	glCompileShader(vertexShader);
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, (GLint*)&vsCompiled);
-	glCompileShader(fragmentShader);
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, (GLint*)&fsCompiled);
-
-	delete[] vsCode;
-	delete[] fsCode;
-
-	if (!vsCompiled || !fsCompiled)
-		return 1;
-
-	//Create the combined shader program
-	m_shader = glCreateProgram();
-	glAttachShader(m_shader, vertexShader);
-	glAttachShader(m_shader, fragmentShader);
-	
-	glLinkProgram(m_shader);
-	glGetProgramiv(m_shader,GL_LINK_STATUS,&linked);
-	if (!linked)
-		return 1;
-
-	//Get a reference to the vertex index used as input to the vertex shader.
-	//This is needed by the IA stage.
-	m_vertexIndex = glGetAttribLocation(m_shader, "MCVertex");
-	m_texCoordIndex = glGetAttribLocation(m_shader, "MCTexCoord");
-	m_CenterPositionIndex = glGetUniformLocation(m_shader, "CenterPosition");
-	m_sampler = glGetUniformLocation(m_shader, "gSampler");
-
-	return 0;
+	delete m_spriteShader;
 }
 int GlSprite::initializeGeometry()
 {
@@ -105,8 +31,8 @@ int GlSprite::initializeGeometry()
 	glBufferData(GL_ARRAY_BUFFER, sizeof(SpriteVertex)*6, vertices, GL_STATIC_DRAW);
 
 	//Map the CPU data to the shader data for the input assembler.
-	glVertexAttribPointer (m_vertexIndex, 3, GL_FLOAT, GL_FALSE, sizeof(SpriteVertex), (void*)offsetof(SpriteVertex,x));
-	glVertexAttribPointer (m_texCoordIndex, 2, GL_FLOAT, GL_FALSE, sizeof(SpriteVertex), (void*)offsetof(SpriteVertex,s));
+	glVertexAttribPointer (m_spriteShader->getPostionIndex(), 3, GL_FLOAT, GL_FALSE, sizeof(SpriteVertex), (void*)offsetof(SpriteVertex,x));
+	glVertexAttribPointer (m_spriteShader->getTexCoordIndex(), 2, GL_FLOAT, GL_FALSE, sizeof(SpriteVertex), (void*)offsetof(SpriteVertex,s));
 	return 0;
 }
 void GlSprite::setPosition(float p_positionX, float p_positionY)
@@ -116,19 +42,21 @@ void GlSprite::setPosition(float p_positionX, float p_positionY)
 }
 int GlSprite::draw()
 {
-	glUseProgram(m_shader);
+	glUseProgram(m_spriteShader->getID());
 	 
 	
-	glUniform2f(m_CenterPositionIndex, m_positionX, m_positionY);
+	glUniform2f(m_spriteShader->getCenterPositionConstant(), m_positionX, m_positionY);
+	glUniform2f(m_spriteShader->getHalfScaleConstant(), 50, 50);
+	glUniform2f(m_spriteShader->getScreenSizeConstant(), 800, 600);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 
-	glEnableVertexAttribArray(m_vertexIndex);
-	glEnableVertexAttribArray(m_texCoordIndex);
+	glEnableVertexAttribArray(m_spriteShader->getPostionIndex());
+	glEnableVertexAttribArray(m_spriteShader->getTexCoordIndex());
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
 	glDrawArrays(GL_TRIANGLES, 0, 6);
-	glDisableVertexAttribArray(m_vertexIndex);
-	glDisableVertexAttribArray(m_texCoordIndex);
+	glDisableVertexAttribArray(m_spriteShader->getPostionIndex());
+	glDisableVertexAttribArray(m_spriteShader->getTexCoordIndex());
 	return 0;
 }
 
