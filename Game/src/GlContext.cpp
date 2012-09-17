@@ -68,6 +68,10 @@ int GlContext::initGlew()
 {
 	return glewInit();
 }
+bool GlContext::isInitialized()
+{
+	return true;
+}
 int GlContext::setWindowPosition(int p_x, int p_y)
 {
 	glfwSetWindowPos(p_x, p_y);

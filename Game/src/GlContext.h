@@ -15,6 +15,8 @@ private:
 	GlSprite* m_mascot;
 	float m_mascotTimer;
 
+	bool m_initialized;
+
 private:
 	int init();
 	int initGLFW();
@@ -24,6 +26,7 @@ private:
 public:
 	GlContext(int p_screenWidth, int p_screenHeight);
 	virtual ~GlContext();
+	bool isInitialized();
 	int setWindowPosition(int p_x, int p_y);
 	int resize();
 	int update(float p_dt);

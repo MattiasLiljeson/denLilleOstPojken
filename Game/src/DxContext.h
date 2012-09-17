@@ -27,6 +27,9 @@ private:
 	
 	DxSprite* m_mascot;
 	float m_mascotTimer;
+
+	bool m_initialized;
+
 	//sf::RenderWindow m_inputHandler;
 private:
 	int initializeWindow();
@@ -41,6 +44,7 @@ private:
 public:
 	DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight);
 	virtual ~DxContext();
+	bool isInitialized();
 	int setWindowPosition(int p_x, int p_y);
 	int resize();
 	int update(float p_dt);

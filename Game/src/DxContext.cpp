@@ -255,6 +255,10 @@ int DxContext::initializeViewport()
 
 	return 0;
 }
+bool DxContext::isInitialized()
+{
+	return true;
+}
 int DxContext::setWindowPosition(int p_x, int p_y)
 {
 	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
