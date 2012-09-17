@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <GL\glew.h>
 #include <GL\glfw.h>
+#include <GL\wglew.h>
 
 #pragma comment (lib, "d3d11.lib")
 #pragma comment (lib, "d3dx11.lib")
@@ -138,6 +139,22 @@ Vector3	Vec3TransformNormal(Vector3& vec, Matrix mat);
 
 D3DXMATRIX ToDxMatrix(Matrix pMatrix);
 Matrix ToMatrix(D3DXMATRIX pMatrix);
+
+struct SpriteVertex
+{
+	float x, y, z;
+	float s, t;
+	float padding[3];
+
+	SpriteVertex(float p_x, float p_y, float p_z, float p_s, float p_t)
+	{
+		x = p_x;
+		y = p_y;
+		z = p_z;
+		s = p_s;
+		t = p_t;
+	}
+};
 
 
 

@@ -6,6 +6,7 @@
 //#include "SFML\Window.hpp"
 //#include "SFML\Graphics.hpp"
 #include "IOContext.h"
+#include "DxSprite.h"
 
 class DxContext: public IOContext
 {
@@ -22,6 +23,10 @@ private:
 	ID3D11DepthStencilState*	m_depthStencilState;
 	ID3D11RasterizerState*		m_rasterState;
 
+	float m_totalGameTime;
+	
+	DxSprite* m_mascot;
+	float m_mascotTimer;
 	//sf::RenderWindow m_inputHandler;
 private:
 	int initializeWindow();
@@ -36,6 +41,7 @@ private:
 public:
 	DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight);
 	virtual ~DxContext();
+	int setWindowPosition(int p_x, int p_y);
 	int resize();
 	int update(float p_dt);
 	int draw(float p_dt);

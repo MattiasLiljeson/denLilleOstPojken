@@ -13,15 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\DxPipeline">
+      <UniqueIdentifier>{3dbd1e56-beed-48e4-a2bf-056b967bf584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DxPipeline">
+      <UniqueIdentifier>{ea011019-636a-475e-bc41-06fd6b6a222e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GlPipeline">
+      <UniqueIdentifier>{6f18d2de-2730-4d14-9a4a-17fdbada4c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GlPipeline">
+      <UniqueIdentifier>{084db2a6-9705-4adf-ab6a-27226e96c0ad}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\DxContext.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\GlContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\IOContext.cpp">
@@ -30,19 +36,61 @@
     <ClCompile Include="src\Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\WinTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LinTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LodePNG.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DxContext.cpp">
+      <Filter>Source Files\DxPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlContext.cpp">
+      <Filter>Source Files\GlPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlSprite.cpp">
+      <Filter>Source Files\GlPipeline</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DxSprite.cpp">
+      <Filter>Source Files\DxPipeline</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\DxContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\GlContext.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\IOContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Utility.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WinTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Timer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LinTimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LodePNG.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DxContext.h">
+      <Filter>Header Files\DxPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlContext.h">
+      <Filter>Header Files\GlPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlSprite.h">
+      <Filter>Header Files\GlPipeline</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DxSprite.h">
+      <Filter>Header Files\DxPipeline</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

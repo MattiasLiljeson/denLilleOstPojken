@@ -25,3 +25,7 @@ void IOContext::setRunning(bool p_running)
 {
 	m_running = p_running;
 }
+bool IOContext::isInitialized()
+{
+	return m_initialized;
+}

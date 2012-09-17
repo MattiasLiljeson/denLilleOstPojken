@@ -34,6 +34,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	m_depthStencilView		= NULL;
 	m_depthStencilState		= NULL;
 	m_rasterState			= NULL;
+	m_totalGameTime			= 0;
 
 	initializeWindow();
 	initializeSwapChain();
@@ -43,6 +44,10 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	initializeDepthStencilView();
 	initializeRasterizerState();
 	initializeViewport();
+
+	m_mascot = new DxSprite(m_device, m_deviceContext);
+	m_mascotTimer = 0;
+	m_initialized = true;
 }
 DxContext::~DxContext()
 {
@@ -54,6 +59,7 @@ DxContext::~DxContext()
 	m_depthStencilView->Release();
 	m_depthStencilState->Release();
 	m_rasterState->Release();
+	delete m_mascot;
 }
 int DxContext::initializeWindow()
 {
@@ -249,12 +255,20 @@ int DxContext::initializeViewport()
 
 	return 0;
 }
+int DxContext::setWindowPosition(int p_x, int p_y)
+{
+	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
+		return 1;
+	return 0;
+}
 int DxContext::resize()
 {
 	return 0;
 }
 int DxContext::update(float p_dt)
 {
+	m_totalGameTime += p_dt;
+
 	MSG msg;
 	if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
 	{
@@ -264,12 +278,31 @@ int DxContext::update(float p_dt)
 		if(msg.message == WM_QUIT)
 			setRunning(false);
 	}
+
+	if (m_totalGameTime - (int)m_totalGameTime < p_dt)
+	{
+		stringstream ss;
+		ss << (int)(1.0f / p_dt);//   m_totalGameTime;
+		string s = ss.str();
+		s = "DirectX - " + s + " FPS";
+		wstring s2(s.length(), L' ');			
+		copy(s.begin(), s.end(), s2.begin());
+		SetWindowText(m_windowHandle, s2.c_str());
+	}
+
+
+	m_mascotTimer += p_dt * 0.1f;
+	if (m_mascotTimer > 1)
+		m_mascotTimer -= 1;
+	m_mascot->setPosition(m_mascotTimer * getScreenWidth(), m_mascotTimer * getScreenHeight());
 	return 0;
 }
 int DxContext::draw(float p_dt)
 {
-	m_deviceContext->ClearRenderTargetView(m_backBuffer, D3DXCOLOR(0.5f, 0.5f, 0, 1.0f));
+	m_deviceContext->ClearRenderTargetView(m_backBuffer, D3DXCOLOR(0, 0, 0, 1.0f));
 	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+	m_mascot->draw();
 
     m_swapChain->Present(0, 0);
 	return true;
