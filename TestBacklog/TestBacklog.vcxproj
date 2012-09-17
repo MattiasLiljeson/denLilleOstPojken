@@ -43,7 +43,7 @@
     <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)\gtest-1.6.0\msvc\gtest\Debug;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\gtest-1.6.0\msvc\gtest\bin;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
