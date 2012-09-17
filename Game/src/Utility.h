@@ -157,5 +157,10 @@ struct SpriteVertex
 };
 
 
+enum 
+{
+	GAME_OK, GAME_FAIL, GAME_OTHER
+};
+
 
 #endif

@@ -36,14 +36,22 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	m_rasterState			= NULL;
 	m_totalGameTime			= 0;
 
-	initializeWindow();
-	initializeSwapChain();
-	initializeBackBuffer();
-	initializeDepthStencilBuffer();
-	initializeDepthStencilState();
-	initializeDepthStencilView();
-	initializeRasterizerState();
-	initializeViewport();
+	if (initializeWindow() == GAME_FAIL)
+		return;
+	if (initializeSwapChain() == GAME_FAIL)
+		return;
+	if (initializeBackBuffer() == GAME_FAIL)
+		return;
+	if (initializeDepthStencilBuffer() == GAME_FAIL)
+		return;
+	if (initializeDepthStencilState() == GAME_FAIL)
+		return;
+	if (initializeDepthStencilView() == GAME_FAIL)
+		return;
+	if (initializeRasterizerState() == GAME_FAIL)
+		return;
+	if (initializeViewport() == GAME_FAIL)
+		return;
 
 	m_mascot = new DxSprite(m_device, m_deviceContext);
 	m_mascotTimer = 0;
@@ -74,7 +82,10 @@ int DxContext::initializeWindow()
     wc.lpszClassName = L"WindowClass";
     RegisterClassEx(&wc);
     RECT wr = {0, 0, getScreenWidth(), getScreenHeight()};
-    AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE);
+    
+	if (AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE) == 0)
+		return GAME_FAIL;
+
     m_windowHandle = CreateWindowEx(NULL,
                           L"WindowClass",
                           L"Den Lille OstPojken",
@@ -88,9 +99,12 @@ int DxContext::initializeWindow()
                           m_instanceHandle,
                           NULL);
 
+	if (!m_windowHandle)
+		return GAME_FAIL;
+
     ShowWindow(m_windowHandle, SW_SHOW);
 	//m_inputHandler.Create(m_windowHandle);
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeSwapChain()
 {
@@ -112,7 +126,7 @@ int DxContext::initializeSwapChain()
 	scd.Flags						= DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
 	D3D_FEATURE_LEVEL featureLevels[] = {D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0};
-    D3D11CreateDeviceAndSwapChain(NULL,
+    if (D3D11CreateDeviceAndSwapChain(NULL,
                                   D3D_DRIVER_TYPE_HARDWARE,
                                   NULL,
                                   NULL,
@@ -123,16 +137,25 @@ int DxContext::initializeSwapChain()
                                   &m_swapChain,
                                   &m_device,
                                   NULL,
-                                  &m_deviceContext);
-	return 0;
+                                  &m_deviceContext) != S_OK)
+	{
+		return GAME_FAIL;
+	}
+
+	return GAME_OK;
 }
 int DxContext::initializeBackBuffer()
 {
 	ID3D11Texture2D *BackBuffer;
     m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&BackBuffer);
-	m_device->CreateRenderTargetView(BackBuffer, NULL, &m_backBuffer);
+
+	if (!BackBuffer)
+		return GAME_FAIL;
+
+	if (m_device->CreateRenderTargetView(BackBuffer, NULL, &m_backBuffer) != S_OK)
+		return GAME_FAIL;
     BackBuffer->Release();
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeDepthStencilBuffer()
 {
@@ -154,9 +177,9 @@ int DxContext::initializeDepthStencilBuffer()
 	int result = m_device->CreateTexture2D(&depthBufferDesc, 0, &m_depthStencilBuffer);
 	if(FAILED(result))
 	{
-		return 1;
+		return GAME_FAIL;
 	}
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeDepthStencilState()
 {
@@ -188,11 +211,10 @@ int DxContext::initializeDepthStencilState()
 	int result = m_device->CreateDepthStencilState(&depthStencilDesc, &m_depthStencilState);
 	if(FAILED(result))
 	{
-		return 1;
+		return GAME_FAIL;
 	}
 	m_deviceContext->OMSetDepthStencilState(m_depthStencilState, 1);
-	//mDeviceContext->OMSetDepthStencilState(0, 0);
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeDepthStencilView()
 {
@@ -207,11 +229,11 @@ int DxContext::initializeDepthStencilView()
 	int result = m_device->CreateDepthStencilView(m_depthStencilBuffer, &depthStencilViewDesc, &m_depthStencilView);
 	if(FAILED(result))
 	{
-		return 1;
+		return GAME_FAIL;
 	}
 
     m_deviceContext->OMSetRenderTargets(1, &m_backBuffer, m_depthStencilView);
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeRasterizerState()
 {
@@ -232,12 +254,12 @@ int DxContext::initializeRasterizerState()
 	int result = m_device->CreateRasterizerState(&rasterDesc, &m_rasterState);
 	if(FAILED(result))
 	{
-		return 1;
+		return GAME_FAIL;
 	}
 
 	// Now set the rasterizer state.
 	m_deviceContext->RSSetState(m_rasterState);
-	return 0;
+	return GAME_OK;
 }
 int DxContext::initializeViewport()
 {
@@ -253,7 +275,7 @@ int DxContext::initializeViewport()
 
     m_deviceContext->RSSetViewports(1, &viewport);
 
-	return 0;
+	return GAME_OK;
 }
 bool DxContext::isInitialized()
 {

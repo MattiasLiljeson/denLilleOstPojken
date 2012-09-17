@@ -7,7 +7,8 @@ DxSprite::DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext)
 
 	initVB();
 	initIB();
-	initShader();
+
+	m_shader = new DxSpriteShader(p_device, p_deviceContext);
 
 	m_spriteData.CenterPosition = Vector2(0, 0);
 	m_spriteData.HalfSize = Vector2(50, 50);
@@ -20,10 +21,7 @@ DxSprite::~DxSprite()
 	m_vb->Release();
 	m_ib->Release();
 	m_texture->Release();
-	m_buffer->Release();
-	m_inputLayout->Release();
-	m_vsd.CompiledData->Release();
-	m_psd.CompiledData->Release();
+	delete m_shader;
 }
 int DxSprite::initVB()
 {
@@ -68,62 +66,18 @@ int DxSprite::initIB()
 	m_device->CreateBuffer(&ibd, &indexData, &m_ib);
 	return 0;
 }
-int DxSprite::initShader()
-{
-	D3DX11CompileFromFile(L"testDx.vs", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
-    D3DX11CompileFromFile(L"testDx.ps", 0, 0, "PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
-
-	m_device->CreateVertexShader(m_vsd.CompiledData->GetBufferPointer(), m_vsd.CompiledData->GetBufferSize(), NULL, &m_vsd.Data);
-	m_device->CreatePixelShader(m_psd.CompiledData->GetBufferPointer(), m_psd.CompiledData->GetBufferSize(), NULL, &m_psd.Data);
-
-	D3D11_INPUT_ELEMENT_DESC PositionNormalTexCoord[] =
-	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
-	};
-	m_device->CreateInputLayout(PositionNormalTexCoord, 2, m_vsd.CompiledData->GetBufferPointer(), m_vsd.CompiledData->GetBufferSize(), &m_inputLayout);
-
-	D3D11_BUFFER_DESC BufferDesc;
-	BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	BufferDesc.ByteWidth = sizeof(SpriteBuffer);
-	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	BufferDesc.MiscFlags = 0;
-	BufferDesc.StructureByteStride = 0;
-	m_device->CreateBuffer(&BufferDesc, NULL, &m_buffer);
-	return 0;
-}
 void DxSprite::setPosition(float p_positionX, float p_positionY)
 {
 	m_spriteData.CenterPosition = Vector2(p_positionX, p_positionY);
 }
 void DxSprite::draw()
 {
-	//Set matrix buffer
-	D3D11_MAPPED_SUBRESOURCE resource;
-	SpriteBuffer* buffer;
-	m_deviceContext->Map(m_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
-
-	buffer = (SpriteBuffer*)resource.pData;
-	buffer->CenterPosition = m_spriteData.CenterPosition;
-	buffer->HalfSize = m_spriteData.HalfSize;
-	buffer->WindowSize = m_spriteData.WindowSize;
-
-	m_deviceContext->Unmap(m_buffer, 0);
-
-	m_deviceContext->PSSetShaderResources(0, 1, &m_texture);
-
-	unsigned int bufferNumber = 0;
-	m_deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_buffer);
-
-
-
-
-	m_deviceContext->VSSetShader(m_vsd.Data, 0, 0);
-	m_deviceContext->PSSetShader(m_psd.Data, 0, 0);	
+	m_shader->setBuffer(m_spriteData, m_texture);
+	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
+	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);	
 	m_deviceContext->HSSetShader(NULL, 0, 0);
 	m_deviceContext->DSSetShader(NULL, 0, 0);
-	m_deviceContext->IASetInputLayout(m_inputLayout);
+	m_deviceContext->IASetInputLayout(m_shader->getInputLayout());
 	UINT stride = sizeof(SpriteVertex);
 	UINT offset = 0;
 	m_deviceContext->IASetVertexBuffers(0, 1, &m_vb, &stride, &offset);
