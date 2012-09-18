@@ -40,22 +40,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\Game\src\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\Game\src\</SourcePath>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\Game\src\</IncludePath>
     <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath)</LibraryPath>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\Game\src\</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

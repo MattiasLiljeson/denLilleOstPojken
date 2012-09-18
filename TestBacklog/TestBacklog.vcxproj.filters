@@ -13,10 +13,24 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Factorial">
+      <UniqueIdentifier>{42a4faac-3e38-473e-acee-34f6890f295b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TestBacklogRunner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Game\src\Factorial.cpp">
+      <Filter>Factorial</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FactorialTest.cpp">
+      <Filter>Factorial</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Game\src\Factorial.h">
+      <Filter>Factorial</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
