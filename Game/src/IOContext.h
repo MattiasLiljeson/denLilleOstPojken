@@ -1,12 +1,15 @@
 #ifndef IOCONTEXT_H
 #define IOCONTEXT_H
 
+#include "Utility.h"
+
 class IOContext
 {
 private:
 	int m_screenWidth;
 	int m_screenHeight;
-	bool m_running;
+	bool m_running;	
+	InputInfo m_input;
 public:
 	IOContext(int p_screenWidth, int p_screenHeight);
 	virtual ~IOContext();
@@ -21,6 +24,8 @@ public:
 	
 	bool isRunning();
 	void setRunning(bool p_running);
+
+	const InputInfo& getInput();
 };
 
 #endif

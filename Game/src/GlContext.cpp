@@ -4,7 +4,7 @@ void GLFWCALL My_Key_Callback(int key, int action)
 {
   if (key == GLFW_KEY_ESC && action == GLFW_PRESS)
   {
-	  glfwCloseWindow();
+	  //glfwCloseWindow();
   }
 }
 
@@ -85,8 +85,8 @@ int GlContext::update(float p_dt)
 {
 	m_totalGameTime += p_dt;
 
-	if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS || !glfwGetWindowParam(GLFW_OPENED))
-		setRunning(false);
+	//if (glfwGetKey(GLFW_KEY_ESC) == GLFW_PRESS || !glfwGetWindowParam(GLFW_OPENED))
+		//setRunning(false);
 
 
 	if (m_totalGameTime - (int)m_totalGameTime < p_dt)

@@ -162,5 +162,18 @@ enum
 	GAME_OK, GAME_FAIL, GAME_OTHER
 };
 
+struct InputInfo
+{
+	enum
+	{ 
+		KEYUP, KEYDOWN, KEYRELEASED, KEYPRESSED 
+	};
+	enum
+	{
+		RIGHT, LEFT, UP, DOWN, SPACE, ESC, NUM_KEYS 
+	};
+	int keys[NUM_KEYS];
+};
+
 
 #endif

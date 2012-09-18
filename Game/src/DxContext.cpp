@@ -6,9 +6,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
     {
 		case WM_KEYDOWN:
 		{
-			if( wParam == VK_ESCAPE )
-				DestroyWindow(hWnd);
-			return 0;
+			//if( wParam == VK_ESCAPE )
+				//DestroyWindow(hWnd);
+			//return 0;
 		}
         case WM_DESTROY:
         {
@@ -59,6 +59,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 }
 DxContext::~DxContext()
 {
+	DestroyWindow(m_windowHandle);
 	m_swapChain->SetFullscreenState(FALSE, NULL);
 	m_swapChain->Release();
     m_device->Release();
@@ -300,6 +301,15 @@ int DxContext::update(float p_dt)
 	{
 		TranslateMessage(&msg);
 		DispatchMessage(&msg);
+
+		if (msg.message == WM_KEYDOWN)
+		{
+			if (msg.wParam == VK_ESCAPE)
+			{
+				setRunning(false);
+				return 0;
+			}
+		}
 
 		if(msg.message == WM_QUIT)
 			setRunning(false);
