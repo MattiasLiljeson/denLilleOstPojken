@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\DxContext.cpp" />
+    <ClCompile Include="src\DxSprite.cpp" />
+    <ClCompile Include="src\DxSpriteShader.cpp" />
+    <ClCompile Include="src\WinTimer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\DxContext.h" />
+    <ClInclude Include="src\DxSprite.h" />
+    <ClInclude Include="src\DxSpriteShader.h" />
+    <ClInclude Include="src\WinTimer.h" />
+    <ClInclude Include="src\DxUtility.h" />
+  </ItemGroup>
+</Project>

@@ -3,26 +3,15 @@
 
 struct InputInfo
 {
-	enum KeyState 
+	enum KeyState
 	{ 
-		KEY_UP,
-		KEY_DOWN,
-		KEY_RELEASED,
-		KEY_PRESSED
+		KEYUP, KEYDOWN, KEYRELEASED, KEYPRESSED 
 	};
-	
-	enum KeyCode 
-	{ 
-		UP,
-		DOWN,
-		LEFT,
-		RIGHT,
-		SPACE, 
-		ESC,
-		NUM_KEYS
+	enum KeyCode
+	{
+		RIGHT, LEFT, UP, DOWN, SPACE, ESC, NUM_KEYS 
 	};
-
-	KeyState keyStates[NUM_KEYS];
+	int keys[NUM_KEYS];
 };
 
 #endif

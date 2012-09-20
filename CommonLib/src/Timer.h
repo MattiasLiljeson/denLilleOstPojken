@@ -3,16 +3,18 @@
 
 class Timer
 {
+protected:
+	double	mDeltaTime;
+	double  mElapsedTime;
+	bool	mRunning;
 public:
 	Timer();
-	virtual ~Timer();
-	
-	void start();
-	void stop();
-	void tick();
+	virtual void start() = 0;
+	virtual void stop() = 0;
+	virtual void tick() = 0;
 	double getDeltaTime();
-private:
-
+	double getElapsedTime();
+	bool isStopped();
 };
 
 #endif

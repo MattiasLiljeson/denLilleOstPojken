@@ -11,14 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\IIOContext.h" />
-    <ClInclude Include="src\InputInfo.h" />
-    <ClInclude Include="src\SpriteInfo.h" />
-    <ClInclude Include="src\Timer.h" />
-    <ClInclude Include="src\TransformInfo.h" />
+    <ClCompile Include="src\IOContext.cpp" />
+    <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Timer.cpp" />
+    <ClInclude Include="src\InputInfo.h" />
+    <ClInclude Include="src\IOContext.h" />
+    <ClInclude Include="src\CommonUtility.h" />
+    <ClInclude Include="src\Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5A4E8F2-2CAF-4AEA-B215-7DF7EE7944EE}</ProjectGuid>
@@ -97,35 +97,6 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;d3d11.lib;d3dx11.lib;d3dx10.lib;libpng.lib;sfml-window-s.lib;sfml-window-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\DxContext.cpp" />
-    <ClCompile Include="src\DxSprite.cpp" />
-    <ClCompile Include="src\DxSpriteShader.cpp" />
-    <ClCompile Include="src\GlContext.cpp" />
-    <ClCompile Include="src\GlSprite.cpp" />
-    <ClCompile Include="src\GlSpriteShader.cpp" />
-    <ClCompile Include="src\IOContext.cpp" />
-    <ClCompile Include="src\LinTimer.cpp" />
-    <ClCompile Include="src\LodePNG.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\Timer.cpp" />
-    <ClCompile Include="src\WinTimer.cpp" />
-    <ClCompile Include="src\Utility.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\DxContext.h" />
-    <ClInclude Include="src\DxSprite.h" />
-    <ClInclude Include="src\DxSpriteShader.h" />
-    <ClInclude Include="src\GlContext.h" />
-    <ClInclude Include="src\GlSprite.h" />
-    <ClInclude Include="src\GlSpriteShader.h" />
-    <ClInclude Include="src\IOContext.h" />
-    <ClInclude Include="src\LinTimer.h" />
-    <ClInclude Include="src\LodePNG.h" />
-    <ClInclude Include="src\Timer.h" />
-    <ClInclude Include="src\WinTimer.h" />
-    <ClInclude Include="src\Utility.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

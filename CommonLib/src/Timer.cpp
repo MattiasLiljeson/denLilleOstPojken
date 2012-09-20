@@ -2,25 +2,22 @@
 
 Timer::Timer()
 {
+	mDeltaTime = mElapsedTime = 0.0;
+	mRunning = false;
 }
-
-Timer:: ~Timer()
-{
-}
-
-void Timer::start()
-{
-}
-
-void Timer::stop()
-{
-}
-
-void Timer::tick()
-{
-}
-
 double Timer::getDeltaTime()
 {
+	if (mRunning)
+		return mDeltaTime;
 	return 0.0;
+}
+double Timer::getElapsedTime()
+{
+	if (mRunning)
+		return mElapsedTime;
+	return 0.0;
+}
+bool Timer::isStopped()
+{
+	return !mRunning;
 }
