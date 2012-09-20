@@ -1,5 +1,8 @@
 #include "Game.h"
 
+Game::Game()
+{
+}
 
 Game::Game(Timer* p_timer, IIOContext* p_context)
 {
@@ -7,7 +10,7 @@ Game::Game(Timer* p_timer, IIOContext* p_context)
 	m_running	= false;
 	
 	if (p_context)
-		m_io = new IO(p_context);
+		m_io = new IODevice(p_context);
 	else
 		m_io = 0;
 }
@@ -49,4 +52,9 @@ Game::~Game()
 		delete m_timer;
 	if (m_io)
 		delete m_io;
+}
+
+int Game::foo()
+{
+	return 7;
 }

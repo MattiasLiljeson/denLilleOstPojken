@@ -26,7 +26,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\_shizzle.cpp">
+    <ClCompile Include="src\Timer.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>

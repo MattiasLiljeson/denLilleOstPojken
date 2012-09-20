@@ -4,13 +4,13 @@
 class Timer
 {
 public:
-	Timer() {}
-	virtual ~Timer() {}
+	Timer();
+	virtual ~Timer();
 	
-	void start() {}
-	void stop() {}
-	void tick() {}
-	double getDeltaTime() { return 0.0; }
+	void start();
+	void stop();
+	void tick();
+	double getDeltaTime();
 private:
 
 };

@@ -1,38 +1,39 @@
-#include "IO_.h"
+#include "IODevice.h"
 #include <algorithm>
 
-IO::IO()
+IODevice::IODevice()
 {
 }
 
-IO::~IO()
+IODevice::~IODevice()
 {
 	delete m_context;
 }
 
-IO::IO(IIOContext* p_context)
+IODevice::IODevice(IIOContext* p_context)
 {
 	m_context = p_context;
 }
 
-InputInfo IO::fetchInput()
+InputInfo IODevice::fetchInput()
 {
 	return m_context->fetchInput();
 }
 
-void IO::updateSpriteInfo(int p_spriteId)
+void IODevice::updateSpriteInfo(int p_spriteId)
 {
 
 }
 
-int	IO::draw()
+int	IODevice::draw()
 {
-	m_context->draw();
+	if(m_context)
+		m_context->draw();
 
 	return 0;
 }
 
-SpriteInfo*	IO::addSpriteInfo(SpriteInfo p_spriteInfo)
+SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 {
 	p_spriteInfo.id = m_spriteInfos.size();
 	m_spriteInfos.push_back(p_spriteInfo);
@@ -40,7 +41,7 @@ SpriteInfo*	IO::addSpriteInfo(SpriteInfo p_spriteInfo)
 	return &m_spriteInfos.back();
 }
 
-void IO::removeSpriteInfo(SpriteInfo p_spriteInfo)
+void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 {
 	if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
 	{

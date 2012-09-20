@@ -1,5 +1,5 @@
-#ifndef IO_H
-#define IO_H
+#ifndef IODEVICE_H
+#define IODEVICE_H
 
 #include <vector>
 #include "IIOContext.h"
@@ -8,16 +8,16 @@
 
 using namespace std;
 
-class IO
+class IODevice
 {
 private:
 	IIOContext*			m_context;
 	vector<SpriteInfo>	m_spriteInfos;
 
 public:
-				IO();
-				IO(IIOContext* p_context);
-				~IO();
+				IODevice();
+				IODevice(IIOContext* p_context);
+				~IODevice();
 	InputInfo	fetchInput();
 	void		updateSpriteInfo(int p_spriteId);
 

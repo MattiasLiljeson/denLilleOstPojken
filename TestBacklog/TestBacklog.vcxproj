@@ -12,6 +12,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\TestBacklogRunner.cpp" />
+    <ClCompile Include="src\Timer TEST.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CommonLib\src\Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3D07CDEC-5B30-4472-8140-80087E5B6D89}</ProjectGuid>

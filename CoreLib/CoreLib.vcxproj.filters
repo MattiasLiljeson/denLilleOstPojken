@@ -16,7 +16,7 @@
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="src\IO_.cpp">
+    <ClCompile Include="src\IODevice.cpp">
       <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
@@ -27,7 +27,7 @@
     <ClInclude Include="src\GameObject.h">
       <Filter>Source\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\IO_.h">
+    <ClInclude Include="src\IODevice.h">
       <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>

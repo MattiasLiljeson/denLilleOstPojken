@@ -11,12 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\CoreLib\src\IO_.cpp" />
     <ClCompile Include="src\CurrentTestsRunner.cpp" />
-    <ClCompile Include="src\IO TEST.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\CoreLib\src\IO_.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{52849C1F-1BC3-4B5D-A793-4E94E411242B}</ProjectGuid>
@@ -75,7 +70,8 @@
       <AdditionalDependencies>gtestd.lib;gtest_maind.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>$(OutDir)$(TargetName)$(TargetExt)</Command>
+      <Command>
+      </Command>
       <Outputs>testRun</Outputs>
       <Message>Run current tests after build</Message>
     </CustomBuildStep>
@@ -97,7 +93,8 @@
       <AdditionalDependencies>gtest.lib;gtest_main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>$(OutDir)$(TargetName)$(TargetExt)</Command>
+      <Command>
+      </Command>
       <Message>Run current tests after build</Message>
       <Outputs>testRun</Outputs>
     </CustomBuildStep>
