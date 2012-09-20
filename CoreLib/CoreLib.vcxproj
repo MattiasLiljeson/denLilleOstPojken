@@ -11,23 +11,37 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\TestBacklogRunner.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\IO_.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\IO_.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">
+      <Project>{f5a4e8f2-2caf-4aea-b215-7df7ee7944ee}</Project>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3D07CDEC-5B30-4472-8140-80087E5B6D89}</ProjectGuid>
-    <RootNamespace>TestBacklog</RootNamespace>
+    <ProjectGuid>{3B40FF97-0533-4CC9-B652-DA3246714977}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Game</RootNamespace>
+    <ProjectName>CoreLib</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -40,61 +54,60 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath)</LibraryPath>
+    <LinkIncremental>true</LinkIncremental>
     <OutDir>$(ProjectDir)\bin\</OutDir>
-    <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</SourcePath>
-    <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\CoreLib\src\</IncludePath>
-    <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath)</LibraryPath>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\CoreLib\src\</SourcePath>
+    <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)\bin\</OutDir>
-    <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
+    <IntDir>obj\$(Configuration)\</IntDir>
+    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <CustomBuildStep>
-      <Command>$(OutDir)$(TargetName)$(TargetExt)</Command>
-      <Message>Run all tests after build</Message>
-      <Outputs>testRun</Outputs>
-    </CustomBuildStep>
+    <Lib>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
-      <FunctionLevelLinking>
-      </FunctionLevelLinking>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>gtest.lib;gtest_main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <CustomBuildStep>
-      <Command>$(OutDir)$(TargetName)$(TargetExt)</Command>
-      <Message>Run all tests after build</Message>
-      <Outputs>testRun</Outputs>
-    </CustomBuildStep>
+    <Lib>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

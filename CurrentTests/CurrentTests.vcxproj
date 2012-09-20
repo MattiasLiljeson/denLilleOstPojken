@@ -11,7 +11,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\CoreLib\src\IO_.cpp" />
     <ClCompile Include="src\CurrentTestsRunner.cpp" />
+    <ClCompile Include="src\IO TEST.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CoreLib\src\IO_.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{52849C1F-1BC3-4B5D-A793-4E94E411242B}</ProjectGuid>
@@ -40,13 +45,13 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\Game\src\</IncludePath>
+    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\Game\src\</SourcePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</SourcePath>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
   </PropertyGroup>
@@ -54,9 +59,9 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\Game\src\</IncludePath>
+    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(IncludePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</IncludePath>
     <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath)</LibraryPath>
-    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\Game\src\</SourcePath>
+    <SourcePath>$(ProjectDir)\src;$(SourcePath);$(SolutionDir)\CoreLib\src\;$(SolutionDir)\CommonLib\src\</SourcePath>
     <CustomBuildAfterTargets>Build</CustomBuildAfterTargets>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
