@@ -11,9 +11,8 @@ int WINAPI WinMain(HINSTANCE hInstance,
                    int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context = new DxContext(hInstance, 400, 400);
 	IOContext* context2 = new GlContext(400, 400);
-
+	IOContext* context = new DxContext(hInstance, 400, 400);
 	context->setWindowSize(800, 600);
 	context2->setWindowSize(800, 600);
 

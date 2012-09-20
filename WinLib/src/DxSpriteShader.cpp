@@ -5,8 +5,8 @@ DxSpriteShader::DxSpriteShader(ID3D11Device* p_device, ID3D11DeviceContext* p_de
 	m_device = p_device;
 	m_deviceContext = p_deviceContext;
 
-	D3DX11CompileFromFile("testDx.vs", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
-    D3DX11CompileFromFile("testDx.ps", 0, 0, "PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
+	D3DX11CompileFromFile("..\\Shaders\\testDx.vs", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
+    D3DX11CompileFromFile("..\\Shaders\\testDx.ps", 0, 0, "PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
 
 	m_device->CreateVertexShader(m_vsd.CompiledData->GetBufferPointer(), m_vsd.CompiledData->GetBufferSize(), NULL, &m_vsd.Data);
 	m_device->CreatePixelShader(m_psd.CompiledData->GetBufferPointer(), m_psd.CompiledData->GetBufferSize(), NULL, &m_psd.Data);

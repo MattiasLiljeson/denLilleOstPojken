@@ -7,8 +7,8 @@ GlSpriteShader::GlSpriteShader()
 	GLint vsCompiled, fsCompiled, linked;
 
 	//Load the shader code
-	const char* vsCode = readShader("testGL.vert");
-	const char* fsCode = readShader("testGL.frag");
+	const char* vsCode = readShader("..\\Shaders\\testGL.vert");
+	const char* fsCode = readShader("..\\Shaders\\testGL.frag");
 
 	if (!vsCode || !fsCode)
 		return;

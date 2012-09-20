@@ -9,7 +9,7 @@ GlSprite::GlSprite(GlContext* p_context)
 	
 	m_positionX = 0;
 	m_positionY = 0;
-	load("LogoGL.png");
+	load("..\\Textures\\LogoGL.png");
 }
 GlSprite::~GlSprite()
 {
