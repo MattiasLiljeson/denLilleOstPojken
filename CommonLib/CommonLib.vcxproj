@@ -12,12 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\IOContext.cpp" />
+    <ClCompile Include="src\LodePNG.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\InputInfo.h" />
     <ClInclude Include="src\IOContext.h" />
     <ClInclude Include="src\CommonUtility.h" />
+    <ClInclude Include="src\LodePNG.h" />
     <ClInclude Include="src\Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

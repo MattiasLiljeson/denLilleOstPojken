@@ -1,7 +1,12 @@
 #ifndef GLSPRITESHADER_H
 #define GLSPRITESHADER_H
 
-#include "Utility.h"
+#include <CommonUtility.h>
+#include <GL\glew.h>
+#include <GL\glfw.h>
+#include <GL\wglew.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 class GlSpriteShader
 {

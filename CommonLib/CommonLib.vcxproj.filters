@@ -3,11 +3,13 @@
   <ItemGroup>
     <ClCompile Include="src\IOContext.cpp" />
     <ClCompile Include="src\Timer.cpp" />
+    <ClCompile Include="src\LodePNG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IOContext.h" />
     <ClInclude Include="src\InputInfo.h" />
     <ClInclude Include="src\CommonUtility.h" />
     <ClInclude Include="src\Timer.h" />
+    <ClInclude Include="src\LodePNG.h" />
   </ItemGroup>
 </Project>

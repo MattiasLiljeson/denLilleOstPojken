@@ -1,8 +1,8 @@
 #ifndef GLCONTEXT_H
 #define GLCONTEXT_H
 
-#include "IOContext.h"
-#include "Utility.h"
+#include <IOContext.h>
+#include <CommonUtility.h>
 #include "GlSprite.h"
 
 class GlContext: public IOContext

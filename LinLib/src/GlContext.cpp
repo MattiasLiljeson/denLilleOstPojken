@@ -1,4 +1,5 @@
 #include "GlContext.h"
+#include <sstream>
 
 GlContext* GlContext::s_instance = NULL;
 

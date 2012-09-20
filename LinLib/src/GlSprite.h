@@ -1,8 +1,11 @@
 #ifndef GLSPRITE_H
 #define GLSPRITE_H
 
+#include <string>
 #include "GlSpriteShader.h"
 #include "LodePNG.h"
+
+using namespace std;
 
 class GlContext;
 
