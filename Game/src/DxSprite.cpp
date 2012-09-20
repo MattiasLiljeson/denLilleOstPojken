@@ -1,9 +1,11 @@
 #include "DxSprite.h"
+#include "DxContext.h"
 
-DxSprite::DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext)
+DxSprite::DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext, DxContext* p_context)
 {
 	m_device = p_device;
 	m_deviceContext = p_deviceContext;
+	m_context = p_context;
 
 	initVB();
 	initIB();
@@ -72,6 +74,7 @@ void DxSprite::setPosition(float p_positionX, float p_positionY)
 }
 void DxSprite::draw()
 {
+	m_spriteData.WindowSize = Vector2(m_context->getScreenWidth(), m_context->getScreenHeight());
 	m_shader->setBuffer(m_spriteData, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
 	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);	

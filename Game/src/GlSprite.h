@@ -4,6 +4,8 @@
 #include "GlSpriteShader.h"
 #include "LodePNG.h"
 
+class GlContext;
+
 class GlSprite
 {
 private:
@@ -13,6 +15,7 @@ private:
 	GLuint m_texture;
 
 	GlSpriteShader* m_spriteShader;
+	GlContext* m_context;
 
 private:
 	int initializeGeometry();
@@ -21,7 +24,7 @@ private:
 	GLboolean load(string path);
 
 public:
-	GlSprite();
+	GlSprite(GlContext* p_context);
 	virtual ~GlSprite();
 	void setPosition(float p_positionX, float p_positionY);
 	int draw();

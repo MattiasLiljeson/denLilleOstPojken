@@ -1,7 +1,9 @@
 #include "GlSprite.h"
+#include "GlContext.h"
 
-GlSprite::GlSprite()
+GlSprite::GlSprite(GlContext* p_context)
 {
+	m_context = p_context;
 	m_spriteShader = new GlSpriteShader();
 	initializeGeometry();
 	
@@ -47,7 +49,7 @@ int GlSprite::draw()
 	
 	glUniform2f(m_spriteShader->getCenterPositionConstant(), m_positionX, m_positionY);
 	glUniform2f(m_spriteShader->getHalfScaleConstant(), 50, 50);
-	glUniform2f(m_spriteShader->getScreenSizeConstant(), 800, 600);
+	glUniform2f(m_spriteShader->getScreenSizeConstant(), m_context->getScreenWidth(), m_context->getScreenHeight());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 

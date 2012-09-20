@@ -1,9 +1,7 @@
 #include "IOContext.h"
 
-IOContext::IOContext(int p_screenWidth, int p_screenHeight)
+IOContext::IOContext()
 {
-	m_screenWidth = p_screenWidth;
-	m_screenHeight = p_screenHeight;
 	m_running = true;
 
 	for (int i = 0; i < InputInfo::NUM_KEYS; i++)
@@ -14,14 +12,7 @@ IOContext::IOContext(int p_screenWidth, int p_screenHeight)
 IOContext::~IOContext()
 {
 }
-int IOContext::getScreenWidth()
-{
-	return m_screenWidth;
-}
-int IOContext::getScreenHeight()
-{
-	return m_screenHeight;
-}
+
 bool IOContext::isRunning()
 {
 	return m_running;

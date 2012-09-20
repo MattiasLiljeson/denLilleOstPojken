@@ -3,6 +3,8 @@
 
 #include "DxSpriteShader.h"
 
+class DxContext;
+
 class DxSprite
 {
 private:
@@ -13,12 +15,13 @@ private:
 	ID3D11ShaderResourceView*	m_texture;
 	SpriteBuffer				m_spriteData;
 	DxSpriteShader*				m_shader;
+	DxContext*					m_context;
 
 private:
 	int initVB();
 	int initIB();
 public:
-	DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext);
+	DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext, DxContext* p_context);
 	virtual ~DxSprite();
 	void setPosition(float p_positionX, float p_positionY);
 	void draw();

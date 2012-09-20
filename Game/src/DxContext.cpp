@@ -2,27 +2,28 @@
 
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
+	static DxContext* dxContext = 0;
     switch(message)
     {
-		case WM_KEYDOWN:
+		case WM_CREATE:
 		{
-			//if( wParam == VK_ESCAPE )
-				//DestroyWindow(hWnd);
-			//return 0;
+			CREATESTRUCT* cs = (CREATESTRUCT*)lParam;
+			dxContext = (DxContext*)cs->lpCreateParams;
+			return 0;
 		}
-        case WM_DESTROY:
-        {
-                PostQuitMessage(0);
-                return 0;
-        } 
 		break;
     }
 
-    return DefWindowProc (hWnd, message, wParam, lParam);
+	if (dxContext)
+		return dxContext->handleWindowMessages(message, wParam, lParam);
+	else
+		return DefWindowProc (hWnd, message, wParam, lParam);
 }
 
-DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight) : IOContext(p_screenWidth, p_screenHeight)
+DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight) : IOContext()
 {
+	m_screenWidth			= p_screenWidth;
+	m_screenHeight			= p_screenHeight;
 	m_instanceHandle		= pInstanceHandle;
 	m_swapChain				= NULL;
 	m_device				= NULL;
@@ -35,7 +36,9 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	m_depthStencilState		= NULL;
 	m_rasterState			= NULL;
 	m_totalGameTime			= 0;
+	m_resizing				= false;
 
+	//Initialize window and directx functionality
 	if (initializeWindow() == GAME_FAIL)
 		return;
 	if (initializeSwapChain() == GAME_FAIL)
@@ -53,8 +56,20 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	if (initializeViewport() == GAME_FAIL)
 		return;
 
-	m_mascot = new DxSprite(m_device, m_deviceContext);
-	m_mascotTimer = 0;
+
+	m_keyMappings[InputInfo::ESC] = VK_ESCAPE;
+	m_keyMappings[InputInfo::LEFT] = VK_LEFT;
+	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
+	m_keyMappings[InputInfo::UP] = VK_UP;
+	m_keyMappings[InputInfo::DOWN] = VK_DOWN;
+	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
+
+	//Temp
+	m_mascot = new DxSprite(m_device, m_deviceContext, this);
+	posX = 400;
+	posY = 300;
+	//End Temp
+
 	m_initialized = true;
 }
 DxContext::~DxContext()
@@ -98,13 +113,12 @@ int DxContext::initializeWindow()
                           NULL,
                           NULL,
                           m_instanceHandle,
-                          NULL);
+                          this);
 
 	if (!m_windowHandle)
 		return GAME_FAIL;
 
     ShowWindow(m_windowHandle, SW_SHOW);
-	//m_inputHandler.Create(m_windowHandle);
 	return GAME_OK;
 }
 int DxContext::initializeSwapChain()
@@ -278,68 +292,144 @@ int DxContext::initializeViewport()
 
 	return GAME_OK;
 }
-bool DxContext::isInitialized()
+bool DxContext::isInitialized() const
 {
-	return true;
+	return m_initialized;
 }
 int DxContext::setWindowPosition(int p_x, int p_y)
 {
 	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
-		return 1;
-	return 0;
+		return GAME_FAIL;
+	return GAME_OK;
+}
+int DxContext::setWindowSize(int p_width, int p_height)
+{
+	RECT wr = {0, 0, p_width, p_height};  
+	if (AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE) == 0)
+		return GAME_FAIL;
+	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, 0, 0, wr.right - wr.left, wr.bottom-wr.top, SWP_NOMOVE) == 0)
+		return GAME_FAIL;
+	return GAME_OK;
 }
 int DxContext::resize()
 {
-	return 0;
+	m_initialized = false; 
+	RECT wndRect;
+	GetClientRect(m_windowHandle, &wndRect);
+	m_screenWidth = wndRect.right - wndRect.left;
+	m_screenHeight = wndRect.bottom - wndRect.top;
+	m_backBuffer->Release();
+	m_depthStencilView->Release();
+	m_depthStencilBuffer->Release();
+
+	m_swapChain->ResizeBuffers(1, getScreenWidth(), getScreenHeight(), DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+	initializeBackBuffer();
+	initializeDepthStencilBuffer();
+	initializeDepthStencilView();
+	initializeViewport();
+	m_resizing = false;
+	m_initialized = true;
+	return GAME_OK;
 }
 int DxContext::update(float p_dt)
 {
-	m_totalGameTime += p_dt;
-
-	MSG msg;
-	if(PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	if (!m_resizing)
 	{
-		TranslateMessage(&msg);
-		DispatchMessage(&msg);
-
-		if (msg.message == WM_KEYDOWN)
+		m_totalGameTime += p_dt;
+		for (int i = 0; i < InputInfo::NUM_KEYS; i++)
 		{
-			if (msg.wParam == VK_ESCAPE)
+			if (GetAsyncKeyState (m_keyMappings[i]) && GetFocus() == m_windowHandle)
 			{
-				setRunning(false);
-				return 0;
+				if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+					m_input.keys[i] = InputInfo::KEYDOWN;
+				else
+					m_input.keys[i] = InputInfo::KEYPRESSED;
+			}
+			else
+			{
+				if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+					m_input.keys[i] = InputInfo::KEYRELEASED;
+				else
+					m_input.keys[i] = InputInfo::KEYUP;
 			}
 		}
 
-		if(msg.message == WM_QUIT)
-			setRunning(false);
+		if (m_totalGameTime - (int)m_totalGameTime < p_dt)
+		{
+			stringstream ss;
+			ss << (int)(1.0f / p_dt);
+			string s = ss.str();
+			s = "DirectX - " + s + " FPS";
+			wstring s2(s.length(), L' ');			
+			copy(s.begin(), s.end(), s2.begin());
+			SetWindowText(m_windowHandle, s2.c_str());
+		}
+
+
+		if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
+			posX -= 50 * p_dt;
+		else if (m_input.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN)
+			posX += 50 * p_dt;
+		if (m_input.keys[InputInfo::DOWN] == InputInfo::KEYDOWN)
+			posY -= 50 * p_dt;
+		else if (m_input.keys[InputInfo::UP] == InputInfo::KEYDOWN)
+			posY += 50 * p_dt;
+		m_mascot->setPosition(posX, posY);
 	}
-
-	if (m_totalGameTime - (int)m_totalGameTime < p_dt)
-	{
-		stringstream ss;
-		ss << (int)(1.0f / p_dt);//   m_totalGameTime;
-		string s = ss.str();
-		s = "DirectX - " + s + " FPS";
-		wstring s2(s.length(), L' ');			
-		copy(s.begin(), s.end(), s2.begin());
-		SetWindowText(m_windowHandle, s2.c_str());
-	}
-
-
-	m_mascotTimer += p_dt * 0.1f;
-	if (m_mascotTimer > 1)
-		m_mascotTimer -= 1;
-	m_mascot->setPosition(m_mascotTimer * getScreenWidth(), m_mascotTimer * getScreenHeight());
-	return 0;
+	return GAME_OK;
 }
 int DxContext::draw(float p_dt)
 {
-	m_deviceContext->ClearRenderTargetView(m_backBuffer, D3DXCOLOR(0, 0, 0, 1.0f));
-	m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+	if (!m_resizing)
+	{
+		m_deviceContext->ClearRenderTargetView(m_backBuffer, D3DXCOLOR(0, 0, 0, 1.0f));
+		m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-	m_mascot->draw();
+		m_mascot->draw();
 
-    m_swapChain->Present(0, 0);
-	return true;
+		m_swapChain->Present(0, 0);
+	}
+	return GAME_OK;
+}
+
+int DxContext::getScreenWidth()
+{
+	return m_screenWidth;
+}
+int DxContext::getScreenHeight()
+{
+	return m_screenHeight;
+}
+
+LRESULT DxContext::handleWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam)
+{
+	switch (msg)
+	{
+	case WM_SIZE:
+		if( wParam == SIZE_MAXIMIZED )
+		{
+			resize();
+		}
+		else if( wParam == SIZE_RESTORED )
+		{
+			if (!m_resizing)
+			{
+				resize();
+			}
+		}
+		return 0;
+	case WM_ENTERSIZEMOVE:
+		m_resizing = true;
+		return 0;
+
+	case WM_EXITSIZEMOVE:
+		resize();
+		return 0;
+ 
+	case WM_DESTROY:
+		setRunning(false);
+		PostQuitMessage(0);
+		return 0;
+	}
+	return DefWindowProc(m_windowHandle, msg, wParam, lParam);
 }
