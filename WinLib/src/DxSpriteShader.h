@@ -32,13 +32,17 @@ private:
 	PixelShaderData				m_psd;
 	ID3D11InputLayout*			m_inputLayout;
 	ID3D11Buffer*				m_buffer;
+	bool						m_initialized;
 public:
-	DxSpriteShader(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext);
-	virtual ~DxSpriteShader();
-	void				setBuffer(SpriteBuffer p_buffer, ID3D11ShaderResourceView* p_texture);
+						DxSpriteShader(ID3D11Device* p_device, 
+							ID3D11DeviceContext* p_deviceContext);
+	virtual				~DxSpriteShader();
+	void				setBuffer(SpriteBuffer p_buffer, 
+							ID3D11ShaderResourceView* p_texture);
 	VertexShaderData	getVertexShader();
 	PixelShaderData		getPixelShader();
 	ID3D11InputLayout*	getInputLayout();
+	bool				isInitialized();
 };
 
 #endif

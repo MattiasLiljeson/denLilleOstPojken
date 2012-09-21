@@ -1,50 +1,94 @@
 #include "DxSpriteShader.h"
 
-DxSpriteShader::DxSpriteShader(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext)
+DxSpriteShader::DxSpriteShader(ID3D11Device* p_device, 
+	ID3D11DeviceContext* p_deviceContext)
 {
-	m_device = p_device;
-	m_deviceContext = p_deviceContext;
+	m_device			= p_device;
+	m_deviceContext		= p_deviceContext;
+	m_initialized		= false;
+	m_buffer			= NULL;
+	m_inputLayout		= NULL;
+	m_vsd.CompiledData	= NULL;
+	m_vsd.Data			= NULL;
+	m_psd.CompiledData	= NULL;
+	m_vsd.Data			= NULL;
 
-	D3DX11CompileFromFile("..\\Shaders\\testDx.vs", 0, 0, "VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
-    D3DX11CompileFromFile("..\\Shaders\\testDx.ps", 0, 0, "PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
+	HRESULT vsRes = D3DX11CompileFromFile("..\\Shaders\\testDx.vs", 0, 0,
+		"VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
+	if (vsRes != S_OK)
+		return;
+    HRESULT psRes = D3DX11CompileFromFile("..\\Shaders\\testDx.ps", 0, 0,
+		"PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
+	if (psRes != S_OK)
+		return;
 
-	m_device->CreateVertexShader(m_vsd.CompiledData->GetBufferPointer(), m_vsd.CompiledData->GetBufferSize(), NULL, &m_vsd.Data);
-	m_device->CreatePixelShader(m_psd.CompiledData->GetBufferPointer(), m_psd.CompiledData->GetBufferSize(), NULL, &m_psd.Data);
+	ID3D10Blob* compVs = m_vsd.CompiledData;
+	vsRes = m_device->CreateVertexShader(compVs->GetBufferPointer(), 
+		compVs->GetBufferSize(), NULL, &m_vsd.Data);
+	if (vsRes != S_OK)
+		return;
+
+	ID3D10Blob* compPs = m_psd.CompiledData;
+	psRes = m_device->CreatePixelShader(compPs->GetBufferPointer(), 
+		compPs->GetBufferSize(), NULL, &m_psd.Data);
+	if (psRes != S_OK)
+		return;
 
 	D3D11_INPUT_ELEMENT_DESC PositionNormalTexCoord[] =
 	{
-		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, 
+			D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 12, 
+			D3D11_INPUT_PER_VERTEX_DATA, 0},
 	};
-	m_device->CreateInputLayout(PositionNormalTexCoord, 2, m_vsd.CompiledData->GetBufferPointer(), m_vsd.CompiledData->GetBufferSize(), &m_inputLayout);
+	
+	HRESULT ilRes = m_device->CreateInputLayout(PositionNormalTexCoord, 
+		2, m_vsd.CompiledData->GetBufferPointer(), 
+			m_vsd.CompiledData->GetBufferSize(), &m_inputLayout);
+	if (ilRes != S_OK)
+		return;
 
 	D3D11_BUFFER_DESC BufferDesc;
-	BufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-	BufferDesc.ByteWidth = sizeof(SpriteBuffer);
-	BufferDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	BufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	BufferDesc.MiscFlags = 0;
-	BufferDesc.StructureByteStride = 0;
-	m_device->CreateBuffer(&BufferDesc, NULL, &m_buffer);
+	BufferDesc.Usage				= D3D11_USAGE_DYNAMIC;
+	BufferDesc.ByteWidth			= sizeof(SpriteBuffer);
+	BufferDesc.BindFlags			= D3D11_BIND_CONSTANT_BUFFER;
+	BufferDesc.CPUAccessFlags		= D3D11_CPU_ACCESS_WRITE;
+	BufferDesc.MiscFlags			= 0;
+	BufferDesc.StructureByteStride	= 0;
+
+
+	HRESULT bufRes = m_device->CreateBuffer(&BufferDesc, NULL, &m_buffer);
+	if (bufRes != S_OK)
+		return;
+
+	m_initialized = true;
 }
 DxSpriteShader::~DxSpriteShader()
 {
-	m_buffer->Release();
-	m_inputLayout->Release();
-	m_vsd.CompiledData->Release();
-	m_psd.CompiledData->Release();
+	if (m_buffer)
+		m_buffer->Release();
+	if (m_inputLayout)
+		m_inputLayout->Release();
+	if (m_vsd.CompiledData)
+		m_vsd.CompiledData->Release();
+	if (m_vsd.Data)
+		m_vsd.Data->Release();
+	if (m_vsd.CompiledData)
+		m_psd.CompiledData->Release();
+	if (m_psd.Data)
+		m_psd.Data->Release();
 }
-void DxSpriteShader::setBuffer(SpriteBuffer p_buffer, ID3D11ShaderResourceView* p_texture)
+void DxSpriteShader::setBuffer(SpriteBuffer p_buffer, 
+	ID3D11ShaderResourceView* p_texture)
 {
 	D3D11_MAPPED_SUBRESOURCE resource;
 	SpriteBuffer* buffer;
-	m_deviceContext->Map(m_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 
+	m_deviceContext->Map(m_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 	buffer = (SpriteBuffer*)resource.pData;
 	buffer->CenterPosition = p_buffer.CenterPosition;
 	buffer->HalfSize = p_buffer.HalfSize;
 	buffer->WindowSize = p_buffer.WindowSize;
-
 	m_deviceContext->Unmap(m_buffer, 0);
 
 	m_deviceContext->PSSetShaderResources(0, 1, &p_texture);
@@ -63,4 +107,8 @@ PixelShaderData DxSpriteShader::getPixelShader()
 ID3D11InputLayout* DxSpriteShader::getInputLayout()
 {
 	return m_inputLayout;
+}
+bool DxSpriteShader::isInitialized()
+{
+	return m_initialized;
 }

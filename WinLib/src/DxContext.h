@@ -41,20 +41,22 @@ private:
 	int initializeViewport();
 
 public:
-	DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight);
-	virtual ~DxContext();
-	bool isInitialized() const;
-	int setWindowPosition(int p_x, int p_y);
-	int setWindowSize(int p_width, int p_height);
-	int resize();
-	int update(float p_dt);
-	int draw(float p_dt);
+				DxContext(HINSTANCE pInstanceHandle, 
+					int p_screenWidth, int p_screenHeight);
+	virtual		~DxContext();
+	bool		isInitialized() const;
+	int			setWindowPosition(int p_x, int p_y);
+	int			setWindowSize(int p_width, int p_height);
+	int			resize();
+	int			update(float p_dt);
+	int			draw(float p_dt);
 
-	int getScreenWidth();
-	int getScreenHeight();
+	int			getScreenWidth() const;
+	int			getScreenHeight() const;
 
 
-	LRESULT handleWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam);
+	LRESULT		handleWindowMessages(UINT p_message, 
+					WPARAM p_wParam, LPARAM p_lParam);
 };
 
 #endif

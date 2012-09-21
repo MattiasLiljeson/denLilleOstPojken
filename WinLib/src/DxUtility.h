@@ -16,10 +16,6 @@
 #include <stdlib.h>
 #include <CommonUtility.h>
 
-/*#pragma comment (lib, "d3d11.lib")
-#pragma comment (lib, "d3dx11.lib")
-#pragma comment (lib, "d3dx10.lib")*/
-
 using namespace std;
 
 typedef D3DXVECTOR2	Vector2;

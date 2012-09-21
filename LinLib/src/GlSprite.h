@@ -12,13 +12,13 @@ class GlContext;
 class GlSprite
 {
 private:
-	GLuint m_vertexBuffer;
-	float m_positionX;
-	float m_positionY;	
-	GLuint m_texture;
-
+	GLuint			m_vertexBuffer;
+	float			m_positionX;
+	float			m_positionY;	
+	GLuint			m_texture;
 	GlSpriteShader* m_spriteShader;
-	GlContext* m_context;
+	GlContext*		m_context;
+	bool			m_initialized;
 
 private:
 	int initializeGeometry();
@@ -27,10 +27,11 @@ private:
 	GLboolean load(string path);
 
 public:
-	GlSprite(GlContext* p_context);
+			GlSprite(GlContext* p_context);
 	virtual ~GlSprite();
-	void setPosition(float p_positionX, float p_positionY);
-	int draw();
+	void	setPosition(float p_positionX, float p_positionY);
+	int		draw();
+	bool	isInitialized();
 };
 
 #endif
