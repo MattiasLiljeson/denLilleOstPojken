@@ -20,7 +20,9 @@
     <ClInclude Include="src\IOContext.h" />
     <ClInclude Include="src\CommonUtility.h" />
     <ClInclude Include="src\LodePNG.h" />
+    <ClInclude Include="src\SpriteInfo.h" />
     <ClInclude Include="src\Timer.h" />
+    <ClInclude Include="src\TransformInfo.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5A4E8F2-2CAF-4AEA-B215-7DF7EE7944EE}</ProjectGuid>

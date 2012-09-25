@@ -10,14 +10,14 @@ IODevice::~IODevice()
 	delete m_context;
 }
 
-IODevice::IODevice(IIOContext* p_context)
+IODevice::IODevice(IOContext* p_context)
 {
 	m_context = p_context;
 }
 
 InputInfo IODevice::fetchInput()
 {
-	return m_context->fetchInput();
+	return m_context->getInput();
 }
 
 void IODevice::updateSpriteInfo(int p_spriteId)
@@ -25,10 +25,10 @@ void IODevice::updateSpriteInfo(int p_spriteId)
 
 }
 
-int	IODevice::draw()
+int	IODevice::draw(double p_dt)
 {
 	if(m_context)
-		m_context->draw();
+		m_context->draw((float)p_dt);
 
 	return 0;
 }

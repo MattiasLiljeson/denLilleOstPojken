@@ -1,10 +1,11 @@
 
-#include <IODevice.h>
+
 #include <IOContext.h>
 #include <DxContext.h>
 #include <GlContext.h>
 #include <WinTimer.h>
 #include <LinTimer.h>
+#include <Game.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
 				   HINSTANCE hPrevInstance,
@@ -12,43 +13,42 @@ int WINAPI WinMain(HINSTANCE hInstance,
 				   int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context2 = new GlContext(400, 400);
+
 	IOContext* context = new DxContext(hInstance, 400, 400);
 	context->setWindowSize(800, 600);
-	context2->setWindowSize(800, 600);
 
-	context->setWindowPosition(900, 50);
-	context2->setWindowPosition(50, 50);
+	context->setWindowPosition(50, 50);
 
-	if (!context->isInitialized() || !context2->isInitialized())
+	if (!context->isInitialized())
 	{
 		delete context;
-		delete context2;
 		return 1;
 	}
 
-	Timer* t = new WinTimer();
-	t->start();
-	while (context->isRunning() && context2->isRunning())
+	Timer* timer = new WinTimer();
+
+	Game* game = new Game(timer, context);
+
+	game->run();
+
+	/*
+	timer->start();
+	while (context->isRunning())
 	{
-		t->tick();
-		float dt = (float)t->getDeltaTime();
+		timer->tick();
+		float dt = (float)timer->getDeltaTime();
 		context->update(dt);
-		context2->update(dt);
 		context->draw(dt);
-		context2->draw(dt);
 
 		if (context->getInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN)
 		{
 			break;
 		}
-		if (context2->getInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN)
-		{
-			break;
-		}
 	}
-	delete t;
+	*/
+
+	delete timer;
 	delete context;
-	delete context2;
+	delete game;
 	return 0;
 }
