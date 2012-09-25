@@ -8,6 +8,9 @@
     <Filter Include="Source\GameObject">
       <UniqueIdentifier>{c8da462a-d8f2-43f7-bfd4-38f1bdcaa0d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Avatar">
+      <UniqueIdentifier>{310fcb5b-b6f8-4f5e-9171-b6ced88837d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -19,6 +22,9 @@
     <ClCompile Include="src\IODevice.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\Avatar.cpp">
+      <Filter>Source\GameObject\Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -29,6 +35,9 @@
     </ClInclude>
     <ClInclude Include="src\IODevice.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Avatar.h">
+      <Filter>Source\GameObject\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
