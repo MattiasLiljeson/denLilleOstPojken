@@ -1,7 +1,6 @@
-
 #include <iostream>
 #include <gtest\gtest.h>
-
+#include "T_Timer.h"
 
 int main(int argc, char **argv)
 {
