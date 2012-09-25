@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "Timer.h"
-#include "IIOContext.h"
+#include "IOContext.h"
 #include "InputInfo.h"
 #include "IODevice.h"
 #include "GameObject.h"
@@ -20,7 +20,7 @@ private:
 
 public:
 	Game();
-	Game(Timer* p_timer, IIOContext* p_context);
+	Game(Timer* p_timer, IOContext* p_context);
 	~Game();
 
 	int run();

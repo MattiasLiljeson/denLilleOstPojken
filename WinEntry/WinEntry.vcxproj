@@ -13,6 +13,20 @@
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">
+      <Project>{f5a4e8f2-2caf-4aea-b215-7df7ee7944ee}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreLib\CoreLib.vcxproj">
+      <Project>{3b40ff97-0533-4cc9-b652-da3246714977}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\LinLib\LinLib.vcxproj">
+      <Project>{de1c01e7-6e3c-4723-b40b-2de182058227}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\WinLib\WinLib.vcxproj">
+      <Project>{30b1f21b-d8cb-44dd-b477-77b4b1f26054}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F04A3440-C9BF-46E0-AB4C-571F82E6CD52}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>

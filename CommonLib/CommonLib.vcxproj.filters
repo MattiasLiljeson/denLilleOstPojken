@@ -11,5 +11,7 @@
     <ClInclude Include="src\CommonUtility.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\LodePNG.h" />
+    <ClInclude Include="src\SpriteInfo.h" />
+    <ClInclude Include="src\TransformInfo.h" />
   </ItemGroup>
 </Project>

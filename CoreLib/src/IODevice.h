@@ -2,7 +2,7 @@
 #define IODEVICE_H
 
 #include <vector>
-#include "IIOContext.h"
+#include "IOContext.h"
 #include "InputInfo.h"
 #include "SpriteInfo.h"
 
@@ -11,12 +11,12 @@ using namespace std;
 class IODevice
 {
 private:
-	IIOContext*			m_context;
+	IOContext*			m_context;
 	vector<SpriteInfo>	m_spriteInfos;
 
 public:
 				IODevice();
-				IODevice(IIOContext* p_context);
+				IODevice(IOContext* p_context);
 				~IODevice();
 	InputInfo	fetchInput();
 	void		updateSpriteInfo(int p_spriteId);

@@ -4,7 +4,7 @@ Game::Game()
 {
 }
 
-Game::Game(Timer* p_timer, IIOContext* p_context)
+Game::Game(Timer* p_timer, IOContext* p_context)
 {
 	m_timer		= p_timer;
 	m_running	= false;
