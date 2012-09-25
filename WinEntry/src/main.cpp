@@ -1,4 +1,5 @@
 
+#include <IODevice.h>
 #include <IOContext.h>
 #include <DxContext.h>
 #include <GlContext.h>
@@ -6,9 +7,9 @@
 #include <LinTimer.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
-                   HINSTANCE hPrevInstance,
-                   LPSTR lpCmdLine,
-                   int nCmdShow)
+				   HINSTANCE hPrevInstance,
+				   LPSTR lpCmdLine,
+				   int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	IOContext* context2 = new GlContext(400, 400);

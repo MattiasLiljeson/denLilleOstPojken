@@ -17,7 +17,7 @@ DxSpriteShader::DxSpriteShader(ID3D11Device* p_device,
 		"VShader", "vs_4_0", 0, 0, 0, &m_vsd.CompiledData, 0, 0);
 	if (vsRes != S_OK)
 		return;
-    HRESULT psRes = D3DX11CompileFromFile("..\\Shaders\\testDx.ps", 0, 0,
+	HRESULT psRes = D3DX11CompileFromFile("..\\Shaders\\testDx.ps", 0, 0,
 		"PShader", "ps_4_0", 0, 0, 0, &m_psd.CompiledData, 0, 0);
 	if (psRes != S_OK)
 		return;
