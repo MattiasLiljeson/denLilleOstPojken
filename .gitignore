@@ -37,3 +37,4 @@ doc/
 
 assets/
 */bin/
+*.user
