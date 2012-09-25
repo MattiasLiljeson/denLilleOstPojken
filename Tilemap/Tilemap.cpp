@@ -71,3 +71,11 @@ bool Tilemap::isValidPosition(TilePosition p_position)
 		return false;
 	return true;
 }
+int Tilemap::getWidth()
+{
+	return m_width;
+}
+int Tilemap::getHeight()
+{
+	return m_height;
+}

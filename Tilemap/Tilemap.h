@@ -16,6 +16,8 @@ public:
 	Tile* getTile(TilePosition p_position);
 	Tile* closestFreeTile(Tile* p_start);
 	bool isValidPosition(TilePosition p_position);
+	int getWidth();
+	int getHeight();
 };
 
 #endif
