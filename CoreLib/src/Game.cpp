@@ -34,14 +34,15 @@ int Game::run()
 	{
 		m_timer->tick();
 		
-		update( (float)m_timer->getDeltaTime(), m_io->fetchInput() );
+		// update( (float)m_timer->getDeltaTime(), m_io->fetchInput() );
+		m_io->update(m_timer->getDeltaTime());
+		m_io->draw(m_timer->getDeltaTime());
 
-		if( m_io->fetchInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN)
+		if( m_io->fetchInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN )
 		{
 			m_running = false;
 		}
 
-		m_io->draw(m_timer->getDeltaTime());
 	}
 
 	return 0;

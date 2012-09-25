@@ -7,7 +7,6 @@ IODevice::IODevice()
 
 IODevice::~IODevice()
 {
-	delete m_context;
 }
 
 IODevice::IODevice(IOContext* p_context)
@@ -25,10 +24,18 @@ void IODevice::updateSpriteInfo(int p_spriteId)
 
 }
 
-int	IODevice::draw(double p_dt)
+int	IODevice::draw(float p_dt)
 {
 	if(m_context)
-		m_context->draw((float)p_dt);
+		m_context->draw(p_dt);
+
+	return 0;
+}
+
+int IODevice::update(float p_dt)
+{
+	if(m_context)
+		m_context->update(p_dt);
 
 	return 0;
 }

@@ -21,7 +21,8 @@ public:
 	InputInfo	fetchInput();
 	void		updateSpriteInfo(int p_spriteId);
 
-	int			draw(double p_dt);
+	int			draw(float p_dt);
+	int			update(float p_dt);
 	SpriteInfo* addSpriteInfo(SpriteInfo p_spriteInfo);
 	void		removeSpriteInfo(SpriteInfo p_spriteInfo);
 

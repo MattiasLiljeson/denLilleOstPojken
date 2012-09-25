@@ -17,7 +17,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	IOContext* context = new DxContext(hInstance, 400, 400);
 	context->setWindowSize(800, 600);
 
-	context->setWindowPosition(50, 50);
+	context->setWindowPosition(50, 250);
 
 	if (!context->isInitialized())
 	{
@@ -30,22 +30,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	Game* game = new Game(timer, context);
 
 	game->run();
-
-	/*
-	timer->start();
-	while (context->isRunning())
-	{
-		timer->tick();
-		float dt = (float)timer->getDeltaTime();
-		context->update(dt);
-		context->draw(dt);
-
-		if (context->getInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN)
-		{
-			break;
-		}
-	}
-	*/
+	
 
 	delete timer;
 	delete context;

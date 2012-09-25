@@ -21,7 +21,7 @@ private:
 public:
 	Game();
 	Game(Timer* p_timer, IOContext* p_context);
-	~Game();
+	virtual ~Game();
 
 	int run();
 
