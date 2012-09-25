@@ -8,13 +8,13 @@ protected:
 	double  mElapsedTime;
 	bool	mRunning;
 public:
-	Timer();
-	virtual void start() = 0;
-	virtual void stop() = 0;
-	virtual void tick() = 0;
-	double getDeltaTime();
-	double getElapsedTime();
-	bool isStopped();
+					Timer();
+	virtual void	start() = 0;
+	virtual void	stop() = 0;
+	virtual void	tick() = 0;
+	double			getDeltaTime();
+	double			getElapsedTime();
+	bool			isStopped();
 };
 
 #endif

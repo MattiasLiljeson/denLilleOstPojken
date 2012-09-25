@@ -1,10 +1,13 @@
 #include "DxContext.h"
 
-LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, 
+	WPARAM wParam, LPARAM lParam)
 {
 	static DxContext* dxContext = 0;
     switch(message)
     {
+		//Create a reference to the dx context so that 
+		//future messages can be passed to it.
 		case WM_CREATE:
 		{
 			CREATESTRUCT* cs = (CREATESTRUCT*)lParam;
@@ -20,7 +23,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 		return DefWindowProc (hWnd, message, wParam, lParam);
 }
 
-DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenHeight) : IOContext()
+DxContext::DxContext(HINSTANCE pInstanceHandle, 
+	int p_screenWidth, int p_screenHeight) : IOContext()
 {
 	m_screenWidth			= p_screenWidth;
 	m_screenHeight			= p_screenHeight;
@@ -37,6 +41,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 	m_rasterState			= NULL;
 	m_totalGameTime			= 0;
 	m_resizing				= false;
+	m_initialized			= false;
 
 	//Initialize window and directx functionality
 	if (initializeWindow() == GAME_FAIL)
@@ -57,23 +62,29 @@ DxContext::DxContext(HINSTANCE pInstanceHandle, int p_screenWidth, int p_screenH
 		return;
 
 
-	m_keyMappings[InputInfo::ESC] = VK_ESCAPE;
-	m_keyMappings[InputInfo::LEFT] = VK_LEFT;
+	//Map Windows key IDs to our key ID system.
+	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
+	m_keyMappings[InputInfo::LEFT]	= VK_LEFT;
 	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
-	m_keyMappings[InputInfo::UP] = VK_UP;
-	m_keyMappings[InputInfo::DOWN] = VK_DOWN;
+	m_keyMappings[InputInfo::UP]	= VK_UP;
+	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
 
-	//Temp
+	//Temporary code to test sprite creation
 	m_mascot = new DxSprite(m_device, m_deviceContext, this);
+
+	if (!m_mascot->isInitialized())
+		return;
+
 	posX = 400;
 	posY = 300;
-	//End Temp
+	//End Temporary
 
 	m_initialized = true;
 }
 DxContext::~DxContext()
 {
+	//Destroy the window and free allocated resources
 	DestroyWindow(m_windowHandle);
 	m_swapChain->SetFullscreenState(FALSE, NULL);
 	m_swapChain->Release();
@@ -140,7 +151,9 @@ int DxContext::initializeSwapChain()
 	scd.SwapEffect					= DXGI_SWAP_EFFECT_DISCARD;
 	scd.Flags						= DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH;
 
-	D3D_FEATURE_LEVEL featureLevels[] = {D3D_FEATURE_LEVEL_11_0, D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0};
+	D3D_FEATURE_LEVEL featureLevels[] = {D3D_FEATURE_LEVEL_11_0, 
+		D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0};
+
     if (D3D11CreateDeviceAndSwapChain(NULL,
                                   D3D_DRIVER_TYPE_HARDWARE,
                                   NULL,
@@ -167,8 +180,11 @@ int DxContext::initializeBackBuffer()
 	if (!BackBuffer)
 		return GAME_FAIL;
 
-	if (m_device->CreateRenderTargetView(BackBuffer, NULL, &m_backBuffer) != S_OK)
+	if (m_device->CreateRenderTargetView(BackBuffer, NULL, &m_backBuffer) 
+		!= S_OK)
+	{
 		return GAME_FAIL;
+	}
     BackBuffer->Release();
 	return GAME_OK;
 }
@@ -189,7 +205,9 @@ int DxContext::initializeDepthStencilBuffer()
 	depthBufferDesc.CPUAccessFlags = 0; 
 	depthBufferDesc.MiscFlags      = 0;
 
-	int result = m_device->CreateTexture2D(&depthBufferDesc, 0, &m_depthStencilBuffer);
+	int result = m_device->CreateTexture2D(&depthBufferDesc, 0, 
+		&m_depthStencilBuffer);
+
 	if(FAILED(result))
 	{
 		return GAME_FAIL;
@@ -223,7 +241,9 @@ int DxContext::initializeDepthStencilState()
 	depthStencilDesc.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
 
 
-	int result = m_device->CreateDepthStencilState(&depthStencilDesc, &m_depthStencilState);
+	int result = m_device->CreateDepthStencilState(&depthStencilDesc, 
+		&m_depthStencilState);
+
 	if(FAILED(result))
 	{
 		return GAME_FAIL;
@@ -241,7 +261,9 @@ int DxContext::initializeDepthStencilView()
 	depthStencilViewDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 	depthStencilViewDesc.Texture2D.MipSlice = 0;
 
-	int result = m_device->CreateDepthStencilView(m_depthStencilBuffer, &depthStencilViewDesc, &m_depthStencilView);
+	int result = m_device->CreateDepthStencilView(m_depthStencilBuffer,
+		&depthStencilViewDesc, &m_depthStencilView);
+
 	if(FAILED(result))
 	{
 		return GAME_FAIL;
@@ -252,7 +274,8 @@ int DxContext::initializeDepthStencilView()
 }
 int DxContext::initializeRasterizerState()
 {
-	// Setup the raster description which will determine how and what polygons will be drawn.
+	// Setup the raster description which will determine 
+	//how and what polygons will be drawn.
 	D3D11_RASTERIZER_DESC rasterDesc;
 	rasterDesc.AntialiasedLineEnable = false;
 	rasterDesc.CullMode = D3D11_CULL_BACK;
@@ -298,17 +321,25 @@ bool DxContext::isInitialized() const
 }
 int DxContext::setWindowPosition(int p_x, int p_y)
 {
-	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
+	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, 
+		p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
+	{
 		return GAME_FAIL;
+	}
 	return GAME_OK;
 }
 int DxContext::setWindowSize(int p_width, int p_height)
 {
 	RECT wr = {0, 0, p_width, p_height};  
 	if (AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE) == 0)
+	{
 		return GAME_FAIL;
-	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, 0, 0, wr.right - wr.left, wr.bottom-wr.top, SWP_NOMOVE) == 0)
+	}
+	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, 0, 0, 
+		wr.right - wr.left, wr.bottom-wr.top, SWP_NOMOVE) == 0)
+	{
 		return GAME_FAIL;
+	}
 	return GAME_OK;
 }
 int DxContext::resize()
@@ -322,7 +353,9 @@ int DxContext::resize()
 	m_depthStencilView->Release();
 	m_depthStencilBuffer->Release();
 
-	m_swapChain->ResizeBuffers(1, getScreenWidth(), getScreenHeight(), DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+	m_swapChain->ResizeBuffers(1, getScreenWidth(), getScreenHeight(), 
+		DXGI_FORMAT_R8G8B8A8_UNORM, 0);
+
 	initializeBackBuffer();
 	initializeDepthStencilBuffer();
 	initializeDepthStencilView();
@@ -344,19 +377,30 @@ int DxContext::update(float p_dt)
 		m_totalGameTime += p_dt;
 		for (int i = 0; i < InputInfo::NUM_KEYS; i++)
 		{
-			if (GetAsyncKeyState (m_keyMappings[i]) && GetFocus() == m_windowHandle)
+			if (GetAsyncKeyState (m_keyMappings[i]) 
+				&& GetFocus() == m_windowHandle)
 			{
-				if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+				if (m_input.keys[i] == InputInfo::KEYPRESSED || 
+					m_input.keys[i] == InputInfo::KEYDOWN)
+				{
 					m_input.keys[i] = InputInfo::KEYDOWN;
+				}
 				else
+				{
 					m_input.keys[i] = InputInfo::KEYPRESSED;
+				}
 			}
 			else
 			{
-				if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+				if (m_input.keys[i] == InputInfo::KEYPRESSED || 
+					m_input.keys[i] == InputInfo::KEYDOWN)
+				{
 					m_input.keys[i] = InputInfo::KEYRELEASED;
+				}
 				else
+				{
 					m_input.keys[i] = InputInfo::KEYUP;
+				}
 			}
 		}
 
@@ -386,8 +430,11 @@ int DxContext::draw(float p_dt)
 {
 	if (!m_resizing)
 	{
-		m_deviceContext->ClearRenderTargetView(m_backBuffer, D3DXCOLOR(0, 0, 0, 1.0f));
-		m_deviceContext->ClearDepthStencilView(m_depthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+		m_deviceContext->ClearRenderTargetView(m_backBuffer, 
+			D3DXCOLOR(0, 0, 0, 1.0f));
+
+		m_deviceContext->ClearDepthStencilView(m_depthStencilView, 
+			D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		m_mascot->draw();
 
@@ -396,25 +443,26 @@ int DxContext::draw(float p_dt)
 	return GAME_OK;
 }
 
-int DxContext::getScreenWidth()
+int DxContext::getScreenWidth() const
 {
 	return m_screenWidth;
 }
-int DxContext::getScreenHeight()
+int DxContext::getScreenHeight()  const 
 {
 	return m_screenHeight;
 }
 
-LRESULT DxContext::handleWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam)
+LRESULT DxContext::handleWindowMessages(UINT p_message, 
+	WPARAM p_wParam, LPARAM p_lParam)
 {
-	switch (msg)
+	switch (p_message)
 	{
 	case WM_SIZE:
-		if( wParam == SIZE_MAXIMIZED )
+		if (p_wParam == SIZE_MAXIMIZED)
 		{
 			resize();
 		}
-		else if( wParam == SIZE_RESTORED )
+		else if (p_wParam == SIZE_RESTORED)
 		{
 			if (!m_resizing)
 			{
@@ -435,5 +483,5 @@ LRESULT DxContext::handleWindowMessages(UINT msg, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		return 0;
 	}
-	return DefWindowProc(m_windowHandle, msg, wParam, lParam);
+	return DefWindowProc(m_windowHandle, p_message, p_wParam, p_lParam);
 }

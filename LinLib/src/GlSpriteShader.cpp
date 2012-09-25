@@ -1,7 +1,10 @@
 #include "GlSpriteShader.h"
+#include <GL\GLU.h>
 
 GlSpriteShader::GlSpriteShader()
 {
+	m_initialized = false;
+
 	//Variables holding shader data
 	GLuint vertexShader, fragmentShader;
 	GLint vsCompiled, fsCompiled, linked;
@@ -15,7 +18,13 @@ GlSpriteShader::GlSpriteShader()
 
 	//Create the shaders
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+
+	if (!vertexShader)
+		return;
+
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	if (!fragmentShader)
+		return;
 
 	//Initialize and compile the shaders with the given source
 	glShaderSource(vertexShader, 1, (const GLchar**)&vsCode, NULL);
@@ -51,7 +60,7 @@ GlSpriteShader::GlSpriteShader()
 	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize");
 	m_sampler					= glGetUniformLocation(m_id, "gSampler");
 
-	return;
+	m_initialized = true;
 }
 char* GlSpriteShader::readShader(char* p_path)
 {
@@ -108,4 +117,8 @@ GLint GlSpriteShader::getScreenSizeConstant()
 GLuint GlSpriteShader::getTextureSampler()
 {
 	return m_sampler;
+}
+bool GlSpriteShader::isInitialized()
+{
+	return m_initialized;
 }

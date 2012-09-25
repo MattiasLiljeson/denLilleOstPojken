@@ -17,14 +17,18 @@ private:
 	DxSpriteShader*				m_shader;
 	DxContext*					m_context;
 
+	bool						m_initialized;
+
 private:
 	int initVB();
 	int initIB();
 public:
-	DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* p_deviceContext, DxContext* p_context);
-	virtual ~DxSprite();
-	void setPosition(float p_positionX, float p_positionY);
-	void draw();
+				DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* 
+					p_deviceContext, DxContext* p_context);
+	virtual		~DxSprite();
+	void		setPosition(float p_positionX, float p_positionY);
+	void		draw();
+	bool		isInitialized();
 };
 
 #endif

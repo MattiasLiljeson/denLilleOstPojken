@@ -8,9 +8,9 @@ GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
 	s_instance				= this;
 	m_screenWidth			= p_screenWidth;
 	m_screenHeight			= p_screenHeight;
-	m_totalGameTime = 0;
-	m_initialized = false;
-	if (init() != 0)
+	m_totalGameTime			= 0;
+	m_initialized			= false;
+	if (init() != GAME_OK)
 	{
 		glfwTerminate();
 	}
@@ -26,42 +26,45 @@ GlContext::~GlContext()
 int GlContext::init()
 {
 	//Initialize GLFW
-	if(!initGLFW())
-		return 1;
-	if (!initGLFWWindow())
-		return 1;
-	if (initGlew() != GLEW_OK)
-		return 1; 
+	if(initGLFW() == GAME_FAIL)
+		return GAME_FAIL;
+	if (initGLFWWindow() == GAME_FAIL)
+		return GAME_FAIL;
+	if (initGlew() == GAME_FAIL)
+		return GAME_FAIL; 
 
 	glfwSetWindowTitle("Den lille ostpojken");
 	glfwEnable( GLFW_STICKY_KEYS );
 	glViewport(0, 0, getScreenWidth(), getScreenHeight()); 
 	m_mascot = new GlSprite(this);
+	if (!m_mascot->isInitialized())
+		return GAME_FAIL;
 
-	m_keyMappings[InputInfo::ESC] = GLFW_KEY_ESC;
-	m_keyMappings[InputInfo::LEFT] = GLFW_KEY_LEFT;
-	m_keyMappings[InputInfo::RIGHT] = GLFW_KEY_RIGHT;
-	m_keyMappings[InputInfo::UP] = GLFW_KEY_UP;
-	m_keyMappings[InputInfo::DOWN] = GLFW_KEY_DOWN;
+	m_keyMappings[InputInfo::ESC]	= GLFW_KEY_ESC;
+	m_keyMappings[InputInfo::LEFT]	= GLFW_KEY_LEFT;
+	m_keyMappings[InputInfo::RIGHT]	= GLFW_KEY_RIGHT;
+	m_keyMappings[InputInfo::UP]	= GLFW_KEY_UP;
+	m_keyMappings[InputInfo::DOWN]  = GLFW_KEY_DOWN;
 	m_keyMappings[InputInfo::SPACE] = GLFW_KEY_SPACE;
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
 	posX = 400;
 	posY = 300;
 	m_initialized = true;
-
-	return 0;
+	return GAME_OK;
 }
 int GlContext::initGLFW()
 {
-	return glfwInit();
+	if (glfwInit() != GL_TRUE)
+		return GAME_FAIL;
+	return GAME_OK;
 }
 int GlContext::initGLFWWindow()
 {
 	//Set Window Properties
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antiliasing
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3); //Major GL version
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2); //Minor GL version
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 4); //Major GL version
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 0); //Minor GL version
 
 	//Additional parameters for the window creation.
 	//In this case it is specified that opengl with its core profile
@@ -70,11 +73,18 @@ int GlContext::initGLFWWindow()
 	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
  
 	//Open the Window
-	return glfwOpenWindow(getScreenWidth(), getScreenHeight(),0,0,0,0, 32,0, GLFW_WINDOW);
+	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(),0,0,0,0, 32,0, 
+		GLFW_WINDOW) != GL_TRUE)
+	{
+		return GAME_FAIL;
+	}
+	return GAME_OK;
 }
 int GlContext::initGlew()
 {
-	return glewInit();
+	if (glewInit() != GLEW_OK)
+		return GAME_FAIL;
+	return GAME_OK;
 }
 bool GlContext::isInitialized() const
 {
@@ -102,17 +112,27 @@ int GlContext::update(float p_dt)
 	{
 		if (glfwGetKey(m_keyMappings[i]) == GLFW_PRESS)
 		{
-			if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+			if (m_input.keys[i] == InputInfo::KEYPRESSED || 
+				m_input.keys[i] == InputInfo::KEYDOWN)
+			{
 				m_input.keys[i] = InputInfo::KEYDOWN;
+			}
 			else
+			{
 				m_input.keys[i] = InputInfo::KEYPRESSED;
+			}
 		}
 		else
 		{
-			if (m_input.keys[i] == InputInfo::KEYPRESSED || m_input.keys[i] == InputInfo::KEYDOWN)
+			if (m_input.keys[i] == InputInfo::KEYPRESSED || 
+				m_input.keys[i] == InputInfo::KEYDOWN)
+			{
 				m_input.keys[i] = InputInfo::KEYRELEASED;
+			}
 			else
+			{
 				m_input.keys[i] = InputInfo::KEYUP;
+			}
 		}
 	}
 
@@ -150,16 +170,17 @@ int GlContext::draw(float p_dt)
 	return 0;
 }
 
-int GlContext::getScreenWidth()
+int GlContext::getScreenWidth() const
 {
 	return m_screenWidth;
 }
-int GlContext::getScreenHeight()
+int GlContext::getScreenHeight() const
 {
 	return m_screenHeight;
 }
 
 void GLFWCALL GlContext::setWindowSizeCB(int p_width, int p_height)
 {
-	s_instance->setWindowSize(p_width, p_height);
+	if (s_instance)
+		s_instance->setWindowSize(p_width, p_height);
 }
