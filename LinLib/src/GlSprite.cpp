@@ -56,8 +56,13 @@ int GlSprite::draw()
 	 
 	
 	glUniform2f(m_spriteShader->getCenterPositionConstant(), 
-		m_positionX, m_positionY);
-	glUniform2f(m_spriteShader->getHalfScaleConstant(), 50, 50);
+		m_spriteInfo.transformInfo.translation[TransformInfo::X],
+		m_spriteInfo.transformInfo.translation[TransformInfo::Y]
+	);
+	glUniform2f(m_spriteShader->getHalfScaleConstant(),
+		m_spriteInfo.transformInfo.scale[TransformInfo::X] / 2,
+		m_spriteInfo.transformInfo.scale[TransformInfo::Y] / 2
+	);
 	glUniform2f(m_spriteShader->getScreenSizeConstant(), 
 		m_context->getScreenWidth(), m_context->getScreenHeight());
 	glActiveTexture(GL_TEXTURE0);
@@ -102,6 +107,11 @@ GLboolean GlSprite::load(string path)
 bool GlSprite::isInitialized()
 {
 	return m_initialized;
+}
+
+void GlSprite::setSpriteInfo( SpriteInfo p_spriteInfo )
+{
+	m_spriteInfo = p_spriteInfo;
 }
 
 
