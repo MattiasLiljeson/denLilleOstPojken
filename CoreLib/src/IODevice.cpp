@@ -26,8 +26,20 @@ void IODevice::updateSpriteInfo(int p_spriteId)
 
 int	IODevice::draw(float p_dt)
 {
+	//if(m_context)
+	//	m_context->draw(p_dt);
+
 	if(m_context)
-		m_context->draw(p_dt);
+	{
+		m_context->beginDraw();
+
+		for(int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
+		{
+			m_context->drawSprite(m_spriteInfos[spriteIndex]);
+		}
+
+		m_context->endDraw();
+	}
 
 	return 0;
 }
@@ -62,4 +74,9 @@ void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 		m_spriteInfos.pop_back();
 
 	}
+}
+
+bool IODevice::isRunning()
+{
+	return m_context->isRunning();
 }

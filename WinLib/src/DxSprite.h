@@ -2,6 +2,7 @@
 #define DXSPRITE_H
 
 #include "DxSpriteShader.h"
+#include "SpriteInfo.h"
 
 class DxContext;
 
@@ -16,6 +17,7 @@ private:
 	SpriteBuffer				m_spriteData;
 	DxSpriteShader*				m_shader;
 	DxContext*					m_context;
+	SpriteInfo					m_spriteInfo;
 
 	bool						m_initialized;
 
@@ -28,6 +30,7 @@ public:
 	virtual		~DxSprite();
 	void		setPosition(float p_positionX, float p_positionY);
 	void		draw();
+	void		setSpriteInfo(SpriteInfo p_spriteInfo);
 	bool		isInitialized();
 };
 

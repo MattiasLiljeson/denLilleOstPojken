@@ -23,6 +23,7 @@ public:
 
 	int			draw(float p_dt);
 	int			update(float p_dt);
+	bool		isRunning();
 	SpriteInfo* addSpriteInfo(SpriteInfo p_spriteInfo);
 	void		removeSpriteInfo(SpriteInfo p_spriteInfo);
 

@@ -29,6 +29,22 @@ int Game::run()
 	m_running = true;
 	m_timer->start();
 
+	/* Ugli code */
+	SpriteInfo spriteInfo;
+	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;
+	spriteInfo.transformInfo.translation[TransformInfo::Y] = 300;
+	spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
+	spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
+
+	m_io->addSpriteInfo(spriteInfo);
+
+	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
+	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
+	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
+	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
+	
+	m_io->addSpriteInfo(spriteInfo);
+	/* End ugli code */
 
 	while (m_running)
 	{
@@ -38,7 +54,7 @@ int Game::run()
 		m_io->update(m_timer->getDeltaTime());
 		m_io->draw(m_timer->getDeltaTime());
 
-		if( m_io->fetchInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN )
+		if( m_io->fetchInput().keys[InputInfo::ESC] == InputInfo::KEYDOWN || !m_io->isRunning())
 		{
 			m_running = false;
 		}
