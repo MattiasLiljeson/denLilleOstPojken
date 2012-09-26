@@ -62,27 +62,27 @@ SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 {
 	p_spriteInfo.id = m_spriteInfos.size();
 
-	SpriteInfo* newInfo			= new SpriteInfo();
-	newInfo->id					= p_spriteInfo.id;
-	newInfo->textureFileName	= p_spriteInfo.textureFileName;
-	newInfo->transformInfo		= p_spriteInfo.transformInfo;
-	newInfo->visible			= p_spriteInfo.visible;
+	SpriteInfo* inf			= new SpriteInfo();
+	inf->id					= p_spriteInfo.id;
+	inf->textureFileName	= p_spriteInfo.textureFileName;
+	inf->transformInfo		= p_spriteInfo.transformInfo;
+	inf->visible			= p_spriteInfo.visible;
 
-	m_spriteInfos.push_back(newInfo);
+	m_spriteInfos.push_back(inf);
 
-	return newInfo;
+	return inf;
 }
 SpriteInfo* IODevice::addSpriteInfo()
 {
-	SpriteInfo inf;
-	inf.id = m_spriteInfos.size();
-	inf.textureFileName = "";
-	inf.visible = true;
-	inf.transformInfo.rotation[0] = inf.transformInfo.rotation[1] = inf.transformInfo.rotation[2] = 0;
-	inf.transformInfo.translation[0] = inf.transformInfo.translation[1] = inf.transformInfo.translation[2] = 0;
-	inf.transformInfo.scale[0] = inf.transformInfo.scale[1] = inf.transformInfo.scale[2] = 0;
+	SpriteInfo* inf = new SpriteInfo();
+	inf->id = m_spriteInfos.size();
+	inf->textureFileName = "";
+	inf->visible = true;
+	inf->transformInfo.rotation[0] = inf->transformInfo.rotation[1] = inf->transformInfo.rotation[2] = 0;
+	inf->transformInfo.translation[0] = inf->transformInfo.translation[1] = inf->transformInfo.translation[2] = 0;
+	inf->transformInfo.scale[0] = inf->transformInfo.scale[1] = inf->transformInfo.scale[2] = 0;
 	m_spriteInfos.push_back(inf);
-	return &m_spriteInfos.back();
+	return inf;
 }
 
 void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
