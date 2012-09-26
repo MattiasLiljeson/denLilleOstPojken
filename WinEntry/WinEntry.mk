@@ -1,19 +1,25 @@
-include ../solutionSettings.mk
 #===============================================================================
 # Project settings
 #===============================================================================
-# name of out file
-outFile = test
+# Name of out file
+outFile = WinEntry
+
 # Compiler flags when compiling objects
-oFlags = -c
-#Compiler flags used when linking binary
-bFlags =
+cFlags = -c
+
+# Linker flags used when linking binary
+lFlags =
+
+# Link when compiling is done. This should not be done for "libraries". "link" 
+# should be set to 'true' or 'false'. Everything other than 'true' results in 
+# the project not being linked.
+link = false
 
 #===============================================================================
 # Project dependencies
 #===============================================================================
 # Space separated list of directories to projects that this project depends on. 
-projectPaths = ../output ../concStrings
+projectPaths = ../CommonLib ../CoreLib ../WinEntry
 
 
 #===============================================================================
@@ -28,3 +34,7 @@ libIncludePaths =
 # Specify the file names of the libs that should be used when compiling.
 # The file MUST be prefixed with 'lib' and suffiex with '.a'
 __libs =
+
+include ../solutionSettings.mk
+include ../compileAndLink.mk
+

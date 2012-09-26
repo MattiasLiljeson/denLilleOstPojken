@@ -34,12 +34,11 @@ doc/
 [Ii]pch/
 *.*sdf*
 #*.PIXExp
+
 assets/
 */bin/
 *.user
-*.lib
-*.o
-#*.a
 
 # Exceptions
-!external/*
+!*/external/*
+

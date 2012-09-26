@@ -1,5 +1,3 @@
-include projSettings.mk
-
 #===============================================================================
 # Dependecy list processing
 #===============================================================================
@@ -53,7 +51,7 @@ all : createDirs $(outFile)
 # Compile all .cpp files to .o files. 
 # $< = actual cpp file. $@ .o file, the target file
 $(objDir)/%.o : $(srcDir)/%.cpp
-	g++ $(oFlags) -o $@ $< $(includePaths) 
+	g++ $(cFlags) -o $@ $< $(includePaths) 
 
 # Generate dependencies
 # -MF  write the generated dependency rule to a file
@@ -62,11 +60,13 @@ $(objDir)/%.o : $(srcDir)/%.cpp
 # -MP  add phony target for each header to prevent errors when header is missing
 # -MT  add a target to the generated dependency
 $(depDir)/%.d : $(srcDir)/%.cpp
-	g++ $(oFlags) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.c=.o)" "$<"
+	g++ $(cFlags) -MF"$@" -MG -MM -MP -MT"$@" -MT"$(<:.c=.o)" "$<"
 
 # Compile object files to executable
 $(outFile) : $(objects) $(deps)
-	g++ $(objects) $(bFlags) -o $(binDir)/test $(depObjects) $(libPaths) $(libs)
+ifeq ($(link),true)
+	g++ $(objects) $(lFlags) -o $(binDir)/test $(depObjects) $(libPaths) $(libs)
+endif
 
 createDirs :
 	mkdir $(masDir) $(objDir) $(binDir) $(depDir)
