@@ -1,6 +1,6 @@
 #!/bin/bash
 
-git clean
+git clean -f
 git checkout -f
 git pull
 make -f solution.mk
