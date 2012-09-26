@@ -1,7 +1,7 @@
 #ifndef T_TIMER_H
 #define T_TIMER_H
 
-#include <WinTimer.h>
+/*#include <WinTimer.h>
 #include "gtest/gtest.h"
 
 class T_Timer : public ::testing::Test
@@ -24,5 +24,5 @@ protected:
 
 TEST_F(T_Timer, CheckIfTheTimerIsDone){
 	ASSERT_EQ(winTimer->getDeltaTime(), winTimer->getElapsedTime());
-}
+}*/
 #endif

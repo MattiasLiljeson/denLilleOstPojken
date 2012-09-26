@@ -36,6 +36,32 @@ int Game::run()
 	m_running = true;
 	m_timer->start();
 
+
+	/*mgr			= new StateManager();
+	curr		= mgr->getCurrentState();
+	inGame		= mgr->getInGameState();
+	menu		= mgr->getMenuState();
+	outerState	= new InGameState(mgr);
+
+	ASSERT_TRUE(curr);
+	ASSERT_TRUE(inGame);
+	ASSERT_TRUE(menu);
+	ASSERT_TRUE(menu == curr || inGame == curr);
+
+	mgr->requestStateChange(menu);
+	mgr->update(0);
+	
+	ASSERT_TRUE(menu == mgr->getCurrentState());
+
+	mgr->requestStateChange(inGame);
+
+	ASSERT_FALSE(inGame == mgr->getCurrentState());
+	ASSERT_TRUE(inGame == mgr->getDesiredState());
+
+	mgr->update(0);
+	ASSERT_TRUE(inGame == mgr->getCurrentState());
+	mgr->update(0);
+	ASSERT_TRUE(inGame == mgr->getCurrentState());*/
 	/* Ugli code */
 	/*SpriteInfo spriteInfo;
 	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;

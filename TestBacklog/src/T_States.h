@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <StateManager.h>
 
-/*class T_States : public ::testing::Test
+class T_States : public ::testing::Test
 {
 protected:
 	T_States(){
@@ -13,21 +13,30 @@ protected:
 	}
 	virtual void SetUp(){
 		mgr = new StateManager();
+		curr = mgr->getCurrentState();
+		inGame = mgr->getInGameState();
+		menu = mgr->getMenuState();
+		outerState = new InGameState(mgr);
 	}
 	virtual void TearDown(){
 		delete mgr;
 	}
 	StateManager* mgr;
+	State* curr;
+	State* inGame;
+	State* menu;
+	State* outerState;
 
-};*/
+};
 
-TEST(T_States, Namn)
+TEST_F(T_States, Namn)
 {
-	StateManager* mgr = new StateManager();
-	State* curr = mgr->getCurrentState();
-	State* inGame = mgr->getInGameState();
-	State* menu = mgr->getMenuState();
-	State* outerState = new InGameState(mgr);
+	mgr			= new StateManager();
+	curr		= mgr->getCurrentState();
+	inGame		= mgr->getInGameState();
+	menu		= mgr->getMenuState();
+	outerState	= new InGameState(mgr);
+
 	ASSERT_TRUE(curr);
 	ASSERT_TRUE(inGame);
 	ASSERT_TRUE(menu);
@@ -37,7 +46,6 @@ TEST(T_States, Namn)
 	mgr->update(0);
 	
 	ASSERT_TRUE(menu == mgr->getCurrentState());
-	ASSERT_TRUE(menu == mgr->getDesiredState());
 
 	mgr->requestStateChange(inGame);
 
@@ -45,7 +53,9 @@ TEST(T_States, Namn)
 	ASSERT_TRUE(inGame == mgr->getDesiredState());
 
 	mgr->update(0);
-
+	mgr->update(0);
+	ASSERT_TRUE(inGame == mgr->getCurrentState());
+	mgr->update(0);
 	ASSERT_TRUE(inGame == mgr->getCurrentState());
 	ASSERT_TRUE(inGame == mgr->getDesiredState());
 
