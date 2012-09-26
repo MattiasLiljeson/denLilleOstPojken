@@ -31,6 +31,8 @@ public:
 	void		setPosition(float p_positionX, float p_positionY);
 	void		draw();
 	void		setSpriteInfo(SpriteInfo p_spriteInfo);
+	void		setTexture(ID3D11ShaderResourceView* p_texture);
+
 	bool		isInitialized();
 };
 

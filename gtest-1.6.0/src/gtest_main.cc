@@ -28,12 +28,15 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <iostream>
-
 #include "gtest/gtest.h"
-
-GTEST_API_ int main(int argc, char **argv) {
-  std::cout << "Running main() from gtest_main.cc\n";
-
-  testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
-}
+TEST(sample_test_case, sample_test) 
+{ 
+    EXPECT_EQ(1, 1); 
+} 
+ 
+int main(int argc, char** argv)  
+{  
+    testing::InitGoogleTest(&argc, argv);  
+    RUN_ALL_TESTS();  
+    std::getchar(); // keep console window open until Return keystroke 
+} 

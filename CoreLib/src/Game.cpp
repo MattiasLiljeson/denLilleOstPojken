@@ -38,6 +38,7 @@ int Game::run()
 
 	m_io->addSpriteInfo(spriteInfo);
 
+	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
 	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
 	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
