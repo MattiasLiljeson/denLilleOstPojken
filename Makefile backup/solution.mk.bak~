@@ -1,0 +1,15 @@
+all :
+	@echo ==========================================
+	@echo Compiling prog
+	@echo ==========================================
+	$(MAKE) --directory="prog" --file="project.mk"
+	@echo
+	@echo ==========================================
+	@echo  SUCCESS!
+	@echo ==========================================
+
+clean :
+	@echo ==========================================
+	@echo Clean prog
+	@echo ==========================================
+	$(MAKE) --directory="prog" --file="project.mk" clean

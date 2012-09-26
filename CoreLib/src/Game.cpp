@@ -51,12 +51,13 @@ int Game::run()
 
 	m_gameObjects.push_back(avatar);
 
-	/*spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
+	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
+	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
 	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
 	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
 	
-	m_io->addSpriteInfo(spriteInfo);*/
+	m_io->addSpriteInfo(spriteInfo);
 
 	int arr[] = 
 				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
