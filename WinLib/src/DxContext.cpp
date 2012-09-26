@@ -414,15 +414,15 @@ int DxContext::update(float p_dt)
 		}
 
 
-		if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
-			posX -= 50 * p_dt;
-		else if (m_input.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN)
-			posX += 50 * p_dt;
-		if (m_input.keys[InputInfo::DOWN] == InputInfo::KEYDOWN)
-			posY -= 50 * p_dt;
-		else if (m_input.keys[InputInfo::UP] == InputInfo::KEYDOWN)
-			posY += 50 * p_dt;
-		m_mascot->setPosition(posX, posY);
+		//if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
+		//	posX -= 50 * p_dt;
+		//else if (m_input.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN)
+		//	posX += 50 * p_dt;
+		//if (m_input.keys[InputInfo::DOWN] == InputInfo::KEYDOWN)
+		//	posY -= 50 * p_dt;
+		//else if (m_input.keys[InputInfo::UP] == InputInfo::KEYDOWN)
+		//	posY += 50 * p_dt;
+		//m_mascot->setPosition(posX, posY);
 	}
 	return GAME_OK;
 }

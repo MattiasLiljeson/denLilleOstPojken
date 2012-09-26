@@ -4,6 +4,7 @@
 #include <string>
 #include "GlSpriteShader.h"
 #include "LodePNG.h"
+#include "SpriteInfo.h"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ private:
 	GlSpriteShader* m_spriteShader;
 	GlContext*		m_context;
 	bool			m_initialized;
+	SpriteInfo		m_spriteInfo;
 
 private:
 	int initializeGeometry();
@@ -31,6 +33,7 @@ public:
 	virtual ~GlSprite();
 	void	setPosition(float p_positionX, float p_positionY);
 	int		draw();
+	void	setSpriteInfo(SpriteInfo p_spriteInfo);
 	bool	isInitialized();
 };
 

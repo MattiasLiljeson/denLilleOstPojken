@@ -6,6 +6,8 @@
 
 class Avatar : public GameObject
 {
+private:
+
 public:
 	Avatar();
 	Avatar(SpriteInfo* p_spriteInfo);

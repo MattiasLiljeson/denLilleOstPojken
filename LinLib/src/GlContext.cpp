@@ -163,11 +163,33 @@ int GlContext::update(float p_dt)
 int GlContext::draw(float p_dt)
 {
 	glClearColor(0, 0, 0, 1.0);
-    glClearDepth(1.0);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearDepth(1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	m_mascot->draw();
 	glfwSwapBuffers();
 	return 0;
+}
+
+int GlContext::beginDraw()
+{
+	glClearColor(0, 0, 0, 1.0);
+	glClearDepth(1.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	//m_mascot->draw();
+	return GAME_OK;
+}
+
+int GlContext::drawSprite( SpriteInfo p_spriteInfo )
+{
+	m_mascot->setSpriteInfo(p_spriteInfo);
+	m_mascot->draw();
+	return GAME_OK;
+}
+
+int GlContext::endDraw()
+{
+	glfwSwapBuffers();
+	return GAME_OK;
 }
 
 int GlContext::getScreenWidth() const
@@ -184,3 +206,5 @@ void GLFWCALL GlContext::setWindowSizeCB(int p_width, int p_height)
 	if (s_instance)
 		s_instance->setWindowSize(p_width, p_height);
 }
+
+

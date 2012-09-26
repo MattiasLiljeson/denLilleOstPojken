@@ -17,6 +17,20 @@
     <ClInclude Include="src\T_States.h" />
     <ClInclude Include="src\T_Timer.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">
+      <Project>{f5a4e8f2-2caf-4aea-b215-7df7ee7944ee}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreLib\CoreLib.vcxproj">
+      <Project>{3b40ff97-0533-4cc9-b652-da3246714977}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\LinLib\LinLib.vcxproj">
+      <Project>{de1c01e7-6e3c-4723-b40b-2de182058227}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\WinLib\WinLib.vcxproj">
+      <Project>{30b1f21b-d8cb-44dd-b477-77b4b1f26054}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3D07CDEC-5B30-4472-8140-80087E5B6D89}</ProjectGuid>
     <RootNamespace>TestBacklog</RootNamespace>
@@ -47,11 +61,11 @@
     <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\src\;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
+    <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
   </PropertyGroup>

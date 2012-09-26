@@ -35,6 +35,11 @@ public:
 	int						setWindowSize(int p_width, int p_height);
 	int						update(float p_dt);
 	int						draw(float p_dt);
+
+	int						beginDraw();
+	int						drawSprite(SpriteInfo p_spriteInfo);
+	int						endDraw();
+
 	int						getScreenWidth() const;
 	int						getScreenHeight() const;
 	static void GLFWCALL	setWindowSizeCB(int p_width, int p_height);

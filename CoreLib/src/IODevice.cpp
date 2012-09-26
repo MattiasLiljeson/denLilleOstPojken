@@ -6,7 +6,13 @@ IODevice::IODevice()
 }
 
 IODevice::~IODevice()
-{
+{	
+	for (int i = m_spriteInfos.size() - 1; i >= 0; i--)
+	{
+		SpriteInfo* info = m_spriteInfos.at(i);
+		m_spriteInfos.pop_back();
+		delete info;
+	}
 }
 
 IODevice::IODevice(IOContext* p_context)
@@ -33,9 +39,9 @@ int	IODevice::draw(float p_dt)
 	{
 		m_context->beginDraw();
 
-		for(int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
+		for(unsigned int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
 		{
-			m_context->drawSprite(m_spriteInfos[spriteIndex]);
+			m_context->drawSprite(*m_spriteInfos[spriteIndex]);
 		}
 
 		m_context->endDraw();
@@ -55,37 +61,45 @@ int IODevice::update(float p_dt)
 SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 {
 	p_spriteInfo.id = m_spriteInfos.size();
-	m_spriteInfos.push_back(p_spriteInfo);
-	
-	return &m_spriteInfos.back();
+
+	SpriteInfo* inf			= new SpriteInfo();
+	inf->id					= p_spriteInfo.id;
+	inf->textureFileName	= p_spriteInfo.textureFileName;
+	inf->transformInfo		= p_spriteInfo.transformInfo;
+	inf->visible			= p_spriteInfo.visible;
+
+	m_spriteInfos.push_back(inf);
+
+	return inf;
 }
 SpriteInfo* IODevice::addSpriteInfo()
 {
-	SpriteInfo inf;
-	inf.id = m_spriteInfos.size();
-	inf.textureFileName = "";
-	inf.visible = true;
-	inf.transformInfo.rotation[0] = inf.transformInfo.rotation[1] = inf.transformInfo.rotation[2] = 0;
-	inf.transformInfo.translation[0] = inf.transformInfo.translation[1] = inf.transformInfo.translation[2] = 0;
-	inf.transformInfo.scale[0] = inf.transformInfo.scale[1] = inf.transformInfo.scale[2] = 0;
+	SpriteInfo* inf = new SpriteInfo();
+	inf->id = m_spriteInfos.size();
+	inf->textureFileName = "";
+	inf->visible = true;
+	inf->transformInfo.rotation[0] = inf->transformInfo.rotation[1] = inf->transformInfo.rotation[2] = 0;
+	inf->transformInfo.translation[0] = inf->transformInfo.translation[1] = inf->transformInfo.translation[2] = 0;
+	inf->transformInfo.scale[0] = inf->transformInfo.scale[1] = inf->transformInfo.scale[2] = 0;
 	m_spriteInfos.push_back(inf);
-	return &m_spriteInfos.back();
+	return inf;
 }
 
 void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 {
-	if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
-	{
-		// Give last element the id of the removed one.
-		m_spriteInfos.back().id = p_spriteInfo.id;
+	
+	//if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
+	//{
+	//	// Give last element the id of the removed one.
+	//	m_spriteInfos.back().id = p_spriteInfo.id;
 
-		swap(
-			m_spriteInfos.at(p_spriteInfo.id),
-			m_spriteInfos.back());
+	//	swap(
+	//		m_spriteInfos.at(p_spriteInfo.id),
+	//		m_spriteInfos.back());
 
-		m_spriteInfos.pop_back();
+	//	m_spriteInfos.pop_back();
 
-	}
+	//}
 }
 
 bool IODevice::isRunning()
