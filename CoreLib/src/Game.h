@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "Tilemap.h"
 #include "Pill.h"
+#include "Monster.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ private:
 	//Temp
 	Tilemap* m_tileMap;
 	vector<Pill> m_pills;
+	vector<Monster> m_monsters;
 
 
 public:

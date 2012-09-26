@@ -18,7 +18,11 @@ TileType Tile::getType()
 {
 	return m_type;
 }
-TilePosition Tile::getPosition()
+fVector2 Tile::getPosition()
+{
+	return fVector2(m_position.x * m_width + m_width * 0.5f, m_position.y * m_height + m_height * 0.5f);
+}
+TilePosition Tile::getTilePosition()
 {
 	return m_position;
 }

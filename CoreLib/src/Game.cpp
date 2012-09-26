@@ -89,7 +89,7 @@ int Game::run()
 				 1, 2, 1, 2, 2, 2, 2, 1, 2, 1,
 				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 
 				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1,
-				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 
+				 1, 2, 2, 2, 2, 2, 2, 3, 2, 1, 
 				 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
 	TileType* types = new TileType[100];
@@ -108,6 +108,8 @@ int Game::run()
 		{
 			if (arr[i*10+j] == 2)
 				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+			if (arr[i*10+j] == 3)
+				m_monsters.push_back(Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));
 		}
 	}
 	/* End ugli code */
@@ -138,6 +140,10 @@ int Game::update(float p_deltaTime, InputInfo p_inputInfo)
 	for (unsigned int index = 0; index < m_gameObjects.size(); index++)
 	{
 		m_gameObjects[index]->update(p_deltaTime, p_inputInfo);
+	}
+	for (unsigned int index = 0; index < m_monsters.size(); index++)
+	{
+		m_monsters[index].update(p_deltaTime, p_inputInfo);
 	}
 	return 0;
 }

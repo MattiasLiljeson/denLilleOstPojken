@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\T_Math.h" />
+    <ClInclude Include="src\T_Monster.h" />
     <ClInclude Include="src\T_States.h" />
     <ClInclude Include="src\T_Timer.h" />
   </ItemGroup>

@@ -20,6 +20,9 @@
     <Filter Include="Source\States">
       <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Monster">
+      <UniqueIdentifier>{a2dde8ce-d32d-4ec7-8671-0119d706aaba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -55,6 +58,9 @@
     <ClCompile Include="src\StateManager.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monster.cpp">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -89,6 +95,9 @@
     </ClInclude>
     <ClInclude Include="src\StateManager.h">
       <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monster.h">
+      <Filter>Source\GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

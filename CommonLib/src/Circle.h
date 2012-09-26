@@ -5,10 +5,10 @@
 
 struct Circle
 {
-	Vector2 c;
+	fVector2 c;
 	float	r;
 	
-	Circle(Vector2 p_c, float p_r)
+	Circle(fVector2 p_c, float p_r)
 	{
 		c = p_c;
 		r = p_r;
@@ -16,7 +16,7 @@ struct Circle
 
 	bool collidesWith(Circle p_other)
 	{
-		Vector2 diff = c - p_other.c;
+		fVector2 diff = c - p_other.c;
 		float distSqr = diff.lengthSquared();
 		float totalR = r+p_other.r;
 		if (distSqr < totalR * totalR)

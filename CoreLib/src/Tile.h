@@ -2,6 +2,7 @@
 #define TILE_H
 
 #include "GameObject.h"
+#include <Vector2.h>
 
 struct TilePosition
 {
@@ -49,7 +50,8 @@ private:
 public:
 	Tile(TileType p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
 	TileType getType();
-	TilePosition getPosition();
+	TilePosition getTilePosition();
+	fVector2		getPosition();
 	float getWidth();
 	float getHeight();
 	bool isFree();

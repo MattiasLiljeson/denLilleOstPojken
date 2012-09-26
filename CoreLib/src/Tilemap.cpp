@@ -63,8 +63,8 @@ Tile* Tilemap::getTile(TilePosition p_position)
 }
 Tile* Tilemap::closestFreeTile(Tile* p_start)
 {
-	TilePosition min = p_start->getPosition() - TilePosition(1, 1);
-	TilePosition max = p_start->getPosition() + TilePosition(1, 1);
+	TilePosition min = p_start->getTilePosition() - TilePosition(1, 1);
+	TilePosition max = p_start->getTilePosition() + TilePosition(1, 1);
 
 	while (min.x >= 0 || min.y >= 0 || max.x < m_width || max.y < m_height)
 	{
