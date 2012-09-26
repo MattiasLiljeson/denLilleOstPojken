@@ -43,5 +43,10 @@ assets/
 *.o
 #*.a
 
+#gedit temp files
+*/*~
+*~
+.gitignore~
+
 # Exceptions
 !external/*
