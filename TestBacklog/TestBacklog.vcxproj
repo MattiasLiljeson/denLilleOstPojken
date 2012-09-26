@@ -14,6 +14,7 @@
     <ClCompile Include="src\TestBacklogRunner.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\T_States.h" />
     <ClInclude Include="src\T_Timer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -55,14 +56,14 @@
     </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\src\;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
+    <IncludePath>$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\src\;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
-    <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -95,7 +96,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>gtest.lib;gtest_main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;WinLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtest.lib;gtest_main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;WinLib_$(Configuration).lib;CoreLib_$(Configuration).lib;LinLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>MSVCRT.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <CustomBuildStep>

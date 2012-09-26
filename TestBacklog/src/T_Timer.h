@@ -25,5 +25,4 @@ protected:
 TEST_F(T_Timer, CheckIfTheTimerIsDone){
 	ASSERT_EQ(winTimer->getDeltaTime(), winTimer->getElapsedTime());
 }
-
 #endif

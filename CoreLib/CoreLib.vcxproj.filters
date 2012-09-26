@@ -17,6 +17,9 @@
     <Filter Include="Source\GameObject\Pill">
       <UniqueIdentifier>{38d236ca-fc35-45ce-8e95-3af76944c030}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\States">
+      <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -40,6 +43,18 @@
     <ClCompile Include="src\Pill.cpp">
       <Filter>Source\GameObject\Pill</Filter>
     </ClCompile>
+    <ClCompile Include="src\InGameState.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuState.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\State.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StateManager.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -62,6 +77,18 @@
     </ClInclude>
     <ClInclude Include="src\Pill.h">
       <Filter>Source\GameObject\Pill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InGameState.h">
+      <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuState.h">
+      <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\State.h">
+      <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StateManager.h">
+      <Filter>Source\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
