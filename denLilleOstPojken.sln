@@ -15,6 +15,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinLib", "WinLib\WinLib.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinLib", "LinLib\LinLib.vcxproj", "{DE1C01E7-6E3C-4723-B40B-2DE182058227}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "StatePattern", "StatePattern\StatePattern.vcxproj", "{7D081812-B236-4F14-94A1-622498AE6DD9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -45,6 +47,10 @@ Global
 		{DE1C01E7-6E3C-4723-B40B-2DE182058227}.Debug|Win32.Build.0 = Debug|Win32
 		{DE1C01E7-6E3C-4723-B40B-2DE182058227}.Release|Win32.ActiveCfg = Release|Win32
 		{DE1C01E7-6E3C-4723-B40B-2DE182058227}.Release|Win32.Build.0 = Release|Win32
+		{7D081812-B236-4F14-94A1-622498AE6DD9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7D081812-B236-4F14-94A1-622498AE6DD9}.Debug|Win32.Build.0 = Debug|Win32
+		{7D081812-B236-4F14-94A1-622498AE6DD9}.Release|Win32.ActiveCfg = Release|Win32
+		{7D081812-B236-4F14-94A1-622498AE6DD9}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
