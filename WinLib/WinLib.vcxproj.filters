@@ -5,6 +5,7 @@
     <ClCompile Include="src\DxSprite.cpp" />
     <ClCompile Include="src\DxSpriteShader.cpp" />
     <ClCompile Include="src\WinTimer.cpp" />
+    <ClCompile Include="src\DxTextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DxContext.h" />
@@ -12,5 +13,6 @@
     <ClInclude Include="src\DxSpriteShader.h" />
     <ClInclude Include="src\WinTimer.h" />
     <ClInclude Include="src\DxUtility.h" />
+    <ClInclude Include="src\DxTextureManager.h" />
   </ItemGroup>
 </Project>

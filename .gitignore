@@ -3,7 +3,6 @@
 *.exe
 *.exp
 *.pdb
-*.user
 *.aps
 *.pch
 *.vspscc

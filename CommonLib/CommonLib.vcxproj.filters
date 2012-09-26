@@ -7,11 +7,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IOContext.h" />
-    <ClInclude Include="src\InputInfo.h" />
     <ClInclude Include="src\CommonUtility.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\LodePNG.h" />
-    <ClInclude Include="src\SpriteInfo.h" />
-    <ClInclude Include="src\TransformInfo.h" />
+    <ClInclude Include="src\InputInfo.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpriteInfo.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TransformInfo.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="InfoStructs">
+      <UniqueIdentifier>{a05dfee4-d312-4641-b859-514c34b211a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

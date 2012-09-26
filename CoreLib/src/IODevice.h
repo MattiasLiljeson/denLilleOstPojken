@@ -21,9 +21,14 @@ public:
 	InputInfo	fetchInput();
 	void		updateSpriteInfo(int p_spriteId);
 
-	int			draw();
+	int			draw(float p_dt);
+	int			update(float p_dt);
+	bool		isRunning();
 	SpriteInfo* addSpriteInfo(SpriteInfo p_spriteInfo);
+	SpriteInfo* addSpriteInfo();
 	void		removeSpriteInfo(SpriteInfo p_spriteInfo);
+	int			getScreenWidth();
+	int			getScreenHeight();
 
 
 };

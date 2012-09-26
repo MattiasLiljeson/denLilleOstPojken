@@ -51,6 +51,10 @@ public:
 	int			update(float p_dt);
 	int			draw(float p_dt);
 
+	int			beginDraw();
+	int			drawSprite(SpriteInfo p_spriteInfo);
+	int			endDraw();
+
 	int			getScreenWidth() const;
 	int			getScreenHeight() const;
 

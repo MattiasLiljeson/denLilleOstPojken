@@ -4,8 +4,8 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
 	WPARAM wParam, LPARAM lParam)
 {
 	static DxContext* dxContext = 0;
-    switch(message)
-    {
+	switch(message)
+	{
 		//Create a reference to the dx context so that 
 		//future messages can be passed to it.
 		case WM_CREATE:
@@ -15,7 +15,7 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
 			return 0;
 		}
 		break;
-    }
+	}
 
 	if (dxContext)
 		return dxContext->handleWindowMessages(message, wParam, lParam);
@@ -88,8 +88,8 @@ DxContext::~DxContext()
 	DestroyWindow(m_windowHandle);
 	m_swapChain->SetFullscreenState(FALSE, NULL);
 	m_swapChain->Release();
-    m_device->Release();
-    m_deviceContext->Release();
+	m_device->Release();
+	m_deviceContext->Release();
 	m_backBuffer->Release();
 	m_depthStencilView->Release();
 	m_depthStencilState->Release();
@@ -99,53 +99,53 @@ DxContext::~DxContext()
 int DxContext::initializeWindow()
 {
 	WNDCLASSEX wc;
-    ZeroMemory(&wc, sizeof(WNDCLASSEX));
-    wc.cbSize = sizeof(WNDCLASSEX);
-    wc.style = CS_HREDRAW | CS_VREDRAW;
-    wc.lpfnWndProc = WindowProc;
-    wc.hInstance = m_instanceHandle;
-    wc.hCursor = LoadCursor(NULL, IDC_ARROW);
-    wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
-    wc.lpszClassName = "WindowClass";
-    RegisterClassEx(&wc);
-    RECT wr = {0, 0, getScreenWidth(), getScreenHeight()};
-    
+	ZeroMemory(&wc, sizeof(WNDCLASSEX));
+	wc.cbSize = sizeof(WNDCLASSEX);
+	wc.style = CS_HREDRAW | CS_VREDRAW;
+	wc.lpfnWndProc = WindowProc;
+	wc.hInstance = m_instanceHandle;
+	wc.hCursor = LoadCursor(NULL, IDC_ARROW);
+	wc.hbrBackground = (HBRUSH)COLOR_WINDOW;
+	wc.lpszClassName = "WindowClass";
+	RegisterClassEx(&wc);
+	RECT wr = {0, 0, getScreenWidth(), getScreenHeight()};
+	
 	if (AdjustWindowRect(&wr, WS_OVERLAPPEDWINDOW, FALSE) == 0)
 		return GAME_FAIL;
 
-    m_windowHandle = CreateWindowEx(NULL,
-                          "WindowClass",
-                          "Den Lille OstPojken",
-                          WS_OVERLAPPEDWINDOW,
-                          100,
-                          100,
-                          wr.right - wr.left,
-                          wr.bottom - wr.top,
-                          NULL,
-                          NULL,
-                          m_instanceHandle,
-                          this);
+	m_windowHandle = CreateWindowEx(NULL,
+						  "WindowClass",
+						  "Den Lille OstPojken",
+						  WS_OVERLAPPEDWINDOW,
+						  100,
+						  100,
+						  wr.right - wr.left,
+						  wr.bottom - wr.top,
+						  NULL,
+						  NULL,
+						  m_instanceHandle,
+						  this);
 
 	if (!m_windowHandle)
 		return GAME_FAIL;
 
-    ShowWindow(m_windowHandle, SW_SHOW);
+	ShowWindow(m_windowHandle, SW_SHOW);
 	return GAME_OK;
 }
 int DxContext::initializeSwapChain()
 {
 	DXGI_SWAP_CHAIN_DESC scd;
-    ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
+	ZeroMemory(&scd, sizeof(DXGI_SWAP_CHAIN_DESC));
 
-    scd.BufferCount					= 1;
-    scd.BufferDesc.Format			= DXGI_FORMAT_R8G8B8A8_UNORM;
+	scd.BufferCount					= 1;
+	scd.BufferDesc.Format			= DXGI_FORMAT_R8G8B8A8_UNORM;
 	scd.BufferDesc.Width			= getScreenWidth();
 	scd.BufferDesc.Height			= getScreenHeight();
-    scd.BufferUsage					= DXGI_USAGE_RENDER_TARGET_OUTPUT;
-    scd.OutputWindow				= m_windowHandle;
-    scd.SampleDesc.Count			= 1;
+	scd.BufferUsage					= DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	scd.OutputWindow				= m_windowHandle;
+	scd.SampleDesc.Count			= 1;
 	scd.SampleDesc.Quality			= 0;
-    scd.Windowed					= TRUE;
+	scd.Windowed					= TRUE;
 	scd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	scd.BufferDesc.Scaling			= DXGI_MODE_SCALING_UNSPECIFIED;
 	scd.SwapEffect					= DXGI_SWAP_EFFECT_DISCARD;
@@ -154,18 +154,18 @@ int DxContext::initializeSwapChain()
 	D3D_FEATURE_LEVEL featureLevels[] = {D3D_FEATURE_LEVEL_11_0, 
 		D3D_FEATURE_LEVEL_10_1, D3D_FEATURE_LEVEL_10_0};
 
-    if (D3D11CreateDeviceAndSwapChain(NULL,
-                                  D3D_DRIVER_TYPE_HARDWARE,
-                                  NULL,
-                                  NULL,
-                                  featureLevels,
-                                  3,
-                                  D3D11_SDK_VERSION,
-                                  &scd,
-                                  &m_swapChain,
-                                  &m_device,
-                                  NULL,
-                                  &m_deviceContext) != S_OK)
+	if (D3D11CreateDeviceAndSwapChain(NULL,
+								  D3D_DRIVER_TYPE_HARDWARE,
+								  NULL,
+								  NULL,
+								  featureLevels,
+								  3,
+								  D3D11_SDK_VERSION,
+								  &scd,
+								  &m_swapChain,
+								  &m_device,
+								  NULL,
+								  &m_deviceContext) != S_OK)
 	{
 		return GAME_FAIL;
 	}
@@ -175,7 +175,7 @@ int DxContext::initializeSwapChain()
 int DxContext::initializeBackBuffer()
 {
 	ID3D11Texture2D *BackBuffer;
-    m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&BackBuffer);
+	m_swapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&BackBuffer);
 
 	if (!BackBuffer)
 		return GAME_FAIL;
@@ -185,7 +185,7 @@ int DxContext::initializeBackBuffer()
 	{
 		return GAME_FAIL;
 	}
-    BackBuffer->Release();
+	BackBuffer->Release();
 	return GAME_OK;
 }
 int DxContext::initializeDepthStencilBuffer()
@@ -269,7 +269,7 @@ int DxContext::initializeDepthStencilView()
 		return GAME_FAIL;
 	}
 
-    m_deviceContext->OMSetRenderTargets(1, &m_backBuffer, m_depthStencilView);
+	m_deviceContext->OMSetRenderTargets(1, &m_backBuffer, m_depthStencilView);
 	return GAME_OK;
 }
 int DxContext::initializeRasterizerState()
@@ -301,17 +301,17 @@ int DxContext::initializeRasterizerState()
 }
 int DxContext::initializeViewport()
 {
-    D3D11_VIEWPORT viewport;
-    ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
+	D3D11_VIEWPORT viewport;
+	ZeroMemory(&viewport, sizeof(D3D11_VIEWPORT));
 
-    viewport.TopLeftX = 0;
-    viewport.TopLeftY = 0;
-    viewport.Width = (float)getScreenWidth();
-    viewport.Height = (float)getScreenHeight();
+	viewport.TopLeftX = 0;
+	viewport.TopLeftY = 0;
+	viewport.Width = (float)getScreenWidth();
+	viewport.Height = (float)getScreenHeight();
 	viewport.MinDepth = 0.0f;
-    viewport.MaxDepth = 1.0f;
+	viewport.MaxDepth = 1.0f;
 
-    m_deviceContext->RSSetViewports(1, &viewport);
+	m_deviceContext->RSSetViewports(1, &viewport);
 
 	return GAME_OK;
 }
@@ -436,12 +436,52 @@ int DxContext::draw(float p_dt)
 		m_deviceContext->ClearDepthStencilView(m_depthStencilView, 
 			D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
 
+		SpriteInfo spriteInfo;
+		spriteInfo.transformInfo.translation[TransformInfo::X] = 100;
+		spriteInfo.transformInfo.translation[TransformInfo::Y] = 100;
+		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
+		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
+
+		m_mascot->setSpriteInfo(spriteInfo);
 		m_mascot->draw();
 
 		m_swapChain->Present(0, 0);
 	}
 	return GAME_OK;
 }
+
+int DxContext::beginDraw()
+{
+	if (!m_resizing)
+	{
+		m_deviceContext->ClearRenderTargetView(m_backBuffer, 
+			D3DXCOLOR(0, 0, 0, 1.0f));
+
+		m_deviceContext->ClearDepthStencilView(m_depthStencilView, 
+			D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
+	}
+	return GAME_OK;
+}
+
+int DxContext::drawSprite( SpriteInfo p_spriteInfo )
+{
+	if (!m_resizing)
+	{
+		m_mascot->setSpriteInfo(p_spriteInfo);
+		m_mascot->draw();
+	}
+	return GAME_OK;
+}
+
+int DxContext::endDraw()
+{
+	if (!m_resizing)
+	{
+		m_swapChain->Present(0, 0);
+	}
+	return GAME_OK;
+}
+
 
 int DxContext::getScreenWidth() const
 {

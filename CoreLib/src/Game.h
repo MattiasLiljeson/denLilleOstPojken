@@ -7,6 +7,8 @@
 #include "InputInfo.h"
 #include "IODevice.h"
 #include "GameObject.h"
+#include "Tilemap.h"
+#include "Pill.h"
 
 using namespace std;
 
@@ -18,14 +20,17 @@ private:
 	bool				m_running;
 	vector<GameObject>	m_gameObjects;
 
+	//Temp
+	Tilemap* m_tileMap;
+	vector<Pill> m_pills;
+
+
 public:
 	Game();
 	Game(Timer* p_timer, IOContext* p_context);
-	~Game();
+	virtual ~Game();
 
 	int run();
-
-	int foo();
 
 private:
 	int update(float p_deltaTime, InputInfo p_inputInfo);

@@ -11,6 +11,12 @@
     <Filter Include="Source\GameObject\Avatar">
       <UniqueIdentifier>{310fcb5b-b6f8-4f5e-9171-b6ced88837d2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Tilemap">
+      <UniqueIdentifier>{0a10e61a-f306-4d33-a19a-c406fac7ac65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Pill">
+      <UniqueIdentifier>{38d236ca-fc35-45ce-8e95-3af76944c030}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -25,6 +31,15 @@
     <ClCompile Include="src\Avatar.cpp">
       <Filter>Source\GameObject\Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="src\Tile.cpp">
+      <Filter>Source\GameObject\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Tilemap.cpp">
+      <Filter>Source\GameObject\Tilemap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Pill.cpp">
+      <Filter>Source\GameObject\Pill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -38,6 +53,15 @@
     </ClInclude>
     <ClInclude Include="src\Avatar.h">
       <Filter>Source\GameObject\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tilemap.h">
+      <Filter>Source\GameObject\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Tile.h">
+      <Filter>Source\GameObject\Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Pill.h">
+      <Filter>Source\GameObject\Pill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

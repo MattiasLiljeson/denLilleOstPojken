@@ -108,6 +108,15 @@ void DxSprite::draw()
 	m_spriteData.WindowSize = Vector2((float)m_context->getScreenWidth(), 
 		(float)m_context->getScreenHeight());
 
+	// Translate
+	m_spriteData.CenterPosition = Vector2(m_spriteInfo.transformInfo.translation[TransformInfo::X],
+		m_spriteInfo.transformInfo.translation[TransformInfo::Y]);
+	
+	// Scale
+	m_spriteData.HalfSize = Vector2(m_spriteInfo.transformInfo.scale[TransformInfo::X] / 2,
+		m_spriteInfo.transformInfo.scale[TransformInfo::Y] / 2);
+	
+
 	m_shader->setBuffer(m_spriteData, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
 	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);	
@@ -126,4 +135,9 @@ void DxSprite::draw()
 bool DxSprite::isInitialized()
 {
 	return m_initialized;
+}
+
+void DxSprite::setSpriteInfo( SpriteInfo p_spriteInfo )
+{
+	m_spriteInfo = p_spriteInfo;
 }
