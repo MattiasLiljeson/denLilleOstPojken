@@ -60,7 +60,6 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 		return;
 	if (initializeViewport() == GAME_FAIL)
 		return;
-	m_textureManager		= new DxTextureManager(m_device);
 	if(loadAllTextures() == GAME_FAIL)
 		return;
 
@@ -601,6 +600,8 @@ LRESULT DxContext::handleWindowMessages(UINT p_message,
 
 int DxContext::loadAllTextures()
 {
+	m_textureManager = new DxTextureManager(m_device);
+
 	m_textureManager->addTexture("..\\Textures\\default.png");
 	m_textureManager->addTexture("..\\Textures\\LogoDx.png");
 	m_textureManager->addTexture("..\\Textures\\LogoGL.png");

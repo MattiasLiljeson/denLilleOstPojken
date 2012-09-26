@@ -17,6 +17,7 @@
 *.ilk
 *.log
 *.zip
+!WinLib.vcxproj.user
 [Dd]ebug*/
 *.sbr
 Thumbs.db
