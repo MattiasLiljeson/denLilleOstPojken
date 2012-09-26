@@ -141,3 +141,8 @@ void DxSprite::setSpriteInfo( SpriteInfo p_spriteInfo )
 {
 	m_spriteInfo = p_spriteInfo;
 }
+
+void DxSprite::setTexture(ID3D11ShaderResourceView* p_texture)
+{
+	m_texture = p_texture;
+}

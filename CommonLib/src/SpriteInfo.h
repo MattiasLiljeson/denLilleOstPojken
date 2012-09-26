@@ -11,8 +11,16 @@ struct SpriteInfo
 public:
 	int				id;
 	string			textureFileName;
+	int				textureIndex;
 	bool			visible;
 	TransformInfo	transformInfo;
+
+	SpriteInfo()
+	{
+		textureFileName = "";
+		textureIndex = -1;
+		visible = true;
+	}
 };
 
 #endif
