@@ -19,6 +19,7 @@ public:
 	void draw(float p_dt);
 
 	State* getCurrentState();
+	State* getDesiredState();
 	State* getMenuState();
 	State* getInGameState();
 

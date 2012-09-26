@@ -8,7 +8,10 @@ StateManager::StateManager()
 }
 void StateManager::requestStateChange(State* p_newState)
 {
-	m_desiredState = p_newState;
+	if (p_newState == m_inGameState || p_newState == m_menuState)
+	{
+		m_desiredState = p_newState;
+	}
 }
 
 void StateManager::update(float p_dt)
@@ -27,6 +30,10 @@ void StateManager::draw(float p_dt)
 State* StateManager::getCurrentState()
 {
 	return m_currentState;
+}
+State* StateManager::getDesiredState()
+{
+	return m_desiredState;
 }
 State* StateManager::getMenuState()
 {
