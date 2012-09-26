@@ -54,6 +54,7 @@ int Game::run()
 	
 	m_io->addSpriteInfo(spriteInfo);*/
 
+
 	int arr[] = 
 				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
@@ -69,10 +70,17 @@ int Game::run()
 	TileType* types = new TileType[100];
 	for (int i = 0; i < 100; i++)
 	{
-		if (arr[i] == 1)
-			types[i] = TileType::WALL_TILE;
-		else
-			types[i] = TileType::FREE_TILE;
+		if (arr[i] == TileType::WALL_CENTER)
+			types[i] = TileType::WALL_CENTER;
+		
+		else if(arr[i] == TileType::PILL)
+			types[i] = TileType::PILL;
+		
+		else if(arr[i] == TileType::AVATAR_SPAWN)
+			types[i] = TileType::AVATAR_SPAWN;
+
+		else if(arr[i] == TileType::EMPTY)
+			types[i] = TileType::EMPTY;
 	}
 	m_tileMap = new Tilemap(10, 10, types, m_io);
 

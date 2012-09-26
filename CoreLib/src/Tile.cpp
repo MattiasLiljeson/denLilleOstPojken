@@ -32,5 +32,5 @@ float Tile::getHeight()
 }
 bool Tile::isFree()
 {
-	return m_type != TileType::WALL_TILE; 
+	return m_type != TileType::WALL_CENTER; 
 }
