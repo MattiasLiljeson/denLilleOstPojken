@@ -25,7 +25,10 @@ public:
 	int			update(float p_dt);
 	bool		isRunning();
 	SpriteInfo* addSpriteInfo(SpriteInfo p_spriteInfo);
+	SpriteInfo* addSpriteInfo();
 	void		removeSpriteInfo(SpriteInfo p_spriteInfo);
+	int			getScreenWidth();
+	int			getScreenHeight();
 
 
 };

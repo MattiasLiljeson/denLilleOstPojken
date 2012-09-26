@@ -72,6 +72,18 @@ SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 
 	return newInfo;
 }
+SpriteInfo* IODevice::addSpriteInfo()
+{
+	SpriteInfo inf;
+	inf.id = m_spriteInfos.size();
+	inf.textureFileName = "";
+	inf.visible = true;
+	inf.transformInfo.rotation[0] = inf.transformInfo.rotation[1] = inf.transformInfo.rotation[2] = 0;
+	inf.transformInfo.translation[0] = inf.transformInfo.translation[1] = inf.transformInfo.translation[2] = 0;
+	inf.transformInfo.scale[0] = inf.transformInfo.scale[1] = inf.transformInfo.scale[2] = 0;
+	m_spriteInfos.push_back(inf);
+	return &m_spriteInfos.back();
+}
 
 void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 {
@@ -93,4 +105,12 @@ void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 bool IODevice::isRunning()
 {
 	return m_context->isRunning();
+}
+int	IODevice::getScreenWidth()
+{
+	return m_context->getScreenWidth();
+}
+int	IODevice::getScreenHeight()
+{
+	return m_context->getScreenHeight();
 }

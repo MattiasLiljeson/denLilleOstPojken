@@ -15,5 +15,8 @@
     <ClInclude Include="src\T_Timer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\T_States.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

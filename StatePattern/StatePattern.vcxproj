@@ -10,51 +10,19 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="src\Avatar.cpp" />
-    <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\InGameState.cpp" />
-    <ClCompile Include="src\IODevice.cpp" />
-    <ClCompile Include="src\MenuState.cpp" />
-    <ClCompile Include="src\Pill.cpp" />
-    <ClCompile Include="src\State.cpp" />
-    <ClCompile Include="src\StateManager.cpp" />
-    <ClCompile Include="src\Tile.cpp" />
-    <ClCompile Include="src\Tilemap.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\Avatar.h" />
-    <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\GameObject.h" />
-    <ClInclude Include="src\InGameState.h" />
-    <ClInclude Include="src\IODevice.h" />
-    <ClInclude Include="src\MenuState.h" />
-    <ClInclude Include="src\Pill.h" />
-    <ClInclude Include="src\State.h" />
-    <ClInclude Include="src\StateManager.h" />
-    <ClInclude Include="src\Tile.h" />
-    <ClInclude Include="src\Tilemap.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">
-      <Project>{f5a4e8f2-2caf-4aea-b215-7df7ee7944ee}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3B40FF97-0533-4CC9-B652-DA3246714977}</ProjectGuid>
+    <ProjectGuid>{7D081812-B236-4F14-94A1-622498AE6DD9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Game</RootNamespace>
-    <ProjectName>CoreLib</ProjectName>
+    <RootNamespace>StatePattern</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
@@ -71,21 +39,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(ProjectDir)\bin\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
-    <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(ProjectDir)\bin\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
-    <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -93,16 +49,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -112,19 +64,30 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-    </Lib>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="StateManager.h" />
+    <ClInclude Include="InGameState.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="State.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="StateManager.cpp" />
+    <ClCompile Include="InGameState.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="State.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -37,7 +37,7 @@ int Game::run()
 	m_timer->start();
 
 	/* Ugli code */
-	SpriteInfo spriteInfo;
+	/*SpriteInfo spriteInfo;
 	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;
 	spriteInfo.transformInfo.translation[TransformInfo::Y] = 300;
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
@@ -52,7 +52,38 @@ int Game::run()
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
 	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
 	
-	m_io->addSpriteInfo(spriteInfo);
+	m_io->addSpriteInfo(spriteInfo);*/
+
+	int arr[] = 
+				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
+				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+				 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 
+				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
+				 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 
+				 1, 2, 1, 2, 2, 2, 2, 1, 2, 1,
+				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 
+				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1,
+				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 
+				 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+
+	TileType* types = new TileType[100];
+	for (int i = 0; i < 100; i++)
+	{
+		if (arr[i] == 1)
+			types[i] = TileType::WALL_TILE;
+		else
+			types[i] = TileType::FREE_TILE;
+	}
+	m_tileMap = new Tilemap(10, 10, types, m_io);
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (arr[i*10+j] == 2)
+				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+		}
+	}
 	/* End ugli code */
 	int i = 0;
 
