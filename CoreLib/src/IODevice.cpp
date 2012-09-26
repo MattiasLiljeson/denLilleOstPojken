@@ -6,7 +6,13 @@ IODevice::IODevice()
 }
 
 IODevice::~IODevice()
-{
+{	
+	for (int i = m_spriteInfos.size() - 1; i >= 0; i--)
+	{
+		SpriteInfo* info = m_spriteInfos.at(i);
+		m_spriteInfos.pop_back();
+		delete info;
+	}
 }
 
 IODevice::IODevice(IOContext* p_context)
@@ -33,9 +39,9 @@ int	IODevice::draw(float p_dt)
 	{
 		m_context->beginDraw();
 
-		for(int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
+		for(unsigned int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
 		{
-			m_context->drawSprite(m_spriteInfos[spriteIndex]);
+			m_context->drawSprite(*m_spriteInfos[spriteIndex]);
 		}
 
 		m_context->endDraw();
@@ -55,25 +61,33 @@ int IODevice::update(float p_dt)
 SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 {
 	p_spriteInfo.id = m_spriteInfos.size();
-	m_spriteInfos.push_back(p_spriteInfo);
-	
-	return &m_spriteInfos.back();
+
+	SpriteInfo* newInfo			= new SpriteInfo();
+	newInfo->id					= p_spriteInfo.id;
+	newInfo->textureFileName	= p_spriteInfo.textureFileName;
+	newInfo->transformInfo		= p_spriteInfo.transformInfo;
+	newInfo->visible			= p_spriteInfo.visible;
+
+	m_spriteInfos.push_back(newInfo);
+
+	return newInfo;
 }
 
 void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
 {
-	if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
-	{
-		// Give last element the id of the removed one.
-		m_spriteInfos.back().id = p_spriteInfo.id;
+	
+	//if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
+	//{
+	//	// Give last element the id of the removed one.
+	//	m_spriteInfos.back().id = p_spriteInfo.id;
 
-		swap(
-			m_spriteInfos.at(p_spriteInfo.id),
-			m_spriteInfos.back());
+	//	swap(
+	//		m_spriteInfos.at(p_spriteInfo.id),
+	//		m_spriteInfos.back());
 
-		m_spriteInfos.pop_back();
+	//	m_spriteInfos.pop_back();
 
-	}
+	//}
 }
 
 bool IODevice::isRunning()

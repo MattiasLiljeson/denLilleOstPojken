@@ -16,7 +16,7 @@ private:
 	Timer*				m_timer;
 	IODevice*			m_io;
 	bool				m_running;
-	vector<GameObject>	m_gameObjects;
+	vector<GameObject*>	m_gameObjects;
 
 public:
 	Game();

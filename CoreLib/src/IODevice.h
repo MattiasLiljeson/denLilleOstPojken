@@ -12,7 +12,7 @@ class IODevice
 {
 private:
 	IOContext*			m_context;
-	vector<SpriteInfo>	m_spriteInfos;
+	vector<SpriteInfo*>	m_spriteInfos;
 
 public:
 				IODevice();
