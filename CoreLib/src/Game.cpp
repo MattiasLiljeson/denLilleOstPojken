@@ -5,11 +5,13 @@ Game::Game()
 {
 }
 
+
 Game::Game(Timer* p_timer, IOContext* p_context)
 {
 	m_timer		= p_timer;
 	m_running	= false;
-	
+	m_tileMap	= 0;
+
 	if (p_context)
 		m_io = new IODevice(p_context);
 	else
@@ -26,6 +28,8 @@ Game::~Game()
 	}
 	if (m_io)
 		delete m_io;
+	if (m_tileMap)
+		delete[] m_tileMap;
 }
 
 int Game::run()
@@ -37,7 +41,7 @@ int Game::run()
 	m_timer->start();
 
 	/* Ugli code */
-	/*SpriteInfo spriteInfo;
+	SpriteInfo spriteInfo;
 	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;
 	spriteInfo.transformInfo.translation[TransformInfo::Y] = 300;
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
@@ -47,12 +51,13 @@ int Game::run()
 
 	m_gameObjects.push_back(avatar);
 
+	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
 	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
 	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
 	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
 	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
 	
-	m_io->addSpriteInfo(spriteInfo);*/
+	m_io->addSpriteInfo(spriteInfo);
 
 
 	int arr[] = 
@@ -83,6 +88,7 @@ int Game::run()
 			types[i] = TileType::EMPTY;
 	}
 	m_tileMap = new Tilemap(10, 10, types, m_io);
+	delete types;
 
 	for (int i = 0; i < 10; i++)
 	{
