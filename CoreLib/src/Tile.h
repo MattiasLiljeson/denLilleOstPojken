@@ -19,17 +19,17 @@ struct TilePosition
 		x = p_x;
 		y = p_y;
 	}
-	TilePosition& operator-(const TilePosition& p_other)
+	TilePosition operator-(const TilePosition& p_other)
 	{
-		x -= p_other.x;
-		y -= p_other.y;
-		return (*this);
+		float nx = x - p_other.x;
+		float ny = y - p_other.y;
+		return TilePosition(nx, ny);
 	}
-	TilePosition& operator+(const TilePosition& p_other)
+	TilePosition operator+(const TilePosition& p_other)
 	{
-		x += p_other.x;
-		y += p_other.y;
-		return (*this);
+		float nx = x + p_other.x;
+		float ny = y + p_other.y;
+		return TilePosition(nx, ny);
 	}
 };
 

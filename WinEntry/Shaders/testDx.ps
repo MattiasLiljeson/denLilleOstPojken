@@ -14,5 +14,6 @@ struct VOut
 
 float4 PShader(VOut pIn) : SV_TARGET
 {
+    return float4(0.8f, 0, 0, 1.0f);
     return SpriteTexture.Sample(SampleType, pIn.texCoord);
 }
