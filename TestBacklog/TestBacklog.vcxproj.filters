@@ -18,8 +18,5 @@
     <ClInclude Include="src\T_States.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\T_LoadMap.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

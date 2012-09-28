@@ -37,7 +37,8 @@ enum TileType
 	EMPTY,
 	WALL_CENTER,
 	PILL,
-	AVATAR_SPAWN
+	AVATAR_SPAWN,
+	MONSTER_SPAWN
 };
 
 class Tile: public GameObject

@@ -10,10 +10,12 @@ LoadMap::~LoadMap()
 
 vector<int> LoadMap::parseMap(string p_MapPath)
 {
-	fstream file(p_MapPath.c_str());
+	
+	fstream file(p_MapPath);
+
 	vector<int> mapTiles;
 	int value;
-
+	
 	if(file)
 	{	
 		for(int i = 0; i < 100; i++)
@@ -22,6 +24,5 @@ vector<int> LoadMap::parseMap(string p_MapPath)
 			mapTiles.push_back(value);
 		}
 	}
-
 	return mapTiles;
 }
