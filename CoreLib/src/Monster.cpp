@@ -5,7 +5,6 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, SpriteInfo* p_spriteInfo): GameOb
 	dt = 0;
 	m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
-	//findNextTile();
 	if (p_spriteInfo)
 	{
 		TilePosition tp = m_currentTile->getTilePosition();
@@ -22,7 +21,7 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, SpriteInfo* p_spriteInfo): GameOb
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	dt += p_deltaTime;
+	dt += p_deltaTime * 10;
 	if (dt > 1)
 	{
 		dt -= 1;
@@ -32,7 +31,18 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_nextTile = m_path.back();
 			m_path.pop_back();
 		}
-		//findNextTile();
+		else
+		{
+			Tile* t;
+			do
+			{
+				int rndX = rand() % m_map->getWidth();
+				int rndY = rand() % m_map->getWidth();
+				t = m_map->getTile(TilePosition(rndX, rndY));
+			} while (!t->isFree());
+
+			FindPath(m_currentTile, t);
+		}
 	}
 	TilePosition tp1 = m_currentTile->getTilePosition();
 	TilePosition tp2 = m_nextTile->getTilePosition();
@@ -47,45 +57,6 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 Tile* Monster::getCurrentTile()
 {
 	return m_currentTile;
-}
-void Monster::findNextTile()
-{
-	if (m_map->isValidPosition(m_currentTile->getTilePosition() + TilePosition(-1, 0)))
-	{
-		Tile* t = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(-1, 0));
-		if (t->isFree())
-		{
-			m_nextTile = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(-1, 0));
-			return;
-		}
-	}
-	if (m_map->isValidPosition(m_currentTile->getTilePosition() + TilePosition(0, 1)))
-	{
-		Tile* t = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(0, 1));
-		if (t->isFree())
-		{
-			m_nextTile = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(0, 1));
-			return;
-		}
-	}
-	if (m_map->isValidPosition(m_currentTile->getTilePosition() + TilePosition(0, -1)))
-	{
-		Tile* t = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(0, -1));
-		if (t->isFree())
-		{
-			m_nextTile = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(0, -1));
-			return;
-		}
-	}
-	if (m_map->isValidPosition(m_currentTile->getTilePosition() + TilePosition(1, 0)))
-	{
-		Tile* t = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(1, 0));
-		if (t->isFree())
-		{
-			m_nextTile = m_map->getTile(m_currentTile->getTilePosition() + TilePosition(1, 0));
-			return;
-		}
-	}
 }
 void Monster::FindPath(Tile* p_start, Tile* p_goal)
 {

@@ -1,5 +1,6 @@
 #include "Game.h"
 #include "Avatar.h"
+#include <ctime>
 
 Game::Game()
 {
@@ -7,6 +8,7 @@ Game::Game()
 
 Game::Game(Timer* p_timer, IOContext* p_context)
 {
+	srand(time(NULL));
 	m_timer		= p_timer;
 	m_running	= false;
 	
