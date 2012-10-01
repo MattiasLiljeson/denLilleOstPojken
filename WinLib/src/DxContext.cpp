@@ -73,9 +73,9 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
 
 	//Temporary code to test sprite creation
-	m_mascot = new DxSprite(m_device, m_deviceContext, this);
+	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
-	if (!m_mascot->isInitialized())
+	if (!m_spriteRenderer->isInitialized())
 		return;
 
 	posX = 400;
@@ -96,7 +96,7 @@ DxContext::~DxContext()
 	m_depthStencilView->Release();
 	m_depthStencilState->Release();
 	m_rasterState->Release();
-	delete m_mascot;
+	delete m_spriteRenderer;
 	delete m_textureManager;
 }
 int DxContext::initializeWindow()
@@ -446,8 +446,8 @@ int DxContext::draw(float p_dt)
 		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
 		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
 
-		m_mascot->setSpriteInfo(&spriteInfo);
-		m_mascot->draw();
+		m_spriteRenderer->setSpriteInfo(&spriteInfo);
+		m_spriteRenderer->draw();
 
 		m_swapChain->Present(0, 0);
 	}
@@ -471,45 +471,18 @@ int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	if (!m_resizing && p_spriteInfo->visible)
 	{
-		m_mascot->setSpriteInfo(p_spriteInfo);
+		m_spriteRenderer->setSpriteInfo(p_spriteInfo);
 
 		if( p_spriteInfo->textureIndex >= 0 )
 		{
-			if( spriteSetIndexedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-
-		}
-		else if( p_spriteInfo->textureIndex == -1 &&
-			p_spriteInfo->textureFileName != "" )
-		{
-			if( spriteSetUnindexedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-			
-		}
-		else if( p_spriteInfo->textureFileName == "" )
-		{
-			if( spriteSetUnnamedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-
+			ID3D11ShaderResourceView* texture = NULL;
+			m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
+			if(texture != NULL)
+				m_spriteRenderer->setTexture(texture);
 		}
 
-		m_mascot->draw();	// Careful...
+		m_spriteRenderer->draw();	// Careful...
 	}
-	return GAME_OK;
-}
-
-int DxContext::spriteSetIndexedTexture(SpriteInfo* p_spriteInfo)
-{
-	// Texture id already indexed.
-	ID3D11ShaderResourceView* texture = NULL;
-	
-	m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
-
-	if(texture == NULL)
-		return GAME_FAIL;
-
-	m_mascot->setTexture(texture);
-
 	return GAME_OK;
 }
 
@@ -518,16 +491,13 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	// Texture set but not cached.
 	ID3D11ShaderResourceView* texture = NULL;
 
-	// cannot set textureIndex since it's a local copy. <---------------------------------
-	p_spriteInfo->textureIndex = m_textureManager->getTexture(
+	int textureIndex = p_spriteInfo->textureIndex = m_textureManager->getTexture(
 		p_spriteInfo->textureFileName, &texture);
 
 	if(texture == NULL)
 		return GAME_FAIL;
-
-	m_mascot->setTexture(texture);
-
-	return GAME_OK;
+	else
+		return GAME_OK;
 }
 
 int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
@@ -540,10 +510,8 @@ int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
 
 	if(texture == NULL)
 		return GAME_FAIL;
-
-	m_mascot->setTexture(texture);
-
-	return GAME_OK;
+	else
+		return GAME_OK;
 }
 
 int DxContext::endDraw()
@@ -603,10 +571,32 @@ int DxContext::loadAllTextures()
 {
 	m_textureManager = new DxTextureManager(m_device);
 
-	m_textureManager->addTexture("..\\Textures\\default.png");
-	m_textureManager->addTexture("..\\Textures\\LogoDx.png");
-	m_textureManager->addTexture("..\\Textures\\LogoGL.png");
-	m_textureManager->addTexture("..\\Textures\\pacman-1974.png");
+	m_textureManager->loadTexture("..\\Textures\\default.png");
+	m_textureManager->loadTexture("..\\Textures\\LogoDx.png");
+	m_textureManager->loadTexture("..\\Textures\\LogoGL.png");
+	m_textureManager->loadTexture("..\\Textures\\pacman-1974.png");
 
 	return GAME_OK;
+}
+
+int DxContext::addSprite( SpriteInfo* p_spriteInfo )
+{
+	int textureReadSuccess = GAME_FAIL;
+	if( p_spriteInfo->textureIndex == -1 )
+	{
+		bool named = p_spriteInfo->textureFileName != "";
+
+		if( named )
+		{
+			spriteSetUnindexedTexture( p_spriteInfo );
+			textureReadSuccess = GAME_OK;
+		}
+		else
+		{
+			spriteSetUnnamedTexture( p_spriteInfo );
+			textureReadSuccess = GAME_FAIL;
+		}
+	}
+
+	return textureReadSuccess;
 }
