@@ -44,9 +44,10 @@ void Tile::addPill(Pill* p_pill)
 {
 	m_pill = p_pill;
 }
-void Tile::removePill()
+bool Tile::removePill()
 {
-	if (m_pill)
-		m_pill->eat();
+	m_pill->eat();
 	m_pill = NULL;
+	m_type = TileType::EMPTY;
+	return true;
 }

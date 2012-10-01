@@ -26,6 +26,9 @@
     <Filter Include="Source\LoadMap">
       <UniqueIdentifier>{79809220-fba4-4b6d-b3db-0f7973f9761c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GamesStats">
+      <UniqueIdentifier>{68d165ff-f485-452a-a0d3-adb21a16a913}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -67,6 +70,9 @@
     <ClCompile Include="src\MapLoader.cpp">
       <Filter>Source\LoadMap</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameStats.cpp">
+      <Filter>Source\GamesStats</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -107,6 +113,9 @@
     </ClInclude>
     <ClInclude Include="src\MapLoader.h">
       <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameStats.h">
+      <Filter>Source\GamesStats</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

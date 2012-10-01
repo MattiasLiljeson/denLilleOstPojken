@@ -36,7 +36,7 @@ private:
 
 public:
 	Avatar();
-	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile);
+	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_gameStats);
 
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 };

@@ -12,6 +12,7 @@
 #include "Monster.h"
 #include "MapLoader.h"
 #include "StateManager.h"
+#include "GameStats.h"
 
 using namespace std;
 

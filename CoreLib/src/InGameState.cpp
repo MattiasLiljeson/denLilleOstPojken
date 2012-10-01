@@ -43,8 +43,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 			}
 			if (types[i*10+j] == AVATAR_SPAWN)
 			{
-				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
-				m_gameObjects.push_back(avatar);
+				//GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
+				//m_gameObjects.push_back(avatar);
 			}
 		}
 	}
