@@ -35,9 +35,11 @@ struct TilePosition
 
 enum TileType
 {
-	FREE_TILE,
-	WALL_TILE,
-	SPAWN_PILL
+	EMPTY,
+	WALL_CENTER,
+	PILL,
+	AVATAR_SPAWN,
+	MONSTER_SPAWN
 };
 
 class Tile: public GameObject

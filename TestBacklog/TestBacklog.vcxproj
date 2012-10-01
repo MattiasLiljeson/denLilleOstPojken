@@ -57,26 +57,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\src\;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
+    <LibraryPath>$(SolutionDir)\LinLib\bin\;$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\;$(SolutionDir)\CoreLib\bin\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
-    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(CoreLib)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SourcePath)</SourcePath>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\src\;$(SolutionDir)\CommonLib\src;$(SolutionDir)\CurrentTests\src;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <CustomBuildAfterTargets>
     </CustomBuildAfterTargets>
-    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\CurrentTests\src;$(SourcePath)</SourcePath>
+    <SourcePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\src;$(CoreLib)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -86,8 +86,10 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);WinLib_Debug.lib;CoreLib_Debug.lib;LinLib_Debug.lib</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>MSVCRT.lib</IgnoreSpecificDefaultLibraries>
+      <AdditionalDependencies>gtestd.lib;gtest_maind.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);WinLib_$(Configuration).lib;CoreLib_$(Configuration).lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries> MSVCRT.lib; MSVCRTD.lib; MSVCPRT.lib; MSVCPRTD.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
     <CustomBuildStep>
       <Command>$(OutDir)$(TargetName)$(TargetExt)</Command>
@@ -103,15 +105,14 @@
       <FunctionLevelLinking>
       </FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <RuntimeLibrary>
-      </RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>gtest.lib;gtest_main.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;WinLib_$(Configuration).lib;CoreLib_$(Configuration).lib;LinLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <IgnoreSpecificDefaultLibraries>MSVCRT.lib</IgnoreSpecificDefaultLibraries>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib; MSVCPRT.lib</IgnoreSpecificDefaultLibraries>
     </Link>
     <CustomBuildStep>
       <Command>

@@ -13,6 +13,7 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 	m_timer		= p_timer;
 	m_running	= false;
 	m_tileMap	= 0;
+	m_mapParser = new LoadMap();
 
 	if (p_context)
 		m_io = new IODevice(p_context);
@@ -32,6 +33,8 @@ Game::~Game()
 		delete m_io;
 	if (m_tileMap)
 		delete[] m_tileMap;
+	if (m_mapParser)
+		delete m_mapParser;
 }
 
 int Game::run()
@@ -87,7 +90,7 @@ int Game::run()
 	
 	m_io->addSpriteInfo(spriteInfo);
 
-	int arr[] = 
+	/*int arr[] = 
 				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
 				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
 				 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 
@@ -98,14 +101,26 @@ int Game::run()
 				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1,
 				 1, 2, 2, 2, 2, 2, 2, 3, 2, 1, 
 				 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+				 */
+
+	vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
 
 	TileType* types = new TileType[100];
 	for (int i = 0; i < 100; i++)
 	{
-		if (arr[i] == 1)
-			types[i] = TileType::WALL_TILE;
+		if (data[i] == TileType::WALL_CENTER)
+			types[i] = TileType::WALL_CENTER;
+		
+		else if(data[i] == TileType::PILL)
+			types[i] = TileType::PILL;
+		
+		else if(data[i] == TileType::AVATAR_SPAWN)
+			types[i] = TileType::AVATAR_SPAWN;
+
+		else if(data[i] == TileType::MONSTER_SPAWN)
+			types[i] = TileType::MONSTER_SPAWN;
 		else
-			types[i] = TileType::FREE_TILE;
+			types[i] = TileType::EMPTY;
 	}
 	m_tileMap = new Tilemap(10, 10, types, m_io);
 	delete types;
@@ -114,7 +129,7 @@ int Game::run()
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (arr[i*10+j] == 2)
+			if (data[i*10+j] == 2)
 				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
 			if (arr[i*10+j] == 3)
 				m_monsters.push_back(Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));

@@ -22,6 +22,8 @@
     </Filter>
     <Filter Include="Source\GameObject\Monster">
       <UniqueIdentifier>{a2dde8ce-d32d-4ec7-8671-0119d706aaba}</UniqueIdentifier>
+    <Filter Include="Source\LoadMap">
+      <UniqueIdentifier>{79809220-fba4-4b6d-b3db-0f7973f9761c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +62,8 @@
     </ClCompile>
     <ClCompile Include="src\Monster.cpp">
       <Filter>Source\GameObject\Monster</Filter>
+    <ClCompile Include="src\LoadMap.cpp">
+      <Filter>Source\LoadMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +102,8 @@
     </ClInclude>
     <ClInclude Include="src\Monster.h">
       <Filter>Source\GameObject\Monster</Filter>
+    <ClInclude Include="src\LoadMap.h">
+      <Filter>Source\LoadMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

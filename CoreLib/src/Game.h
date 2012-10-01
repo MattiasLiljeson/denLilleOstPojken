@@ -10,6 +10,7 @@
 #include "Tilemap.h"
 #include "Pill.h"
 #include "Monster.h"
+#include "LoadMap.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
 	IODevice*			m_io;
 	bool				m_running;
 	vector<GameObject*>	m_gameObjects;
+	LoadMap*			m_mapParser;
 
 	//Temp
 	Tilemap* m_tileMap;
