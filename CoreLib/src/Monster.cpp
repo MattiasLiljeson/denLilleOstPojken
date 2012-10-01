@@ -60,7 +60,6 @@ Tile* Monster::getCurrentTile()
 }
 void Monster::FindPath(Tile* p_start, Tile* p_goal)
 {
-	Tile* curr;
 	Tile* toCheck[4];
 
 	vector<AstarItem> queue;
@@ -85,7 +84,7 @@ void Monster::FindPath(Tile* p_start, Tile* p_goal)
 		for (int i = 0; i < 4; i++)
 		{
 			bool skip = !toCheck[i]->isFree();
-			for (int j = 0; j < visited.size(); j++)
+			for (unsigned int j = 0; j < visited.size(); j++)
 			{
 				if (visited[j].tile == toCheck[i])
 					skip = true;
@@ -121,7 +120,7 @@ int	Monster::UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal
 		p_queue[index].toStart = p_toStart;
 		p_queue[index].toGoal = p_toGoal;
 		p_queue[index].parent = p_parent;
-		while (index < p_queue.size()-1 && p_queue[index].distance() < p_queue[index+1].distance())
+		while (index < (int)(p_queue.size()-1) && p_queue[index].distance() < p_queue[index+1].distance())
 		{
 			AstarItem temp = p_queue[index];
 			p_queue[index] = p_queue[index+1];
@@ -150,7 +149,7 @@ int	Monster::UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal
 }
 int	Monster::FindTile(Tile* p_tile, vector<AstarItem>& p_queue)
 {
-	for (int i = 0; i < p_queue.size(); i++)
+	for (unsigned int i = 0; i < p_queue.size(); i++)
 	{
 		if (p_queue[i].tile == p_tile)
 			return i;

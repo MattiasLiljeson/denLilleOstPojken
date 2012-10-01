@@ -3,9 +3,14 @@
 
 #include "Tilemap.h"
 
-enum Direction
+
+
+struct Direction
 {
-	LEFT, RIGHT, DOWN, UP, NONE
+	enum
+	{
+		LEFT, RIGHT, DOWN, UP, NONE
+	};
 };
 static TilePosition Directions[4] = 
 {
@@ -23,11 +28,11 @@ private:
 	Tile* m_queuedTile;
 	Tilemap* m_map;
 
-	Direction m_direction;
+	int m_direction;
 
 	float dt;
 private:
-	Direction checkInput(InputInfo p_inputInfo);
+	int checkInput(InputInfo p_inputInfo);
 
 public:
 	Avatar();

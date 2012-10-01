@@ -22,6 +22,7 @@ protected:
 	StateManager* m_parent;
 public:
 	State(StateManager* p_parent);
+	virtual ~State();
 	virtual void update(float p_dt) = 0;
 	virtual void draw(float p_dt) = 0;
 };

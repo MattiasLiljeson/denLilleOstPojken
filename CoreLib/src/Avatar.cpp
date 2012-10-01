@@ -1,8 +1,8 @@
 #include "Avatar.h"
 
-Direction Avatar::checkInput(InputInfo p_inputInfo)
+int Avatar::checkInput(InputInfo p_inputInfo)
 {
-	Direction desired = m_direction;
+	int desired = m_direction;
 	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
 	{
 		desired = Direction::LEFT;
@@ -48,7 +48,7 @@ Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile)
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	Direction desired = checkInput(p_inputInfo);
+	int desired = checkInput(p_inputInfo);
 	
 	if (desired != m_direction)
 	{

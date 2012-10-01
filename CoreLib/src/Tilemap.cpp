@@ -35,7 +35,7 @@ Tilemap::Tilemap(int p_width, int p_height, TileType* p_initData, IODevice* p_de
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			if (p_initData[row * p_height + col] == TileType::WALL_CENTER)
+			if (p_initData[row * p_height + col] == WALL_CENTER)
 			{
 				SpriteInfo inf;
 				SpriteInfo* infp = p_device->addSpriteInfo(inf);

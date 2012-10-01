@@ -3,9 +3,15 @@
 StateManager::StateManager(IODevice* p_io)
 {
 	m_io = p_io;
-	m_inGameState = new InGameState(this, p_io);
-	m_menuState = new MenuState(this);
+	m_inGameState = new InGameState(this, m_io);
+	m_menuState = new MenuState(this, m_io);
 	m_currentState = m_desiredState = m_menuState;
+	m_terminated = false;
+}
+StateManager::~StateManager()
+{
+	delete m_inGameState;
+	delete m_menuState;
 }
 void StateManager::requestStateChange(State* p_newState)
 {
@@ -48,4 +54,12 @@ State* StateManager::getInGameState()
 void StateManager::switchState()
 {
 	m_currentState = m_desiredState;
+}
+void StateManager::terminate()
+{
+	m_terminated = true;
+}
+bool StateManager::isTerminated()
+{
+	return m_terminated;
 }

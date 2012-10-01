@@ -23,14 +23,14 @@ struct TilePosition
 	}
 	TilePosition operator-(const TilePosition& p_other)
 	{
-		float nx = x - p_other.x;
-		float ny = y - p_other.y;
+		int nx = x - p_other.x;
+		int ny = y - p_other.y;
 		return TilePosition(nx, ny);
 	}
 	TilePosition operator+(const TilePosition& p_other)
 	{
-		float nx = x + p_other.x;
-		float ny = y + p_other.y;
+		int nx = x + p_other.x;
+		int ny = y + p_other.y;
 		return TilePosition(nx, ny);
 	}
 };

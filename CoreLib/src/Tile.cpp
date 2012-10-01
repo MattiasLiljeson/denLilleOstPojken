@@ -38,7 +38,7 @@ float Tile::getHeight()
 }
 bool Tile::isFree()
 {
-	return m_type != TileType::WALL_CENTER; 
+	return m_type != WALL_CENTER; 
 }
 void Tile::addPill(Pill* p_pill)
 {

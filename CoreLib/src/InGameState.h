@@ -14,6 +14,7 @@ private:
 	Tilemap* m_tileMap;
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io);
+	virtual ~InGameState();
 	void update(float p_dt);
 	void draw(float p_dt);
 };
