@@ -25,8 +25,6 @@ private:
 
 	//Temp
 	Tilemap* m_tileMap;
-	vector<Pill> m_pills;
-	vector<Monster> m_monsters;
 
 
 public:

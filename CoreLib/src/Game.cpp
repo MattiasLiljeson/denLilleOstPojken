@@ -45,64 +45,6 @@ int Game::run()
 	m_running = true;
 	m_timer->start();
 
-
-	/*mgr			= new StateManager();
-	curr		= mgr->getCurrentState();
-	inGame		= mgr->getInGameState();
-	menu		= mgr->getMenuState();
-	outerState	= new InGameState(mgr);
-
-	ASSERT_TRUE(curr);
-	ASSERT_TRUE(inGame);
-	ASSERT_TRUE(menu);
-	ASSERT_TRUE(menu == curr || inGame == curr);
-
-	mgr->requestStateChange(menu);
-	mgr->update(0);
-	
-	ASSERT_TRUE(menu == mgr->getCurrentState());
-
-	mgr->requestStateChange(inGame);
-
-	ASSERT_FALSE(inGame == mgr->getCurrentState());
-	ASSERT_TRUE(inGame == mgr->getDesiredState());
-
-	mgr->update(0);
-	ASSERT_TRUE(inGame == mgr->getCurrentState());
-	mgr->update(0);
-	ASSERT_TRUE(inGame == mgr->getCurrentState());*/
-	/* Ugli code */
-	SpriteInfo spriteInfo;
-	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;
-	spriteInfo.transformInfo.translation[TransformInfo::Y] = 300;
-	spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
-	spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
-
-	GameObject* avatar = new Avatar(m_io->addSpriteInfo(spriteInfo));
-
-	m_gameObjects.push_back(avatar);
-
-	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
-	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
-	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
-	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
-	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
-	
-	m_io->addSpriteInfo(spriteInfo);
-
-	/*int arr[] = 
-				{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 
-				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-				 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 
-				 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
-				 1, 2, 1, 2, 1, 1, 2, 1, 2, 1, 
-				 1, 2, 1, 2, 2, 2, 2, 1, 2, 1,
-				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1, 
-				 1, 2, 1, 1, 2, 1, 1, 1, 2, 1,
-				 1, 2, 2, 2, 2, 2, 2, 3, 2, 1, 
-				 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-				 */
-
 	vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
 
 	TileType* types = new TileType[100];
@@ -129,15 +71,21 @@ int Game::run()
 		for (int j = 0; j < 10; j++)
 		{
 			if (types[i*10+j] == TileType::PILL)
-				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+			{
+				m_gameObjects.push_back(new Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+			}
 			if (types[i*10+j] == TileType::MONSTER_SPAWN)
-				m_monsters.push_back(Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));
+			{
+				m_gameObjects.push_back(new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));
+			}
+			if (types[i*10+j] == TileType::AVATAR_SPAWN)
+			{
+				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
+				m_gameObjects.push_back(avatar);
+			}
 		}
 	}
 	delete types;
-
-	/* End ugli code */
-	int i = 0;
 
 	while (m_running)
 	{
@@ -164,10 +112,6 @@ int Game::update(float p_deltaTime, InputInfo p_inputInfo)
 	for (unsigned int index = 0; index < m_gameObjects.size(); index++)
 	{
 		m_gameObjects[index]->update(p_deltaTime, p_inputInfo);
-	}
-	for (unsigned int index = 0; index < m_monsters.size(); index++)
-	{
-		m_monsters[index].update(p_deltaTime, p_inputInfo);
 	}
 	return 0;
 }
