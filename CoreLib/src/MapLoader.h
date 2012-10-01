@@ -9,6 +9,14 @@
 
 using namespace std;
 
+enum TileType
+{
+	EMPTY,
+	WALL_CENTER,
+	PILL,
+	AVATAR_SPAWN,
+	MONSTER_SPAWN
+};
 
 class MapLoader
 {

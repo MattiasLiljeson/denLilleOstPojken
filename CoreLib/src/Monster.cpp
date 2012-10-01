@@ -21,7 +21,7 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, SpriteInfo* p_spriteInfo): GameOb
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	dt += p_deltaTime * 10;
+	dt += p_deltaTime * 3;
 	if (dt > 1)
 	{
 		dt -= 1;

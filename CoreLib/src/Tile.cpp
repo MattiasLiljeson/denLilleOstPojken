@@ -1,7 +1,7 @@
 #include "Tile.h"
 #include "Pill.h"
 
-Tile::Tile(TileType p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo): GameObject(p_spriteInfo)
+Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo): GameObject(p_spriteInfo)
 {
 	m_width = p_width;
 	m_height = p_height;
@@ -14,9 +14,9 @@ Tile::Tile(TileType p_type, TilePosition p_position, float p_width, float p_heig
 	}
 	m_position = p_position;
 	m_type = p_type;
-	m_pill = NULL;
+	m_collectable = NULL;
 }
-TileType Tile::getType()
+bool Tile::getType()
 {
 	return m_type;
 }
@@ -38,18 +38,18 @@ float Tile::getHeight()
 }
 bool Tile::isFree()
 {
-	return m_type != WALL_CENTER; 
+	return m_type; 
 }
 void Tile::addPill(Pill* p_pill)
 {
-	m_pill = p_pill;
+	m_collectable = p_pill;
 }
 bool Tile::removePill()
 {
-	if (m_pill)
+	if (m_collectable)
 	{
-		m_pill->eat();
-		m_pill = NULL;
+		m_collectable->consume();
+		m_collectable = NULL;
 		return true;
 	}
 	return false;
