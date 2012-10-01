@@ -1,17 +1,22 @@
 #include "Tile.h"
 #include "Pill.h"
 
-Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo): GameObject(p_spriteInfo)
+Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, IODevice* p_io): GameObject(NULL)
 {
 	m_width = p_width;
 	m_height = p_height;
-	if (p_spriteInfo)
+
+	if (!p_type)
 	{
-		p_spriteInfo->transformInfo.translation[TransformInfo::X] = p_position.x * p_width + p_width * 0.5f;
-		p_spriteInfo->transformInfo.translation[TransformInfo::Y] = p_position.y * p_height + p_height * 0.5f;
-		p_spriteInfo->transformInfo.scale[TransformInfo::X] = p_width;
-		p_spriteInfo->transformInfo.scale[TransformInfo::Y] = p_height;
+		SpriteInfo spriteInfo;
+		spriteInfo.transformInfo.translation[TransformInfo::X] = p_position.x * p_width + p_width * 0.5f;
+		spriteInfo.transformInfo.translation[TransformInfo::Y] = p_position.y * p_height + p_height * 0.5f;
+		spriteInfo.transformInfo.scale[TransformInfo::X] = p_width;
+		spriteInfo.transformInfo.scale[TransformInfo::Y] = p_height;
+		spriteInfo.textureFileName = "..\\Textures\\wall.png";
+		m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
 	}
+
 	m_position = p_position;
 	m_type = p_type;
 	m_collectable = NULL;

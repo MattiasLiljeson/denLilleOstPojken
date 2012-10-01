@@ -15,9 +15,7 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			SpriteInfo inf;
-			SpriteInfo* infp = p_device->addSpriteInfo(inf);
-			m_tiles[row * p_height + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, infp);
+			m_tiles[row * p_height + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
@@ -35,14 +33,7 @@ Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			if (!p_initData[row * p_height + col])
-			{
-				SpriteInfo inf;
-				SpriteInfo* infp = p_device->addSpriteInfo(inf);
-				m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, infp);
-			}
-			else
-				m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, NULL);
+			m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }

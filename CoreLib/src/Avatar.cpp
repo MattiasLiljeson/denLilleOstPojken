@@ -27,22 +27,24 @@ Avatar::Avatar()
 	//Hubba Bubba
 }
 
-Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
-	: GameObject(p_spriteInfo, p_stats)
+Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
+	: GameObject(NULL, p_stats)
 {
 	m_direction = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
 	m_map = p_map;
-	if (p_spriteInfo)
-	{
-		TilePosition tp = p_startTile->getTilePosition();
-		float w = p_startTile->getWidth();
-		float h = p_startTile->getHeight();
-		p_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-		p_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-		p_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
-		p_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-	}
+
+	SpriteInfo spriteInfo;
+	TilePosition tp = p_startTile->getTilePosition();
+	float w = p_startTile->getWidth();
+	float h = p_startTile->getHeight();
+	spriteInfo.transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
+	spriteInfo.transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
+	spriteInfo.transformInfo.scale[TransformInfo::X] = w * 0.6f;
+	spriteInfo.transformInfo.scale[TransformInfo::Y] = h * 0.6f;
+	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
+	m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
+
 	dt = 0;
 }
 

@@ -28,7 +28,7 @@ private:
 	vector<Tile*> m_path;
 
 public:
-	Monster(Tile* p_tile, Tilemap* p_map, SpriteInfo* p_spriteInfo);
+	Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	Tile* getCurrentTile();
 	void FindPath(Tile* p_start, Tile* p_goal);
