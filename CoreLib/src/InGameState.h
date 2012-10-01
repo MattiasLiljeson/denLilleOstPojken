@@ -8,7 +8,7 @@ class InGameState: public State
 private:
 	IODevice*			m_io;
 	vector<GameObject*>	m_gameObjects;
-	LoadMap*			m_mapParser;
+	MapLoader*			m_mapParser;
 
 	//Temp
 	Tilemap* m_tileMap;

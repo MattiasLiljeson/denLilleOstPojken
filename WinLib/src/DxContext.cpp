@@ -469,7 +469,7 @@ int DxContext::beginDraw()
 
 int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
-	if (!m_resizing && p_spriteInfo.visible)
+	if (!m_resizing && p_spriteInfo->visible)
 	{
 		m_mascot->setSpriteInfo(p_spriteInfo);
 

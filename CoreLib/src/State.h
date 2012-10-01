@@ -10,7 +10,7 @@
 #include "Tilemap.h"
 #include "Pill.h"
 #include "Monster.h"
-#include "LoadMap.h"
+#include "MapLoader.h"
 #include "Avatar.h"
 #include <ctime>
 
