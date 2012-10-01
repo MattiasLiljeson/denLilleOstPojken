@@ -30,3 +30,7 @@ void GameStats::pillEaten()
 	m_numPills -= 1;
 	std::cout<<m_numPills<<std::endl;
 }
+void GameStats::addPill()
+{
+	m_numPills += 1;
+}

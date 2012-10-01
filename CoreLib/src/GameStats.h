@@ -14,6 +14,7 @@ public:
 	void	setNumPills(const int p_numPills);
 	int		getNumPills();
 	void	pillEaten();
+	void	addPill();
 };
 
 #endif

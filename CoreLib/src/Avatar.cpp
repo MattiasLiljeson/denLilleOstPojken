@@ -27,8 +27,8 @@ Avatar::Avatar()
 	//Hubba Bubba
 }
 
-Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_gameStats)
-	: GameObject(p_spriteInfo, p_gameStats)
+Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile)
+	: GameObject(p_spriteInfo)
 {
 	m_direction = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
@@ -71,10 +71,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		if (!m_queuedTile || !m_queuedTile->isFree())
 			m_queuedTile = m_nextTile;
 
-		//Check what type of tile you entered
-		if(m_currentTile->getType() == TileType::PILL)
-			m_currentTile->removePill();
-			m_gameStats->pillEaten();
+		m_currentTile->removePill();
 	}
 
 	TilePosition tp1 = m_currentTile->getTilePosition();

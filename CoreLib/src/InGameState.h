@@ -2,6 +2,7 @@
 #define INGAMESTATE_H
 
 #include "State.h"
+#include "GameStats.h"
 
 class InGameState: public State
 {
@@ -12,6 +13,7 @@ private:
 
 	//Temp
 	Tilemap* m_tileMap;
+	GameStats* m_stats;
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io);
 	virtual ~InGameState();

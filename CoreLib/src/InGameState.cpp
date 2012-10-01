@@ -6,6 +6,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 {
 	m_tileMap	= 0;
 	m_mapParser = new MapLoader();
+	m_stats = new GameStats();
 
 	m_io = p_io;
 	vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
@@ -35,7 +36,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 		{
 			if (types[i*10+j] == PILL)
 			{
-				m_gameObjects.push_back(new Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+				m_gameObjects.push_back(new Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i)), m_stats));
+
 			}
 			if (types[i*10+j] == MONSTER_SPAWN)
 			{
@@ -43,8 +45,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 			}
 			if (types[i*10+j] == AVATAR_SPAWN)
 			{
-				//GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
-				//m_gameObjects.push_back(avatar);
+				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
+				m_gameObjects.push_back(avatar);
 			}
 		}
 	}
@@ -69,10 +71,13 @@ void InGameState::update(float p_dt)
 
 	if (input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 		m_parent->requestStateChange(m_parent->getMenuState());
-	if( input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+	if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
 	{
 		m_parent->terminate();
 	}
+	if (m_stats->getNumPills() < 1)
+		m_parent->terminate();
+
 	for (unsigned int index = 0; index < m_gameObjects.size(); index++)
 	{
 		m_gameObjects[index]->update(p_dt, input);

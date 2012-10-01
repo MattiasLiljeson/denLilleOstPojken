@@ -1,7 +1,8 @@
 #include "Pill.h"
 
-Pill::Pill(SpriteInfo* p_spriteInfo, Tile* p_tile): GameObject(p_spriteInfo)
+Pill::Pill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): GameObject(p_spriteInfo, p_gameStats)
 {
+	p_gameStats->addPill();
 	if (p_spriteInfo)
 	{
 		TilePosition t = p_tile->getTilePosition();
@@ -25,6 +26,10 @@ void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 void Pill::eat()
 {
-	m_eaten = true;
-	m_tile = NULL;
+	if (!m_eaten)
+	{
+		m_eaten = true;
+		m_tile = NULL;
+		m_gameStats->pillEaten();
+	}
 }
