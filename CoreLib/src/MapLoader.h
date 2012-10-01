@@ -1,5 +1,5 @@
-#ifndef LOADMAP_H
-#define LOADMAP_H
+#ifndef MAPLOADER_H
+#define MAPLOADER_H
 
 
 #include <iostream>
@@ -10,11 +10,11 @@
 using namespace std;
 
 
-class LoadMap
+class MapLoader
 {
 public:
-	LoadMap();
-	virtual ~LoadMap();
+	MapLoader();
+	virtual ~MapLoader();
 	
 	vector<int> parseMap(string p);
 };
