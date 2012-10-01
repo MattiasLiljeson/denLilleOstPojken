@@ -123,18 +123,19 @@ int Game::run()
 			types[i] = TileType::EMPTY;
 	}
 	m_tileMap = new Tilemap(10, 10, types, m_io);
-	delete types;
 
 	for (int i = 0; i < 10; i++)
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			if (data[i*10+j] == 2)
+			if (types[i*10+j] == TileType::PILL)
 				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
-			if (arr[i*10+j] == 3)
+			if (types[i*10+j] == TileType::MONSTER_SPAWN)
 				m_monsters.push_back(Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));
 		}
 	}
+	delete types;
+
 	/* End ugli code */
 	int i = 0;
 

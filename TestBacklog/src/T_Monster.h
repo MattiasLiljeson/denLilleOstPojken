@@ -1,8 +1,8 @@
 #ifndef T_MONSTER_H
 #define T_MONSTER_H
 
-#include "gtest/gtest.h"
-/*#include <Monster.h>
+/*#include "gtest/gtest.h"
+#include <Monster.h>
 
 class T_Monster : public ::testing::Test
 {
@@ -19,8 +19,8 @@ protected:
 
 TEST_F(T_Monster, Namn)
 {
-	Tile* t = 0;
-	Monster m(t, NULL, NULL);
+	//Tile* t = NULL;
+	//Monster m(t, NULL, NULL);
 	ASSERT_TRUE(t == m.getCurrentTile());
 }*/
 #endif
