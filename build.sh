@@ -1,8 +1,7 @@
 #!/bin/bash
 
-git clean -f
-git checkout -f
-git pull
-results="`make -f solution.mk`"
-results+=$
-sendmail $results den-lille-ostpojken+cron@googlegroups.com
+#git clean -f
+#git checkout -f
+#git pull
+make -f solution.mk clean
+make -f solution.mk
