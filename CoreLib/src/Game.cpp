@@ -11,7 +11,7 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 	m_timer		= p_timer;
 	m_running	= false;
 	m_tileMap	= 0;
-	m_mapParser = new LoadMap();
+	m_mapParser = new MapLoader();
 
 	if (p_context)
 		m_io = new IODevice(p_context);

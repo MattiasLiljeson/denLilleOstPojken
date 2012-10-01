@@ -1,4 +1,4 @@
-all : clean
+all :
 	@echo
 	@echo ==========================================
 	@echo Compiling CommonLib

@@ -24,5 +24,8 @@
     <ClInclude Include="src\T_Monster.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\T_MapLoad.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

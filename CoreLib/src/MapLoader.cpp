@@ -1,14 +1,14 @@
-#include "LoadMap.h"
+#include "MapLoader.h"
 
-LoadMap::LoadMap()
+MapLoader::MapLoader()
 {
 }
 
-LoadMap::~LoadMap()
+MapLoader::~MapLoader()
 {
 }
 
-vector<int> LoadMap::parseMap(string p_MapPath)
+vector<int> MapLoader::parseMap(string p_MapPath)
 {
 	
 	fstream file(p_MapPath);

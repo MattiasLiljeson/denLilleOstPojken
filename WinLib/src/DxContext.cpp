@@ -431,6 +431,7 @@ int DxContext::update(float p_dt)
 }
 int DxContext::draw(float p_dt)
 {
+	// REMOVE THIS FUNCTION
 	if (!m_resizing)
 	{
 		m_deviceContext->ClearRenderTargetView(m_backBuffer, 
@@ -445,7 +446,7 @@ int DxContext::draw(float p_dt)
 		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
 		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
 
-		m_mascot->setSpriteInfo(spriteInfo);
+		m_mascot->setSpriteInfo(&spriteInfo);
 		m_mascot->draw();
 
 		m_swapChain->Present(0, 0);
@@ -466,28 +467,28 @@ int DxContext::beginDraw()
 	return GAME_OK;
 }
 
-int DxContext::drawSprite( SpriteInfo p_spriteInfo )
+int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	if (!m_resizing && p_spriteInfo.visible)
 	{
 		m_mascot->setSpriteInfo(p_spriteInfo);
 
-		if( p_spriteInfo.textureIndex >= 0 )
+		if( p_spriteInfo->textureIndex >= 0 )
 		{
-			if( spriteSetIndexedTexture(&p_spriteInfo) == GAME_FAIL )
+			if( spriteSetIndexedTexture(p_spriteInfo) == GAME_FAIL )
 				return GAME_FAIL;
 
 		}
-		else if( p_spriteInfo.textureIndex == -1 &&
-			p_spriteInfo.textureFileName != "" )
+		else if( p_spriteInfo->textureIndex == -1 &&
+			p_spriteInfo->textureFileName != "" )
 		{
-			if( spriteSetUnindexedTexture(&p_spriteInfo) == GAME_FAIL )
+			if( spriteSetUnindexedTexture(p_spriteInfo) == GAME_FAIL )
 				return GAME_FAIL;
 			
 		}
-		else if( p_spriteInfo.textureFileName == "" )
+		else if( p_spriteInfo->textureFileName == "" )
 		{
-			if( spriteSetUnnamedTexture(&p_spriteInfo) == GAME_FAIL )
+			if( spriteSetUnnamedTexture(p_spriteInfo) == GAME_FAIL )
 				return GAME_FAIL;
 
 		}

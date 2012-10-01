@@ -19,6 +19,7 @@
 *.zip
 *.user
 !WinLib.vcxproj.user
+!TestBacklog.vcxproj.user
 [Dd]ebug*/
 *.sbr
 Thumbs.db
