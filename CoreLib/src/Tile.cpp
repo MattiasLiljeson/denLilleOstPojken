@@ -14,7 +14,7 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 	}
 	m_position = p_position;
 	m_type = p_type;
-	m_pill = NULL;
+	m_collectable = NULL;
 }
 bool Tile::getType()
 {
@@ -42,14 +42,14 @@ bool Tile::isFree()
 }
 void Tile::addPill(Pill* p_pill)
 {
-	m_pill = p_pill;
+	m_collectable = p_pill;
 }
 bool Tile::removePill()
 {
-	if (m_pill)
+	if (m_collectable)
 	{
-		m_pill->eat();
-		m_pill = NULL;
+		m_collectable->consume();
+		m_collectable = NULL;
 		return true;
 	}
 	return false;

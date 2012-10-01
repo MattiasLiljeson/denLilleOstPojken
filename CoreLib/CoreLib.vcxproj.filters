@@ -73,6 +73,9 @@
     <ClCompile Include="src\GameStats.cpp">
       <Filter>Source\GamesStats</Filter>
     </ClCompile>
+    <ClCompile Include="src\Collectable.cpp">
+      <Filter>Source\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -116,6 +119,9 @@
     </ClInclude>
     <ClInclude Include="src\GameStats.h">
       <Filter>Source\GamesStats</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Collectable.h">
+      <Filter>Source\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 #include "Pill.h"
 
-Pill::Pill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): GameObject(p_spriteInfo, p_gameStats)
+Pill::Pill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
 {
 	p_gameStats->addPill();
 	if (p_spriteInfo)
@@ -24,7 +24,7 @@ void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_spriteInfo->visible = false;
 	}
 }
-void Pill::eat()
+void Pill::consume()
 {
 	if (!m_eaten)
 	{

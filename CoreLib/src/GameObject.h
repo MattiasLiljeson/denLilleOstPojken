@@ -4,6 +4,7 @@
 #include "SpriteInfo.h"
 #include "InputInfo.h"
 #include "GameStats.h"
+#include <vector2.h>
 
 class GameObject
 {

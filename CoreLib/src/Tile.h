@@ -1,7 +1,7 @@
 #ifndef TILE_H
 #define TILE_H
 
-#include "GameObject.h"
+#include "Collectable.h"
 #include <Vector2.h>
 
 class Pill;
@@ -43,7 +43,7 @@ private:
 	float			m_width;
 	float			m_height;
 
-	Pill*			m_pill;
+	Collectable*	m_collectable;
 
 public:
 	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
