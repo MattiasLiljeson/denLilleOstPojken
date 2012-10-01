@@ -3,6 +3,7 @@
 GameStats::GameStats()
 {
 	m_numPills = 0;
+	m_speeded = false;
 }
 
 GameStats::~GameStats()
@@ -33,4 +34,12 @@ void GameStats::pillEaten()
 void GameStats::addPill()
 {
 	m_numPills += 1;
+}
+void GameStats::setSpeeded()
+{
+	m_speeded = true;
+}
+bool GameStats::isSpeeded()
+{
+	return m_speeded;
 }

@@ -14,9 +14,6 @@
     <Filter Include="Source\GameObject\Tilemap">
       <UniqueIdentifier>{0a10e61a-f306-4d33-a19a-c406fac7ac65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\Pill">
-      <UniqueIdentifier>{38d236ca-fc35-45ce-8e95-3af76944c030}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\States">
       <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
     </Filter>
@@ -28,6 +25,15 @@
     </Filter>
     <Filter Include="Source\GamesStats">
       <UniqueIdentifier>{68d165ff-f485-452a-a0d3-adb21a16a913}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Collectable">
+      <UniqueIdentifier>{5de6c9cc-29df-4e69-be85-81a02e81895d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Collectable\Pill">
+      <UniqueIdentifier>{38d236ca-fc35-45ce-8e95-3af76944c030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Collectable\SpeedPill">
+      <UniqueIdentifier>{01f0aaa8-a89f-4a0c-a002-a14d39964384}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +56,7 @@
       <Filter>Source\GameObject\Tilemap</Filter>
     </ClCompile>
     <ClCompile Include="src\Pill.cpp">
-      <Filter>Source\GameObject\Pill</Filter>
+      <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\InGameState.cpp">
       <Filter>Source\States</Filter>
@@ -74,7 +80,10 @@
       <Filter>Source\GamesStats</Filter>
     </ClCompile>
     <ClCompile Include="src\Collectable.cpp">
-      <Filter>Source\GameObject</Filter>
+      <Filter>Source\GameObject\Collectable</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpeedPill.cpp">
+      <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +106,7 @@
       <Filter>Source\GameObject\Tilemap</Filter>
     </ClInclude>
     <ClInclude Include="src\Pill.h">
-      <Filter>Source\GameObject\Pill</Filter>
+      <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\InGameState.h">
       <Filter>Source\States</Filter>
@@ -121,7 +130,10 @@
       <Filter>Source\GamesStats</Filter>
     </ClInclude>
     <ClInclude Include="src\Collectable.h">
-      <Filter>Source\GameObject</Filter>
+      <Filter>Source\GameObject\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpeedPill.h">
+      <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -40,7 +40,7 @@ bool Tile::isFree()
 {
 	return m_type; 
 }
-void Tile::addPill(Pill* p_pill)
+void Tile::addPill(Collectable* p_pill)
 {
 	m_collectable = p_pill;
 }

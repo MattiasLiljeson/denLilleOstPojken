@@ -15,7 +15,8 @@ enum TileType
 	WALL_CENTER,
 	PILL,
 	AVATAR_SPAWN,
-	MONSTER_SPAWN
+	MONSTER_SPAWN,
+	SPEEDPILL
 };
 
 class MapLoader

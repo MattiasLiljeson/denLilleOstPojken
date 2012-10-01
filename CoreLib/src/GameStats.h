@@ -7,6 +7,7 @@ class GameStats
 {
 private:
 	int		m_numPills;
+	bool	m_speeded;
 public:
 	GameStats();
 	~GameStats();
@@ -15,6 +16,8 @@ public:
 	int		getNumPills();
 	void	pillEaten();
 	void	addPill();
+	void	setSpeeded();
+	bool	isSpeeded();
 };
 
 #endif

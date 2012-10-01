@@ -12,6 +12,7 @@
 #include "Monster.h"
 #include "MapLoader.h"
 #include "Avatar.h"
+#include "SpeedPill.h"
 #include <ctime>
 
 class StateManager;

@@ -53,7 +53,7 @@ public:
 	float getWidth();
 	float getHeight();
 	bool isFree();
-	void addPill(Pill* p_pill);
+	void addPill(Collectable* p_pill);
 	bool removePill();
 };
 

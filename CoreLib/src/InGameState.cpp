@@ -31,13 +31,18 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 				m_gameObjects.push_back(new Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i)), m_stats));
 
 			}
+			if (data[i*10+j] == SPEEDPILL)
+			{
+				m_gameObjects.push_back(new SpeedPill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i)), m_stats));
+
+			}
 			if (data[i*10+j] == MONSTER_SPAWN)
 			{
 				m_gameObjects.push_back(new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io->addSpriteInfo()));
 			}
 			if (data[i*10+j] == AVATAR_SPAWN)
 			{
-				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
+				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
 				m_gameObjects.push_back(avatar);
 			}
 		}

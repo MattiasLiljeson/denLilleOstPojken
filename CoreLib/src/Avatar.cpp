@@ -27,8 +27,8 @@ Avatar::Avatar()
 	//Hubba Bubba
 }
 
-Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile)
-	: GameObject(p_spriteInfo)
+Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
+	: GameObject(p_spriteInfo, p_stats)
 {
 	m_direction = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
@@ -60,7 +60,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 	}
 
-	dt += p_deltaTime * 3;
+	dt += p_deltaTime * (3 + m_gameStats->isSpeeded() * 3);
 	if (dt > 1)
 	{
 		dt -= 1;
