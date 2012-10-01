@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include <Vector2.h>
 
+class Pill;
+
 struct TilePosition
 {
 	int x;
@@ -49,6 +51,9 @@ private:
 	TilePosition	m_position;
 	float			m_width;
 	float			m_height;
+
+	Pill* m_pill;
+
 public:
 	Tile(TileType p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
 	TileType getType();
@@ -57,6 +62,8 @@ public:
 	float getWidth();
 	float getHeight();
 	bool isFree();
+	void addPill(Pill* p_pill);
+	void removePill();
 };
 
 #endif

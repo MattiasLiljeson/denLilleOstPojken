@@ -1,4 +1,5 @@
 #include "Tile.h"
+#include "Pill.h"
 
 Tile::Tile(TileType p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo): GameObject(p_spriteInfo)
 {
@@ -13,6 +14,7 @@ Tile::Tile(TileType p_type, TilePosition p_position, float p_width, float p_heig
 	}
 	m_position = p_position;
 	m_type = p_type;
+	m_pill = NULL;
 }
 TileType Tile::getType()
 {
@@ -37,4 +39,14 @@ float Tile::getHeight()
 bool Tile::isFree()
 {
 	return m_type != TileType::WALL_CENTER; 
+}
+void Tile::addPill(Pill* p_pill)
+{
+	m_pill = p_pill;
+}
+void Tile::removePill()
+{
+	if (m_pill)
+		m_pill->eat();
+	m_pill = NULL;
 }

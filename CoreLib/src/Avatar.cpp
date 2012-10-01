@@ -70,6 +70,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_queuedTile = m_map->getTile(m_nextTile->getTilePosition() + Directions[desired]);
 		if (!m_queuedTile || !m_queuedTile->isFree())
 			m_queuedTile = m_nextTile;
+
+		m_currentTile->removePill();
 	}
 
 	TilePosition tp1 = m_currentTile->getTilePosition();
