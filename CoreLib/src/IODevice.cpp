@@ -41,7 +41,7 @@ int	IODevice::draw(float p_dt)
 
 		for(unsigned int spriteIndex = 0; spriteIndex < m_spriteInfos.size(); spriteIndex++)
 		{
-			m_context->drawSprite(*m_spriteInfos[spriteIndex]);
+			m_context->drawSprite(m_spriteInfos[spriteIndex]);
 		}
 
 		m_context->endDraw();

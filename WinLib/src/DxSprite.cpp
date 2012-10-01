@@ -109,17 +109,17 @@ void DxSprite::draw()
 		(float)m_context->getScreenHeight());
 
 	// Translate
-	m_spriteData.CenterPosition = Vector2(m_spriteInfo.transformInfo.translation[TransformInfo::X],
-		m_spriteInfo.transformInfo.translation[TransformInfo::Y]);
+	m_spriteData.CenterPosition = Vector2(m_spriteInfo->transformInfo.translation[TransformInfo::X],
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
 	
 	// Scale
-	m_spriteData.HalfSize = Vector2(m_spriteInfo.transformInfo.scale[TransformInfo::X] / 2,
-		m_spriteInfo.transformInfo.scale[TransformInfo::Y] / 2);
+	m_spriteData.HalfSize = Vector2(m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 2);
 	
 
 	m_shader->setBuffer(m_spriteData, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
-	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);	
+	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);
 	m_deviceContext->HSSetShader(NULL, 0, 0);
 	m_deviceContext->DSSetShader(NULL, 0, 0);
 	m_deviceContext->IASetInputLayout(m_shader->getInputLayout());
@@ -137,7 +137,7 @@ bool DxSprite::isInitialized()
 	return m_initialized;
 }
 
-void DxSprite::setSpriteInfo( SpriteInfo p_spriteInfo )
+void DxSprite::setSpriteInfo( SpriteInfo* p_spriteInfo )
 {
 	m_spriteInfo = p_spriteInfo;
 }
