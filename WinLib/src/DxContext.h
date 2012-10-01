@@ -60,7 +60,7 @@ public:
 	int			draw(float p_dt);
 
 	int			beginDraw();
-	int			drawSprite(SpriteInfo p_spriteInfo);
+	int			drawSprite(SpriteInfo* p_spriteInfo);
 	int			endDraw();
 
 	int			getScreenWidth() const;

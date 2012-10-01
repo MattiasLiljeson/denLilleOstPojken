@@ -22,7 +22,7 @@ public:
 	virtual int		draw(float p_dt) = 0;	// Will be removed.
 
 	virtual int		beginDraw() = 0;
-	virtual int		drawSprite(SpriteInfo p_spriteInfo) = 0;
+	virtual int		drawSprite(SpriteInfo* p_spriteInfo) = 0;
 	virtual int		endDraw() = 0;
 
 	virtual int		getScreenWidth() const = 0;
