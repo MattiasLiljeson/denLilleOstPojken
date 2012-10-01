@@ -63,7 +63,7 @@ public:
 	float getHeight();
 	bool isFree();
 	void addPill(Pill* p_pill);
-	void removePill();
+	bool removePill();
 };
 
 #endif

@@ -12,6 +12,7 @@
 #include "Monster.h"
 #include "MapLoader.h"
 #include "StateManager.h"
+#include "GameStats.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ private:
 	bool				m_running;
 	vector<GameObject*>	m_gameObjects;
 	MapLoader*			m_mapParser;
+	GameStats*			m_gameStats;
 
 	//Temp
 	Tilemap* m_tileMap;

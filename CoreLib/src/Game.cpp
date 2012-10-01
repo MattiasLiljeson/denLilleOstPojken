@@ -12,6 +12,7 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 	m_running	= false;
 	m_tileMap	= 0;
 	m_mapParser = new MapLoader();
+	m_gameStats = new GameStats();
 
 	if (p_context)
 		m_io = new IODevice(p_context);
@@ -36,6 +37,8 @@ Game::~Game()
 		delete[] m_tileMap;
 	if (m_mapParser)
 		delete m_mapParser;
+	if (m_gameStats)
+		delete m_gameStats;
 }
 
 int Game::run()
@@ -48,6 +51,8 @@ int Game::run()
 
 	vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
 
+	int numPills = 0;
+
 	TileType* types = new TileType[100];
 	for (int i = 0; i < 100; i++)
 	{
@@ -55,7 +60,10 @@ int Game::run()
 			types[i] = TileType::WALL_CENTER;
 		
 		else if(data[i] == TileType::PILL)
+		{
 			types[i] = TileType::PILL;
+			numPills += 1;
+		}
 		
 		else if(data[i] == TileType::AVATAR_SPAWN)
 			types[i] = TileType::AVATAR_SPAWN;
@@ -66,6 +74,8 @@ int Game::run()
 			types[i] = TileType::EMPTY;
 	}
 	m_tileMap = new Tilemap(10, 10, types, m_io);
+
+	m_gameStats->setNumPills(numPills);
 
 	for (int i = 0; i < 10; i++)
 	{
@@ -81,7 +91,7 @@ int Game::run()
 			}
 			if (types[i*10+j] == TileType::AVATAR_SPAWN)
 			{
-				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)));
+				GameObject* avatar = new Avatar(m_io->addSpriteInfo(), m_tileMap, m_tileMap->getTile(TilePosition(j, i)),m_gameStats);
 				m_gameObjects.push_back(avatar);
 			}
 		}
@@ -97,6 +107,9 @@ int Game::run()
 		update( (float)m_timer->getDeltaTime(), input );
 		m_io->update(m_timer->getDeltaTime());
 		m_io->draw(m_timer->getDeltaTime());
+
+		if( m_gameStats->getNumPills()<1)
+			m_running = false;
 
 		if( input.keys[InputInfo::ESC] == InputInfo::KEYDOWN || !m_io->isRunning())
 		{
