@@ -3,7 +3,7 @@
 
 #include "DxUtility.h"
 #include <IOContext.h>
-#include "DxSpriteInfoRenderer.h"
+#include "DxSpriteRenderer.h"
 #include "DxTextureManager.h"
 
 class DxContext: public IOContext
@@ -32,7 +32,7 @@ private:
 	//temporary for displaying sprites
 	float posX;
 	float posY;
-	DxSpriteInfoRenderer* m_spriteInfoRendererHolder; // Pre allocated for speed
+	DxSpriteRenderer* m_spriteRenderer; // Pre allocated for speed
 
 private:
 	int initializeWindow();
@@ -45,9 +45,6 @@ private:
 	int initializeViewport();
 	int	loadAllTextures();	// HACK!
 
-	int addSprite( SpriteInfo* p_spriteInfo );
-
-	int spriteSetIndexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo);
 
@@ -61,6 +58,8 @@ public:
 	int			resize();
 	int			update(float p_dt);
 	int			draw(float p_dt);  //HACK: replace by using drawSprite(), beginDraw() and endDraw()
+
+	int			addSprite( SpriteInfo* p_spriteInfo );
 
 	int			beginDraw();
 	int			drawSprite(SpriteInfo* p_spriteInfo);

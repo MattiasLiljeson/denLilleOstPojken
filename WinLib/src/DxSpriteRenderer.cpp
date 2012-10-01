@@ -1,7 +1,7 @@
-#include "DxSpriteInfoRenderer.h"
+#include "DxSpriteRenderer.h"
 #include "DxContext.h"
 
-DxSpriteInfoRenderer::DxSpriteInfoRenderer(ID3D11Device* p_device, ID3D11DeviceContext* 
+DxSpriteRenderer::DxSpriteRenderer(ID3D11Device* p_device, ID3D11DeviceContext* 
 	p_deviceContext, DxContext* p_context)
 {
 	m_initialized	= false;
@@ -35,7 +35,7 @@ DxSpriteInfoRenderer::DxSpriteInfoRenderer(ID3D11Device* p_device, ID3D11DeviceC
 
 	m_initialized = true;
 }
-DxSpriteInfoRenderer::~DxSpriteInfoRenderer()
+DxSpriteRenderer::~DxSpriteRenderer()
 {
 	if (m_vb)
 		m_vb->Release();
@@ -49,7 +49,7 @@ DxSpriteInfoRenderer::~DxSpriteInfoRenderer()
 	if (m_shader)
 		delete m_shader;
 }
-int DxSpriteInfoRenderer::initVB()
+int DxSpriteRenderer::initVB()
 {
 	SpriteVertex vertices[] = {  
 		SpriteVertex(-1.0f,  1.0f, 0.0f, 0.0f, 0.0f),  
@@ -76,7 +76,7 @@ int DxSpriteInfoRenderer::initVB()
 
 	return GAME_OK;
 }
-int DxSpriteInfoRenderer::initIB()
+int DxSpriteRenderer::initIB()
 {
 	unsigned int indices[] = {1, 0, 2, 0, 3, 2};
 
@@ -99,11 +99,11 @@ int DxSpriteInfoRenderer::initIB()
 
 	return GAME_OK;
 }
-void DxSpriteInfoRenderer::setPosition(float p_positionX, float p_positionY)
+void DxSpriteRenderer::setPosition(float p_positionX, float p_positionY)
 {
 	m_spriteData.CenterPosition = Vector2(p_positionX, p_positionY);
 }
-void DxSpriteInfoRenderer::draw()
+void DxSpriteRenderer::draw()
 {
 	m_spriteData.WindowSize = Vector2((float)m_context->getScreenWidth(), 
 		(float)m_context->getScreenHeight());
@@ -132,17 +132,17 @@ void DxSpriteInfoRenderer::draw()
 
 	m_deviceContext->DrawIndexed(6, 0, 0);
 }
-bool DxSpriteInfoRenderer::isInitialized()
+bool DxSpriteRenderer::isInitialized()
 {
 	return m_initialized;
 }
 
-void DxSpriteInfoRenderer::setSpriteInfo( SpriteInfo* p_spriteInfo )
+void DxSpriteRenderer::setSpriteInfo( SpriteInfo* p_spriteInfo )
 {
 	m_spriteInfo = p_spriteInfo;
 }
 
-void DxSpriteInfoRenderer::setTexture(ID3D11ShaderResourceView* p_texture)
+void DxSpriteRenderer::setTexture(ID3D11ShaderResourceView* p_texture)
 {
 	m_texture = p_texture;
 }

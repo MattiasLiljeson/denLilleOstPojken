@@ -4,12 +4,7 @@
 struct TransformInfo
 {
 	enum Axis
-	{
-		X,
-		Y,
-		Z,
-		NUM_AXES
-	};
+	{ X, Y, Z, NUM_AXES };
 
 	float	rotation[NUM_AXES];
 	float	scale[NUM_AXES];

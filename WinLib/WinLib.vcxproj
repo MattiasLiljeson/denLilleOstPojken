@@ -80,14 +80,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\DxContext.cpp" />
-    <ClCompile Include="src\DxSpriteInfoRenderer.cpp" />
+    <ClCompile Include="src\DxSpriteRenderer.cpp" />
     <ClCompile Include="src\DxSpriteShader.cpp" />
     <ClCompile Include="src\DxTextureManager.cpp" />
     <ClCompile Include="src\WinTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DxContext.h" />
-    <ClInclude Include="src\DxSpriteInfoRenderer.h" />
+    <ClInclude Include="src\DxSpriteRenderer.h" />
     <ClInclude Include="src\DxSpriteShader.h" />
     <ClInclude Include="src\DxUtility.h" />
     <ClInclude Include="src\DxTextureManager.h" />

@@ -73,9 +73,9 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
 
 	//Temporary code to test sprite creation
-	m_spriteInfoRendererHolder = new DxSpriteInfoRenderer(m_device, m_deviceContext, this);
+	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
-	if (!m_spriteInfoRendererHolder->isInitialized())
+	if (!m_spriteRenderer->isInitialized())
 		return;
 
 	posX = 400;
@@ -96,7 +96,7 @@ DxContext::~DxContext()
 	m_depthStencilView->Release();
 	m_depthStencilState->Release();
 	m_rasterState->Release();
-	delete m_spriteInfoRendererHolder;
+	delete m_spriteRenderer;
 	delete m_textureManager;
 }
 int DxContext::initializeWindow()
@@ -446,8 +446,8 @@ int DxContext::draw(float p_dt)
 		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
 		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
 
-		m_spriteInfoRendererHolder->setSpriteInfo(&spriteInfo);
-		m_spriteInfoRendererHolder->draw();
+		m_spriteRenderer->setSpriteInfo(&spriteInfo);
+		m_spriteRenderer->draw();
 
 		m_swapChain->Present(0, 0);
 	}
@@ -471,30 +471,18 @@ int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	if (!m_resizing)
 	{
-		m_spriteInfoRendererHolder->setSpriteInfo(p_spriteInfo);
+		m_spriteRenderer->setSpriteInfo(p_spriteInfo);
 
 		if( p_spriteInfo->textureIndex >= 0 )
 		{
-			spriteSetIndexedTexture(p_spriteInfo);
+			ID3D11ShaderResourceView* texture = NULL;
+			m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
+			if(texture != NULL)
+				m_spriteRenderer->setTexture(texture);
 		}
 
-		m_spriteInfoRendererHolder->draw();	// Careful...
+		m_spriteRenderer->draw();	// Careful...
 	}
-	return GAME_OK;
-}
-
-int DxContext::spriteSetIndexedTexture(SpriteInfo* p_spriteInfo)
-{
-	// Texture id already indexed.
-	ID3D11ShaderResourceView* texture = NULL;
-	
-	m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
-
-	if(texture == NULL)
-		return GAME_FAIL;
-
-	m_spriteInfoRendererHolder->setTexture(texture);
-
 	return GAME_OK;
 }
 
@@ -503,16 +491,13 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	// Texture set but not cached.
 	ID3D11ShaderResourceView* texture = NULL;
 
-	p_spriteInfo->textureIndex = m_textureManager->getTexture(
+	int textureIndex = p_spriteInfo->textureIndex = m_textureManager->getTexture(
 		p_spriteInfo->textureFileName, &texture);
 
-	int textureFileRead = GAME_FAIL;
-	if( texture != NULL )
-	{
-		m_spriteInfoRendererHolder->setTexture(texture);
-		textureFileRead = GAME_OK;
-	}
-	return textureFileRead;
+	if(texture == NULL)
+		return GAME_FAIL;
+	else
+		return GAME_OK;
 }
 
 int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
@@ -525,10 +510,8 @@ int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
 
 	if(texture == NULL)
 		return GAME_FAIL;
-
-	m_spriteInfoRendererHolder->setTexture(texture);
-
-	return GAME_OK;
+	else
+		return GAME_OK;
 }
 
 int DxContext::endDraw()
@@ -598,16 +581,22 @@ int DxContext::loadAllTextures()
 
 int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 {
+	int textureReadSuccess = GAME_FAIL;
 	if( p_spriteInfo->textureIndex == -1 )
 	{
 		bool named = p_spriteInfo->textureFileName != "";
 
 		if( named )
+		{
 			spriteSetUnindexedTexture( p_spriteInfo );
-
+			textureReadSuccess = GAME_OK;
+		}
 		else
+		{
 			spriteSetUnnamedTexture( p_spriteInfo );
+			textureReadSuccess = GAME_FAIL;
+		}
 	}
 
-	return GAME_OK;
+	return textureReadSuccess;
 }
