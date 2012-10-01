@@ -24,7 +24,7 @@ Direction Avatar::checkInput(InputInfo p_inputInfo)
 
 Avatar::Avatar()
 {
-
+	//Hubba Bubba
 }
 
 Avatar::Avatar( SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile)
