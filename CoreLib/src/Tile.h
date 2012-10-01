@@ -2,6 +2,7 @@
 #define TILE_H
 
 #include "GameObject.h"
+#include <Vector2.h>
 
 struct TilePosition
 {
@@ -18,25 +19,27 @@ struct TilePosition
 		x = p_x;
 		y = p_y;
 	}
-	TilePosition& operator-(const TilePosition& p_other)
+	TilePosition operator-(const TilePosition& p_other)
 	{
-		x -= p_other.x;
-		y -= p_other.y;
-		return (*this);
+		float nx = x - p_other.x;
+		float ny = y - p_other.y;
+		return TilePosition(nx, ny);
 	}
-	TilePosition& operator+(const TilePosition& p_other)
+	TilePosition operator+(const TilePosition& p_other)
 	{
-		x += p_other.x;
-		y += p_other.y;
-		return (*this);
+		float nx = x + p_other.x;
+		float ny = y + p_other.y;
+		return TilePosition(nx, ny);
 	}
 };
 
 enum TileType
 {
-	FREE_TILE,
-	WALL_TILE,
-	SPAWN_PILL
+	EMPTY,
+	WALL_CENTER,
+	PILL,
+	AVATAR_SPAWN,
+	MONSTER_SPAWN
 };
 
 class Tile: public GameObject
@@ -49,7 +52,8 @@ private:
 public:
 	Tile(TileType p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
 	TileType getType();
-	TilePosition getPosition();
+	TilePosition getTilePosition();
+	fVector2		getPosition();
 	float getWidth();
 	float getHeight();
 	bool isFree();

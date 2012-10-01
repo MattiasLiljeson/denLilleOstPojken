@@ -17,7 +17,7 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 		{
 			SpriteInfo inf;
 			SpriteInfo* infp = p_device->addSpriteInfo(inf);
-			m_tiles[row * p_height + col] = new Tile(FREE_TILE, TilePosition(col, row), tileSizeX, tileSizeY, infp);
+			m_tiles[row * p_height + col] = new Tile(EMPTY, TilePosition(col, row), tileSizeX, tileSizeY, infp);
 		}
 	}
 }
@@ -35,7 +35,7 @@ Tilemap::Tilemap(int p_width, int p_height, TileType* p_initData, IODevice* p_de
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			if (p_initData[row * p_height + col] == TileType::WALL_TILE)
+			if (p_initData[row * p_height + col] == TileType::WALL_CENTER)
 			{
 				SpriteInfo inf;
 				SpriteInfo* infp = p_device->addSpriteInfo(inf);
@@ -63,8 +63,8 @@ Tile* Tilemap::getTile(TilePosition p_position)
 }
 Tile* Tilemap::closestFreeTile(Tile* p_start)
 {
-	TilePosition min = p_start->getPosition() - TilePosition(1, 1);
-	TilePosition max = p_start->getPosition() + TilePosition(1, 1);
+	TilePosition min = p_start->getTilePosition() - TilePosition(1, 1);
+	TilePosition max = p_start->getTilePosition() + TilePosition(1, 1);
 
 	while (min.x >= 0 || min.y >= 0 || max.x < m_width || max.y < m_height)
 	{

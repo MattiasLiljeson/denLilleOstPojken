@@ -20,6 +20,12 @@
     <Filter Include="Source\States">
       <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Monster">
+      <UniqueIdentifier>{a2dde8ce-d32d-4ec7-8671-0119d706aaba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\LoadMap">
+      <UniqueIdentifier>{79809220-fba4-4b6d-b3db-0f7973f9761c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -55,6 +61,12 @@
     <ClCompile Include="src\StateManager.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
+    <ClCompile Include="src\Monster.cpp">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapLoader.cpp">
+      <Filter>Source\LoadMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -89,6 +101,12 @@
     </ClInclude>
     <ClInclude Include="src\StateManager.h">
       <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Monster.h">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapLoader.h">
+      <Filter>Source\LoadMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
