@@ -572,9 +572,6 @@ int DxContext::loadAllTextures()
 	m_textureManager = new DxTextureManager(m_device);
 
 	m_textureManager->loadTexture("..\\Textures\\default.png");
-	m_textureManager->loadTexture("..\\Textures\\LogoDx.png");
-	m_textureManager->loadTexture("..\\Textures\\LogoGL.png");
-	m_textureManager->loadTexture("..\\Textures\\pacman-1974.png");
 
 	return GAME_OK;
 }
@@ -588,6 +585,7 @@ int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 
 		if( named )
 		{
+			m_textureManager->loadTexture(p_spriteInfo->textureFileName);
 			spriteSetUnindexedTexture( p_spriteInfo );
 			textureReadSuccess = GAME_OK;
 		}
