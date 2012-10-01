@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <StateManager.h>
 
-class T_States : public ::testing::Test
+/*class T_States : public ::testing::Test
 {
 protected:
 	T_States(){
@@ -68,5 +68,5 @@ TEST_F(T_States, Namn)
 
 	delete outerState;
 
-}
+}*/
 #endif

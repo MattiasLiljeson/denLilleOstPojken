@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Avatar.h"
-#include <ctime>
 
 Game::Game()
 {
@@ -19,6 +17,9 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 		m_io = new IODevice(p_context);
 	else
 		m_io = 0;
+
+	//m_stateManager = new StateManager(m_io);
+	//m_stateManager->requestStateChange(m_stateManager->getInGameState());
 }
 
 Game::~Game()

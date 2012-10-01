@@ -1,8 +1,9 @@
 #include "StateManager.h"
 
-StateManager::StateManager()
+StateManager::StateManager(IODevice* p_io)
 {
-	m_inGameState = new InGameState(this);
+	m_io = p_io;
+	m_inGameState = new InGameState(this, p_io);
 	m_menuState = new MenuState(this);
 	m_currentState = m_desiredState = m_menuState;
 }

@@ -11,8 +11,10 @@ private:
 	State* m_menuState;
 	State* m_currentState;
 	State* m_desiredState;
+
+	IODevice* m_io;
 public:
-	StateManager();
+	StateManager(IODevice* p_io);
 
 	void requestStateChange(State* p_newState);
 	void update(float p_dt);

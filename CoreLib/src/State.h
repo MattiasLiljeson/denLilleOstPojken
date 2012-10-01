@@ -1,6 +1,19 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <vector>
+#include "Timer.h"
+#include "IOContext.h"
+#include "InputInfo.h"
+#include "IODevice.h"
+#include "GameObject.h"
+#include "Tilemap.h"
+#include "Pill.h"
+#include "Monster.h"
+#include "LoadMap.h"
+#include "Avatar.h"
+#include <ctime>
+
 class StateManager;
 
 class State
