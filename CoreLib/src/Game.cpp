@@ -41,13 +41,13 @@ int Game::run()
 	m_timer->start();
 
 	/* Ugli code */
-	SpriteInfo spriteInfo;
-	spriteInfo.transformInfo.translation[TransformInfo::X] = 300;
-	spriteInfo.transformInfo.translation[TransformInfo::Y] = 300;
-	spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
-	spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
+	SpriteInfo* spriteInfo = new SpriteInfo();
+	spriteInfo->transformInfo.translation[TransformInfo::X] = 300;
+	spriteInfo->transformInfo.translation[TransformInfo::Y] = 300;
+	spriteInfo->transformInfo.scale[TransformInfo::X] = 100;
+	spriteInfo->transformInfo.scale[TransformInfo::Y] = 100;
 
-	GameObject* avatar = new Avatar(m_io->addSpriteInfo(spriteInfo));
+	GameObject* avatar = new Avatar(spriteInfo);
 
 	m_gameObjects.push_back(avatar);
 

@@ -58,7 +58,12 @@ int IODevice::update(float p_dt)
 	return 0;
 }
 
-SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
+void IODevice::addSpriteInfo(SpriteInfo* p_spriteInfo)
+{
+	m_spriteInfos.push_back(p_spriteInfo);
+}
+
+SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo) // Remove...
 {
 	p_spriteInfo.id = m_spriteInfos.size();
 
@@ -73,7 +78,7 @@ SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 
 	return inf;
 }
-SpriteInfo* IODevice::addSpriteInfo()
+SpriteInfo* IODevice::addSpriteInfo() // Remove...
 {
 	SpriteInfo* inf = new SpriteInfo();
 	inf->id = m_spriteInfos.size();
