@@ -1,6 +1,16 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <vector>
+#include "Timer.h"
+#include "IOContext.h"
+#include "InputInfo.h"
+#include "IODevice.h"
+#include "GameObject.h"
+#include "Tilemap.h"
+#include "Pill.h"
+#include "Monster.h"
+#include "MapLoader.h"
 #include "StateManager.h"
 
 using namespace std;
