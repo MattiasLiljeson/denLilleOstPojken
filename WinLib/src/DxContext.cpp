@@ -73,9 +73,9 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
 
 	//Temporary code to test sprite creation
-	m_mascot = new DxSprite(m_device, m_deviceContext, this);
+	m_spriteInfoRendererHolder = new DxSpriteInfoRenderer(m_device, m_deviceContext, this);
 
-	if (!m_mascot->isInitialized())
+	if (!m_spriteInfoRendererHolder->isInitialized())
 		return;
 
 	posX = 400;
@@ -96,7 +96,7 @@ DxContext::~DxContext()
 	m_depthStencilView->Release();
 	m_depthStencilState->Release();
 	m_rasterState->Release();
-	delete m_mascot;
+	delete m_spriteInfoRendererHolder;
 	delete m_textureManager;
 }
 int DxContext::initializeWindow()
@@ -446,8 +446,8 @@ int DxContext::draw(float p_dt)
 		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
 		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
 
-		m_mascot->setSpriteInfo(&spriteInfo);
-		m_mascot->draw();
+		m_spriteInfoRendererHolder->setSpriteInfo(&spriteInfo);
+		m_spriteInfoRendererHolder->draw();
 
 		m_swapChain->Present(0, 0);
 	}
@@ -471,29 +471,14 @@ int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	if (!m_resizing)
 	{
-		m_mascot->setSpriteInfo(p_spriteInfo);
+		m_spriteInfoRendererHolder->setSpriteInfo(p_spriteInfo);
 
 		if( p_spriteInfo->textureIndex >= 0 )
 		{
-			if( spriteSetIndexedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-
-		}
-		else if( p_spriteInfo->textureIndex == -1 &&
-			p_spriteInfo->textureFileName != "" )
-		{
-			if( spriteSetUnindexedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-			
-		}
-		else if( p_spriteInfo->textureFileName == "" )
-		{
-			if( spriteSetUnnamedTexture(p_spriteInfo) == GAME_FAIL )
-				return GAME_FAIL;
-
+			spriteSetIndexedTexture(p_spriteInfo);
 		}
 
-		m_mascot->draw();	// Careful...
+		m_spriteInfoRendererHolder->draw();	// Careful...
 	}
 	return GAME_OK;
 }
@@ -508,7 +493,7 @@ int DxContext::spriteSetIndexedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 
-	m_mascot->setTexture(texture);
+	m_spriteInfoRendererHolder->setTexture(texture);
 
 	return GAME_OK;
 }
@@ -518,16 +503,16 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	// Texture set but not cached.
 	ID3D11ShaderResourceView* texture = NULL;
 
-	// cannot set textureIndex since it's a local copy. <---------------------------------
 	p_spriteInfo->textureIndex = m_textureManager->getTexture(
 		p_spriteInfo->textureFileName, &texture);
 
-	if(texture == NULL)
-		return GAME_FAIL;
-
-	m_mascot->setTexture(texture);
-
-	return GAME_OK;
+	int textureFileRead = GAME_FAIL;
+	if( texture != NULL )
+	{
+		m_spriteInfoRendererHolder->setTexture(texture);
+		textureFileRead = GAME_OK;
+	}
+	return textureFileRead;
 }
 
 int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
@@ -541,7 +526,7 @@ int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 
-	m_mascot->setTexture(texture);
+	m_spriteInfoRendererHolder->setTexture(texture);
 
 	return GAME_OK;
 }
@@ -603,10 +588,26 @@ int DxContext::loadAllTextures()
 {
 	m_textureManager = new DxTextureManager(m_device);
 
-	m_textureManager->addTexture("..\\Textures\\default.png");
-	m_textureManager->addTexture("..\\Textures\\LogoDx.png");
-	m_textureManager->addTexture("..\\Textures\\LogoGL.png");
-	m_textureManager->addTexture("..\\Textures\\pacman-1974.png");
+	m_textureManager->loadTexture("..\\Textures\\default.png");
+	m_textureManager->loadTexture("..\\Textures\\LogoDx.png");
+	m_textureManager->loadTexture("..\\Textures\\LogoGL.png");
+	m_textureManager->loadTexture("..\\Textures\\pacman-1974.png");
+
+	return GAME_OK;
+}
+
+int DxContext::addSprite( SpriteInfo* p_spriteInfo )
+{
+	if( p_spriteInfo->textureIndex == -1 )
+	{
+		bool named = p_spriteInfo->textureFileName != "";
+
+		if( named )
+			spriteSetUnindexedTexture( p_spriteInfo );
+
+		else
+			spriteSetUnnamedTexture( p_spriteInfo );
+	}
 
 	return GAME_OK;
 }

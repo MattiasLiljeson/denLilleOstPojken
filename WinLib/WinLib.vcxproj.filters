@@ -2,17 +2,17 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\DxContext.cpp" />
-    <ClCompile Include="src\DxSprite.cpp" />
     <ClCompile Include="src\DxSpriteShader.cpp" />
     <ClCompile Include="src\WinTimer.cpp" />
     <ClCompile Include="src\DxTextureManager.cpp" />
+    <ClCompile Include="src\DxSpriteInfoRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\DxContext.h" />
-    <ClInclude Include="src\DxSprite.h" />
     <ClInclude Include="src\DxSpriteShader.h" />
     <ClInclude Include="src\WinTimer.h" />
     <ClInclude Include="src\DxUtility.h" />
     <ClInclude Include="src\DxTextureManager.h" />
+    <ClInclude Include="src\DxSpriteInfoRenderer.h" />
   </ItemGroup>
 </Project>

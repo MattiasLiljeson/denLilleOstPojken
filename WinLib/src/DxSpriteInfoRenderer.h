@@ -6,7 +6,7 @@
 
 class DxContext;
 
-class DxSprite
+class DxSpriteInfoRenderer
 {
 private:
 	ID3D11Device*				m_device;
@@ -25,9 +25,9 @@ private:
 	int initVB();
 	int initIB();
 public:
-				DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* 
+				DxSpriteInfoRenderer(ID3D11Device* p_device, ID3D11DeviceContext* 
 					p_deviceContext, DxContext* p_context);
-	virtual		~DxSprite();
+	virtual		~DxSpriteInfoRenderer();
 	void		setPosition(float p_positionX, float p_positionY);
 	void		draw();
 	void		setSpriteInfo(SpriteInfo* p_spriteInfo);

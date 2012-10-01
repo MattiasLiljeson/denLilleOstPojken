@@ -33,11 +33,11 @@ public:
 	DxTextureManager(ID3D11Device* p_device);
 	~DxTextureManager();
 
-	int addTexture(string p_filename);
+	int loadTexture(string p_filePath);
 	int getTexture(int p_textureIndex,
-		ID3D11ShaderResourceView** p_outTextureResource);
-	int getTexture(string p_textureName,
-		ID3D11ShaderResourceView** p_outTextureResource);
+		ID3D11ShaderResourceView** out_textureResource);
+	int getTexture(string p_filePath,
+		ID3D11ShaderResourceView** out_textureResource);
 
 };
 

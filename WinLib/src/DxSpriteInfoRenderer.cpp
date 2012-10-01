@@ -1,7 +1,7 @@
-#include "DxSprite.h"
+#include "DxSpriteInfoRenderer.h"
 #include "DxContext.h"
 
-DxSprite::DxSprite(ID3D11Device* p_device, ID3D11DeviceContext* 
+DxSpriteInfoRenderer::DxSpriteInfoRenderer(ID3D11Device* p_device, ID3D11DeviceContext* 
 	p_deviceContext, DxContext* p_context)
 {
 	m_initialized	= false;
@@ -35,7 +35,7 @@ DxSprite::DxSprite(ID3D11Device* p_device, ID3D11DeviceContext*
 
 	m_initialized = true;
 }
-DxSprite::~DxSprite()
+DxSpriteInfoRenderer::~DxSpriteInfoRenderer()
 {
 	if (m_vb)
 		m_vb->Release();
@@ -49,7 +49,7 @@ DxSprite::~DxSprite()
 	if (m_shader)
 		delete m_shader;
 }
-int DxSprite::initVB()
+int DxSpriteInfoRenderer::initVB()
 {
 	SpriteVertex vertices[] = {  
 		SpriteVertex(-1.0f,  1.0f, 0.0f, 0.0f, 0.0f),  
@@ -76,7 +76,7 @@ int DxSprite::initVB()
 
 	return GAME_OK;
 }
-int DxSprite::initIB()
+int DxSpriteInfoRenderer::initIB()
 {
 	unsigned int indices[] = {1, 0, 2, 0, 3, 2};
 
@@ -99,11 +99,11 @@ int DxSprite::initIB()
 
 	return GAME_OK;
 }
-void DxSprite::setPosition(float p_positionX, float p_positionY)
+void DxSpriteInfoRenderer::setPosition(float p_positionX, float p_positionY)
 {
 	m_spriteData.CenterPosition = Vector2(p_positionX, p_positionY);
 }
-void DxSprite::draw()
+void DxSpriteInfoRenderer::draw()
 {
 	m_spriteData.WindowSize = Vector2((float)m_context->getScreenWidth(), 
 		(float)m_context->getScreenHeight());
@@ -132,17 +132,17 @@ void DxSprite::draw()
 
 	m_deviceContext->DrawIndexed(6, 0, 0);
 }
-bool DxSprite::isInitialized()
+bool DxSpriteInfoRenderer::isInitialized()
 {
 	return m_initialized;
 }
 
-void DxSprite::setSpriteInfo( SpriteInfo* p_spriteInfo )
+void DxSpriteInfoRenderer::setSpriteInfo( SpriteInfo* p_spriteInfo )
 {
 	m_spriteInfo = p_spriteInfo;
 }
 
-void DxSprite::setTexture(ID3D11ShaderResourceView* p_texture)
+void DxSpriteInfoRenderer::setTexture(ID3D11ShaderResourceView* p_texture)
 {
 	m_texture = p_texture;
 }
