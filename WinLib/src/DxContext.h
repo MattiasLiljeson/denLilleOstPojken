@@ -4,6 +4,7 @@
 #include "DxUtility.h"
 #include <IOContext.h>
 #include "DxSprite.h"
+#include "DxTextureManager.h"
 
 class DxContext: public IOContext
 {
@@ -22,6 +23,8 @@ private:
 	ID3D11DepthStencilState*	m_depthStencilState;
 	ID3D11RasterizerState*		m_rasterState;
 
+	DxTextureManager*			m_textureManager;
+
 	float	m_totalGameTime;
 	int		m_keyMappings[InputInfo::NUM_KEYS];
 	bool	m_resizing;
@@ -39,6 +42,11 @@ private:
 	int initializeDepthStencilView();
 	int initializeRasterizerState();
 	int initializeViewport();
+	int	loadAllTextures();
+
+	int spriteSetIndexedTexture(SpriteInfo* p_spriteInfo);
+	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
+	int spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo);
 
 public:
 				DxContext(HINSTANCE pInstanceHandle, 
@@ -57,6 +65,7 @@ public:
 
 	int			getScreenWidth() const;
 	int			getScreenHeight() const;
+
 
 
 	LRESULT		handleWindowMessages(UINT p_message, 
