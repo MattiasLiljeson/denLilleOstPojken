@@ -16,17 +16,17 @@ DxTextureManager::~DxTextureManager()
 	}
 }
 
-int DxTextureManager::addTexture(string p_filename)
+int DxTextureManager::loadTexture(string p_filePath)
 {
 	int textureIndex = -1;
 	ID3D11ShaderResourceView* texture = NULL;
 
 	HRESULT res = D3DX11CreateShaderResourceViewFromFile(m_device, 
-		p_filename.c_str(), NULL, 0, &texture, 0);
+		p_filePath.c_str(), NULL, 0, &texture, 0);
 
 	if(res == S_OK)
 	{
-		m_textures.push_back(TextureWithName(texture, p_filename));
+		m_textures.push_back(TextureWithName(texture, p_filePath));
 		textureIndex = (int)m_textures.size() - 1;
 	}
 
@@ -48,14 +48,14 @@ int DxTextureManager::getTexture(int p_textureIndex,
 	return textureIndex;
 }
 
-int DxTextureManager::getTexture(string p_textureName,
+int DxTextureManager::getTexture(string p_filePath,
 	ID3D11ShaderResourceView** p_outTextureResource)
 {
 	int textureIndex = -1;
 
 	for(int i = 0; i < (int)m_textures.size(); i++)
 	{
-		if( m_textures[i].textureName == p_textureName )
+		if( m_textures[i].textureName == p_filePath )
 		{
 			*p_outTextureResource = m_textures[i].textureResource;
 
@@ -64,5 +64,9 @@ int DxTextureManager::getTexture(string p_textureName,
 		}
 	}
 
+	if(textureIndex == -1)
+		textureIndex = loadTexture(p_filePath);
+
 	return textureIndex;
 }
+

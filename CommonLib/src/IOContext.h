@@ -21,6 +21,8 @@ public:
 	virtual int		update(float p_dt) = 0;
 	virtual int		draw(float p_dt) = 0;	// Will be removed.
 
+	virtual int		addSprite( SpriteInfo* p_spriteInfo ) = 0;
+
 	virtual int		beginDraw() = 0;
 	virtual int		drawSprite(SpriteInfo* p_spriteInfo) = 0;
 	virtual int		endDraw() = 0;

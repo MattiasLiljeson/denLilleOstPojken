@@ -68,6 +68,7 @@ SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo)
 	inf->transformInfo		= p_spriteInfo.transformInfo;
 	inf->visible			= p_spriteInfo.visible;
 
+	m_context->addSprite(inf);
 	m_spriteInfos.push_back(inf);
 
 	return inf;
@@ -76,11 +77,7 @@ SpriteInfo* IODevice::addSpriteInfo()
 {
 	SpriteInfo* inf = new SpriteInfo();
 	inf->id = m_spriteInfos.size();
-	inf->textureFileName = "";
-	inf->visible = true;
-	inf->transformInfo.rotation[0] = inf->transformInfo.rotation[1] = inf->transformInfo.rotation[2] = 0;
-	inf->transformInfo.translation[0] = inf->transformInfo.translation[1] = inf->transformInfo.translation[2] = 0;
-	inf->transformInfo.scale[0] = inf->transformInfo.scale[1] = inf->transformInfo.scale[2] = 0;
+	m_context->addSprite(inf);
 	m_spriteInfos.push_back(inf);
 	return inf;
 }
