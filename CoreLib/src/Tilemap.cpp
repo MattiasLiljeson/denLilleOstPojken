@@ -14,7 +14,7 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			m_tiles[row * p_height + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
+			m_tiles[row * p_width + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
@@ -36,7 +36,7 @@ Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
+			m_tiles[row * p_width + col] = new Tile(p_initData[row * p_width + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
@@ -53,7 +53,7 @@ Tile* Tilemap::getTile(TilePosition p_position)
 	if (!isValidPosition(p_position))
 		return 0;
 
-	return m_tiles[p_position.y * m_height + p_position.x];
+	return m_tiles[p_position.y * m_width + p_position.x];
 }
 Tile* Tilemap::closestFreeTile(Tile* p_start)
 {

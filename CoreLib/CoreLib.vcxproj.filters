@@ -103,6 +103,9 @@
     <ClCompile Include="src\DynamicCollision.cpp">
       <Filter>Source\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameOverState.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="src\DynamicCollision.h">
       <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameOverState.h">
+      <Filter>Source\States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

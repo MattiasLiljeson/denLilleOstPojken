@@ -6,7 +6,6 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 	m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
 	m_dead = false;
-
 	if (p_io)
 	{
 		m_spriteInfo = new SpriteInfo;
@@ -44,7 +43,7 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 				do
 				{
 					int rndX = rand() % m_map->getWidth();
-					int rndY = rand() % m_map->getWidth();
+					int rndY = rand() % m_map->getHeight();
 					t = m_map->getTile(TilePosition(rndX, rndY));
 				} while (!t->isFree());
 
@@ -91,18 +90,21 @@ void Monster::FindPath(Tile* p_start, Tile* p_goal)
 		toCheck[3] = m_map->getTile(p + TilePosition(-1, 0));
 		for (int i = 0; i < 4; i++)
 		{
-			bool skip = !toCheck[i]->isFree();
-			for (unsigned int j = 0; j < visited.size(); j++)
+			if (toCheck[i])
 			{
-				if (visited[j].tile == toCheck[i])
-					skip = true;
-			}
-			if (!skip)
-			{
-				int toStart = visited.back().toStart+1;
-				TilePosition dif = p_goal->getTilePosition() - toCheck[i]->getTilePosition();
-				int toGoal = abs(dif.x) + abs(dif.y);
-				UpdateQueue(toCheck[i], visited.size()-1, toStart, toGoal, queue);
+				bool skip = !toCheck[i]->isFree();
+				for (unsigned int j = 0; j < visited.size(); j++)
+				{
+					if (visited[j].tile == toCheck[i])
+						skip = true;
+				}
+				if (!skip)
+				{
+					int toStart = visited.back().toStart+1;
+					TilePosition dif = p_goal->getTilePosition() - toCheck[i]->getTilePosition();
+					int toGoal = abs(dif.x) + abs(dif.y);
+					UpdateQueue(toCheck[i], visited.size()-1, toStart, toGoal, queue);
+				}
 			}
 		}
 	}

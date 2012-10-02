@@ -17,29 +17,29 @@ struct fVector2
 		x = p_x;
 		y = p_y;
 	}
-	fVector2& operator+(const fVector2& p_other)
+	fVector2 operator+(const fVector2& p_other)
 	{
-		x += p_other.x;
-		y += p_other.y;
-		return (*this);
+		float nx = x + p_other.x;
+		float ny = y + p_other.y;
+		return fVector2(nx, ny);
 	}
-	fVector2& operator-(const fVector2& p_other)
+	fVector2 operator-(const fVector2& p_other)
 	{
-		x -= p_other.x;
-		y -= p_other.y;
-		return (*this);
+		float nx = x - p_other.x;
+		float ny = y - p_other.y;
+		return fVector2(nx, ny);
 	}
-	fVector2& operator*(const float& p_factor)
+	fVector2 operator*(const float& p_factor)
 	{
-		x *= p_factor;
-		y *= p_factor;
-		return (*this);
+		float nx = x * p_factor;
+		float ny = y * p_factor;
+		return fVector2(nx, ny);
 	}
-	fVector2& operator/(const float& p_factor)
+	fVector2 operator/(const float& p_factor)
 	{
-		x /= p_factor;
-		y /= p_factor;
-		return (*this);
+		float nx = x / p_factor;
+		float ny = y / p_factor;
+		return fVector2(nx, ny);
 	}
 	fVector2& operator+=(const fVector2& p_other)
 	{

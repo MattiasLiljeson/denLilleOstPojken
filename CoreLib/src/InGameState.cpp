@@ -11,11 +11,12 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 		m_tileMap	= 0;
 		m_mapParser = new MapLoader();
 		m_stats = new GameStats(m_parent->getNewTimerInstance());
-
 		vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
+		int mapWidth = m_mapParser->getLoadedWidth();
+		int mapHeight = m_mapParser->getLoadedHeight();
 
-		bool* types = new bool[100];
-		for (int i = 0; i < 100; i++)
+		bool* types = new bool[mapWidth*mapHeight];
+		for (int i = 0; i < mapWidth*mapHeight; i++)
 		{
 			if (data[i] == WALL_CENTER)
 				types[i] = false;
@@ -23,37 +24,38 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 				types[i] = true;
 
 		}
-		m_tileMap = new Tilemap(10, 10, types, m_io);
 
-		for (int i = 0; i < 10; i++)
+		m_tileMap = new Tilemap(mapWidth, mapHeight, types, m_io);
+
+		for (int i = 0; i < mapHeight; i++)
 		{
-			for (int j = 0; j < 10; j++)
+			for (int j = 0; j < mapWidth; j++)
 			{
-				if (data[i*10+j] == PILL)
+				if (data[i*mapWidth+j] == PILL)
 				{
 					m_gameObjects.push_back(new Pill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
-				if (data[i*10+j] == SPEEDPILL)
+				else if (data[i*mapWidth+j] == SPEEDPILL)
 				{
 					m_gameObjects.push_back(new SpeedPill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
-				if (data[i*10+j] == SWITCH)
+				else if (data[i*mapWidth+j] == SWITCH)
 				{
 					m_gameObjects.push_back(new Switch(m_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats));
 
 				}
-				if (data[i*10+j] == MONSTER_SPAWN)
+				else if (data[i*mapWidth+j] == MONSTER_SPAWN)
 				{
 					Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
-				if (data[i*10+j] == AVATAR_SPAWN)
+				else if (data[i*mapWidth+j] == AVATAR_SPAWN)
 				{
 					m_avatar = new Avatar(m_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
 					m_gameObjects.push_back(m_avatar);
 				}
-				if (data[i*10+j] == SUPERPILL)
+				else if (data[i*mapWidth+j] == SUPERPILL)
 				{
 					m_gameObjects.push_back(new SuperPill(m_io, m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
