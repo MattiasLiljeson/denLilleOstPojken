@@ -498,7 +498,7 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 		return GAME_OK;
 }
 
-int DxContext::spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo)
+int DxContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 {
 	// Texture not set -> use default.
 	ID3D11ShaderResourceView* texture = NULL;
@@ -578,7 +578,7 @@ int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 	}
 	else
 	{
-		spriteSetUnnamedTexture( p_spriteInfo );
+		spriteSetDefaultTexture( p_spriteInfo );
 		textureReadSuccess = GAME_FAIL;
 	}
 	return textureReadSuccess;

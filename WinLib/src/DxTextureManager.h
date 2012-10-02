@@ -29,7 +29,7 @@ private:
 	bool								m_initialized;
 	
 private:
-	int loadTexture(string p_filePath);
+	int loadTexture(string p_filePath, vector<TextureWithName>* p_textures);
 
 public:
 	DxTextureManager(ID3D11Device* p_device);

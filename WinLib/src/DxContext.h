@@ -42,7 +42,7 @@ private:
 	int initializeViewport();
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
-	int spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo);
+	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
 
 public:
 				DxContext(HINSTANCE pInstanceHandle, 

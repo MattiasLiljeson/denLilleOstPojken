@@ -58,10 +58,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\external\dx\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(SolutionDir)\LinLib\bin\;$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\;$(SolutionDir)\CoreLib\bin\</LibraryPath>
+    <LibraryPath>$(SolutionDir)\LinLib\bin\;$(SolutionDir)\gtest-1.6.0\lib\(x86) debug\;$(LibraryPath);$(SolutionDir)\WinLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\WinLib\external\dx\lib\x86\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
@@ -70,8 +70,8 @@
     </CustomBuildAfterTargets>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath);$(SolutionDir)\WinLib\bin\</LibraryPath>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\gtest-1.6.0\include;$(SolutionDir)\WinLib\external\dx\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\LinLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\gtest-1.6.0\lib\(x86) release\;$(LibraryPath);$(SolutionDir)\WinLib\bin\;$(SolutionDir)\WinLib\external\dx\lib\x86\</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <IntDir>obj\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>

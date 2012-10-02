@@ -16,7 +16,8 @@ DxTextureManager::~DxTextureManager()
 	}
 }
 
-int DxTextureManager::loadTexture(string p_filePath)
+int DxTextureManager::loadTexture(string p_filePath,
+	vector<TextureWithName>* p_textures)
 {
 	int textureIndex = -1;
 	ID3D11ShaderResourceView* texture = NULL;
@@ -26,7 +27,7 @@ int DxTextureManager::loadTexture(string p_filePath)
 
 	if(res == S_OK)
 	{
-		m_textures.push_back(TextureWithName(texture, p_filePath));
+		p_textures->push_back(TextureWithName(texture, p_filePath));
 		textureIndex = (int)m_textures.size() - 1;
 	}
 
@@ -71,7 +72,7 @@ int DxTextureManager::getTexture(string p_filePath,
 	}
 
 	if(textureIndex == -1)
-		textureIndex = loadTexture(p_filePath);
+		textureIndex = loadTexture(p_filePath, &m_textures);
 
 	return textureIndex;
 }
