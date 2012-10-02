@@ -1,5 +1,5 @@
 
-#define USE_DIRECTX
+//#define USE_DIRECTX
 
 #include <IOContext.h>
 #include <Game.h>

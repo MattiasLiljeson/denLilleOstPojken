@@ -9,6 +9,11 @@ GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
 	m_screenWidth			= p_screenWidth;
 	m_screenHeight			= p_screenHeight;
 	m_totalGameTime			= 0;
+
+	// Create texture manager and load default texture
+	m_textureManager = new GlTextureManager();
+	m_textureManager->getTexture("../Textures/default.png");
+
 	m_initialized			= false;
 	if (init() != GAME_OK)
 	{
@@ -20,7 +25,7 @@ GlContext::~GlContext()
 	if (m_initialized)
 		glfwTerminate();
 
-	delete m_mascot;
+	delete m_spriteRenderer;
 	s_instance = NULL;
 }
 int GlContext::init()
@@ -36,8 +41,8 @@ int GlContext::init()
 	glfwSetWindowTitle("Den lille ostpojken");
 	glfwEnable( GLFW_STICKY_KEYS );
 	glViewport(0, 0, getScreenWidth(), getScreenHeight()); 
-	m_mascot = new GlSprite(this);
-	if (!m_mascot->isInitialized())
+	m_spriteRenderer = new GlSpriteRenderer(this);
+	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
 
 	m_keyMappings[InputInfo::ESC]	= GLFW_KEY_ESC;
@@ -153,7 +158,7 @@ int GlContext::update(float p_dt)
 		posY -= 50 * p_dt;
 	else if (m_input.keys[InputInfo::UP] == InputInfo::KEYDOWN)
 		posY += 50 * p_dt;
-	m_mascot->setPosition(posX, posY);
+	m_spriteRenderer->setPosition(posX, posY);
 
 	if (!glfwGetWindowParam(GLFW_OPENED))
 		setRunning(false);
@@ -165,7 +170,7 @@ int GlContext::draw(float p_dt)
 	glClearColor(0, 0, 0, 1.0);
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	m_mascot->draw();
+	m_spriteRenderer->draw();
 	glfwSwapBuffers();
 	return 0;
 }
@@ -175,14 +180,13 @@ int GlContext::beginDraw()
 	glClearColor(0, 0, 0, 1.0);
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//m_mascot->draw();
 	return GAME_OK;
 }
 
-int GlContext::drawSprite( SpriteInfo p_spriteInfo )
+int GlContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
-	m_mascot->setSpriteInfo(p_spriteInfo);
-	m_mascot->draw();
+	m_spriteRenderer->setSpriteInfo(p_spriteInfo);
+	m_spriteRenderer->draw();
 	return GAME_OK;
 }
 
@@ -207,4 +211,48 @@ void GLFWCALL GlContext::setWindowSizeCB(int p_width, int p_height)
 		s_instance->setWindowSize(p_width, p_height);
 }
 
+int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
+{
+	GLuint texture = 0;
 
+	int textureIndex = p_spriteInfo->textureIndex = m_textureManager->getTexture(
+		p_spriteInfo->textureFilePath, &texture);
+
+	if(texture == NULL)
+		return GAME_FAIL;
+	else
+		return GAME_OK;
+}
+
+int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
+{
+	// Texture not set -> use default.
+	GLuint texture = 0;
+			
+	p_spriteInfo->textureIndex = m_textureManager->getTexture(
+		0, &texture);	// (0 is the default texture index.)
+
+	if(texture == NULL)
+		return GAME_FAIL;
+	else
+		return GAME_OK;
+}
+
+int GlContext::addSprite( SpriteInfo* p_spriteInfo)
+{
+	int textureReadSuccess = GAME_FAIL;
+	bool named = p_spriteInfo->textureFilePath != "";
+
+	if( named )
+	{
+		m_textureManager->getTexture(p_spriteInfo->textureFilePath);
+		spriteSetUnindexedTexture( p_spriteInfo );
+		textureReadSuccess = GAME_OK;
+	}
+	else
+	{
+		spriteSetDefaultTexture( p_spriteInfo );
+		textureReadSuccess = GAME_FAIL;
+	}
+	return textureReadSuccess;
+}

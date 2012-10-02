@@ -10,7 +10,7 @@ using namespace std;
 
 class GlContext;
 
-class GlSprite
+class GlSpriteRenderer
 {
 private:
 	GLuint			m_vertexBuffer;
@@ -20,20 +20,22 @@ private:
 	GlSpriteShader* m_spriteShader;
 	GlContext*		m_context;
 	bool			m_initialized;
-	SpriteInfo		m_spriteInfo;
+	SpriteInfo*		m_spriteInfo;
 
 private:
 	int initializeGeometry();
 
 	//temp
-	GLboolean load(string path);
+//	GLboolean load(string path);
 
 public:
-			GlSprite(GlContext* p_context);
-	virtual ~GlSprite();
+			GlSpriteRenderer(GlContext* p_context);
+	virtual ~GlSpriteRenderer();
 	void	setPosition(float p_positionX, float p_positionY);
 	int		draw();
-	void	setSpriteInfo(SpriteInfo p_spriteInfo);
+	void	setSpriteInfo( SpriteInfo* p_spriteInfo );
+	void	setTexture( GLuint p_texture );
+
 	bool	isInitialized();
 };
 

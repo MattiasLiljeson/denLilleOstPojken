@@ -9,9 +9,9 @@ using namespace std;
 
 struct TextureWithName
 {
-public:
 	ID3D11ShaderResourceView*	textureResource;
 	string						textureName;
+
 	TextureWithName(){}
 	TextureWithName(ID3D11ShaderResourceView* p_textureResource,
 		string p_textureName)
@@ -24,9 +24,8 @@ public:
 class DxTextureManager
 {
 private:
-	vector<TextureWithName>				m_textures;
-	ID3D11Device*						m_device;
-	bool								m_initialized;
+	vector<TextureWithName>	m_textures;
+	ID3D11Device*			m_device;
 	
 private:
 	int loadTexture(string p_filePath, vector<TextureWithName>* p_textures);

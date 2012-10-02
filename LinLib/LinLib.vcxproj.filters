@@ -2,14 +2,16 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="src\GlContext.cpp" />
-    <ClCompile Include="src\GlSprite.cpp" />
     <ClCompile Include="src\GlSpriteShader.cpp" />
     <ClCompile Include="src\LinTimer.cpp" />
+    <ClCompile Include="src\GlTextureManager.cpp" />
+    <ClCompile Include="src\GlSpriteRenderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlContext.h" />
-    <ClInclude Include="src\GlSprite.h" />
     <ClInclude Include="src\GlSpriteShader.h" />
     <ClInclude Include="src\LinTimer.h" />
+    <ClInclude Include="src\GlTextureManager.h" />
+    <ClInclude Include="src\GlSpriteRenderer.h" />
   </ItemGroup>
 </Project>

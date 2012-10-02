@@ -2,7 +2,6 @@
 
 DxTextureManager::DxTextureManager(ID3D11Device* p_device)
 {
-	m_initialized = false;
 	m_device = p_device;
 
 }
@@ -35,13 +34,13 @@ int DxTextureManager::loadTexture(string p_filePath,
 }
 
 int DxTextureManager::getTexture(int p_textureIndex,
-	ID3D11ShaderResourceView** p_outTextureResource)
+	ID3D11ShaderResourceView** out_textureResource)
 {
 	int textureIndex = -1;
 
 	if( p_textureIndex < (int)m_textures.size() )
 	{
-		*p_outTextureResource = m_textures[p_textureIndex].textureResource;
+		*out_textureResource = m_textures[p_textureIndex].textureResource;
 
 		textureIndex = p_textureIndex;
 	}
@@ -55,7 +54,7 @@ int DxTextureManager::getTexture(string p_filePath)
 }
 
 int DxTextureManager::getTexture(string p_filePath,
-	ID3D11ShaderResourceView** p_outTextureResource)
+	ID3D11ShaderResourceView** out_textureResource)
 {
 	int textureIndex = -1;
 
@@ -63,8 +62,8 @@ int DxTextureManager::getTexture(string p_filePath,
 	{
 		if( m_textures[i].textureName == p_filePath )
 		{
-			if( p_outTextureResource != NULL)
-				*p_outTextureResource = m_textures[i].textureResource;
+			if( out_textureResource != NULL)
+				*out_textureResource = m_textures[i].textureResource;
 
 			textureIndex = i;
 			break;
