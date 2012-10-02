@@ -11,6 +11,7 @@
 // DirectX Windows
 #include <DxContext.h>
 #include <WinTimer.h>
+#include <crtdbg.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
 					HINSTANCE hPrevInstance,
@@ -36,7 +37,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 	game->run();
 	
-
 	delete timer;
 	delete context;
 	delete game;

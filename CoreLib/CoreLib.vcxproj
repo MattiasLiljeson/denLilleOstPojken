@@ -12,12 +12,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Avatar.cpp" />
+    <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
+    <ClCompile Include="src\GameStats.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
+    <ClCompile Include="src\MapLoader.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Pill.cpp" />
+    <ClCompile Include="src\SpeedPill.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
     <ClCompile Include="src\Tile.cpp" />
@@ -25,12 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Avatar.h" />
+    <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
+    <ClInclude Include="src\GameStats.h" />
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
+    <ClInclude Include="src\MapLoader.h" />
     <ClInclude Include="src\MenuState.h" />
+    <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />
+    <ClInclude Include="src\SpeedPill.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\StateManager.h" />
     <ClInclude Include="src\Tile.h" />
@@ -94,6 +104,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -113,6 +124,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

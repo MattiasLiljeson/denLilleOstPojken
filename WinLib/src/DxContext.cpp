@@ -467,7 +467,7 @@ int DxContext::beginDraw()
 
 int DxContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
-	if (!m_resizing)
+	if (!m_resizing && p_spriteInfo->visible)
 	{
 		m_spriteRenderer->setSpriteInfo(p_spriteInfo);
 

@@ -64,7 +64,7 @@ int GlSprite::draw()
 		m_spriteInfo.transformInfo.scale[TransformInfo::Y] / 2
 	);
 	glUniform2f(m_spriteShader->getScreenSizeConstant(), 
-		m_context->getScreenWidth(), m_context->getScreenHeight());
+		(GLfloat)m_context->getScreenWidth(), (GLfloat)m_context->getScreenHeight());
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_texture);
 

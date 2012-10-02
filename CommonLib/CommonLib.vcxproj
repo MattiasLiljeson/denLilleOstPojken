@@ -16,6 +16,7 @@
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Circle.h" />
     <ClInclude Include="src\InputInfo.h" />
     <ClInclude Include="src\IOContext.h" />
     <ClInclude Include="src\CommonUtility.h" />
@@ -23,6 +24,8 @@
     <ClInclude Include="src\SpriteInfo.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\TransformInfo.h" />
+    <ClInclude Include="src\Vector2.h" />
+    <ClInclude Include="src\Vector3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5A4E8F2-2CAF-4AEA-B215-7DF7EE7944EE}</ProjectGuid>
@@ -76,6 +79,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -92,7 +96,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

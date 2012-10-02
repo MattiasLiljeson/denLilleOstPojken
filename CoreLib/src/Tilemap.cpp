@@ -15,15 +15,11 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			SpriteInfo* info = new SpriteInfo(); 
-			Tile* currTile = new Tile(FREE_TILE, TilePosition(col, row),
-				tileSizeX, tileSizeY, info);
-			m_tiles[row * p_height + col] = currTile;
-			p_device->addSpriteInfo(info);
+			m_tiles[row * p_height + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
-Tilemap::Tilemap(int p_width, int p_height, TileType* p_initData, IODevice* p_device)
+Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device)
 {
 	m_device = p_device;
 	m_width = p_width;
@@ -37,20 +33,7 @@ Tilemap::Tilemap(int p_width, int p_height, TileType* p_initData, IODevice* p_de
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			if (p_initData[row * p_height + col] == TileType::WALL_TILE)
-			{
-				SpriteInfo* info = new SpriteInfo();
-				Tile* currTile = new Tile(p_initData[row * p_height + col],
-					TilePosition(col, row), tileSizeX, tileSizeY, info);
-				m_tiles[row * p_height + col] = currTile;
-				p_device->addSpriteInfo(info);
-			}
-			else
-			{
-				Tile* currTile = new Tile(p_initData[row * p_height + col],
-					TilePosition(col, row), tileSizeX, tileSizeY, NULL);
-				m_tiles[row * p_height + col] = currTile;
-			}
+			m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
@@ -71,8 +54,8 @@ Tile* Tilemap::getTile(TilePosition p_position)
 }
 Tile* Tilemap::closestFreeTile(Tile* p_start)
 {
-	TilePosition min = p_start->getPosition() - TilePosition(1, 1);
-	TilePosition max = p_start->getPosition() + TilePosition(1, 1);
+	TilePosition min = p_start->getTilePosition() - TilePosition(1, 1);
+	TilePosition max = p_start->getTilePosition() + TilePosition(1, 1);
 
 	while (min.x >= 0 || min.y >= 0 || max.x < m_width || max.y < m_height)
 	{

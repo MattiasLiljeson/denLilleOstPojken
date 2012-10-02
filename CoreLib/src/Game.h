@@ -9,6 +9,10 @@
 #include "GameObject.h"
 #include "Tilemap.h"
 #include "Pill.h"
+#include "Monster.h"
+#include "MapLoader.h"
+#include "StateManager.h"
+#include "GameStats.h"
 
 using namespace std;
 
@@ -18,22 +22,15 @@ private:
 	Timer*				m_timer;
 	IODevice*			m_io;
 	bool				m_running;
-	vector<GameObject*>	m_gameObjects;
 
-	//Temp
-	Tilemap* m_tileMap;
-	vector<Pill> m_pills;
+	StateManager* m_stateManager;
 
 
 public:
 	Game();
 	Game(Timer* p_timer, IOContext* p_context);
 	virtual ~Game();
-
 	int run();
-
-private:
-	int update(float p_deltaTime, InputInfo p_inputInfo);
 
 };
 
