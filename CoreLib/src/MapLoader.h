@@ -16,7 +16,9 @@ enum TileType
 	PILL,
 	AVATAR_SPAWN,
 	MONSTER_SPAWN,
-	SPEEDPILL
+	SPEEDPILL,
+	SUPERPILL,
+	SWITCH
 };
 
 class MapLoader

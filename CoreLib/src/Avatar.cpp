@@ -3,28 +3,27 @@
 int Avatar::checkInput(InputInfo p_inputInfo)
 {
 	int desired = m_direction;
-	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
+	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
 	{
 		desired = Direction::LEFT;
 	}
-	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN)
+	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED)
 	{
 		desired = Direction::RIGHT;
 	}
-	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN)
+	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
 	{
 		desired = Direction::DOWN;
 	}
-	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN)
+	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
 	{
 		desired = Direction::UP;
 	}
 	return desired;
-}
-
-Avatar::Avatar()
-{
-	//Hubba Bubba
 }
 
 Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
@@ -34,16 +33,19 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
 	m_map = p_map;
 
-	SpriteInfo spriteInfo;
-	TilePosition tp = p_startTile->getTilePosition();
-	float w = p_startTile->getWidth();
-	float h = p_startTile->getHeight();
-	spriteInfo.transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-	spriteInfo.transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-	spriteInfo.transformInfo.scale[TransformInfo::X] = w * 0.6f;
-	spriteInfo.transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
-	m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
+	if (p_io)
+	{
+		SpriteInfo spriteInfo;
+		TilePosition tp = p_startTile->getTilePosition();
+		float w = p_startTile->getWidth();
+		float h = p_startTile->getHeight();
+		spriteInfo.transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
+		spriteInfo.transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
+		spriteInfo.transformInfo.scale[TransformInfo::X] = w * 0.6f;
+		spriteInfo.transformInfo.scale[TransformInfo::Y] = h * 0.6f;
+		spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
+		m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
+	}
 
 	dt = 0;
 }
@@ -76,15 +78,29 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_currentTile->removePill();
 	}
 
-	TilePosition tp1 = m_currentTile->getTilePosition();
-	TilePosition tp2 = m_nextTile->getTilePosition();
-	float pX = tp1.x * (1-dt) + tp2.x * dt; 
-	float pY = tp1.y * (1-dt) + tp2.y * dt;  
+	if (m_spriteInfo)
+	{
+		TilePosition tp1 = m_currentTile->getTilePosition();
+		TilePosition tp2 = m_nextTile->getTilePosition();
+		float pX = tp1.x * (1-dt) + tp2.x * dt; 
+		float pY = tp1.y * (1-dt) + tp2.y * dt;  
 
-	float w = m_currentTile->getWidth();
-	float h = m_currentTile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		float w = m_currentTile->getWidth();
+		float h = m_currentTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	}
 
 }
-
+Tile* Avatar::getCurrentTile()
+{
+	return m_currentTile;
+}
+int Avatar::getDirection()
+{
+	return m_direction;
+}
+float Avatar::getTileInterpolationFactor()
+{
+	return dt;
+}

@@ -14,6 +14,8 @@
     <ClCompile Include="src\TestBacklogRunner.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\T_Avatar.h" />
+    <ClInclude Include="src\T_GameStats.h" />
     <ClInclude Include="src\T_MapLoad.h" />
     <ClInclude Include="src\T_Math.h" />
     <ClInclude Include="src\T_Monster.h" />

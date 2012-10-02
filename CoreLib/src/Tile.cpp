@@ -6,7 +6,7 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 	m_width = p_width;
 	m_height = p_height;
 
-	if (!p_type)
+	if (p_io)
 	{
 		SpriteInfo spriteInfo;
 		spriteInfo.transformInfo.translation[TransformInfo::X] = p_position.x * p_width + p_width * 0.5f;
@@ -15,6 +15,7 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 		spriteInfo.transformInfo.scale[TransformInfo::Y] = p_height;
 		spriteInfo.textureFileName = "..\\Textures\\wall.png";
 		m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
+		m_spriteInfo->visible = !p_type;
 	}
 
 	m_position = p_position;
@@ -58,4 +59,10 @@ bool Tile::removePill()
 		return true;
 	}
 	return false;
+}
+void Tile::switchState()
+{
+	m_type = !m_type;
+	if (m_spriteInfo)
+		m_spriteInfo->visible = !m_type;
 }

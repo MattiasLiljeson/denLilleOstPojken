@@ -56,6 +56,7 @@ public:
 	bool isFree();
 	void addPill(Collectable* p_pill);
 	bool removePill();
+	void switchState();
 };
 
 #endif

@@ -35,6 +35,9 @@
     <Filter Include="Source\GameObject\Collectable\SpeedPill">
       <UniqueIdentifier>{01f0aaa8-a89f-4a0c-a002-a14d39964384}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Collectable\Switch">
+      <UniqueIdentifier>{9d3b2e92-e8b0-4e95-9fc8-57e6e30536ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -85,6 +88,9 @@
     <ClCompile Include="src\SpeedPill.cpp">
       <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
     </ClCompile>
+    <ClCompile Include="src\Switch.cpp">
+      <Filter>Source\GameObject\Collectable\Switch</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -134,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="src\SpeedPill.h">
       <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Switch.h">
+      <Filter>Source\GameObject\Collectable\Switch</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

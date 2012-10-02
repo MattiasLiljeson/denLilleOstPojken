@@ -25,6 +25,7 @@
     <ClCompile Include="src\SpeedPill.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\Switch.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
   </ItemGroup>
@@ -43,6 +44,7 @@
     <ClInclude Include="src\SpeedPill.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\StateManager.h" />
+    <ClInclude Include="src\Switch.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
   </ItemGroup>

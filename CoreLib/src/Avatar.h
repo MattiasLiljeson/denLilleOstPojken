@@ -35,10 +35,13 @@ private:
 	int checkInput(InputInfo p_inputInfo);
 
 public:
-	Avatar();
 	Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
 
 	void update(float p_deltaTime, InputInfo p_inputInfo);
+
+	Tile* getCurrentTile();
+	int getDirection();
+	float getTileInterpolationFactor();
 };
 
 #endif

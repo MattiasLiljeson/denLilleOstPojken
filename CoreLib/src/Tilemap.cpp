@@ -2,7 +2,6 @@
 
 Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 {
-	m_device = p_device;
 	m_width = p_width;
 	m_height = p_height;
 
@@ -21,14 +20,18 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 }
 Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device)
 {
-	m_device = p_device;
 	m_width = p_width;
 	m_height = p_height;
 
 	m_tiles = new Tile*[p_width * p_height];
 
-	float tileSizeX = p_device->getScreenWidth() / (float)p_width;
-	float tileSizeY = p_device->getScreenHeight() / (float)p_height;
+	float tileSizeX = 10;
+	float tileSizeY = 10;
+	if (p_device)
+	{
+		tileSizeX = p_device->getScreenWidth() / (float)p_width;
+		tileSizeY = p_device->getScreenHeight() / (float)p_height;
+	}
 	for (int row = 0; row < p_height; row++)
 	{
 		for (int col = 0; col < p_width; col++)

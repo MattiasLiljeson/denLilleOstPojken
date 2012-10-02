@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 #include <StateManager.h>
 
-/*class T_States : public ::testing::Test
+class T_States : public ::testing::Test
 {
 protected:
 	T_States(){
@@ -12,11 +12,11 @@ protected:
 	virtual ~T_States(){
 	}
 	virtual void SetUp(){
-		mgr = new StateManager();
+		mgr = new StateManager(NULL);
 		curr = mgr->getCurrentState();
 		inGame = mgr->getInGameState();
 		menu = mgr->getMenuState();
-		outerState = new InGameState(mgr);
+		outerState = new InGameState(mgr, NULL);
 	}
 	virtual void TearDown(){
 		delete mgr;
@@ -31,12 +31,6 @@ protected:
 
 TEST_F(T_States, Namn)
 {
-	mgr			= new StateManager();
-	curr		= mgr->getCurrentState();
-	inGame		= mgr->getInGameState();
-	menu		= mgr->getMenuState();
-	outerState	= new InGameState(mgr);
-
 	ASSERT_TRUE(curr);
 	ASSERT_TRUE(inGame);
 	ASSERT_TRUE(menu);
@@ -68,5 +62,5 @@ TEST_F(T_States, Namn)
 
 	delete outerState;
 
-}*/
+}
 #endif
