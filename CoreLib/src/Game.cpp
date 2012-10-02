@@ -16,7 +16,7 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 	else
 		m_io = 0;
 
-	m_stateManager = new StateManager(m_io);
+	m_stateManager = new StateManager(m_io, p_timer);
 }
 
 Game::~Game()
