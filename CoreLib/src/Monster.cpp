@@ -5,6 +5,7 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 	dt = 0;
 	m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
+	m_dead = false;
 
 	if (p_io)
 	{
@@ -25,38 +26,41 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	dt += p_deltaTime * 3;
-	if (dt > 1)
+	if (!m_dead)
 	{
-		dt -= 1;
-		m_currentTile = m_nextTile;
-		if (m_path.size() > 0)
+		dt += p_deltaTime * 3;
+		if (dt > 1)
 		{
-			m_nextTile = m_path.back();
-			m_path.pop_back();
-		}
-		else
-		{
-			Tile* t;
-			do
+			dt -= 1;
+			m_currentTile = m_nextTile;
+			if (m_path.size() > 0)
 			{
-				int rndX = rand() % m_map->getWidth();
-				int rndY = rand() % m_map->getWidth();
-				t = m_map->getTile(TilePosition(rndX, rndY));
-			} while (!t->isFree());
+				m_nextTile = m_path.back();
+				m_path.pop_back();
+			}
+			else
+			{
+				Tile* t;
+				do
+				{
+					int rndX = rand() % m_map->getWidth();
+					int rndY = rand() % m_map->getWidth();
+					t = m_map->getTile(TilePosition(rndX, rndY));
+				} while (!t->isFree());
 
-			FindPath(m_currentTile, t);
+				FindPath(m_currentTile, t);
+			}
 		}
-	}
-	TilePosition tp1 = m_currentTile->getTilePosition();
-	TilePosition tp2 = m_nextTile->getTilePosition();
-	float pX = tp1.x * (1-dt) + tp2.x * dt; 
-	float pY = tp1.y * (1-dt) + tp2.y * dt;  
+		TilePosition tp1 = m_currentTile->getTilePosition();
+		TilePosition tp2 = m_nextTile->getTilePosition();
+		float pX = tp1.x * (1-dt) + tp2.x * dt; 
+		float pY = tp1.y * (1-dt) + tp2.y * dt;  
 
-	float w = m_currentTile->getWidth();
-	float h = m_currentTile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		float w = m_currentTile->getWidth();
+		float h = m_currentTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	}
 }
 Tile* Monster::getCurrentTile()
 {
@@ -161,4 +165,14 @@ int	Monster::FindTile(Tile* p_tile, vector<AstarItem>& p_queue)
 			return i;
 	}
 	return -1;
+}
+void Monster::kill()
+{
+	m_dead = true;
+	if (m_spriteInfo)
+		m_spriteInfo->visible = false;
+}
+bool Monster::isDead()
+{
+	return m_dead;
 }

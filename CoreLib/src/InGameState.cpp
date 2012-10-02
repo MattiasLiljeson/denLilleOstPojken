@@ -103,13 +103,7 @@ void InGameState::update(float p_dt)
 			m_gameObjects[index]->update(p_dt, input);
 		};
 
-		if(m_stats->isSuperMode())
-		{
-			if(checkDynamicCollision())
-			{
-				//m_parent->terminate();
-			}
-		}
+		checkDynamicCollision();
 	
 		m_stats->update(p_dt);
 	}
@@ -122,14 +116,26 @@ bool InGameState::checkDynamicCollision()
 {
 	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius());
 
+	bool collision = false;
 	for(unsigned int index = 0; index < m_monsters.size(); index++)
 	{
 		Monster* monster = m_monsters.at(index);
-		Circle monsterBC(monster->getPostion(),monster->getRadius());
+		if (!monster->isDead())
+		{
+			Circle monsterBC(monster->getPostion(),monster->getRadius());
 
-		if(avatarBC.collidesWith(monsterBC))
-			return true;
+			if(avatarBC.collidesWith(monsterBC))
+			{
+				if (m_stats->isSuperMode())
+				{
+					monster->kill();
+					collision = true;
+				}
+				else
+					m_parent->terminate();
+			}
+		}
 	}
 
-	return false;
+	return collision;
 }
