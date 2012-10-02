@@ -12,7 +12,7 @@ protected:
 	virtual ~T_States(){
 	}
 	virtual void SetUp(){
-		mgr = new StateManager(NULL);
+		mgr = new StateManager(NULL, NULL);
 		curr = mgr->getCurrentState();
 		inGame = mgr->getInGameState();
 		menu = mgr->getMenuState();

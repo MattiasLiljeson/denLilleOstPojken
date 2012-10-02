@@ -15,6 +15,7 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = p_height;
 		m_spriteInfo->textureFilePath = "..\\Textures\\wall.png";
 		p_io->addSpriteInfo(m_spriteInfo);
+		m_spriteInfo->visible = !p_type;
 	}
 
 	m_position = p_position;

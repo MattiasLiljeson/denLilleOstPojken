@@ -21,7 +21,7 @@ protected:
 
 TEST_F(T_GameStats, Namn)
 {
-	GameStats stats;
+	GameStats stats(NULL);
 	stats.addPill();
 	stats.addPill();
 	ASSERT_TRUE(stats.getNumPills() == 2);

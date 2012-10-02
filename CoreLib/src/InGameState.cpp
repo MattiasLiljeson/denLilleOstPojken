@@ -44,39 +44,19 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 				}
 				if (data[i*10+j] == MONSTER_SPAWN)
 				{
-					m_gameObjects.push_back(new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io));
+					Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io);
+					m_monsters.push_back(monster);
+					m_gameObjects.push_back(monster);
 				}
 				if (data[i*10+j] == AVATAR_SPAWN)
 				{
-
-					GameObject* avatar = new Avatar(m_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
-					m_gameObjects.push_back(avatar);
+					m_avatar = new Avatar(m_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
+					m_gameObjects.push_back(m_avatar);
 				}
-			int index = i*10+j;
-			if (data[index] == PILL)
-			{
-				m_gameObjects.push_back(new Pill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
-
-			}
-			else if (data[index] == MONSTER_SPAWN)
-			{
-				Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io);
-				m_gameObjects.push_back(monster);
-				m_monsters.push_back(monster);
-			}
-			else if (data[index] == AVATAR_SPAWN)
-			{
-				m_avatar = new Avatar(m_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
-				m_gameObjects.push_back(m_avatar);
-			}
-			else if (data[index] == SPEEDPILL)
-			{
-				m_gameObjects.push_back(new SpeedPill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
-
-			}
-			else if (data[index] == SUPERPILL)
-			{
-				m_gameObjects.push_back(new SuperPill(m_io, m_tileMap->getTile(TilePosition(j,i)), m_stats));
+				if (data[i*10+j] == SUPERPILL)
+				{
+					m_gameObjects.push_back(new SuperPill(m_io, m_tileMap->getTile(TilePosition(j,i)), m_stats));
+				}
 			}
 		}
 		delete types;
@@ -117,19 +97,22 @@ void InGameState::update(float p_dt)
 		{
 			m_gameObjects[index]->update(p_dt, input);
 		};
-	}
-	for (unsigned int index = 0; index < m_gameObjects.size(); index++)
-	{
-		m_gameObjects[index]->update(p_dt, input);
-	};
 
-	if(m_stats->isSuperMode())
-	{
-		if(checkDynamicCollision())
-			m_parent->terminate();
-	}
+		for (unsigned int index = 0; index < m_gameObjects.size(); index++)
+		{
+			m_gameObjects[index]->update(p_dt, input);
+		};
+
+		if(m_stats->isSuperMode())
+		{
+			if(checkDynamicCollision())
+			{
+				//m_parent->terminate();
+			}
+		}
 	
-	m_stats->update(p_dt);
+		m_stats->update(p_dt);
+	}
 }
 void InGameState::draw(float p_dt)
 {
