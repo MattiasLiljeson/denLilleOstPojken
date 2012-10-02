@@ -87,6 +87,29 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 int main(int argc, char** argv)
 {
+	cout<<"Running Linux Build...";
+	IOContext* context = new GlContext(400, 400);
+
+	context->setWindowSize(800, 600);
+
+	context->setWindowPosition(50, 250);
+
+	if (!context->isInitialized())
+	{
+		delete context;
+		return 1;
+	}
+
+	Timer* timer = new LinTimer();
+
+	Game* game = new Game(timer, context);
+
+	game->run();
+
+
+	delete timer;
+	delete context;
+	delete game;
 	return 0;
 }
 

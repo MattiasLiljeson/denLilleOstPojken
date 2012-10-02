@@ -11,7 +11,7 @@ MapLoader::~MapLoader()
 vector<int> MapLoader::parseMap(string p_MapPath)
 {
 	
-	fstream file(p_MapPath);
+	fstream file(p_MapPath.c_str());
 
 	vector<int> mapTiles;
 	int value;

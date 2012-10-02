@@ -1,6 +1,10 @@
 #ifndef VECTOR2_H
 #define VECTOR2_H
 
+#ifndef _WIN32
+#include <math.h>
+#endif
+
 struct fVector2
 {
 	float x;

@@ -1,6 +1,11 @@
 #include "GlSprite.h"
 #include "GlContext.h"
 
+#ifndef _WIN32
+#define FALSE 0
+#define TRUE 1
+#endif
+
 GlSprite::GlSprite(GlContext* p_context)
 {
 	m_initialized	= false;
