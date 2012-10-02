@@ -11,7 +11,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 		m_tileMap	= 0;
 		m_mapParser = new MapLoader();
 		m_stats = new GameStats(m_parent->getNewTimerInstance());
-		vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
+		m_mapParser->parseMap("..\\Maps\\test_map.txt");
+		vector<int> data = m_mapParser->getMap();
 		int mapWidth = m_mapParser->getLoadedWidth();
 		int mapHeight = m_mapParser->getLoadedHeight();
 
@@ -27,6 +28,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 
 		m_tileMap = new Tilemap(mapWidth, mapHeight, types, m_io);
 
+		int currentSwitch = 0;
 		for (int i = 0; i < mapHeight; i++)
 		{
 			for (int j = 0; j < mapWidth; j++)
@@ -41,7 +43,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 				}
 				else if (data[i*mapWidth+j] == SWITCH)
 				{
-					m_gameObjects.push_back(new Switch(m_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats));
+					vector<TilePosition> targets = m_mapParser->getSwitch(currentSwitch++);
+					m_gameObjects.push_back(new Switch(m_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
 
 				}
 				else if (data[i*mapWidth+j] == MONSTER_SPAWN)

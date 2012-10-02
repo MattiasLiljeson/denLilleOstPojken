@@ -94,3 +94,7 @@ bool GameStats::isSuperMode()
 {
 	return m_superMode;
 }
+float GameStats::superTimeRemaining()
+{
+	return 3 - m_superModeTimer->getElapsedTime();
+}

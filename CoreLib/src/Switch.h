@@ -15,7 +15,7 @@ private:
 	float m_cooldown;
 	IODevice* m_io;
 public:
-	Switch(IODevice* p_io, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats);
+	Switch(IODevice* p_io, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
 };

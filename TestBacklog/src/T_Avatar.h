@@ -18,7 +18,8 @@ protected:
 	virtual void SetUp()
 	{
 		MapLoader mapParser;
-		vector<int> data = mapParser.parseMap("..\\Maps\\test_map.txt");
+		mapParser.parseMap("..\\Maps\\test_map.txt");
+		vector<int> data = mapParser.getMap();
 
 		bool* types = new bool[100];
 		for (int i = 0; i < 100; i++)

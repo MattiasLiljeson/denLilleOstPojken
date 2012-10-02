@@ -6,6 +6,7 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "Tile.h"
 
 using namespace std;
 
@@ -26,13 +27,19 @@ class MapLoader
 private:
 	int m_width;
 	int m_height;
+
+	vector<int> m_map;
+	vector<vector<TilePosition>> m_switches; 
+
 public:
 	MapLoader();
 	virtual ~MapLoader();
 	
-	vector<int> parseMap(string p);
+	void parseMap(string p);
 	int getLoadedWidth();
 	int getLoadedHeight();
+	vector<int> getMap();
+	vector<TilePosition> getSwitch(int p_index);
 };
 
 #endif

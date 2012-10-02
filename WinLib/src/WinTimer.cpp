@@ -10,11 +10,11 @@ WinTimer::WinTimer(): Timer()
 }
 void WinTimer::start()
 {
+	mElapsedTime = 0;
 	if (!mRunning)
 	{
 		QueryPerformanceCounter((LARGE_INTEGER*)&mCurrentTime);
 		mRunning = true;
-		mElapsedTime = 0;
 	}
 }
 void WinTimer::stop()

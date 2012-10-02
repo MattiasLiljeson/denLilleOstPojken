@@ -23,7 +23,8 @@ protected:
 
 TEST_F(T_MapLoader,parseFromFile)
 {
-	std::vector<int> data = mapLoader->parseMap("..\\Maps\\test_map.txt");
+	mapLoader->parseMap("..\\Maps\\test_map.txt");
+	std::vector<int> data = mapLoader->getMap();
 	ASSERT_TRUE(data.at(0)==EMPTY);
 	ASSERT_TRUE(data.at(1)==WALL_CENTER);
 	ASSERT_TRUE(data.at(9)==PILL);

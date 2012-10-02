@@ -94,6 +94,12 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	if (m_gameStats->isSuperMode())
 	{
 		m_spriteInfo->textureFilePath = "..\\Textures\\hero.png";
+		float remaining = m_gameStats->superTimeRemaining();
+		if (remaining < 1)
+		{
+			if ((int)(remaining*6) % 2 == 0)
+				m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		}
 		m_io->updateSpriteInfo(m_spriteInfo);
 	}
 	else

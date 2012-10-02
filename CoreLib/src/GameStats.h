@@ -28,6 +28,7 @@ public:
 	bool	isSpeeded();
 	void	setSuperMode();
 	bool	isSuperMode();
+	float   superTimeRemaining();
 };
 
 #endif

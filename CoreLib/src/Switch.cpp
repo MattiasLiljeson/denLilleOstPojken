@@ -1,11 +1,11 @@
 #include "Switch.h"
 
-Switch::Switch(IODevice* p_io, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats): Collectable(NULL, p_gameStats)
+Switch::Switch(IODevice* p_io, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets): Collectable(NULL, p_gameStats)
 {
 	m_io = p_io;
 	m_map = p_map;
-	m_targets.push_back(TilePosition(4, 2));
-	m_targets.push_back(TilePosition(5, 2));
+
+	m_targets = p_targets;
 	if (p_io)
 	{
 		m_spriteInfo = new SpriteInfo();
