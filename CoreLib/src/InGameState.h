@@ -9,6 +9,8 @@ class InGameState: public State
 private:
 	IODevice*			m_io;
 	vector<GameObject*>	m_gameObjects;
+	Avatar*				m_avatar;
+	vector<Monster*>	m_monsters;
 	MapLoader*			m_mapParser;
 
 	//Temp
@@ -19,6 +21,7 @@ public:
 	virtual ~InGameState();
 	void update(float p_dt);
 	void draw(float p_dt);
+	bool checkDynamicCollision();
 };
 
 #endif

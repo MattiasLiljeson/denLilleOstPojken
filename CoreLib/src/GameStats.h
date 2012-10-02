@@ -8,6 +8,7 @@ class GameStats
 private:
 	int		m_numPills;
 	bool	m_speeded;
+	bool	m_superMode;
 public:
 	GameStats();
 	~GameStats();
@@ -18,6 +19,8 @@ public:
 	void	addPill();
 	void	setSpeeded();
 	bool	isSpeeded();
+	void	setSuperMode();
+	bool	isSuperMode();
 };
 
 #endif

@@ -31,3 +31,10 @@ void WinTimer::tick()
 		mCurrentTime = currTime;
 	}
 }
+
+Timer* WinTimer::newInstance()
+{
+	WinTimer* newWinTimer = new WinTimer();
+
+	return newWinTimer;
+}

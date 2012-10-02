@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="src\Avatar.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
+    <ClCompile Include="src\DynamicCollision.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameStats.cpp" />
@@ -25,12 +26,14 @@
     <ClCompile Include="src\SpeedPill.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\SuperPill.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Avatar.h" />
     <ClInclude Include="src\Collectable.h" />
+    <ClInclude Include="src\DynamicCollision.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameStats.h" />
@@ -43,6 +46,7 @@
     <ClInclude Include="src\SpeedPill.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\StateManager.h" />
+    <ClInclude Include="src\SuperPill.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
   </ItemGroup>

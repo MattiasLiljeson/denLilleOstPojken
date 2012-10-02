@@ -43,3 +43,11 @@ bool GameStats::isSpeeded()
 {
 	return m_speeded;
 }
+void GameStats::setSuperMode()
+{
+	m_superMode = true;
+}
+bool GameStats::isSuperMode()
+{
+	return m_superMode;
+}
