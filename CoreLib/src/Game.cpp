@@ -51,11 +51,11 @@ int Game::run()
 
 	m_gameObjects.push_back(avatar);
 
-	spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
-	spriteInfo.transformInfo.translation[TransformInfo::X] = 200;
-	spriteInfo.transformInfo.translation[TransformInfo::Y] = 500;
-	spriteInfo.transformInfo.scale[TransformInfo::X] = 50;
-	spriteInfo.transformInfo.scale[TransformInfo::Y] = 50;
+	spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+	spriteInfo->transformInfo.translation[TransformInfo::X] = 200;
+	spriteInfo->transformInfo.translation[TransformInfo::Y] = 500;
+	spriteInfo->transformInfo.scale[TransformInfo::X] = 50;
+	spriteInfo->transformInfo.scale[TransformInfo::Y] = 50;
 	
 	m_io->addSpriteInfo(spriteInfo);
 
@@ -87,7 +87,11 @@ int Game::run()
 		for (int j = 0; j < 10; j++)
 		{
 			if (arr[i*10+j] == 2)
-				m_pills.push_back(Pill(m_io->addSpriteInfo(), m_tileMap->getTile(TilePosition(j, i))));
+			{
+				SpriteInfo* info = new SpriteInfo("..\\Textures\\LogoDx.png");
+				m_pills.push_back(Pill(info, m_tileMap->getTile(TilePosition(j, i))));
+				m_io->addSpriteInfo(info);
+			}
 		}
 	}
 	/* End ugli code */

@@ -48,6 +48,11 @@ int DxTextureManager::getTexture(int p_textureIndex,
 	return textureIndex;
 }
 
+int DxTextureManager::getTexture(string p_filePath)
+{
+	return getTexture(p_filePath, NULL);
+}
+
 int DxTextureManager::getTexture(string p_filePath,
 	ID3D11ShaderResourceView** p_outTextureResource)
 {
@@ -57,7 +62,8 @@ int DxTextureManager::getTexture(string p_filePath,
 	{
 		if( m_textures[i].textureName == p_filePath )
 		{
-			*p_outTextureResource = m_textures[i].textureResource;
+			if( p_outTextureResource != NULL)
+				*p_outTextureResource = m_textures[i].textureResource;
 
 			textureIndex = i;
 			break;

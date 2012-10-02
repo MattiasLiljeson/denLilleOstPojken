@@ -58,50 +58,15 @@ int IODevice::update(float p_dt)
 	return 0;
 }
 
-void IODevice::addSpriteInfo(SpriteInfo* p_spriteInfo)
+void IODevice::addSpriteInfo( SpriteInfo* p_spriteInfo )
 {
-	m_spriteInfos.push_back(p_spriteInfo);
+	m_spriteInfos.push_back( p_spriteInfo );
+	m_context->addSprite( p_spriteInfo );
 }
 
-SpriteInfo*	IODevice::addSpriteInfo(SpriteInfo p_spriteInfo) // Remove...
+void IODevice::updateSpriteInfo( SpriteInfo* p_spriteInfo )
 {
-	p_spriteInfo.id = m_spriteInfos.size();
-
-	SpriteInfo* inf			= new SpriteInfo();
-	inf->id					= p_spriteInfo.id;
-	inf->textureFileName	= p_spriteInfo.textureFileName;
-	inf->transformInfo		= p_spriteInfo.transformInfo;
-	inf->visible			= p_spriteInfo.visible;
-
-	m_context->addSprite(inf);
-	m_spriteInfos.push_back(inf);
-
-	return inf;
-}
-SpriteInfo* IODevice::addSpriteInfo() // Remove...
-{
-	SpriteInfo* inf = new SpriteInfo();
-	inf->id = m_spriteInfos.size();
-	m_context->addSprite(inf);
-	m_spriteInfos.push_back(inf);
-	return inf;
-}
-
-void IODevice::removeSpriteInfo(SpriteInfo p_spriteInfo)
-{
-	
-	//if((unsigned int)p_spriteInfo.id < m_spriteInfos.size())
-	//{
-	//	// Give last element the id of the removed one.
-	//	m_spriteInfos.back().id = p_spriteInfo.id;
-
-	//	swap(
-	//		m_spriteInfos.at(p_spriteInfo.id),
-	//		m_spriteInfos.back());
-
-	//	m_spriteInfos.pop_back();
-
-	//}
+	m_context->addSprite( p_spriteInfo );
 }
 
 bool IODevice::isRunning()

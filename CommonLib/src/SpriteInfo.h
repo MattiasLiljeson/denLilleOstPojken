@@ -10,14 +10,14 @@ struct SpriteInfo
 {
 public:
 	int				id;
-	string			textureFileName;
+	string			textureFilePath;
 	int				textureIndex;
 	bool			visible;
 	TransformInfo	transformInfo;
 
 	SpriteInfo()
 	{
-		textureFileName = "";
+		textureFilePath = "";
 		textureIndex = -1;
 		visible = true;
 		transformInfo.rotation[0] = 0.0f;
@@ -30,6 +30,13 @@ public:
 		transformInfo.scale[1] = 0.0f;
 		transformInfo.scale[2] = 0.0f;
 	}
+
+	SpriteInfo( string p_textureFilePath )
+	{
+		SpriteInfo();
+		textureFilePath = p_textureFilePath;
+	}
+
 };
 
 #endif
