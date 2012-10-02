@@ -24,9 +24,10 @@ public:
 	int			draw(float p_dt);
 	int			update(float p_dt);
 	bool		isRunning();
-	SpriteInfo* addSpriteInfo(SpriteInfo p_spriteInfo);
-	SpriteInfo* addSpriteInfo();
-	void		removeSpriteInfo(SpriteInfo p_spriteInfo);
+
+	void		addSpriteInfo( SpriteInfo* p_spriteInfo );
+	void		updateSpriteInfo( SpriteInfo* p_spriteInfo );
+
 	int			getScreenWidth();
 	int			getScreenHeight();
 

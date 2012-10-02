@@ -7,12 +7,15 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 }
 void MenuState::update(float p_dt)
 {
-	InputInfo input = m_io->fetchInput();
-	if (input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
-		m_parent->requestStateChange(m_parent->getInGameState());
-	if( input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+	if (m_io)
 	{
-		m_parent->terminate();
+		InputInfo input = m_io->fetchInput();
+		if (input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
+			m_parent->requestStateChange(m_parent->getInGameState());
+		if( input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+		{
+			m_parent->terminate();
+		}
 	}
 }
 void MenuState::draw(float p_dt)

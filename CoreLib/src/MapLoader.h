@@ -16,16 +16,23 @@ enum TileType
 	PILL,
 	AVATAR_SPAWN,
 	MONSTER_SPAWN,
-	SPEEDPILL
+	SPEEDPILL,
+	SUPERPILL,
+	SWITCH
 };
 
 class MapLoader
 {
+private:
+	int m_width;
+	int m_height;
 public:
 	MapLoader();
 	virtual ~MapLoader();
 	
 	vector<int> parseMap(string p);
+	int getLoadedWidth();
+	int getLoadedHeight();
 };
 
 #endif

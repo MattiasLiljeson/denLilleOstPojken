@@ -29,9 +29,6 @@ private:
 	int		m_keyMappings[InputInfo::NUM_KEYS];
 	bool	m_resizing;
 
-	//temporary for displaying sprites
-	float posX;
-	float posY;
 	DxSpriteRenderer* m_spriteRenderer; // Pre allocated for speed
 
 private:
@@ -43,7 +40,6 @@ private:
 	int initializeDepthStencilView();
 	int initializeRasterizerState();
 	int initializeViewport();
-	int	loadAllTextures();	// HACK!
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetUnnamedTexture(SpriteInfo* p_spriteInfo);

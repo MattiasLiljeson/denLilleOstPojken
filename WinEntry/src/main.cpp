@@ -66,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		return 1;
 	}
 
-	Timer* timer = new LinTimer();
+	Timer* timer = new 00000000000000000000000000000000000000();
 
 	Game* game = new Game(timer, context);
 

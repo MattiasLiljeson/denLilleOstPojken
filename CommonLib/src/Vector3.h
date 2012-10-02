@@ -17,33 +17,33 @@ struct fVector3
 		y = p_y;
 		z = p_z;
 	}
-	fVector3& operator+(const fVector3& p_other)
+	fVector3 operator+(const fVector3& p_other)
 	{
-		x += p_other.x;
-		y += p_other.y;
-		z += p_other.z;
-		return (*this);
+		float nx = x + p_other.x;
+		float ny = y + p_other.y;
+		float nz = z + p_other.z;
+		return fVector3(nx, ny, nz);
 	}
-	fVector3& operator-(const fVector3& p_other)
+	fVector3 operator-(const fVector3& p_other)
 	{
-		x -= p_other.x;
-		y -= p_other.y;
-		z -= p_other.z;
-		return (*this);
+		float nx = x - p_other.x;
+		float ny = y - p_other.y;
+		float nz = z - p_other.z;
+		return fVector3(nx, ny, nz);
 	}
-	fVector3& operator*(const float& p_factor)
+	fVector3 operator*(const float& p_factor)
 	{
-		x *= p_factor;
-		y *= p_factor;
-		z *= p_factor;
-		return (*this);
+		float nx = x * p_factor;
+		float ny = y * p_factor;
+		float nz = z * p_factor;
+		return fVector3(nx, ny, nz);
 	}
-	fVector3& operator/(const float& p_factor)
+	fVector3 operator/(const float& p_factor)
 	{
-		x /= p_factor;
-		y /= p_factor;
-		z /= p_factor;
-		return (*this);
+		float nx = x / p_factor;
+		float ny = y / p_factor;
+		float nz = z / p_factor;
+		return fVector3(nx, ny, nz);
 	}
 	fVector3& operator+=(const fVector3& p_other)
 	{

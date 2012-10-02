@@ -10,8 +10,9 @@ protected:
 public:
 					Timer();
 	virtual void	start() = 0;
-	virtual void	stop() = 0;
-	virtual void	tick() = 0;
+	virtual void	stop()	= 0;
+	virtual void	tick()	= 0;
+	virtual Timer*	newInstance() = 0;
 	double			getDeltaTime();
 	double			getElapsedTime();
 	bool			isStopped();

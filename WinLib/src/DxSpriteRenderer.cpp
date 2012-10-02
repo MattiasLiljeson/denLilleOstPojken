@@ -22,9 +22,9 @@ DxSpriteRenderer::DxSpriteRenderer(ID3D11Device* p_device, ID3D11DeviceContext*
 	if (!m_shader->isInitialized())
 		return;
 
-	m_spriteData.CenterPosition		= Vector2(0, 0);
-	m_spriteData.HalfSize			= Vector2(50, 50);
-	m_spriteData.WindowSize			= Vector2(800, 600);
+	m_spriteData.CenterPosition		= Vector3( 0, 0, 0 );
+	m_spriteData.HalfSize			= Vector2( 50, 50 );
+	m_spriteData.WindowSize			= Vector2( 800, 600 );
 
 
 	HRESULT res = D3DX11CreateShaderResourceViewFromFile(m_device, 
@@ -99,21 +99,25 @@ int DxSpriteRenderer::initIB()
 
 	return GAME_OK;
 }
-void DxSpriteRenderer::setPosition(float p_positionX, float p_positionY)
+void DxSpriteRenderer::setPosition(float p_positionX, float p_positionY, float p_positionZ)
 {
-	m_spriteData.CenterPosition = Vector2(p_positionX, p_positionY);
+	m_spriteData.CenterPosition = Vector3(p_positionX, p_positionY, p_positionZ);
 }
 void DxSpriteRenderer::draw()
 {
-	m_spriteData.WindowSize = Vector2((float)m_context->getScreenWidth(), 
+	m_spriteData.WindowSize = Vector2(
+		(float)m_context->getScreenWidth(), 
 		(float)m_context->getScreenHeight());
 
 	// Translate
-	m_spriteData.CenterPosition = Vector2(m_spriteInfo->transformInfo.translation[TransformInfo::X],
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
+	m_spriteData.CenterPosition = Vector3(
+		m_spriteInfo->transformInfo.translation[TransformInfo::X],
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y],
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z]);
 	
 	// Scale
-	m_spriteData.HalfSize = Vector2(m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
+	m_spriteData.HalfSize = Vector2(
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 2);
 	
 

@@ -3,6 +3,7 @@
 
 #include "Collectable.h"
 #include <Vector2.h>
+#include "IODevice.h"
 
 class Pill;
 
@@ -46,7 +47,7 @@ private:
 	Collectable*	m_collectable;
 
 public:
-	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
+	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, IODevice* p_io);
 	bool getType();
 	TilePosition getTilePosition();
 	fVector2		getPosition();
@@ -55,6 +56,7 @@ public:
 	bool isFree();
 	void addPill(Collectable* p_pill);
 	bool removePill();
+	void switchState();
 };
 
 #endif
