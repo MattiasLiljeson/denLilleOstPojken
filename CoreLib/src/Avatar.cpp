@@ -29,6 +29,7 @@ int Avatar::checkInput(InputInfo p_inputInfo)
 Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
 	: GameObject(NULL, p_stats)
 {
+	m_io = p_io;
 	m_direction = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
 	m_map = p_map;
@@ -42,8 +43,8 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.8f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.8f;
 		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
 		p_io->addSpriteInfo(m_spriteInfo);
 	}
@@ -89,6 +90,16 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		float h = m_currentTile->getHeight();
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	}
+	if (m_gameStats->isSuperMode())
+	{
+		m_spriteInfo->textureFilePath = "..\\Textures\\hero.png";
+		m_io->updateSpriteInfo(m_spriteInfo);
+	}
+	else
+	{
+		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		m_io->updateSpriteInfo(m_spriteInfo);
 	}
 
 }

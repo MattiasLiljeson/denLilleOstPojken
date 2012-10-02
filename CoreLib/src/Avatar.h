@@ -31,6 +31,8 @@ private:
 	int m_direction;
 
 	float dt;
+
+	IODevice* m_io;
 private:
 	int checkInput(InputInfo p_inputInfo);
 

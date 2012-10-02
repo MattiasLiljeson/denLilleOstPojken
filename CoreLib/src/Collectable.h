@@ -5,7 +5,8 @@
 
 class Collectable: public GameObject
 {
-private:
+protected:
+	bool m_consumed;
 public:
 	Collectable();
 	Collectable(SpriteInfo* p_spriteInfo);
@@ -13,6 +14,8 @@ public:
 	virtual ~Collectable();
 
 	virtual void consume() = 0;
+	bool isConsumed();
+	virtual void update(float p_deltaTime, InputInfo p_inputInfo);
 };
 
 #endif

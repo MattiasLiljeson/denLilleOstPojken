@@ -8,7 +8,6 @@ class SuperPill : public Collectable
 {
 private:
 	Tile* m_tile;
-	bool m_eaten;
 public:
 	SuperPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats);
 	~SuperPill();

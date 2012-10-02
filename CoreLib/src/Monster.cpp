@@ -15,8 +15,8 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.2f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.9f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.9f;
 		m_spriteInfo->textureFilePath = "..\\Textures\\SeaMonster.png";
 		p_io->addSpriteInfo(m_spriteInfo);
 	}
@@ -34,8 +34,15 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_currentTile = m_nextTile;
 			if (m_path.size() > 0)
 			{
-				m_nextTile = m_path.back();
-				m_path.pop_back();
+				if (m_path.back()->isFree())
+				{
+					m_nextTile = m_path.back();
+					m_path.pop_back();
+				}
+				else
+				{
+					m_path.clear();
+				}
 			}
 			else
 			{

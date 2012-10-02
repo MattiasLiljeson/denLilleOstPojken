@@ -55,7 +55,8 @@ bool Tile::removePill()
 	if (m_collectable)
 	{
 		m_collectable->consume();
-		m_collectable = NULL;
+		if (m_collectable->isConsumed())
+			m_collectable = NULL;
 		return true;
 	}
 	return false;
