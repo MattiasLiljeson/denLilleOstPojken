@@ -2,9 +2,13 @@
 #define GLSPRITESHADER_H
 
 #include <CommonUtility.h>
-#include <GL\glew.h>
-#include <GL\glfw.h>
-#include <GL\wglew.h>
+#include <GL/glew.h>
+#include <GL/glfw.h>
+
+#ifdef _WIN32
+#include <GL/wglew.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 

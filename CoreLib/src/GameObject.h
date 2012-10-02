@@ -4,9 +4,8 @@
 #include "SpriteInfo.h"
 #include "InputInfo.h"
 #include "GameStats.h"
+#include <Vector2.h>
 #include <TransformInfo.h>
-#include <vector2.h>
-
 class GameObject
 {
 protected:

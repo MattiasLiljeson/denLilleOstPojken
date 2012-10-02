@@ -1,6 +1,13 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 
+
+#ifndef _WIN32
+#include <math.h>
+#include <time.h>
+#include <stdlib.h>
+#endif
+
 #include "Tilemap.h"
 
 struct AstarItem

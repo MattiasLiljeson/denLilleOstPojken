@@ -1,6 +1,11 @@
 #ifndef GAME_H
 #define GAME_H
 
+#ifndef _WIN32
+#include <time.h>
+#include <stdlib.h>
+#endif
+
 #include <vector>
 #include "Timer.h"
 #include "IOContext.h"

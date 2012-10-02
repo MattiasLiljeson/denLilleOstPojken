@@ -1,4 +1,5 @@
 #include "GameStats.h"
+#include <iostream>
 
 GameStats::GameStats(Timer* p_timer)
 {
@@ -8,13 +9,22 @@ GameStats::GameStats(Timer* p_timer)
 	m_speeded = false;
 	m_superMode = false;
 	m_superModeTimer = m_timer->newInstance();
+	m_speedUpTimer = m_timer->newInstance();
 
 	m_powerUpTimers.push_back(m_superModeTimer);
+	m_powerUpTimers.push_back(m_speedUpTimer);
 }
 
 GameStats::~GameStats()
 {
 	delete m_timer;
+
+	while (!m_powerUpTimers.empty())
+	{
+		Timer* tempTimer = m_powerUpTimers.back();
+		m_powerUpTimers.pop_back();
+		delete tempTimer;
+	}
 }
 
 void GameStats::update(float p_deltaTime)
@@ -28,10 +38,20 @@ void GameStats::update(float p_deltaTime)
 
 	if(m_superMode)
 	{
-		if(m_superModeTimer->getElapsedTime()>3)
+		if(m_superModeTimer->getElapsedTime() > 3)
 		{
+			std::cout << "Speed mode inactivated!=(" << std::endl;
 			m_superMode = false;
 			m_superModeTimer->stop();
+		}
+	}
+	if (m_speeded)
+	{
+		if (m_speedUpTimer->getElapsedTime() > 3)
+		{
+			std::cout << "Speed mode inactivated!=((" << std::endl;
+			m_speeded = false;
+			m_speedUpTimer->stop();
 		}
 	}
 }
@@ -56,7 +76,9 @@ void GameStats::addPill()
 }
 void GameStats::setSpeeded()
 {
+	std::cout << "Speed mode activated!=)" << std::endl;
 	m_speeded = true;
+	m_speedUpTimer->start();
 }
 bool GameStats::isSpeeded()
 {
@@ -64,6 +86,7 @@ bool GameStats::isSpeeded()
 }
 void GameStats::setSuperMode()
 {
+	std::cout << "Super mode activated!=))" << std::endl;
 	m_superMode = true;
 	m_superModeTimer->start();
 }

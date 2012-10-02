@@ -28,10 +28,12 @@ vector<int> MapLoader::parseMap(string p_MapPath)
 	}
 	return mapTiles;
 }
+
 int MapLoader::getLoadedWidth()
 {
 	return m_width;
 }
+
 int MapLoader::getLoadedHeight()
 {
 	return m_height;
