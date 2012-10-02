@@ -12,3 +12,8 @@ void LinTimer::stop()
 void LinTimer::tick()
 {
 }
+Timer* LinTimer::newInstance()
+{
+	LinTimer* newLinTimer = new LinTimer();
+	return newLinTimer;
+}

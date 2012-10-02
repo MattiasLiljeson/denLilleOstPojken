@@ -16,7 +16,7 @@ Game::Game(Timer* p_timer, IOContext* p_context)
 	else
 		m_io = 0;
 
-	m_stateManager = new StateManager(m_io);
+	m_stateManager = new StateManager(m_io, p_timer);
 }
 
 Game::~Game()
@@ -39,9 +39,6 @@ int Game::run()
 		m_stateManager->update((float)m_timer->getDeltaTime());
 		m_io->update((float)m_timer->getDeltaTime());
 		m_io->draw((float)m_timer->getDeltaTime());
-
-		//if( m_gameStats->getNumPills()<1)
-			//m_running = false;
 	}
 
 	return 0;

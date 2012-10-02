@@ -35,18 +35,18 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 
 	if (p_io)
 	{
-		SpriteInfo spriteInfo;
+		m_spriteInfo = new SpriteInfo();
 		TilePosition tp = p_startTile->getTilePosition();
 		float w = p_startTile->getWidth();
 		float h = p_startTile->getHeight();
-		spriteInfo.transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-		spriteInfo.transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-		spriteInfo.transformInfo.scale[TransformInfo::X] = w * 0.6f;
-		spriteInfo.transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-		spriteInfo.textureFileName = "..\\Textures\\pacman-1974.png";
-		m_spriteInfo = p_io->addSpriteInfo(spriteInfo);
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
+		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		p_io->addSpriteInfo(m_spriteInfo);
 	}
-
 	dt = 0;
 }
 

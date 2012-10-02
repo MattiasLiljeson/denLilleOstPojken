@@ -60,9 +60,6 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 		return;
 	if (initializeViewport() == GAME_FAIL)
 		return;
-	if(loadAllTextures() == GAME_FAIL)
-		return;
-
 
 	//Map Windows key IDs to our key ID system.
 	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
@@ -72,18 +69,18 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
 
-	//Temporary code to test sprite creation
 	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
 	if (!m_spriteRenderer->isInitialized())
 		return;
 
-	posX = 400;
-	posY = 300;
-	//End Temporary
+	// Create texture manager and load default texture
+	m_textureManager = new DxTextureManager(m_device);
+	m_textureManager->getTexture("..\\Textures\\default.png");
 
 	m_initialized = true;
 }
+
 DxContext::~DxContext()
 {
 	//Destroy the window and free allocated resources
@@ -99,6 +96,7 @@ DxContext::~DxContext()
 	delete m_spriteRenderer;
 	delete m_textureManager;
 }
+
 int DxContext::initializeWindow()
 {
 	WNDCLASSEX wc;
@@ -492,7 +490,7 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	ID3D11ShaderResourceView* texture = NULL;
 
 	int textureIndex = p_spriteInfo->textureIndex = m_textureManager->getTexture(
-		p_spriteInfo->textureFileName, &texture);
+		p_spriteInfo->textureFilePath, &texture);
 
 	if(texture == NULL)
 		return GAME_FAIL;
@@ -567,34 +565,21 @@ LRESULT DxContext::handleWindowMessages(UINT p_message,
 	return DefWindowProc(m_windowHandle, p_message, p_wParam, p_lParam);
 }
 
-int DxContext::loadAllTextures()
-{
-	m_textureManager = new DxTextureManager(m_device);
-
-	m_textureManager->loadTexture("..\\Textures\\default.png");
-
-	return GAME_OK;
-}
-
 int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 {
 	int textureReadSuccess = GAME_FAIL;
-	if( p_spriteInfo->textureIndex == -1 )
+	bool named = p_spriteInfo->textureFilePath != "";
+
+	if( named )
 	{
-		bool named = p_spriteInfo->textureFileName != "";
-
-		if( named )
-		{
-			m_textureManager->loadTexture(p_spriteInfo->textureFileName);
-			spriteSetUnindexedTexture( p_spriteInfo );
-			textureReadSuccess = GAME_OK;
-		}
-		else
-		{
-			spriteSetUnnamedTexture( p_spriteInfo );
-			textureReadSuccess = GAME_FAIL;
-		}
+		m_textureManager->getTexture(p_spriteInfo->textureFilePath);
+		spriteSetUnindexedTexture( p_spriteInfo );
+		textureReadSuccess = GAME_OK;
 	}
-
+	else
+	{
+		spriteSetUnnamedTexture( p_spriteInfo );
+		textureReadSuccess = GAME_FAIL;
+	}
 	return textureReadSuccess;
 }

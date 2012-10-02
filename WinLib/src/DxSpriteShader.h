@@ -17,10 +17,10 @@ struct PixelShaderData
 
 struct SpriteBuffer
 {
-	Vector2 CenterPosition;
+	Vector3 CenterPosition;
+	float pad;
 	Vector2 HalfSize;
 	Vector2 WindowSize;
-	Vector2 Pad;
 };
 
 class DxSpriteShader

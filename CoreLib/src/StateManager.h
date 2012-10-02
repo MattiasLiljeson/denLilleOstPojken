@@ -3,6 +3,7 @@
 
 #include "InGameState.h"
 #include "MenuState.h"
+#include <Timer.h>
 
 class StateManager
 {
@@ -14,9 +15,10 @@ private:
 
 	IODevice* m_io;
 	bool m_terminated;
+	Timer* m_timer;
 
 public:
-	StateManager(IODevice* p_io);
+	StateManager(IODevice* p_io, Timer* p_timer);
 	virtual ~StateManager();
 
 	void requestStateChange(State* p_newState);
@@ -30,6 +32,8 @@ public:
 
 	void terminate();
 	bool isTerminated();
+
+	Timer* getNewTimerInstance();
 
 private:
 	void switchState();
