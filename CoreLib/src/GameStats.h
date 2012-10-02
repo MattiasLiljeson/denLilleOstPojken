@@ -14,6 +14,7 @@ private:
 	bool			m_superMode;
 	Timer*			m_timer;
 	Timer*			m_superModeTimer;
+	Timer*			m_speedUpTimer;
 	vector<Timer*>	m_powerUpTimers;
 public:
 	GameStats(Timer* p_timer);

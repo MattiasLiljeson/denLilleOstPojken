@@ -78,6 +78,8 @@ InGameState::~InGameState()
 			delete[] m_tileMap;
 		if (m_mapParser)
 			delete m_mapParser;
+		if (m_stats)
+			delete m_stats;
 	}
 }
 void InGameState::update(float p_dt)
