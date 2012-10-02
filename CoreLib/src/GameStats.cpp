@@ -1,19 +1,39 @@
 #include "GameStats.h"
 
-GameStats::GameStats()
+GameStats::GameStats(Timer* p_timer)
 {
+	m_timer = p_timer;
+
 	m_numPills = 0;
 	m_speeded = false;
+	m_superMode = false;
+	m_superModeTimer = m_timer->newInstance();
+
+	m_powerUpTimers.push_back(m_superModeTimer);
 }
 
 GameStats::~GameStats()
 {
-
+	delete m_timer;
 }
 
 void GameStats::update(float p_deltaTime)
 {
+	m_timer->tick();
 
+	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
+	{
+		m_powerUpTimers.at(index)->tick();
+	}
+
+	if(m_superMode)
+	{
+		if(m_superModeTimer->getElapsedTime()>3)
+		{
+			m_superMode = false;
+			m_superModeTimer->stop();
+		}
+	}
 }
 
 void GameStats::setNumPills(const int p_numPills)
@@ -29,7 +49,6 @@ int GameStats::getNumPills()
 void GameStats::pillEaten()
 {
 	m_numPills -= 1;
-	std::cout<<m_numPills<<std::endl;
 }
 void GameStats::addPill()
 {
@@ -46,6 +65,7 @@ bool GameStats::isSpeeded()
 void GameStats::setSuperMode()
 {
 	m_superMode = true;
+	m_superModeTimer->start();
 }
 bool GameStats::isSuperMode()
 {

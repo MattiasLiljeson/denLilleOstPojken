@@ -7,14 +7,10 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 {
 	m_tileMap	= 0;
 	m_mapParser = new MapLoader();
-	m_stats = new GameStats();
+	m_stats = new GameStats(m_parent->getNewTimerInstance());
 
 	m_io = p_io;
 	vector<int> data = m_mapParser->parseMap("..\\Maps\\test_map.txt");
-
-	Timer* t = m_parent->getNewTimerInstance();
-
-	delete t;
 
 	bool* types = new bool[100];
 	for (int i = 0; i < 100; i++)
@@ -97,6 +93,8 @@ void InGameState::update(float p_dt)
 		if(checkDynamicCollision())
 			m_parent->terminate();
 	}
+	
+	m_stats->update(p_dt);
 }
 void InGameState::draw(float p_dt)
 {
