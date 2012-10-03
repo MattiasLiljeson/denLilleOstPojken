@@ -1,4 +1,4 @@
-#include "GlContext.h"
+﻿#include "GlContext.h"
 #include <sstream>
 
 GlContext* GlContext::s_instance = NULL;
@@ -56,6 +56,9 @@ int GlContext::init()
 	posX = 400;
 	posY = 300;
 	m_initialized = true;
+
+	glEnable(GL_DEPTH_TEST);
+
 	return GAME_OK;
 }
 int GlContext::initGLFW()
@@ -78,7 +81,7 @@ int GlContext::initGLFWWindow()
 	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
  
 	//Open the Window
-	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(),0,0,0,0, 32,0, 
+	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
 		GLFW_WINDOW) != GL_TRUE)
 	{
 		return GAME_FAIL;
@@ -186,7 +189,17 @@ int GlContext::beginDraw()
 int GlContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	m_spriteRenderer->setSpriteInfo(p_spriteInfo);
-	m_spriteRenderer->draw();
+
+	if( p_spriteInfo->textureIndex >= 0 )
+	{
+		GLuint texture = 0;
+		m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
+		if(texture != NULL)
+			m_spriteRenderer->setTexture(texture);
+	}
+
+	if(p_spriteInfo->visible)
+		m_spriteRenderer->draw();
 	return GAME_OK;
 }
 

@@ -46,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 // OpenGl Windows
 #include <GlContext.h>
-#include <LinTimer.h>
+#include <WinTimer.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -54,7 +54,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context = new GlContext(400, 400);
+	IOContext* context = new GlContext(800, 600);
 
 	context->setWindowSize(800, 600);
 
@@ -66,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		return 1;
 	}
 
-	Timer* timer = new 00000000000000000000000000000000000000();
+	Timer* timer = new WinTimer();
 
 	Game* game = new Game(timer, context);
 

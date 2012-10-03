@@ -60,9 +60,11 @@ int GlSpriteRenderer::draw()
 	glUseProgram(m_spriteShader->getID());
 	 
 	
-	glUniform2f(m_spriteShader->getCenterPositionConstant(), 
+	glUniform4f(m_spriteShader->getCenterPositionConstant(), 
 		m_spriteInfo->transformInfo.translation[TransformInfo::X],
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y]
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y],
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z],
+		0.0f
 	);
 	glUniform2f(m_spriteShader->getHalfScaleConstant(),
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
