@@ -9,6 +9,14 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+    <ProjectConfiguration Include="TestingDebug|Win32">
+      <Configuration>TestingDebug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="TestingRelease|Win32">
+      <Configuration>TestingRelease</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -38,7 +46,18 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -50,11 +69,24 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'" Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\WinLib\external\dx\include;$(SolutionDir)\LinLib\src;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)\bin\</OutDir>
+    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\WinLib\external\dx\include;$(SolutionDir)\LinLib\src;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
@@ -68,6 +100,13 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\WinLib\external\dx\include;$(SolutionDir)\LinLib\src;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(ProjectDir)\bin\</OutDir>
+    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>
@@ -75,15 +114,51 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>GLFW.lib;glew32.lib;opengl32.lib;CommonLib_Debug.lib;CoreLib_Debug.lib;WinLib_Debug.lib;LinLib_Debug.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib;d3dx10.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>GLFW.lib;glew32.lib;opengl32.lib;CommonLib_Debug.lib;CoreLib_Debug.lib;WinLib_Debug.lib;LinLib_Debug.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib;d3dx10.lib</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>MSVCRT.lib;</IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>GLFW.lib;glew32.lib;opengl32.lib;CommonLib_Release.lib;WinLib_Release.lib;LinLib_Release.lib;%(AdditionalDependencies);d3d11.lib;d3dx11.lib;d3dx10.lib</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>
