@@ -1,7 +1,16 @@
 #include "GlSpriteRenderer.h"
 #include "GlContext.h"
 
+<<<<<<< HEAD:LinLib/src/GlSpriteRenderer.cpp
 GlSpriteRenderer::GlSpriteRenderer(GlContext* p_context)
+=======
+#ifndef _WIN32
+#define FALSE 0
+#define TRUE 1
+#endif
+
+GlSprite::GlSprite(GlContext* p_context)
+>>>>>>> master:LinLib/src/GlSprite.cpp
 {
 	m_initialized	= false;
 	m_context		= p_context;
@@ -118,7 +127,23 @@ void GlSpriteRenderer::setSpriteInfo( SpriteInfo* p_spriteInfo )
 	m_spriteInfo = p_spriteInfo;
 }
 
+<<<<<<< HEAD:LinLib/src/GlSpriteRenderer.cpp
 void GlSpriteRenderer::setTexture(GLuint p_texture)
 {
 	m_texture = p_texture;
 }
+=======
+
+	/*int width = 20;
+	int height = 20;
+	GLubyte* data = (GLubyte*)malloc( sizeof(GLubyte) * width * height * 3);
+	memset(data, 0, sizeof(GLubyte) * width * height * 3);
+	for (int i = 0; i < height; ++i ) {
+	for (int j = 0; j < width; ++j ) {
+		int pixelIdx = i*width*3 + j*3;
+		data[pixelIdx+0] = 255; //bitmap->buffer[i*bitmap->width + j];
+		data[pixelIdx+1] = 255; //bitmap->buffer[i*bitmap->width + j];
+		data[pixelIdx+2] = 0; //bitmap->buffer[i*bitmap->width + j];
+	}
+	}*/
+>>>>>>> master:LinLib/src/GlSprite.cpp

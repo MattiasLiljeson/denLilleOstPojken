@@ -2,7 +2,6 @@
 
 Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 {
-	m_device = p_device;
 	m_width = p_width;
 	m_height = p_height;
 
@@ -15,25 +14,29 @@ Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			m_tiles[row * p_height + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
+			m_tiles[row * p_width + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
 Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device)
 {
-	m_device = p_device;
 	m_width = p_width;
 	m_height = p_height;
 
 	m_tiles = new Tile*[p_width * p_height];
 
-	float tileSizeX = p_device->getScreenWidth() / (float)p_width;
-	float tileSizeY = p_device->getScreenHeight() / (float)p_height;
+	float tileSizeX = 10;
+	float tileSizeY = 10;
+	if (p_device)
+	{
+		tileSizeX = p_device->getScreenWidth() / (float)p_width;
+		tileSizeY = p_device->getScreenHeight() / (float)p_height;
+	}
 	for (int row = 0; row < p_height; row++)
 	{
 		for (int col = 0; col < p_width; col++)
 		{
-			m_tiles[row * p_height + col] = new Tile(p_initData[row * p_height + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
+			m_tiles[row * p_width + col] = new Tile(p_initData[row * p_width + col], TilePosition(col, row), tileSizeX, tileSizeY, p_device);
 		}
 	}
 }
@@ -50,7 +53,7 @@ Tile* Tilemap::getTile(TilePosition p_position)
 	if (!isValidPosition(p_position))
 		return 0;
 
-	return m_tiles[p_position.y * m_height + p_position.x];
+	return m_tiles[p_position.y * m_width + p_position.x];
 }
 Tile* Tilemap::closestFreeTile(Tile* p_start)
 {

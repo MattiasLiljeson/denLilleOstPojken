@@ -5,57 +5,68 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 	dt = 0;
 	m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
+	m_dead = false;
+	if (p_io)
+	{
+		m_spriteInfo = new SpriteInfo;
+		TilePosition tp = m_currentTile->getTilePosition();
+		float w = m_currentTile->getWidth();
+		float h = m_currentTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.2f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.9f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.9f;
+		m_spriteInfo->textureFilePath = "..\\Textures\\SeaMonster.png";
+		p_io->addSpriteInfo(m_spriteInfo);
+	}
 
-	m_spriteInfo = new SpriteInfo;
-	TilePosition tp = m_currentTile->getTilePosition();
-	float w = m_currentTile->getWidth();
-	float h = m_currentTile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.2f;
-	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
-	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\SeaMonster.png";
-	p_io->addSpriteInfo(m_spriteInfo);
-
-	FindPath(m_currentTile, m_map->getTile(TilePosition(4, 1)));
-	m_nextTile = m_path.back();
-	m_path.pop_back();
+	m_nextTile = m_currentTile;
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	dt += p_deltaTime * 3;
-	if (dt > 1)
+	if (!m_dead)
 	{
-		dt -= 1;
-		m_currentTile = m_nextTile;
-		if (m_path.size() > 0)
+		dt += p_deltaTime * 3;
+		if (dt > 1)
 		{
-			m_nextTile = m_path.back();
-			m_path.pop_back();
-		}
-		else
-		{
-			Tile* t;
-			do
+			dt -= 1;
+			m_currentTile = m_nextTile;
+			if (m_path.size() > 0)
 			{
-				int rndX = rand() % m_map->getWidth();
-				int rndY = rand() % m_map->getWidth();
-				t = m_map->getTile(TilePosition(rndX, rndY));
-			} while (!t->isFree());
+				if (m_path.back()->isFree())
+				{
+					m_nextTile = m_path.back();
+					m_path.pop_back();
+				}
+				else
+				{
+					m_path.clear();
+				}
+			}
+			else
+			{
+				Tile* t;
+				do
+				{
+					int rndX = rand() % m_map->getWidth();
+					int rndY = rand() % m_map->getHeight();
+					t = m_map->getTile(TilePosition(rndX, rndY));
+				} while (!t->isFree());
 
-			FindPath(m_currentTile, t);
+				FindPath(m_currentTile, t);
+			}
 		}
-	}
-	TilePosition tp1 = m_currentTile->getTilePosition();
-	TilePosition tp2 = m_nextTile->getTilePosition();
-	float pX = tp1.x * (1-dt) + tp2.x * dt; 
-	float pY = tp1.y * (1-dt) + tp2.y * dt;  
+		TilePosition tp1 = m_currentTile->getTilePosition();
+		TilePosition tp2 = m_nextTile->getTilePosition();
+		float pX = tp1.x * (1-dt) + tp2.x * dt; 
+		float pY = tp1.y * (1-dt) + tp2.y * dt;  
 
-	float w = m_currentTile->getWidth();
-	float h = m_currentTile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		float w = m_currentTile->getWidth();
+		float h = m_currentTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	}
 }
 Tile* Monster::getCurrentTile()
 {
@@ -75,7 +86,7 @@ void Monster::FindPath(Tile* p_start, Tile* p_goal)
 	first.tile = p_start;
 	first.parent = NULL;
 	queue.push_back(first);
-	while (queue.back().tile != p_goal)
+	while (queue.size() > 0 && queue.back().tile != p_goal)
 	{
 		visited.push_back(queue.back());
 		TilePosition p = queue.back().tile->getTilePosition();
@@ -86,22 +97,27 @@ void Monster::FindPath(Tile* p_start, Tile* p_goal)
 		toCheck[3] = m_map->getTile(p + TilePosition(-1, 0));
 		for (int i = 0; i < 4; i++)
 		{
-			bool skip = !toCheck[i]->isFree();
-			for (unsigned int j = 0; j < visited.size(); j++)
+			if (toCheck[i])
 			{
-				if (visited[j].tile == toCheck[i])
-					skip = true;
-			}
-			if (!skip)
-			{
-				int toStart = visited.back().toStart+1;
-				TilePosition dif = p_goal->getTilePosition() - toCheck[i]->getTilePosition();
-				int toGoal = abs(dif.x) + abs(dif.y);
-				UpdateQueue(toCheck[i], visited.size()-1, toStart, toGoal, queue);
+				bool skip = !toCheck[i]->isFree();
+				for (unsigned int j = 0; j < visited.size(); j++)
+				{
+					if (visited[j].tile == toCheck[i])
+						skip = true;
+				}
+				if (!skip)
+				{
+					int toStart = visited.back().toStart+1;
+					TilePosition dif = p_goal->getTilePosition() - toCheck[i]->getTilePosition();
+					int toGoal = abs(dif.x) + abs(dif.y);
+					UpdateQueue(toCheck[i], visited.size()-1, toStart, toGoal, queue);
+				}
 			}
 		}
 	}
-	//visited.push_back(queue.back());
+	
+	if (queue.size() == 0)
+		return;
 
 	m_path.clear();
 	m_path.push_back(queue.back().tile);
@@ -158,4 +174,14 @@ int	Monster::FindTile(Tile* p_tile, vector<AstarItem>& p_queue)
 			return i;
 	}
 	return -1;
+}
+void Monster::kill()
+{
+	m_dead = true;
+	if (m_spriteInfo)
+		m_spriteInfo->visible = false;
+}
+bool Monster::isDead()
+{
+	return m_dead;
 }

@@ -1,15 +1,16 @@
-#ifndef SPEEDPILL_H
-#define SPEEDPILL_H
+#ifndef SUPERPILL_H
+#define SUPERPILL_H
 
 #include "Tile.h"
 #include "Collectable.h"
 
-class SpeedPill: public Collectable
+class SuperPill : public Collectable
 {
 private:
 	Tile* m_tile;
 public:
-	SpeedPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats);
+	SuperPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats);
+	~SuperPill();
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
 };

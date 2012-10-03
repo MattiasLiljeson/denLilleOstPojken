@@ -13,6 +13,8 @@
 #include "MapLoader.h"
 #include "Avatar.h"
 #include "SpeedPill.h"
+#include "Switch.h"
+#include "SuperPill.h"
 #include <ctime>
 
 class StateManager;

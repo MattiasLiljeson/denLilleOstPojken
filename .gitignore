@@ -43,6 +43,10 @@ assets/
 *.lib
 *.o
 #*.a
+*/*.d
+*.d
+*/lin/
+
 
 #gedit temp files
 */*~

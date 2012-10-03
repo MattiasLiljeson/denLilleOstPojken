@@ -10,7 +10,6 @@ private:
 	Tile**		m_tiles;
 	int			m_width;
 	int			m_height;
-	IODevice*	m_device;
 public:
 	Tilemap(int p_width, int p_height, IODevice* p_device);
 	Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device);

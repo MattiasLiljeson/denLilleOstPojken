@@ -12,6 +12,7 @@ public:
 	void start();
 	void stop();
 	void tick();
+	Timer* newInstance();
 };
 
 #endif

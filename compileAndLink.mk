@@ -65,7 +65,7 @@ $(depDir)/%.d : $(srcDir)/%.cpp
 # Compile object files to executable
 $(outFile) : $(objects) $(deps)
 ifeq ($(link),true)
-	g++ $(objects) $(lFlags) -o $(binDir)/test $(depObjects) $(libPaths) $(libs)
+	g++ $(objects) $(lFlags) -o $(binDir)/$(outFile) $(depObjects) $(libPaths) $(libs)
 endif
 
 createDirs :
