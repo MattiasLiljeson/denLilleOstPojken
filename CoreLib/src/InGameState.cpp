@@ -65,6 +65,11 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 			}
 		}
 		delete types;
+
+		for(unsigned int index=0;index<m_monsters.size();index++)
+		{
+			m_monsters.at(index)->addMonsterAI(m_avatar,m_stats,m_tileMap);
+		}
 	}
 }
 InGameState::~InGameState()
