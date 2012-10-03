@@ -93,7 +93,7 @@ bool InGameState::checkDynamicCollision()
 				if (m_stats->isSuperMode())
 				{
 					monster->kill();
-					m_stats->addScore(10);
+					m_stats->addScore(MONSTER_KILLED);
 				}
 				else
 					m_parent->terminate();

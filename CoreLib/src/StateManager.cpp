@@ -14,12 +14,18 @@ StateManager::~StateManager()
 	delete m_inGameState;
 	delete m_menuState;
 }
-void StateManager::requestStateChange(State* p_newState)
+int StateManager::requestStateChange(State* p_newState)
 {
-	if (p_newState == m_inGameState || p_newState == m_menuState)
+	if(p_newState != m_desiredState)
 	{
-		m_desiredState = p_newState;
+		if (p_newState == m_inGameState || p_newState == m_menuState)
+		{
+			m_desiredState = p_newState;
+			return GAME_OK;
+		}
 	}
+
+	return STATE_CHANGE_FAIL;
 }
 
 void StateManager::update(float p_dt)

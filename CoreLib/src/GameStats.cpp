@@ -1,27 +1,29 @@
 #include "GameStats.h"
 #include <iostream>
 
-
-GameStats::GameStats()
-{
-}
 GameStats::GameStats(Timer* p_timer)
 {
-	m_timer = p_timer;
+	m_timer		= p_timer;
 
-	m_numPills = 0;
-	m_speeded = false;
+	m_numPills	= 0;
+	m_speeded	= false;
 	m_superMode = false;
+	m_score		= 0;
 
-	m_gameTimer = m_timer->newInstance();
-	m_gameTimer->start();
+	m_gameTimer = m_superModeTimer = m_speedUpTimer = NULL;
 
-	m_superModeTimer = m_timer->newInstance();
-	m_speedUpTimer = m_timer->newInstance();
+	if(p_timer)
+	{
+		m_gameTimer = m_timer->newInstance();
+		m_gameTimer->start();
 
-	m_powerUpTimers.push_back(m_superModeTimer);
-	m_powerUpTimers.push_back(m_speedUpTimer);
-	m_powerUpTimers.push_back(m_gameTimer);
+		m_superModeTimer = m_timer->newInstance();
+		m_speedUpTimer = m_timer->newInstance();
+
+		m_powerUpTimers.push_back(m_superModeTimer);
+		m_powerUpTimers.push_back(m_speedUpTimer);
+		m_powerUpTimers.push_back(m_gameTimer);
+	}
 }
 
 GameStats::~GameStats()
@@ -85,7 +87,6 @@ void GameStats::addPill()
 }
 void GameStats::setSpeeded()
 {
-	std::cout << "Speed mode activated!=)" << std::endl;
 	m_speeded = true;
 	m_speedUpTimer->start();
 }
@@ -95,7 +96,6 @@ bool GameStats::isSpeeded()
 }
 void GameStats::setSuperMode()
 {
-	std::cout << "Super mode activated!=))" << std::endl;
 	m_superMode = true;
 	m_superModeTimer->start();
 }
@@ -110,6 +110,10 @@ float GameStats::superTimeRemaining()
 void GameStats::addScore(int p_points)
 {
 	m_score += p_points;
+}
+int GameStats::getScore() const
+{
+	return m_score;
 }
 Timer* GameStats::getGameTimer()
 {

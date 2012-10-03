@@ -2,13 +2,14 @@
 
 MapLoader::MapLoader()
 {
+	m_avatar = NULL;
 }
 
 MapLoader::~MapLoader()
 {
 }
 
-void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
+int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 {
 	m_stats = p_stats;
 	fstream file(p_MapPath.c_str());
@@ -18,17 +19,17 @@ void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 
 	if(file)
 	{
-		int m_width;
-		int m_height;
-		file >> m_width;
-		file >> m_height;
-		vector<int> m_map = vector<int>(m_width*m_height);
-		for(int i = m_height - 1; i >= 0; i--)
+		int width;
+		int height;
+		file >> width;
+		file >> height;
+		vector<int> m_map = vector<int>(width*height);
+		for(int i = height - 1; i >= 0; i--)
 		{
-			for (int j = 0; j < m_width; j++)
+			for (int j = 0; j < width; j++)
 			{
 				file >> value;
-				m_map[i*m_width+j] = value;
+				m_map[i*width+j] = value;
 				if (value == SWITCH)
 					switchCount++;
 			}
@@ -49,8 +50,8 @@ void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 			}
 		}
 
-		bool* types = new bool[m_width*m_height];
-		for (int i = 0; i < m_width*m_height; i++)
+		bool* types = new bool[width*height];
+		for (int i = 0; i < width*height; i++)
 		{
 			if (m_map[i] == WALL_CENTER)
 				types[i] = false;
@@ -59,52 +60,59 @@ void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 
 		}
 
-		m_tileMap = new Tilemap(m_width, m_height, types, p_io);
+		m_tileMap = new Tilemap(width, height, types, p_io);
 		delete[] types;
 
 		int currentSwitch = 0;
-		for (int i = 0; i < m_height; i++)
+		for (int i = 0; i < height; i++)
 		{
-			for (int j = 0; j < m_width; j++)
+			for (int j = 0; j < width; j++)
 			{
-				if (m_map[i*m_width+j] == PILL)
+				int index = i*width+j;
+				if (m_map[index] == PILL)
 				{
 					m_gameObjects.push_back(new Pill(p_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
-				else if (m_map[i*m_width+j] == SPEEDPILL)
+				else if (m_map[index] == SPEEDPILL)
 				{
 					m_gameObjects.push_back(new SpeedPill(p_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
-				else if (m_map[i*m_width+j] == SWITCH)
+				else if (m_map[index] == SWITCH)
 				{
 					vector<TilePosition> targets = switches[currentSwitch++];
 					m_gameObjects.push_back(new Switch(p_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
 
 				}
-				else if (m_map[i*m_width+j] == MONSTER_SPAWN)
+				else if (m_map[index] == MONSTER_SPAWN)
 				{
 					Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, p_io);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
-				else if (m_map[i*m_width+j] == AVATAR_SPAWN)
+				else if (m_map[index] == AVATAR_SPAWN)
 				{
 					m_avatar = new Avatar(p_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
 					m_gameObjects.push_back(m_avatar);
 
 				}
-				else if (m_map[i*m_width+j] == SUPERPILL)
+				else if (m_map[index] == SUPERPILL)
 				{
 					m_gameObjects.push_back(new SuperPill(p_io, m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
 			}
 		}
+
+		if(!m_avatar)
+			return GAME_FAIL;
+
 		for (int i = 0; i < m_monsters.size(); i++)
 		{
 			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
 		}
-
+		return GAME_OK;
 	}
+	
+	return GAME_FAIL;
 }
 Tilemap* MapLoader::getTileMap()
 {
