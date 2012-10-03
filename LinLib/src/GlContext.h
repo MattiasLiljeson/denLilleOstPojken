@@ -43,6 +43,8 @@ public:
 	int						getScreenWidth() const;
 	int						getScreenHeight() const;
 	static void GLFWCALL	setWindowSizeCB(int p_width, int p_height);
+
+	void setWindowText(string p_text);
 };
 
 #endif

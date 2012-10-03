@@ -18,6 +18,7 @@
 #include "MapLoader.h"
 #include "StateManager.h"
 #include "GameStats.h"
+#include <sstream>
 
 using namespace std;
 

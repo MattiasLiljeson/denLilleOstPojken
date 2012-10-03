@@ -39,6 +39,7 @@ int Game::run()
 		m_stateManager->update((float)m_timer->getDeltaTime());
 		m_io->update((float)m_timer->getDeltaTime());
 		m_io->draw((float)m_timer->getDeltaTime());
+
 	}
 
 	return 0;

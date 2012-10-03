@@ -64,6 +64,8 @@ public:
 	int			getScreenWidth() const;
 	int			getScreenHeight() const;
 
+	void		setWindowText(string p_text);
+
 	LRESULT		handleWindowMessages(UINT p_message, 
 					WPARAM p_wParam, LPARAM p_lParam);
 };

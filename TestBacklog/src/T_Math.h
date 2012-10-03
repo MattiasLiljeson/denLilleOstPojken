@@ -30,7 +30,8 @@ TEST(Math, Vector2)
 	ASSERT_TRUE(v1 == fVector2(4, 6));
 	v1 -= v2;
 	ASSERT_TRUE(v1 == fVector2(1, 2));
-	v1 = v1 + v2;
+	v1 = v2 + v1;
+	ASSERT_TRUE(v2 == fVector2(3, 4));
 	ASSERT_TRUE(v1 == fVector2(4, 6));
 	v1 = v1 - v2;
 	ASSERT_TRUE(v1 == fVector2(1, 2));
@@ -60,8 +61,9 @@ TEST(Math, Vector3)
 	ASSERT_TRUE(v1 == fVector3(5, 7, 9));
 	v1 -= v2;
 	ASSERT_TRUE(v1 == fVector3(1, 2, 3));
-	v1 = v1 + v2;
+	v1 = v2 + v1;
 	ASSERT_TRUE(v1 == fVector3(5, 7, 9));
+	ASSERT_TRUE(v2 == fVector3(4, 5, 6));
 	v1 = v1 - v2;
 	ASSERT_TRUE(v1 == fVector3(1, 2, 3));
 	v1 *= 2;

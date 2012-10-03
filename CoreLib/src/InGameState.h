@@ -11,17 +11,18 @@ private:
 	vector<GameObject*>	m_gameObjects;
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
-	MapLoader*			m_mapParser;
 
 	//Temp
 	Tilemap* m_tileMap;
 	GameStats* m_stats;
+	int	m_currentMap;
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io);
 	virtual ~InGameState();
 	void update(float p_dt);
 	void draw(float p_dt);
 	bool checkDynamicCollision();
+	void restart();
 };
 
 #endif

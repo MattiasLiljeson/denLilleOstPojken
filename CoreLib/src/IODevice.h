@@ -26,10 +26,13 @@ public:
 	bool		isRunning();
 
 	void		addSpriteInfo( SpriteInfo* p_spriteInfo );
+	void		removeSpriteInfo(SpriteInfo* p_spriteInfo);
 	void		updateSpriteInfo( SpriteInfo* p_spriteInfo );
+	void		clearSpriteInfos();
 
 	int			getScreenWidth();
 	int			getScreenHeight();
+	void		setWindowText(string p_text);
 
 
 };

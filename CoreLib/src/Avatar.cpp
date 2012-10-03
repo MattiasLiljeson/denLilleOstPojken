@@ -65,7 +65,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 	}
 
-	dt += p_deltaTime * (3 + m_gameStats->isSpeeded() * 3);
+	dt += p_deltaTime * (6 + m_gameStats->isSpeeded() * 3);
 	if (dt > 1)
 	{
 		dt -= 1;

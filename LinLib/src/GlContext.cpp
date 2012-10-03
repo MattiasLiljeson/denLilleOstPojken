@@ -138,11 +138,11 @@ int GlContext::update(float p_dt)
 
 	if (m_totalGameTime - (int)m_totalGameTime < p_dt)
 	{
-		stringstream ss;
+		/*stringstream ss;
 		ss << (int)(1.0f / p_dt);//   m_totalGameTime;
 		string s = ss.str();
 		s = "OpenGL - " + s + " FPS";
-		glfwSetWindowTitle(s.c_str());
+		glfwSetWindowTitle(s.c_str());*/
 	}
 
 	if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
@@ -205,6 +205,11 @@ void GLFWCALL GlContext::setWindowSizeCB(int p_width, int p_height)
 {
 	if (s_instance)
 		s_instance->setWindowSize(p_width, p_height);
+}
+
+void GlContext::setWindowText(string p_text)
+{
+	glfwSetWindowTitle(p_text.c_str());
 }
 
 
