@@ -29,7 +29,7 @@ private:
 	int m_height;
 
 	vector<int> m_map;
-	vector<vector<TilePosition>> m_switches; 
+	vector<vector<TilePosition> > m_switches; 
 
 public:
 	MapLoader();
