@@ -6,6 +6,8 @@
 #include "GlSpriteRenderer.h"
 #include "GlTextureManager.h"
 
+class GlSpriteRenderer;
+
 class GlContext: public IOContext
 {
 private:

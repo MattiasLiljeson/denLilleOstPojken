@@ -2,7 +2,7 @@
 # Project settings
 #===============================================================================
 # Name of out file
-outFile = WinEntry
+outFile = Game
 
 # Compiler flags when compiling objects
 cFlags = -c

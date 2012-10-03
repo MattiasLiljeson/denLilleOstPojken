@@ -2,6 +2,7 @@
 #define GLSPRITE_H
 
 #include <string>
+#include "GlContext.h"
 #include "GlSpriteShader.h"
 #include "LodePNG.h"
 #include "SpriteInfo.h"

@@ -218,7 +218,7 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	int textureIndex = p_spriteInfo->textureIndex = m_textureManager->getTexture(
 		p_spriteInfo->textureFilePath, &texture);
 
-	if(texture == NULL)
+	if(texture == 0)
 		return GAME_FAIL;
 	else
 		return GAME_OK;
@@ -232,7 +232,7 @@ int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 	p_spriteInfo->textureIndex = m_textureManager->getTexture(
 		0, &texture);	// (0 is the default texture index.)
 
-	if(texture == NULL)
+	if(texture == 0)
 		return GAME_FAIL;
 	else
 		return GAME_OK;
