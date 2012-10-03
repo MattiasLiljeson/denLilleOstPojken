@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\DynamicCollision.cpp" />
@@ -33,6 +34,7 @@
     <ClCompile Include="src\Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\Avatar.h" />
     <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\DynamicCollision.h" />

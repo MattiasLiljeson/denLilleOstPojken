@@ -2,7 +2,7 @@
 #define TILE_H
 
 #include "Collectable.h"
-#include <Vector2.h>
+#include <fVector2.h>
 #include "IODevice.h"
 
 class Pill;
