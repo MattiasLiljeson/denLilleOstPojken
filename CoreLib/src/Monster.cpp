@@ -6,6 +6,8 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 	m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
 	m_dead = false;
+	m_ai = NULL;
+
 	if (p_io)
 	{
 		m_spriteInfo = new SpriteInfo;
@@ -23,10 +25,18 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 
 	m_nextTile = m_currentTile;
 }
+
+Monster::~Monster()
+{
+	if(m_ai)
+		delete m_ai;
+}
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (!m_dead)
 	{
+		m_ai->update(p_deltaTime);
+
 		dt += p_deltaTime * 3;
 		if (dt > 1)
 		{
@@ -46,15 +56,20 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			}
 			else
 			{
-				Tile* t;
-				do
-				{
-					int rndX = rand() % m_map->getWidth();
-					int rndY = rand() % m_map->getHeight();
-					t = m_map->getTile(TilePosition(rndX, rndY));
-				} while (!t->isFree());
+				m_ai->findTarget();
 
-				FindPath(m_currentTile, t);
+				if(m_path.size() == 0)
+				{
+					Tile* t;
+					do
+					{
+						int rndX = rand() % m_map->getWidth();
+						int rndY = rand() % m_map->getHeight();
+						t = m_map->getTile(TilePosition(rndX, rndY));					
+					} while (!t->isFree());
+
+					FindPath(m_currentTile, t);
+				}
 			}
 		}
 		TilePosition tp1 = m_currentTile->getTilePosition();
@@ -184,4 +199,9 @@ void Monster::kill()
 bool Monster::isDead()
 {
 	return m_dead;
+}
+
+void Monster::addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap)
+{
+	m_ai = new AI(this,p_avatar,p_gameStats,p_tilemap);
 }
