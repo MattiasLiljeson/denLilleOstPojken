@@ -3,6 +3,7 @@
 *.exe
 *.exp
 *.pdb
+*.idb
 *.aps
 *.pch
 *.vspscc
@@ -16,6 +17,7 @@
 *.cache
 *.ilk
 *.log
+*.tlog
 *.zip
 *.user
 !WinLib.vcxproj.user
@@ -31,6 +33,7 @@ gltest3/
 lib-mingw/
 docs/
 doc/
+*.lastbuildstate
 
 #own
 [Oo]bj*/
@@ -43,6 +46,10 @@ assets/
 *.lib
 *.o
 #*.a
+*/*.d
+*.d
+*/lin/
+
 
 #gedit temp files
 */*~

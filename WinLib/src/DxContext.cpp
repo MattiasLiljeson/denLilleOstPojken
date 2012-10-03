@@ -76,7 +76,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 
 	// Create texture manager and load default texture
 	m_textureManager = new DxTextureManager(m_device);
-	m_textureManager->getTexture("..\\Textures\\default.png");
+	m_textureManager->getTexture("../Textures/default.png");
 
 	m_initialized = true;
 }
@@ -407,11 +407,11 @@ int DxContext::update(float p_dt)
 
 		if (m_totalGameTime - (int)m_totalGameTime < p_dt)
 		{
-			stringstream ss;
+			/*stringstream ss;
 			ss << (int)(1.0f / p_dt);
 			string s = ss.str();
 			s = "DirectX - " + s + " FPS";
-			SetWindowText(m_windowHandle, s.c_str());
+			SetWindowText(m_windowHandle, s.c_str());*/
 		}
 
 
@@ -548,6 +548,11 @@ int DxContext::getScreenWidth() const
 int DxContext::getScreenHeight()  const 
 {
 	return m_screenHeight;
+}
+
+void DxContext::setWindowText(string p_text)
+{
+	SetWindowText(m_windowHandle, p_text.c_str());
 }
 
 LRESULT DxContext::handleWindowMessages(UINT p_message, 

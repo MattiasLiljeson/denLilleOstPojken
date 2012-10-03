@@ -35,6 +35,18 @@
     <Filter Include="Source\GameObject\Collectable\SpeedPill">
       <UniqueIdentifier>{01f0aaa8-a89f-4a0c-a002-a14d39964384}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Collectable\Switch">
+      <UniqueIdentifier>{9d3b2e92-e8b0-4e95-9fc8-57e6e30536ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Collectable\SuperPill">
+      <UniqueIdentifier>{0355203f-a06e-4418-82eb-1c9a3dce53b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Collision">
+      <UniqueIdentifier>{52529ebf-3038-4064-8712-4e494b18c7ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\AI">
+      <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -85,6 +97,21 @@
     <ClCompile Include="src\SpeedPill.cpp">
       <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
     </ClCompile>
+    <ClCompile Include="src\Switch.cpp">
+      <Filter>Source\GameObject\Collectable\Switch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperPill.cpp">
+      <Filter>Source\GameObject\Collectable\SuperPill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\DynamicCollision.cpp">
+      <Filter>Source\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameOverState.cpp">
+      <Filter>Source\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AI.cpp">
+      <Filter>Source\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -134,6 +161,21 @@
     </ClInclude>
     <ClInclude Include="src\SpeedPill.h">
       <Filter>Source\GameObject\Collectable\SpeedPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Switch.h">
+      <Filter>Source\GameObject\Collectable\Switch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperPill.h">
+      <Filter>Source\GameObject\Collectable\SuperPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DynamicCollision.h">
+      <Filter>Source\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameOverState.h">
+      <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI.h">
+      <Filter>Source\AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

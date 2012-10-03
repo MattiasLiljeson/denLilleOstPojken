@@ -6,6 +6,8 @@
 #include "GlSpriteRenderer.h"
 #include "GlTextureManager.h"
 
+class GlSpriteRenderer;
+
 class GlContext: public IOContext
 {
 private:
@@ -31,7 +33,7 @@ private:
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
-
+	void spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint p_textureResourceView);  
 public:
 							GlContext(int p_screenWidth, int p_screenHeight);
 	virtual					~GlContext();
@@ -52,6 +54,8 @@ public:
 	int						getScreenWidth() const;
 	int						getScreenHeight() const;
 	static void GLFWCALL	setWindowSizeCB(int p_width, int p_height);
+
+	void setWindowText(string p_text);
 };
 
 #endif

@@ -2,7 +2,7 @@
 #define TILE_H
 
 #include "Collectable.h"
-#include <Vector2.h>
+#include <fVector2.h>
 #include "IODevice.h"
 
 class Pill;
@@ -56,6 +56,7 @@ public:
 	bool isFree();
 	void addPill(Collectable* p_pill);
 	bool removePill();
+	void switchState();
 };
 
 #endif

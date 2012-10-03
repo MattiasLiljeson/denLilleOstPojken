@@ -1,11 +1,12 @@
 #include "StateManager.h"
 
-StateManager::StateManager(IODevice* p_io)
+StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 {
 	m_io = p_io;
+	m_timer = p_timer;
 	m_inGameState = new InGameState(this, m_io);
 	m_menuState = new MenuState(this, m_io);
-	m_currentState = m_desiredState = m_menuState;
+	m_currentState = m_desiredState = m_inGameState;
 	m_terminated = false;
 }
 StateManager::~StateManager()
@@ -62,4 +63,8 @@ void StateManager::terminate()
 bool StateManager::isTerminated()
 {
 	return m_terminated;
+}
+Timer* StateManager::getNewTimerInstance()
+{
+	return m_timer->newInstance();
 }

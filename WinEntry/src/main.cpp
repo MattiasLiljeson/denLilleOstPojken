@@ -1,4 +1,5 @@
 
+
 //#define USE_DIRECTX
 
 #include <IOContext.h>
@@ -46,7 +47,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 // OpenGl Windows
 #include <GlContext.h>
-#include <LinTimer.h>
+#include <WinTimer.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -54,6 +55,40 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+	IOContext* context = new GlContext(800, 600);
+
+	context->setWindowSize(800, 600);
+
+	context->setWindowPosition(50, 250);
+
+	if (!context->isInitialized())
+	{
+		delete context;
+		return 1;
+	}
+
+	Timer* timer = new WinTimer();
+
+	Game* game = new Game(timer, context);
+
+	game->run();
+
+
+	delete timer;
+	delete context;
+	delete game;
+	return 0;
+}
+	#endif
+#else
+
+// OpenGl Linux
+#include <GlContext.h>
+#include <LinTimer.h>
+
+int main(int argc, char** argv)
+{
+	cout<<"Running Linux Build...";
 	IOContext* context = new GlContext(400, 400);
 
 	context->setWindowSize(800, 600);
@@ -76,17 +111,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	delete timer;
 	delete context;
 	delete game;
-	return 0;
-}
-	#endif
-#else
-
-// OpenGl Linux
-#include <GlContext.h>
-#include <LinTimer.h>
-
-int main(int argc, char** argv)
-{
 	return 0;
 }
 

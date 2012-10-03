@@ -3,7 +3,11 @@
 
 #include <GL/glew.h>
 #include <GL/glfw.h>
+
+#ifdef _WIN32
 #include <GL/wglew.h>
+#endif
+
 #include "LodePNG.h"
 #include <vector>
 #include <string>

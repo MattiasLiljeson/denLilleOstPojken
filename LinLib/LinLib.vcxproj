@@ -71,11 +71,14 @@
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>$(SolutionDir)\CommonLib\src\;$(SolutionDir)\CoreLib\src\;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(IncludePath)</IncludePath>
@@ -87,11 +90,13 @@
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

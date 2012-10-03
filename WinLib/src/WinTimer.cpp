@@ -10,6 +10,7 @@ WinTimer::WinTimer(): Timer()
 }
 void WinTimer::start()
 {
+	mElapsedTime = 0;
 	if (!mRunning)
 	{
 		QueryPerformanceCounter((LARGE_INTEGER*)&mCurrentTime);
@@ -30,4 +31,11 @@ void WinTimer::tick()
 		mElapsedTime += mDeltaTime;
 		mCurrentTime = currTime;
 	}
+}
+
+Timer* WinTimer::newInstance()
+{
+	WinTimer* newWinTimer = new WinTimer();
+
+	return newWinTimer;
 }

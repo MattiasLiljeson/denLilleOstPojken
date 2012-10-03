@@ -12,6 +12,14 @@ struct InputInfo
 		RIGHT, LEFT, UP, DOWN, SPACE, ESC, NUM_KEYS 
 	};
 	int keys[NUM_KEYS];
+
+	InputInfo()
+	{
+		for(int i = 0; i < NUM_KEYS; i++)
+		{
+			keys[i] = KEYUP;
+		}
+	}
 };
 
 #endif

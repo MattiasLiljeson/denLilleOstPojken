@@ -27,5 +27,11 @@
     <ClInclude Include="src\T_MapLoad.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\T_Avatar.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\T_GameStats.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

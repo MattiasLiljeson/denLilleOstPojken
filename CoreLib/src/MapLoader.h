@@ -6,6 +6,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include "Tilemap.h"
+#include "State.h"
 
 using namespace std;
 
@@ -16,16 +18,29 @@ enum TileType
 	PILL,
 	AVATAR_SPAWN,
 	MONSTER_SPAWN,
-	SPEEDPILL
+	SPEEDPILL,
+	SUPERPILL,
+	SWITCH
 };
 
 class MapLoader
 {
+private:
+	Tilemap* m_tileMap;
+	vector<GameObject*>	m_gameObjects;
+	Avatar*				m_avatar;
+	vector<Monster*>	m_monsters;
+	GameStats* m_stats;
+
 public:
 	MapLoader();
 	virtual ~MapLoader();
 	
-	vector<int> parseMap(string p);
+	void parseMap(string p, IODevice* p_io, GameStats* p_stats);
+	Tilemap* getTileMap();
+	vector<GameObject*> getGameObjects();
+	Avatar* getAvatar();
+	vector<Monster*> getMonsters();
 };
 
 #endif

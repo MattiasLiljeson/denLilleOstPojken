@@ -19,13 +19,13 @@
     <ClInclude Include="src\TransformInfo.h">
       <Filter>InfoStructs</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector2.h">
-      <Filter>InfoStructs</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Vector3.h">
-      <Filter>InfoStructs</Filter>
-    </ClInclude>
     <ClInclude Include="src\Circle.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fVector2.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fVector3.h">
       <Filter>InfoStructs</Filter>
     </ClInclude>
     <ClInclude Include="src\Rect.h">

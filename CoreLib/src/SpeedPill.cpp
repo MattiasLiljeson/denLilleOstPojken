@@ -16,20 +16,20 @@ SpeedPill::SpeedPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats): Coll
 
 	m_tile = p_tile;
 	m_tile->addPill(this);
-	m_eaten = false;
+	m_consumed = false;
 }
 void SpeedPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if (m_eaten)
+	if (m_consumed)
 	{
 		m_spriteInfo->visible = false;
 	}
 }
 void SpeedPill::consume()
 {
-	if (!m_eaten)
+	if (!m_consumed)
 	{
-		m_eaten = true;
+		m_consumed = true;
 		m_tile = NULL;
 		m_gameStats->setSpeeded();
 	}
