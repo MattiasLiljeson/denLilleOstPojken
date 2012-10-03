@@ -5,7 +5,7 @@
 outFile = CommonLib
 
 # Compiler flags when compiling objects
-cFlags = -c
+cFlags = -c -g
 
 # Linker flags used when linking binary
 lFlags =

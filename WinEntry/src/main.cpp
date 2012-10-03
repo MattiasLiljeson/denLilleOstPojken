@@ -89,7 +89,7 @@ int main(int argc, char** argv)
 {
 	cout<<"Running Linux Build..."<<endl;
 	Timer* timer = new LinTimer();
-	
+	/*
 	timer->start();
 	for (int i=0;i<100000;i++)
 	{
@@ -97,7 +97,7 @@ int main(int argc, char** argv)
 		cout<<"dt: "<<timer->getDeltaTime()<<endl;
 		cout<<"elapsed: "<<timer->getElapsedTime()<<endl;
 	}
-	timer->stop();
+	timer->stop();*/
 	
 	
 	IOContext* context = new GlContext(400, 400);
