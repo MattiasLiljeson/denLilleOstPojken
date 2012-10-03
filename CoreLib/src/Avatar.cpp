@@ -1,5 +1,30 @@
 #include "Avatar.h"
 
+Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
+	: GameObject(NULL, p_stats)
+{
+	m_io = p_io;
+	m_direction = Direction::NONE;
+	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
+	m_map = p_map;
+
+	if (p_io)
+	{
+		m_spriteInfo = new SpriteInfo();
+		TilePosition tp = p_startTile->getTilePosition();
+		float w = p_startTile->getWidth();
+		float h = p_startTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.8f;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.8f;
+		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		p_io->addSpriteInfo(m_spriteInfo);
+	}
+	dt = 0;
+}
+
 int Avatar::checkInput(InputInfo p_inputInfo)
 {
 	int desired = m_direction;
@@ -24,31 +49,6 @@ int Avatar::checkInput(InputInfo p_inputInfo)
 		desired = Direction::UP;
 	}
 	return desired;
-}
-
-Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
-	: GameObject(NULL, p_stats)
-{
-	m_io = p_io;
-	m_direction = Direction::NONE;
-	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
-	m_map = p_map;
-
-	if (p_io)
-	{
-		m_spriteInfo = new SpriteInfo();
-		TilePosition tp = p_startTile->getTilePosition();
-		float w = p_startTile->getWidth();
-		float h = p_startTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.8f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.8f;
-		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
-		p_io->addSpriteInfo(m_spriteInfo);
-	}
-	dt = 0;
 }
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
@@ -120,4 +120,8 @@ int Avatar::getDirection()
 float Avatar::getTileInterpolationFactor()
 {
 	return dt;
+}
+void Avatar::setTilePosition(Tile* p_newPosition)
+{
+	m_currentTile = p_newPosition;
 }

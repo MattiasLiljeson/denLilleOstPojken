@@ -1,5 +1,5 @@
-#ifndef VECTOR3_H
-#define VECTOR3_H
+#ifndef FVECTOR3_H
+#define FVECTOR3_H
 
 struct fVector3
 {

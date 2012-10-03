@@ -44,6 +44,9 @@
     <Filter Include="Source\Collision">
       <UniqueIdentifier>{52529ebf-3038-4064-8712-4e494b18c7ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\AI">
+      <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -106,6 +109,9 @@
     <ClCompile Include="src\GameOverState.cpp">
       <Filter>Source\States</Filter>
     </ClCompile>
+    <ClCompile Include="src\AI.cpp">
+      <Filter>Source\AI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -167,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="src\GameOverState.h">
       <Filter>Source\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AI.h">
+      <Filter>Source\AI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
