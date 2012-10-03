@@ -1,6 +1,10 @@
 #include "GameStats.h"
 #include <iostream>
 
+
+GameStats::GameStats()
+{
+}
 GameStats::GameStats(Timer* p_timer)
 {
 	m_timer = p_timer;
@@ -8,11 +12,16 @@ GameStats::GameStats(Timer* p_timer)
 	m_numPills = 0;
 	m_speeded = false;
 	m_superMode = false;
+
+	m_gameTimer = m_timer->newInstance();
+	m_gameTimer->start();
+
 	m_superModeTimer = m_timer->newInstance();
 	m_speedUpTimer = m_timer->newInstance();
 
 	m_powerUpTimers.push_back(m_superModeTimer);
 	m_powerUpTimers.push_back(m_speedUpTimer);
+	m_powerUpTimers.push_back(m_gameTimer);
 }
 
 GameStats::~GameStats()
@@ -96,5 +105,13 @@ bool GameStats::isSuperMode()
 }
 float GameStats::superTimeRemaining()
 {
-	return (float)(3 - m_superModeTimer->getElapsedTime());
+	return 3 - m_superModeTimer->getElapsedTime();
+}
+void GameStats::addScore(int p_points)
+{
+	m_score += p_points;
+}
+Timer* GameStats::getGameTimer()
+{
+	return m_gameTimer;
 }

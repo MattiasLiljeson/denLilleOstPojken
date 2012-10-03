@@ -15,8 +15,11 @@ private:
 	Timer*			m_timer;
 	Timer*			m_superModeTimer;
 	Timer*			m_speedUpTimer;
+	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
+	int				m_score;
 public:
+	GameStats();
 	GameStats(Timer* p_timer);
 	~GameStats();
 	void	update(float p_deltaTime);
@@ -29,6 +32,8 @@ public:
 	void	setSuperMode();
 	bool	isSuperMode();
 	float   superTimeRemaining();
+	void	addScore(int p_points);
+	Timer*	getGameTimer();
 };
 
 #endif

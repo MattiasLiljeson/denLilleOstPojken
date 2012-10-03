@@ -34,6 +34,7 @@ public:
 	void			setRunning(bool p_running);
 
 	const			InputInfo& getInput();
+	virtual void	setWindowText(string p_text) = 0;
 };
 
 #endif

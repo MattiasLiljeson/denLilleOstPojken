@@ -17,30 +17,7 @@ protected:
 	virtual void SetUp()
 	{
 		MapLoader mapParser;
-		mapParser.parseMap("..\\Maps\\test_map.txt");
-		vector<int> data = mapParser.getMap();
-
-		bool* types = new bool[100];
-		for (int i = 0; i < 100; i++)
-		{
-			if (data[i] == WALL_CENTER)
-				types[i] = false;
-			else
-				types[i] = true;
-		}
-
-		tm = new Tilemap(10, 10, types, NULL);
-
-		for (int i = 0; i < 10; i++)
-		{
-			for (int j = 0; j < 10; j++)
-			{
-				if (data[i*10+j] == MONSTER_SPAWN)
-				{
-					m.push_back(new Monster(tm->getTile(TilePosition(j, i)), tm, NULL));
-				}
-			}
-		}
+		//mapParser.parseMap("..\\Maps\\test_map.txt");
 	}
 	virtual void TearDown()
 	{

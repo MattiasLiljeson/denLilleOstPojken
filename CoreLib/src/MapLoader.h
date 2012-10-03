@@ -6,7 +6,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "Tile.h"
+#include "Tilemap.h"
+#include "State.h"
 
 using namespace std;
 
@@ -25,21 +26,21 @@ enum TileType
 class MapLoader
 {
 private:
-	int m_width;
-	int m_height;
-
-	vector<int> m_map;
-	vector<vector<TilePosition> > m_switches; 
+	Tilemap* m_tileMap;
+	vector<GameObject*>	m_gameObjects;
+	Avatar*				m_avatar;
+	vector<Monster*>	m_monsters;
+	GameStats* m_stats;
 
 public:
 	MapLoader();
 	virtual ~MapLoader();
 	
-	void parseMap(string p);
-	int getLoadedWidth();
-	int getLoadedHeight();
-	vector<int> getMap();
-	vector<TilePosition> getSwitch(int p_index);
+	void parseMap(string p, IODevice* p_io, GameStats* p_stats);
+	Tilemap* getTileMap();
+	vector<GameObject*> getGameObjects();
+	Avatar* getAvatar();
+	vector<Monster*> getMonsters();
 };
 
 #endif

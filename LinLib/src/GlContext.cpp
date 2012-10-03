@@ -147,11 +147,11 @@ int GlContext::update(float p_dt)
 
 	if (m_totalGameTime - (int)m_totalGameTime < p_dt)
 	{
-		stringstream ss;
+		/*stringstream ss;
 		ss << (int)(1.0f / p_dt);//   m_totalGameTime;
 		string s = ss.str();
 		s = "OpenGL - " + s + " FPS";
-		glfwSetWindowTitle(s.c_str());
+		glfwSetWindowTitle(s.c_str());*/
 	}
 
 	if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
@@ -236,6 +236,11 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 		return GAME_FAIL;
 	else
 		return GAME_OK;
+}
+
+void GlContext::setWindowText(string p_text)
+{
+	glfwSetWindowTitle(p_text.c_str());
 }
 
 int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)

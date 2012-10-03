@@ -1,36 +1,10 @@
 #include "Avatar.h"
 
-int Avatar::checkInput(InputInfo p_inputInfo)
-{
-	int desired = m_direction;
-	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
-	{
-		desired = Direction::LEFT;
-	}
-	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED)
-	{
-		desired = Direction::RIGHT;
-	}
-	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
-	{
-		desired = Direction::DOWN;
-	}
-	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
-	{
-		desired = Direction::UP;
-	}
-	return desired;
-}
-
 Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
 	: GameObject(NULL, p_stats)
 {
 	m_io = p_io;
-	m_direction = Direction::NONE;
+	m_direction = m_desired = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
 	m_map = p_map;
 
@@ -51,28 +25,52 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 	dt = 0;
 }
 
+void Avatar::checkInput(InputInfo p_inputInfo)
+{
+	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::LEFT;
+	}
+	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::RIGHT;
+	}
+	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::DOWN;
+	}
+	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::UP;
+	}
+}
+
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	int desired = checkInput(p_inputInfo);
+	checkInput(p_inputInfo);
 	
-	if (desired != m_direction)
+	if (m_desired != m_direction)
 	{
-		Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[desired]);
+		Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
 		if (destination && destination->isFree())
 		{
 			m_queuedTile = destination;
-			m_direction = desired;
+			m_direction = m_desired;
 		}
 	}
 
-	dt += p_deltaTime * (3 + m_gameStats->isSpeeded() * 3);
+	dt += p_deltaTime * (6 + m_gameStats->isSpeeded() * 3);
 	if (dt > 1)
 	{
 		dt -= 1;
 		m_currentTile = m_nextTile;
 		m_nextTile = m_queuedTile;
 
-		m_queuedTile = m_map->getTile(m_nextTile->getTilePosition() + Directions[desired]);
+		m_queuedTile = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_direction]);
 		if (!m_queuedTile || !m_queuedTile->isFree())
 			m_queuedTile = m_nextTile;
 
@@ -120,4 +118,8 @@ int Avatar::getDirection()
 float Avatar::getTileInterpolationFactor()
 {
 	return dt;
+}
+void Avatar::setTilePosition(Tile* p_newPosition)
+{
+	m_currentTile = p_newPosition;
 }

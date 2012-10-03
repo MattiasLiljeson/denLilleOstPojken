@@ -32,8 +32,8 @@
     <ClInclude Include="src\SpriteInfo.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\TransformInfo.h" />
-    <ClInclude Include="src\Vector2.h" />
-    <ClInclude Include="src\Vector3.h" />
+    <ClInclude Include="src\fVector2.h" />
+    <ClInclude Include="src\fVector3.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F5A4E8F2-2CAF-4AEA-B215-7DF7EE7944EE}</ProjectGuid>
