@@ -12,55 +12,69 @@ protected:
 	virtual ~T_States(){
 	}
 	virtual void SetUp(){
-		mgr = new StateManager(NULL, NULL);
-		curr = mgr->getCurrentState();
-		inGame = mgr->getInGameState();
-		menu = mgr->getMenuState();
-		outerState = new InGameState(mgr, NULL);
+		m_manager = new StateManager(NULL, NULL);
+		m_current = m_manager->getCurrentState();
+		m_inGame = m_manager->getInGameState();
+		m_menu = m_manager->getMenuState();
+		m_outerState = new InGameState(m_manager, NULL);
 	}
 	virtual void TearDown(){
-		delete mgr;
+		delete m_manager;
+		delete m_outerState;
 	}
-	StateManager* mgr;
-	State* curr;
-	State* inGame;
-	State* menu;
-	State* outerState;
+	StateManager* m_manager;
+	State* m_current;
+	State* m_inGame;
+	State* m_menu;
+	State* m_outerState;
 
 };
-
+/*
 TEST_F(T_States, Namn)
 {
-	ASSERT_TRUE(curr);
-	ASSERT_TRUE(inGame);
-	ASSERT_TRUE(menu);
-	ASSERT_TRUE(menu == curr || inGame == curr);
-
-	mgr->requestStateChange(menu);
-	mgr->update(0);
 	
-	ASSERT_TRUE(menu == mgr->getCurrentState());
+	ASSERT_TRUE(m_current);
+	ASSERT_TRUE(m_inGame);
+	ASSERT_TRUE(m_menu);
+	ASSERT_TRUE(m_menu == m_current || m_inGame == m_current);
 
-	mgr->requestStateChange(inGame);
-
-	ASSERT_FALSE(inGame == mgr->getCurrentState());
-	ASSERT_TRUE(inGame == mgr->getDesiredState());
-
-	mgr->update(0);
-	mgr->update(0);
-	ASSERT_TRUE(inGame == mgr->getCurrentState());
-	mgr->update(0);
-	ASSERT_TRUE(inGame == mgr->getCurrentState());
-	ASSERT_TRUE(inGame == mgr->getDesiredState());
-
-	mgr->requestStateChange(outerState);
-	mgr->update(0);
+	m_manager->requestStateChange(m_menu);
+	m_manager->update(0);
 	
-	ASSERT_FALSE(outerState == mgr->getCurrentState());
+	ASSERT_TRUE(m_menu == m_manager->getCurrentState());
 
+	m_manager->requestStateChange(m_inGame);
 
+	ASSERT_FALSE(m_inGame == m_manager->getCurrentState());
+	ASSERT_TRUE(m_inGame == m_manager->getDesiredState());
 
-	delete outerState;
+	m_manager->update(0);
+	m_manager->update(0);
+	ASSERT_TRUE(m_inGame == m_manager->getCurrentState());
+	m_manager->update(0);
+	ASSERT_TRUE(m_inGame == m_manager->getCurrentState());
+	ASSERT_TRUE(m_inGame == m_manager->getDesiredState());
 
+	m_manager->requestStateChange(m_outerState);
+	m_manager->update(0);
+	
+	ASSERT_FALSE(m_outerState == m_manager->getCurrentState());
+	delete m_outerState;
+
+}
+*/
+TEST_F(T_States, switchStateOk)
+{
+	ASSERT_EQ(m_manager->requestStateChange(m_menu), GAME_OK);
+}
+
+TEST_F(T_States, switchStateNotValid)
+{
+	ASSERT_EQ(m_manager->requestStateChange(m_outerState), STATE_CHANGE_FAIL);
+}
+
+TEST_F(T_States, switchStateToCurrentState)
+{
+	ASSERT_EQ(m_manager->requestStateChange(m_inGame), STATE_CHANGE_FAIL);
 }
 #endif

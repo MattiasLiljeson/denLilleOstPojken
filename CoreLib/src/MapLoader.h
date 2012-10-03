@@ -1,13 +1,12 @@
 #ifndef MAPLOADER_H
 #define MAPLOADER_H
 
-
-#include <iostream>
 #include <fstream>
 #include <vector>
 #include <string>
 #include "Tilemap.h"
 #include "State.h"
+
 
 using namespace std;
 
@@ -36,7 +35,7 @@ public:
 	MapLoader();
 	virtual ~MapLoader();
 	
-	void parseMap(string p, IODevice* p_io, GameStats* p_stats);
+	int parseMap(string p, IODevice* p_io, GameStats* p_stats);
 	Tilemap* getTileMap();
 	vector<GameObject*> getGameObjects();
 	Avatar* getAvatar();

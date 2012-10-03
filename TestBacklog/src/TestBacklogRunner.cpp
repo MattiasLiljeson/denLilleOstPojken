@@ -1,4 +1,3 @@
-#include <iostream>
 #include <gtest\gtest.h>
 #include "T_Timer.h"
 #include "T_States.h"
@@ -6,7 +5,7 @@
 //#include "T_Monster.h"
 #include "T_MapLoad.h"
 //#include "T_Avatar.h"
-//#include "T_GameStats.h"
+#include "T_GameStats.h"
 
 int main(int argc, char **argv)
 {

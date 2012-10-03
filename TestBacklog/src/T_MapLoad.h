@@ -19,6 +19,7 @@ protected:
 	}
 	virtual void TearDown(){
 		delete mapLoader;
+		delete stats;
 	}
 	MapLoader* mapLoader;
 	GameStats* stats;
@@ -26,14 +27,17 @@ protected:
 
 TEST_F(T_MapLoader,parseFromFile)
 {
-	//mapLoader->parseMap("..\\Maps\\test_map.txt", NULL, NULL);
-	/*std::vector<int> data = mapLoader->getMap();
-	ASSERT_TRUE(data.at(0)==EMPTY);
-	ASSERT_TRUE(data.at(1)==WALL_CENTER);
-	ASSERT_TRUE(data.at(9)==PILL);
-	ASSERT_TRUE(data.at(19)==AVATAR_SPAWN);
-	ASSERT_TRUE(data.at(29)==MONSTER_SPAWN);
-	ASSERT_TRUE(data.at(39)==SPEEDPILL);*/
+	ASSERT_EQ(mapLoader->parseMap("../Maps/test_map.txt", NULL, stats), GAME_OK);
+}
+
+TEST_F(T_MapLoader,parseMissingFile)
+{
+	ASSERT_EQ(mapLoader->parseMap("../Maps2/test_map.txt", NULL, stats), GAME_FAIL);
+}
+
+TEST_F(T_MapLoader,parseInvalidFile)
+{
+	ASSERT_EQ(mapLoader->parseMap("../Maps/invalid.txt", NULL, stats), GAME_FAIL);
 }
 
 #endif

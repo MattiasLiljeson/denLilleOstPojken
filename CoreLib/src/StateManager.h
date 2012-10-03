@@ -5,6 +5,11 @@
 #include "MenuState.h"
 #include <Timer.h>
 
+enum
+{
+	STATE_CHANGE_FAIL = 2
+};
+
 class StateManager
 {
 private:
@@ -21,7 +26,7 @@ public:
 	StateManager(IODevice* p_io, Timer* p_timer);
 	virtual ~StateManager();
 
-	void requestStateChange(State* p_newState);
+	int requestStateChange(State* p_newState);
 	void update(float p_dt);
 	void draw(float p_dt);
 

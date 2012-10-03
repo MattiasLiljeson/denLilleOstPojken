@@ -58,3 +58,5 @@ assets/
 
 # Exceptions
 !external/*
+!*/Guitar.exe
+!*/Guitar.exe.Config
