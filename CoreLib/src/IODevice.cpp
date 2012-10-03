@@ -7,11 +7,11 @@ IODevice::IODevice()
 
 IODevice::~IODevice()
 {	
-	for (int i = m_spriteInfos.size() - 1; i >= 0; i--)
+	while (!m_spriteInfos.empty())
 	{
-		SpriteInfo* info = m_spriteInfos.at(i);
-		m_spriteInfos.pop_back();
+		SpriteInfo* info = m_spriteInfos.back();
 		delete info;
+		m_spriteInfos.pop_back();
 	}
 }
 

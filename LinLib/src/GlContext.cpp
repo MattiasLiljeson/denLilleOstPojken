@@ -26,6 +26,7 @@ GlContext::~GlContext()
 		glfwTerminate();
 
 	delete m_spriteRenderer;
+	delete m_textureManager;
 	s_instance = NULL;
 }
 int GlContext::init()

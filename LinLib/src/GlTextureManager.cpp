@@ -8,7 +8,7 @@ GlTextureManager::~GlTextureManager()
 {
 	for(unsigned int i = 0; i < m_textures.size(); i++)
 	{
-		// HACK: How remove texture resources? :O
+		glDeleteTextures( 1, &m_textures[i].textureResource );
 	}
 }
 
@@ -25,8 +25,8 @@ int GlTextureManager::loadTexture(string p_filePath,
 	lodepng::load_file(rawImage, p_filePath);
 	std::vector<unsigned char> image;
 
-	unsigned width, height;
-	unsigned error = lodepng::decode(image, width, height, state, rawImage);
+	unsigned int width = 0, height = 0, error = 0;
+	error = lodepng::decode(image, width, height, state, rawImage);
 
 	if (error)
 	{

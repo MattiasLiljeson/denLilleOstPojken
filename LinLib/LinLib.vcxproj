@@ -71,6 +71,7 @@
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <ExecutablePath>$(ExecutablePath)</ExecutablePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
     <LibraryPath>$(SolutionDir)\CommonLib\bin\;$(SolutionDir)\CoreLib\bin\;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(LibraryPath)</LibraryPath>
