@@ -37,7 +37,7 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		m_ai->update(p_deltaTime);
 
-		dt += p_deltaTime * 3;
+		dt += p_deltaTime * 6;
 		if (dt > 1)
 		{
 			dt -= 1;

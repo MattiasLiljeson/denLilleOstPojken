@@ -132,14 +132,7 @@ void InGameState::restart()
 
 		m_tileMap = mapParser.getTileMap();
 		m_gameObjects = mapParser.getGameObjects();
-		for (int i = 0; i < m_gameObjects.size(); i++)
-		{
-			if (typeid(*m_gameObjects[i]) == typeid(Avatar))
-			{
-				m_avatar = (Avatar*)m_gameObjects[i];
-			}
-			else if (typeid(*m_gameObjects[i]) == typeid(Monster))
-				m_monsters.push_back((Monster*)m_gameObjects[i]);
-		}
+		m_avatar = mapParser.getAvatar();
+		m_monsters = mapParser.getMonsters();
 	}
 }

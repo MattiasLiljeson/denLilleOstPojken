@@ -90,13 +90,13 @@ void AI::fleeFromTarget()
 
 	if(xDistance < 0)
 		xDistance = 0;
-	else if(xDistance > m_tilemap->getWidth())
-		xDistance = m_tilemap->getWidth();
+	else if(xDistance >= m_tilemap->getWidth())
+		xDistance = m_tilemap->getWidth()-1;
 
 	if(yDistance < 0)
 		yDistance = 0;
-	else if(yDistance > m_tilemap->getHeight())
-		yDistance = m_tilemap->getHeight();
+	else if(yDistance >= m_tilemap->getHeight())
+		yDistance = m_tilemap->getHeight()-1;
 
 	TilePosition goalTP = TilePosition(xDistance,yDistance);
 	Tile* goalT = m_tilemap->getTile(goalTP);

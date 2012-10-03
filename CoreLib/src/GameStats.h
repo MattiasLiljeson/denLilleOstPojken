@@ -19,6 +19,7 @@ private:
 	vector<Timer*>	m_powerUpTimers;
 	int				m_score;
 public:
+	GameStats();
 	GameStats(Timer* p_timer);
 	~GameStats();
 	void	update(float p_deltaTime);

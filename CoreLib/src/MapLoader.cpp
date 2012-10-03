@@ -84,11 +84,14 @@ void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 				else if (m_map[i*m_width+j] == MONSTER_SPAWN)
 				{
 					Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, p_io);
+					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
 				else if (m_map[i*m_width+j] == AVATAR_SPAWN)
 				{
-					m_gameObjects.push_back(new Avatar(p_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats));
+					m_avatar = new Avatar(p_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
+					m_gameObjects.push_back(m_avatar);
+
 				}
 				else if (m_map[i*m_width+j] == SUPERPILL)
 				{
@@ -96,6 +99,11 @@ void MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats)
 				}
 			}
 		}
+		for (int i = 0; i < m_monsters.size(); i++)
+		{
+			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
+		}
+
 	}
 }
 Tilemap* MapLoader::getTileMap()
@@ -105,4 +113,12 @@ Tilemap* MapLoader::getTileMap()
 vector<GameObject*> MapLoader::getGameObjects()
 {
 	return m_gameObjects;
+}
+Avatar* MapLoader::getAvatar()
+{
+	return m_avatar;
+}
+vector<Monster*> MapLoader::getMonsters()
+{
+	return m_monsters;
 }

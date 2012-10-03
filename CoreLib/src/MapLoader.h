@@ -28,6 +28,8 @@ class MapLoader
 private:
 	Tilemap* m_tileMap;
 	vector<GameObject*>	m_gameObjects;
+	Avatar*				m_avatar;
+	vector<Monster*>	m_monsters;
 	GameStats* m_stats;
 
 public:
@@ -37,6 +39,8 @@ public:
 	void parseMap(string p, IODevice* p_io, GameStats* p_stats);
 	Tilemap* getTileMap();
 	vector<GameObject*> getGameObjects();
+	Avatar* getAvatar();
+	vector<Monster*> getMonsters();
 };
 
 #endif

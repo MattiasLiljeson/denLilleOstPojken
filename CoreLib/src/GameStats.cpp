@@ -1,6 +1,10 @@
 #include "GameStats.h"
 #include <iostream>
 
+
+GameStats::GameStats()
+{
+}
 GameStats::GameStats(Timer* p_timer)
 {
 	m_timer = p_timer;

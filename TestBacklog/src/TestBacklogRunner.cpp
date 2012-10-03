@@ -4,7 +4,7 @@
 #include "T_States.h"
 #include "T_Math.h"
 //#include "T_Monster.h"
-//#include "T_MapLoad.h"
+#include "T_MapLoad.h"
 //#include "T_Avatar.h"
 //#include "T_GameStats.h"
 

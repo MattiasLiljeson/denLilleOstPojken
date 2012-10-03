@@ -29,12 +29,13 @@ private:
 	Tilemap* m_map;
 
 	int m_direction;
+	int m_desired;
 
 	float dt;
 
 	IODevice* m_io;
 private:
-	int checkInput(InputInfo p_inputInfo);
+	void checkInput(InputInfo p_inputInfo);
 
 public:
 	Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
