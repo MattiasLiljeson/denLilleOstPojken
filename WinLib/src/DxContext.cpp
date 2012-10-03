@@ -495,7 +495,10 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
 }
 
 int DxContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
@@ -509,8 +512,24 @@ int DxContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
 }
+
+void DxContext::spriteSetTextureRect( SpriteInfo* p_spriteInfo, ID3D11ShaderResourceView* p_textureResourceView )
+{
+	// Texture rectangle
+	D3D11_TEXTURE2D_DESC textureDesc;
+	ID3D11Texture2D* texture2D;
+	p_textureResourceView->GetResource((ID3D11Resource**)&texture2D);
+	texture2D->GetDesc(&textureDesc);
+	texture2D->Release();
+	p_spriteInfo->textureRect.width = textureDesc.Width;
+	p_spriteInfo->textureRect.height = textureDesc.Height;
+}
+
 
 int DxContext::endDraw()
 {

@@ -43,9 +43,12 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+	m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974_sheet.png";
+	m_spriteInfo->textureRect.x		= 0;
+	m_spriteInfo->textureRect.y		= 0;
 	p_io->addSpriteInfo(m_spriteInfo);
-
+	m_spriteInfo->textureRect.width = 385;
+	m_spriteInfo->textureRect.height= 450;
 	dt = 0;
 }
 

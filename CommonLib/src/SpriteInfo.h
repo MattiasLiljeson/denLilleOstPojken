@@ -3,6 +3,7 @@
 
 #include <string>
 #include "TransformInfo.h"
+#include "Rect.h"
 
 using namespace std;
 
@@ -14,6 +15,12 @@ public:
 	int				textureIndex;
 	bool			visible;
 	TransformInfo	transformInfo;
+	Rect			textureRect;	// The texture rect is specifying x and y-offset,
+									// and width and height in pixels. Defaults to the
+									// loaded texture width and height when being
+									// assigned an id.
+									
+									
 
 	SpriteInfo()
 	{
@@ -29,6 +36,8 @@ public:
 		transformInfo.scale[0] = 0.0f;
 		transformInfo.scale[1] = 0.0f;
 		transformInfo.scale[2] = 0.0f;
+		textureRect.width = 0;
+		textureRect.height = 0;
 	}
 
 	SpriteInfo( string p_textureFilePath )
