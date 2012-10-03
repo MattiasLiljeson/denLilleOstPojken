@@ -46,7 +46,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 // OpenGl Windows
 #include <GlContext.h>
-#include <LinTimer.h>
+#include <WinTimer.h>
 
 int WINAPI WinMain(HINSTANCE hInstance,
 	HINSTANCE hPrevInstance,
@@ -66,7 +66,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 		return 1;
 	}
 
-	Timer* timer = new 00000000000000000000000000000000000000();
+	Timer* timer = new WinTimer();
 
 	Game* game = new Game(timer, context);
 
@@ -87,7 +87,19 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 int main(int argc, char** argv)
 {
-	cout<<"Running Linux Build...";
+	cout<<"Running Linux Build..."<<endl;
+	Timer* timer = new LinTimer();
+	
+	timer->start();
+	for (int i=0;i<100000;i++)
+	{
+		timer->tick();
+		cout<<"dt: "<<timer->getDeltaTime()<<endl;
+		cout<<"elapsed: "<<timer->getElapsedTime()<<endl;
+	}
+	timer->stop();
+	
+	
 	IOContext* context = new GlContext(400, 400);
 
 	context->setWindowSize(800, 600);
@@ -99,8 +111,6 @@ int main(int argc, char** argv)
 		delete context;
 		return 1;
 	}
-
-	Timer* timer = new LinTimer();
 
 	Game* game = new Game(timer, context);
 
