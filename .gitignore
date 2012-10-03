@@ -45,6 +45,8 @@ assets/
 #*.a
 */*.d
 *.d
+*/lin/
+
 
 #gedit temp files
 */*~
