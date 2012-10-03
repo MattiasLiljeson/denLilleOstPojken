@@ -71,23 +71,27 @@
     <LibraryPath>$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
     <LibraryPath>$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\external\dx\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
     <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\WinLib\external\dx\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <IntDir>$(ProjectDir)\obj\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

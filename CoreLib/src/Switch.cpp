@@ -44,7 +44,7 @@ void Switch::consume()
 {
 	if (m_cooldown <= 0)
 	{
-		for (int i = 0; i < m_targets.size(); i++)
+		for (unsigned int i = 0; i < m_targets.size(); i++)
 		{
 			Tile* t = m_map->getTile(m_targets[i]);
 			t->switchState();

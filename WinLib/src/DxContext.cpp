@@ -76,7 +76,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 
 	// Create texture manager and load default texture
 	m_textureManager = new DxTextureManager(m_device);
-	m_textureManager->getTexture("..\\Textures\\default.png");
+	m_textureManager->getTexture("../Textures/default.png");
 
 	m_initialized = true;
 }

@@ -45,7 +45,7 @@ Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_s
 		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.8f;
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.8f;
-		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		m_spriteInfo->textureFilePath = "../Textures/pacman-1974.png";
 		p_io->addSpriteInfo(m_spriteInfo);
 	}
 	dt = 0;
@@ -93,18 +93,18 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 	if (m_gameStats->isSuperMode())
 	{
-		m_spriteInfo->textureFilePath = "..\\Textures\\hero.png";
+		m_spriteInfo->textureFilePath = "../Textures/hero.png";
 		float remaining = m_gameStats->superTimeRemaining();
 		if (remaining < 1)
 		{
 			if ((int)(remaining*6) % 2 == 0)
-				m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+				m_spriteInfo->textureFilePath = "../Textures/pacman-1974.png";
 		}
 		m_io->updateSpriteInfo(m_spriteInfo);
 	}
 	else
 	{
-		m_spriteInfo->textureFilePath = "..\\Textures\\pacman-1974.png";
+		m_spriteInfo->textureFilePath = "../Textures/pacman-1974.png";
 		m_io->updateSpriteInfo(m_spriteInfo);
 	}
 
