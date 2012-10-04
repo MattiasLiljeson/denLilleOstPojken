@@ -11,7 +11,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 		m_tileMap	= 0;
 		m_mapParser = new MapLoader();
 		m_stats = new GameStats(m_parent->getNewTimerInstance());
-		m_mapParser->parseMap("..\\Maps\\test_map.txt");
+		m_mapParser->parseMap("../Maps/test_map.txt");
 		vector<int> data = m_mapParser->getMap();
 		int mapWidth = m_mapParser->getLoadedWidth();
 		int mapHeight = m_mapParser->getLoadedHeight();

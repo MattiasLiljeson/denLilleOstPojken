@@ -19,7 +19,7 @@ Monster::Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io): GameObject(NULL)
 		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.2f;
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.9f;
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.9f;
-		m_spriteInfo->textureFilePath = "..\\Textures\\SeaMonster.png";
+		m_spriteInfo->textureFilePath = "../Textures/SeaMonster.png";
 		p_io->addSpriteInfo(m_spriteInfo);
 	}
 

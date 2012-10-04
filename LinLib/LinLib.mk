@@ -5,7 +5,7 @@
 outFile = LinLib
 
 # Compiler flags when compiling objects
-cFlags = -c -g
+cFlags = -c -g -std=c++0x
 
 # Linker flags used when linking binary
 lFlags =

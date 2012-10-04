@@ -13,7 +13,7 @@ Pill::Pill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats): Collectable(NU
 	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.1f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.5f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.5f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\pill.png";
+	m_spriteInfo->textureFilePath = "../Textures/pill.png";
 	p_io->addSpriteInfo(m_spriteInfo);
 
 	m_tile = p_tile;

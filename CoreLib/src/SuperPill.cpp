@@ -11,7 +11,7 @@ SuperPill::SuperPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats): Coll
 	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = t.y * h + h * 0.5f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.7f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.7f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\SuperPill.png";
+	m_spriteInfo->textureFilePath = "../Textures/SuperPill.png";
 	p_io->addSpriteInfo(m_spriteInfo);
 
 	m_tile = p_tile;

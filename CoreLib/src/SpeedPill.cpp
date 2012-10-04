@@ -11,7 +11,7 @@ SpeedPill::SpeedPill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats): Coll
 	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.1f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.7f;
 	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.7f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\drug.png";
+	m_spriteInfo->textureFilePath = "../Textures/drug.png";
 	p_io->addSpriteInfo(m_spriteInfo);
 
 	m_tile = p_tile;

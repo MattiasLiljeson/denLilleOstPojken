@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeLite_Project Name="codeliteproject" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+  </Plugins>
+  <VirtualDirectory Name="CoreLib">
+    <VirtualDirectory Name="src">
+      <File Name="CoreLib/src/SpeedPill.cpp"/>
+      <File Name="CoreLib/src/DynamicCollision.h"/>
+      <File Name="CoreLib/src/Tilemap.h"/>
+      <File Name="CoreLib/src/GameStats.h"/>
+      <File Name="CoreLib/src/InGameState.cpp"/>
+      <File Name="CoreLib/src/GameObject.cpp"/>
+      <File Name="CoreLib/src/MenuState.h"/>
+      <File Name="CoreLib/src/Switch.cpp"/>
+      <File Name="CoreLib/src/StateManager.h"/>
+      <File Name="CoreLib/src/Collectable.h"/>
+      <File Name="CoreLib/src/MenuState.cpp"/>
+      <File Name="CoreLib/src/StateManager.cpp"/>
+      <File Name="CoreLib/src/Monster.h"/>
+      <File Name="CoreLib/src/GameObject.h"/>
+      <File Name="CoreLib/src/SuperPill.h"/>
+      <File Name="CoreLib/src/SpeedPill.h"/>
+      <File Name="CoreLib/src/Game.h"/>
+      <File Name="CoreLib/src/AI.cpp"/>
+      <File Name="CoreLib/src/Pill.cpp"/>
+      <File Name="CoreLib/src/Tilemap.cpp"/>
+      <File Name="CoreLib/src/AI.h"/>
+      <File Name="CoreLib/src/IODevice.cpp"/>
+      <File Name="CoreLib/src/GameOverState.h"/>
+      <File Name="CoreLib/src/Game.cpp"/>
+      <File Name="CoreLib/src/DynamicCollision.cpp"/>
+      <File Name="CoreLib/src/State.cpp"/>
+      <File Name="CoreLib/src/Tile.cpp"/>
+      <File Name="CoreLib/src/MapLoader.h"/>
+      <File Name="CoreLib/src/Avatar.h"/>
+      <File Name="CoreLib/src/GameOverState.cpp"/>
+      <File Name="CoreLib/src/Pill.h"/>
+      <File Name="CoreLib/src/State.h"/>
+      <File Name="CoreLib/src/GameStats.cpp"/>
+      <File Name="CoreLib/src/IODevice.h"/>
+      <File Name="CoreLib/src/Monster.cpp"/>
+      <File Name="CoreLib/src/MapLoader.cpp"/>
+      <File Name="CoreLib/src/Tile.h"/>
+      <File Name="CoreLib/src/Switch.h"/>
+      <File Name="CoreLib/src/Collectable.cpp"/>
+      <File Name="CoreLib/src/SuperPill.cpp"/>
+      <File Name="CoreLib/src/Avatar.cpp"/>
+      <File Name="CoreLib/src/InGameState.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="CommonLib">
+    <VirtualDirectory Name="src">
+      <File Name="CommonLib/src/LodePNG.h"/>
+      <File Name="CommonLib/src/IOContext.h"/>
+      <File Name="CommonLib/src/Circle.h"/>
+      <File Name="CommonLib/src/Timer.h"/>
+      <File Name="CommonLib/src/IOContext.cpp"/>
+      <File Name="CommonLib/src/TransformInfo.h"/>
+      <File Name="CommonLib/src/fVector3.h"/>
+      <File Name="CommonLib/src/CommonUtility.h"/>
+      <File Name="CommonLib/src/Timer.cpp"/>
+      <File Name="CommonLib/src/InputInfo.h"/>
+      <File Name="CommonLib/src/fVector2.h"/>
+      <File Name="CommonLib/src/LodePNG.cpp"/>
+      <File Name="CommonLib/src/SpriteInfo.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="WinEntry">
+    <VirtualDirectory Name="bin">
+      <File Name="WinEntry/bin/Game"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="src">
+      <File Name="WinEntry/src/main.cpp"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="LinLib">
+    <VirtualDirectory Name="external">
+      <VirtualDirectory Name="glfw-2.7.6.bin.WIN32">
+        <VirtualDirectory Name="include">
+          <VirtualDirectory Name="GL">
+            <File Name="LinLib/external/glfw-2.7.6.bin.WIN32/include/GL/glfw.h"/>
+          </VirtualDirectory>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <VirtualDirectory Name="glew-1.9.0">
+        <VirtualDirectory Name="include">
+          <VirtualDirectory Name="GL">
+            <File Name="LinLib/external/glew-1.9.0/include/GL/glxew.h"/>
+            <File Name="LinLib/external/glew-1.9.0/include/GL/wglew.h"/>
+            <File Name="LinLib/external/glew-1.9.0/include/GL/glew.h"/>
+          </VirtualDirectory>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <VirtualDirectory Name="glfw">
+        <VirtualDirectory Name="include">
+          <VirtualDirectory Name="GL">
+            <File Name="LinLib/external/glfw/include/GL/glfw.h"/>
+          </VirtualDirectory>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <VirtualDirectory Name="glew">
+        <VirtualDirectory Name="include">
+          <VirtualDirectory Name="GL">
+            <File Name="LinLib/external/glew/include/GL/glxew.h"/>
+            <File Name="LinLib/external/glew/include/GL/wglew.h"/>
+            <File Name="LinLib/external/glew/include/GL/glew.h"/>
+          </VirtualDirectory>
+        </VirtualDirectory>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="src">
+      <File Name="LinLib/src/GlContext.h"/>
+      <File Name="LinLib/src/GlSpriteShader.cpp"/>
+      <File Name="LinLib/src/GlSpriteShader.h"/>
+      <File Name="LinLib/src/LinTimer.cpp"/>
+      <File Name="LinLib/src/GlSpriteRenderer.h"/>
+      <File Name="LinLib/src/GlTextureManager.h"/>
+      <File Name="LinLib/src/GlContext.cpp"/>
+      <File Name="LinLib/src/LinTimer.h"/>
+      <File Name="LinLib/src/GlSpriteRenderer.cpp"/>
+      <File Name="LinLib/src/GlTextureManager.cpp"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Description/>
+  <Dependencies/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="." Command="./Game" CommandArguments="" UseSeparateDebugArgs="yes" DebugArguments="exec-file WinEntry/bin/Game" WorkingDirectory="./WinEntry/bin" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands>dir $(IntermediateDirectory)/WinEntry/bin/
+exec-file Game</StartupCommands>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="yes">
+        <RebuildCommand>make -f solution.mk clean all</RebuildCommand>
+        <CleanCommand>make -f solution.mk clean</CleanCommand>
+        <BuildCommand>make -f solution.mk clean all</BuildCommand>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory>/home/bth/pa2504/denLilleOstPojken</WorkingDirectory>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="gnu g++" DebuggerType="GNU gdb debugger" Type="" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" UseDifferentPCHFlags="no" PCHFlags="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[
+      
+      ]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="">
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>
