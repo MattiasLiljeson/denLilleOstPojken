@@ -45,6 +45,7 @@ private:
 	float			m_height;
 
 	Collectable*	m_collectable;
+	IODevice* m_io;
 
 public:
 	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, IODevice* p_io);

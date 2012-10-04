@@ -3,6 +3,7 @@
 
 Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, IODevice* p_io): GameObject(NULL)
 {
+	m_io = p_io;
 	m_width = p_width;
 	m_height = p_height;
 
@@ -11,11 +12,15 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 		m_spriteInfo = new SpriteInfo();
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] = p_position.x * p_width + p_width * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = p_position.y * p_height + p_height * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.0f;
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] = p_width;
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = p_height;
-		m_spriteInfo->textureFilePath = "..\\Textures\\wall.png";
+		if (!p_type)
+			m_spriteInfo->textureFilePath = "..\\Textures\\wall.png";
+		else
+			m_spriteInfo->textureFilePath = "..\\Textures\\grass.png";
 		p_io->addSpriteInfo(m_spriteInfo);
-		m_spriteInfo->visible = !p_type;
+		m_spriteInfo->visible = true;//!p_type;
 	}
 
 	m_position = p_position;
@@ -64,6 +69,9 @@ bool Tile::removePill()
 void Tile::switchState()
 {
 	m_type = !m_type;
-	if (m_spriteInfo)
-		m_spriteInfo->visible = !m_type;
+	if (!m_type)
+		m_spriteInfo->textureFilePath = "..\\Textures\\wall.png";
+	else
+		m_spriteInfo->textureFilePath = "..\\Textures\\grass.png";
+	m_io->updateSpriteInfo(m_spriteInfo);
 }

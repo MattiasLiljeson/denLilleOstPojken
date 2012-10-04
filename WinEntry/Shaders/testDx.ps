@@ -17,7 +17,8 @@ float4 PShader(VOut pIn) : SV_TARGET
     float4 c = SpriteTexture.Sample(SampleType, pIn.texCoord);
 	if (c.a < 0.05f)
 	{
-		c = float4(0, 0, 0, 0);
+		clip(-1);
+		//c = float4(0, 0, 0, 0);
 	}
 	return c;
 }
