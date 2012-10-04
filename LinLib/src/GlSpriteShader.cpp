@@ -54,6 +54,7 @@ GlSpriteShader::GlSpriteShader()
 	m_position = glGetAttribLocation(m_id, "MCVertex");
 	m_texCoord = glGetAttribLocation(m_id, "MCTexCoord");
 
+	m_textureRectConstant		= glGetUniformLocation(m_id, "TextureRect");
 	m_centerPositionConstant	= glGetUniformLocation(m_id, "CenterPosition");
 	m_halfScaleConstant			= glGetUniformLocation(m_id, "HalfScale");
 	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize");
@@ -113,6 +114,12 @@ GLint GlSpriteShader::getScreenSizeConstant()
 {
 	return m_screenSizeConstant;
 }
+
+GLint GlSpriteShader::getTextureRectConstant()
+{
+	return m_textureRectConstant;
+}
+
 GLuint GlSpriteShader::getTextureSampler()
 {
 	return m_sampler;
@@ -121,3 +128,4 @@ bool GlSpriteShader::isInitialized()
 {
 	return m_initialized;
 }
+

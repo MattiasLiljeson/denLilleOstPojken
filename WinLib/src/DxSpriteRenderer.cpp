@@ -120,8 +120,21 @@ void DxSpriteRenderer::draw()
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 2);
 	
+	// Texture rectangle
+	D3D11_TEXTURE2D_DESC textureDesc;
+	ID3D11Texture2D* texture2D;
+	m_texture->GetResource((ID3D11Resource**)&texture2D);
+	texture2D->GetDesc(&textureDesc);
+	texture2D->Release();
 
-	m_shader->setBuffer(m_spriteData, m_texture);
+	
+	m_spriteData.TextureRect = Vector4(
+		(float)m_spriteInfo->textureRect.x / textureDesc.Width,
+		(float)m_spriteInfo->textureRect.y / textureDesc.Height,
+		(float)m_spriteInfo->textureRect.width / textureDesc.Width,
+		(float)m_spriteInfo->textureRect.height / textureDesc.Height);
+
+ 	m_shader->setBuffer(m_spriteData, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
 	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);
 	m_deviceContext->HSSetShader(NULL, 0, 0);

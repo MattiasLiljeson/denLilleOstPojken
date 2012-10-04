@@ -43,7 +43,7 @@ private:
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
-
+	void spriteSetTextureRect(SpriteInfo* p_spriteInfo, ID3D11ShaderResourceView* p_textureResourceView);  
 public:
 				DxContext(HINSTANCE pInstanceHandle, 
 					int p_screenWidth, int p_screenHeight);

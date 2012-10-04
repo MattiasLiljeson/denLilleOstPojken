@@ -4,6 +4,7 @@ cbuffer SpriteBuffer
 	float pad;
     float2 HalfSize;
     float2 WindowSize;
+	float4 TextureRect;
 };
 
 struct VIn
@@ -26,6 +27,11 @@ VOut VShader(VIn pInput)
 		vOut.position = float4(2 * ((pos.x) / WindowSize.x)-1, 2 *(pos.y / WindowSize.y) - 1, pos.z,1.0);
 
 	//vOut.position = float4(pInput.position, 1.0f);
-	vOut.texCoord = pInput.texCoord;
+	
+	// Translate texture rect boundaries to proper texCoord
+	// texture rect contains values between 0 and 1
+	vOut.texCoord = TextureRect.xy + TextureRect.zw * pInput.texCoord;
+	
+	//vOut.texCoord = pInput.texCoord;
 	return vOut;
 }

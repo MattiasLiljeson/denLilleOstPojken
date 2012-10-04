@@ -235,7 +235,10 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == 0)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
 }
 
 void GlContext::setWindowText(string p_text)
@@ -254,7 +257,22 @@ int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 	if(texture == 0)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
+}
+
+void GlContext::spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint texture)
+{
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	int textureWidth, textureHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
+
+	p_spriteInfo->textureRect.width = textureWidth;
+	p_spriteInfo->textureRect.height = textureHeight;
 }
 
 int GlContext::addSprite( SpriteInfo* p_spriteInfo)

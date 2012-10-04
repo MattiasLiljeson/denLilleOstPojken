@@ -21,6 +21,7 @@ private:
 	GLint	m_centerPositionConstant;
 	GLint	m_halfScaleConstant;
 	GLint	m_screenSizeConstant;
+	GLint	m_textureRectConstant;
 	GLuint	m_sampler;
 	bool	m_initialized;
 public:
@@ -32,6 +33,7 @@ public:
 	GLint	getCenterPositionConstant();
 	GLint	getHalfScaleConstant();
 	GLint	getScreenSizeConstant();
+	GLint	getTextureRectConstant();
 	GLuint	getTextureSampler();
 	bool	isInitialized();
 };

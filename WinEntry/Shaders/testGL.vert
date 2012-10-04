@@ -2,6 +2,7 @@
 uniform vec2 ScreenSize;
 uniform vec2 HalfScale;
 uniform vec4 CenterPosition;
+uniform vec4 TextureRect;
 in vec3 MCVertex;
 in vec2 MCTexCoord;
 out vec3 Pos;
@@ -21,5 +22,5 @@ void main()
 		1.0f
 		);
     Pos = vec3(gl_Position.x, gl_Position.y, gl_Position.z);
-    TexCoord = MCTexCoord;
+    TexCoord = TextureRect.xy + TextureRect.zw * MCTexCoord;
 }

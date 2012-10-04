@@ -28,6 +28,9 @@
     <ClInclude Include="src\fVector3.h">
       <Filter>InfoStructs</Filter>
     </ClInclude>
+    <ClInclude Include="src\Rect.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="InfoStructs">

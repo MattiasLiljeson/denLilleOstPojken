@@ -33,7 +33,7 @@ private:
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
-
+	void spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint p_textureResourceView);  
 public:
 							GlContext(int p_screenWidth, int p_screenHeight);
 	virtual					~GlContext();
