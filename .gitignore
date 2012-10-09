@@ -60,3 +60,4 @@ assets/
 !external/*
 !*/Guitar.exe
 !*/Guitar.exe.Config
+!CoreLib/external/SFML/lib/sfml-audio-s-d.lib
