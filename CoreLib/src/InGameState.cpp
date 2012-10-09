@@ -33,8 +33,8 @@ void InGameState::update(float p_dt)
 	{
 		if(m_stateJustActivated)
 		{
-			// Handle newly activated state. (AKA 'event: on_state_change'-ish)
 			m_stateJustActivated = false;
+			// Handle newly activated state. (AKA 'event: on_state_change')
 			restart();
 		}
 

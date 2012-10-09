@@ -21,6 +21,12 @@ void MenuState::update(float p_dt)
 {
 	if (m_io)
 	{
+		if(m_stateJustActivated)
+		{
+			m_stateJustActivated = false;
+			// Handle newly activated state. (AKA 'event: on_state_change')
+			// ...
+		}
 		InputInfo input = m_io->fetchInput();
 		if (input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED)
 		{
