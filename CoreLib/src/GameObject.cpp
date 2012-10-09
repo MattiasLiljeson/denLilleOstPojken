@@ -40,5 +40,5 @@ fVector2 GameObject::getPostion() const
 
 float GameObject::getRadius() const
 {
-   	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
+	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
 }
