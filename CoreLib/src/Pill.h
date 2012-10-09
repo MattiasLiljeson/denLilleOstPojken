@@ -10,7 +10,7 @@ class Pill: public Collectable
 private:
 	Tile* m_tile;
 public:
-	Pill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats);
+	Pill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
 };

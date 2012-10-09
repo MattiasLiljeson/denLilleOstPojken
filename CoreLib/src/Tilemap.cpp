@@ -1,23 +1,5 @@
 #include "Tilemap.h"
 
-Tilemap::Tilemap(int p_width, int p_height, IODevice* p_device)
-{
-	m_width = p_width;
-	m_height = p_height;
-
-	m_tiles = new Tile*[p_width * p_height];
-
-	float tileSizeX = p_device->getScreenWidth() / (float)p_width;
-	float tileSizeY = p_device->getScreenHeight() / (float)p_height;
-
-	for (int row = 0; row < p_height; row++)
-	{
-		for (int col = 0; col < p_width; col++)
-		{
-			m_tiles[row * p_width + col] = new Tile(true, TilePosition(col, row), tileSizeX, tileSizeY, p_device);
-		}
-	}
-}
 Tilemap::Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device)
 {
 	m_width = p_width;

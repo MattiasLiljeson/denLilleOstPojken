@@ -112,6 +112,9 @@
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
     </ClCompile>
+    <ClCompile Include="src\GOFactory.cpp">
+      <Filter>Source\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -176,6 +179,9 @@
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GOFactory.h">
+      <Filter>Source\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

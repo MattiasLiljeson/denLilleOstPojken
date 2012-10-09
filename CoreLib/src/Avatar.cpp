@@ -1,30 +1,11 @@
 #include "Avatar.h"
 
-Avatar::Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
-	: GameObject(NULL, p_stats)
+Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
+	: GameObject(p_spriteInfo, p_stats)
 {
-	m_io = p_io;
 	m_direction = m_desired = Direction::NONE;
 	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
 	m_map = p_map;
-
-	if (p_io)
-	{
-		m_spriteInfo = new SpriteInfo();
-		TilePosition tp = p_startTile->getTilePosition();
-		float w = p_startTile->getWidth();
-		float h = p_startTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = tp.x * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = tp.y * h + h * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.5f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.6f;
-		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.6f;
-		m_spriteInfo->textureFilePath = "../Textures/pacman-1974_sheet.png";
-		p_io->addSpriteInfo(m_spriteInfo);
-		m_spriteInfo->textureRect.x		= m_spriteInfo->textureRect.width / 2;
-		m_spriteInfo->textureRect.y		= 0;
-		m_spriteInfo->textureRect.width /= 2;
-	}
 	dt = 0;
 }
 
