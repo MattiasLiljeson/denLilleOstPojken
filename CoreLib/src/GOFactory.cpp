@@ -67,7 +67,11 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	fVector2 size = fVector2(w * 0.5f, h * 0.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\pill.png", pos, size, NULL);
-	return new Pill(spriteInfo, p_tile, p_gameStats);
+	SoundInfo* soundinfo = new SoundInfo();
+	soundinfo->play = false;
+	soundinfo->id = "..\\Sounds\\gun.wav";
+	m_io->addSound(soundinfo);
+	return new Pill(spriteInfo, soundinfo, p_tile, p_gameStats);
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)

@@ -35,7 +35,7 @@ public:
 	void		updateSpriteInfo( SpriteInfo* p_spriteInfo );
 	void		clearSpriteInfos();
 
-	void		addSound(string p_path);
+	void		addSound(SoundInfo* p_soundInfo);
 
 	int			getScreenWidth();
 	int			getScreenHeight();

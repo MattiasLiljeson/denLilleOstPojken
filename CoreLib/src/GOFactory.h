@@ -10,6 +10,7 @@
 #include "Pill.h"
 #include <fVector3.h>
 #include "Switch.h"
+#include <SoundInfo.h>
 
 class GOFactory
 {
