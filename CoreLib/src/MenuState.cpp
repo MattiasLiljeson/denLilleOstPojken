@@ -4,6 +4,7 @@
 MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
 	m_io = p_io;
+	p_io->clearSpriteInfos();
 	m_menuItems.push_back( new MenuItem(p_io, "../Textures/Splashscreen.png") );
 
 }
@@ -22,7 +23,10 @@ void MenuState::update(float p_dt)
 	{
 		InputInfo input = m_io->fetchInput();
 		if (input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED)
+		{
+			m_io->clearSpriteInfos();
 			m_parent->requestStateChange(m_parent->getInGameState());
+		}
 
 		if( input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
 		{

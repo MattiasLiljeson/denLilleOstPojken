@@ -7,6 +7,7 @@ StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 	m_inGameState = new InGameState(this, m_io);
 	m_menuState = new MenuState(this, m_io);
 	m_currentState = m_desiredState = m_menuState;
+	m_currentState->activateState();
 	m_terminated = false;
 }
 StateManager::~StateManager()
@@ -33,6 +34,7 @@ void StateManager::update(float p_dt)
 	if (m_desiredState != m_currentState)
 	{
 		switchState();
+		m_currentState->activateState();
 	}
 	m_currentState->update(p_dt);
 }
