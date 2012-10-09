@@ -68,6 +68,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::UP]	= VK_UP;
 	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
+	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
 
 	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 

@@ -41,7 +41,7 @@ int GlContext::init()
 
 	glfwSetWindowTitle("Den lille ostpojken");
 	glfwEnable( GLFW_STICKY_KEYS );
-	glViewport(0, 0, getScreenWidth(), getScreenHeight()); 
+	glViewport(0, 0, getScreenWidth(), getScreenHeight());
 	m_spriteRenderer = new GlSpriteRenderer(this);
 	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
@@ -52,6 +52,7 @@ int GlContext::init()
 	m_keyMappings[InputInfo::UP]	= GLFW_KEY_UP;
 	m_keyMappings[InputInfo::DOWN]  = GLFW_KEY_DOWN;
 	m_keyMappings[InputInfo::SPACE] = GLFW_KEY_SPACE;
+	m_keyMappings[InputInfo::ENTER] = GLFW_KEY_ENTER;
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
 	posX = 400;
