@@ -5,6 +5,7 @@
 
 InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
+	m_factory = new GOFactory(p_io);
 	m_io = p_io;
 	m_tileMap = NULL;
 	m_stats = NULL;
@@ -135,7 +136,7 @@ void InGameState::restart()
 		stringstream ss;
 		ss << m_currentMap;
 		string mapString = "..\\Maps\\" + ss.str() + ".txt";
-		mapParser.parseMap(mapString, m_io, m_stats);
+		mapParser.parseMap(mapString, m_io, m_stats, m_factory);
 
 		m_tileMap = mapParser.getTileMap();
 		m_gameObjects = mapParser.getGameObjects();

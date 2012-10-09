@@ -48,7 +48,7 @@
       <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\GameObject\MenuItem">
-      <UniqueIdentifier>{4e11c37f-0fd2-411e-a030-61859cddae20}</UniqueIdentifier>
+      <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +114,9 @@
     </ClCompile>
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GOFactory.cpp">
+      <Filter>Source\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuItem.cpp">
       <Filter>Source\GameObject\MenuItem</Filter>
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GOFactory.h">
+      <Filter>Source\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="src\MenuItem.h">
       <Filter>Source\GameObject\MenuItem</Filter>

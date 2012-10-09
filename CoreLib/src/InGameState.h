@@ -11,6 +11,7 @@ private:
 	vector<GameObject*>	m_gameObjects;
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
+	GOFactory*			m_factory;
 
 	//Temp
 	Tilemap* m_tileMap;

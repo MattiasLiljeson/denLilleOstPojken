@@ -44,7 +44,7 @@ private:
 				vector<AstarItem>& p_queue);
 	int		FindTile(Tile* p_tile, vector<AstarItem>& p_queue);
 public:
-	Monster(Tile* p_tile, Tilemap* p_map, IODevice* p_io);
+	Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map);
 	~Monster();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	Tile*	getCurrentTile();

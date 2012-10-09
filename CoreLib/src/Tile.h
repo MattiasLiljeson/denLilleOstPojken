@@ -48,7 +48,7 @@ private:
 	IODevice* m_io;
 
 public:
-	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, IODevice* p_io);
+	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
 	bool getType();
 	TilePosition getTilePosition();
 	fVector2		getPosition();

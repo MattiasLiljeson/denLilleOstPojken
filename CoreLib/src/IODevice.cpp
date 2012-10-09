@@ -54,6 +54,7 @@ int IODevice::update(float p_dt)
 {
 	if(m_context)
 		m_context->update(p_dt);
+		m_soundManager.update(p_dt);
 
 	return 0;
 }
@@ -85,6 +86,11 @@ void IODevice::clearSpriteInfos()
 void IODevice::updateSpriteInfo( SpriteInfo* p_spriteInfo )
 {
 	m_context->addSprite( p_spriteInfo );
+}
+
+void IODevice::addSound(string p_path)
+{
+	m_soundManager.addSound(p_path);
 }
 
 bool IODevice::isRunning()
