@@ -11,7 +11,7 @@ private:
 	int			m_width;
 	int			m_height;
 public:
-	Tilemap(int p_width, int p_height, bool* p_initData, IODevice* p_device);
+	Tilemap(int p_width, int p_height, Tile** p_tiles);
 	virtual ~Tilemap();
 	Tile* getTile(TilePosition p_position);
 	Tile* closestFreeTile(Tile* p_start);

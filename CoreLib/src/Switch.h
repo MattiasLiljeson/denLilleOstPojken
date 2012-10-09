@@ -13,9 +13,8 @@ private:
 	Tilemap* m_map;
 	vector<TilePosition> m_targets;
 	float m_cooldown;
-	IODevice* m_io;
 public:
-	Switch(IODevice* p_io, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets);
+	Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
 };

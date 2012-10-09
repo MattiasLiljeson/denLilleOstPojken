@@ -9,6 +9,7 @@
 #include "SpeedPill.h"
 #include "Pill.h"
 #include <fVector3.h>
+#include "Switch.h"
 
 class GOFactory
 {
@@ -24,6 +25,9 @@ public:
 	SuperPill* CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);
 	SpeedPill* CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats);
 	Pill* CreatePill(Tile* p_tile, GameStats* p_gameStats);
+	Tilemap* CreateTileMap(int p_width, int p_height, bool* p_initData);
+	Tile* CreateTile(bool p_type, TilePosition p_position, float p_width, float p_height);
+	Switch* CreateSwitch(Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets);
 };
 
 #endif

@@ -61,7 +61,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats, GO
 
 		}
 
-		m_tileMap = new Tilemap(width, height, types, p_io);
+		m_tileMap = m_factory->CreateTileMap(width, height, types);
 		delete[] types;
 
 		int currentSwitch = 0;
@@ -81,7 +81,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats, GO
 				else if (m_map[index] == SWITCH)
 				{
 					vector<TilePosition> targets = switches[currentSwitch++];
-					m_gameObjects.push_back(new Switch(p_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
+					m_gameObjects.push_back(m_factory->CreateSwitch(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
 
 				}
 				else if (m_map[index] == MONSTER_SPAWN)
