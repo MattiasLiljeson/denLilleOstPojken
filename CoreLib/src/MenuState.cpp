@@ -4,7 +4,18 @@
 MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
 	m_io = p_io;
+	m_menuItems.push_back( new MenuItem(p_io, "../Textures/Splashscreen.png") );
+
 }
+
+MenuState::~MenuState()
+{
+	for(unsigned int i = 0; i < m_menuItems.size(); i++)
+	{
+		delete m_menuItems[i];
+	}
+}
+
 void MenuState::update(float p_dt)
 {
 	if (m_io)

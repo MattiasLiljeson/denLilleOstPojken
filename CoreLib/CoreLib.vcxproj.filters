@@ -47,6 +47,9 @@
     <Filter Include="Source\AI">
       <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\MenuItem">
+      <UniqueIdentifier>{4e11c37f-0fd2-411e-a030-61859cddae20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -112,6 +115,9 @@
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
     </ClCompile>
+    <ClCompile Include="src\MenuItem.cpp">
+      <Filter>Source\GameObject\MenuItem</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -176,6 +182,9 @@
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuItem.h">
+      <Filter>Source\GameObject\MenuItem</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
