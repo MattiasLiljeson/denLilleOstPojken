@@ -70,6 +70,12 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	SoundInfo* soundinfo = new SoundInfo();
 	soundinfo->play = false;
 	soundinfo->id = "..\\Sounds\\gun.wav";
+	sf::SoundBuffer buffer;
+	buffer.LoadFromFile("..\\Sounds\\gun.wav");
+	sf::Sound* s = new sf::Sound(buffer);
+	s->SetVolume(100);
+	s->Play();
+
 	m_io->addSound(soundinfo);
 	return new Pill(spriteInfo, soundinfo, p_tile, p_gameStats);
 }
