@@ -121,8 +121,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
@@ -130,8 +130,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -139,8 +139,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
@@ -148,8 +148,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\CommonLib\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -167,7 +167,7 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
@@ -185,7 +185,7 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -207,7 +207,7 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
@@ -229,7 +229,7 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;GLFW.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>CommonLib_$(Configuration).lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>CommonLib_$(Configuration).lib;sfml-audio-s-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

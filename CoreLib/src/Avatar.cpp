@@ -31,6 +31,22 @@ void Avatar::checkInput(InputInfo p_inputInfo)
 	{
 		m_desired = Direction::UP;
 	}
+}	
+bool Avatar::check180()
+{
+	if (m_desired == Direction::LEFT)
+		if (m_direction == Direction::RIGHT)
+			return true;
+	if (m_desired == Direction::RIGHT)
+		if (m_direction == Direction::LEFT)
+			return true;
+	if (m_desired == Direction::UP)
+		if (m_direction == Direction::DOWN)
+			return true;
+	if (m_desired == Direction::DOWN)
+		if (m_direction == Direction::UP)
+			return true;
+	return false;
 }
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
@@ -39,11 +55,25 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	
 	if (m_desired != m_direction)
 	{
-		Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
-		if (destination && destination->isFree())
+		if (check180())
 		{
-			m_queuedTile = destination;
+			Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
+			Tile* temp = m_currentTile;
+			m_currentTile = m_nextTile;
+			m_nextTile = m_queuedTile = temp;
+			if (destination && destination->isFree())
+				m_queuedTile = destination;
 			m_direction = m_desired;
+			dt = 1 - dt;
+		}
+		else
+		{
+			Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
+			if (destination && destination->isFree())
+			{
+				m_queuedTile = destination;
+				m_direction = m_desired;
+			}
 		}
 	}
 
@@ -75,22 +105,17 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 	if (m_gameStats->isSuperMode())
 	{
-		//m_spriteInfo->textureFilePath = "../Textures/hero.png";
 		m_spriteInfo->textureRect.x = 0;
 		float remaining = m_gameStats->superTimeRemaining();
 		if (remaining < 1)
 		{
 			if ((int)(remaining*6) % 2 == 0)
 				m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
-				//m_spriteInfo->textureFilePath = "../Textures/pacman-1974.png";
 		}
-		//m_io->updateSpriteInfo(m_spriteInfo);
 	}
 	else
 	{
 		m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
-		//m_spriteInfo->textureFilePath = "../Textures/pacman-1974.png";
-		//m_io->updateSpriteInfo(m_spriteInfo);
 	}
 
 }

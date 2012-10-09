@@ -34,6 +34,7 @@ private:
 	float dt;
 private:
 	void checkInput(InputInfo p_inputInfo);
+	bool check180();
 
 public:
 	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);

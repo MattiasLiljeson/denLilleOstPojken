@@ -4,6 +4,10 @@
     <ClCompile Include="src\IOContext.cpp" />
     <ClCompile Include="src\Timer.cpp" />
     <ClCompile Include="src\LodePNG.cpp" />
+    <ClCompile Include="src\SoundInfo.cpp">
+      <Filter>InfoStructs</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SoundManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IOContext.h" />
@@ -31,6 +35,10 @@
     <ClInclude Include="src\Rect.h">
       <Filter>InfoStructs</Filter>
     </ClInclude>
+    <ClInclude Include="src\SoundInfo.h">
+      <Filter>InfoStructs</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SoundManager.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="InfoStructs">
