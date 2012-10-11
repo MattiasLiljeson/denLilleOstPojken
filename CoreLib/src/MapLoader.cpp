@@ -14,6 +14,10 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 {
 	m_factory = p_factory;
 	m_stats = p_stats;
+
+	if (!m_factory)
+		return GAME_FAIL;
+
 	fstream file(p_MapPath.c_str());
 
 	int value;

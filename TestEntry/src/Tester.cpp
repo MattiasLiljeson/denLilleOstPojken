@@ -11,6 +11,8 @@ void Tester::run()
 	tests.push_back(new Test_SoundInfo());
 	tests.push_back(new Test_SoundData());
 	tests.push_back(new Test_GameStats());
+	tests.push_back(new Test_GOFactory());
+	tests.push_back(new Test_MapLoader());
 
 	for (unsigned int i = 0; i < tests.size(); i++)
 	{

@@ -21,7 +21,9 @@
     <ClInclude Include="src\Test.h" />
     <ClInclude Include="src\Tester.h" />
     <ClInclude Include="src\Test_fVector3.h" />
+    <ClInclude Include="src\Test_GOFactory.h" />
     <ClInclude Include="src\Test_InputInfo.h" />
+    <ClInclude Include="src\Test_MapLoader.h" />
     <ClInclude Include="src\Test_Rect.h" />
     <ClInclude Include="src\Test_SoundData.h" />
     <ClInclude Include="src\Test_SoundInfo.h" />

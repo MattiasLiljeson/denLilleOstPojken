@@ -13,6 +13,12 @@
     <Filter Include="GameStats">
       <UniqueIdentifier>{421d1ef3-28a3-437c-8da4-1ee46debbc16}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MapLoader">
+      <UniqueIdentifier>{37933642-894e-4971-b02a-d173b69b19ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{43dccd2a-039d-4fd3-ace2-901424d42a52}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -45,6 +51,12 @@
     </ClInclude>
     <ClInclude Include="src\Test_GameStats.h">
       <Filter>GameStats</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_MapLoader.h">
+      <Filter>MapLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GOFactory.h">
+      <Filter>Factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

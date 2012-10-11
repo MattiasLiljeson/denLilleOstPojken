@@ -10,6 +10,8 @@
 #include "Test_SoundInfo.h"
 #include "Test_SoundData.h"
 #include "Test_GameStats.h"
+#include "Test_MapLoader.h"
+#include "Test_GOFactory.h"
 
 class Tester
 {
