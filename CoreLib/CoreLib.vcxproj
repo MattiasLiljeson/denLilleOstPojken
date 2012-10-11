@@ -31,6 +31,7 @@
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
     <ClCompile Include="src\MapLoader.cpp" />
+    <ClCompile Include="src\MenuItem.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Pill.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
     <ClInclude Include="src\MapLoader.h" />
+    <ClInclude Include="src\MenuItem.h" />
     <ClInclude Include="src\MenuState.h" />
     <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />

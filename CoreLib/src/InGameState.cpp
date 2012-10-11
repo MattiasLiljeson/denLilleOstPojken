@@ -28,10 +28,18 @@ InGameState::~InGameState()
 			delete m_stats;
 	}
 }
+
+bool InGameState::onEntry()
+{
+	restart();
+	return true;
+}
+
 void InGameState::update(float p_dt)
 {
 	if (m_io)
 	{
+
 		InputInfo input = m_io->fetchInput();
 
 		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
@@ -72,6 +80,7 @@ void InGameState::update(float p_dt)
 		m_io->setWindowText(text);
 	}
 }
+
 void InGameState::draw(float p_dt)
 {
 }
@@ -128,7 +137,7 @@ void InGameState::restart()
 
 		stringstream ss;
 		ss << m_currentMap;
-		string mapString = "..\\Maps\\" + ss.str() + ".txt";
+		string mapString = "../Maps/" + ss.str() + ".txt";
 		mapParser.parseMap(mapString, m_io, m_stats, m_factory);
 
 		m_tileMap = mapParser.getTileMap();

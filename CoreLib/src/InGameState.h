@@ -24,6 +24,7 @@ public:
 	void draw(float p_dt);
 	bool checkDynamicCollision();
 	void restart();
+	bool onEntry();
 };
 
 #endif

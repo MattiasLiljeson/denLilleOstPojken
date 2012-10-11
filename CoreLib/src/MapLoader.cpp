@@ -9,7 +9,8 @@ MapLoader::~MapLoader()
 {
 }
 
-int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats, GOFactory* p_factory)
+int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
+	GOFactory* p_factory)
 {
 	m_factory = p_factory;
 	m_stats = p_stats;
@@ -72,33 +73,40 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats, GO
 				int index = i*width+j;
 				if (m_map[index] == PILL)
 				{
-					m_gameObjects.push_back(m_factory->CreatePill(m_tileMap->getTile(TilePosition(j, i)), m_stats));
+					m_gameObjects.push_back(m_factory->CreatePill(
+						m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
 				else if (m_map[index] == SPEEDPILL)
 				{
-					m_gameObjects.push_back(m_factory->CreateSpeedPill(m_tileMap->getTile(TilePosition(j, i)), m_stats));
+					m_gameObjects.push_back(m_factory->CreateSpeedPill(
+						m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
 				else if (m_map[index] == SWITCH)
 				{
 					vector<TilePosition> targets = switches[currentSwitch++];
-					m_gameObjects.push_back(m_factory->CreateSwitch(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
+					m_gameObjects.push_back(m_factory->CreateSwitch(
+						m_tileMap->getTile(TilePosition(j, i)),
+						m_tileMap, m_stats, targets));
 
 				}
 				else if (m_map[index] == MONSTER_SPAWN)
 				{
-					Monster* monster = m_factory->CreateMonster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
+					Monster* monster = m_factory->CreateMonster(
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
 				else if (m_map[index] == AVATAR_SPAWN)
 				{
-					m_avatar = m_factory->CreateAvatar(m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
+					m_avatar = m_factory->CreateAvatar(m_tileMap,
+						m_tileMap->getTile(TilePosition(j, i)), m_stats);
 					m_gameObjects.push_back(m_avatar);
 
 				}
 				else if (m_map[index] == SUPERPILL)
 				{
-					m_gameObjects.push_back(m_factory->CreateSuperPill(m_tileMap->getTile(TilePosition(j,i)), m_stats));
+					m_gameObjects.push_back(m_factory->CreateSuperPill(
+						m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
 			}
 		}

@@ -40,7 +40,8 @@ private:
 
 	bool m_dead;
 private:
-	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal, vector<AstarItem>& p_queue);
+	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal,
+				vector<AstarItem>& p_queue);
 	int		FindTile(Tile* p_tile, vector<AstarItem>& p_queue);
 public:
 	Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map);

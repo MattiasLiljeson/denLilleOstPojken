@@ -9,7 +9,7 @@ struct InputInfo
 	};
 	enum KeyCode
 	{
-		RIGHT, LEFT, UP, DOWN, SPACE, ESC, NUM_KEYS 
+		RIGHT, LEFT, UP, DOWN, SPACE, ESC, ENTER, NUM_KEYS 
 	};
 	int keys[NUM_KEYS];
 
