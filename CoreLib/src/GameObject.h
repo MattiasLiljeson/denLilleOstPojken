@@ -6,6 +6,7 @@
 #include "GameStats.h"
 #include <fVector2.h>
 #include <TransformInfo.h>
+#include <SoundInfo.h>
 class GameObject
 {
 protected:

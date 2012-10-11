@@ -1,7 +1,8 @@
 #include "Pill.h"
 
-Pill::Pill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
+Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
 {
+	soundInfo = p_soundInfo;
 	p_gameStats->addPill();
 	m_tile = p_tile;
 	m_tile->addPill(this);
@@ -21,5 +22,6 @@ void Pill::consume()
 		m_consumed = true;
 		m_tile = NULL;
 		m_gameStats->pillEaten();
+		soundInfo->play = true;
 	}
 }

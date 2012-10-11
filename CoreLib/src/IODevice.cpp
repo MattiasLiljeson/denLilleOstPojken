@@ -88,9 +88,9 @@ void IODevice::updateSpriteInfo( SpriteInfo* p_spriteInfo )
 	m_context->addSprite( p_spriteInfo );
 }
 
-void IODevice::addSound(string p_path)
+void IODevice::addSound(SoundInfo* p_soundInfo)
 {
-	m_soundManager.addSound(p_path);
+	m_soundManager.addSound(p_soundInfo);
 }
 
 bool IODevice::isRunning()
