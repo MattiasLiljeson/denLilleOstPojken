@@ -2,6 +2,7 @@
 #define GLYPHMAP_H
 
 #include <string>
+#include "Rect.h"
 using namespace std;
 
 // GlyphMap contains a path for a bitmap font a
@@ -10,18 +11,20 @@ using namespace std;
 class GlyphMap
 {
 public:
-	GlyphMap(const string& key, const string& bitmapPath, 
-			unsigned int charWidth, unsigned int charHeight);
+	GlyphMap(const string& p_key, const string& p_bitmapPath, 
+			unsigned int p_charWidth, unsigned int p_charHeight);
 	virtual ~GlyphMap() {}
-	const int GetWidth() const {return m_charWidth;}
-	const int GetHeight() const {return m_charHeight;}
-	const string& GetPath() const {return m_bitmapPath;}
-
+	unsigned int getCharWidth() const {return m_charWidth;}
+	unsigned int getCharHeight() const {return m_charHeight;}
+	unsigned int getMaxBitmapWidth() const {return m_maxBitmapWidth;} 
+	const string& getPath() const {return m_bitmapPath;}
+	Rect getCharRect(char p_character);
 private:
 	string m_key;
 	string m_bitmapPath;
 	unsigned int m_charWidth;
 	unsigned int m_charHeight;
+	unsigned int m_maxBitmapWidth;
 };
 
 #endif
