@@ -3,13 +3,12 @@
 State::State(StateManager* p_parent)
 {
 	m_parent = p_parent;
-	m_stateJustActivated = false;
 }
 State::~State()
 {
 }
 
-void State::activateState()
+void State::onEntry()
 {
-	m_stateJustActivated = true;
+	// Base class should have this empty.
 }

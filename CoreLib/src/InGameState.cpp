@@ -28,16 +28,16 @@ InGameState::~InGameState()
 			delete m_stats;
 	}
 }
+
+void InGameState::onEntry()
+{
+	restart();
+}
+
 void InGameState::update(float p_dt)
 {
 	if (m_io)
 	{
-		if(m_stateJustActivated)
-		{
-			m_stateJustActivated = false;
-			// Handle newly activated state. (AKA 'event: on_state_change')
-			restart();
-		}
 
 		InputInfo input = m_io->fetchInput();
 
@@ -79,6 +79,7 @@ void InGameState::update(float p_dt)
 		m_io->setWindowText(text);
 	}
 }
+
 void InGameState::draw(float p_dt)
 {
 }
