@@ -5,6 +5,8 @@
 #include "MenuItem.h"
 #include "GOFactory.h"
 #include <vector>
+#include "TextArea.h"
+
 using namespace std;
 
 class MenuState: public State
@@ -13,7 +15,9 @@ private:
 	IODevice* m_io;
 	vector<MenuItem*> m_menuItems;
 	GOFactory* m_factory;
-
+	//
+	GlyphMap* testFont;
+	TextArea* textArea;
 public:
 	MenuState(StateManager* p_parent, IODevice* p_io);
 	virtual ~MenuState();

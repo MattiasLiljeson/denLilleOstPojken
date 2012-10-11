@@ -157,3 +157,13 @@ MenuItem* GOFactory::createMenuItem()
 		pos, size, NULL);
 	return new MenuItem(spriteInfo);
 }
+
+
+Glyph* GOFactory::CreateGlyph(const string& p_texture, 
+							  float p_x, float p_y, fVector2 p_size)
+{
+	fVector3 pos = fVector3(p_x, p_y, 0.99f);
+	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
+	// spriteInfo->visible = false;
+	return new Glyph(spriteInfo);
+}

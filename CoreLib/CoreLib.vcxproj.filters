@@ -56,6 +56,9 @@
     <Filter Include="Source\Text\TextArea">
       <UniqueIdentifier>{442ef535-6f36-4f0a-9508-de09af637d64}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Glyph">
+      <UniqueIdentifier>{2be6cc5c-890f-482a-85ba-3ab02e2fdcb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -123,6 +126,18 @@
     </ClCompile>
     <ClCompile Include="src\GOFactory.cpp">
       <Filter>Source\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuItem.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphMap.cpp">
+      <Filter>Source\Text\GlyphMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextArea.cpp">
+      <Filter>Source\Text\TextArea</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glyph.cpp">
+      <Filter>Source\GameObject\Glyph</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,8 +207,15 @@
     <ClInclude Include="src\GOFactory.h">
       <Filter>Source\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="GlyphMap.h">
+    <ClInclude Include="src\MenuItem.h" />
+    <ClInclude Include="src\GlyphMap.h">
       <Filter>Source\Text\GlyphMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextArea.h">
+      <Filter>Source\Text\TextArea</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glyph.h">
+      <Filter>Source\GameObject\Glyph</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

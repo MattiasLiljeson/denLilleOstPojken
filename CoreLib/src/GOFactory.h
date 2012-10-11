@@ -11,6 +11,7 @@
 #include "MenuItem.h"
 #include <fVector3.h>
 #include "Switch.h"
+#include "Glyph.h"
 #include <SoundInfo.h>
 
 class GOFactory
@@ -40,6 +41,8 @@ public:
 
 	MenuItem* createMenuItem();
 
+	Glyph* CreateGlyph(const string& p_texture, 
+					   float p_x, float p_y, fVector2 p_size);
 };
 
 #endif
