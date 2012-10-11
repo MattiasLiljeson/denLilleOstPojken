@@ -1,25 +1,29 @@
 #include "GameObject.h"
 #include "GOState.h"
+#include "BasicIdle.h"
 
 GameObject::GameObject()
 {
-	m_spriteInfo	= NULL;
-	m_gameStats		= NULL;
-	m_currentState	= NULL;
+	m_spriteInfo		= NULL;
+	m_gameStats			= NULL;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::GameObject(SpriteInfo* p_spriteInfo)
 {
-	m_spriteInfo	= p_spriteInfo;
-	m_gameStats		= NULL;
-	m_currentState	= NULL;
+	m_spriteInfo		= p_spriteInfo;
+	m_gameStats			= NULL;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::GameObject(SpriteInfo* p_spriteInfo, GameStats* p_gameStats)
 {
-	m_spriteInfo	= p_spriteInfo;
-	m_gameStats		= p_gameStats;
-	m_currentState	= NULL;
+	m_spriteInfo		= p_spriteInfo;
+	m_gameStats			= p_gameStats;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::~GameObject()
@@ -27,6 +31,7 @@ GameObject::~GameObject()
 	m_spriteInfo = NULL;
 	m_gameStats = NULL;
 	m_currentState = NULL;
+	delete m_basicIdleState;
 }
 
 int GameObject::switchState(GOState* p_newState, bool p_forceSwitchToSame)
@@ -61,4 +66,8 @@ fVector2 GameObject::getPostion() const
 float GameObject::getRadius() const
 {
 	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
+}
+SpriteInfo* GameObject::getSpriteInfo()
+{
+	return m_spriteInfo;
 }

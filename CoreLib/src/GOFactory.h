@@ -21,6 +21,8 @@ private:
 private:
 	SpriteInfo* CreateSpriteInfo(string p_texture, fVector3 p_position,
 		fVector2 p_size, Rect* p_sourceRect);
+
+	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 public:
 	GOFactory(IODevice* p_io);
 

@@ -18,7 +18,7 @@ private:
 	GameStats* m_stats;
 	int	m_currentMap;
 public:
-	InGameState(StateManager* p_parent, IODevice* p_io);
+	InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset = false);
 	virtual ~InGameState();
 	void update(float p_dt);
 	void draw(float p_dt);

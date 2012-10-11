@@ -3,7 +3,7 @@
 
 #include "Tilemap.h"
 
-
+class AvatarKilled;
 
 struct Direction
 {
@@ -31,20 +31,23 @@ private:
 	int m_direction;
 	int m_desired;
 
+	AvatarKilled* m_avatarKilledState;
+
 	float dt;
 private:
 	void checkInput(InputInfo p_inputInfo);
 	bool check180();
 
 public:
-	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
-
+	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound);
+	~Avatar();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 
-	Tile*	getCurrentTile();
-	int		getDirection();
-	float	getTileInterpolationFactor();
-	void	setTilePosition(Tile* p_newPosition);
+	Tile*		getCurrentTile();
+	int			getDirection();
+	float		getTileInterpolationFactor();
+	void		setTilePosition(Tile* p_newPosition);
+	void		kill();
 };
 
 #endif

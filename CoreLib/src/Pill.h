@@ -14,10 +14,6 @@ private:
 	Tile* m_tile;
 	PillIdleState* m_idleState;
 	PillEatenState* m_eatenState;
-
-
-	//Temporary
-	SoundInfo* soundInfo;
 public:
 	Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats);
 	virtual ~Pill();
