@@ -53,6 +53,9 @@
     <Filter Include="Source\GameObject\States\Pill">
       <UniqueIdentifier>{002c6e1c-1474-4240-a21a-d6cc16a5552a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\States\Avatar">
+      <UniqueIdentifier>{18c83fb2-c329-4ac1-9f94-05e004e7b3ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">

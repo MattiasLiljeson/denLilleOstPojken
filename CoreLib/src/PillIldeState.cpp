@@ -4,6 +4,9 @@ PillIdleState::PillIdleState(GameObject* p_gameObject, SpriteInfo* p_spriteInfo)
 {
 	m_spriteInfo = p_spriteInfo;
 }
+PillIdleState::~PillIdleState()
+{
+}
 int PillIdleState::onEnter()
 {
 	return GAME_OK;

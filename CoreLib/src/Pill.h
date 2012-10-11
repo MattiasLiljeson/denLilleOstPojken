@@ -5,14 +5,15 @@
 #include "Collectable.h"
 #include "IODevice.h"
 #include "PillIdleState.h"
-#include "PillEatenState.h"
+
+class PillEatenState;
 
 class Pill: public Collectable
 {
 private:
 	Tile* m_tile;
-	//PillIdleState* m_idleState;
-	//PillEatenState* m_eatenState;
+	PillIdleState* m_idleState;
+	PillEatenState* m_eatenState;
 
 
 	//Temporary
