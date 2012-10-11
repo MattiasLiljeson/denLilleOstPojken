@@ -3,9 +3,10 @@
 
 MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
+	m_factory = new GOFactory(p_io);
 	m_io = p_io;
 	p_io->clearSpriteInfos();
-	m_menuItems.push_back( new MenuItem(p_io, "../Textures/Splashscreen.png") );
+	m_menuItems.push_back( m_factory->createMenuItem() );
 
 }
 
@@ -15,6 +16,15 @@ MenuState::~MenuState()
 	{
 		delete m_menuItems[i];
 	}
+
+	m_menuItems.clear();
+
+	delete m_factory;
+}
+
+bool MenuState::onEntry()
+{
+	return true;
 }
 
 void MenuState::update(float p_dt)

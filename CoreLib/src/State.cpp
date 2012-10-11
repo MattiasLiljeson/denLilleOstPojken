@@ -8,7 +8,8 @@ State::~State()
 {
 }
 
-void State::onEntry()
+bool State::onEntry()
 {
-	// Base class should have this empty.
+	// Base class should have no implementation.
+	return false;
 }

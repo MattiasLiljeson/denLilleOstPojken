@@ -10,7 +10,7 @@ using namespace std;
 class MenuItem: public GameObject
 {
 public:
-	MenuItem(IODevice* p_io, string p_texturePath);
+	MenuItem(SpriteInfo* p_spriteInfo);
 	virtual ~MenuItem();
 
 	void update(float p_deltaTime, InputInfo p_inputInfo);

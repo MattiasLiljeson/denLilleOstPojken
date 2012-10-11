@@ -31,7 +31,7 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
 	fVector2 size = fVector2(w * 0.9f, h * 0.9f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\SeaMonster.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SeaMonster.png",
 		pos, size, NULL);
 	return new Monster(spriteInfo, p_tile, p_map);
 }
@@ -44,7 +44,7 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
 	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\SuperPill.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SuperPill.png",
 		pos, size, NULL);
 	return new SuperPill(spriteInfo, p_tile, p_gameStats);
 }
@@ -57,7 +57,7 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.1f);
 	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\drug.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
 	return new SpeedPill(spriteInfo, p_tile, p_gameStats);
 }
@@ -70,7 +70,7 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.1f);
 	fVector2 size = fVector2(w * 0.5f, h * 0.5f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\pill.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
 	return new Pill(spriteInfo, p_tile, p_gameStats);
 }
@@ -96,7 +96,7 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	fVector3 pos = fVector3(p_position.x * p_width + p_width * 0.5f,
 		p_position.y * p_height + p_height * 0.5f, 0.0f);
 	fVector2 size = fVector2(p_width, p_height);
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\wall.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/wall.png",
 		pos, size, NULL);
 	spriteInfo->visible = !p_type;
 
@@ -112,7 +112,7 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
 	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
 	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("..\\Textures\\Red_button.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Red_button.png",
 		pos, size, NULL);
 	return new Switch(spriteInfo, p_tile, p_map, p_gameStats, p_targets);
 }
@@ -137,4 +137,13 @@ SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
 		spriteInfo->textureRect.height = p_sourceRect->height;
 	}
 	return spriteInfo;
+}
+
+MenuItem* GOFactory::createMenuItem()
+{
+	fVector3 pos = fVector3(400.0f, 400.0f, 0.99f);
+	fVector2 size = fVector2(800.0f, 350.0f);
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SplashScreen.png",
+		pos, size, NULL);
+	return new MenuItem(spriteInfo);
 }
