@@ -6,7 +6,9 @@ StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 	m_timer = p_timer;
 	m_inGameState = new InGameState(this, m_io);
 	m_menuState = new MenuState(this, m_io);
-	m_currentState = m_desiredState = m_inGameState;
+	m_currentState = m_desiredState = m_menuState;
+	// Call the curren state's entry function.
+	m_currentState->onEntry();
 	m_terminated = false;
 }
 StateManager::~StateManager()
@@ -14,12 +16,18 @@ StateManager::~StateManager()
 	delete m_inGameState;
 	delete m_menuState;
 }
-void StateManager::requestStateChange(State* p_newState)
+int StateManager::requestStateChange(State* p_newState)
 {
-	if (p_newState == m_inGameState || p_newState == m_menuState)
+	if(p_newState != m_desiredState)
 	{
-		m_desiredState = p_newState;
+		if (p_newState == m_inGameState || p_newState == m_menuState)
+		{
+			m_desiredState = p_newState;
+			return GAME_OK;
+		}
 	}
+
+	return STATE_CHANGE_FAIL;
 }
 
 void StateManager::update(float p_dt)
@@ -27,6 +35,8 @@ void StateManager::update(float p_dt)
 	if (m_desiredState != m_currentState)
 	{
 		switchState();
+		// Call the curren state's entry function.
+		m_currentState->onEntry();
 	}
 	m_currentState->update(p_dt);
 }

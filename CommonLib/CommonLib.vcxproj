@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\IOContext.cpp" />
     <ClCompile Include="src\LodePNG.cpp" />
+    <ClCompile Include="src\SoundInfo.cpp" />
+    <ClCompile Include="src\SoundManager.cpp" />
     <ClCompile Include="src\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -29,6 +31,9 @@
     <ClInclude Include="src\IOContext.h" />
     <ClInclude Include="src\CommonUtility.h" />
     <ClInclude Include="src\LodePNG.h" />
+    <ClInclude Include="src\Rect.h" />
+    <ClInclude Include="src\SoundManager.h" />
+    <ClInclude Include="src\SoundInfo.h" />
     <ClInclude Include="src\SpriteInfo.h" />
     <ClInclude Include="src\Timer.h" />
     <ClInclude Include="src\TransformInfo.h" />
@@ -85,8 +90,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\libpng\include;$(DXSDK_DIR)\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\libpng\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\libpng\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
@@ -94,8 +99,8 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\libpng\include;$(DXSDK_DIR)\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\libpng\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(DXSDK_DIR)\Lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\libpng\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -103,16 +108,16 @@
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\sfml\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(DXSDK_DIR)\Include;$(ProjectDir)\external\libpng;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\sfml\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\libpng;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
     <IntDir>obj\$(Configuration)\</IntDir>
-    <IncludePath>$(ProjectDir)\external\sfml\include;$(ProjectDir)\external\glew-1.9.0\include;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\include;$(DXSDK_DIR)\Include;$(ProjectDir)\external\libpng;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)\external\sfml\lib;$(ProjectDir)\external\glew-1.9.0\lib;$(ProjectDir)\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(DXSDK_DIR)\Lib\x86;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)\external\SFML\include;$(ProjectDir)\external\libpng;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)\external\SFML\lib;$(ProjectDir)\external\libpng\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

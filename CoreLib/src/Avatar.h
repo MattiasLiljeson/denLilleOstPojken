@@ -29,15 +29,15 @@ private:
 	Tilemap* m_map;
 
 	int m_direction;
+	int m_desired;
 
 	float dt;
-
-	IODevice* m_io;
 private:
-	int checkInput(InputInfo p_inputInfo);
+	void checkInput(InputInfo p_inputInfo);
+	bool check180();
 
 public:
-	Avatar(IODevice* p_io, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
+	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
 
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 

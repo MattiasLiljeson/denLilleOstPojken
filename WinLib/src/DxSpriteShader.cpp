@@ -89,6 +89,7 @@ void DxSpriteShader::setBuffer(SpriteBuffer p_buffer,
 	buffer->CenterPosition = p_buffer.CenterPosition;
 	buffer->HalfSize = p_buffer.HalfSize;
 	buffer->WindowSize = p_buffer.WindowSize;
+	buffer->TextureRect = p_buffer.TextureRect;
 	m_deviceContext->Unmap(m_buffer, 0);
 
 	m_deviceContext->PSSetShaderResources(0, 1, &p_texture);

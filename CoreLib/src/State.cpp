@@ -7,3 +7,9 @@ State::State(StateManager* p_parent)
 State::~State()
 {
 }
+
+bool State::onEntry()
+{
+	// Base class should have no implementation.
+	return false;
+}

@@ -6,6 +6,11 @@
 
 using namespace std;
 
+enum
+{
+	MONSTER_KILLED = 100, PILL_EATEN = 10
+};
+
 class GameStats
 {
 private:
@@ -15,7 +20,9 @@ private:
 	Timer*			m_timer;
 	Timer*			m_superModeTimer;
 	Timer*			m_speedUpTimer;
+	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
+	int				m_score;
 public:
 	GameStats(Timer* p_timer);
 	~GameStats();
@@ -29,6 +36,9 @@ public:
 	void	setSuperMode();
 	bool	isSuperMode();
 	float   superTimeRemaining();
+	void	addScore(int p_points);
+	int		getScore() const;
+	Timer*	getGameTimer();
 };
 
 #endif

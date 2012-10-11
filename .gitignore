@@ -3,6 +3,7 @@
 *.exe
 *.exp
 *.pdb
+*.idb
 *.aps
 *.pch
 *.vspscc
@@ -16,6 +17,7 @@
 *.cache
 *.ilk
 *.log
+*.tlog
 *.zip
 *.user
 !WinLib.vcxproj.user
@@ -31,6 +33,7 @@ gltest3/
 lib-mingw/
 docs/
 doc/
+*.lastbuildstate
 
 #own
 [Oo]bj*/
@@ -54,4 +57,8 @@ assets/
 .gitignore~
 
 # Exceptions
-!external/*
+!external/SFML/lib/*
+!*/Guitar.exe
+!*/Guitar.exe.Config
+!CommonLib/external/SFML/lib/sfml-audio-s-d.lib
+!CommonLib/external/SFML/lib/sfml-audio-s.lib

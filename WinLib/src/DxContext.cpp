@@ -68,6 +68,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_keyMappings[InputInfo::UP]	= VK_UP;
 	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
 	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
+	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
 
 	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
@@ -76,7 +77,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 
 	// Create texture manager and load default texture
 	m_textureManager = new DxTextureManager(m_device);
-	m_textureManager->getTexture("..\\Textures\\default.png");
+	m_textureManager->getTexture("../Textures/default.png");
 
 	m_initialized = true;
 }
@@ -407,11 +408,11 @@ int DxContext::update(float p_dt)
 
 		if (m_totalGameTime - (int)m_totalGameTime < p_dt)
 		{
-			stringstream ss;
+			/*stringstream ss;
 			ss << (int)(1.0f / p_dt);
 			string s = ss.str();
 			s = "DirectX - " + s + " FPS";
-			SetWindowText(m_windowHandle, s.c_str());
+			SetWindowText(m_windowHandle, s.c_str());*/
 		}
 
 
@@ -495,7 +496,10 @@ int DxContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
 }
 
 int DxContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
@@ -509,8 +513,24 @@ int DxContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 	if(texture == NULL)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
 }
+
+void DxContext::spriteSetTextureRect( SpriteInfo* p_spriteInfo, ID3D11ShaderResourceView* p_textureResourceView )
+{
+	// Texture rectangle
+	D3D11_TEXTURE2D_DESC textureDesc;
+	ID3D11Texture2D* texture2D;
+	p_textureResourceView->GetResource((ID3D11Resource**)&texture2D);
+	texture2D->GetDesc(&textureDesc);
+	texture2D->Release();
+	p_spriteInfo->textureRect.width = textureDesc.Width;
+	p_spriteInfo->textureRect.height = textureDesc.Height;
+}
+
 
 int DxContext::endDraw()
 {
@@ -529,6 +549,11 @@ int DxContext::getScreenWidth() const
 int DxContext::getScreenHeight()  const 
 {
 	return m_screenHeight;
+}
+
+void DxContext::setWindowText(string p_text)
+{
+	SetWindowText(m_windowHandle, p_text.c_str());
 }
 
 LRESULT DxContext::handleWindowMessages(UINT p_message, 

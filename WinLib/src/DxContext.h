@@ -43,7 +43,7 @@ private:
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
-
+	void spriteSetTextureRect(SpriteInfo* p_spriteInfo, ID3D11ShaderResourceView* p_textureResourceView);  
 public:
 				DxContext(HINSTANCE pInstanceHandle, 
 					int p_screenWidth, int p_screenHeight);
@@ -65,6 +65,8 @@ public:
 
 	int			getScreenWidth() const;
 	int			getScreenHeight() const;
+
+	void		setWindowText(string p_text);
 
 	LRESULT		handleWindowMessages(UINT p_message, 
 					WPARAM p_wParam, LPARAM p_lParam);

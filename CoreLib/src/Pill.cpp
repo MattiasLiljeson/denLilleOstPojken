@@ -1,38 +1,28 @@
 #include "Pill.h"
+#include "PillEatenState.h"
 
-Pill::Pill(IODevice* p_io, Tile* p_tile, GameStats* p_gameStats): Collectable(NULL, p_gameStats)
+Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
 {
+	soundInfo = p_soundInfo;
 	p_gameStats->addPill();
-
-	m_spriteInfo = new SpriteInfo();
-	TilePosition t = p_tile->getTilePosition();
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = t.x * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = t.y * h + h * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = 0.1f;
-	m_spriteInfo->transformInfo.scale[TransformInfo::X] = w * 0.5f;
-	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = h * 0.5f;
-	m_spriteInfo->textureFilePath = "..\\Textures\\pill.png";
-	p_io->addSpriteInfo(m_spriteInfo);
-
 	m_tile = p_tile;
 	m_tile->addPill(this);
 	m_consumed = false;
+
+	m_idleState = new PillIdleState(this, p_spriteInfo);
+	m_eatenState = new PillEatenState(this, p_spriteInfo, p_soundInfo, p_gameStats);
+	m_currentState = m_idleState;
+}
+Pill::~Pill()
+{
+	delete m_idleState;
+	delete m_eatenState;
 }
 void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if (m_consumed)
-	{
-		m_spriteInfo->visible = false;
-	}
+	GameObject::update(p_deltaTime, p_inputInfo);
 }
 void Pill::consume()
 {
-	if (!m_consumed)
-	{
-		m_consumed = true;
-		m_tile = NULL;
-		m_gameStats->pillEaten();
-	}
+	switchState(m_eatenState);
 }

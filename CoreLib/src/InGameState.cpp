@@ -5,72 +5,12 @@
 
 InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
+	m_factory = new GOFactory(p_io);
 	m_io = p_io;
-	if (m_io)
-	{
-		m_tileMap	= 0;
-		m_mapParser = new MapLoader();
-		m_stats = new GameStats(m_parent->getNewTimerInstance());
-		m_mapParser->parseMap("..\\Maps\\test_map.txt");
-		vector<int> data = m_mapParser->getMap();
-		int mapWidth = m_mapParser->getLoadedWidth();
-		int mapHeight = m_mapParser->getLoadedHeight();
-
-		bool* types = new bool[mapWidth*mapHeight];
-		for (int i = 0; i < mapWidth*mapHeight; i++)
-		{
-			if (data[i] == WALL_CENTER)
-				types[i] = false;
-			else
-				types[i] = true;
-
-		}
-
-		m_tileMap = new Tilemap(mapWidth, mapHeight, types, m_io);
-
-		int currentSwitch = 0;
-		for (int i = 0; i < mapHeight; i++)
-		{
-			for (int j = 0; j < mapWidth; j++)
-			{
-				if (data[i*mapWidth+j] == PILL)
-				{
-					m_gameObjects.push_back(new Pill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
-				}
-				else if (data[i*mapWidth+j] == SPEEDPILL)
-				{
-					m_gameObjects.push_back(new SpeedPill(m_io, m_tileMap->getTile(TilePosition(j, i)), m_stats));
-				}
-				else if (data[i*mapWidth+j] == SWITCH)
-				{
-					vector<TilePosition> targets = m_mapParser->getSwitch(currentSwitch++);
-					m_gameObjects.push_back(new Switch(m_io, m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_stats, targets));
-
-				}
-				else if (data[i*mapWidth+j] == MONSTER_SPAWN)
-				{
-					Monster* monster = new Monster(m_tileMap->getTile(TilePosition(j, i)), m_tileMap, m_io);
-					m_monsters.push_back(monster);
-					m_gameObjects.push_back(monster);
-				}
-				else if (data[i*mapWidth+j] == AVATAR_SPAWN)
-				{
-					m_avatar = new Avatar(m_io, m_tileMap, m_tileMap->getTile(TilePosition(j, i)), m_stats);
-					m_gameObjects.push_back(m_avatar);
-				}
-				else if (data[i*mapWidth+j] == SUPERPILL)
-				{
-					m_gameObjects.push_back(new SuperPill(m_io, m_tileMap->getTile(TilePosition(j,i)), m_stats));
-				}
-			}
-		}
-		delete types;
-
-		for(unsigned int index=0;index<m_monsters.size();index++)
-		{
-			m_monsters.at(index)->addMonsterAI(m_avatar,m_stats,m_tileMap);
-		}
-	}
+	m_tileMap = NULL;
+	m_stats = NULL;
+	m_currentMap = 0;
+	restart();
 }
 InGameState::~InGameState()
 {
@@ -83,32 +23,42 @@ InGameState::~InGameState()
 			delete gameObject;
 		}
 		if (m_tileMap)
-			delete[] m_tileMap;
-		if (m_mapParser)
-			delete m_mapParser;
+			delete m_tileMap;
 		if (m_stats)
 			delete m_stats;
 	}
 }
+
+bool InGameState::onEntry()
+{
+	restart();
+	return true;
+}
+
 void InGameState::update(float p_dt)
 {
 	if (m_io)
 	{
+
 		InputInfo input = m_io->fetchInput();
 
-		if (input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
-			m_parent->requestStateChange(m_parent->getMenuState());
+		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
+		{
+			//m_parent->requestStateChange(m_parent->getMenuState());
+			restart();
+			return;
+		}
 		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
 		{
 			m_parent->terminate();
 		}
 		if (m_stats->getNumPills() < 1)
-			m_parent->terminate();
-
-		for (unsigned int index = 0; index < m_gameObjects.size(); index++)
 		{
-			m_gameObjects[index]->update(p_dt, input);
-		};
+			//m_parent->terminate();
+			m_currentMap = (m_currentMap+1) % 2;
+			restart();
+			return;
+		}
 
 		for (unsigned int index = 0; index < m_gameObjects.size(); index++)
 		{
@@ -118,8 +68,19 @@ void InGameState::update(float p_dt)
 		checkDynamicCollision();
 	
 		m_stats->update(p_dt);
+
+		int elapsed = m_stats->getGameTimer()->getElapsedTime();
+
+		stringstream ss;
+
+		ss << elapsed;
+
+		string text = "Elapsed Game Time: " + ss.str() + " seconds";
+
+		m_io->setWindowText(text);
 	}
 }
+
 void InGameState::draw(float p_dt)
 {
 }
@@ -138,10 +99,11 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(monsterBC))
 			{
+				collision = true;
 				if (m_stats->isSuperMode())
 				{
 					monster->kill();
-					collision = true;
+					m_stats->addScore(MONSTER_KILLED);
 				}
 				else
 					m_parent->terminate();
@@ -150,4 +112,37 @@ bool InGameState::checkDynamicCollision()
 	}
 
 	return collision;
+}
+void InGameState::restart()
+{
+	if (m_io)
+	{
+		m_io->clearSpriteInfos();
+		for (int i = 0; i < m_gameObjects.size(); i++)
+		{
+			delete m_gameObjects[i];
+		}
+		m_gameObjects.clear();
+		m_monsters.clear();
+		if (m_tileMap)
+			delete m_tileMap;
+		if (m_stats)
+			delete m_stats;
+
+
+
+		m_tileMap	= 0;
+		MapLoader mapParser;
+		m_stats = new GameStats(m_parent->getNewTimerInstance());
+
+		stringstream ss;
+		ss << m_currentMap;
+		string mapString = "../Maps/" + ss.str() + ".txt";
+		mapParser.parseMap(mapString, m_io, m_stats, m_factory);
+
+		m_tileMap = mapParser.getTileMap();
+		m_gameObjects = mapParser.getGameObjects();
+		m_avatar = mapParser.getAvatar();
+		m_monsters = mapParser.getMonsters();
+	}
 }

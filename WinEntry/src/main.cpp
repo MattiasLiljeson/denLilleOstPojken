@@ -1,5 +1,6 @@
 
-//#define USE_DIRECTX
+
+#define USE_DIRECTX
 
 #include <IOContext.h>
 #include <Game.h>
@@ -54,7 +55,7 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context = new GlContext(400, 400);
+	IOContext* context = new GlContext(800, 600);
 
 	context->setWindowSize(800, 600);
 

@@ -59,19 +59,39 @@ int GlSpriteRenderer::draw()
 {
 	glUseProgram(m_spriteShader->getID());
 	 
-	
-	glUniform2f(m_spriteShader->getCenterPositionConstant(), 
+	glUniform4f(m_spriteShader->getCenterPositionConstant(), 
 		m_spriteInfo->transformInfo.translation[TransformInfo::X],
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y]
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y],
+		m_spriteInfo->transformInfo.translation[TransformInfo::Z],
+		0.0f
+	);
+
+	glActiveTexture(GL_TEXTURE0);
+	// :NOTE: Must bind texture before retrieving width and height
+	glBindTexture(GL_TEXTURE_2D, m_texture);
+
+	int textureWidth, textureHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
+
+	if (m_spriteInfo->textureIndex == 3)
+	{
+		int i = 0;
+	}
+
+	glUniform4f(m_spriteShader->getTextureRectConstant(),
+		(float)m_spriteInfo->textureRect.x / textureWidth,
+		(float)m_spriteInfo->textureRect.y / textureHeight,
+		(float)m_spriteInfo->textureRect.width / textureWidth,
+		(float)m_spriteInfo->textureRect.height / textureHeight
 	);
 	glUniform2f(m_spriteShader->getHalfScaleConstant(),
 		m_spriteInfo->transformInfo.scale[TransformInfo::X] / 2,
 		m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 2
 	);
 	glUniform2f(m_spriteShader->getScreenSizeConstant(), 
-		(GLfloat)m_context->getScreenWidth(), (GLfloat)m_context->getScreenHeight());
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, m_texture);
+		(GLfloat)m_context->getScreenWidth(), (GLfloat)m_context->getScreenHeight()
+	);
 
 	glEnableVertexAttribArray(m_spriteShader->getPostionIndex());
 	glEnableVertexAttribArray(m_spriteShader->getTexCoordIndex());

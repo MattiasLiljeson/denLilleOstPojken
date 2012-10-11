@@ -21,6 +21,7 @@ struct SpriteBuffer
 	float pad;
 	Vector2 HalfSize;
 	Vector2 WindowSize;
+	Vector4 TextureRect;
 };
 
 class DxSpriteShader

@@ -6,11 +6,19 @@
 #include "GameStats.h"
 #include <fVector2.h>
 #include <TransformInfo.h>
+#include <SoundInfo.h>
+
+class GOState;
+
 class GameObject
 {
 protected:
 	SpriteInfo*	m_spriteInfo;
 	GameStats*	m_gameStats;
+
+	GOState* m_currentState;
+protected:
+	int switchState(GOState* p_newState, bool p_forceSwitchToSame = false);
 public:
 	GameObject();
 	GameObject(SpriteInfo* p_spriteInfo);

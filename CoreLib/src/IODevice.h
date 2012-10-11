@@ -5,6 +5,10 @@
 #include "IOContext.h"
 #include "InputInfo.h"
 #include "SpriteInfo.h"
+#include <SoundManager.h>
+
+
+class SoundManager;
 
 using namespace std;
 
@@ -12,6 +16,7 @@ class IODevice
 {
 private:
 	IOContext*			m_context;
+	SoundManager		m_soundManager;
 	vector<SpriteInfo*>	m_spriteInfos;
 
 public:
@@ -26,10 +31,15 @@ public:
 	bool		isRunning();
 
 	void		addSpriteInfo( SpriteInfo* p_spriteInfo );
+	void		removeSpriteInfo(SpriteInfo* p_spriteInfo);
 	void		updateSpriteInfo( SpriteInfo* p_spriteInfo );
+	void		clearSpriteInfos();
+
+	void		addSound(SoundInfo* p_soundInfo);
 
 	int			getScreenWidth();
 	int			getScreenHeight();
+	void		setWindowText(string p_text);
 
 
 };

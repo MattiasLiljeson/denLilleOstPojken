@@ -1,4 +1,4 @@
-#include "GlContext.h"
+﻿#include "GlContext.h"
 #include <sstream>
 
 GlContext* GlContext::s_instance = NULL;
@@ -26,6 +26,7 @@ GlContext::~GlContext()
 		glfwTerminate();
 
 	delete m_spriteRenderer;
+	delete m_textureManager;
 	s_instance = NULL;
 }
 int GlContext::init()
@@ -40,7 +41,7 @@ int GlContext::init()
 
 	glfwSetWindowTitle("Den lille ostpojken");
 	glfwEnable( GLFW_STICKY_KEYS );
-	glViewport(0, 0, getScreenWidth(), getScreenHeight()); 
+	glViewport(0, 0, getScreenWidth(), getScreenHeight());
 	m_spriteRenderer = new GlSpriteRenderer(this);
 	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
@@ -51,11 +52,15 @@ int GlContext::init()
 	m_keyMappings[InputInfo::UP]	= GLFW_KEY_UP;
 	m_keyMappings[InputInfo::DOWN]  = GLFW_KEY_DOWN;
 	m_keyMappings[InputInfo::SPACE] = GLFW_KEY_SPACE;
+	m_keyMappings[InputInfo::ENTER] = GLFW_KEY_ENTER;
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
 	posX = 400;
 	posY = 300;
 	m_initialized = true;
+
+	glEnable(GL_DEPTH_TEST);
+
 	return GAME_OK;
 }
 int GlContext::initGLFW()
@@ -78,7 +83,7 @@ int GlContext::initGLFWWindow()
 	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
  
 	//Open the Window
-	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(),0,0,0,0, 32,0, 
+	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
 		GLFW_WINDOW) != GL_TRUE)
 	{
 		return GAME_FAIL;
@@ -143,11 +148,11 @@ int GlContext::update(float p_dt)
 
 	if (m_totalGameTime - (int)m_totalGameTime < p_dt)
 	{
-		stringstream ss;
+		/*stringstream ss;
 		ss << (int)(1.0f / p_dt);//   m_totalGameTime;
 		string s = ss.str();
 		s = "OpenGL - " + s + " FPS";
-		glfwSetWindowTitle(s.c_str());
+		glfwSetWindowTitle(s.c_str());*/
 	}
 
 	if (m_input.keys[InputInfo::LEFT] == InputInfo::KEYDOWN)
@@ -186,7 +191,17 @@ int GlContext::beginDraw()
 int GlContext::drawSprite( SpriteInfo* p_spriteInfo )
 {
 	m_spriteRenderer->setSpriteInfo(p_spriteInfo);
-	m_spriteRenderer->draw();
+
+	if( p_spriteInfo->textureIndex >= 0 )
+	{
+		GLuint texture = 0;
+		m_textureManager->getTexture(p_spriteInfo->textureIndex, &texture);
+		if(texture != NULL)
+			m_spriteRenderer->setTexture(texture);
+	}
+
+	if(p_spriteInfo->visible)
+		m_spriteRenderer->draw();
 	return GAME_OK;
 }
 
@@ -221,7 +236,15 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 	if(texture == 0)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
+}
+
+void GlContext::setWindowText(string p_text)
+{
+	glfwSetWindowTitle(p_text.c_str());
 }
 
 int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
@@ -235,7 +258,22 @@ int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 	if(texture == 0)
 		return GAME_FAIL;
 	else
+	{
+		spriteSetTextureRect(p_spriteInfo, texture);
 		return GAME_OK;
+	}
+}
+
+void GlContext::spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint texture)
+{
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	int textureWidth, textureHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
+
+	p_spriteInfo->textureRect.width = textureWidth;
+	p_spriteInfo->textureRect.height = textureHeight;
 }
 
 int GlContext::addSprite( SpriteInfo* p_spriteInfo)
