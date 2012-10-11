@@ -7,7 +7,8 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats
 	m_targets = p_targets;
 
 	m_tile = p_tile;
-	m_tile->addPill(this);
+	if (m_tile)
+		m_tile->addPill(this);
 	m_consumed = false;
 	m_cooldown = 0;
 }

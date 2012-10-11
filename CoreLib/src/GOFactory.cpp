@@ -92,19 +92,17 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	fVector2 size = fVector2(p_width, p_height);
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/wall.png",
 		pos, size, NULL);
-	spriteInfo->visible = !p_type;
+
+	if (spriteInfo)
+		spriteInfo->visible = !p_type;
 
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
 	GameStats* p_gameStats, vector<TilePosition> p_targets)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
-	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
+	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Red_button.png",
 		pos, size, NULL);
