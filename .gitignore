@@ -57,7 +57,8 @@ assets/
 .gitignore~
 
 # Exceptions
-!external/*
+!external/SFML/lib/*
 !*/Guitar.exe
 !*/Guitar.exe.Config
-!CoreLib/external/SFML/lib/sfml-audio-s-d.lib
+!CommonLib/external/SFML/lib/sfml-audio-s-d.lib
+!CommonLib/external/SFML/lib/sfml-audio-s.lib
