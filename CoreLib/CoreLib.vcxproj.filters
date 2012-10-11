@@ -47,6 +47,12 @@
     <Filter Include="Source\AI">
       <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\States">
+      <UniqueIdentifier>{8bafb84b-d993-4e69-ac3c-09fdcb1fb4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\States\Pill">
+      <UniqueIdentifier>{002c6e1c-1474-4240-a21a-d6cc16a5552a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -115,6 +121,15 @@
     <ClCompile Include="src\GOFactory.cpp">
       <Filter>Source\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="src\GOState.cpp">
+      <Filter>Source\GameObject\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PillEatenState.cpp">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PillIldeState.cpp">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -182,6 +197,15 @@
     </ClInclude>
     <ClInclude Include="src\GOFactory.h">
       <Filter>Source\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GOState.h">
+      <Filter>Source\GameObject\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PillEatenState.h">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PillIdleState.h">
+      <Filter>Source\GameObject\States\Pill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
