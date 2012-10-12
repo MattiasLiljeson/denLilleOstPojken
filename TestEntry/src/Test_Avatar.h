@@ -38,9 +38,15 @@ private:
 
 		InputInfo inf;
 		inf.keys[InputInfo::RIGHT] = InputInfo::KEYPRESSED;
-		avatar.update(0.5f, inf);
+
+		while (avatar.getCurrentTile() == tiles[0])
+			avatar.update(0.5f, inf);
 
 		newEntry(TestData("Correct Direction", avatar.getDirection() == Direction::RIGHT));
+		newEntry(TestData("Correct Transition", avatar.getCurrentTile() == tiles[1]));
+		avatar.setTilePosition(tiles[0]);
+		newEntry(TestData("SetTilePosition", avatar.getCurrentTile() == tiles[0]));
+		newEntry(TestData("Interpolation Reset", avatar.getTileInterpolationFactor() == 0));
 	}
 public:
 	Test_Avatar(): Test("AVATAR")

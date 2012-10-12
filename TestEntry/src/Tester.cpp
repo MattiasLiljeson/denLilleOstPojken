@@ -12,6 +12,7 @@
 #include "Test_GOFactory.h"
 #include "Test_GlyphMap.h"
 #include "Test_Avatar.h"
+#include "Test_Tile.h"
 
 void Tester::run()
 {
@@ -28,6 +29,7 @@ void Tester::run()
 	tests.push_back(new Test_MapLoader());
 	tests.push_back(new Test_GlyphMap());
 	tests.push_back(new Test_Avatar());
+	tests.push_back(new Test_Tile());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;

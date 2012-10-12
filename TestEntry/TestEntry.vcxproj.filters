@@ -70,5 +70,8 @@
     <ClInclude Include="src\Test_Avatar.h">
       <Filter>GameObjects</Filter>
     </ClInclude>
+    <ClInclude Include="src\Test_Tile.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

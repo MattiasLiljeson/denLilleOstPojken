@@ -141,4 +141,5 @@ float Avatar::getTileInterpolationFactor()
 void Avatar::setTilePosition(Tile* p_newPosition)
 {
 	m_currentTile = p_newPosition;
+	dt = 0;
 }
