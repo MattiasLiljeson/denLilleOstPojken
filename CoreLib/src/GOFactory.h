@@ -22,6 +22,9 @@ private:
 private:
 	SpriteInfo* CreateSpriteInfo(string p_texture, fVector3 p_position,
 		fVector2 p_size, Rect* p_sourceRect);
+
+	fVector3 GetCenter(Tile* p_tile, float p_depth);
+	fVector2 GetScaledSize(Tile* p_tile, float p_scale);
 public:
 	GOFactory(IODevice* p_io);
 

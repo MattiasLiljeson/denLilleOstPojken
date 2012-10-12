@@ -47,17 +47,26 @@
     <Filter Include="Source\AI">
       <UniqueIdentifier>{e4de8078-7de1-4b7c-b0b6-44243f0a6191}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\MenuItem">
+      <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\States">
+      <UniqueIdentifier>{8bafb84b-d993-4e69-ac3c-09fdcb1fb4e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\States\Pill">
+      <UniqueIdentifier>{002c6e1c-1474-4240-a21a-d6cc16a5552a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\States\Avatar">
+      <UniqueIdentifier>{18c83fb2-c329-4ac1-9f94-05e004e7b3ff}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source\Text">
-      <UniqueIdentifier>{ccc3b846-e28b-4b9b-9576-8f205793445c}</UniqueIdentifier>
+      <UniqueIdentifier>{affd4781-051a-4fa5-939a-7257fd312641}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Text\GlyphMap">
-      <UniqueIdentifier>{03009f67-66c2-4e29-9c89-f1b90e3184c0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\Text\TextArea">
-      <UniqueIdentifier>{442ef535-6f36-4f0a-9508-de09af637d64}</UniqueIdentifier>
+      <UniqueIdentifier>{b0485893-183e-48b3-9dc3-b99963d0779d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\GameObject\Glyph">
-      <UniqueIdentifier>{2be6cc5c-890f-482a-85ba-3ab02e2fdcb3}</UniqueIdentifier>
+      <UniqueIdentifier>{c6aaeac9-9cab-4c1f-bd28-eb146de95b52}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -128,16 +137,25 @@
       <Filter>Source\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuItem.cpp">
-      <Filter>Source</Filter>
+      <Filter>Source\GameObject\MenuItem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GOState.cpp">
+      <Filter>Source\GameObject\States</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PillEatenState.cpp">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\PillIldeState.cpp">
+      <Filter>Source\GameObject\States\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\GlyphMap.cpp">
       <Filter>Source\Text\GlyphMap</Filter>
     </ClCompile>
-    <ClCompile Include="src\TextArea.cpp">
-      <Filter>Source\Text\TextArea</Filter>
-    </ClCompile>
     <ClCompile Include="src\Glyph.cpp">
       <Filter>Source\GameObject\Glyph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextArea.cpp">
+      <Filter>Source\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -207,15 +225,26 @@
     <ClInclude Include="src\GOFactory.h">
       <Filter>Source\GameObject</Filter>
     </ClInclude>
-    <ClInclude Include="src\MenuItem.h" />
+    <ClInclude Include="src\MenuItem.h">
+      <Filter>Source\GameObject\MenuItem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GOState.h">
+      <Filter>Source\GameObject\States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PillEatenState.h">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\PillIdleState.h">
+      <Filter>Source\GameObject\States\Pill</Filter>
+    </ClInclude>
     <ClInclude Include="src\GlyphMap.h">
       <Filter>Source\Text\GlyphMap</Filter>
     </ClInclude>
-    <ClInclude Include="src\TextArea.h">
-      <Filter>Source\Text\TextArea</Filter>
-    </ClInclude>
     <ClInclude Include="src\Glyph.h">
       <Filter>Source\GameObject\Glyph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextArea.h">
+      <Filter>Source\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

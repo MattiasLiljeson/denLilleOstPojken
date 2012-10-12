@@ -3,7 +3,8 @@
 SpeedPill::SpeedPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
 {
 	m_tile = p_tile;
-	m_tile->addPill(this);
+	if (m_tile)
+		m_tile->addPill(this);
 	m_consumed = false;
 }
 void SpeedPill::update(float p_deltaTime, InputInfo p_inputInfo)

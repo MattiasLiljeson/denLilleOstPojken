@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6616095b-ea89-43aa-9dea-90e58311f52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{a852dfbf-5c64-4f25-a6b9-8bdcaed54d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{33373ec5-1460-4aeb-a293-8defc277b94d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStats">
+      <UniqueIdentifier>{421d1ef3-28a3-437c-8da4-1ee46debbc16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapLoader">
+      <UniqueIdentifier>{37933642-894e-4971-b02a-d173b69b19ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{43dccd2a-039d-4fd3-ace2-901424d42a52}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Tester.cpp" />
+    <ClCompile Include="src\Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Tester.h" />
+    <ClInclude Include="src\Test.h" />
+    <ClInclude Include="src\Test_fVector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_fVector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Circle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_InputInfo.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SoundInfo.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SoundData.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GameStats.h">
+      <Filter>GameStats</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_MapLoader.h">
+      <Filter>MapLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GOFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
