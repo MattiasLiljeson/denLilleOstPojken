@@ -22,6 +22,9 @@
     <Filter Include="Text">
       <UniqueIdentifier>{eca146fd-3b75-4e5d-86e4-6c8d09b16057}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{7e0e71c7-64c0-4946-9c6a-4be98ec2c05c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -63,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="src\Test_GlyphMap.h">
       <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Avatar.h">
+      <Filter>GameObjects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

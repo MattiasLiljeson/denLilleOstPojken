@@ -16,6 +16,7 @@
     <ClCompile Include="src\Tester.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Test_Avatar.h" />
     <ClInclude Include="src\Test_Circle.h" />
     <ClInclude Include="src\Test_fVector2.h" />
     <ClInclude Include="src\Test.h" />

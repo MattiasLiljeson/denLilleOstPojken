@@ -11,6 +11,7 @@
 #include "Test_MapLoader.h"
 #include "Test_GOFactory.h"
 #include "Test_GlyphMap.h"
+#include "Test_Avatar.h"
 
 void Tester::run()
 {
@@ -26,6 +27,7 @@ void Tester::run()
 	tests.push_back(new Test_GOFactory());
 	tests.push_back(new Test_MapLoader());
 	tests.push_back(new Test_GlyphMap());
+	tests.push_back(new Test_Avatar());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;
