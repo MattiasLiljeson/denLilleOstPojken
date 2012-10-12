@@ -34,6 +34,10 @@ struct TilePosition
 		int ny = y + p_other.y;
 		return TilePosition(nx, ny);
 	}
+	bool operator==(const TilePosition& p_other)
+	{
+		return x == p_other.x && y == p_other.y;
+	}
 };
 
 class Tile: public GameObject

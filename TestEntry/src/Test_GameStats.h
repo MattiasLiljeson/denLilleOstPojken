@@ -14,16 +14,16 @@ public:
 	void setup()
 	{
 		GameStats stats(NULL);
-		m_entries.push_back(TestData("Initial Pill Count", stats.getNumPills() == 0));
-		m_entries.push_back(TestData("Null Timer", stats.getGameTimer() == 0));
-		m_entries.push_back(TestData("Initial Score", stats.getScore() == 0));
-		m_entries.push_back(TestData("Not Speeded", !stats.isSpeeded()));
-		m_entries.push_back(TestData("Not Super", !stats.isSuperMode()));
+		newEntry(TestData("Initial Pill Count", stats.getNumPills() == 0));
+		newEntry(TestData("Null Timer", stats.getGameTimer() == 0));
+		newEntry(TestData("Initial Score", stats.getScore() == 0));
+		newEntry(TestData("Not Speeded", !stats.isSpeeded()));
+		newEntry(TestData("Not Super", !stats.isSuperMode()));
 		stats.addScore(100);
 		stats.addPill();
 		stats.addPill();
-		m_entries.push_back(TestData("Pill Count", stats.getNumPills() == 2));
-		m_entries.push_back(TestData("Score", stats.getScore() == 100));
+		newEntry(TestData("Pill Count", stats.getNumPills() == 2));
+		newEntry(TestData("Score", stats.getScore() == 100));
 	}	
 };
 

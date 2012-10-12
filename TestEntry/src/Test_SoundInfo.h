@@ -14,7 +14,7 @@ public:
 	void setup()
 	{
 		SoundInfo info;
-		m_entries.push_back(TestData("Construction", info.play == false && info.id == ""));
+		newEntry(TestData("Construction", info.play == false && info.id == ""));
 	}	
 };	
 

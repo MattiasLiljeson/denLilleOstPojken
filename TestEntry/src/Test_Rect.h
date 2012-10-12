@@ -14,7 +14,7 @@ public:
 	void setup()
 	{
 		Rect r(0, 0, 10, 10);
-		m_entries.push_back(TestData("Construction", r.x == 0 &&
+		newEntry(TestData("Construction", r.x == 0 &&
 													 r.y == 0 &&
 													 r.width == 10 &&
 													 r.height == 10));

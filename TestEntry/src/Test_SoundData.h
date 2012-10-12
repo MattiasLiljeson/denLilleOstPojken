@@ -14,7 +14,7 @@ public:
 	void setup()
 	{
 		SoundData data;
-		m_entries.push_back(TestData("Construction", data.path == ""));
+		newEntry(TestData("Construction", data.path == ""));
 	}	
 };	
 

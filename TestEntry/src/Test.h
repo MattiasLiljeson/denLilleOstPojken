@@ -13,14 +13,24 @@ using namespace std;
 // CHANGELOG:
 // 2012-10-12: Jarl and Johan added return struct for total test stats("TotalTestData"). 
 
+// CHANGELOG:
+// 2012-10-12: Anton added support for sections in test data. Useful for separating tests into smaller chunks.
+
 struct TestData
 {
 	string ID;
-	bool Result;
+	int Result;
+
+	enum
+	{
+		SUCCESS,
+		FAILURE,
+		SECTION
+	};
 	TestData(string p_id, bool p_result)
 	{
 		ID = p_id;
-		Result = p_result;
+		Result = p_result ? SUCCESS: FAILURE;
 	}
 };
 
@@ -40,14 +50,18 @@ class Test
 private:
 	void expandString(string& p_string, int p_desiredLength);
 	string toString(int p_int);
-protected:
+private:
 	string m_name;
 	vector<TestData> m_entries;
+protected:
+	void newSection(string p_id);
+	void newEntry(TestData p_entry);
 public:
 	Test(string p_name);
 	virtual TotalTestData run();
 	virtual void setup() = 0;
 	void printResult(TestData p_entry);
+	void printSection(TestData p_entry);
 };
 
 #endif

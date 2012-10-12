@@ -20,7 +20,7 @@ public:
 			if (info.keys[i] != InputInfo::KEYUP)
 				failed = true;
 		}
-		m_entries.push_back(TestData("Initialization", !failed));
+		newEntry(TestData("Initialization", !failed));
 	}	
 };	
 

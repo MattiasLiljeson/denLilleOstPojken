@@ -17,6 +17,17 @@ void Test::expandString(string& p_string, int p_desiredLength)
 		p_string += " ";
 }
 
+void Test::newSection(string p_id)
+{
+	m_entries.push_back(TestData(p_id, true));
+	m_entries.back().Result = TestData::SECTION;
+}
+
+void Test::newEntry(TestData p_entry)
+{
+	m_entries.push_back(p_entry);
+}
+
 TotalTestData Test::run()
 {
 	HANDLE hConsole;
@@ -36,12 +47,21 @@ TotalTestData Test::run()
 	cout << endl;
 
 	int success = 0;
+	int total = 0;
 	for (unsigned int i = 0; i < m_entries.size(); i++)
 	{
-		printResult(m_entries[i]);
+		if (m_entries[i].Result != TestData::SECTION)
+		{
+			printResult(m_entries[i]);
+			total++;
+			if (m_entries[i].Result == TestData::SUCCESS)
+				success++;
+		}
+		else
+		{
+			printSection(m_entries[i]);
+		}
 		cout << endl;
-		if (m_entries[i].Result)
-			success++;
 	}
 
 	string finalResult;
@@ -50,7 +70,7 @@ TotalTestData Test::run()
 	cout << endl;
 	finalResult = "Total Tests";
 	expandString(finalResult, 20);
-	finalResult += ": " + toString(m_entries.size());
+	finalResult += ": " + toString(total);
 	expandString(finalResult, 39);
 	cout << finalResult << "#" << endl;
 
@@ -62,14 +82,14 @@ TotalTestData Test::run()
 
 	finalResult = "Failed Tests";
 	expandString(finalResult, 20);
-	finalResult += ": " + toString(m_entries.size() - success);
+	finalResult += ": " + toString(total - success);
 	expandString(finalResult, 39);
 	cout << finalResult << "#" << endl;
 	
 	for (int i = 0; i < 40; i++)
 		cout << "#";
 
-	return TotalTestData(m_entries.size() - success, m_entries.size());
+	return TotalTestData(total - success, total);
 }
 void Test::printResult(TestData p_entry)
 {
@@ -81,7 +101,7 @@ void Test::printResult(TestData p_entry)
 	expandString(res, 20);
 	res += ": ";
 
-	if (p_entry.Result)
+	if (p_entry.Result == TestData::SUCCESS)
 	{
 		SetConsoleTextAttribute(hConsole, 10);
 		res += "SUCCEEDED";
@@ -91,6 +111,24 @@ void Test::printResult(TestData p_entry)
 		SetConsoleTextAttribute(hConsole, 12);
 		res += "FAILED"; 
 	}
+	expandString(res, 39);
+	cout << res;
+	SetConsoleTextAttribute(hConsole, 15);
+	cout << "#";
+}
+void Test::printSection(TestData p_entry)
+{
+	string s;
+	expandString(s, 39);
+	s += "#\n";
+	cout << s;
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, 5);
+
+	string res = "Section";
+	expandString(res, 20);
+	res += ": " + p_entry.ID;
 	expandString(res, 39);
 	cout << res;
 	SetConsoleTextAttribute(hConsole, 15);

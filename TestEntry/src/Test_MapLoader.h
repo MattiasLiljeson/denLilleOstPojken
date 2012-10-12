@@ -14,25 +14,25 @@ public:
 	void setup()
 	{
 		MapLoader loader;
-		m_entries.push_back(TestData("Missing File", loader.parseMap("../Maps/invalid.txt", NULL, NULL, NULL) == GAME_FAIL));	
-		m_entries.push_back(TestData("Missing Factory", loader.parseMap("../Maps/1.txt", NULL, NULL, NULL) == GAME_FAIL));
+		newEntry(TestData("Missing File", loader.parseMap("../Maps/invalid.txt", NULL, NULL, NULL) == GAME_FAIL));	
+		newEntry(TestData("Missing Factory", loader.parseMap("../Maps/1.txt", NULL, NULL, NULL) == GAME_FAIL));
 
 		//GOFactory* factory = new GOFactory(NULL);
-		//m_entries.push_back(TestData("Missing Factory", loader.parseMap("../Maps/1.txt", NULL, NULL, factory) == GAME_FAIL));
+		//newEntry(TestData("Missing Factory", loader.parseMap("../Maps/1.txt", NULL, NULL, factory) == GAME_FAIL));
 		//delete factory;
 		
 		//loader.parseMap("../Maps/1.txt", NULL, NULL, NULL);
 		/*GameStats stats(NULL);
-		m_entries.push_back(TestData("Initial Pill Count", stats.getNumPills() == 0));
-		m_entries.push_back(TestData("Null Timer", stats.getGameTimer() == 0));
-		m_entries.push_back(TestData("Initial Score", stats.getScore() == 0));
-		m_entries.push_back(TestData("Not Speeded", !stats.isSpeeded()));
-		m_entries.push_back(TestData("Not Super", !stats.isSuperMode()));
+		newEntry(TestData("Initial Pill Count", stats.getNumPills() == 0));
+		newEntry(TestData("Null Timer", stats.getGameTimer() == 0));
+		newEntry(TestData("Initial Score", stats.getScore() == 0));
+		newEntry(TestData("Not Speeded", !stats.isSpeeded()));
+		newEntry(TestData("Not Super", !stats.isSuperMode()));
 		stats.addScore(100);
 		stats.addPill();
 		stats.addPill();
-		m_entries.push_back(TestData("Pill Count", stats.getNumPills() == 2));
-		m_entries.push_back(TestData("Score", stats.getScore() == 100));*/
+		newEntry(TestData("Pill Count", stats.getNumPills() == 2));
+		newEntry(TestData("Score", stats.getScore() == 100));*/
 	}	
 };
 
