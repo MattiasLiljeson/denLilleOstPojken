@@ -49,6 +49,7 @@ private:
 
 public:
 	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
+	~Tile();
 	bool getType();
 	TilePosition getTilePosition();
 	fVector2		getPosition();

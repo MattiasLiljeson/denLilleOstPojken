@@ -40,7 +40,7 @@ private:
 
 public:
 	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound);
-	~Avatar();
+	virtual ~Avatar();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 
 	Tile*		getCurrentTile();

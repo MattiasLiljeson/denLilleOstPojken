@@ -7,7 +7,6 @@ AvatarKilled::AvatarKilled(GameObject* p_gameObject, SoundInfo* p_avatarKilledSo
 
 AvatarKilled::~AvatarKilled()
 {
-
 }
 
 int AvatarKilled::onEnter()
@@ -15,6 +14,7 @@ int AvatarKilled::onEnter()
 	Avatar* avatar = (Avatar*)m_gameObject;
 	m_avatarKilledSound->play = true;
 	avatar->getSpriteInfo()->visible = false;
+
 	return GAME_OK;
 }
 

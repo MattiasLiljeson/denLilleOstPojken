@@ -8,6 +8,8 @@ PillEatenState::PillEatenState(GameObject* p_gameObject, SpriteInfo* p_spriteInf
 }
 PillEatenState::~PillEatenState()
 {
+//	if (m_onEatSound)
+//		delete m_onEatSound;
 }
 int PillEatenState::onEnter()
 {

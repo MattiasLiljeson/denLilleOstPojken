@@ -7,8 +7,6 @@ SpeedPillUse::SpeedPillUse(GameObject* p_gameObject, SoundInfo* p_onEatSound) : 
 
 SpeedPillUse::~SpeedPillUse()
 {
-	if(m_onUseSound)
-		delete m_onUseSound;
 }
 
 int SpeedPillUse::onEnter()

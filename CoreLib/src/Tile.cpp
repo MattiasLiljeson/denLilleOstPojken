@@ -10,6 +10,9 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 	m_type = p_type;
 	m_collectable = NULL;
 }
+Tile::~Tile()
+{
+}
 bool Tile::getType()
 {
 	return m_type;

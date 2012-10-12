@@ -8,6 +8,11 @@ SpeedPill::SpeedPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameSt
 
 	m_eatenStaten = new SpeedPillUse(this,p_onUseSound);
 }
+SpeedPill::~SpeedPill()
+{
+	if (m_eatenStaten)
+		delete m_eatenStaten;
+}
 void SpeedPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 }

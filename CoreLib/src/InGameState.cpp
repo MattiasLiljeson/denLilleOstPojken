@@ -129,8 +129,6 @@ void InGameState::restart()
 		if (m_stats)
 			delete m_stats;
 
-
-
 		m_tileMap	= 0;
 		MapLoader mapParser;
 		m_stats = new GameStats(m_parent->getNewTimerInstance());

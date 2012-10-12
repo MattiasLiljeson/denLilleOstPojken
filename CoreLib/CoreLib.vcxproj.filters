@@ -62,6 +62,9 @@
     <Filter Include="Source\GameObject\ObjectStates\SpeedPill">
       <UniqueIdentifier>{4e4733f5-e99e-4d5f-84ea-31cff6e39284}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\ObjectStates\SuperPill">
+      <UniqueIdentifier>{f693f744-81ff-4b32-8102-cc4e1b558ccb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Game.cpp">
@@ -151,6 +154,9 @@
     <ClCompile Include="src\SpeedPillUse.cpp">
       <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
     </ClCompile>
+    <ClCompile Include="src\SuperPillEaten.cpp">
+      <Filter>Source\GameObject\ObjectStates\SuperPill</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -239,6 +245,9 @@
     </ClInclude>
     <ClInclude Include="src\SpeedPillUse.h">
       <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperPillEaten.h">
+      <Filter>Source\GameObject\ObjectStates\SuperPill</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

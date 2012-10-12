@@ -46,7 +46,7 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SuperPill.png",
 		pos, size, NULL);
-	return new SuperPill(spriteInfo, p_tile, p_gameStats);
+	return new SuperPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
