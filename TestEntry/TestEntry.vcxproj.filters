@@ -61,5 +61,8 @@
     <ClInclude Include="src\Test_GOFactory.h">
       <Filter>Factory</Filter>
     </ClInclude>
+    <ClInclude Include="src\Test_GlyphMap.h">
+      <Filter>Text</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

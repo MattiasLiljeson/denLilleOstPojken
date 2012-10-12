@@ -1,4 +1,16 @@
 #include "Tester.h"
+#include "Test.h"
+#include "Test_fVector2.h"
+#include "Test_fVector3.h"
+#include "Test_Circle.h"
+#include "Test_Rect.h"
+#include "Test_InputInfo.h"
+#include "Test_SoundInfo.h"
+#include "Test_SoundData.h"
+#include "Test_GameStats.h"
+#include "Test_MapLoader.h"
+#include "Test_GOFactory.h"
+#include "Test_GlyphMap.h"
 
 void Tester::run()
 {
@@ -13,6 +25,7 @@ void Tester::run()
 	tests.push_back(new Test_GameStats());
 	tests.push_back(new Test_GOFactory());
 	tests.push_back(new Test_MapLoader());
+	tests.push_back(new Test_GlyphMap());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;
