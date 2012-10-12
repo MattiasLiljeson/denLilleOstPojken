@@ -13,6 +13,9 @@
 #include "Test_MapLoader.h"
 #include "Test_GOFactory.h"
 
+// CHANGELOG: 
+// 2012-10-12: Jarl and Johan added cout for accumulated failures. 
+
 class Tester
 {
 private:

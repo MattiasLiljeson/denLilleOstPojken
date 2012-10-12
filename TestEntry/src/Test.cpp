@@ -17,7 +17,7 @@ void Test::expandString(string& p_string, int p_desiredLength)
 		p_string += " ";
 }
 
-void Test::run()
+TotalTestData Test::run()
 {
 	HANDLE hConsole;
 	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -68,6 +68,8 @@ void Test::run()
 	
 	for (int i = 0; i < 40; i++)
 		cout << "#";
+
+	return TotalTestData(m_entries.size() - success, m_entries.size());
 }
 void Test::printResult(TestData p_entry)
 {

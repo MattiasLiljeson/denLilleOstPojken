@@ -9,6 +9,10 @@
 
 using namespace std;
 
+
+// CHANGELOG:
+// 2012-10-12: Jarl and Johan added return struct for total test stats("TotalTestData"). 
+
 struct TestData
 {
 	string ID;
@@ -18,6 +22,17 @@ struct TestData
 		ID = p_id;
 		Result = p_result;
 	}
+};
+
+struct TotalTestData
+{
+	TotalTestData(int p_amountOfFailures, int p_totalAmountOfTests)
+	{
+		amountOfFailures = p_amountOfFailures;
+		amountOfTestfuncs = p_totalAmountOfTests;
+	}
+	int amountOfFailures;
+	int amountOfTestfuncs;
 };
 
 class Test
@@ -30,7 +45,7 @@ protected:
 	vector<TestData> m_entries;
 public:
 	Test(string p_name);
-	virtual void run();
+	virtual TotalTestData run();
 	virtual void setup() = 0;
 	void printResult(TestData p_entry);
 };

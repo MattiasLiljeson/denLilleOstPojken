@@ -39,6 +39,9 @@ public:
 		Tile* tile = factory.CreateTile(true, TilePosition(0, 0), 10, 10);
 		m_entries.push_back(TestData("Create Tile", tile != NULL));
 
+		Glyph* glyph = factory.CreateGlyph("../Textures/testglyph.png",0.0f,0.0f,fVector2(8.0f,8.0f));
+		m_entries.push_back(TestData("Create Glyph", glyph != NULL));
+
 		bool init[] = {true};
 		Tilemap* map = factory.CreateTileMap(1, 1, init);
 		m_entries.push_back(TestData("Create Tilemap", map != NULL));

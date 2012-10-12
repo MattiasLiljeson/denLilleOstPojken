@@ -14,11 +14,18 @@ void Tester::run()
 	tests.push_back(new Test_GOFactory());
 	tests.push_back(new Test_MapLoader());
 
+	int totalAmountOfFailures=0;
+	int totalAmountOfTestfuncs=0;
+
 	for (unsigned int i = 0; i < tests.size(); i++)
 	{
-		tests[i]->run();
+		TotalTestData tdata = tests[i]->run();
+		totalAmountOfFailures += tdata.amountOfFailures;
+		totalAmountOfTestfuncs += tdata.amountOfTestfuncs;
 		cout << endl << endl;
 	}
+
+	cout<<"Total failures: "<<totalAmountOfFailures<<"/"<<totalAmountOfTestfuncs<<endl<<endl;
 
 	for (unsigned int i = 0; i < tests.size(); i++)
 	{
