@@ -26,11 +26,17 @@
     <ClInclude Include="src\Test_GOFactory.h" />
     <ClInclude Include="src\Test_InputInfo.h" />
     <ClInclude Include="src\Test_MapLoader.h" />
+    <ClInclude Include="src\Test_Monster.h" />
+    <ClInclude Include="src\Test_Pill.h" />
+    <ClInclude Include="src\Test_SpeedPill.h" />
+    <ClInclude Include="src\Test_States.h" />
+    <ClInclude Include="src\Test_SuperPill.h" />
     <ClInclude Include="src\Test_Tile.h" />
     <ClInclude Include="src\Test_Rect.h" />
     <ClInclude Include="src\Test_SoundData.h" />
     <ClInclude Include="src\Test_SoundInfo.h" />
     <ClInclude Include="src\Test_GameStats.h" />
+    <ClInclude Include="src\Test_Tilemap.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{72B45B10-85AC-4C19-A4B0-EC2B3EFA4787}</ProjectGuid>

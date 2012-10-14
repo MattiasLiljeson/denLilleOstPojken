@@ -25,6 +25,15 @@
     <Filter Include="GameObjects">
       <UniqueIdentifier>{7e0e71c7-64c0-4946-9c6a-4be98ec2c05c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tilemap">
+      <UniqueIdentifier>{4a7e2887-3259-4260-9442-b1a22f87b281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{e3ccea1c-c7e2-4ad0-8915-9aa47f90ebbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Collectable">
+      <UniqueIdentifier>{57586fec-e90d-4285-918b-56f6a7a62aab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -72,6 +81,24 @@
     </ClInclude>
     <ClInclude Include="src\Test_Tile.h">
       <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Tilemap.h">
+      <Filter>Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Monster.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_States.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Pill.h">
+      <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SuperPill.h">
+      <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SpeedPill.h">
+      <Filter>GameObjects\Collectable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

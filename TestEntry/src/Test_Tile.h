@@ -33,6 +33,8 @@ public:
 		newEntry(TestData("Tile Position", posT == TilePosition(4, 5)));
 		newEntry(TestData("Position", pos == fVector2(45, 82.5f)));
 		newEntry(TestData("State", t->isFree()));
+
+		delete t;
 	}	
 };	
 

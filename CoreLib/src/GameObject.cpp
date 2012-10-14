@@ -50,15 +50,20 @@ void GameObject::update(float p_deltaTime, InputInfo p_inputInfo)
 
 fVector2 GameObject::getPostion() const 
 {
-	fVector2 position;
+	fVector2 position(0, 0);
 
-	position.x = m_spriteInfo->transformInfo.translation[TransformInfo::X];
-	position.y = m_spriteInfo->transformInfo.translation[TransformInfo::Y];
+	if (m_spriteInfo)
+	{
+		position.x = m_spriteInfo->transformInfo.translation[TransformInfo::X];
+		position.y = m_spriteInfo->transformInfo.translation[TransformInfo::Y];
+	}
 
 	return position;
 }
 
 float GameObject::getRadius() const
 {
+	if (!m_spriteInfo)
+		return 0;
 	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
 }

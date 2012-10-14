@@ -25,6 +25,10 @@ void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	GameObject::update(p_deltaTime, p_inputInfo);
 }
+bool Pill::isConsumed()
+{
+	return m_currentState == m_eatenState;
+}
 void Pill::consume()
 {
 	switchState(m_eatenState);

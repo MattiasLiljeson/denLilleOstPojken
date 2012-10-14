@@ -7,30 +7,39 @@
 
 MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
-	m_factory = new GOFactory(p_io);
 	m_io = p_io;
-	p_io->clearSpriteInfos();
-	m_menuItems.push_back( m_factory->createMenuItem() );
+	m_factory = NULL;
+	testFont = NULL;
+	textArea = NULL;
+	if (m_io)
+	{
+		m_factory = new GOFactory(p_io);
+		p_io->clearSpriteInfos();
+		m_menuItems.push_back( m_factory->createMenuItem() );
 
-	testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-	textArea = new TextArea(testFont,12,m_factory,300.0f,50.0f);
-	textArea->setText("HELLOWORLD");
+		testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
+		textArea = new TextArea(testFont,12,m_factory,300.0f,50.0f);
+		textArea->setText("HELLOWORLD");
+	}
 }
 
 MenuState::~MenuState()
 {
-	for(unsigned int i = 0; i < m_menuItems.size(); i++)
+	if (m_io)
 	{
-		delete m_menuItems[i];
+		for(unsigned int i = 0; i < m_menuItems.size(); i++)
+		{
+			delete m_menuItems[i];
+		}
+
+		m_menuItems.clear();
+
+		delete testFont;
+		delete textArea;
+
+
+		delete m_factory;
 	}
-
-	m_menuItems.clear();
-
-	delete testFont;
-	delete textArea;
-
-
-	delete m_factory;
 }
 
 bool MenuState::onEntry()

@@ -55,6 +55,7 @@ public:
 		delete tile;
 		delete goSwitch;
 		delete map;
+		delete glyph;
 	}	
 };
 

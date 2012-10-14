@@ -20,52 +20,60 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (!m_dead)
 	{
-		m_ai->update(p_deltaTime);
+		if (m_ai)
+			m_ai->update(p_deltaTime);
 
 		dt += p_deltaTime * 6;
-		if (dt > 1)
+		while (dt > 1)
 		{
 			dt -= 1;
-			m_currentTile = m_nextTile;
-			if (m_path.size() > 0)
+			if (m_currentTile)
 			{
-				if (m_path.back()->isFree())
+				m_currentTile = m_nextTile;
+				if (m_path.size() > 0)
 				{
-					m_nextTile = m_path.back();
-					m_path.pop_back();
+					if (m_path.back()->isFree())
+					{
+						m_nextTile = m_path.back();
+						m_path.pop_back();
+					}
+					else
+					{
+						m_path.clear();
+					}
 				}
 				else
 				{
-					m_path.clear();
-				}
-			}
-			else
-			{
-				m_ai->findTarget();
+					m_ai->findTarget();
 
-				if(m_path.size() == 0)
-				{
-					Tile* t;
-					do
+					if(m_path.size() == 0)
 					{
-						int rndX = rand() % m_map->getWidth();
-						int rndY = rand() % m_map->getHeight();
-						t = m_map->getTile(TilePosition(rndX, rndY));					
-					} while (!t->isFree());
+						Tile* t;
+						do
+						{
+							int rndX = rand() % m_map->getWidth();
+							int rndY = rand() % m_map->getHeight();
+							t = m_map->getTile(TilePosition(rndX, rndY));					
+						} while (!t->isFree());
 
-					FindPath(m_currentTile, t);
+						FindPath(m_currentTile, t);
+					}
 				}
 			}
 		}
-		TilePosition tp1 = m_currentTile->getTilePosition();
-		TilePosition tp2 = m_nextTile->getTilePosition();
-		float pX = tp1.x * (1-dt) + tp2.x * dt; 
-		float pY = tp1.y * (1-dt) + tp2.y * dt;  
 
-		float w = m_currentTile->getWidth();
-		float h = m_currentTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		if (m_spriteInfo)
+		{
+			TilePosition tp1 = m_currentTile->getTilePosition();
+			TilePosition tp2 = m_nextTile->getTilePosition();
+			float pX = tp1.x * (1-dt) + tp2.x * dt; 
+			float pY = tp1.y * (1-dt) + tp2.y * dt;  
+
+			float w = m_currentTile->getWidth();
+			float h = m_currentTile->getHeight();
+			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		}
 	}
 }
 Tile* Monster::getCurrentTile()

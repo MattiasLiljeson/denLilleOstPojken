@@ -5,12 +5,15 @@
 
 InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
-	m_factory = new GOFactory(p_io);
 	m_io = p_io;
-	m_tileMap = NULL;
-	m_stats = NULL;
-	m_currentMap = 0;
-	restart();
+	if (m_io)
+	{
+		m_factory = new GOFactory(p_io);
+		m_tileMap = NULL;
+		m_stats = NULL;
+		m_currentMap = 0;
+		restart();
+	}
 }
 InGameState::~InGameState()
 {
@@ -26,6 +29,8 @@ InGameState::~InGameState()
 			delete m_tileMap;
 		if (m_stats)
 			delete m_stats;
+		if (m_factory)
+			delete m_factory;
 	}
 }
 

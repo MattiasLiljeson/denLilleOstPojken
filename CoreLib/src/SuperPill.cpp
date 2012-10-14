@@ -18,7 +18,8 @@ void SuperPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if(m_consumed)
 	{
-		m_spriteInfo->visible = false;
+		if (m_spriteInfo)
+			m_spriteInfo->visible = false;
 	}
 }
 

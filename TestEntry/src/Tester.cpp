@@ -13,6 +13,12 @@
 #include "Test_GlyphMap.h"
 #include "Test_Avatar.h"
 #include "Test_Tile.h"
+#include "Test_Tilemap.h"
+#include "Test_Monster.h"
+#include "Test_States.h"
+#include "Test_Pill.h"
+#include "Test_SuperPill.h"
+#include "Test_SpeedPill.h"
 
 void Tester::run()
 {
@@ -30,6 +36,12 @@ void Tester::run()
 	tests.push_back(new Test_GlyphMap());
 	tests.push_back(new Test_Avatar());
 	tests.push_back(new Test_Tile());
+	tests.push_back(new Test_Tilemap());
+	tests.push_back(new Test_Monster());
+	tests.push_back(new Test_States());
+	tests.push_back(new Test_Pill());
+	tests.push_back(new Test_SuperPill());
+	tests.push_back(new Test_SpeedPill());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;

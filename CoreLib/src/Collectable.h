@@ -14,7 +14,7 @@ public:
 	virtual ~Collectable();
 
 	virtual void consume() = 0;
-	bool isConsumed();
+	virtual bool isConsumed();
 	virtual void update(float p_deltaTime, InputInfo p_inputInfo);
 };
 
