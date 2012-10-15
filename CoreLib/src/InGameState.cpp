@@ -11,7 +11,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): 
 		m_factory = new GOFactory(p_io);
 		m_tileMap = NULL;
 		m_stats = NULL;
-		m_currentMap = 0;
+		m_currentMap = 1;
 		if (p_reset)
 			restart();
 	}

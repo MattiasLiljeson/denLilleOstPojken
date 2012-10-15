@@ -172,6 +172,9 @@
     <ClCompile Include="src\AvatarJumping.cpp">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClCompile>
+    <ClCompile Include="src\AvatarWalking.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -271,6 +274,9 @@
       <Filter>Source\GameObject\ObjectStates</Filter>
     </ClInclude>
     <ClInclude Include="src\AvatarJumping.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AvatarWalking.h">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
