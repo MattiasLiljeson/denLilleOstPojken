@@ -34,8 +34,9 @@ void StateManager::update(float p_dt)
 {
 	if (m_desiredState != m_currentState)
 	{
+		m_currentState->onExit(); // Added by Jarl 2012-10-15, lets the callee handle its exit
 		switchState();
-		// Call the curren state's entry function.
+		// Call the current state's entry function.
 		m_currentState->onEntry();
 	}
 	m_currentState->update(p_dt);
