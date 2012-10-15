@@ -58,12 +58,16 @@ bool MenuState::onEntry()
 		{
 			m_factory = new GOFactory(m_io);
 			m_io->clearSpriteInfos();
-			m_menuItems.push_back( m_factory->createMenuItem() );
+			if (m_factory)
+			{
+				m_menuItems.push_back( m_factory->createMenuItem() );
+		
+				// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
+				testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
+				textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
+				textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
+			}
 		}
-		// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-		testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-		textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-		textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
 		//
 		m_resourcesAllocated=true;
 	}
@@ -87,10 +91,10 @@ bool MenuState::onExit()
 			delete textArea;
 
 
-			delete m_factory;
+			delete m_factory;		
+			// Below moved from input handler
+			m_io->clearSpriteInfos();
 		}
-		// Below moved from input handler
-		m_io->clearSpriteInfos();
 		//
 		m_resourcesAllocated=false;
 	}
