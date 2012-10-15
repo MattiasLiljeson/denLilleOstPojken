@@ -61,14 +61,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	if (initializeViewport() == GAME_FAIL)
 		return;
 
-	//Map Windows key IDs to our key ID system.
-	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
-	m_keyMappings[InputInfo::LEFT]	= VK_LEFT;
-	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
-	m_keyMappings[InputInfo::UP]	= VK_UP;
-	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
-	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
-	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
+	initKeyMappings();
 
 	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
@@ -607,4 +600,28 @@ int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 		textureReadSuccess = GAME_FAIL;
 	}
 	return textureReadSuccess;
+}
+
+void DxContext::initKeyMappings()
+{
+	//Map Windows key IDs to our key ID system.
+	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
+	m_keyMappings[InputInfo::LEFT]	= VK_LEFT;
+	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
+	m_keyMappings[InputInfo::UP]	= VK_UP;
+	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
+
+	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
+	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
+
+	m_keyMappings[InputInfo::LSHIFT] = VK_LSHIFT;
+	m_keyMappings[InputInfo::RSHIFT] = VK_RSHIFT;
+	m_keyMappings[InputInfo::LCTRL] = VK_LCONTROL;
+	m_keyMappings[InputInfo::RCTRL] = VK_RCONTROL;
+
+	m_keyMappings[InputInfo::P_KEY] = (int)'P';
+	m_keyMappings[InputInfo::W_KEY] = (int)'W';
+	m_keyMappings[InputInfo::A_KEY] = (int)'A';
+	m_keyMappings[InputInfo::S_KEY] = (int)'S';
+	m_keyMappings[InputInfo::D_KEY] = (int)'D';
 }

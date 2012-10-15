@@ -40,6 +40,7 @@ private:
 	int initializeDepthStencilView();
 	int initializeRasterizerState();
 	int initializeViewport();
+	void initKeyMappings();
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);

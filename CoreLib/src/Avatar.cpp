@@ -21,6 +21,7 @@ Avatar::~Avatar()
 
 void Avatar::checkInput(InputInfo p_inputInfo)
 {
+	// LEFT, RIGHT, DOWN, UP buttons.
 	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
 		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
 	{
@@ -40,6 +41,27 @@ void Avatar::checkInput(InputInfo p_inputInfo)
 		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
 	{
 		m_desired = Direction::UP;
+	}
+	// W, A, S, D buttons
+	else if (p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::UP;
+	}
+	else if (p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::LEFT;
+	}
+	if (p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::DOWN;
+	}
+	else if (p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::RIGHT;
 	}
 }	
 bool Avatar::check180()

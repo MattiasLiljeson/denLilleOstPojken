@@ -73,16 +73,7 @@ void InGameState::update(float p_dt)
 
 		m_io->setWindowText(text);
 
-		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
-		{
-			//m_parent->requestStateChange(m_parent->getMenuState());
-			restart();
-			return;
-		}
-		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
-		{
-			m_parent->terminate();
-		}
+		handleInput( input );
 	}
 }
 
@@ -147,5 +138,20 @@ void InGameState::restart()
 		m_gameObjects = mapParser.getGameObjects();
 		m_avatar = mapParser.getAvatar();
 		m_monsters = mapParser.getMonsters();
+	}
+}
+
+void InGameState::handleInput( InputInfo p_input )
+{
+	if ( p_input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED )
+	{
+		//m_parent->requestStateChange(m_parent->getMenuState());
+		restart();
+		return;
+	}
+	else if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED ||
+		!m_io->isRunning() )
+	{
+		m_parent->terminate();
 	}
 }

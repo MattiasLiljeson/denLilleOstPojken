@@ -17,8 +17,11 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 		p_io->clearSpriteInfos();
 		m_menuItems.push_back( m_factory->createMenuItem() );
 	}
-	// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-	testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
+	// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+	//	"../Textures/testglyph.png", 8, 8 );
+	testFont = new GlyphMap(
+		" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
+		"../Textures/bubblemad_8x8.png", 8, 8 );
 	textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
 	textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
 }

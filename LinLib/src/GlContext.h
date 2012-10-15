@@ -30,6 +30,7 @@ private:
 	int initGLFW();
 	int initGLFWWindow();
 	int initGlew();
+	void initKeyMappings();
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);

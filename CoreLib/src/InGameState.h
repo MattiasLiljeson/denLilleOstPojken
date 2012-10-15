@@ -21,6 +21,7 @@ public:
 	InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset = false);
 	virtual ~InGameState();
 	void update(float p_dt);
+	void handleInput(InputInfo p_input);
 	void draw(float p_dt);
 	bool checkDynamicCollision();
 	void restart();
