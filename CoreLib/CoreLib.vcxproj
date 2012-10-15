@@ -21,7 +21,9 @@
   <ItemGroup>
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
+    <ClCompile Include="src\AvatarJumping.cpp" />
     <ClCompile Include="src\AvatarKilled.cpp" />
+    <ClCompile Include="src\AvatarWalking.cpp" />
     <ClCompile Include="src\BasicIdle.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\DynamicCollision.cpp" />
@@ -51,11 +53,14 @@
     <ClCompile Include="src\TextArea.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
+    <ClCompile Include="src\Trap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\Avatar.h" />
+    <ClInclude Include="src\AvatarJumping.h" />
     <ClInclude Include="src\AvatarKilled.h" />
+    <ClInclude Include="src\AvatarWalking.h" />
     <ClInclude Include="src\BasicIdle.h" />
     <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\DynamicCollision.h" />
@@ -85,6 +90,7 @@
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\SpeedPillUse.h" />
+    <ClInclude Include="src\Trap.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">

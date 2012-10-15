@@ -1,144 +1,54 @@
 #include "Avatar.h"
 #include "AvatarKilled.h"
+#include "AvatarJumping.h"
+#include "AvatarWalking.h"
 
 Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, 
 	GameStats* p_stats, SoundInfo* p_avatarKilledSound)
 	: GameObject(p_spriteInfo, p_stats)
 {
-	m_direction = m_desired = Direction::NONE;
-	m_currentTile = m_nextTile = m_queuedTile = p_startTile;
-	m_map = p_map;
-	dt = 0;
+	m_navigationData = new NavigationData();
+	m_navigationData->m_direction = m_navigationData->m_desired = Direction::NONE;
+	m_navigationData->m_currentTile = m_navigationData->m_nextTile = m_navigationData->m_queuedTile = p_startTile;
+	m_navigationData->dt = 0;
+	m_navigationData->m_map = p_map;
 
 	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound);
+	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats);
+	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
+	switchState(m_walking);
 }
 
 Avatar::~Avatar()
 {
 	if(m_avatarKilledState)
 		delete m_avatarKilledState;
-}
-
-void Avatar::checkInput(InputInfo p_inputInfo)
-{
-	// LEFT, RIGHT, DOWN, UP buttons.
-	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::LEFT;
-	}
-	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::RIGHT;
-	}
-	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::DOWN;
-	}
-	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::UP;
-	}
-	// W, A, S, D buttons
-	else if (p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::UP;
-	}
-	else if (p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::LEFT;
-	}
-	if (p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::DOWN;
-	}
-	else if (p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::RIGHT;
-	}
-}	
-bool Avatar::check180()
-{
-	if (m_desired == Direction::LEFT)
-		if (m_direction == Direction::RIGHT)
-			return true;
-	if (m_desired == Direction::RIGHT)
-		if (m_direction == Direction::LEFT)
-			return true;
-	if (m_desired == Direction::UP)
-		if (m_direction == Direction::DOWN)
-			return true;
-	if (m_desired == Direction::DOWN)
-		if (m_direction == Direction::UP)
-			return true;
-	return false;
+	if (m_avatarJumpingState)
+		delete m_avatarJumpingState;
 }
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	checkInput(p_inputInfo);
-	
-	if (m_desired != m_direction)
+	GameObject::update(p_deltaTime, p_inputInfo);
+
+	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 	{
-		if (check180())
-		{
-			Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
-			Tile* temp = m_currentTile;
-			m_currentTile = m_nextTile;
-			m_nextTile = m_queuedTile = temp;
-			if (destination && destination->isFree())
-				m_queuedTile = destination;
-			m_direction = m_desired;
-			dt = 1 - dt;
-		}
-		else
-		{
-			Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
-			if (destination && destination->isFree())
-			{
-				m_queuedTile = destination;
-				m_direction = m_desired;
-			}
-		}
+		switchState(m_avatarJumpingState);
 	}
-	dt += p_deltaTime * 6;
-	if (m_gameStats && m_gameStats->isSpeeded())
-		dt += p_deltaTime * 3;
-
-	if (m_currentTile)
+	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
 	{
-		while (dt > 1)
-		{
-			dt -= 1;
-			m_currentTile = m_nextTile;
-			m_nextTile = m_queuedTile;
-
-			m_queuedTile = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_direction]);
-			if (!m_queuedTile || !m_queuedTile->isFree())
-				m_queuedTile = m_nextTile;
-
-			m_currentTile->removePill();
-		}
+ 		switchState(m_walking);
 	}
-	else
-		dt = 0;
 
 	if (m_spriteInfo)
 	{
-		TilePosition tp1 = m_currentTile->getTilePosition();
-		TilePosition tp2 = m_nextTile->getTilePosition();
-		float pX = tp1.x * (1-dt) + tp2.x * dt; 
-		float pY = tp1.y * (1-dt) + tp2.y * dt;  
+		TilePosition tp1 = m_navigationData->m_currentTile->getTilePosition();
+		TilePosition tp2 = m_navigationData->m_nextTile->getTilePosition();
+		float pX = tp1.x * (1-m_navigationData->dt) + tp2.x * m_navigationData->dt; 
+		float pY = tp1.y * (1-m_navigationData->dt) + tp2.y * m_navigationData->dt;  
 
-		float w = m_currentTile->getWidth();
-		float h = m_currentTile->getHeight();
+		float w = m_navigationData->m_currentTile->getWidth();
+		float h = m_navigationData->m_currentTile->getHeight();
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
 	
@@ -154,8 +64,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 		else
 		{
-			float w = m_currentTile->getWidth();
-			float h = m_currentTile->getHeight();
+			float w = m_navigationData->m_currentTile->getWidth();
+			float h = m_navigationData->m_currentTile->getHeight();
 			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
 			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
 		}
@@ -177,22 +87,26 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 Tile* Avatar::getCurrentTile()
 {
-	return m_currentTile;
+	return m_navigationData->m_currentTile;
 }
 int Avatar::getDirection()
 {
-	return m_direction;
+	return m_navigationData->m_direction;
 }
 float Avatar::getTileInterpolationFactor()
 {
-	return dt;
+	return m_navigationData->dt;
 }
 void Avatar::setTilePosition(Tile* p_newPosition)
 {
-	m_currentTile = p_newPosition;
-	dt = 0;
+	m_navigationData->m_currentTile = p_newPosition;
+	m_navigationData->dt = 0;
 }
 void Avatar::kill()
 {
 	switchState(m_avatarKilledState);
+}
+bool Avatar::inAir()
+{
+	return m_currentState == m_avatarJumpingState;
 }

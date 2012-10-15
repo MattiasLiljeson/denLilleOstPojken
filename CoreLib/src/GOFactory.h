@@ -12,6 +12,7 @@
 #include <fVector3.h>
 #include "Switch.h"
 #include "Glyph.h"
+#include "Trap.h"
 #include <SoundInfo.h>
 
 class GOFactory
@@ -31,6 +32,7 @@ public:
 
 	Avatar* CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
 	Monster* CreateMonster(Tile* p_tile, Tilemap* p_map);
+	Trap* CreateTrap(Tile* p_tile, Tilemap* p_map);
 
 	SuperPill* CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);
 	SpeedPill* CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats);

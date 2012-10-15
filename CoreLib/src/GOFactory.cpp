@@ -27,6 +27,15 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 		pos, size, NULL);
 	return new Monster(spriteInfo, p_tile, p_map);
 }
+Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
+{
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 0.9f);
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/grass.png",
+		pos, size, NULL);
+	return new Trap(spriteInfo, p_tile, p_map);
+}
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 

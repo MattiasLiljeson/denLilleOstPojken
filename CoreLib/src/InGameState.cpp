@@ -11,7 +11,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): 
 		m_factory = new GOFactory(p_io);
 		m_tileMap = NULL;
 		m_stats = NULL;
-		m_currentMap = 0;
+		m_currentMap = 1;
 		if (p_reset)
 			restart();
 	}
@@ -73,7 +73,16 @@ void InGameState::update(float p_dt)
 
 		m_io->setWindowText(text);
 
-		handleInput( input );
+		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
+		{
+			//m_parent->requestStateChange(m_parent->getMenuState());
+			//restart();
+			//return;
+		}
+		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+		{
+			m_parent->terminate();
+		}
 	}
 }
 
@@ -103,6 +112,20 @@ bool InGameState::checkDynamicCollision()
 				}
 				else
 					m_avatar->kill();
+			}
+		}
+	}
+	if (!m_avatar->inAir())
+	{
+		for(unsigned int index = 0; index < m_traps.size(); index++)
+		{
+			Trap* trap = m_traps.at(index);
+			Circle trapBC(trap->getPostion(),trap->getRadius());
+
+			if(avatarBC.collidesWith(trapBC))
+			{
+				collision = true;
+				m_avatar->kill();
 			}
 		}
 	}
@@ -138,6 +161,7 @@ void InGameState::restart()
 		m_gameObjects = mapParser.getGameObjects();
 		m_avatar = mapParser.getAvatar();
 		m_monsters = mapParser.getMonsters();
+		m_traps = mapParser.getTraps();
 	}
 }
 
