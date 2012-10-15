@@ -112,6 +112,13 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 					m_gameObjects.push_back(m_factory->CreateSuperPill(
 						m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
+				else if (m_map[index] == TRAP)
+				{
+					Trap* trap = m_factory->CreateTrap(
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
+					m_traps.push_back(trap);
+					m_gameObjects.push_back(trap);
+				}
 			}
 		}
 
@@ -142,4 +149,8 @@ Avatar* MapLoader::getAvatar()
 vector<Monster*> MapLoader::getMonsters()
 {
 	return m_monsters;
+}	
+vector<Trap*> MapLoader::getTraps()
+{
+	return m_traps;
 }

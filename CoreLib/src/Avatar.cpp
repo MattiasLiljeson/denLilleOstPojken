@@ -105,3 +105,7 @@ void Avatar::kill()
 {
 	switchState(m_avatarKilledState);
 }
+bool Avatar::inAir()
+{
+	return m_currentState == m_avatarJumpingState;
+}

@@ -55,7 +55,7 @@ int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 		m_navigationData->dt = 0;
 	
 	//Jump logic
-	float jumptime = 0.5f;
+	float jumptime = 0.4f;
 	float factor;
 	if (m_elapsedTime <= jumptime * 0.5f)
 		factor = m_elapsedTime / (jumptime*0.5f);

@@ -56,6 +56,7 @@ public:
 	float		getTileInterpolationFactor();
 	void		setTilePosition(Tile* p_newPosition);
 	void		kill();
+	bool		inAir();
 };
 
 #endif

@@ -115,6 +115,20 @@ bool InGameState::checkDynamicCollision()
 			}
 		}
 	}
+	if (!m_avatar->inAir())
+	{
+		for(unsigned int index = 0; index < m_traps.size(); index++)
+		{
+			Trap* trap = m_traps.at(index);
+			Circle trapBC(trap->getPostion(),trap->getRadius());
+
+			if(avatarBC.collidesWith(trapBC))
+			{
+				collision = true;
+				m_avatar->kill();
+			}
+		}
+	}
 
 	return collision;
 }
@@ -147,5 +161,6 @@ void InGameState::restart()
 		m_gameObjects = mapParser.getGameObjects();
 		m_avatar = mapParser.getAvatar();
 		m_monsters = mapParser.getMonsters();
+		m_traps = mapParser.getTraps();
 	}
 }

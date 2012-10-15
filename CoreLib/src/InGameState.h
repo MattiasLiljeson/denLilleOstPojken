@@ -11,6 +11,7 @@ private:
 	vector<GameObject*>	m_gameObjects;
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
+	vector<Trap*>		m_traps;
 	GOFactory*			m_factory;
 
 	//Temp

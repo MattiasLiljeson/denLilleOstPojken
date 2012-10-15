@@ -20,7 +20,8 @@ enum TileType
 	MONSTER_SPAWN,
 	SPEEDPILL,
 	SUPERPILL,
-	SWITCH
+	SWITCH,
+	TRAP
 };
 
 class MapLoader
@@ -30,6 +31,7 @@ private:
 	vector<GameObject*>	m_gameObjects;
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
+	vector<Trap*>		m_traps;
 	GameStats* m_stats;
 	GOFactory*	m_factory;
 
@@ -42,6 +44,7 @@ public:
 	vector<GameObject*> getGameObjects();
 	Avatar* getAvatar();
 	vector<Monster*> getMonsters();
+	vector<Trap*> getTraps();
 };
 
 #endif
