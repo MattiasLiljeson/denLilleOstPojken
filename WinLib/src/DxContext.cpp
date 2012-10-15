@@ -421,30 +421,6 @@ int DxContext::update(float p_dt)
 	}
 	return GAME_OK;
 }
-int DxContext::draw(float p_dt)
-{
-	// REMOVE THIS FUNCTION
-	if (!m_resizing)
-	{
-		m_deviceContext->ClearRenderTargetView(m_backBuffer, 
-			D3DXCOLOR(0, 0, 0, 1.0f));
-
-		m_deviceContext->ClearDepthStencilView(m_depthStencilView, 
-			D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-		SpriteInfo spriteInfo;
-		spriteInfo.transformInfo.translation[TransformInfo::X] = 100;
-		spriteInfo.transformInfo.translation[TransformInfo::Y] = 100;
-		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
-		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
-
-		m_spriteRenderer->setSpriteInfo(&spriteInfo);
-		m_spriteRenderer->draw();
-
-		m_swapChain->Present(0, 0);
-	}
-	return GAME_OK;
-}
 
 int DxContext::beginDraw()
 {

@@ -164,15 +164,6 @@ int GlContext::update(float p_dt)
 
 	return 0;
 }
-int GlContext::draw(float p_dt)
-{
-	glClearColor(0, 0, 0, 1.0);
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	m_spriteRenderer->draw();
-	glfwSwapBuffers();
-	return 0;
-}
 
 int GlContext::beginDraw()
 {

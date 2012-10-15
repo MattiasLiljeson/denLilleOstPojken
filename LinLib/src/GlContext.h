@@ -43,9 +43,6 @@ public:
 	int						setWindowSize(int p_width, int p_height);
 	int						update(float p_dt);
 
-	//HACK: replace by using drawSprite(), beginDraw() and endDraw()
-	int						draw(float p_dt);
-
 	int						addSprite( SpriteInfo* p_spriteInfo);
 
 	int						beginDraw();
