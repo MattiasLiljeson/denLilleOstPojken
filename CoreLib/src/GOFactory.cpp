@@ -151,18 +151,22 @@ fVector2 GOFactory::GetScaledSize(Tile* p_tile, float p_scale)
 
 SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 {
-	SoundInfo* soundInfo = new SoundInfo();
-	soundInfo->play = false;
-	soundInfo->id = p_sound;
-	sf::SoundBuffer buffer;
-	buffer.LoadFromFile(p_sound);
-	sf::Sound* s = new sf::Sound(buffer);
-	s->SetVolume(p_volume);
-	s->Play();
+	if (m_io)
+	{
+		SoundInfo* soundInfo = new SoundInfo();
+		soundInfo->play = false;
+		soundInfo->id = p_sound;
+		sf::SoundBuffer buffer;
+		buffer.LoadFromFile(p_sound);
+		sf::Sound* s = new sf::Sound(buffer);
+		s->SetVolume(p_volume);
+		s->Play();
 
-	m_io->addSound(soundInfo);
+		m_io->addSound(soundInfo);
 
-	return soundInfo;
+		return soundInfo;
+	}
+	return NULL;
 }
 
 MenuItem* GOFactory::createMenuItem()

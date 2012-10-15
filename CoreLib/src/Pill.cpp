@@ -3,8 +3,6 @@
 
 Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo, p_gameStats)
 {
-	soundInfo = p_soundInfo;
-
 	if (p_gameStats)
 		p_gameStats->addPill();
 

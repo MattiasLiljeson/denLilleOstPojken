@@ -11,7 +11,7 @@ private:
 	void test1()
 	{
 		//Testing a null based avatar
-		Avatar avatar(NULL, NULL, NULL, NULL);
+		Avatar avatar(NULL, NULL, NULL, NULL, NULL);
 		newEntry(TestData("Null Tile", avatar.getCurrentTile() == NULL));
 		newEntry(TestData("Not Moving", avatar.getDirection() == Direction::NONE));
 		newEntry(TestData("Interpolation", avatar.getTileInterpolationFactor() == 0));
@@ -31,7 +31,7 @@ private:
 
 		Tilemap tmap(2, 1, tiles);
 
-		Avatar avatar(NULL, &tmap, tiles[0], NULL);
+		Avatar avatar(NULL, &tmap, tiles[0], NULL, NULL);
 
 		newEntry(TestData("Correct Tile", avatar.getCurrentTile() == tiles[0]));
 		newEntry(TestData("Correct Position", avatar.getCurrentTile()->getTilePosition() == TilePosition(0, 0)));

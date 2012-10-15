@@ -61,31 +61,28 @@ bool Avatar::check180()
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if(m_spriteInfo->visible)
-	{
-		checkInput(p_inputInfo);
+	checkInput(p_inputInfo);
 	
-		if (m_desired != m_direction)
+	if (m_desired != m_direction)
+	{
+		if (check180())
 		{
-			if (check180())
+			Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
+			Tile* temp = m_currentTile;
+			m_currentTile = m_nextTile;
+			m_nextTile = m_queuedTile = temp;
+			if (destination && destination->isFree())
+				m_queuedTile = destination;
+			m_direction = m_desired;
+			dt = 1 - dt;
+		}
+		else
+		{
+			Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
+			if (destination && destination->isFree())
 			{
-				Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
-				Tile* temp = m_currentTile;
-				m_currentTile = m_nextTile;
-				m_nextTile = m_queuedTile = temp;
-				if (destination && destination->isFree())
-					m_queuedTile = destination;
+				m_queuedTile = destination;
 				m_direction = m_desired;
-				dt = 1 - dt;
-			}
-			else
-			{
-				Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
-				if (destination && destination->isFree())
-				{
-					m_queuedTile = destination;
-					m_direction = m_desired;
-				}
 			}
 		}
 	}
@@ -95,7 +92,6 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if (m_currentTile)
 	{
-		dt += p_deltaTime * (6 + m_gameStats->isSpeeded() * 3);
 		while (dt > 1)
 		{
 			dt -= 1;
