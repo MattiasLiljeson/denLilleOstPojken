@@ -25,6 +25,7 @@ public:
 	void draw(float p_dt);
 	void handleInput(InputInfo p_input);
 	bool onEntry();
+	bool onExit();
 };
 
 #endif

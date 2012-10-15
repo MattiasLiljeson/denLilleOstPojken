@@ -27,6 +27,7 @@ public:
 	bool checkDynamicCollision();
 	void restart();
 	bool onEntry();
+	bool onExit();
 };
 
 #endif

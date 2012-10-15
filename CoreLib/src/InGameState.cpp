@@ -6,6 +6,8 @@
 InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): State(p_parent)
 {
 	m_io = p_io;
+	// Allocation: Moved to onEntry (Added by Jarl 2012-10-15)
+	/*
 	if (m_io)
 	{
 		m_factory = new GOFactory(p_io);
@@ -15,9 +17,14 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): 
 		if (p_reset)
 			restart();
 	}
+	
+	onEntry(); // alternative
+	*/
 }
 InGameState::~InGameState()
 {
+	// Deallocation: Moved to onExit (Added by Jarl 2012-10-15)
+	/*
 	if (m_io)
 	{
 		for (int i = m_gameObjects.size() - 1; i >= 0; i--)
@@ -32,11 +39,50 @@ InGameState::~InGameState()
 		if (m_factory)
 			delete m_factory;
 	}
+	*/
+	onExit();
 }
 
 bool InGameState::onEntry()
 {
-	restart();
+	if (!m_resourcesAllocated)
+	{
+		if (m_io)
+		{
+			m_factory = new GOFactory(m_io);
+			m_tileMap = NULL;
+			m_stats = NULL;
+			m_currentMap = 0;
+			/*if (p_reset)
+				restart();*/
+		}
+		restart();
+		m_resourcesAllocated=true;
+	}
+	return true;
+}
+
+bool InGameState::onExit()
+{
+	if (m_resourcesAllocated)
+	{
+		if (m_io)
+		{
+			for (int i = m_gameObjects.size() - 1; i >= 0; i--)
+			{
+				delete m_gameObjects.at(i);
+			}
+			m_gameObjects.clear();
+			if (m_tileMap)
+				delete m_tileMap;
+			if (m_stats)
+				delete m_stats;
+			if (m_factory)
+				delete m_factory;
+		}
+		m_resourcesAllocated=false;
+	}
+
 	return true;
 }
 
@@ -75,14 +121,20 @@ void InGameState::update(float p_dt)
 
 		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
 		{
-			//m_parent->requestStateChange(m_parent->getMenuState());
 			//restart();
 			//return;
 		}
+		//
+		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
+		{
+			m_parent->requestStateChange(m_parent->getMenuState());
+		}
+		/*
 		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
 		{
 			m_parent->terminate();
 		}
+		*/
 	}
 }
 
