@@ -14,9 +14,6 @@
     <Filter Include="Source\GameObject\Tilemap">
       <UniqueIdentifier>{0a10e61a-f306-4d33-a19a-c406fac7ac65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\States">
-      <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\GameObject\Monster">
       <UniqueIdentifier>{a2dde8ce-d32d-4ec7-8671-0119d706aaba}</UniqueIdentifier>
     </Filter>
@@ -51,12 +48,17 @@
       <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\GameObject\States">
+	</Filter>
+    <Filter Include="Source\GameStates">
+      <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\ObjectStates">
       <UniqueIdentifier>{8bafb84b-d993-4e69-ac3c-09fdcb1fb4e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\States\Pill">
+    <Filter Include="Source\GameObject\ObjectStates\Pill">
       <UniqueIdentifier>{002c6e1c-1474-4240-a21a-d6cc16a5552a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\States\Avatar">
+    <Filter Include="Source\GameObject\ObjectStates\Avatar">
       <UniqueIdentifier>{18c83fb2-c329-4ac1-9f94-05e004e7b3ff}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source\Text">
@@ -67,6 +69,9 @@
     </Filter>
     <Filter Include="Source\GameObject\Glyph">
       <UniqueIdentifier>{c6aaeac9-9cab-4c1f-bd28-eb146de95b52}</UniqueIdentifier>
+	</Filter>
+    <Filter Include="Source\GameObject\ObjectStates\SpeedPill">
+      <UniqueIdentifier>{4e4733f5-e99e-4d5f-84ea-31cff6e39284}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -92,16 +97,16 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\InGameState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\State.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\StateManager.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\Monster.cpp">
       <Filter>Source\GameObject\Monster</Filter>
@@ -128,7 +133,7 @@
       <Filter>Source\Collision</Filter>
     </ClCompile>
     <ClCompile Include="src\GameOverState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
@@ -140,13 +145,22 @@
       <Filter>Source\GameObject\MenuItem</Filter>
     </ClCompile>
     <ClCompile Include="src\GOState.cpp">
-      <Filter>Source\GameObject\States</Filter>
+      <Filter>Source\GameObject\ObjectStates</Filter>
     </ClCompile>
     <ClCompile Include="src\PillEatenState.cpp">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\PillIldeState.cpp">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AvatarKilled.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BasicIdle.cpp">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpeedPillUse.cpp">
+      <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
     </ClCompile>
     <ClCompile Include="src\GlyphMap.cpp">
       <Filter>Source\Text\GlyphMap</Filter>
@@ -181,16 +195,16 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\InGameState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\MenuState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\State.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\StateManager.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\Monster.h">
       <Filter>Source\GameObject\Monster</Filter>
@@ -217,7 +231,7 @@
       <Filter>Source\Collision</Filter>
     </ClInclude>
     <ClInclude Include="src\GameOverState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
@@ -229,13 +243,22 @@
       <Filter>Source\GameObject\MenuItem</Filter>
     </ClInclude>
     <ClInclude Include="src\GOState.h">
-      <Filter>Source\GameObject\States</Filter>
+      <Filter>Source\GameObject\ObjectStates</Filter>
     </ClInclude>
     <ClInclude Include="src\PillEatenState.h">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\PillIdleState.h">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AvatarKilled.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BasicIdle.h">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpeedPillUse.h">
+      <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
     </ClInclude>
     <ClInclude Include="src\GlyphMap.h">
       <Filter>Source\Text\GlyphMap</Filter>

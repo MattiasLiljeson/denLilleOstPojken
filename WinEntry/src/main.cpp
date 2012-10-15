@@ -1,3 +1,7 @@
+#define SCREEN_WIDTH 1920
+#define SCREEN_HEIGHT 1080
+#define SCREEN_START_X 0
+#define SCREEN_START_Y 0
 
 
 #define USE_DIRECTX
@@ -20,11 +24,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 					int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context = new DxContext(hInstance, 400, 400);
+	IOContext* context = new DxContext(hInstance, SCREEN_WIDTH, SCREEN_HEIGHT);
 	
-	context->setWindowSize(800, 600);
+	//context->setWindowSize(800, 600);
 
-	context->setWindowPosition(50, 250);
+	context->setWindowPosition(SCREEN_START_X, SCREEN_START_Y);
 
 	if (!context->isInitialized())
 	{
@@ -55,11 +59,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	int nCmdShow)
 {
 	_CrtSetDbgFlag( _CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
-	IOContext* context = new GlContext(800, 600);
+	IOContext* context = new GlContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	context->setWindowSize(800, 600);
+//	context->setWindowSize(800, 600);
 
-	context->setWindowPosition(50, 250);
+	context->setWindowPosition(SCREEN_START_X, SCREEN_START_Y);
 
 	if (!context->isInitialized())
 	{
@@ -89,11 +93,11 @@ int WINAPI WinMain(HINSTANCE hInstance,
 int main(int argc, char** argv)
 {
 	cout<<"Running Linux Build...";
-	IOContext* context = new GlContext(400, 400);
+	IOContext* context = new GlContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 
-	context->setWindowSize(800, 600);
+//	context->setWindowSize(800, 600);
 
-	context->setWindowPosition(50, 250);
+	context->setWindowPosition(SCREEN_START_X, SCREEN_START_Y);
 
 	if (!context->isInitialized())
 	{

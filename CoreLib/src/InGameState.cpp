@@ -3,7 +3,7 @@
 #include "Game.h"
 #include <Circle.h>
 
-InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent)
+InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): State(p_parent)
 {
 	m_io = p_io;
 	if (m_io)
@@ -12,7 +12,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 		m_tileMap = NULL;
 		m_stats = NULL;
 		m_currentMap = 0;
-		restart();
+		if (p_reset)
+			restart();
 	}
 }
 InGameState::~InGameState()
@@ -21,10 +22,9 @@ InGameState::~InGameState()
 	{
 		for (int i = m_gameObjects.size() - 1; i >= 0; i--)
 		{
-			GameObject* gameObject = m_gameObjects.at(i);
-			m_gameObjects.pop_back();
-			delete gameObject;
+			delete m_gameObjects.at(i);
 		}
+		m_gameObjects.clear();
 		if (m_tileMap)
 			delete m_tileMap;
 		if (m_stats)
@@ -111,7 +111,7 @@ bool InGameState::checkDynamicCollision()
 					m_stats->addScore(MONSTER_KILLED);
 				}
 				else
-					m_parent->terminate();
+					m_avatar->kill();
 			}
 		}
 	}

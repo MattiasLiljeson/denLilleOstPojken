@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
+    <ClCompile Include="src\AvatarKilled.cpp" />
+    <ClCompile Include="src\BasicIdle.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\DynamicCollision.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -41,6 +43,7 @@
     <ClCompile Include="src\PillEatenState.cpp" />
     <ClCompile Include="src\PillIldeState.cpp" />
     <ClCompile Include="src\SpeedPill.cpp" />
+    <ClCompile Include="src\SpeedPillUse.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
     <ClCompile Include="src\Switch.cpp" />
@@ -52,6 +55,8 @@
   <ItemGroup>
     <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\Avatar.h" />
+    <ClInclude Include="src\AvatarKilled.h" />
+    <ClInclude Include="src\BasicIdle.h" />
     <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\DynamicCollision.h" />
     <ClInclude Include="src\Game.h" />
@@ -79,6 +84,7 @@
     <ClInclude Include="src\TextArea.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
+    <ClInclude Include="src\SpeedPillUse.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">

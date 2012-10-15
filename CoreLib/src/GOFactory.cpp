@@ -16,7 +16,7 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 450;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
 		pos, size, &r);
-	return new Avatar(spriteInfo, p_map, p_startTile, p_stats);
+	return new Avatar(spriteInfo, p_map, p_startTile, p_stats,CreateSoundInfo("../Sounds/laser_zip_mono.wav",100));
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
@@ -43,7 +43,7 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
-	return new SpeedPill(spriteInfo, p_tile, p_gameStats);
+	return new SpeedPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
@@ -52,16 +52,8 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
-
-	SoundInfo* soundinfo = NULL;
-	if (m_io)
-	{
-		soundinfo = new SoundInfo();
-		soundinfo->play = false;
-		soundinfo->id = "../Sounds/gun.wav";
-		m_io->addSound(soundinfo);
-	}
-	return new Pill(spriteInfo, soundinfo, p_tile, p_gameStats);
+	
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/Plink_08.wav",100), p_tile, p_gameStats);
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
@@ -155,6 +147,22 @@ fVector2 GOFactory::GetScaledSize(Tile* p_tile, float p_scale)
 		return fVector2(w * p_scale, h * p_scale);
 	}
 	return fVector2(0, 0);
+}
+
+SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
+{
+	SoundInfo* soundInfo = new SoundInfo();
+	soundInfo->play = false;
+	soundInfo->id = p_sound;
+	sf::SoundBuffer buffer;
+	buffer.LoadFromFile(p_sound);
+	sf::Sound* s = new sf::Sound(buffer);
+	s->SetVolume(p_volume);
+	s->Play();
+
+	m_io->addSound(soundInfo);
+
+	return soundInfo;
 }
 
 MenuItem* GOFactory::createMenuItem()

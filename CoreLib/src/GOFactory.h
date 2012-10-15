@@ -25,6 +25,7 @@ private:
 
 	fVector3 GetCenter(Tile* p_tile, float p_depth);
 	fVector2 GetScaledSize(Tile* p_tile, float p_scale);
+	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 public:
 	GOFactory(IODevice* p_io);
 

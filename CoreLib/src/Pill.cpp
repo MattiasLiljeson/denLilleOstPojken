@@ -7,6 +7,7 @@ Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameS
 
 	if (p_gameStats)
 		p_gameStats->addPill();
+
 	m_tile = p_tile;
 	if (m_tile)
 		m_tile->addPill(this);

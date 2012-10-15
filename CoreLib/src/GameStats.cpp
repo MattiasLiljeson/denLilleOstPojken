@@ -30,12 +30,8 @@ GameStats::~GameStats()
 {
 	delete m_timer;
 
-	while (!m_powerUpTimers.empty())
-	{
-		Timer* tempTimer = m_powerUpTimers.back();
-		m_powerUpTimers.pop_back();
-		delete tempTimer;
-	}
+	for(unsigned int i = 0; i < m_powerUpTimers.size(); i++)
+		delete m_powerUpTimers.at(i);
 }
 
 void GameStats::update(float p_deltaTime)
