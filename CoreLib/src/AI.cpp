@@ -51,7 +51,7 @@ void AI::findTarget()
 bool AI::shouldChaseTarget()
 {
 	// Check if various effects are active that makes the avatar fearsome!
-	if(m_gameStats->isSuperMode())
+	if(m_gameStats && m_gameStats->isSuperMode())
 		return false;
 	
 	return true;

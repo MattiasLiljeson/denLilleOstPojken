@@ -47,6 +47,8 @@
     <Filter Include="Source\GameObject\MenuItem">
       <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\States">
+	</Filter>
     <Filter Include="Source\GameStates">
       <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
     </Filter>
@@ -59,11 +61,17 @@
     <Filter Include="Source\GameObject\ObjectStates\Avatar">
       <UniqueIdentifier>{18c83fb2-c329-4ac1-9f94-05e004e7b3ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\Text">
+      <UniqueIdentifier>{affd4781-051a-4fa5-939a-7257fd312641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Text\GlyphMap">
+      <UniqueIdentifier>{b0485893-183e-48b3-9dc3-b99963d0779d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Glyph">
+      <UniqueIdentifier>{c6aaeac9-9cab-4c1f-bd28-eb146de95b52}</UniqueIdentifier>
+	</Filter>
     <Filter Include="Source\GameObject\ObjectStates\SpeedPill">
       <UniqueIdentifier>{4e4733f5-e99e-4d5f-84ea-31cff6e39284}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source\GameObject\ObjectStates\SuperPill">
-      <UniqueIdentifier>{f693f744-81ff-4b32-8102-cc4e1b558ccb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -142,6 +150,9 @@
     <ClCompile Include="src\PillEatenState.cpp">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClCompile>
+    <ClCompile Include="src\PillIldeState.cpp">
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
+    </ClCompile>
     <ClCompile Include="src\AvatarKilled.cpp">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClCompile>
@@ -151,8 +162,14 @@
     <ClCompile Include="src\SpeedPillUse.cpp">
       <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
     </ClCompile>
-    <ClCompile Include="src\SuperPillEaten.cpp">
-      <Filter>Source\GameObject\ObjectStates\SuperPill</Filter>
+    <ClCompile Include="src\GlyphMap.cpp">
+      <Filter>Source\Text\GlyphMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glyph.cpp">
+      <Filter>Source\GameObject\Glyph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextArea.cpp">
+      <Filter>Source\Text</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +248,9 @@
     <ClInclude Include="src\PillEatenState.h">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClInclude>
+    <ClInclude Include="src\PillIdleState.h">
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
+    </ClInclude>
     <ClInclude Include="src\AvatarKilled.h">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClInclude>
@@ -240,8 +260,14 @@
     <ClInclude Include="src\SpeedPillUse.h">
       <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
     </ClInclude>
-    <ClInclude Include="src\SuperPillEaten.h">
-      <Filter>Source\GameObject\ObjectStates\SuperPill</Filter>
+    <ClInclude Include="src\GlyphMap.h">
+      <Filter>Source\Text\GlyphMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glyph.h">
+      <Filter>Source\GameObject\Glyph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextArea.h">
+      <Filter>Source\Text</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

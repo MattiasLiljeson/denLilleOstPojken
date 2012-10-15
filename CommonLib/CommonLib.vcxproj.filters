@@ -39,6 +39,8 @@
       <Filter>InfoStructs</Filter>
     </ClInclude>
     <ClInclude Include="src\SoundManager.h" />
+    <ClInclude Include="src\DebugPrint.h" />
+    <ClInclude Include="src\ToString.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="InfoStructs">

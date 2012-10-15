@@ -29,6 +29,8 @@
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameOverState.cpp" />
     <ClCompile Include="src\GameStats.cpp" />
+    <ClCompile Include="src\Glyph.cpp" />
+    <ClCompile Include="src\GlyphMap.cpp" />
     <ClCompile Include="src\GOFactory.cpp" />
     <ClCompile Include="src\GOState.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
@@ -46,6 +48,7 @@
     <ClCompile Include="src\SuperPillEaten.cpp" />
     <ClCompile Include="src\Switch.cpp" />
     <ClCompile Include="src\SuperPill.cpp" />
+    <ClCompile Include="src\TextArea.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
   </ItemGroup>
@@ -60,6 +63,8 @@
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameOverState.h" />
     <ClInclude Include="src\GameStats.h" />
+    <ClInclude Include="src\Glyph.h" />
+    <ClInclude Include="src\GlyphMap.h" />
     <ClInclude Include="src\GOFactory.h" />
     <ClInclude Include="src\GOState.h" />
     <ClInclude Include="src\InGameState.h" />
@@ -76,6 +81,7 @@
     <ClInclude Include="src\SuperPillEaten.h" />
     <ClInclude Include="src\Switch.h" />
     <ClInclude Include="src\SuperPill.h" />
+    <ClInclude Include="src\TextArea.h" />
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\SpeedPillUse.h" />

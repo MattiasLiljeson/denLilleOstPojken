@@ -61,36 +61,38 @@ bool Avatar::check180()
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if(m_spriteInfo->visible)
-	{
-		checkInput(p_inputInfo);
+	checkInput(p_inputInfo);
 	
-		if (m_desired != m_direction)
+	if (m_desired != m_direction)
+	{
+		if (check180())
 		{
-			if (check180())
+			Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
+			Tile* temp = m_currentTile;
+			m_currentTile = m_nextTile;
+			m_nextTile = m_queuedTile = temp;
+			if (destination && destination->isFree())
+				m_queuedTile = destination;
+			m_direction = m_desired;
+			dt = 1 - dt;
+		}
+		else
+		{
+			Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
+			if (destination && destination->isFree())
 			{
-				Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
-				Tile* temp = m_currentTile;
-				m_currentTile = m_nextTile;
-				m_nextTile = m_queuedTile = temp;
-				if (destination && destination->isFree())
-					m_queuedTile = destination;
+				m_queuedTile = destination;
 				m_direction = m_desired;
-				dt = 1 - dt;
-			}
-			else
-			{
-				Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
-				if (destination && destination->isFree())
-				{
-					m_queuedTile = destination;
-					m_direction = m_desired;
-				}
 			}
 		}
+	}
+	dt += p_deltaTime * 6;
+	if (m_gameStats && m_gameStats->isSpeeded())
+		dt += p_deltaTime * 3;
 
-		dt += p_deltaTime * (6 + m_gameStats->isSpeeded() * 3);
-		if (dt > 1)
+	if (m_currentTile)
+	{
+		while (dt > 1)
 		{
 			dt -= 1;
 			m_currentTile = m_nextTile;
@@ -102,14 +104,34 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 			m_currentTile->removePill();
 		}
+	}
+	else
+		dt = 0;
 
-		if (m_spriteInfo)
+	if (m_spriteInfo)
+	{
+		TilePosition tp1 = m_currentTile->getTilePosition();
+		TilePosition tp2 = m_nextTile->getTilePosition();
+		float pX = tp1.x * (1-dt) + tp2.x * dt; 
+		float pY = tp1.y * (1-dt) + tp2.y * dt;  
+
+		float w = m_currentTile->getWidth();
+		float h = m_currentTile->getHeight();
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	
+		if (m_gameStats && m_gameStats->isSuperMode())
 		{
-			TilePosition tp1 = m_currentTile->getTilePosition();
-			TilePosition tp2 = m_nextTile->getTilePosition();
-			float pX = tp1.x * (1-dt) + tp2.x * dt; 
-			float pY = tp1.y * (1-dt) + tp2.y * dt;  
-
+			m_spriteInfo->textureRect.x = 0;
+			float remaining = m_gameStats->superTimeRemaining();
+			if (remaining < 1)
+			{
+				if ((int)(remaining*6) % 2 == 0)
+					m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
+			}
+		}
+		else
+		{
 			float w = m_currentTile->getWidth();
 			float h = m_currentTile->getHeight();
 			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
@@ -146,6 +168,7 @@ float Avatar::getTileInterpolationFactor()
 void Avatar::setTilePosition(Tile* p_newPosition)
 {
 	m_currentTile = p_newPosition;
+	dt = 0;
 }
 void Avatar::kill()
 {

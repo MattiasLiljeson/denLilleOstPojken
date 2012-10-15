@@ -6,12 +6,8 @@ GOFactory::GOFactory(IODevice* p_io)
 }
 Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
 {
-	TilePosition tp = p_startTile->getTilePosition();
-	float w = p_startTile->getWidth();
-	float h = p_startTile->getHeight();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.5f);
-	fVector2 size = fVector2(w * 0.6f, h * 0.6f);
+	fVector3 pos = GetCenter(p_startTile, 0.5f); 
+	fVector2 size = GetScaledSize(p_startTile, 0.6f);
 
 	Rect r;
 	r.x		= 385;
@@ -24,12 +20,8 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
-	fVector2 size = fVector2(w * 0.9f, h * 0.9f);
+	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector2 size = GetScaledSize(p_tile, 0.9f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SeaMonster.png",
 		pos, size, NULL);
@@ -37,25 +29,17 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 }
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
-	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
+	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SuperPill.png",
 		pos, size, NULL);
-	return new SuperPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+	return new SuperPill(spriteInfo, p_tile, p_gameStats);
 }
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.1f);
-	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
@@ -63,12 +47,8 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.1f);
-	fVector2 size = fVector2(w * 0.5f, h * 0.5f);
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 0.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
@@ -78,8 +58,13 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 
 Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
 {
-	float tileSizeX = m_io->getScreenWidth() / (float)p_width;
-	float tileSizeY = m_io->getScreenHeight() / (float)p_height;
+	float tileSizeX = 10;
+	float tileSizeY = 10;
+	if (m_io)
+	{
+		tileSizeX = m_io->getScreenWidth() / (float)p_width;
+		tileSizeY = m_io->getScreenHeight() / (float)p_height;
+	}
 	Tile** tiles = new Tile*[p_width * p_height];
 	for (int row = 0; row < p_height; row++)
 	{
@@ -99,19 +84,17 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	fVector2 size = fVector2(p_width, p_height);
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/wall.png",
 		pos, size, NULL);
-	spriteInfo->visible = !p_type;
+
+	if (spriteInfo)
+		spriteInfo->visible = !p_type;
 
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
 	GameStats* p_gameStats, vector<TilePosition> p_targets)
 {
-	float w = p_tile->getWidth();
-	float h = p_tile->getHeight();
-	TilePosition tp = p_tile->getTilePosition();
-
-	fVector3 pos = fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, 0.2f);
-	fVector2 size = fVector2(w * 0.7f, h * 0.7f);
+	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Red_button.png",
 		pos, size, NULL);
@@ -121,6 +104,8 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
 	fVector2 p_size, Rect* p_sourceRect)
 {
+	if (!m_io)
+		return NULL;
 	SpriteInfo* spriteInfo = new SpriteInfo;
 	spriteInfo->transformInfo.translation[TransformInfo::X] = p_position.x;
 	spriteInfo->transformInfo.translation[TransformInfo::Y] = p_position.y;
@@ -139,21 +124,49 @@ SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
 	}
 	return spriteInfo;
 }
+fVector3 GOFactory::GetCenter(Tile* p_tile, float p_depth)
+{
+	if (p_tile)
+	{
+		float w = p_tile->getWidth();
+		float h = p_tile->getHeight();
+		TilePosition tp = p_tile->getTilePosition();
+
+		return fVector3(tp.x * w + w * 0.5f, tp.y * h + h * 0.5f, p_depth);
+	}
+	return fVector3(0, 0, 0);
+}
+fVector2 GOFactory::GetScaledSize(Tile* p_tile, float p_scale)
+{
+	if (p_tile)
+	{
+		float w = p_tile->getWidth();
+		float h = p_tile->getHeight();
+		TilePosition tp = p_tile->getTilePosition();
+
+		return fVector2(w * p_scale, h * p_scale);
+	}
+	return fVector2(0, 0);
+}
 
 SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 {
-	SoundInfo* soundInfo = new SoundInfo();
-	soundInfo->play = false;
-	soundInfo->id = p_sound;
-	sf::SoundBuffer buffer;
-	buffer.LoadFromFile(p_sound);
-	sf::Sound* s = new sf::Sound(buffer);
-	s->SetVolume(p_volume);
-	s->Play();
+	if (m_io)
+	{
+		SoundInfo* soundInfo = new SoundInfo();
+		soundInfo->play = false;
+		soundInfo->id = p_sound;
+		sf::SoundBuffer buffer;
+		buffer.LoadFromFile(p_sound);
+		sf::Sound* s = new sf::Sound(buffer);
+		s->SetVolume(p_volume);
+		s->Play();
 
-	m_io->addSound(soundInfo);
-	delete s;
-	return soundInfo;
+		m_io->addSound(soundInfo);
+
+		return soundInfo;
+	}
+	return NULL;
 }
 
 MenuItem* GOFactory::createMenuItem()
@@ -163,4 +176,14 @@ MenuItem* GOFactory::createMenuItem()
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SplashScreen.png",
 		pos, size, NULL);
 	return new MenuItem(spriteInfo);
+}
+
+
+Glyph* GOFactory::CreateGlyph(const string& p_texture, 
+							  float p_x, float p_y, fVector2 p_size)
+{
+	fVector3 pos = fVector3(p_x, p_y, 0.99f);
+	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
+	// spriteInfo->visible = false;
+	return new Glyph(spriteInfo);
 }

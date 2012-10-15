@@ -15,10 +15,14 @@ int PillEatenState::onEnter()
 {
 	//Consume the pill upon entry
 	Pill* p = (Pill*)m_gameObject;
-	m_gameStats->pillEaten();
-	m_onEatSound->play = true;
-	p->getSpriteInfo()->visible = false;
+	if (m_gameStats)
+		m_gameStats->pillEaten();
 
+	if (m_onEatSound)
+		m_onEatSound->play = true;
+
+	if (m_spriteInfo)
+		m_spriteInfo->visible = false;
 	return GAME_OK;
 }
 int PillEatenState::onExit()

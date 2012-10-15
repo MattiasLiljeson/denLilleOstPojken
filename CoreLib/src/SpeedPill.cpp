@@ -3,7 +3,8 @@
 SpeedPill::SpeedPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, SoundInfo* p_onUseSound): Collectable(p_spriteInfo, p_gameStats)
 {
 	m_tile = p_tile;
-	m_tile->addPill(this);
+	if (m_tile)
+		m_tile->addPill(this);
 	m_consumed = false;
 
 	m_eatenStaten = new SpeedPillUse(this,p_onUseSound);

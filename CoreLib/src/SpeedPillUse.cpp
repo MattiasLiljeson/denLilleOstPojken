@@ -13,8 +13,10 @@ SpeedPillUse::~SpeedPillUse()
 
 int SpeedPillUse::onEnter()
 {
-	m_onUseSound->play = true;
-	m_gameObject->getSpriteInfo()->visible = false;
+	if (m_onUseSound)
+		m_onUseSound->play = true;
+	if (m_gameObject->getSpriteInfo())
+		m_gameObject->getSpriteInfo()->visible = false;
 	return GAME_OK;
 }
 

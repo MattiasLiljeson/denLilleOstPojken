@@ -10,6 +10,7 @@ struct SoundData
 {
 	sf::SoundBuffer buffer;
 	string path;
+	SoundData();
 	SoundData(string p_path);
 };
 

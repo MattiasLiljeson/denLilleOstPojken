@@ -11,6 +11,7 @@
 #include "MenuItem.h"
 #include <fVector3.h>
 #include "Switch.h"
+#include "Glyph.h"
 #include <SoundInfo.h>
 
 class GOFactory
@@ -22,6 +23,8 @@ private:
 	SpriteInfo* CreateSpriteInfo(string p_texture, fVector3 p_position,
 		fVector2 p_size, Rect* p_sourceRect);
 
+	fVector3 GetCenter(Tile* p_tile, float p_depth);
+	fVector2 GetScaledSize(Tile* p_tile, float p_scale);
 	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 public:
 	GOFactory(IODevice* p_io);
@@ -42,6 +45,8 @@ public:
 
 	MenuItem* createMenuItem();
 
+	Glyph* CreateGlyph(const string& p_texture, 
+					   float p_x, float p_y, fVector2 p_size);
 };
 
 #endif

@@ -84,7 +84,8 @@ void GameStats::addPill()
 void GameStats::setSpeeded()
 {
 	m_speeded = true;
-	m_speedUpTimer->start();
+	if (m_speedUpTimer)
+		m_speedUpTimer->start();
 }
 bool GameStats::isSpeeded()
 {
@@ -93,7 +94,8 @@ bool GameStats::isSpeeded()
 void GameStats::setSuperMode()
 {
 	m_superMode = true;
-	m_superModeTimer->start();
+	if (m_superModeTimer)
+		m_superModeTimer->start();
 }
 bool GameStats::isSuperMode()
 {

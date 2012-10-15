@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Math">
+      <UniqueIdentifier>{6616095b-ea89-43aa-9dea-90e58311f52d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{a852dfbf-5c64-4f25-a6b9-8bdcaed54d0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{33373ec5-1460-4aeb-a293-8defc277b94d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameStats">
+      <UniqueIdentifier>{421d1ef3-28a3-437c-8da4-1ee46debbc16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MapLoader">
+      <UniqueIdentifier>{37933642-894e-4971-b02a-d173b69b19ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Factory">
+      <UniqueIdentifier>{43dccd2a-039d-4fd3-ace2-901424d42a52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Text">
+      <UniqueIdentifier>{eca146fd-3b75-4e5d-86e4-6c8d09b16057}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{7e0e71c7-64c0-4946-9c6a-4be98ec2c05c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Tilemap">
+      <UniqueIdentifier>{4a7e2887-3259-4260-9442-b1a22f87b281}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{e3ccea1c-c7e2-4ad0-8915-9aa47f90ebbb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObjects\Collectable">
+      <UniqueIdentifier>{57586fec-e90d-4285-918b-56f6a7a62aab}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Tester.cpp" />
+    <ClCompile Include="src\Test.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Tester.h" />
+    <ClInclude Include="src\Test.h" />
+    <ClInclude Include="src\Test_fVector2.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_fVector3.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Circle.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_InputInfo.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SoundInfo.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SoundData.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GameStats.h">
+      <Filter>GameStats</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_MapLoader.h">
+      <Filter>MapLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GOFactory.h">
+      <Filter>Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_GlyphMap.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Avatar.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Tile.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Tilemap.h">
+      <Filter>Tilemap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Monster.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_States.h">
+      <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_Pill.h">
+      <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SuperPill.h">
+      <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_SpeedPill.h">
+      <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
