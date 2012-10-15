@@ -30,7 +30,6 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 	
 	onEntry(); // Alternative
 	*/
->>>>>>> origin/s3tNONE_stateSwitching
 }
 
 MenuState::~MenuState()

@@ -8,7 +8,7 @@ class Trap: public GameObject
 private:
 public:
 	Trap(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map);
-	~Trap();
+	virtual ~Trap();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 };
 
