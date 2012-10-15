@@ -8,8 +8,8 @@ PillEatenState::PillEatenState(GameObject* p_gameObject, SpriteInfo* p_spriteInf
 }
 PillEatenState::~PillEatenState()
 {
-//	if (m_onEatSound)
-//		delete m_onEatSound;
+	if (m_onEatSound)
+		m_onEatSound->deleted = true;
 }
 int PillEatenState::onEnter()
 {
@@ -17,7 +17,8 @@ int PillEatenState::onEnter()
 	Pill* p = (Pill*)m_gameObject;
 	m_gameStats->pillEaten();
 	m_onEatSound->play = true;
-	m_spriteInfo->visible = false;
+	p->getSpriteInfo()->visible = false;
+
 	return GAME_OK;
 }
 int PillEatenState::onExit()

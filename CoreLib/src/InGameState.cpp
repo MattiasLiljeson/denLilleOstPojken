@@ -39,7 +39,6 @@ void InGameState::update(float p_dt)
 {
 	if (m_io)
 	{
-
 		InputInfo input = m_io->fetchInput();
 
 		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)

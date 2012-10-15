@@ -7,6 +7,8 @@ AvatarKilled::AvatarKilled(GameObject* p_gameObject, SoundInfo* p_avatarKilledSo
 
 AvatarKilled::~AvatarKilled()
 {
+	if(m_avatarKilledSound)
+		m_avatarKilledSound->deleted = true;
 }
 
 int AvatarKilled::onEnter()

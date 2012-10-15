@@ -7,6 +7,8 @@ SpeedPillUse::SpeedPillUse(GameObject* p_gameObject, SoundInfo* p_onEatSound) : 
 
 SpeedPillUse::~SpeedPillUse()
 {
+	if(m_onUseSound)
+		m_onUseSound->deleted = true;
 }
 
 int SpeedPillUse::onEnter()

@@ -152,7 +152,7 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 	s->Play();
 
 	m_io->addSound(soundInfo);
-
+	delete s;
 	return soundInfo;
 }
 

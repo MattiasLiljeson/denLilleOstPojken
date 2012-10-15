@@ -6,7 +6,8 @@ SuperPillEaten::SuperPillEaten(GameObject* p_gameObject, SoundInfo* p_onEatSound
 }
 SuperPillEaten::~SuperPillEaten()
 {
-
+	if(m_onEatSound)
+		m_onEatSound->deleted = true;
 }
 int SuperPillEaten::onEnter()
 {

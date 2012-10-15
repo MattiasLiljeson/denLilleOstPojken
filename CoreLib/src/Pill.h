@@ -4,7 +4,6 @@
 #include "Tile.h"
 #include "Collectable.h"
 #include "IODevice.h"
-#include "PillIdleState.h"
 
 class PillEatenState;
 
@@ -12,7 +11,6 @@ class Pill: public Collectable
 {
 private:
 	Tile* m_tile;
-	PillIdleState* m_idleState;
 	PillEatenState* m_eatenState;
 public:
 	Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats);

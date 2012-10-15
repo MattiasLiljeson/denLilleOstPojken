@@ -142,9 +142,6 @@
     <ClCompile Include="src\PillEatenState.cpp">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClCompile>
-    <ClCompile Include="src\PillIldeState.cpp">
-      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
-    </ClCompile>
     <ClCompile Include="src\AvatarKilled.cpp">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClCompile>
@@ -232,9 +229,6 @@
       <Filter>Source\GameObject\ObjectStates</Filter>
     </ClInclude>
     <ClInclude Include="src\PillEatenState.h">
-      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
-    </ClInclude>
-    <ClInclude Include="src\PillIdleState.h">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\AvatarKilled.h">
