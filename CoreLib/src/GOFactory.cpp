@@ -72,7 +72,7 @@ Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
 	if (m_io)
 	{
 		tileSizeX = m_io->getScreenWidth() / (float)p_width;
-		tileSizeY = m_io->getScreenHeight() / (float)p_height;
+		tileSizeY = 0.92f * m_io->getScreenHeight() / (float)p_height;
 	}
 	Tile** tiles = new Tile*[p_width * p_height];
 	for (int row = 0; row < p_height; row++)
@@ -197,4 +197,29 @@ Glyph* GOFactory::CreateGlyph(const string& p_texture,
 	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
 	// spriteInfo->visible = false;
 	return new Glyph(spriteInfo);
+}
+
+GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
+{
+	float heightFraction = m_io->getScreenHeight() / 1080.0f;
+	float widthFraction = m_io->getScreenWidth() / 1920.0f;
+	int height = m_io->getScreenHeight();
+
+	Rect guiRect(0, 0, m_io->getScreenWidth(), 0.08f * m_io->getScreenHeight());
+
+	vector<SpriteInfo*> lives;
+	for (int i = 0; i < 3; i++)
+	{
+		fVector2 size = fVector2(50*widthFraction, 50*heightFraction);
+		fVector3 pos = fVector3(1.1f * size.x * i + size.x*0.5f, height - 0.08f * height*0.5f, 0.9f); 
+
+		Rect r;
+		r.x		= 385;
+		r.y		= 0;
+		r.width = 385;
+		r.height = 450;
+		lives.push_back(CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
+			pos, size, &r));
+	}
+	return new GUI(p_gameStats, lives);
 }

@@ -52,7 +52,8 @@ bool InGameState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
-			m_currentMap = 0;
+			m_currentMap = 1;
+			m_gui = NULL;
 			/*if (p_reset)
 				restart();*/
 		}
@@ -79,6 +80,8 @@ bool InGameState::onExit()
 				delete m_stats;
 			if (m_factory)
 				delete m_factory;
+			if (m_gui)
+				delete m_gui;
 		}
 		m_resourcesAllocated=false;
 	}
@@ -108,6 +111,7 @@ void InGameState::update(float p_dt)
 		checkDynamicCollision();
 	
 		m_stats->update(p_dt);
+		m_gui->update(p_dt);
 
 		int elapsed = m_stats->getGameTimer()->getElapsedTime();
 
@@ -135,6 +139,16 @@ void InGameState::update(float p_dt)
 			m_parent->terminate();
 		}
 		*/
+		if (m_avatar->isDead())
+		{
+			m_stats->loseLife();
+			if (m_stats->getNumLives() > 0)
+				m_avatar->revive(m_startTile);
+			else
+				m_parent->requestStateChange(m_parent->getMenuState());
+
+
+		}
 	}
 }
 
@@ -199,6 +213,8 @@ void InGameState::restart()
 			delete m_tileMap;
 		if (m_stats)
 			delete m_stats;
+		if (m_gui)
+			delete m_gui;
 
 		m_tileMap	= 0;
 		MapLoader mapParser;
@@ -214,6 +230,8 @@ void InGameState::restart()
 		m_avatar = mapParser.getAvatar();
 		m_monsters = mapParser.getMonsters();
 		m_traps = mapParser.getTraps();
+		m_gui = mapParser.getGUI();
+		m_startTile = m_avatar->getCurrentTile();
 	}
 }
 

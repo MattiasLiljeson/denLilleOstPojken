@@ -13,7 +13,7 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	m_navigationData->dt = 0;
 	m_navigationData->m_map = p_map;
 
-	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound);
+	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound, m_navigationData);
 	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats);
 	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
 	switchState(m_walking);
@@ -109,4 +109,13 @@ void Avatar::kill()
 bool Avatar::inAir()
 {
 	return m_currentState == m_avatarJumpingState;
+}
+bool Avatar::isDead()
+{
+	return m_currentState == m_avatarKilledState;
+}
+void Avatar::revive(Tile* p_newPosition)
+{
+	m_navigationData->m_currentTile = p_newPosition;
+	switchState(m_walking);
 }

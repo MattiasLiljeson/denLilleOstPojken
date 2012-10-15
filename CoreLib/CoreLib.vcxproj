@@ -35,6 +35,7 @@
     <ClCompile Include="src\GlyphMap.cpp" />
     <ClCompile Include="src\GOFactory.cpp" />
     <ClCompile Include="src\GOState.cpp" />
+    <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
     <ClCompile Include="src\MapLoader.cpp" />
@@ -72,6 +73,7 @@
     <ClInclude Include="src\GlyphMap.h" />
     <ClInclude Include="src\GOFactory.h" />
     <ClInclude Include="src\GOState.h" />
+    <ClInclude Include="src\GUI.h" />
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
     <ClInclude Include="src\MapLoader.h" />

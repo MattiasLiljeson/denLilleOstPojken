@@ -13,11 +13,13 @@ private:
 	vector<Monster*>	m_monsters;
 	vector<Trap*>		m_traps;
 	GOFactory*			m_factory;
+	GUI*				m_gui;
 
 	//Temp
 	Tilemap* m_tileMap;
 	GameStats* m_stats;
 	int	m_currentMap;
+	Tile* m_startTile;
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset = false);
 	virtual ~InGameState();

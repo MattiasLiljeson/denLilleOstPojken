@@ -14,6 +14,7 @@
 #include "Glyph.h"
 #include "Trap.h"
 #include <SoundInfo.h>
+#include "GUI.h"
 
 class GOFactory
 {
@@ -49,6 +50,8 @@ public:
 
 	Glyph* CreateGlyph(const string& p_texture, 
 					   float p_x, float p_y, fVector2 p_size);
+
+	GUI* CreateGUI(GameStats* p_gameStats);
 };
 
 #endif

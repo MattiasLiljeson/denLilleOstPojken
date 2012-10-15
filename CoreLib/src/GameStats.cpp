@@ -9,6 +9,7 @@ GameStats::GameStats(Timer* p_timer)
 	m_speeded	= false;
 	m_superMode = false;
 	m_score		= 0;
+	m_lives		= 3;
 
 	m_gameTimer = m_superModeTimer = m_speedUpTimer = NULL;
 
@@ -67,6 +68,10 @@ void GameStats::setNumPills(const int p_numPills)
 {
 	m_numPills = p_numPills;
 }
+int	GameStats::getNumLives()
+{
+	return m_lives;
+}
 
 int GameStats::getNumPills()
 {
@@ -116,4 +121,8 @@ int GameStats::getScore() const
 Timer* GameStats::getGameTimer()
 {
 	return m_gameTimer;
+}
+void GameStats::loseLife()
+{
+	m_lives = max(0, m_lives-1);
 }

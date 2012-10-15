@@ -23,12 +23,14 @@ private:
 	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
 	int				m_score;
+	int				m_lives;
 public:
 	GameStats(Timer* p_timer);
 	~GameStats();
 	void	update(float p_deltaTime);
 	void	setNumPills(const int p_numPills);
 	int		getNumPills();
+	int		getNumLives();
 	void	pillEaten();
 	void	addPill();
 	void	setSpeeded();
@@ -39,6 +41,7 @@ public:
 	void	addScore(int p_points);
 	int		getScore() const;
 	Timer*	getGameTimer();
+	void	loseLife();
 };
 
 #endif

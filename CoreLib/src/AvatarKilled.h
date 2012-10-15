@@ -8,8 +8,9 @@ class AvatarKilled : public GOState
 {
 private:
 	SoundInfo* m_avatarKilledSound;
+	NavigationData* m_navigationData;
 public:
-	AvatarKilled(GameObject* p_gameObject, SoundInfo* p_avatarKilledSound);
+	AvatarKilled(GameObject* p_gameObject, SoundInfo* p_avatarKilledSound, NavigationData* p_navigationData);
 	virtual ~AvatarKilled();
 	int onEnter();
 	int onExit();
