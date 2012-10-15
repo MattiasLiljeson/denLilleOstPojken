@@ -16,11 +16,11 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 		m_factory = new GOFactory(p_io);
 		p_io->clearSpriteInfos();
 		m_menuItems.push_back( m_factory->createMenuItem() );
-
-		testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-		textArea = new TextArea(testFont,12,m_factory,300.0f,50.0f);
-		textArea->setText("HELLOWORLD");
 	}
+	// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
+	testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
+	textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
+	textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
 }
 
 MenuState::~MenuState()
@@ -53,20 +53,29 @@ void MenuState::update(float p_dt)
 	{
 		InputInfo input = m_io->fetchInput();
 
-		textArea->update(p_dt,input);
 
-		if (input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED)
-		{
-			m_io->clearSpriteInfos();
-			m_parent->requestStateChange(m_parent->getInGameState());
-		}
+		textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234... DT=" + toString(p_dt) );
+		textArea->update(p_dt,input); // empty implementation for now
 
-		if( input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
-		{
-			m_parent->terminate();
-		}
+		// NOTE: The way this function works right now
+		// (triggers state change and sprite dealloc), 
+		// it has to the last function called in update.
+		handleInput(input);
 	}
 }
 void MenuState::draw(float p_dt)
 {
+}
+
+void MenuState::handleInput(InputInfo p_input)
+{
+	if (p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED)
+	{
+		m_io->clearSpriteInfos();
+		m_parent->requestStateChange(m_parent->getInGameState());
+	}
+	else if(p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+	{
+		m_parent->terminate();
+	}
 }

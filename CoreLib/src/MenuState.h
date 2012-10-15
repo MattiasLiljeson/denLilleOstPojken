@@ -23,6 +23,7 @@ public:
 	virtual ~MenuState();
 	void update(float p_dt);
 	void draw(float p_dt);
+	void handleInput(InputInfo p_input);
 	bool onEntry();
 };
 

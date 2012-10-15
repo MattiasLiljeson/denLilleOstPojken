@@ -13,7 +13,7 @@ TextArea::TextArea(GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_
 	string texturePath = m_glyphMap->getPath();
 	float glyphWidth = static_cast<float>(m_glyphMap->getCharWidth());
 	float glyphHeight = static_cast<float>(m_glyphMap->getCharHeight());
-	for (int i=0;i<p_maxLength;i++)
+	for (int i=0;i<m_maxLength;i++)
 	{
 		// TODO:
 		// Right now text will always be left-bottom-aligned,
@@ -29,8 +29,9 @@ TextArea::TextArea(GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_
 
 TextArea::~TextArea()
 {
-	for (int i=0;i<m_glyphs.size();i++)
+	for (int i=0;i<m_maxLength;i++)
 		delete m_glyphs[i];
+	
 	m_glyphs.clear();
 }
 
