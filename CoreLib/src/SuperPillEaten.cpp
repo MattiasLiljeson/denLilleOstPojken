@@ -11,8 +11,11 @@ SuperPillEaten::~SuperPillEaten()
 }
 int SuperPillEaten::onEnter()
 {
-	m_gameObject->getSpriteInfo()->visible = false;
-	m_onEatSound->play = true;
+	if(m_gameObject->getSpriteInfo())
+		m_gameObject->getSpriteInfo()->visible = false;
+	
+	if(m_onEatSound)
+		m_onEatSound->play = true;
 
 	return GAME_OK;
 }

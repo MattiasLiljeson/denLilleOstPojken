@@ -31,8 +31,8 @@ void SuperPill::consume()
 	{
 		m_consumed = true;
 		m_tile = NULL;
-		m_gameStats->setSuperMode();
-
+		if(m_gameStats)
+			m_gameStats->setSuperMode();
 		switchState(m_superPillEaten);
 	}
 }
