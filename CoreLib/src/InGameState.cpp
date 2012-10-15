@@ -10,7 +10,6 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io): State(p_parent
 	m_tileMap = NULL;
 	m_stats = NULL;
 	m_currentMap = 0;
-	restart();
 }
 InGameState::~InGameState()
 {
@@ -41,17 +40,7 @@ void InGameState::update(float p_dt)
 	{
 
 		InputInfo input = m_io->fetchInput();
-
-		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
-		{
-			//m_parent->requestStateChange(m_parent->getMenuState());
-			restart();
-			return;
-		}
-		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
-		{
-			m_parent->terminate();
-		}
+		
 		if (m_stats->getNumPills() < 1)
 		{
 			//m_parent->terminate();
@@ -78,6 +67,17 @@ void InGameState::update(float p_dt)
 		string text = "Elapsed Game Time: " + ss.str() + " seconds";
 
 		m_io->setWindowText(text);
+
+		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
+		{
+			//m_parent->requestStateChange(m_parent->getMenuState());
+			restart();
+			return;
+		}
+		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+		{
+			m_parent->terminate();
+		}
 	}
 }
 
