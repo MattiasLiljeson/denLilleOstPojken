@@ -76,8 +76,8 @@ void InGameState::update(float p_dt)
 		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
 		{
 			//m_parent->requestStateChange(m_parent->getMenuState());
-			restart();
-			return;
+			//restart();
+			//return;
 		}
 		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
 		{

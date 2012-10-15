@@ -61,7 +61,7 @@ void SoundManager::playSound(string p_path)
 
 			sf::Sound* s = new sf::Sound(m_soundData[i]->buffer);
 			m_sounds.push_back(s);	
-			s->Play();	
+			//s->Play();	
 		}
 	}
 }

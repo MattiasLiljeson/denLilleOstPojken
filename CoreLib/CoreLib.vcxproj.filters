@@ -47,8 +47,6 @@
     <Filter Include="Source\GameObject\MenuItem">
       <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\States">
-	</Filter>
     <Filter Include="Source\GameStates">
       <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
     </Filter>
@@ -69,7 +67,7 @@
     </Filter>
     <Filter Include="Source\GameObject\Glyph">
       <UniqueIdentifier>{c6aaeac9-9cab-4c1f-bd28-eb146de95b52}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Source\GameObject\ObjectStates\SpeedPill">
       <UniqueIdentifier>{4e4733f5-e99e-4d5f-84ea-31cff6e39284}</UniqueIdentifier>
     </Filter>
@@ -150,9 +148,6 @@
     <ClCompile Include="src\PillEatenState.cpp">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClCompile>
-    <ClCompile Include="src\PillIldeState.cpp">
-      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
-    </ClCompile>
     <ClCompile Include="src\AvatarKilled.cpp">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClCompile>
@@ -170,6 +165,12 @@
     </ClCompile>
     <ClCompile Include="src\TextArea.cpp">
       <Filter>Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperPillEaten.cpp">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AvatarJumping.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,9 +249,6 @@
     <ClInclude Include="src\PillEatenState.h">
       <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClInclude>
-    <ClInclude Include="src\PillIdleState.h">
-      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
-    </ClInclude>
     <ClInclude Include="src\AvatarKilled.h">
       <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClInclude>
@@ -268,6 +266,12 @@
     </ClInclude>
     <ClInclude Include="src\TextArea.h">
       <Filter>Source\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperPillEaten.h">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AvatarJumping.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

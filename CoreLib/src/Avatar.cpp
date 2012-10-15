@@ -1,5 +1,6 @@
 #include "Avatar.h"
 #include "AvatarKilled.h"
+#include "AvatarJumping.h"
 
 Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, 
 	GameStats* p_stats, SoundInfo* p_avatarKilledSound)
@@ -11,12 +12,15 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	dt = 0;
 
 	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound);
+	m_avatarJumpingState = new AvatarJumping(this);
 }
 
 Avatar::~Avatar()
 {
 	if(m_avatarKilledState)
 		delete m_avatarKilledState;
+	if (m_avatarJumpingState)
+		delete m_avatarJumpingState;
 }
 
 void Avatar::checkInput(InputInfo p_inputInfo)
@@ -61,6 +65,7 @@ bool Avatar::check180()
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	GameObject::update(p_deltaTime, p_inputInfo);
 	checkInput(p_inputInfo);
 	
 	if (m_desired != m_direction)
@@ -151,6 +156,11 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		{
 			m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
 		}
+	}
+
+	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
+	{
+		switchState(m_avatarJumpingState);
 	}
 }
 Tile* Avatar::getCurrentTile()

@@ -4,6 +4,7 @@
 #include "Tilemap.h"
 
 class AvatarKilled;
+class AvatarJumping;
 
 struct Direction
 {
@@ -32,6 +33,7 @@ private:
 	int m_desired;
 
 	AvatarKilled* m_avatarKilledState;
+	AvatarJumping* m_avatarJumpingState;
 
 	float dt;
 private:
