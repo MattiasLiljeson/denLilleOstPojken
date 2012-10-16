@@ -43,7 +43,27 @@ bool MenuState::playSound()
 
 void MenuState::indentItem( int p_idx, int p_amount )
 {
-	m_menuItems[p_idx]->setOffset((float)p_amount, 0.0f);
+	m_menuItems[p_idx]->setTextOffset((float)p_amount, 0.0f);
+}
+
+void MenuState::initMenuItems()
+{
+	float fw = 1.0f/1920.0f;
+	float fh = 1.0f/1080.0f;
+	m_bgItem = m_factory->createMenuItem( 
+		fVector3( 0.5f, 0.5f, 0.5f ), fVector2( 1.0f, 1.0f ),
+		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
+		fVector2(fw*32, fh*32), "../Textures/SplashScreen.png" );
+
+	string texts[] = {"LEVEL SELECT",  "HIGHSCORE", "CREDITS", "EXIT"};
+	for(int i=0; i<4 ; i++ )
+	{
+		m_menuItems.push_back( m_factory->createMenuItem( 
+			fVector3( 0.5f, 0.5f - i*fh*100.0f, 0.9f ), fVector2( fh*600.0f, fh*64.0f ),
+			texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"../Textures/default.png" ));
+	}
+
+	m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
 }
 
 //=========================================================================
@@ -56,52 +76,10 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 	m_itemSelectSnd = NULL;
 	m_currItemIdx = 0;
 	m_totTime = 0.0f;
-
-/*>>>>>>> origin/s3u475t1_menuKeyboardInput
-	if (m_io)
-	{
-		m_factory = new GOFactory(p_io);
-		p_io->clearSpriteInfos();
-<<<<<<< HEAD
-		m_menuItems.push_back( m_factory->createMenuItem() );
-		testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-		textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-		textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
-	}
-<<<<<<< HEAD
-=======
-	// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-	testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-	textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-	textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
-	
-	onEntry(); // Alternative
-	*/
 }
 
 MenuState::~MenuState()
 {
-	// Deallocation: Moved to OnExit (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		for(unsigned int i = 0; i < m_menuItems.size(); i++)
-		{
-			delete m_menuItems[i];
-			m_menuItems[i] = NULL;
-		}
-		m_menuItems.clear();
-
-		delete m_factory;
-		m_factory = NULL;
-
-		delete m_bgItem;
-		m_bgItem = NULL;
-
-		m_itemSelectSnd->deleted = true;
-		m_itemSelectSnd = NULL;
-	}
-	*/
 	onExit();
 }
 
@@ -114,25 +92,10 @@ bool MenuState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_io->clearSpriteInfos();
 			if (m_factory)
-			{
-				m_bgItem = m_factory->createMenuItem( 
-				fVector3( 400.0f, 300.0f, 0.5f ), fVector2( 800.0f, 600.0f ),
-				"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -280.0f), 8,
-				"../Textures/SplashScreen.png" );
-
-				string texts[] = {"LEVEL SELECT",  "HIGHSCORE", "CREDITS", "EXIT"};
-				for(int i=0; i<4 ; i++ )
-				{
-					m_menuItems.push_back( m_factory->createMenuItem( 
-						fVector3( 400.0f, 400.0f - i*100.0f, 0.9f ), fVector2( 0.0f, 0.0f ),
-						texts[i], fVector2(0.0f, 0.0f), 32,"" ));
-				}
-
-				m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
-			}
+				initMenuItems();
 		}
 		//
-		m_resourcesAllocated=true;
+		m_resourcesAllocated = true;
 	}
 	return true;
 }
@@ -164,8 +127,9 @@ void MenuState::update(float p_dt)
 {
 	m_totTime +=  p_dt;
 
-	float fac = sin(m_totTime)*10;
-	m_menuItems[m_currItemIdx]->setOffset(0.0f, fac);
+	float fac = sin(m_totTime*5)*3;
+	float fac2 = cos(m_totTime*5)*3;
+	m_menuItems[m_currItemIdx]->setTextOffset(fac2, fac);
 
 	if (m_io)
 	{
@@ -187,12 +151,12 @@ void MenuState::handleInput(InputInfo p_input)
 
 	if(p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
 	{
-		m_menuItems[m_currItemIdx]->setOffset(1.0f, 1.0f);
+		m_menuItems[m_currItemIdx]->setTextOffset(0.0f, 0.0f);
 		prevItem();
 	}
 	else if (p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
 	{
-		m_menuItems[m_currItemIdx]->setOffset(1.0f, 1.0f);
+		m_menuItems[m_currItemIdx]->setTextOffset(0.0f, 0.0f);
 		nextItem();
 	}
 
@@ -201,7 +165,6 @@ void MenuState::handleInput(InputInfo p_input)
 		switch(m_currItemIdx)
 		{
 		case MI_LEVEL_SELECT:
-			//m_io->clearSpriteInfos();
 			m_parent->requestStateChange(m_parent->getInGameState());
 			break;
 		case MI_EXIT:

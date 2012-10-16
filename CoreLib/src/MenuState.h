@@ -36,6 +36,8 @@ private:
 	bool playSound();
 	void indentItem( int p_idx, int p_amount );
 
+	void initMenuItems();
+
 public:
 	MenuState(StateManager* p_parent, IODevice* p_io);
 	virtual ~MenuState();

@@ -99,11 +99,17 @@ bool IODevice::isRunning()
 }
 int	IODevice::getScreenWidth()
 {
-	return m_context->getScreenWidth();
+	if(m_context != NULL)
+		return m_context->getScreenWidth();
+	else
+		return GAME_FAIL;
 }
 int	IODevice::getScreenHeight()
 {
-	return m_context->getScreenHeight();
+	if(m_context != NULL)
+		return m_context->getScreenHeight();
+	else
+		return GAME_FAIL;
 }	
 void IODevice::setWindowText(string p_text)
 {

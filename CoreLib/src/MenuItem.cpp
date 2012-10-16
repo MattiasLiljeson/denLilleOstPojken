@@ -4,9 +4,7 @@ void MenuItem::updateText()
 {
 	if(m_text != NULL)
 	{
-		m_text->setOrigin( 
-			m_basePosition.x + m_offset.x,
-			m_basePosition.y + m_offset.y);
+		m_text->setOrigin( m_basePosition + m_textOffset );
 	}
 }
 
@@ -15,20 +13,22 @@ void MenuItem::updateSprite()
 	if(m_spriteInfo != NULL)
 	{
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
-			m_basePosition.x + m_offset.x;
+			m_basePosition.x;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-			m_basePosition.y + m_offset.y;
+			m_basePosition.y;
 	}
 }
 
 
-MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font, fVector2 p_basePosition )
+MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
+	fVector2 p_basePosition, fVector2 p_textOffset )
 	: GameObject(p_spriteInfo)
 {
 	m_font = p_font;
 	m_text = p_text;
 
 	setBasePosition( p_basePosition.x, p_basePosition.y );
+	setTextOffset( p_textOffset.x, p_textOffset.y );
 }
 
 MenuItem::~MenuItem()
@@ -46,10 +46,10 @@ TextArea* MenuItem::getTextArea()
 	return m_text;
 }
 
-void MenuItem::setOffset( float p_x, float p_y )
+void MenuItem::setTextOffset( float p_x, float p_y )
 {
-	m_offset.x = p_x;
-	m_offset.y = p_y;
+	m_textOffset.x = p_x;
+	m_textOffset.y = p_y;
 	updateSprite();
 	updateText();
 	

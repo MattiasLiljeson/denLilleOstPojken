@@ -30,8 +30,9 @@ public:
 		SpeedPill* speed = factory.CreateSpeedPill(NULL, NULL);
 		newEntry(TestData("Create Speed Pill", speed != NULL));
 
-		//MenuItem* menuItem = factory.createMenuItem();
-		newEntry(TestData("Create Menu Item", false));
+		MenuItem* menuItem = factory.createMenuItem( 
+			fVector3(), fVector2(), "", fVector2() );
+		newEntry(TestData("Create Menu Item", menuItem != NULL));
 
 		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL, vector<TilePosition>());
 		newEntry(TestData("Create Switch", goSwitch != NULL));

@@ -168,7 +168,7 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		sf::SoundBuffer buffer;
 		buffer.LoadFromFile(p_sound);
 		sf::Sound* s = new sf::Sound(buffer);
-		s->SetVolume(p_volume);
+		s->SetVolume((float)p_volume);
 		s->Play();
 
 		m_io->addSound(soundInfo);
@@ -181,44 +181,48 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 }
 
 MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
-	string p_text, fVector2 p_textOffset, int p_textSize, string p_bgTexPath )
+	string p_text, fVector2 p_textOffset, fVector2 p_fontSize, string p_bgTexPath)
 {
+	float scrW = GAME_FAIL;
+	float scrH = GAME_FAIL;
+	if(m_io != NULL)
+	{
+		scrW = m_io->getScreenWidth();
+		scrH = m_io->getScreenHeight();
+	}
+
+	fVector2 finalPos, finalTextOffset;
+	finalPos.x = scrW * (p_position.x);	
+	finalPos.y = scrH * (p_position.y);
+	finalTextOffset.x = scrW * (p_textOffset.x);
+	finalTextOffset.y = scrH * (p_textOffset.y);
+
 	SpriteInfo* spriteInfo = NULL;
 	if( p_bgTexPath != "" )
-		spriteInfo = CreateSpriteInfo( p_bgTexPath, p_position, p_size, NULL );
+		spriteInfo = CreateSpriteInfo( p_bgTexPath,
+		fVector3(finalPos.x, finalPos.y, p_position.z),
+		fVector2(p_size.x*scrW, p_size.y*scrH), NULL );
+
 
 	GlyphMap* font = NULL;
 	TextArea* text = NULL;
 	if( p_text != "" )
 	{
-		float fontHeight = p_textSize;
-		float fontWidth = p_textSize;
-		float textHeight = fontHeight;
-		float textWidth = fontWidth*p_text.size();
+		unsigned int fontWidth = (unsigned int)(scrW * p_fontSize.x);
+		unsigned int fontHeight = (unsigned int)(scrH * p_fontSize.y);
+		float finalTextPosX = scrW * (p_position.x + p_textOffset.x);
+		float finalTextPosY = scrH * (p_position.y + p_textOffset.y);
 
-		fVector2 offset;
-		offset.x = textWidth/2.0f - p_textOffset.x;
-		offset.y = textHeight/2.0f - p_textOffset.y;
-
-		if( p_textSize == 32 )
-			font = new GlyphMap(
+		font = new GlyphMap(
 			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
-			"../Textures/bubblemad_32x32.png", fontWidth, fontHeight);
-		else if( p_textSize == 16 )
-			font = new GlyphMap(
-			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄ",
-			"../Textures/digifont_16x16.png", fontWidth, fontHeight);
-		else //( p_textSize == 8 )
-			font = new GlyphMap(
-			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
-			"../Textures/bubblemad_8x8.png", fontWidth, fontHeight);
+			"../Textures/bubblemad_32x32.png", 32, 32);
 
-		text = new TextArea(font, p_text.size(), this,
-			p_position.x - offset.x, p_position.y - offset.y);
+		text = new TextArea(font, p_text.size(), this, finalTextPosX,
+			finalTextPosY, TextArea::CEN_CENTER, fVector2(fontWidth/32.0f, fontHeight/32.0f));
 		text->setText( p_text );
 	}
 
-	return new MenuItem( spriteInfo, text, font, fVector2(p_position.x, p_position.y) );
+	return new MenuItem( spriteInfo, text, font, finalPos, finalTextOffset );
 }
 
 

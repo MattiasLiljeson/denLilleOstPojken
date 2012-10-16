@@ -59,7 +59,8 @@ public:
 		vector<TilePosition> p_targets);
 
 	MenuItem* createMenuItem( fVector3 p_position, fVector2 p_size,
-		string p_text, fVector2 p_textOffset, int p_textSize, string p_bgTexPath );
+		string p_text="", fVector2 p_textOffset=fVector2(),
+		fVector2 p_fontSize=fVector2(), string p_bgTexPath="" );
 
 	Glyph* CreateGlyph(const string& p_texture, 
 					   float p_x, float p_y, fVector2 p_size);
