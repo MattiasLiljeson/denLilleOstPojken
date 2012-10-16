@@ -221,5 +221,6 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 		lives.push_back(CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
 			pos, size, &r));
 	}
+
 	return new GUI(p_gameStats, lives);
 }
