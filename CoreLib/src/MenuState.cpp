@@ -53,15 +53,11 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 {
 	m_io = p_io;
 	m_factory = NULL;
-	testFont = NULL;
-	textArea = NULL;
-	/* Allocation: Moved to onEntry (Added by Jarl 2012-10-15)
-=======
 	m_itemSelectSnd = NULL;
 	m_currItemIdx = 0;
 	m_totTime = 0.0f;
 
->>>>>>> origin/s3u475t1_menuKeyboardInput
+/*>>>>>>> origin/s3u475t1_menuKeyboardInput
 	if (m_io)
 	{
 		m_factory = new GOFactory(p_io);
@@ -81,22 +77,6 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 	
 	onEntry(); // Alternative
 	*/
-
-		m_bgItem = m_factory->createMenuItem( 
-			fVector3( 400.0f, 300.0f, 0.5f ), fVector2( 800.0f, 600.0f ),
-			"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -280.0f), 8,
-			"../Textures/SplashScreen.png" );
-
-		string texts[] = {"LEVEL SELECT",  "HIGHSCORE", "CREDITS", "EXIT"};
-		for(int i=0; i<4 ; i++ )
-		{
-			m_menuItems.push_back( m_factory->createMenuItem( 
-				fVector3( 400.0f, 400.0f - i*100.0f, 0.9f ), fVector2( 0.0f, 0.0f ),
-				texts[i], fVector2(0.0f, 0.0f), 32,"" ));
-		}
-	}
-
-	m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
 }
 
 MenuState::~MenuState()
@@ -135,12 +115,20 @@ bool MenuState::onEntry()
 			m_io->clearSpriteInfos();
 			if (m_factory)
 			{
-				m_menuItems.push_back( m_factory->createMenuItem() );
-		
-				// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-				testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-				textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-				textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
+				m_bgItem = m_factory->createMenuItem( 
+				fVector3( 400.0f, 300.0f, 0.5f ), fVector2( 800.0f, 600.0f ),
+				"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -280.0f), 8,
+				"../Textures/SplashScreen.png" );
+
+				string texts[] = {"LEVEL SELECT",  "HIGHSCORE", "CREDITS", "EXIT"};
+				for(int i=0; i<4 ; i++ )
+				{
+					m_menuItems.push_back( m_factory->createMenuItem( 
+						fVector3( 400.0f, 400.0f - i*100.0f, 0.9f ), fVector2( 0.0f, 0.0f ),
+						texts[i], fVector2(0.0f, 0.0f), 32,"" ));
+				}
+
+				m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
 			}
 		}
 		//
@@ -161,10 +149,6 @@ bool MenuState::onExit()
 			}
 
 			m_menuItems.clear();
-
-			delete testFont;
-			delete textArea;
-
 
 			delete m_factory;		
 			// Below moved from input handler
