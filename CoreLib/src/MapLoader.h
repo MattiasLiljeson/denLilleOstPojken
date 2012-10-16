@@ -13,15 +13,19 @@ using namespace std;
 
 enum TileType
 {
+	//Start couting on one not zero
+	PAD,
 	EMPTY,
 	WALL_CENTER,
 	PILL,
+	TRAP,
 	AVATAR_SPAWN,
 	MONSTER_SPAWN,
-	SPEEDPILL,
 	SUPERPILL,
-	SWITCH,
-	TRAP
+	SPEEDPILL,
+	
+	SWITCH = 31,
+	WALLSWITCH = 61
 };
 
 class MapLoader

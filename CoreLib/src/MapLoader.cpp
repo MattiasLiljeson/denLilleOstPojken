@@ -21,27 +21,49 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	fstream file(p_MapPath.c_str());
 
 	int value;
+	int theme;
 	int switchCount = 0;
+	char comma;
+	char equals;
+	vector<vector<TilePosition>> switches;
 
 	if(file)
 	{
+		//Begining the parsing of the map
+		string temp;
 		int width;
 		int height;
+		file >> temp;
+		file >> equals;
 		file >> width;
+
+		file >> temp;
+		file >> equals;
 		file >> height;
+		
+		file >> temp;
+		file >> equals;
+		file >> theme;
+
+		//Inverting the map layout
 		vector<int> m_map = vector<int>(width*height);
 		for(int i = height - 1; i >= 0; i--)
 		{
 			for (int j = 0; j < width; j++)
 			{
 				file >> value;
+				file >> comma;
 				m_map[i*width+j] = value;
 				if (value == SWITCH)
-					switchCount++;
+					switches.push_back(vector<TilePosition>());
+				if (value == WALLSWITCH)
+				{
+					switches.at(value-61).push_back(TilePosition(j,i));
+				}
 			}
 		}
 
-		vector<vector<TilePosition>> switches; 
+		/*
 		int x, y;
 		for (int i = 0; i < switchCount; i++)
 		{
@@ -54,12 +76,12 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				file >> y;
 				switches.back().push_back(TilePosition(x, y));
 			}
-		}
+		}*/
 
 		bool* types = new bool[width*height];
 		for (int i = 0; i < width*height; i++)
 		{
-			if (m_map[i] == WALL_CENTER)
+			if (m_map[i] == WALL_CENTER || m_map[i] == WALLSWITCH)
 				types[i] = false;
 			else
 				types[i] = true;
