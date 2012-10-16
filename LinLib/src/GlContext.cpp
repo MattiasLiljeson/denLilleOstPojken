@@ -303,5 +303,12 @@ void GlContext::initKeyMappings()
 	
 	for(int i = 0; i < 26; i++)
 		m_keyMappings[InputInfo::A_KEY + i] = 65 + i;
+	
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
+	
+	// HACK: Doesn't work in glfw. Nothing works...
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
 
 }

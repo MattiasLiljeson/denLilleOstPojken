@@ -63,12 +63,6 @@ void Avatar::checkInput(InputInfo p_inputInfo)
 	{
 		m_desired = Direction::RIGHT;
 	}
-	// HACK:
-	else if (p_inputInfo.keys[InputInfo::DASH] == InputInfo::KEYDOWN
-		||	 p_inputInfo.keys[InputInfo::DASH] == InputInfo::KEYPRESSED)
-	{
-		m_desired = Direction::RIGHT;
-	}
 }	
 bool Avatar::check180()
 {
@@ -95,7 +89,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		if (check180())
 		{
-			Tile* destination = m_map->getTile(m_currentTile->getTilePosition() + Directions[m_desired]);
+			Tile* destination = m_map->getTile(
+				m_currentTile->getTilePosition() + Directions[m_desired] );
 			Tile* temp = m_currentTile;
 			m_currentTile = m_nextTile;
 			m_nextTile = m_queuedTile = temp;
@@ -106,7 +101,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 		else
 		{
-			Tile* destination = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_desired]);
+			Tile* destination = m_map->getTile(
+				m_nextTile->getTilePosition() + Directions[m_desired] );
 			if (destination && destination->isFree())
 			{
 				m_queuedTile = destination;
@@ -126,7 +122,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_currentTile = m_nextTile;
 			m_nextTile = m_queuedTile;
 
-			m_queuedTile = m_map->getTile(m_nextTile->getTilePosition() + Directions[m_direction]);
+			m_queuedTile = m_map->getTile(
+				m_nextTile->getTilePosition() + Directions[m_direction] );
 			if (!m_queuedTile || !m_queuedTile->isFree())
 				m_queuedTile = m_nextTile;
 
@@ -145,8 +142,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 		float w = m_currentTile->getWidth();
 		float h = m_currentTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+			pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+			pY * h + h * 0.5f;
 	
 		if (m_gameStats && m_gameStats->isSuperMode())
 		{
@@ -162,8 +161,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		{
 			float w = m_currentTile->getWidth();
 			float h = m_currentTile->getHeight();
-			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+				pX * w + w * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+				pY * h + h * 0.5f;
 		}
 		if (m_gameStats->isSuperMode())
 		{
