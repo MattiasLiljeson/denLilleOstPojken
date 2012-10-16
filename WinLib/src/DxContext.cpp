@@ -595,9 +595,17 @@ void DxContext::initKeyMappings()
 	m_keyMappings[InputInfo::LCTRL] = VK_LCONTROL;
 	m_keyMappings[InputInfo::RCTRL] = VK_RCONTROL;
 
-	m_keyMappings[InputInfo::P_KEY] = (int)'P';
-	m_keyMappings[InputInfo::W_KEY] = (int)'W';
-	m_keyMappings[InputInfo::A_KEY] = (int)'A';
-	m_keyMappings[InputInfo::S_KEY] = (int)'S';
-	m_keyMappings[InputInfo::D_KEY] = (int)'D';
+	m_keyMappings[InputInfo::COMMA] = VK_OEM_COMMA;
+	m_keyMappings[InputInfo::PERIOD] = VK_OEM_PERIOD;
+	m_keyMappings[InputInfo::DASH] = VK_OEM_MINUS;
+
+	for(int i = 0; i < 26; i++)
+		m_keyMappings[InputInfo::A_KEY + i] = 65 + i;
+	
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
+
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
+
 }

@@ -8,8 +8,11 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	: GameObject(p_spriteInfo, p_stats)
 {
 	m_navigationData = new NavigationData();
-	m_navigationData->m_direction = m_navigationData->m_desired = Direction::NONE;
-	m_navigationData->m_currentTile = m_navigationData->m_nextTile = m_navigationData->m_queuedTile = p_startTile;
+	m_navigationData->m_direction = Direction::NONE;
+	m_navigationData->m_desired = Direction::NONE;
+	m_navigationData->m_currentTile = p_startTile;
+	m_navigationData->m_nextTile = p_startTile;
+	m_navigationData->m_queuedTile = p_startTile;
 	m_navigationData->dt = 0;
 	m_navigationData->m_map = p_map;
 
@@ -37,7 +40,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
 	{
- 		switchState(m_walking);
+		switchState(m_walking);
 	}
 
 	if (m_spriteInfo)
@@ -49,8 +52,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 		float w = m_navigationData->m_currentTile->getWidth();
 		float h = m_navigationData->m_currentTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+			pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+			pY * h + h * 0.5f;
 	
 		if (m_gameStats && m_gameStats->isSuperMode())
 		{
@@ -66,8 +71,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		{
 			float w = m_navigationData->m_currentTile->getWidth();
 			float h = m_navigationData->m_currentTile->getHeight();
-			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+				pX * w + w * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+				pY * h + h * 0.5f;
 		}
 		if (m_gameStats->isSuperMode())
 		{
