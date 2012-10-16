@@ -109,7 +109,7 @@ void InGameState::update(float p_dt)
 		checkDynamicCollision();
 	
 		if (m_stats)
-			m_stats->update(p_dt);
+			m_stats->update(p_dt, input);
 
 		if (m_gui)
 			m_gui->update(p_dt);

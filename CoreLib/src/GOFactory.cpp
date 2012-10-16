@@ -233,7 +233,6 @@ Glyph* GOFactory::CreateGlyph( const string& p_texture,
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 {
-	return NULL;
 	float heightFraction = m_io->getScreenHeight() / 1080.0f;
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
@@ -264,20 +263,27 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			texts, fVector2(0.0f, 0.0f), 8,"" );
 
 	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*100, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3(widthFraction*1920- widthFraction*350, height - 0.08f * height*0.5f, 0.9f); 
 	string xtext = "X";
 	MenuItem* x = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
-			xtext, fVector2(0.0f, 0.0f), 16,"" );
+			xtext, fVector2(0.0f, 0.0f), 8,"" );
+	
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*300, height - 0.08f * height*0.5f, 0.9f); 
+
+	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
+		pos, size, NULL);
+
 
 	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*50, height - 0.08f * height*0.5f, 0.9f); 
-	string ytext = "X";
+	pos = fVector3(widthFraction*1920- widthFraction*150, height - 0.08f * height*0.5f, 0.9f); 
+	string ytext = "Y";
 	MenuItem* y = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
-			ytext, fVector2(0.0f, 0.0f), 16,"" );
+			ytext, fVector2(0.0f, 0.0f), 8,"" );
 
 
 
-	return new GUI(p_gameStats, lives, elapsed, x, y);
+	return new GUI(p_gameStats, lives, elapsed, x, y, speed);
 }
