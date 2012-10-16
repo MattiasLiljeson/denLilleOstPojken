@@ -76,9 +76,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source\GameObject</Filter>
     </ClCompile>
@@ -180,6 +177,12 @@
     </ClCompile>
     <ClCompile Include="src\Trap.cpp">
       <Filter>Source\GameObject\Traps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +290,9 @@
     </ClInclude>
     <ClInclude Include="src\Trap.h">
       <Filter>Source\GameObject\Traps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

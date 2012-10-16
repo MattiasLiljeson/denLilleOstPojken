@@ -57,6 +57,8 @@ public:
 	void		setTilePosition(Tile* p_newPosition);
 	void		kill();
 	bool		inAir();
+	bool		isDead();
+	void		revive(Tile* p_newPosition);
 };
 
 #endif

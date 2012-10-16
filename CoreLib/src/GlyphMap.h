@@ -10,6 +10,13 @@ using namespace std;
 // in the bitmap
 class GlyphMap
 {
+private:
+	string m_key;
+	string m_bitmapPath;
+	unsigned int m_charWidth;
+	unsigned int m_charHeight;
+	unsigned int m_maxBitmapWidth;
+
 public:
 	GlyphMap(const string& p_key, const string& p_bitmapPath, 
 			unsigned int p_charWidth, unsigned int p_charHeight);
@@ -19,12 +26,6 @@ public:
 	unsigned int getMaxBitmapWidth() const {return m_maxBitmapWidth;} 
 	const string& getPath() const {return m_bitmapPath;}
 	Rect getCharRect(char p_character);
-private:
-	string m_key;
-	string m_bitmapPath;
-	unsigned int m_charWidth;
-	unsigned int m_charHeight;
-	unsigned int m_maxBitmapWidth;
 };
 
 #endif

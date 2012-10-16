@@ -32,7 +32,8 @@ private:
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
 	vector<Trap*>		m_traps;
-	GameStats* m_stats;
+	GameStats*			m_stats;
+	GUI*				m_gui;
 	GOFactory*	m_factory;
 
 public:
@@ -45,6 +46,7 @@ public:
 	Avatar* getAvatar();
 	vector<Monster*> getMonsters();
 	vector<Trap*> getTraps();
+	GUI*			getGUI();
 };
 
 #endif

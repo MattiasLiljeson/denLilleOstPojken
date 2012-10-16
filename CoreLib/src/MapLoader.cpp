@@ -129,6 +129,9 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 		{
 			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
 		}
+
+		m_gui = m_factory->CreateGUI(m_stats);
+
 		return GAME_OK;
 	}
 	
@@ -153,4 +156,8 @@ vector<Monster*> MapLoader::getMonsters()
 vector<Trap*> MapLoader::getTraps()
 {
 	return m_traps;
+}
+GUI* MapLoader::getGUI()
+{
+	return m_gui;
 }

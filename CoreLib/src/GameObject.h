@@ -19,8 +19,10 @@ protected:
 
 	GOState*	m_currentState;
 	BasicIdle*	m_basicIdleState;
+
 protected:
 	int switchState(GOState* p_newState, bool p_forceSwitchToSame = false);
+
 public:
 	GameObject();
 	GameObject(SpriteInfo* p_spriteInfo);
