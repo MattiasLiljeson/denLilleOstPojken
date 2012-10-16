@@ -62,7 +62,7 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
 	
-	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/Plink_08.wav",100), p_tile, p_gameStats);
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_sound_2012-10-16.wav",100), p_tile, p_gameStats);
 }
 BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 {
