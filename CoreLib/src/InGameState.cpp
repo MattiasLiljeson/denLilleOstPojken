@@ -54,8 +54,6 @@ bool InGameState::onEntry()
 			m_stats = NULL;
 			m_currentMap = 1;
 			m_gui = NULL;
-			/*if (p_reset)
-				restart();*/
 		}
 		restart();
 		m_resourcesAllocated=true;
@@ -110,8 +108,11 @@ void InGameState::update(float p_dt)
 
 		checkDynamicCollision();
 	
-		m_stats->update(p_dt);
-		m_gui->update(p_dt);
+		if (m_stats)
+			m_stats->update(p_dt);
+
+		if (m_gui)
+			m_gui->update(p_dt);
 
 		int elapsed = m_stats->getGameTimer()->getElapsedTime();
 

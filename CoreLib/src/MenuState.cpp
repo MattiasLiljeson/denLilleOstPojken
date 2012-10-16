@@ -56,52 +56,10 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
 	m_itemSelectSnd = NULL;
 	m_currItemIdx = 0;
 	m_totTime = 0.0f;
-
-/*>>>>>>> origin/s3u475t1_menuKeyboardInput
-	if (m_io)
-	{
-		m_factory = new GOFactory(p_io);
-		p_io->clearSpriteInfos();
-<<<<<<< HEAD
-		m_menuItems.push_back( m_factory->createMenuItem() );
-		testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-		textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-		textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
-	}
-<<<<<<< HEAD
-=======
-	// testFont = new GlyphMap("ABCDEFGHIJKLMNOPQRSTUVWXYZ","../Textures/testglyph.png",8,8);
-	testFont = new GlyphMap(" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤","../Textures/bubblemad_8x8.png",8,8);
-	textArea = new TextArea(testFont,100,m_factory,100.0f,50.0f);
-	textArea->setText("HELLO WORLD, TEST FOR REALZ! # TEST:1234 {}");
-	
-	onEntry(); // Alternative
-	*/
 }
 
 MenuState::~MenuState()
 {
-	// Deallocation: Moved to OnExit (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		for(unsigned int i = 0; i < m_menuItems.size(); i++)
-		{
-			delete m_menuItems[i];
-			m_menuItems[i] = NULL;
-		}
-		m_menuItems.clear();
-
-		delete m_factory;
-		m_factory = NULL;
-
-		delete m_bgItem;
-		m_bgItem = NULL;
-
-		m_itemSelectSnd->deleted = true;
-		m_itemSelectSnd = NULL;
-	}
-	*/
 	onExit();
 }
 
@@ -143,15 +101,14 @@ bool MenuState::onExit()
 	{
 		if (m_io)
 		{
+			delete m_bgItem;
 			for(unsigned int i = 0; i < m_menuItems.size(); i++)
 			{
 				delete m_menuItems[i];
 			}
-
 			m_menuItems.clear();
 
 			delete m_factory;		
-			// Below moved from input handler
 			m_io->clearSpriteInfos();
 		}
 		//

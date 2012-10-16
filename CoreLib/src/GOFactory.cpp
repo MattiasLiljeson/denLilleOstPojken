@@ -233,6 +233,7 @@ Glyph* GOFactory::CreateGlyph( const string& p_texture,
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 {
+	return NULL;
 	float heightFraction = m_io->getScreenHeight() / 1080.0f;
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
@@ -254,5 +255,29 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, size, &r));
 	}
 
-	return new GUI(p_gameStats, lives);
+
+	fVector2 size = fVector2(50*widthFraction, 50*heightFraction);
+	fVector3 pos = fVector3(widthFraction*1920*0.5f, height - 0.08f * height*0.5f, 0.9f); 
+	string texts = "ELAPSED TIME:    ";
+	MenuItem* elapsed = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), 8,"" );
+
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*100, height - 0.08f * height*0.5f, 0.9f); 
+	string xtext = "X";
+	MenuItem* x = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			xtext, fVector2(0.0f, 0.0f), 16,"" );
+
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*50, height - 0.08f * height*0.5f, 0.9f); 
+	string ytext = "X";
+	MenuItem* y = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			ytext, fVector2(0.0f, 0.0f), 16,"" );
+
+
+
+	return new GUI(p_gameStats, lives, elapsed, x, y);
 }

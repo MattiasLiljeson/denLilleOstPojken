@@ -25,6 +25,10 @@ Avatar::~Avatar()
 		delete m_avatarKilledState;
 	if (m_avatarJumpingState)
 		delete m_avatarJumpingState;
+	if (m_walking)
+		delete m_walking;
+	if (m_navigationData)
+		delete m_navigationData;
 }
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
