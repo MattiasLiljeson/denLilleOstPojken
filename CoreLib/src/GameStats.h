@@ -28,6 +28,9 @@ private:
 
 	int				m_itemSlot;
 	int				m_buffSlot;
+
+	//Flag to indicate the spawn of an item
+	int				m_activate;
 public:
 	GameStats(Timer* p_timer);
 	~GameStats();
@@ -51,6 +54,8 @@ public:
 	void	setBuffSlot(int p_buff);
 	int		getBuffSlot();
 	void	activateBuff();
+	void	activateItem();
+	int		getActivatedItem();
 };
 
 #endif

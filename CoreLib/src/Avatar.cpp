@@ -4,7 +4,7 @@
 #include "AvatarWalking.h"
 
 Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, 
-	GameStats* p_stats, SoundInfo* p_avatarKilledSound)
+	GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound)
 	: GameObject(p_spriteInfo, p_stats)
 {
 	m_navigationData = new NavigationData();
@@ -17,7 +17,7 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	m_navigationData->m_map = p_map;
 
 	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound, m_navigationData);
-	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats);
+	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats, p_jumpSound);
 	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
 	switchState(m_walking);
 }
@@ -99,6 +99,13 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 Tile* Avatar::getCurrentTile()
 {
 	return m_navigationData->m_currentTile;
+}
+Tile* Avatar::getClosestTile()
+{
+	if (m_navigationData->dt > 0.5f)
+		return m_navigationData->m_nextTile;
+	else
+		return m_navigationData->m_currentTile;
 }
 int Avatar::getDirection()
 {

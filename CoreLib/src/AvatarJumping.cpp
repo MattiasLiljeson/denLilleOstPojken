@@ -1,6 +1,6 @@
 #include "AvatarJumping.h"
 
-AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats) : GOState(p_gameObject)
+AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats, SoundInfo* p_jumpSound) : GOState(p_gameObject)
 {
 	m_elapsedTime = 0;
 	m_navigationData = p_navigationData;
@@ -10,16 +10,19 @@ AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigat
 		originalSize.y = p_gameObject->getSpriteInfo()->transformInfo.scale[TransformInfo::Y];
 	}
 	m_gameStats = p_stats;
+	m_jumpSound = p_jumpSound;
 }
 
 AvatarJumping::~AvatarJumping()
 {
+	m_jumpSound->deleted = true;
 }
 
 int AvatarJumping::onEnter()
 {
 	m_hasLanded = false;
 	m_elapsedTime = 0;
+	m_jumpSound->play = true;
 	return GAME_OK;
 }
 

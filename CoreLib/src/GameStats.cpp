@@ -10,8 +10,9 @@ GameStats::GameStats(Timer* p_timer)
 	m_superMode = false;
 	m_score		= 0;
 	m_lives		= 3;
-	m_itemSlot	= -1;
+	m_itemSlot	= 0;
 	m_buffSlot	= -1;
+	m_activate = -1;
 
 	m_gameTimer = m_superModeTimer = m_speedUpTimer = NULL;
 
@@ -39,6 +40,7 @@ GameStats::~GameStats()
 
 void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	m_activate = -1;
 	m_timer->tick();
 
 	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
@@ -65,8 +67,10 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 	}
 
-	if (p_inputInfo.keys[InputInfo::LSHIFT] == InputInfo::KEYPRESSED)
+	if (p_inputInfo.keys[InputInfo::X_KEY] == InputInfo::KEYPRESSED)
 		activateBuff();
+	if (p_inputInfo.keys[InputInfo::Z_KEY] == InputInfo::KEYPRESSED)
+		activateItem();
 }
 
 void GameStats::setNumPills(const int p_numPills)
@@ -152,4 +156,13 @@ void	GameStats::activateBuff()
 	if (m_buffSlot == 0)
 		setSpeeded();
 	m_buffSlot = -1;
+}
+void	GameStats::activateItem()
+{
+	m_activate = m_itemSlot;
+	//m_itemSlot = -1;
+}
+int GameStats::getActivatedItem()
+{
+	return m_activate;
 }

@@ -2,7 +2,7 @@
 #include "MenuItem.h"
 #include <ToString.h>
 
-GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon)
+GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
 {
 	m_stats = p_stats;
 	m_lives = p_lives;
@@ -10,6 +10,7 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTim
 	m_buffPowerUp = p_buff;
 	m_itemPowerUp = p_item;
 	m_speedIcon = p_speedIcon;
+	m_bombIcon = p_bombIcon;
 }
 GUI::~GUI()
 {
@@ -29,5 +30,9 @@ void GUI::update(float p_dt)
 		m_speedIcon->visible = true;
 	else
 		m_speedIcon->visible = false;
+	if (m_stats->getItemSlot() == 0)
+		m_bombIcon->visible = true;
+	else
+		m_bombIcon->visible = false;
 	
 }

@@ -21,7 +21,8 @@ enum TileType
 	SPEEDPILL,
 	SUPERPILL,
 	SWITCH,
-	TRAP
+	TRAP,
+	BOMB
 };
 
 class MapLoader

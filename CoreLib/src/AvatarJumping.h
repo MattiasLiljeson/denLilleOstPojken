@@ -13,11 +13,12 @@ private:
 	NavigationData* m_navigationData;
 
 	GameStats* m_gameStats;
+	SoundInfo* m_jumpSound;
 
 	//Temp - To visualize jumping
 	fVector2 originalSize;
 public:
-	AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats);
+	AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats, SoundInfo* p_jumpSound);
 	virtual ~AvatarJumping();
 	int onEnter();
 	int onExit();

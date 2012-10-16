@@ -15,8 +15,9 @@ private:
 	MenuItem* m_itemPowerUp;
 	MenuItem* m_buffPowerUp;
 	SpriteInfo* m_speedIcon;
+	SpriteInfo* m_bombIcon;
 public:
-	GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon);
+	GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon);
 	virtual ~GUI();
 	void update(float p_dt);
 };

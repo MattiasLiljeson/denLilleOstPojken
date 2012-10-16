@@ -74,6 +74,12 @@
     <Filter Include="Source\GameObject\Traps">
       <UniqueIdentifier>{fa8692a9-f65a-43b0-a7ed-e8d398024bb8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Collectable\BombPill">
+      <UniqueIdentifier>{dbb45e59-0afd-4857-ae62-7e122ae71ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Bomb">
+      <UniqueIdentifier>{cee6cb87-7e09-43f4-9aa2-6548c06cc1c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -184,6 +190,12 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Source\GameStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\BombPill.cpp">
+      <Filter>Source\GameObject\Collectable\BombPill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bomb.cpp">
+      <Filter>Source\GameObject\Bomb</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -293,6 +305,12 @@
     </ClInclude>
     <ClInclude Include="src\GUI.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BombPill.h">
+      <Filter>Source\GameObject\Collectable\BombPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bomb.h">
+      <Filter>Source\GameObject\Bomb</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

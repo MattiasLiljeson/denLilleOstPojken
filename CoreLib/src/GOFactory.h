@@ -19,6 +19,8 @@
 #include <SoundInfo.h>
 #include <fVector2.h>
 #include <fVector3.h>
+#include "BombPill.h"
+#include "Bomb.h"
 
 // forward declarations
 class Glyph;
@@ -49,6 +51,8 @@ public:
 
 	SuperPill* CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);
 	SpeedPill* CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats);
+	BombPill* CreateBombPill(Tile* p_tile, GameStats* p_gameStats);
+	Bomb* CreateBomb(Tile* p_tile, Tilemap* p_map);
 	Pill* CreatePill(Tile* p_tile, GameStats* p_gameStats);
 
 	Tilemap* CreateTileMap(int p_width, int p_height, bool* p_initData);
