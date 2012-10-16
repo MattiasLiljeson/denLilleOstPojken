@@ -63,6 +63,12 @@ void Avatar::checkInput(InputInfo p_inputInfo)
 	{
 		m_desired = Direction::RIGHT;
 	}
+	// HACK:
+	else if (p_inputInfo.keys[InputInfo::DASH] == InputInfo::KEYDOWN
+		||	 p_inputInfo.keys[InputInfo::DASH] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::RIGHT;
+	}
 }	
 bool Avatar::check180()
 {

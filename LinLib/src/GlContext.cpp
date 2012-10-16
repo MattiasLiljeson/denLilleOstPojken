@@ -296,10 +296,12 @@ void GlContext::initKeyMappings()
 	m_keyMappings[InputInfo::RSHIFT] = GLFW_KEY_RSHIFT;
 	m_keyMappings[InputInfo::LCTRL] = GLFW_KEY_LCTRL;
 	m_keyMappings[InputInfo::RCTRL] = GLFW_KEY_RCTRL;
+
+	m_keyMappings[InputInfo::PERIOD] = 46;
+	m_keyMappings[InputInfo::COMMA] = 44;
+	m_keyMappings[InputInfo::DASH] = 45;
 	
-	m_keyMappings[InputInfo::P_KEY] = (int)'P';
-	m_keyMappings[InputInfo::W_KEY] = (int)'W';
-	m_keyMappings[InputInfo::A_KEY] = (int)'A';
-	m_keyMappings[InputInfo::S_KEY] = (int)'S';
-	m_keyMappings[InputInfo::D_KEY] = (int)'D';
+	for(int i = 0; i < 26; i++)
+		m_keyMappings[InputInfo::A_KEY + i] = 65 + i;
+
 }
