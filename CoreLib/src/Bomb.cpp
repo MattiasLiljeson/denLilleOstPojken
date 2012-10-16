@@ -23,7 +23,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	m_elapsedTime += p_deltaTime;
 	
-	if (m_elapsedTime > 0.2f)
+	if (m_elapsedTime > 0.1f)
 	{
 		m_currentDist++;
 		for (int i = 0; i < m_flames.size(); i++)
@@ -35,7 +35,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 			else
 				m_flames[i].second->visible = false;
 		}
-		m_elapsedTime -= 0.2f;
+		m_elapsedTime -= 0.1f;
 	}
 }
 bool Bomb::isColliding(Monster* p_monster)
