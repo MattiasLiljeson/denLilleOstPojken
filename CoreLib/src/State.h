@@ -29,6 +29,7 @@ protected:
 	// Used to able deallocation from both onExit and Destructor. This bool should not be used
 	// If the system is changed to utilise pooling.
 	bool m_resourcesAllocated;
+
 public:
 	State(StateManager* p_parent);
 	virtual ~State();
