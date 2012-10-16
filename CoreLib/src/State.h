@@ -23,6 +23,7 @@ class State
 {
 protected:
 	StateManager* m_parent;
+
 public:
 	State(StateManager* p_parent);
 	virtual ~State();

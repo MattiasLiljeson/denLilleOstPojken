@@ -23,7 +23,7 @@ Game::~Game()
 {
 	delete m_stateManager;
 	delete m_io;
-	delete m_timer;
+	//delete m_timer;
 }
 
 int Game::run()

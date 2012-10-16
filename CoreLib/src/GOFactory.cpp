@@ -171,17 +171,49 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 	return NULL;
 }
 
-MenuItem* GOFactory::createMenuItem()
+MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
+	string p_text, fVector2 p_textOffset, int p_textSize, string p_bgTexPath )
 {
-	fVector3 pos = fVector3(400.0f, 400.0f, 0.99f);
-	fVector2 size = fVector2(800.0f, 350.0f);
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SplashScreen.png",
-		pos, size, NULL);
-	return new MenuItem(spriteInfo);
+	SpriteInfo* spriteInfo = NULL;
+	if( p_bgTexPath != "" )
+		spriteInfo = CreateSpriteInfo( p_bgTexPath, p_position, p_size, NULL );
+
+	GlyphMap* font = NULL;
+	TextArea* text = NULL;
+	if( p_text != "" )
+	{
+		float fontHeight = p_textSize;
+		float fontWidth = p_textSize;
+		float textHeight = fontHeight;
+		float textWidth = fontWidth*p_text.size();
+
+		fVector2 offset;
+		offset.x = textWidth/2.0f - p_textOffset.x;
+		offset.y = textHeight/2.0f - p_textOffset.y;
+
+		if( p_textSize == 32 )
+			font = new GlyphMap(
+			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
+			"../Textures/bubblemad_32x32.png", fontWidth, fontHeight);
+		else if( p_textSize == 16 )
+			font = new GlyphMap(
+			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄ",
+			"../Textures/digifont_16x16.png", fontWidth, fontHeight);
+		else //( p_textSize == 8 )
+			font = new GlyphMap(
+			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
+			"../Textures/bubblemad_8x8.png", fontWidth, fontHeight);
+
+		text = new TextArea(font, p_text.size(), this,
+			p_position.x - offset.x, p_position.y - offset.y);
+		text->setText( p_text );
+	}
+
+	return new MenuItem( spriteInfo, text, font, fVector2(p_position.x, p_position.y) );
 }
 
 
-Glyph* GOFactory::CreateGlyph(const string& p_texture, 
+Glyph* GOFactory::CreateGlyph( const string& p_texture, 
 							  float p_x, float p_y, fVector2 p_size)
 {
 	fVector3 pos = fVector3(p_x, p_y, 0.99f);
