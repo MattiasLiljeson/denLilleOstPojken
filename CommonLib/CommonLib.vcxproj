@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\CommonUtility.cpp" />
     <ClCompile Include="src\IOContext.cpp" />
     <ClCompile Include="src\LodePNG.cpp" />
     <ClCompile Include="src\SoundInfo.cpp" />

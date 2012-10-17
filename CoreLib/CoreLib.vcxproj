@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AI.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
     <ClCompile Include="src\AvatarJumping.cpp" />
     <ClCompile Include="src\AvatarKilled.cpp" />
@@ -60,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AI.h" />
+    <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Avatar.h" />
     <ClInclude Include="src\AvatarJumping.h" />
     <ClInclude Include="src\AvatarKilled.h" />

@@ -196,6 +196,9 @@
     <ClCompile Include="src\Bomb.cpp">
       <Filter>Source\GameObject\Bomb</Filter>
     </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -311,6 +314,9 @@
     </ClInclude>
     <ClInclude Include="src\Bomb.h">
       <Filter>Source\GameObject\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
