@@ -227,6 +227,7 @@ void InGameState::restart()
 		}
 		m_gameObjects.clear();
 		m_monsters.clear();
+		m_bombs.clear();
 		if (m_tileMap)
 			delete m_tileMap;
 		if (m_stats)
