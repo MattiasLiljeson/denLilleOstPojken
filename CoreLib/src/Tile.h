@@ -63,6 +63,7 @@ public:
 	void addPill(Collectable* p_pill);
 	bool removePill();
 	void switchState();
+	void setWalkAble(bool p_walkAble);
 };
 
 #endif

@@ -34,7 +34,7 @@ public:
 			fVector3(), fVector2(), "", fVector2() );
 		newEntry(TestData("Create Menu Item", menuItem != NULL));
 
-		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL, vector<TilePosition>());
+		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL, NULL);
 		newEntry(TestData("Create Switch", goSwitch != NULL));
 
 		Tile* tile = factory.CreateTile(true, TilePosition(0, 0), 10, 10);
@@ -43,7 +43,8 @@ public:
 		Glyph* glyph = factory.CreateGlyph("../Textures/testglyph.png",0.0f,0.0f,fVector2(8.0f,8.0f));
 		newEntry(TestData("Create Glyph", glyph != NULL));
 
-		bool init[] = {true};
+		vector<int> init;
+		init.push_back(91);
 		Tilemap* map = factory.CreateTileMap(1, 1, init);
 		newEntry(TestData("Create Tilemap", map != NULL));
 

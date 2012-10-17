@@ -80,6 +80,12 @@
     <Filter Include="Source\GameObject\Bomb">
       <UniqueIdentifier>{cee6cb87-7e09-43f4-9aa2-6548c06cc1c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\FACTORY">
+      <UniqueIdentifier>{44b7f416-7caa-4c25-a415-abfbd2763608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\WallSwitch">
+      <UniqueIdentifier>{1368adc0-a60c-47dc-b0ec-e712dc969a17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -142,9 +148,6 @@
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
     </ClCompile>
-    <ClCompile Include="src\GOFactory.cpp">
-      <Filter>Source\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="src\MenuItem.cpp">
       <Filter>Source\GameObject\MenuItem</Filter>
     </ClCompile>
@@ -196,8 +199,14 @@
     <ClCompile Include="src\Bomb.cpp">
       <Filter>Source\GameObject\Bomb</Filter>
     </ClCompile>
-    <ClCompile Include="src\Animation.cpp">
-      <Filter>Source</Filter>
+    <ClCompile Include="src\GOFactory.cpp">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TMFactory.cpp">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WallSwitch.cpp">
+      <Filter>Source\GameObject\WallSwitch</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -264,9 +273,6 @@
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
     </ClInclude>
-    <ClInclude Include="src\GOFactory.h">
-      <Filter>Source\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="src\MenuItem.h">
       <Filter>Source\GameObject\MenuItem</Filter>
     </ClInclude>
@@ -315,8 +321,17 @@
     <ClInclude Include="src\Bomb.h">
       <Filter>Source\GameObject\Bomb</Filter>
     </ClInclude>
-    <ClInclude Include="src\Animation.h">
-      <Filter>Source</Filter>
+    <ClInclude Include="src\GOFactory.h">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TMFactory.h">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileTypes.h">
+      <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WallSwitch.h">
+      <Filter>Source\GameObject\WallSwitch</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
