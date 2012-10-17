@@ -3,7 +3,13 @@
 GOFactory::GOFactory(IODevice* p_io)
 {
 	m_io = p_io;
+	m_tileMapFactory = new TMFactory(m_io,this);
 }
+GOFactory::~GOFactory()
+{
+	delete m_tileMapFactory;
+}
+
 Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
 {
 	fVector3 pos = GetCenter(p_startTile, 0.5f); 
@@ -35,6 +41,16 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/grass.png",
 		pos, size, NULL);
 	return new Trap(spriteInfo, p_tile, p_map);
+}
+WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
+{	
+	fVector3 pos = GetCenter(p_tile,0.1f);
+	fVector2 size = GetScaledSize(p_tile,0.9f);
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/wall.png",
+		pos,size,NULL);
+	
+	return new WallSwitch(spriteInfo,p_tile);
 }
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
@@ -95,25 +111,9 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	return new Bomb(flames, p_tile, p_map);
 }
 
-Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
+Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, vector<int> p_mapData)
 {
-	float tileSizeX = 10;
-	float tileSizeY = 10;
-	if (m_io)
-	{
-		tileSizeX = m_io->getScreenWidth() / (float)p_width;
-		tileSizeY = 0.92f * m_io->getScreenHeight() / (float)p_height;
-	}
-	Tile** tiles = new Tile*[p_width * p_height];
-	for (int row = 0; row < p_height; row++)
-	{
-		for (int col = 0; col < p_width; col++)
-		{
-			tiles[row * p_width + col] = CreateTile(p_initData[row * p_width + col],
-				TilePosition(col, row), tileSizeX, tileSizeY);
-		}
-	}
-	return new Tilemap(p_width, p_height, tiles);
+	return m_tileMapFactory->CreateTileMap(p_width,p_height,p_mapData);
 }
 Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	float p_height)
@@ -130,7 +130,7 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
-	GameStats* p_gameStats, vector<TilePosition> p_targets)
+	GameStats* p_gameStats, vector<WallSwitch*>* p_targets)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
 	fVector2 size = GetScaledSize(p_tile, 0.7f);

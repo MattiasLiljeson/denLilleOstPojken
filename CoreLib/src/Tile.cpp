@@ -60,3 +60,7 @@ void Tile::switchState()
 	else
 		m_spriteInfo->visible = true;
 }
+void Tile::setWalkAble(bool p_walkAble)
+{
+	m_type = p_walkAble;
+}
