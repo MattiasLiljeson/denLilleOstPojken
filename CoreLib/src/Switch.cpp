@@ -1,6 +1,8 @@
 #include "Switch.h"
 
-Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<TilePosition> p_targets): Collectable(p_spriteInfo, p_gameStats)
+Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
+	GameStats* p_gameStats, vector<TilePosition> p_targets)
+	: Collectable(p_spriteInfo, p_gameStats)
 {
 	m_map = p_map;
 
@@ -11,16 +13,20 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats
 		m_tile->addPill(this);
 	m_consumed = false;
 	m_cooldown = 0;
+
+	m_spriteInfo->textureRect = Rect( 0, 0, 64, 64 );
 }
 void Switch::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (m_cooldown == 0)
 	{
-		m_spriteInfo->visible = true;
+		m_spriteInfo->textureRect.x = 0;
+//		m_spriteInfo->visible = true;
 	}
 	else if (m_cooldown > 0)
 	{
-		m_spriteInfo->visible = false;
+		m_spriteInfo->textureRect.x = 64;
+//		m_spriteInfo->visible = false;
 	}
 	m_cooldown = max(m_cooldown - p_deltaTime, 0.0f);
 }

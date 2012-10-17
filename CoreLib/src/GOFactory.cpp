@@ -52,7 +52,7 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector2 size = GetScaledSize(p_tile, 1.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
 		pos, size, NULL);
@@ -146,11 +146,12 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 Switch* GOFactory::CreateSwitch(Tile* p_tile, Tilemap* p_map,
 	GameStats* p_gameStats, vector<TilePosition> p_targets)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector3 pos = GetCenter(p_tile, 0.0f); 
+	fVector2 size = GetScaledSize(p_tile, 1.0f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Red_button.png",
-		pos, size, NULL);
+	SpriteInfo* spriteInfo = CreateSpriteInfo(
+		"../Textures/Switch_Tileset.png",
+		pos, size, NULL );
 	return new Switch(spriteInfo, p_tile, p_map, p_gameStats, p_targets);
 }
 
