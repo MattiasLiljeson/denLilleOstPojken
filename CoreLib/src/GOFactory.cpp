@@ -273,11 +273,22 @@ Glyph* GOFactory::CreateGlyph( const string& p_texture,
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 {
+	float fw = 1.0f/1920.0f;
+	float fh = 1.0f/1080.0f;
+	float scrW = GAME_FAIL;
+	float scrH = GAME_FAIL;
+	float guiHeight = 0.08f;
+	if(m_io != NULL)
+	{
+		scrW = (float)m_io->getScreenWidth();
+		scrH = (float)m_io->getScreenHeight();
+	}
+
 	float heightFraction = m_io->getScreenHeight() / 1080.0f;
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
 
-	Rect guiRect(0, 0, m_io->getScreenWidth(), 0.08f * m_io->getScreenHeight());
+	Rect guiRect(0, 0, m_io->getScreenWidth(), guiHeight*m_io->getScreenHeight());
 
 	vector<SpriteInfo*> lives;
 	for (int i = 0; i < 3; i++)
@@ -294,42 +305,38 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, size, &r));
 	}
 
-
-	fVector2 size = fVector2(50*widthFraction, 50*heightFraction);
-	fVector3 pos = fVector3(widthFraction*1920*0.5f, height - 0.08f * height*0.5f, 0.9f); 
+	fVector2 size = fVector2(50/scrW, 50/scrH);
+	size = fVector2(0,0);
+	fVector3 pos = fVector3(0.5f, 1 - guiHeight*0.5f, 0.9f); 
 	string texts = "ELAPSED TIME:    ";
+	float fontSize = 32.0f;
+	fVector2 fontSizeScaled(fontSize*fw, fontSize*fh); 
 	MenuItem* elapsed = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
-			texts, fVector2(0.0f, 0.0f), 8,"" );
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*350, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string xtext = "X";
 	MenuItem* x = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
-			xtext, fVector2(0.0f, 0.0f), 8,"" );
+			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 	
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*300, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3(1- 300/scrW, 1 - guiHeight*0.5f, 0.9f); 
 
 	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
 
 
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*150, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3(1- 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
-			ytext, fVector2(0.0f, 0.0f), 8,"" );
+			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	pos = fVector3(widthFraction*1920- widthFraction*100, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3(1- 100/scrW, 1 - guiHeight*0.5f, 0.9f); 
 
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
-
-
 
 	return new GUI(p_gameStats, lives, elapsed, x, y, speed, bomb);
 }

@@ -19,13 +19,10 @@
 #include "Test_Pill.h"
 #include "Test_SuperPill.h"
 #include "Test_SpeedPill.h"
-<<<<<<< HEAD
 #include "Test_TextArea.h"
 #include "Test_MenuItem.h"
-=======
 #include "Test_Bomb.h"
 #include "Test_BombPill.h"
->>>>>>> 8722ee233d0b2ca60f30a9fe4f7398c38b9bee72
 
 void Tester::run()
 {
