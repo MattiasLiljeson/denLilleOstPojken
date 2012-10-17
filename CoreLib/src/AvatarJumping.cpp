@@ -15,7 +15,8 @@ AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigat
 
 AvatarJumping::~AvatarJumping()
 {
-	m_jumpSound->deleted = true;
+	if (m_jumpSound)
+		m_jumpSound->deleted = true;
 }
 
 int AvatarJumping::onEnter()

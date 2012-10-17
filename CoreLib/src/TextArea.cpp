@@ -78,8 +78,11 @@ void TextArea::setOrigin( float p_x, float p_y )
 	for( unsigned int i=0; i<m_glyphs.size(); i++ )
 	{
 		SpriteInfo* sprInfo = m_glyphs[i]->getSpriteInfo();
-		sprInfo->transformInfo.translation[TransformInfo::X] = p_x + glyphPosX(i) - m_xOrigin;
-		sprInfo->transformInfo.translation[TransformInfo::Y] = p_y + glyphPosY(i) - m_yOrigin;
+		if (sprInfo)
+		{
+			sprInfo->transformInfo.translation[TransformInfo::X] = p_x + glyphPosX(i) - m_xOrigin;
+			sprInfo->transformInfo.translation[TransformInfo::Y] = p_y + glyphPosY(i) - m_yOrigin;
+		}
 	}
 
 	m_xOrigin = p_x;

@@ -19,6 +19,8 @@
 #include "Test_Pill.h"
 #include "Test_SuperPill.h"
 #include "Test_SpeedPill.h"
+#include "Test_Bomb.h"
+#include "Test_BombPill.h"
 
 void Tester::run()
 {
@@ -42,6 +44,8 @@ void Tester::run()
 	tests.push_back(new Test_Pill());
 	tests.push_back(new Test_SuperPill());
 	tests.push_back(new Test_SpeedPill());
+	tests.push_back(new Test_Bomb());
+	tests.push_back(new Test_BombPill());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;
