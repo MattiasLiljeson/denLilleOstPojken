@@ -23,14 +23,12 @@ Game::~Game()
 {
 	delete m_stateManager;
 	delete m_io;
-	delete m_timer;
 }
 
 int Game::run()
 {
 	m_running = true;
 	m_timer->start();
-
 	while (m_running)
 	{
 		if (m_stateManager->isTerminated())

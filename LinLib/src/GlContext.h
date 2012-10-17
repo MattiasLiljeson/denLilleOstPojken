@@ -30,6 +30,7 @@ private:
 	int initGLFW();
 	int initGLFWWindow();
 	int initGlew();
+	void initKeyMappings();
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
@@ -41,9 +42,6 @@ public:
 	int						setWindowPosition(int p_x, int p_y);
 	int						setWindowSize(int p_width, int p_height);
 	int						update(float p_dt);
-
-	//HACK: replace by using drawSprite(), beginDraw() and endDraw()
-	int						draw(float p_dt);
 
 	int						addSprite( SpriteInfo* p_spriteInfo);
 

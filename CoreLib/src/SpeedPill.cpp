@@ -23,8 +23,7 @@ void SpeedPill::consume()
 	{
 		m_consumed = true;
 		m_tile = NULL;
-		m_gameStats->setSpeeded();
-
+		m_gameStats->setBuffSlot(0);
 		switchState(m_eatenStaten);
 	}
 }

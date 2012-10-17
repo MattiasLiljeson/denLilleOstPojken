@@ -21,8 +21,12 @@
   <ItemGroup>
     <ClCompile Include="src\AI.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
+    <ClCompile Include="src\AvatarJumping.cpp" />
     <ClCompile Include="src\AvatarKilled.cpp" />
+    <ClCompile Include="src\AvatarWalking.cpp" />
     <ClCompile Include="src\BasicIdle.cpp" />
+    <ClCompile Include="src\Bomb.cpp" />
+    <ClCompile Include="src\BombPill.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\DynamicCollision.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -33,6 +37,7 @@
     <ClCompile Include="src\GlyphMap.cpp" />
     <ClCompile Include="src\GOFactory.cpp" />
     <ClCompile Include="src\GOState.cpp" />
+    <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
     <ClCompile Include="src\MapLoader.cpp" />
@@ -51,12 +56,17 @@
     <ClCompile Include="src\TextArea.cpp" />
     <ClCompile Include="src\Tile.cpp" />
     <ClCompile Include="src\Tilemap.cpp" />
+    <ClCompile Include="src\Trap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AI.h" />
     <ClInclude Include="src\Avatar.h" />
+    <ClInclude Include="src\AvatarJumping.h" />
     <ClInclude Include="src\AvatarKilled.h" />
+    <ClInclude Include="src\AvatarWalking.h" />
     <ClInclude Include="src\BasicIdle.h" />
+    <ClInclude Include="src\Bomb.h" />
+    <ClInclude Include="src\BombPill.h" />
     <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\DynamicCollision.h" />
     <ClInclude Include="src\Game.h" />
@@ -67,6 +77,7 @@
     <ClInclude Include="src\GlyphMap.h" />
     <ClInclude Include="src\GOFactory.h" />
     <ClInclude Include="src\GOState.h" />
+    <ClInclude Include="src\GUI.h" />
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
     <ClInclude Include="src\MapLoader.h" />
@@ -85,6 +96,7 @@
     <ClInclude Include="src\Tile.h" />
     <ClInclude Include="src\Tilemap.h" />
     <ClInclude Include="src\SpeedPillUse.h" />
+    <ClInclude Include="src\Trap.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">

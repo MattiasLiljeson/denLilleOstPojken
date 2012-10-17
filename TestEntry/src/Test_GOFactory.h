@@ -30,8 +30,8 @@ public:
 		SpeedPill* speed = factory.CreateSpeedPill(NULL, NULL);
 		newEntry(TestData("Create Speed Pill", speed != NULL));
 
-		MenuItem* menuItem = factory.createMenuItem();
-		newEntry(TestData("Create Menu Item", menuItem != NULL));
+		//MenuItem* menuItem = factory.createMenuItem();
+		newEntry(TestData("Create Menu Item", false));
 
 		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL, vector<TilePosition>());
 		newEntry(TestData("Create Switch", goSwitch != NULL));
@@ -51,7 +51,7 @@ public:
 		delete pill;
 		delete super;
 		delete speed;
-		delete menuItem;
+		//delete menuItem;
 		delete tile;
 		delete goSwitch;
 		delete map;

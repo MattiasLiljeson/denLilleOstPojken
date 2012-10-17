@@ -1,6 +1,18 @@
 #include "TextArea.h"
 
 
+int TextArea::glyphPosX( int p_idx )
+{
+	float glyphWidth = (float)(m_glyphMap->getCharWidth());
+	return m_xOrigin+(float)p_idx*glyphWidth;
+}
+
+int TextArea::glyphPosY( int p_idx )
+{
+	float glyphHeight = (float)(m_glyphMap->getCharHeight());
+	return m_yOrigin;
+}
+
 TextArea::TextArea(GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_factory, 
 				   float p_xOrigin, float p_yOrigin)
 {
@@ -19,9 +31,8 @@ TextArea::TextArea(GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_
 		// Right now text will always be left-bottom-aligned,
 		// add anchors and/or alignment properties later:
 		// LEFT-TOP,LEFT-BOTTOM,RIGHT-TOP,RIGHT-BOTTOM,CENTER    (at least)
-		Glyph* g = p_factory->CreateGlyph(texturePath,
-										  p_xOrigin+(float)i*glyphWidth,
-										  p_yOrigin,fVector2(glyphWidth,glyphHeight));
+		Glyph* g = p_factory->CreateGlyph(texturePath, glyphPosX(i), glyphPosY(i), 
+			fVector2(glyphWidth,glyphHeight));
 
 		m_glyphs.push_back(g);
 	}
@@ -60,4 +71,18 @@ void TextArea::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		m_glyphs[i]->update(p_deltaTime,p_inputInfo);
 	}
+}
+
+void TextArea::setOrigin( float p_x, float p_y )
+{
+	for( unsigned int i=0; i<m_glyphs.size(); i++ )
+	{
+		SpriteInfo* sprInfo = m_glyphs[i]->getSpriteInfo();
+		sprInfo->transformInfo.translation[TransformInfo::X] = p_x + glyphPosX(i) - m_xOrigin;
+		sprInfo->transformInfo.translation[TransformInfo::Y] = p_y + glyphPosY(i) - m_yOrigin;
+	}
+
+	m_xOrigin = p_x;
+	m_yOrigin = p_y;
+
 }

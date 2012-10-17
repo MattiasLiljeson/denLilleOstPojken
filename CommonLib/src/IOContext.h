@@ -19,7 +19,6 @@ public:
 	virtual int		setWindowPosition(int p_x, int p_y) = 0;
 	virtual int		setWindowSize(int p_width, int p_height) = 0;
 	virtual int		update(float p_dt) = 0;
-	virtual int		draw(float p_dt) = 0;	// Will be removed.
 
 	virtual int		addSprite( SpriteInfo* p_spriteInfo ) = 0;
 

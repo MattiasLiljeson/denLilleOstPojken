@@ -13,7 +13,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): 
 		m_factory = new GOFactory(p_io);
 		m_tileMap = NULL;
 		m_stats = NULL;
-		m_currentMap = 0;
+		m_currentMap = 1;
 		if (p_reset)
 			restart();
 	}
@@ -52,9 +52,8 @@ bool InGameState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
-			m_currentMap = 0;
-			/*if (p_reset)
-				restart();*/
+			m_currentMap = 1;
+			m_gui = NULL;
 		}
 		restart();
 		m_resourcesAllocated=true;
@@ -79,6 +78,8 @@ bool InGameState::onExit()
 				delete m_stats;
 			if (m_factory)
 				delete m_factory;
+			if (m_gui)
+				delete m_gui;
 		}
 		m_resourcesAllocated=false;
 	}
@@ -106,8 +107,21 @@ void InGameState::update(float p_dt)
 		};
 
 		checkDynamicCollision();
+
 	
-		m_stats->update(p_dt);
+		if (m_stats)
+		{
+			m_stats->update(p_dt, input);
+			if (m_stats->getActivatedItem() == 0)
+			{
+				Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
+				m_bombs.push_back(b);
+				m_gameObjects.push_back(b);
+			}
+		}
+
+		if (m_gui)
+			m_gui->update(p_dt);
 
 		int elapsed = m_stats->getGameTimer()->getElapsedTime();
 
@@ -121,9 +135,8 @@ void InGameState::update(float p_dt)
 
 		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
 		{
-			// m_parent->requestStateChange(m_parent->getMenuState());
-			restart();
-			return;
+			//restart();
+			//return;
 		}
 		//
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
@@ -136,6 +149,16 @@ void InGameState::update(float p_dt)
 			m_parent->terminate();
 		}
 		*/
+		if (m_avatar->isDead())
+		{
+			m_stats->loseLife();
+			if (m_stats->getNumLives() > 0)
+				m_avatar->revive(m_startTile);
+			else
+				m_parent->requestStateChange(m_parent->getMenuState());
+
+
+		}
 	}
 }
 
@@ -167,6 +190,28 @@ bool InGameState::checkDynamicCollision()
 					m_avatar->kill();
 			}
 		}
+		for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+		{
+			if (m_bombs[bomb]->isColliding(monster) && !monster->isDead())
+			{
+				monster->kill();
+				m_stats->addScore(MONSTER_KILLED);
+			}
+		}
+	}
+	if (!m_avatar->inAir())
+	{
+		for(unsigned int index = 0; index < m_traps.size(); index++)
+		{
+			Trap* trap = m_traps.at(index);
+			Circle trapBC(trap->getPostion(),trap->getRadius());
+
+			if(avatarBC.collidesWith(trapBC))
+			{
+				collision = true;
+				m_avatar->kill();
+			}
+		}
 	}
 
 	return collision;
@@ -186,6 +231,8 @@ void InGameState::restart()
 			delete m_tileMap;
 		if (m_stats)
 			delete m_stats;
+		if (m_gui)
+			delete m_gui;
 
 		m_tileMap	= 0;
 		MapLoader mapParser;
@@ -200,5 +247,23 @@ void InGameState::restart()
 		m_gameObjects = mapParser.getGameObjects();
 		m_avatar = mapParser.getAvatar();
 		m_monsters = mapParser.getMonsters();
+		m_traps = mapParser.getTraps();
+		m_gui = mapParser.getGUI();
+		m_startTile = m_avatar->getCurrentTile();
+	}
+}
+
+void InGameState::handleInput( InputInfo p_input )
+{
+	if ( p_input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED )
+	{
+		//m_parent->requestStateChange(m_parent->getMenuState());
+		restart();
+		return;
+	}
+	else if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED ||
+		!m_io->isRunning() )
+	{
+		m_parent->terminate();
 	}
 }
