@@ -54,8 +54,6 @@ bool InGameState::onEntry()
 			m_stats = NULL;
 			m_currentMap = 1;
 			m_gui = NULL;
-			/*if (p_reset)
-				restart();*/
 		}
 		restart();
 		m_resourcesAllocated=true;
@@ -109,9 +107,21 @@ void InGameState::update(float p_dt)
 		};
 
 		checkDynamicCollision();
+
 	
-		m_stats->update(p_dt);
-		m_gui->update(p_dt);
+		if (m_stats)
+		{
+			m_stats->update(p_dt, input);
+			if (m_stats->getActivatedItem() == 0)
+			{
+				Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
+				m_bombs.push_back(b);
+				m_gameObjects.push_back(b);
+			}
+		}
+
+		if (m_gui)
+			m_gui->update(p_dt);
 
 		int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 
@@ -178,6 +188,14 @@ bool InGameState::checkDynamicCollision()
 				}
 				else
 					m_avatar->kill();
+			}
+		}
+		for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+		{
+			if (m_bombs[bomb]->isColliding(monster) && !monster->isDead())
+			{
+				monster->kill();
+				m_stats->addScore(MONSTER_KILLED);
 			}
 		}
 	}

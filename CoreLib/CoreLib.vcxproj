@@ -20,11 +20,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\AI.cpp" />
+    <ClCompile Include="src\Animation.cpp" />
     <ClCompile Include="src\Avatar.cpp" />
     <ClCompile Include="src\AvatarJumping.cpp" />
     <ClCompile Include="src\AvatarKilled.cpp" />
     <ClCompile Include="src\AvatarWalking.cpp" />
     <ClCompile Include="src\BasicIdle.cpp" />
+    <ClCompile Include="src\Bomb.cpp" />
+    <ClCompile Include="src\BombPill.cpp" />
     <ClCompile Include="src\Collectable.cpp" />
     <ClCompile Include="src\DynamicCollision.cpp" />
     <ClCompile Include="src\Game.cpp" />
@@ -58,11 +61,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\AI.h" />
+    <ClInclude Include="src\Animation.h" />
     <ClInclude Include="src\Avatar.h" />
     <ClInclude Include="src\AvatarJumping.h" />
     <ClInclude Include="src\AvatarKilled.h" />
     <ClInclude Include="src\AvatarWalking.h" />
     <ClInclude Include="src\BasicIdle.h" />
+    <ClInclude Include="src\Bomb.h" />
+    <ClInclude Include="src\BombPill.h" />
     <ClInclude Include="src\Collectable.h" />
     <ClInclude Include="src\DynamicCollision.h" />
     <ClInclude Include="src\Game.h" />

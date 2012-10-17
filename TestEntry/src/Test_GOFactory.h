@@ -52,7 +52,7 @@ public:
 		delete pill;
 		delete super;
 		delete speed;
-		//delete menuItem;
+		delete menuItem;
 		delete tile;
 		delete goSwitch;
 		delete map;

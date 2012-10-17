@@ -18,10 +18,10 @@ public:
 		SpeedPill pill(NULL, NULL, &stats, NULL);
 		newEntry(TestData("Position", pill.getPostion() == fVector2(0, 0)));
 		newEntry(TestData("Not Consumed", !pill.isConsumed()));
-		newEntry(TestData("Not Speeded", !stats.isSuperMode()));
+		newEntry(TestData("Not Speeded", stats.getBuffSlot() != 0));
 		pill.consume();
 		newEntry(TestData("Consumed", pill.isConsumed()));
-		newEntry(TestData("Speeded", stats.isSpeeded()));
+		newEntry(TestData("Registered", stats.getBuffSlot() == 0));
 	}	
 };	
 

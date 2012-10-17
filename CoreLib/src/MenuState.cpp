@@ -105,15 +105,14 @@ bool MenuState::onExit()
 	{
 		if (m_io)
 		{
+			delete m_bgItem;
 			for(unsigned int i = 0; i < m_menuItems.size(); i++)
 			{
 				delete m_menuItems[i];
 			}
-
 			m_menuItems.clear();
 
 			delete m_factory;		
-			// Below moved from input handler
 			m_io->clearSpriteInfos();
 		}
 		//

@@ -29,7 +29,6 @@ int Game::run()
 {
 	m_running = true;
 	m_timer->start();
-
 	while (m_running)
 	{
 		if (m_stateManager->isTerminated())

@@ -47,11 +47,12 @@ private:
 	float dt;
 
 public:
-	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound);
+	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound);
 	virtual ~Avatar();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 
 	Tile*		getCurrentTile();
+	Tile*		getClosestTile();
 	int			getDirection();
 	float		getTileInterpolationFactor();
 	void		setTilePosition(Tile* p_newPosition);

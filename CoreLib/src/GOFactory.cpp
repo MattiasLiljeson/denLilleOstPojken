@@ -16,7 +16,7 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 450;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
 		pos, size, &r);
-	return new Avatar(spriteInfo, p_map, p_startTile, p_stats,CreateSoundInfo("../Sounds/laser_zip_mono.wav",100));
+	return new Avatar(spriteInfo, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/laser_zip_mono.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
@@ -62,7 +62,43 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
 	
-	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/Plink_08.wav",100), p_tile, p_gameStats);
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_sound_2012-10-16.wav",100), p_tile, p_gameStats);
+}
+BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
+{
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/hero.png",
+		pos, size, NULL);
+	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+}
+Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
+{
+	vector<pair<Tile*, SpriteInfo*>> flames;
+	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
+	for (int i = 0; i < 4; i++)
+	{
+		Tile* curr = p_map->getTile(p_tile->getTilePosition() + dir[i]);
+		while (curr && curr->isFree())
+		{
+			fVector3 pos = GetCenter(curr, 0.6f); 
+			fVector2 size = GetScaledSize(curr, 0.7f);
+
+			Rect r;
+			r.x = 0;
+			r.y = 0;
+			r.height = 64;
+			r.width = 64;
+			SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Explosion_Animation.png",
+				pos, size, &r);
+
+			flames.push_back(pair<Tile*, SpriteInfo*>(curr, spriteInfo));
+			curr = p_map->getTile(curr->getTilePosition() + dir[i]);
+		}
+	}
+
+	return new Bomb(flames, p_tile, p_map);
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
@@ -258,5 +294,42 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, size, &r));
 	}
 
-	return new GUI(p_gameStats, lives);
+
+	fVector2 size = fVector2(50*widthFraction, 50*heightFraction);
+	fVector3 pos = fVector3(widthFraction*1920*0.5f, height - 0.08f * height*0.5f, 0.9f); 
+	string texts = "ELAPSED TIME:    ";
+	MenuItem* elapsed = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), 8,"" );
+
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*350, height - 0.08f * height*0.5f, 0.9f); 
+	string xtext = "X";
+	MenuItem* x = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			xtext, fVector2(0.0f, 0.0f), 8,"" );
+	
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*300, height - 0.08f * height*0.5f, 0.9f); 
+
+	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
+		pos, size, NULL);
+
+
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*150, height - 0.08f * height*0.5f, 0.9f); 
+	string ytext = "Z";
+	MenuItem* y = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			ytext, fVector2(0.0f, 0.0f), 8,"" );
+
+	size = fVector2(50*widthFraction, 50*heightFraction);
+	pos = fVector3(widthFraction*1920- widthFraction*100, height - 0.08f * height*0.5f, 0.9f); 
+
+	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
+		pos, size, NULL);
+
+
+
+	return new GUI(p_gameStats, lives, elapsed, x, y, speed, bomb);
 }

@@ -19,8 +19,13 @@
 #include "Test_Pill.h"
 #include "Test_SuperPill.h"
 #include "Test_SpeedPill.h"
+<<<<<<< HEAD
 #include "Test_TextArea.h"
 #include "Test_MenuItem.h"
+=======
+#include "Test_Bomb.h"
+#include "Test_BombPill.h"
+>>>>>>> 8722ee233d0b2ca60f30a9fe4f7398c38b9bee72
 
 void Tester::run()
 {
@@ -44,8 +49,13 @@ void Tester::run()
 	tests.push_back(new Test_Pill());
 	tests.push_back(new Test_SuperPill());
 	tests.push_back(new Test_SpeedPill());
+<<<<<<< HEAD
 	tests.push_back(new Test_TextArea());
 	tests.push_back(new Test_MenuItem());
+=======
+	tests.push_back(new Test_Bomb());
+	tests.push_back(new Test_BombPill());
+>>>>>>> 8722ee233d0b2ca60f30a9fe4f7398c38b9bee72
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;

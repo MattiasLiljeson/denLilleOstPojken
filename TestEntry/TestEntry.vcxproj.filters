@@ -111,6 +111,12 @@
     </ClInclude>
     <ClInclude Include="src\Test_MenuState.h">
       <Filter>Menu</Filter>
+	</ClInclude>
+    <ClInclude Include="src\Test_Bomb.h">
+      <Filter>GameObjects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_BombPill.h">
+      <Filter>GameObjects\Collectable</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

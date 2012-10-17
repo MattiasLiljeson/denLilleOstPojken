@@ -8,6 +8,7 @@
       <Filter>InfoStructs</Filter>
     </ClCompile>
     <ClCompile Include="src\SoundManager.cpp" />
+    <ClCompile Include="src\CommonUtility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\IOContext.h" />

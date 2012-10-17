@@ -3,6 +3,7 @@
 
 #include <Timer.h>
 #include <vector>
+#include <InputInfo.h>
 
 using namespace std;
 
@@ -24,10 +25,16 @@ private:
 	vector<Timer*>	m_powerUpTimers;
 	int				m_score;
 	int				m_lives;
+
+	int				m_itemSlot;
+	int				m_buffSlot;
+
+	//Flag to indicate the spawn of an item
+	int				m_activate;
 public:
 	GameStats(Timer* p_timer);
 	~GameStats();
-	void	update(float p_deltaTime);
+	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	void	setNumPills(const int p_numPills);
 	int		getNumPills();
 	int		getNumLives();
@@ -42,6 +49,13 @@ public:
 	int		getScore() const;
 	Timer*	getGameTimer();
 	void	loseLife();
+	void	setItemSlot(int p_item);
+	int		getItemSlot();
+	void	setBuffSlot(int p_buff);
+	int		getBuffSlot();
+	void	activateBuff();
+	void	activateItem();
+	int		getActivatedItem();
 };
 
 #endif

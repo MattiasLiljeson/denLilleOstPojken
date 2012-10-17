@@ -4,17 +4,20 @@
 #include "AvatarWalking.h"
 
 Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, 
-	GameStats* p_stats, SoundInfo* p_avatarKilledSound)
+	GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound)
 	: GameObject(p_spriteInfo, p_stats)
 {
 	m_navigationData = new NavigationData();
-	m_navigationData->m_direction = m_navigationData->m_desired = Direction::NONE;
-	m_navigationData->m_currentTile = m_navigationData->m_nextTile = m_navigationData->m_queuedTile = p_startTile;
+	m_navigationData->m_direction = Direction::NONE;
+	m_navigationData->m_desired = Direction::NONE;
+	m_navigationData->m_currentTile = p_startTile;
+	m_navigationData->m_nextTile = p_startTile;
+	m_navigationData->m_queuedTile = p_startTile;
 	m_navigationData->dt = 0;
 	m_navigationData->m_map = p_map;
 
 	m_avatarKilledState = new AvatarKilled(this,p_avatarKilledSound, m_navigationData);
-	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats);
+	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats, p_jumpSound);
 	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
 	switchState(m_walking);
 }
@@ -25,6 +28,10 @@ Avatar::~Avatar()
 		delete m_avatarKilledState;
 	if (m_avatarJumpingState)
 		delete m_avatarJumpingState;
+	if (m_walking)
+		delete m_walking;
+	if (m_navigationData)
+		delete m_navigationData;
 }
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
@@ -37,7 +44,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
 	{
- 		switchState(m_walking);
+		switchState(m_walking);
 	}
 
 	if (m_spriteInfo)
@@ -49,8 +56,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 		float w = m_navigationData->m_currentTile->getWidth();
 		float h = m_navigationData->m_currentTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+			pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+			pY * h + h * 0.5f;
 	
 		if (m_gameStats && m_gameStats->isSuperMode())
 		{
@@ -66,8 +75,10 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		{
 			float w = m_navigationData->m_currentTile->getWidth();
 			float h = m_navigationData->m_currentTile->getHeight();
-			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::X] =
+				pX * w + w * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+				pY * h + h * 0.5f;
 		}
 		if (m_gameStats->isSuperMode())
 		{
@@ -88,6 +99,13 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 Tile* Avatar::getCurrentTile()
 {
 	return m_navigationData->m_currentTile;
+}
+Tile* Avatar::getClosestTile()
+{
+	if (m_navigationData->dt > 0.5f)
+		return m_navigationData->m_nextTile;
+	else
+		return m_navigationData->m_currentTile;
 }
 int Avatar::getDirection()
 {

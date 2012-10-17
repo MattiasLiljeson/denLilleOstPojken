@@ -12,6 +12,7 @@ private:
 	Avatar*				m_avatar;
 	vector<Monster*>	m_monsters;
 	vector<Trap*>		m_traps;
+	vector<Bomb*>		m_bombs;
 	GOFactory*			m_factory;
 	GUI*				m_gui;
 
