@@ -4,6 +4,11 @@ AvatarWalking::AvatarWalking(GameObject* p_gameObject, NavigationData* p_navigat
 {
 	m_navigationData = p_navigationData;
 	m_gameStats = p_stats;
+
+	m_right = new Animation(fVector2(0, 0), 64, 64, 8, 0.15f, true);
+	m_left = new Animation(fVector2(0, 64), 64, 64, 8, 0.15f, true);
+	m_down = new Animation(fVector2(0, 128), 64, 64, 8, 0.15f, true);
+	m_up = new Animation(fVector2(0, 192), 64, 64, 8, 0.15f, true);
 }
 
 AvatarWalking::~AvatarWalking()
@@ -116,5 +121,27 @@ int AvatarWalking::update(float p_dt, InputInfo p_inputInfo)
 	else
 		m_navigationData->dt = 0;
 
+	determineAnimation();
+
 	return GAME_OK;
+}
+void AvatarWalking::determineAnimation()
+{
+	Avatar* av = (Avatar*)m_gameObject;
+	if (m_navigationData->m_direction == Direction::LEFT)
+	{
+		av->setCurrentAnimation(m_left);
+	}
+	else if (m_navigationData->m_direction == Direction::RIGHT)
+	{
+		av->setCurrentAnimation(m_right);
+	}
+	else if (m_navigationData->m_direction == Direction::UP)
+	{
+		av->setCurrentAnimation(m_up);
+	}
+	else if (m_navigationData->m_direction == Direction::DOWN)
+	{
+		av->setCurrentAnimation(m_down);
+	}
 }

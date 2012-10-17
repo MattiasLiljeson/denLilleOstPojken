@@ -2,6 +2,7 @@
 #define AVATAR_H
 
 #include "Tilemap.h"
+#include "Animation.h"
 
 class AvatarKilled;
 class AvatarJumping;
@@ -44,6 +45,8 @@ private:
 	AvatarJumping* m_avatarJumpingState;
 	AvatarWalking*	m_walking;
 
+	Animation* m_currentAnimation;
+
 	float dt;
 
 public:
@@ -60,6 +63,7 @@ public:
 	bool		inAir();
 	bool		isDead();
 	void		revive(Tile* p_newPosition);
+	void		setCurrentAnimation(Animation* p_animation);
 };
 
 #endif

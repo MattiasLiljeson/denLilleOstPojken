@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-Animation::Animation(fVector2 p_start, float p_frameWidth, float p_frameHeight, unsigned int p_frameCount, float p_delay)
+Animation::Animation(fVector2 p_start, float p_frameWidth, float p_frameHeight, unsigned int p_frameCount, float p_delay, bool p_loop)
 {
 	m_currentFrame = 0;
 	m_frameCount = p_frameCount;
@@ -9,6 +9,7 @@ Animation::Animation(fVector2 p_start, float p_frameWidth, float p_frameHeight, 
 	m_frameHeight = p_frameHeight;
 	m_start = p_start;
 	m_dt = 0;
+	m_loop = p_loop;
 }
 void Animation::update(float p_dt)
 {
@@ -17,6 +18,8 @@ void Animation::update(float p_dt)
 	{
 		m_dt -= m_delay;
 		m_currentFrame++;
+		if (m_loop && m_currentFrame >= m_frameCount)
+			m_currentFrame = 0;
 			
 	}
 }

@@ -8,20 +8,16 @@ class AvatarWalking : public GOState
 {
 private:
 	NavigationData* m_navigationData;
-
-	/*Tile* m_nextTile;
-	Tile* m_queuedTile;
-	Tilemap* m_map;
-
-	int m_direction;
-	int m_desired;*/
-
 	GameStats* m_gameStats;
+	Animation* m_left;
+	Animation* m_right;
+	Animation* m_up;
+	Animation* m_down;
 
-	//float dt;
 private:
 	void checkInput(InputInfo p_inputInfo);
 	bool check180();
+	void determineAnimation();
 public:
 	AvatarWalking(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats);
 	virtual ~AvatarWalking();

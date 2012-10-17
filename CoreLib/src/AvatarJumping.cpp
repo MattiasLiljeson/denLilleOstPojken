@@ -11,6 +11,11 @@ AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigat
 	}
 	m_gameStats = p_stats;
 	m_jumpSound = p_jumpSound;
+
+	m_right = new Animation(fVector2(0, 256), 64, 64, 8, 0.10f, true);
+	m_left = new Animation(fVector2(0, 320), 64, 64, 8, 0.10f, true);
+	m_down = new Animation(fVector2(0, 384), 64, 64, 8, 0.10f, true);
+	m_up = new Animation(fVector2(0, 448), 64, 64, 8, 0.10f, true);
 }
 
 AvatarJumping::~AvatarJumping()
@@ -59,7 +64,7 @@ int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 		m_navigationData->dt = 0;
 	
 	//Jump logic
-	float jumptime = 0.4f;
+	float jumptime = 0.10f * 8;
 	float factor;
 	if (m_elapsedTime <= jumptime * 0.5f)
 		factor = m_elapsedTime / (jumptime*0.5f);
@@ -67,15 +72,39 @@ int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 		factor = (jumptime - m_elapsedTime) / (jumptime*0.5f);
 	if (m_gameObject && m_gameObject->getSpriteInfo())
 	{
+		factor *= 0.25f;
 		m_gameObject->getSpriteInfo()->transformInfo.scale[TransformInfo::X] = originalSize.x * (1+factor);
 		m_gameObject->getSpriteInfo()->transformInfo.scale[TransformInfo::Y] = originalSize.y * (1+factor);
 	}
 	m_elapsedTime += p_dt;
 	if (m_elapsedTime > jumptime)
 		m_hasLanded = true;
+
+	determineAnimation();
+
 	return GAME_OK;
 }
 bool AvatarJumping::hasLanded()
 {
 	return m_hasLanded;
+}
+void AvatarJumping::determineAnimation()
+{
+	Avatar* av = (Avatar*)m_gameObject;
+	if (m_navigationData->m_direction == Direction::LEFT)
+	{
+		av->setCurrentAnimation(m_left);
+	}
+	else if (m_navigationData->m_direction == Direction::RIGHT)
+	{
+		av->setCurrentAnimation(m_right);
+	}
+	else if (m_navigationData->m_direction == Direction::UP)
+	{
+		av->setCurrentAnimation(m_up);
+	}
+	else if (m_navigationData->m_direction == Direction::DOWN)
+	{
+		av->setCurrentAnimation(m_down);
+	}
 }
