@@ -16,7 +16,8 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 450;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
 		pos, size, &r);
-	return new Avatar(spriteInfo, p_map, p_startTile, p_stats,CreateSoundInfo("../Sounds/laser_zip_mono.wav",100));
+	return new Avatar( spriteInfo, p_map, p_startTile, p_stats,
+		CreateSoundInfo("../Sounds/laser_zip_mono.wav",100) );
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
@@ -34,26 +35,29 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SuperPill.png",
 		pos, size, NULL);
-	return new SuperPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+	return new SuperPill( spriteInfo, p_tile, p_gameStats,
+		CreateSoundInfo("../Sounds/use_power-up.wav",100) );
 }
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/drug.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
 		pos, size, NULL);
-	return new SpeedPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+	return new SpeedPill( spriteInfo, p_tile, p_gameStats,
+		CreateSoundInfo("../Sounds/use_power-up.wav",100) );
 }
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 0.5f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Pill_32.png",
 		pos, size, NULL);
 	
-	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/Plink_08.wav",100), p_tile, p_gameStats);
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/Plink_08.wav",100),
+		p_tile, p_gameStats);
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, bool* p_initData)
