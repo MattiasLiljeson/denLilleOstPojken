@@ -113,7 +113,7 @@ void InGameState::update(float p_dt)
 		m_stats->update(p_dt);
 		m_gui->update(p_dt);
 
-		int elapsed = m_stats->getGameTimer()->getElapsedTime();
+		int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 
 		stringstream ss;
 
@@ -203,7 +203,7 @@ void InGameState::restart()
 	if (m_io)
 	{
 		m_io->clearSpriteInfos();
-		for (int i = 0; i < m_gameObjects.size(); i++)
+		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
 			delete m_gameObjects[i];
 		}

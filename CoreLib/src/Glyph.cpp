@@ -15,12 +15,28 @@ void Glyph::update(float p_deltaTime, InputInfo p_inputInfo)
 
 }
 
-void Glyph::setRect(Rect p_rect)
+int Glyph::setRect(Rect p_rect)
 {
-	m_spriteInfo->textureRect = p_rect;
+	if(m_spriteInfo != NULL)
+	{
+		m_spriteInfo->textureRect = p_rect;
+		return GAME_OK;
+	}
+	else
+	{
+		return GAME_FAIL;
+	}
 }
 
-void Glyph::setVisibility(bool p_set)
+int Glyph::setVisibility(bool p_set)
 {
-	m_spriteInfo->visible = p_set; 
+	if(m_spriteInfo != NULL)
+	{
+		m_spriteInfo->visible = p_set;
+		return GAME_OK;
+	}
+	else
+	{
+		return GAME_FAIL;
+	}
 }

@@ -19,6 +19,8 @@
 #include "Test_Pill.h"
 #include "Test_SuperPill.h"
 #include "Test_SpeedPill.h"
+#include "Test_TextArea.h"
+#include "Test_MenuItem.h"
 
 void Tester::run()
 {
@@ -42,6 +44,8 @@ void Tester::run()
 	tests.push_back(new Test_Pill());
 	tests.push_back(new Test_SuperPill());
 	tests.push_back(new Test_SpeedPill());
+	tests.push_back(new Test_TextArea());
+	tests.push_back(new Test_MenuItem());
 
 	int totalAmountOfFailures=0;
 	int totalAmountOfTestfuncs=0;

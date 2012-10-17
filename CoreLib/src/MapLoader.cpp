@@ -125,7 +125,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 		if(!m_avatar)
 			return GAME_FAIL;
 
-		for (int i = 0; i < m_monsters.size(); i++)
+		for (unsigned int i = 0; i < m_monsters.size(); i++)
 		{
 			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
 		}

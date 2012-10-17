@@ -94,7 +94,6 @@ bool MenuState::onEntry()
 			if (m_factory)
 				initMenuItems();
 		}
-		//
 		m_resourcesAllocated = true;
 	}
 	return true;

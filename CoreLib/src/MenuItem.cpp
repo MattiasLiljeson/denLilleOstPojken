@@ -1,14 +1,16 @@
 #include "MenuItem.h"
 
-void MenuItem::updateText()
+int MenuItem::updateText()
 {
 	if(m_text != NULL)
 	{
 		m_text->setOrigin( m_basePosition + m_textOffset );
+		return GAME_OK;
 	}
+	return GAME_FAIL;
 }
 
-void MenuItem::updateSprite()
+int MenuItem::updateSprite()
 {
 	if(m_spriteInfo != NULL)
 	{
@@ -16,7 +18,11 @@ void MenuItem::updateSprite()
 			m_basePosition.x;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
 			m_basePosition.y;
+
+		return GAME_OK;
 	}
+	else
+		return GAME_FAIL;
 }
 
 
@@ -46,19 +52,23 @@ TextArea* MenuItem::getTextArea()
 	return m_text;
 }
 
-void MenuItem::setTextOffset( float p_x, float p_y )
+int MenuItem::setTextOffset( float p_x, float p_y )
 {
 	m_textOffset.x = p_x;
 	m_textOffset.y = p_y;
-	updateSprite();
-	updateText();
+	
+	if(updateSprite() == GAME_OK && updateText() == GAME_OK)
+			return GAME_OK;
+	return GAME_FAIL;
 	
 }
 
-void MenuItem::setBasePosition(float p_x, float p_y )
+int MenuItem::setBasePosition(float p_x, float p_y )
 {
 	m_basePosition.x = p_x;
 	m_basePosition.y = p_y;
-	updateSprite();
-	updateText();
+	
+	if(updateSprite() == GAME_OK && updateText() == GAME_OK)
+			return GAME_OK;
+	return GAME_FAIL;
 }

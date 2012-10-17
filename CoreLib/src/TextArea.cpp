@@ -16,13 +16,22 @@ fVector2 TextArea::getGlyphAbsPos( int p_idx, ANCHOR p_anchor )
 	return pos;
 }
 
-void TextArea::setGlyphPos( int p_idx, ANCHOR p_anchor, fVector2 p_textOrigin )
+int TextArea::setGlyphPos( int p_idx, ANCHOR p_anchor, fVector2 p_textOrigin )
 {
 	float x = calcAnchorOffsetX( p_idx, p_anchor ) + m_xOrigin;
 	float y = calcAnchorOffsetY( p_idx, p_anchor ) + m_yOrigin;
 
-	m_glyphs[p_idx]->getSpriteInfo()->transformInfo.translation[TransformInfo::X] = x;
-	m_glyphs[p_idx]->getSpriteInfo()->transformInfo.translation[TransformInfo::Y] = y;
+	SpriteInfo* sprInfo = m_glyphs[p_idx]->getSpriteInfo();
+	if(sprInfo != NULL)
+	{
+		sprInfo->transformInfo.translation[TransformInfo::X] = x;
+		sprInfo->transformInfo.translation[TransformInfo::Y] = y;
+		return GAME_OK;
+	}
+	else
+	{
+		return GAME_FAIL;
+	}
 }
 
 float TextArea::getGlyphAbsPosX( int p_idx, ANCHOR p_anchor )
@@ -48,6 +57,8 @@ float TextArea::calcAnchorOffsetX( int p_idx, ANCHOR p_anchor )
 
 	if(p_anchor == TOP_RIGHT || p_anchor == CEN_RIGHT || p_anchor == BOT_RIGHT)
 		return charWidth*0.5f -textLength + p_idx*charWidth;
+
+	return (float)GAME_FAIL;
 }
 
 float TextArea::calcAnchorOffsetY( int p_idx, ANCHOR p_anchor )
@@ -62,6 +73,8 @@ float TextArea::calcAnchorOffsetY( int p_idx, ANCHOR p_anchor )
 
 	if(p_anchor == BOT_LEFT || p_anchor == BOT_CENTER || p_anchor == BOT_RIGHT)
 		return textHeight*-0.5f;
+
+	return (float)GAME_FAIL;
 }
 
 TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_factory, 
@@ -80,7 +93,7 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p
 	float glyphWidth = (float)(m_glyphMap->getCharWidth()) * p_glyphScale.x;
 	float glyphHeight = (float)(m_glyphMap->getCharHeight()) * p_glyphScale.y;
 
-	for (int i=0;i<m_maxLength;i++)
+	for (unsigned int i=0;i<m_maxLength;i++)
 	{
 		Glyph* g = p_factory->CreateGlyph( texturePath,
 			getGlyphAbsPosX(i, p_anchor), getGlyphAbsPosY(i, p_anchor), 
@@ -92,18 +105,22 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p
 
 TextArea::~TextArea()
 {
-	for (int i=0;i<m_maxLength;i++)
+	for (unsigned int i=0;i<m_maxLength;i++)
 		delete m_glyphs[i];
 	
 	m_glyphs.clear();
 }
 
-void TextArea::setText(const string& p_text)
+int TextArea::setText(const string& p_text)
 {
-	if (p_text!=m_text)
+	int tooLong = GAME_OK;
+	if (p_text != m_text)
 	{
-		m_text = p_text.substr(0,m_maxLength);
-		for (unsigned int i=0;i<m_maxLength;i++)
+		if(p_text.length() > m_maxLength)
+			tooLong = GAME_FAIL;
+
+		m_text = p_text.substr(0, m_maxLength);
+		for (unsigned int i=0; i<m_maxLength; i++)
 		{
 			Glyph* g = m_glyphs[i];
 			if (i<m_text.length())
@@ -115,6 +132,8 @@ void TextArea::setText(const string& p_text)
 				g->setVisibility(false);
 		}
 	}
+
+	return tooLong;
 }
 
 void TextArea::update(float p_deltaTime, InputInfo p_inputInfo)

@@ -47,6 +47,9 @@ struct TotalTestData
 
 class Test
 {
+	static const int WIDTH = 75;
+	static const int HASH_COL = WIDTH; 
+	static const int COLON_COL = WIDTH - 40;
 private:
 	void expandString(string& p_string, int p_desiredLength);
 	string toString(int p_int);

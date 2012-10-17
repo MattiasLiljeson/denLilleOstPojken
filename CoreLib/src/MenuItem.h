@@ -23,8 +23,8 @@ private:
 	TextArea* m_text;
 
 private:
-	void updateText();
-	void updateSprite();
+	int updateText();
+	int updateSprite();
 
 public:
 	MenuItem( SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
@@ -35,8 +35,8 @@ public:
 
 	TextArea* getTextArea();
 
-	void setTextOffset( float p_x, float p_y );
-	void setBasePosition( float p_x, float p_y );
+	int setTextOffset( float p_x, float p_y );
+	int setBasePosition( float p_x, float p_y );
 
 };
 

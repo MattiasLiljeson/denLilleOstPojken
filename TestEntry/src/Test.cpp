@@ -13,7 +13,7 @@ string Test::toString(int p_int)
 
 void Test::expandString(string& p_string, int p_desiredLength)
 {
-	while (p_string.size() < p_desiredLength)
+	while ((int)p_string.size() < p_desiredLength)
 		p_string += " ";
 }
 
@@ -36,13 +36,13 @@ TotalTestData Test::run()
 
 	setup();
 
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < HASH_COL; i++)
 		cout << "#";
 	cout << endl;
 	string s = "Running test";
-	expandString(s, 20);
+	expandString(s, COLON_COL);
 	s += ": " + m_name;
-	expandString(s, 39);
+	expandString(s, WIDTH);
 	cout << s << "#";
 	cout << endl;
 
@@ -63,30 +63,29 @@ TotalTestData Test::run()
 		}
 		cout << endl;
 	}
-
 	string finalResult;
-	expandString(finalResult, 39);
+	expandString(finalResult, WIDTH);
 	cout << finalResult << "#";
 	cout << endl;
 	finalResult = "Total Tests";
-	expandString(finalResult, 20);
+	expandString(finalResult, COLON_COL);
 	finalResult += ": " + toString(total);
-	expandString(finalResult, 39);
+	expandString(finalResult, WIDTH);
 	cout << finalResult << "#" << endl;
 
 	finalResult = "Successful Tests";
-	expandString(finalResult, 20);
+	expandString(finalResult, COLON_COL);
 	finalResult += ": " + toString(success);
-	expandString(finalResult, 39);
+	expandString(finalResult, WIDTH);
 	cout << finalResult << "#" << endl;
 
 	finalResult = "Failed Tests";
-	expandString(finalResult, 20);
+	expandString(finalResult, COLON_COL);
 	finalResult += ": " + toString(total - success);
-	expandString(finalResult, 39);
+	expandString(finalResult, WIDTH);
 	cout << finalResult << "#" << endl;
 	
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < WIDTH; i++)
 		cout << "#";
 
 	return TotalTestData(total - success, total);
@@ -98,7 +97,7 @@ void Test::printResult(TestData p_entry)
 	SetConsoleTextAttribute(hConsole, 15);
 
 	string res = p_entry.ID;
-	expandString(res, 20);
+	expandString(res, COLON_COL);
 	res += ": ";
 
 	if (p_entry.Result == TestData::SUCCESS)
@@ -111,7 +110,7 @@ void Test::printResult(TestData p_entry)
 		SetConsoleTextAttribute(hConsole, 12);
 		res += "FAILED"; 
 	}
-	expandString(res, 39);
+	expandString(res, WIDTH);
 	cout << res;
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << "#";
@@ -119,7 +118,7 @@ void Test::printResult(TestData p_entry)
 void Test::printSection(TestData p_entry)
 {
 	string s;
-	expandString(s, 39);
+	expandString(s, WIDTH);
 	s += "#\n";
 	cout << s;
 	HANDLE hConsole;
@@ -127,9 +126,9 @@ void Test::printSection(TestData p_entry)
 	SetConsoleTextAttribute(hConsole, 5);
 
 	string res = "Section";
-	expandString(res, 20);
+	expandString(res, COLON_COL);
 	res += ": " + p_entry.ID;
-	expandString(res, 39);
+	expandString(res, WIDTH);
 	cout << res;
 	SetConsoleTextAttribute(hConsole, 15);
 	cout << "#";

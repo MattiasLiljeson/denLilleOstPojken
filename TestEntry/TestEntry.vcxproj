@@ -26,11 +26,14 @@
     <ClInclude Include="src\Test_GOFactory.h" />
     <ClInclude Include="src\Test_InputInfo.h" />
     <ClInclude Include="src\Test_MapLoader.h" />
+    <ClInclude Include="src\Test_MenuItem.h" />
+    <ClInclude Include="src\Test_MenuState.h" />
     <ClInclude Include="src\Test_Monster.h" />
     <ClInclude Include="src\Test_Pill.h" />
     <ClInclude Include="src\Test_SpeedPill.h" />
     <ClInclude Include="src\Test_States.h" />
     <ClInclude Include="src\Test_SuperPill.h" />
+    <ClInclude Include="src\Test_TextArea.h" />
     <ClInclude Include="src\Test_Tile.h" />
     <ClInclude Include="src\Test_Rect.h" />
     <ClInclude Include="src\Test_SoundData.h" />

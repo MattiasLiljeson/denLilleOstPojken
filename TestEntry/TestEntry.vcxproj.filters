@@ -34,6 +34,9 @@
     <Filter Include="GameObjects\Collectable">
       <UniqueIdentifier>{57586fec-e90d-4285-918b-56f6a7a62aab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{8212d403-a618-48e5-a75d-8491d0b90b30}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -99,6 +102,15 @@
     </ClInclude>
     <ClInclude Include="src\Test_SpeedPill.h">
       <Filter>GameObjects\Collectable</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_TextArea.h">
+      <Filter>Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_MenuItem.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Test_MenuState.h">
+      <Filter>Menu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

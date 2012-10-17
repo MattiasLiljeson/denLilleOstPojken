@@ -41,7 +41,7 @@ private:
 	fVector2 getGlyphRelPos( int p_idx, ANCHOR p_anchor );
 	fVector2 getGlyphAbsPos( int p_idx, ANCHOR p_anchor );
 
-	void setGlyphPos( int p_idx, ANCHOR p_anchor, fVector2 p_textOrigin );
+	int setGlyphPos( int p_idx, ANCHOR p_anchor, fVector2 p_textOrigin );
 
 	float getGlyphAbsPosX( int p_idx, ANCHOR p_anchor );
 	float getGlyphAbsPosY( int p_idx, ANCHOR p_anchor );
@@ -55,7 +55,12 @@ public:
 	virtual			~TextArea();
 
 	const string&	getText() const {return m_text;}
-	void			setText(const string& p_text);
+
+	/** Sets the text presented by this TextArea
+	* @return GAME_FAIL if the submitted string is longer than maxlength of
+	* this textArea.
+	*/
+	int				setText(const string& p_text);
 
 	unsigned int	getMaxLength() const {return m_maxLength;}
 	void			update(float p_deltaTime, InputInfo p_inputInfo);

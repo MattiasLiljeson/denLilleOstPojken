@@ -187,8 +187,8 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 	float scrH = GAME_FAIL;
 	if(m_io != NULL)
 	{
-		scrW = m_io->getScreenWidth();
-		scrH = m_io->getScreenHeight();
+		scrW = (float)m_io->getScreenWidth();
+		scrH = (float)m_io->getScreenHeight();
 	}
 
 	fVector2 finalPos, finalTextOffset;
