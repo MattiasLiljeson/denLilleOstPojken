@@ -82,10 +82,16 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		Tile* curr = p_map->getTile(p_tile->getTilePosition() + dir[i]);
 		while (curr && curr->isFree())
 		{
-			fVector3 pos = GetCenter(curr, 0.1f); 
+			fVector3 pos = GetCenter(curr, 0.6f); 
 			fVector2 size = GetScaledSize(curr, 0.7f);
-			SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/hero.png",
-				pos, size, NULL);
+
+			Rect r;
+			r.x = 0;
+			r.y = 0;
+			r.height = 64;
+			r.width = 64;
+			SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Explosion_Animation.png",
+				pos, size, &r);
 
 			flames.push_back(pair<Tile*, SpriteInfo*>(curr, spriteInfo));
 			curr = p_map->getTile(curr->getTilePosition() + dir[i]);
