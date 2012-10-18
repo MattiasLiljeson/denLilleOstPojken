@@ -190,9 +190,6 @@
     <ClCompile Include="src\GUI.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Source\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\BombPill.cpp">
       <Filter>Source\GameObject\Collectable\BombPill</Filter>
     </ClCompile>
@@ -207,6 +204,12 @@
     </ClCompile>
     <ClCompile Include="src\WallSwitch.cpp">
       <Filter>Source\GameObject\WallSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,6 +335,9 @@
     </ClInclude>
     <ClInclude Include="src\WallSwitch.h">
       <Filter>Source\GameObject\WallSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

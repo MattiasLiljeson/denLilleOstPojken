@@ -34,7 +34,7 @@ public:
 			fVector3(), fVector2(), "", fVector2() );
 		newEntry(TestData("Create Menu Item", menuItem != NULL));
 
-		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL, NULL);
+		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL);
 		newEntry(TestData("Create Switch", goSwitch != NULL));
 
 		Tile* tile = factory.CreateTile(true, TilePosition(0, 0), 10, 10);

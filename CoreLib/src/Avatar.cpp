@@ -22,7 +22,10 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	switchState(m_walking);
 
 	m_currentAnimation = NULL;
-	m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+	if (m_spriteInfo)
+		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+	else
+		m_size = fVector2();
 	m_offset = 16;
 }
 
@@ -54,7 +57,9 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	if (m_currentAnimation)
 	{
 		m_currentAnimation->update(p_deltaTime);
-		m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+		
+		if (m_spriteInfo)
+			m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
 	}
 
 	if (m_spriteInfo)

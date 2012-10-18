@@ -215,22 +215,25 @@ void Monster::addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_
 
 void Monster::determineAnimation()
 {
-	TilePosition t1 = m_currentTile->getTilePosition();
-	TilePosition t2 = m_nextTile->getTilePosition();
-	if (t2.x < t1.x)
+	if (m_currentTile && m_nextTile)
 	{
-		m_currentAnimation = m_left;
-	}
-	else if (t2.x > t1.x)
-	{
-		m_currentAnimation = m_right;
-	}
-	else if (t2.y < t1.y)
-	{
-		m_currentAnimation = m_down;
-	}
-	else if (t2.y > t1.y)
-	{
-		m_currentAnimation = m_up;
+		TilePosition t1 = m_currentTile->getTilePosition();
+		TilePosition t2 = m_nextTile->getTilePosition();
+		if (t2.x < t1.x)
+		{
+			m_currentAnimation = m_left;
+		}
+		else if (t2.x > t1.x)
+		{
+			m_currentAnimation = m_right;
+		}
+		else if (t2.y < t1.y)
+		{
+			m_currentAnimation = m_down;
+		}
+		else if (t2.y > t1.y)
+		{
+			m_currentAnimation = m_up;
+		}
 	}
 }
