@@ -13,14 +13,14 @@ GOFactory::~GOFactory()
 Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats)
 {
 	fVector3 pos = GetCenter(p_startTile, 0.5f); 
-	fVector2 size = GetScaledSize(p_startTile, 0.6f);
+	fVector2 size = GetScaledSize(p_startTile, 2.0f);
 
 	Rect r;
-	r.x		= 385;
+	r.x		= 0;
 	r.y		= 0;
-	r.width = 385;
-	r.height = 450;
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
+	r.width = 64;
+	r.height = 64;
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/player.png",
 		pos, size, &r);
 	return new Avatar(spriteInfo, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/laser_zip_mono.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }

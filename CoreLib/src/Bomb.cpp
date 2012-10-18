@@ -26,6 +26,7 @@ Bomb::~Bomb()
 {
 	for (int i = 0; i < m_flames.size(); i++)
 		delete m_flames[i];
+	m_flames.clear();
 }
 void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {

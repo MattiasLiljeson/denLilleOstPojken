@@ -17,8 +17,9 @@ private:
 	float m_frameHeight;
 	fVector2 m_start;
 	float m_dt;
+	bool m_loop;
 public:
-	Animation(fVector2 p_start, float p_frameWidth, float p_frameHeight, unsigned int p_frameCount, float p_delay);
+	Animation(fVector2 p_start, float p_frameWidth, float p_frameHeight, unsigned int p_frameCount, float p_delay, bool p_loop = false);
 	void update(float p_dt);
 	Rect getCurrentFrame();
 	bool hasFinished();

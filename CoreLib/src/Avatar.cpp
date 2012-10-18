@@ -20,6 +20,8 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	m_avatarJumpingState = new AvatarJumping(this, m_navigationData, p_stats, p_jumpSound);
 	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
 	switchState(m_walking);
+
+	m_currentAnimation = NULL;
 }
 
 Avatar::~Avatar()
@@ -47,6 +49,12 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		switchState(m_walking);
 	}
 
+	if (m_currentAnimation)
+	{
+		m_currentAnimation->update(p_deltaTime);
+		m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+	}
+
 	if (m_spriteInfo)
 	{
 		TilePosition tp1 = m_navigationData->m_currentTile->getTilePosition();
@@ -63,12 +71,12 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	
 		if (m_gameStats && m_gameStats->isSuperMode())
 		{
-			m_spriteInfo->textureRect.x = 0;
+			//m_spriteInfo->textureRect.x = 0;
 			float remaining = m_gameStats->superTimeRemaining();
 			if (remaining < 1)
 			{
-				if ((int)(remaining*6) % 2 == 0)
-					m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
+				//if ((int)(remaining*6) % 2 == 0)
+					//m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
 			}
 		}
 		else
@@ -80,7 +88,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
 				pY * h + h * 0.5f;
 		}
-		if (m_gameStats->isSuperMode())
+		/*if (m_gameStats->isSuperMode())
 		{
 			m_spriteInfo->textureRect.x = 0;
 			float remaining = m_gameStats->superTimeRemaining();
@@ -93,7 +101,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		else
 		{
 			m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
-		}
+		}*/
 	}
 }
 Tile* Avatar::getCurrentTile()
@@ -136,4 +144,8 @@ void Avatar::revive(Tile* p_newPosition)
 {
 	m_navigationData->m_currentTile = p_newPosition;
 	switchState(m_walking);
+}
+void Avatar::setCurrentAnimation(Animation* p_animation)
+{
+	m_currentAnimation = p_animation;
 }

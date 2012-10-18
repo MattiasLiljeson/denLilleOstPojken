@@ -17,6 +17,14 @@ private:
 
 	//Temp - To visualize jumping
 	fVector2 originalSize;
+
+	Animation* m_left;
+	Animation* m_right;
+	Animation* m_up;
+	Animation* m_down;
+private:
+	void determineAnimation();
+
 public:
 	AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats, SoundInfo* p_jumpSound);
 	virtual ~AvatarJumping();
