@@ -32,6 +32,12 @@ int StateManager::requestStateChange(State* p_newState)
 
 void StateManager::update(float p_dt)
 {
+	if (m_io && !m_io->isRunning())
+	{
+		m_terminated = true;
+		return; // FFS!!!!
+	}
+
 	if (m_desiredState != m_currentState)
 	{
 		m_currentState->onExit(); // Added by Jarl 2012-10-15, lets the callee handle its exit
