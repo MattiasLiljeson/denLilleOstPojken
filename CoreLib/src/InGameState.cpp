@@ -52,7 +52,7 @@ bool InGameState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
-			m_currentMap = 0;
+			m_currentMap = 1;
 			m_gui = NULL;
 		}
 		restart();
@@ -168,7 +168,7 @@ void InGameState::draw(float p_dt)
 
 bool InGameState::checkDynamicCollision()
 {
-	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius());
+	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
 
 	bool collision = false;
 	for(unsigned int index = 0; index < m_monsters.size(); index++)
@@ -176,7 +176,7 @@ bool InGameState::checkDynamicCollision()
 		Monster* monster = m_monsters.at(index);
 		if (!monster->isDead())
 		{
-			Circle monsterBC(monster->getPostion(),monster->getRadius());
+			Circle monsterBC(monster->getPostion(),monster->getRadius() / 4);
 
 			if(avatarBC.collidesWith(monsterBC))
 			{
@@ -204,7 +204,7 @@ bool InGameState::checkDynamicCollision()
 		for(unsigned int index = 0; index < m_traps.size(); index++)
 		{
 			Trap* trap = m_traps.at(index);
-			Circle trapBC(trap->getPostion(),trap->getRadius());
+			Circle trapBC(trap->getPostion(),trap->getRadius() / 8);
 
 			if(avatarBC.collidesWith(trapBC))
 			{

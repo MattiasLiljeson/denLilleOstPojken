@@ -12,10 +12,10 @@ AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigat
 	m_gameStats = p_stats;
 	m_jumpSound = p_jumpSound;
 
-	m_right = new Animation(fVector2(0, 256), 64, 64, 8, 0.10f, true);
-	m_left = new Animation(fVector2(0, 320), 64, 64, 8, 0.10f, true);
-	m_down = new Animation(fVector2(0, 384), 64, 64, 8, 0.10f, true);
-	m_up = new Animation(fVector2(0, 448), 64, 64, 8, 0.10f, true);
+	m_right = new Animation(fVector2(0, 256), 64, 64, 8, 0.08f, true);
+	m_left = new Animation(fVector2(0, 320), 64, 64, 8, 0.08f, true);
+	m_down = new Animation(fVector2(0, 384), 64, 64, 8, 0.08f, true);
+	m_up = new Animation(fVector2(0, 448), 64, 64, 8, 0.08f, true);
 }
 
 AvatarJumping::~AvatarJumping()
@@ -64,7 +64,7 @@ int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 		m_navigationData->dt = 0;
 	
 	//Jump logic
-	float jumptime = 0.10f * 8;
+	float jumptime = 0.08f * 8;
 	float factor;
 	if (m_elapsedTime <= jumptime * 0.5f)
 		factor = m_elapsedTime / (jumptime*0.5f);

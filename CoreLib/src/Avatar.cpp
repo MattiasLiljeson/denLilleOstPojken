@@ -22,6 +22,8 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	switchState(m_walking);
 
 	m_currentAnimation = NULL;
+	m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+	m_offset = 16;
 }
 
 Avatar::~Avatar()
@@ -67,41 +69,36 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
 			pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-			pY * h + h * 0.5f;
+			pY * h + h * 0.5f /*temp*/ + m_offset;
 	
-		if (m_gameStats && m_gameStats->isSuperMode())
+
+		bool super = false;
+		if (m_gameStats->isSuperMode())
 		{
-			//m_spriteInfo->textureRect.x = 0;
 			float remaining = m_gameStats->superTimeRemaining();
-			if (remaining < 1)
+			if ((int)(remaining*6) % 2 != 0 || remaining >= 1)
 			{
-				//if ((int)(remaining*6) % 2 == 0)
-					//m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
+				super = true;
+				if (remaining > 5)
+				{
+					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
+					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
+					m_offset = 16 + 16 * (6-remaining);
+				}
+				else
+				{
+					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
+					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
+					m_offset = 32;
+				}
 			}
 		}
-		else
+		if (!super)
 		{
-			float w = m_navigationData->m_currentTile->getWidth();
-			float h = m_navigationData->m_currentTile->getHeight();
-			m_spriteInfo->transformInfo.translation[TransformInfo::X] =
-				pX * w + w * 0.5f;
-			m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-				pY * h + h * 0.5f;
+			m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
+			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
+			m_offset = 16;
 		}
-		/*if (m_gameStats->isSuperMode())
-		{
-			m_spriteInfo->textureRect.x = 0;
-			float remaining = m_gameStats->superTimeRemaining();
-			if (remaining < 1)
-			{
-				if ((int)(remaining*6) % 2 == 0)
-					m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
-			}
-		}
-		else
-		{
-			m_spriteInfo->textureRect.x = m_spriteInfo->textureRect.width;
-		}*/
 	}
 }
 Tile* Avatar::getCurrentTile()

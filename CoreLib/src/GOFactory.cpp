@@ -27,9 +27,9 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 0.9f);
+	fVector2 size = GetScaledSize(p_tile, 1.0f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SeaMonster.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
 		pos, size, NULL);
 	return new Monster(spriteInfo, p_tile, p_map);
 }
@@ -321,8 +321,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 	
-	pos = fVector3(1- 300/scrW, 1 - guiHeight*0.5f, 0.9f); 
-
+	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
+	size = fVector2(50*widthFraction, 50*heightFraction);
 	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
 
@@ -333,8 +333,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
-	pos = fVector3(1- 100/scrW, 1 - guiHeight*0.5f, 0.9f); 
-
+	pos = fVector3((1920-100)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 

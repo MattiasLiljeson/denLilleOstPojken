@@ -53,6 +53,8 @@ void GameObject::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_currentState->update(p_deltaTime, p_inputInfo);
 }
 
+//getPosition and getRadius must be updated.
+//they cannot depend on spriteinformation
 fVector2 GameObject::getPostion() const 
 {
 	fVector2 position(0, 0);
@@ -70,7 +72,7 @@ float GameObject::getRadius() const
 {
 	if (!m_spriteInfo)
 		return 0;
-	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
+	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]);
 }
 SpriteInfo* GameObject::getSpriteInfo()
 {
