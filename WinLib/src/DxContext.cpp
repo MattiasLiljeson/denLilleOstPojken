@@ -505,7 +505,7 @@ int DxContext::endDraw()
 {
 	if (!m_resizing)
 	{
-		m_swapChain->Present(0, 0);
+		m_swapChain->Present(1, 0);
 	}
 	return GAME_OK;
 }

@@ -38,7 +38,8 @@ public:
 	vector<GameObject*> getGameObjects();
 	Avatar* getAvatar();
 	vector<Monster*> getMonsters();
-	vector<Trap*> getTraps();
+	vector<Trap*>	getTraps();
+	vector<vector<WallSwitch*>*> getWallSwitches();
 	GUI*			getGUI();
 };
 

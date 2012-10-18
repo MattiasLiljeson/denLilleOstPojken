@@ -7,14 +7,14 @@
 class InGameState: public State
 {
 private:
-	IODevice*			m_io;
-	vector<GameObject*>	m_gameObjects;
-	Avatar*				m_avatar;
-	vector<Monster*>	m_monsters;
-	vector<Trap*>		m_traps;
-	vector<Bomb*>		m_bombs;
-	GOFactory*			m_factory;
-	GUI*				m_gui;
+	IODevice*				m_io;
+	vector<GameObject*>		m_gameObjects;
+	Avatar*					m_avatar;
+	vector<Monster*>		m_monsters;
+	vector<Trap*>			m_traps;
+	vector<Bomb*>			m_bombs;
+	GOFactory*				m_factory;
+	GUI*					m_gui;
 
 	//Temp
 	Tilemap* m_tileMap;

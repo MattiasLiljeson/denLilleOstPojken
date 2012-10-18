@@ -52,7 +52,7 @@ bool InGameState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
-			m_currentMap = 1;
+			m_currentMap = 2;
 			m_gui = NULL;
 		}
 		restart();
@@ -95,7 +95,6 @@ void InGameState::update(float p_dt)
 		
 		if (m_stats->getNumPills() < 1)
 		{
-			//m_parent->terminate();
 			m_currentMap = (m_currentMap+1) % 2;
 			restart();
 			return;

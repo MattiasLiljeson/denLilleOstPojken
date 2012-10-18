@@ -59,7 +59,7 @@ public:
 	Tile*		CreateTile(bool p_type, TilePosition p_position, float p_width,
 				float p_height);
 
-	Switch*		CreateSwitch(Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats,
+	Switch*		CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
 				vector<WallSwitch*>* p_targets);
 
 	MenuItem* createMenuItem( fVector3 p_position, fVector2 p_size,

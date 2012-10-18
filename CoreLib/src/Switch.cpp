@@ -1,9 +1,7 @@
 #include "Switch.h"
 
-Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats* p_gameStats, vector<WallSwitch*>* p_targets): Collectable(p_spriteInfo, p_gameStats)
+Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*>* p_targets): Collectable(p_spriteInfo, p_gameStats)
 {
-	m_map = p_map;
-
 	m_targets = p_targets;
 
 	m_tile = p_tile;
@@ -14,8 +12,6 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map, GameStats
 }
 Switch::~Switch()
 {
-	if(m_targets)
-		delete m_targets;
 }
 void Switch::setTargets(vector<WallSwitch*>* p_targets)
 {
