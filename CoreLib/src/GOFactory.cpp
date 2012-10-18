@@ -22,7 +22,7 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 64;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/player.png",
 		pos, size, &r);
-	return new Avatar(spriteInfo, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/laser_zip_mono.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
+	return new Avatar(spriteInfo, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 {
@@ -78,7 +78,7 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
 		pos, size, NULL);
 	
-	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_sound_2012-10-16.wav",100), p_tile, p_gameStats);
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_pill.wav",100), p_tile, p_gameStats);
 }
 BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 {
