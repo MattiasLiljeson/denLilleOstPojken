@@ -12,9 +12,16 @@ TMFactory::~TMFactory()
 
 }
 
-Tilemap* TMFactory::CreateTileMap(int p_width, int p_height, vector<int> p_mapData)
+Tilemap* TMFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
 {
 	Tilemap* newTilemap;
+
+	int m_theme = p_theme;
+
+	if (m_theme == 1)
+		m_currentTileMap = "../Textures/tilemap_garden.png";
+	else if (m_theme == 2)
+		m_currentTileMap = "../Textures/tilemap_winecellar.png";
 
 
 	float tileSizeX = 10;
@@ -67,7 +74,7 @@ Tile* TMFactory::CreateWallTile(int p_type, TilePosition p_position,int p_tileSi
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
 	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
 
-	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo("../Textures/tilemap1.png", pos,size, &r);
+	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
 	newTile = new Tile(false,p_position,p_tileSizeX,p_tileSizeY,sprite);
 
 	return newTile;
@@ -88,7 +95,7 @@ Tile* TMFactory::CreatePathTile(int p_type, TilePosition p_position,int p_tileSi
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
 	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
 
-	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo("../Textures/tilemap1.png", pos,size, &r);
+	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
 	newTile = new Tile(true,p_position,p_tileSizeX,p_tileSizeY,sprite);
 
 	return newTile;
@@ -110,7 +117,7 @@ Tile* TMFactory::CreateBasicWalkableTile(TilePosition p_position, int p_tileSize
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
 	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
 
-	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo("../Textures/tilemap1.png", pos,size, &r);
+	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
 	newTile = new Tile(true,p_position,p_tileSizeX,p_tileSizeY,sprite);
 
 	return newTile;
@@ -132,7 +139,7 @@ Tile* TMFactory::CreateWallSwitch(int p_type,TilePosition p_position, int p_tile
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
 	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
 
-	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo("../Textures/tilemap1.png", pos,size, &r);
+	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
 	newTile = new Tile(false,p_position,p_tileSizeX,p_tileSizeY,sprite);
 
 	return newTile;

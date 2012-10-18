@@ -60,7 +60,7 @@ void MenuState::initMenuItems()
 	{
 		m_menuItems.push_back( m_factory->createMenuItem( 
 			fVector3( 0.5f, 0.5f - i*fh*100.0f, 0.9f ), fVector2( fh*600.0f, fh*64.0f ),
-			texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"../Textures/default.png" ));
+			texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"" ));
 	}
 
 	m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );

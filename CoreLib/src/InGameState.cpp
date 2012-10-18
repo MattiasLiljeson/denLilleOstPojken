@@ -52,7 +52,7 @@ bool InGameState::onEntry()
 			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
-			m_currentMap = 2;
+			m_currentMap = 1;
 			m_gui = NULL;
 		}
 		restart();

@@ -55,7 +55,7 @@ public:
 	Bomb*		CreateBomb(Tile* p_tile, Tilemap* p_map);
 	Pill*		CreatePill(Tile* p_tile, GameStats* p_gameStats);
 
-	Tilemap*	CreateTileMap(int p_width, int p_height, vector<int> p_mapData);
+	Tilemap*	CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData);
 	Tile*		CreateTile(bool p_type, TilePosition p_position, float p_width,
 				float p_height);
 

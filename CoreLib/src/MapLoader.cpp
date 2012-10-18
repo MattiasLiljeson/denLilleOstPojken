@@ -45,7 +45,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 			}
 		}
 
-		m_tileMap = m_factory->CreateTileMap(m_width, m_height, map);
+		m_tileMap = m_factory->CreateTileMap(m_theme, m_width, m_height, map);
 		
 		vector<vector<Switch*>*> newSwitches(8);
 		for(unsigned int i = 0; i < newSwitches.size(); i++)

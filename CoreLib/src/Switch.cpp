@@ -21,11 +21,13 @@ void Switch::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (m_cooldown == 0)
 	{
-		m_spriteInfo->visible = true;
+		//m_spriteInfo->visible = true;
+		m_spriteInfo->textureRect.x = 0;
 	}
 	else if (m_cooldown > 0)
 	{
-		m_spriteInfo->visible = false;
+		//m_spriteInfo->visible = false;
+		m_spriteInfo->textureRect.x = 64;
 	}
 	m_cooldown = max(m_cooldown - p_deltaTime, 0.0f);
 }

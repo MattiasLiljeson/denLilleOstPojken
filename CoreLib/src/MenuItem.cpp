@@ -57,8 +57,10 @@ int MenuItem::setTextOffset( float p_x, float p_y )
 	m_textOffset.x = p_x;
 	m_textOffset.y = p_y;
 	
-	if(updateSprite() == GAME_OK && updateText() == GAME_OK)
-			return GAME_OK;
+	updateSprite();
+	if (updateText() == GAME_OK)
+		return GAME_OK;
+
 	return GAME_FAIL;
 	
 }

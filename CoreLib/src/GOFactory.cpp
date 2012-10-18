@@ -36,37 +36,43 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.9f);
+	fVector2 size = GetScaledSize(p_tile, 1.4f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/grass.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Trap_Spikes.png",
 		pos, size, NULL);
 	return new Trap(spriteInfo, p_tile, p_map);
 }
 WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 {	
 	fVector3 pos = GetCenter(p_tile,0.1f);
-	fVector2 size = GetScaledSize(p_tile,0.9f);
+	fVector2 size = GetScaledSize(p_tile,1.4f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/wall.png",
-		pos,size,NULL);
-	
+	Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.height = 64;
+	r.width = 64;
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Blockade_Tileset.png",
+		pos,size,&r);
+
 	return new WallSwitch(spriteInfo,p_tile);
 }
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/SuperPill.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
 		pos, size, NULL);
 	return new SuperPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/drug.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
 		pos, size, NULL);
 	return new SpeedPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
@@ -75,7 +81,7 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 0.5f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/pill.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Pill_32.png",
 		pos, size, NULL);
 	
 	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_pill.wav",100), p_tile, p_gameStats);
@@ -83,9 +89,9 @@ Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/hero.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Dynamite.png",
 		pos, size, NULL);
 	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
@@ -117,9 +123,9 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	return new Bomb(flames, p_tile, p_map);
 }
 
-Tilemap* GOFactory::CreateTileMap(int p_width, int p_height, vector<int> p_mapData)
+Tilemap* GOFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
 {
-	return m_tileMapFactory->CreateTileMap(p_width,p_height,p_mapData);
+	return m_tileMapFactory->CreateTileMap(p_theme, p_width,p_height,p_mapData);
 }
 Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	float p_height)
@@ -139,10 +145,16 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
 	vector<WallSwitch*>* p_targets)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Red_button.png",
-		pos, size, NULL);
+	Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.width = 64;
+	r.height = 64;
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
+		pos, size, &r);
 	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets);
 }
 
