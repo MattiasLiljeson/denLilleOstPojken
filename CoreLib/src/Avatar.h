@@ -49,6 +49,9 @@ private:
 
 	float dt;
 
+	fVector2 m_size;
+	float m_offset;
+
 public:
 	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound);
 	virtual ~Avatar();

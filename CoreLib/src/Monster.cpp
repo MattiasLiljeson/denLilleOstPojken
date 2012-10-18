@@ -9,6 +9,13 @@ Monster::Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map): GameOb
 	m_ai = NULL;
 
 	m_nextTile = m_currentTile;
+
+	m_right = new Animation(fVector2(0, 0), 64, 64, 4, 0.2f, true);
+	m_left = new Animation(fVector2(0, 64), 64, 64, 4, 0.2f, true);
+	m_down = new Animation(fVector2(0, 128), 64, 64, 4, 0.2f, true);
+	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.2f, true);
+
+	m_currentAnimation = NULL;
 }
 
 Monster::~Monster()
@@ -62,6 +69,7 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			}
 		}
 
+		determineAnimation();
 		if (m_spriteInfo)
 		{
 			TilePosition tp1 = m_currentTile->getTilePosition();
@@ -73,6 +81,12 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			float h = m_currentTile->getHeight();
 			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
 			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+
+			if (m_currentAnimation)
+			{
+				m_currentAnimation->update(p_deltaTime);
+				m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+			}
 		}
 	}
 }
@@ -197,4 +211,26 @@ bool Monster::isDead()
 void Monster::addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap)
 {
 	m_ai = new AI(this,p_avatar,p_gameStats,p_tilemap);
+}
+
+void Monster::determineAnimation()
+{
+	TilePosition t1 = m_currentTile->getTilePosition();
+	TilePosition t2 = m_nextTile->getTilePosition();
+	if (t2.x < t1.x)
+	{
+		m_currentAnimation = m_left;
+	}
+	else if (t2.x > t1.x)
+	{
+		m_currentAnimation = m_right;
+	}
+	else if (t2.y < t1.y)
+	{
+		m_currentAnimation = m_down;
+	}
+	else if (t2.y > t1.y)
+	{
+		m_currentAnimation = m_up;
+	}
 }

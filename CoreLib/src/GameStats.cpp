@@ -10,7 +10,7 @@ GameStats::GameStats(Timer* p_timer)
 	m_superMode = false;
 	m_score		= 0;
 	m_lives		= 3;
-	m_itemSlot	= 0;
+	m_itemSlot	= -1;
 	m_buffSlot	= -1;
 	m_activate = -1;
 
@@ -50,7 +50,7 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if(m_superMode)
 	{
-		if(m_superModeTimer->getElapsedTime() > 3)
+		if(m_superModeTimer->getElapsedTime() > 6)
 		{
 			std::cout << "Speed mode inactivated!=(" << std::endl;
 			m_superMode = false;
@@ -117,7 +117,7 @@ bool GameStats::isSuperMode()
 }
 float GameStats::superTimeRemaining()
 {
-	return 3 - m_superModeTimer->getElapsedTime();
+	return 6 - m_superModeTimer->getElapsedTime();
 }
 void GameStats::addScore(int p_points)
 {
@@ -160,7 +160,7 @@ void	GameStats::activateBuff()
 void	GameStats::activateItem()
 {
 	m_activate = m_itemSlot;
-	//m_itemSlot = -1;
+	m_itemSlot = -1;
 }
 int GameStats::getActivatedItem()
 {

@@ -102,6 +102,11 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 					m_gameObjects.push_back(m_avatar);
 
 				}
+				else if (map[index] > BUFFS && map[index] <= ITEMS)
+				{
+					m_gameObjects.push_back(m_factory->CreateBombPill(
+						m_tileMap->getTile(TilePosition(j,i)), m_stats));
+				}
 				else if (map[index] > ITEMS && map[index] <= EATPOWERUP)
 				{
 					m_gameObjects.push_back(m_factory->CreateSuperPill(
