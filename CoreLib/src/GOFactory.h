@@ -60,7 +60,7 @@ public:
 				float p_height);
 
 	Switch*		CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
-				vector<WallSwitch*>* p_targets);
+				vector<WallSwitch*> p_targets);
 
 	MenuItem* createMenuItem( fVector3 p_position, fVector2 p_size,
 		string p_text="", fVector2 p_textOffset=fVector2(),

@@ -34,7 +34,7 @@ public:
 			fVector3(), fVector2(), "", fVector2() );
 		newEntry(TestData("Create Menu Item", menuItem != NULL));
 
-		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, NULL);
+		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, vector<WallSwitch*>());
 		newEntry(TestData("Create Switch", goSwitch != NULL));
 
 		Tile* tile = factory.CreateTile(true, TilePosition(0, 0), 10, 10);
@@ -45,7 +45,7 @@ public:
 
 		vector<int> init;
 		init.push_back(91);
-		Tilemap* map = factory.CreateTileMap(1, 1, init);
+		Tilemap* map = factory.CreateTileMap(0, 1, 1, init);
 		newEntry(TestData("Create Tilemap", map != NULL));
 
 		delete av;

@@ -14,6 +14,10 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 {
 	m_factory = p_factory;
 	m_stats = p_stats;
+	m_avatar	= NULL;
+	m_tileMap	= NULL;
+	m_gui		= NULL;
+
 
 	if (!m_factory)
 		return GAME_FAIL;
@@ -25,7 +29,6 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	char comma;
 	char equals;
 	vector<vector<TilePosition>> switches(8);
-
 	if(file)
 	{
 		//Begining the parsing of the map
@@ -47,16 +50,16 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 
 		m_tileMap = m_factory->CreateTileMap(m_theme, m_width, m_height, map);
 		
-		vector<vector<Switch*>*> newSwitches(8);
+		vector<vector<Switch*>> newSwitches(8);
 		for(unsigned int i = 0; i < newSwitches.size(); i++)
-			newSwitches[i] = new vector<Switch*>;
+			newSwitches[i] = vector<Switch*>();
 
-		vector<vector<WallSwitch*>*> newWallSwitches(8);
+		vector<vector<WallSwitch*>> newWallSwitches(8);
 		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
-			newWallSwitches[i] = new vector<WallSwitch*>;
+			newWallSwitches[i] = vector<WallSwitch*>();
 		
 		//Create the gameobjects from the information recently parsed from the map
-		for (int i = 0; i < m_height; i++)
+		/**/for (int i = 0; i < m_height; i++)
 		{
 			for (int j = 0; j < m_width; j++)
 			{
@@ -75,9 +78,9 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				{
 					Switch* newSwitch = m_factory->CreateSwitch(
 											m_tileMap->getTile(TilePosition(j, i)),
-											m_stats, NULL);
+											m_stats, vector<WallSwitch*>());
 					int switchIndex = map[index] - (PATHS+1);
-					newSwitches[switchIndex]->push_back(newSwitch);
+					newSwitches[switchIndex].push_back(newSwitch);
 					m_gameObjects.push_back(newSwitch);
 				}
 				else if (map[index] > SWITCHES && map[index] <= WALLSWITCHES)
@@ -85,7 +88,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 					WallSwitch* newWallSwitch = m_factory->CreateWallSwitch(
 													m_tileMap->getTile(TilePosition(j,i)));
 					int wallSwitchIndex = map[index] - (SWITCHES+1);
-					newWallSwitches.at(wallSwitchIndex)->push_back(newWallSwitch);
+					newWallSwitches.at(wallSwitchIndex).push_back(newWallSwitch);
 					m_gameObjects.push_back(newWallSwitch);
 				}
 				else if (map[index] > CBSPAWN && map[index] <= ENEMIESPAWN )
@@ -126,11 +129,22 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 
 		for (unsigned int i = 0; i < newSwitches.size(); i++)
 		{
-			for (unsigned int j = 0; j < newSwitches[i]->size(); j++)
+			for (unsigned int j = 0; j < newSwitches[i].size(); j++)
 			{
-				newSwitches[i]->at(j)->setTargets(newWallSwitches.at(i));
+				newSwitches[i].at(j)->setTargets(newWallSwitches.at(i));
 			}
 		}
+
+		/*for(unsigned int i = 0; i < newSwitches.size(); i++)
+		{
+			for (unsigned int j = 0; j < newSwitches[i]->size(); j++)
+			{
+				delete newSwitches[i]->at(j);
+			}
+			delete newSwitches[i];
+		}
+		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
+			delete newWallSwitches[i];*/
 
 		for (int i = 0; i < m_monsters.size(); i++)
 		{

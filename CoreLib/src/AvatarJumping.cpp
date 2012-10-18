@@ -22,6 +22,11 @@ AvatarJumping::~AvatarJumping()
 {
 	if (m_jumpSound)
 		m_jumpSound->deleted = true;
+
+	delete m_right;
+	delete m_left; 
+	delete m_down; 
+	delete m_up;
 }
 
 int AvatarJumping::onEnter()

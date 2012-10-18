@@ -39,7 +39,6 @@ public:
 	Avatar* getAvatar();
 	vector<Monster*> getMonsters();
 	vector<Trap*>	getTraps();
-	vector<vector<WallSwitch*>*> getWallSwitches();
 	GUI*			getGUI();
 };
 

@@ -13,6 +13,10 @@ AvatarWalking::AvatarWalking(GameObject* p_gameObject, NavigationData* p_navigat
 
 AvatarWalking::~AvatarWalking()
 {
+	delete m_right;
+	delete m_left; 
+	delete m_down; 
+	delete m_up;
 }
 
 int AvatarWalking::onEnter()

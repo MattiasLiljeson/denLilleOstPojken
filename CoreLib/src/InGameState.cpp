@@ -249,7 +249,9 @@ void InGameState::restart()
 		m_monsters = mapParser.getMonsters();
 		m_traps = mapParser.getTraps();
 		m_gui = mapParser.getGUI();
-		m_startTile = m_avatar->getCurrentTile();
+
+		if (m_avatar)
+			m_startTile = m_avatar->getCurrentTile();
 	}
 }
 

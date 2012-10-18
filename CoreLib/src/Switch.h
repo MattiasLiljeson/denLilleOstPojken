@@ -11,12 +11,12 @@ class Switch: public Collectable
 {
 private:
 	Tile* m_tile;
-	vector<WallSwitch*>* m_targets;
+	vector<WallSwitch*> m_targets;
 	float m_cooldown;
 public:
-	Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*>* p_targets);
+	Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*> p_targets);
 	~Switch();
-	void setTargets(vector<WallSwitch*>* p_targets);
+	void setTargets(vector<WallSwitch*> p_targets);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
 };

@@ -1,6 +1,6 @@
 #include "Switch.h"
 
-Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*>* p_targets): Collectable(p_spriteInfo, p_gameStats)
+Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*> p_targets): Collectable(p_spriteInfo, p_gameStats)
 {
 	m_targets = p_targets;
 
@@ -13,7 +13,7 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, v
 Switch::~Switch()
 {
 }
-void Switch::setTargets(vector<WallSwitch*>* p_targets)
+void Switch::setTargets(vector<WallSwitch*> p_targets)
 {
 	m_targets = p_targets;
 }
@@ -35,9 +35,9 @@ void Switch::consume()
 {
 	if (m_cooldown <= 0)
 	{
-		for (unsigned int i = 0; i < m_targets->size(); i++)
+		for (unsigned int i = 0; i < m_targets.size(); i++)
 		{
-			m_targets->at(i)->switchState();
+			m_targets.at(i)->switchState();
 		}
 		m_cooldown = 5;
 	}

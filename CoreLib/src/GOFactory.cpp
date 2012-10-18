@@ -142,7 +142,7 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
-	vector<WallSwitch*>* p_targets)
+	vector<WallSwitch*> p_targets)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
 	fVector2 size = GetScaledSize(p_tile, 1.2f);

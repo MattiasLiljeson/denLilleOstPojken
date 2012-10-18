@@ -22,6 +22,11 @@ Monster::~Monster()
 {
 	if(m_ai)
 		delete m_ai;
+
+	delete m_right;
+	delete m_left;
+	delete m_down;
+	delete m_up;
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
