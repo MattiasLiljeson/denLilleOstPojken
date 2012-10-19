@@ -10,7 +10,7 @@
  </layer>
  <layer name="THE_ONE_LAYER" width="60" height="31">
   <data encoding="base64" compression="zlib">
-   eJztz7EJhQAMRdH40VL+CKLu4SSiw7qYGUDEyiCc4lQvKW4fET0AfECbliJdQe+Y/k3EGtf2dOS+Pdivbu7+h4LeKf2KzAW9AAAAAMA7TqfsbWg=
+   eJztz7ENQAAQQNEjlGIEwR4mEYa1mBtAy0Xyilf96g8RMQDAD3RpK9IX/M5pbCL2eHamK/vxQp8KfpfUFlkLfgEAAACAb9x9rG1m
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="31"/>
