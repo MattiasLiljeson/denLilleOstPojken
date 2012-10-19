@@ -35,22 +35,30 @@ void AvatarWalking::checkInput(InputInfo p_inputInfo)
 {
 	int m_desired = m_navigationData->m_desired;
 	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED)
+		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYPRESSED)
 	{
 		m_desired = Direction::LEFT;
 	}
 	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED)
+		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYPRESSED)
 	{
 		m_desired = Direction::RIGHT;
 	}
 	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
+		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED)
 	{
 		m_desired = Direction::DOWN;
 	}
 	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
-		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
+		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED)
 	{
 		m_desired = Direction::UP;
 	}
