@@ -311,11 +311,11 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 		fVector3 pos = fVector3(1.1f * size.x * i + size.x*0.5f, height - 0.08f * height*0.5f, 0.9f); 
 
 		Rect r;
-		r.x		= 385;
+		r.x		= 0;
 		r.y		= 0;
-		r.width = 385;
-		r.height = 450;
-		lives.push_back(CreateSpriteInfo("../Textures/pacman-1974_sheet.png",
+		r.width = 39;
+		r.height = 28;
+		lives.push_back(CreateSpriteInfo("../Textures/life.png",
 			pos, size, &r));
 	}
 
