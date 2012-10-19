@@ -18,7 +18,7 @@ public:
 		BombPill pill(NULL, NULL, &stats, NULL);
 		newEntry(TestData("Position", pill.getPostion() == fVector2(0, 0)));
 		newEntry(TestData("Not Consumed", !pill.isConsumed()));
-		newEntry(TestData("No bomb", !stats.getItemSlot() != 0));
+		newEntry(TestData("No bomb", stats.getItemSlot() != 0));
 		pill.consume();
 		newEntry(TestData("Consumed", pill.isConsumed()));
 		newEntry(TestData("Registered", stats.getItemSlot() == 0));

@@ -28,7 +28,8 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_size = fVector2();
 	m_offset = 16;
 	m_shadow = p_shadow;
-	m_shadow->visible = false;
+	if (m_shadow)
+		m_shadow->visible = false;
 }
 
 Avatar::~Avatar()
