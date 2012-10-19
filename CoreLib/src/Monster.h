@@ -28,9 +28,10 @@ struct AstarItem
 class Monster: public GameObject
 {
 private:
-	Tile* m_currentTile;
-	Tile* m_nextTile;
-	Tilemap* m_map;
+	Tile*		m_currentTile;
+	Tile*		m_nextTile;
+	Tilemap*	m_map;
+	Tile*		m_startMap;
 
 	AI* m_ai;
 
