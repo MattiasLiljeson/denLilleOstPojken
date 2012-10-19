@@ -3,7 +3,7 @@
 #include "AvatarJumping.h"
 #include "AvatarWalking.h"
 
-Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, 
+Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, Tile* p_startTile, 
 	GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound)
 	: GameObject(p_spriteInfo, p_stats)
 {
@@ -27,6 +27,8 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile,
 	else
 		m_size = fVector2();
 	m_offset = 16;
+	m_shadow = p_shadow;
+	m_shadow->visible = false;
 }
 
 Avatar::~Avatar()
@@ -104,6 +106,57 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
 			m_offset = 16;
 		}
+
+		if (m_shadow)
+		{
+			if (m_gameStats->isSpeeded())
+			{
+				if (m_shadowQueue.size() == 0)
+				{
+					m_shadowQueue.push_back(m_navigationData->m_currentTile);
+					m_shadowQueue.push_back(m_navigationData->m_nextTile);
+					m_shadowDT = m_navigationData->dt;
+				}
+				if (m_shadowQueue.back() != m_navigationData->m_nextTile)
+				{
+					m_shadowQueue.push_back(m_navigationData->m_nextTile);
+				}
+
+				float frac = m_gameStats->speededPercentElapsed();
+
+				if (m_navigationData->m_currentTile != m_navigationData->m_nextTile)
+					m_shadowDT += p_deltaTime * (6 + 6*frac);
+				else
+					m_shadowDT += p_deltaTime * 6 * frac;
+				while (m_shadowDT > 1 && m_shadowQueue.size() > 0)
+				{
+					m_shadowDT -= 1;
+					m_shadowQueue.pop_front();
+				}
+
+				fVector2 pos;
+				if (m_shadowQueue.size() > 1)
+				{
+					pos = m_shadowQueue[0]->getPosition() * (1-m_shadowDT) + m_shadowQueue[1]->getPosition() * m_shadowDT;
+					pos.y += m_offset;
+					if (m_shadowQueue[1] == m_navigationData->m_nextTile && m_shadowDT > m_navigationData->dt)
+						pos = fVector2(m_spriteInfo->transformInfo.translation[TransformInfo::X], m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
+				}
+				else
+					pos = fVector2(m_spriteInfo->transformInfo.translation[TransformInfo::X], m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
+
+				m_shadow->visible = true;
+				m_shadow->textureRect = m_spriteInfo->textureRect;
+				m_shadow->transformInfo = m_spriteInfo->transformInfo;
+				m_shadow->transformInfo.translation[TransformInfo::X] = pos.x;
+				m_shadow->transformInfo.translation[TransformInfo::Y] = pos.y;
+			}
+			else
+			{
+				m_shadowQueue.clear();
+				m_shadow->visible = false;
+			}
+		}
 	}
 }
 Tile* Avatar::getCurrentTile()
@@ -133,6 +186,7 @@ void Avatar::setTilePosition(Tile* p_newPosition)
 void Avatar::kill()
 {
 	switchState(m_avatarKilledState);
+	m_gameStats->clearBuffs();
 }
 bool Avatar::inAir()
 {

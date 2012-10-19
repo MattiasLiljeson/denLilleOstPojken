@@ -38,7 +38,7 @@ private:
 		newEntry(TestData("Correct Tile", monster.getCurrentTile() == tiles[2]));
 		newEntry(TestData("Correct Position", monster.getPostion() == fVector2(0, 0)));
 
-		Avatar avatar(NULL, &map, tiles[0], NULL, NULL, NULL);
+		Avatar avatar(NULL, NULL, &map, tiles[0], NULL, NULL, NULL);
 		monster.addMonsterAI(&avatar, NULL, &map);
 
 		InputInfo inf;

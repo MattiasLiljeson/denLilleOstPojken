@@ -3,6 +3,7 @@
 
 #include "Tilemap.h"
 #include "Animation.h"
+#include <deque>
 
 class AvatarKilled;
 class AvatarJumping;
@@ -52,8 +53,13 @@ private:
 	fVector2 m_size;
 	float m_offset;
 
+	SpriteInfo* m_shadow;
+	deque<Tile*> m_shadowQueue;
+	int m_currShadowDir;
+	float m_shadowDT;
+
 public:
-	Avatar(SpriteInfo* p_spriteInfo, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound);
+	Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound);
 	virtual ~Avatar();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 

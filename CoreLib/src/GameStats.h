@@ -45,6 +45,7 @@ public:
 	void	setSuperMode();
 	bool	isSuperMode();
 	float   superTimeRemaining();
+	float	speededPercentElapsed();
 	void	addScore(int p_points);
 	int		getScore() const;
 	Timer*	getGameTimer();
@@ -56,6 +57,7 @@ public:
 	void	activateBuff();
 	void	activateItem();
 	int		getActivatedItem();
+	void	clearBuffs();
 };
 
 #endif

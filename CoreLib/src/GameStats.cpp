@@ -119,6 +119,10 @@ float GameStats::superTimeRemaining()
 {
 	return 6 - m_superModeTimer->getElapsedTime();
 }
+float GameStats::speededPercentElapsed()
+{
+	return m_speedUpTimer->getElapsedTime() / 3.0f;
+}
 void GameStats::addScore(int p_points)
 {
 	m_score += p_points;
@@ -165,4 +169,11 @@ void	GameStats::activateItem()
 int GameStats::getActivatedItem()
 {
 	return m_activate;
+}
+void GameStats::clearBuffs()
+{
+	m_speeded	 = false;
+	m_superMode	 = false;
+	m_superModeTimer->stop();
+	m_speedUpTimer->stop();
 }
