@@ -147,18 +147,21 @@ void MenuState::draw(float p_dt)
 void MenuState::handleInput(InputInfo p_input)
 {
 
-	if(p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED)
+	if( p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED ||
+		p_input.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED )
 	{
 		m_menuItems[m_currItemIdx]->setTextOffset(0.0f, 0.0f);
 		prevItem();
 	}
-	else if (p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED)
+	else if ( p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED ||
+		p_input.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED )
 	{
 		m_menuItems[m_currItemIdx]->setTextOffset(0.0f, 0.0f);
 		nextItem();
 	}
 
-	if ( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED )
+	if ( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
+		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
 	{
 		switch(m_currItemIdx)
 		{
