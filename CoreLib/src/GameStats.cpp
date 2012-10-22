@@ -1,7 +1,7 @@
 #include "GameStats.h"
 #include <iostream>
 
-GameStats::GameStats(Timer* p_timer)
+GameStats::GameStats(Timer* p_timer, int p_previousScore)
 {
 	m_timer		= p_timer;
 
@@ -9,6 +9,7 @@ GameStats::GameStats(Timer* p_timer)
 	m_speeded	= false;
 	m_superMode = false;
 	m_score		= 0;
+	m_previousScore = p_previousScore;
 	m_lives		= 3;
 	m_itemSlot	= -1;
 	m_buffSlot	= -1;
@@ -90,6 +91,7 @@ int GameStats::getNumPills()
 void GameStats::pillEaten()
 {
 	m_numPills -= 1;
+	addScore(PILL_EATEN);
 }
 void GameStats::addPill()
 {
@@ -130,6 +132,10 @@ void GameStats::addScore(int p_points)
 int GameStats::getScore() const
 {
 	return m_score;
+}
+int	GameStats::getTotalScore() const
+{
+	return m_previousScore + m_score;
 }
 Timer* GameStats::getGameTimer()
 {

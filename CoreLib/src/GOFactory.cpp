@@ -321,13 +321,44 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 
 	fVector2 size = fVector2(50/scrW, 50/scrH);
 	size = fVector2(0,0);
-	fVector3 pos = fVector3(0.5f, 1 - guiHeight*0.5f, 0.9f); 
+	fVector3 pos = fVector3(0.3f, 1 - guiHeight*0.25f, 0.9f); 
 	string texts = "ELAPSED TIME:    ";
 	float fontSize = 32.0f;
 	fVector2 fontSizeScaled(fontSize*fw, fontSize*fh); 
 	MenuItem* elapsed = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Added by Anton
+
+	//Par time
+	pos = fVector3(0.3f, 1 - guiHeight*0.75f, 0.9f); 
+	texts = "PAR TIME    :    ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	MenuItem* par = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Score
+	pos = fVector3(0.6f, 1 - guiHeight*0.25f, 0.9f); 
+	texts = "SCORE      :      ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	MenuItem* score = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Total Score
+	pos = fVector3(0.6f, 1 - guiHeight*0.75f, 0.9f); 
+	texts = "TOTAL SCORE:      ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	MenuItem* totalscore = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+	//End added by Anton
+
 
 	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string xtext = "X";
@@ -351,5 +382,5 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, x, y, speed, bomb);
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, x, y, speed, bomb);
 }
