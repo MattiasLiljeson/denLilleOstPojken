@@ -95,7 +95,7 @@ void InGameState::update(float p_dt)
 		
 		if (m_stats->getNumPills() < 1)
 		{
-			m_currentMap = (m_currentMap+1) % 4;
+			m_currentMap = (m_currentMap+1) % 5;
 			restart();
 			return;
 		}
