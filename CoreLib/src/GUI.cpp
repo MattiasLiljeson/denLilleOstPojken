@@ -2,7 +2,8 @@
 #include "MenuItem.h"
 #include <ToString.h>
 
-GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
+GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
+	VictoryStruct p_victory, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -14,6 +15,11 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTim
 	m_itemPowerUp = p_item;
 	m_speedIcon = p_speedIcon;
 	m_bombIcon = p_bombIcon;
+	m_victoryData = p_victory;
+	m_victoryData.victory->getTextArea()->setText("");
+	m_victoryData.baseScore->getTextArea()->setText("");
+	m_victoryData.multiplier->getTextArea()->setText("");
+	m_victoryData.finalScore->getTextArea()->setText("");
 }
 GUI::~GUI()
 {
@@ -47,4 +53,22 @@ void GUI::update(float p_dt)
 	else
 		m_bombIcon->visible = false;
 	
+}
+void GUI::showVictory()
+{
+	m_victoryData.victory->getTextArea()->setText("VICTORY!");
+}
+void GUI::showBaseScore(int p_score)
+{
+	m_victoryData.baseScore->getTextArea()->setText("BASE SCORE: " + toString(p_score));
+}
+void GUI::showMultiplier(float p_multiplier)
+{
+	int temp = p_multiplier * 100;
+	p_multiplier = temp * 0.01f;
+	m_victoryData.multiplier->getTextArea()->setText("MULTIPLIER: " + toString(p_multiplier));
+}
+void GUI::showTotalScore(int p_finalScore)
+{
+	m_victoryData.finalScore->getTextArea()->setText("FINAL SCORE: " + toString(p_finalScore));
 }

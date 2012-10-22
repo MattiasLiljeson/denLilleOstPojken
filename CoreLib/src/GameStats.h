@@ -51,7 +51,7 @@ public:
 	float	speededPercentElapsed();
 	void	addScore(int p_points);
 	int		getScore() const;
-	int		getTotalScore() const;
+	int		getTotalScore();
 	Timer*	getGameTimer();
 	void	loseLife();
 	void	setItemSlot(int p_item);
@@ -63,6 +63,7 @@ public:
 	int		getActivatedItem();
 	void	clearBuffs();
 	int		getParTime();
+	float	getMultiplier();
 };
 
 #endif

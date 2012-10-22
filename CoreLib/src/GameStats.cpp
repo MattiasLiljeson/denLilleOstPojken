@@ -134,9 +134,9 @@ int GameStats::getScore() const
 {
 	return m_score;
 }
-int	GameStats::getTotalScore() const
+int	GameStats::getTotalScore()
 {
-	return m_previousScore + m_score;
+	return m_previousScore + m_score * getMultiplier();
 }
 Timer* GameStats::getGameTimer()
 {
@@ -187,4 +187,12 @@ void GameStats::clearBuffs()
 int GameStats::getParTime()
 {
 	return m_parTime;
+}
+float GameStats::getMultiplier()
+{
+	float t = (float)m_gameTimer->getElapsedTime();
+	if (t > m_parTime)
+		return 1;
+	float frac = 1-(t / m_parTime);
+	return 1 + frac;
 }

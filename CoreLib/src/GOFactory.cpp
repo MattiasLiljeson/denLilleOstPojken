@@ -357,6 +357,43 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	MenuItem* totalscore = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Victory
+
+	VictoryStruct victoryData;
+
+	pos = fVector3(0.5f, 0.7f, 0.9f); 
+	texts = "VICTORY           ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	victoryData.victory = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.6f, 0.9f); 
+	texts = "BASE SCORE:       ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	victoryData.baseScore = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.5f, 0.9f); 
+	texts = "MULTIPLIER        ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	victoryData.multiplier = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.4f, 0.9f); 
+	texts = "TOTAL SCORE:      ";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	victoryData.finalScore = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
 	//End added by Anton
 
 
@@ -382,5 +419,5 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, x, y, speed, bomb);
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, x, y, speed, bomb);
 }
