@@ -4,6 +4,7 @@
 #include "InGameState.h"
 #include "MenuState.h"
 #include "GameOverState.h"
+#include "VictoryState.h"
 #include <Timer.h>
 #include "MapHeader.h"
 
@@ -23,6 +24,7 @@ private:
 	State* m_inGameState;
 	State* m_menuState;
 	State* m_gameOverState;
+	State* m_victoryState;
 	State* m_currentState;
 	State* m_desiredState;
 
@@ -45,6 +47,7 @@ public:
 	State* getMenuState();
 	State* getInGameState();
 	State* getGameOverState();
+	State* getVictoryState();
 
 	void terminate();
 	bool isTerminated();

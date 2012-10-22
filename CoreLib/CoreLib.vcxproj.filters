@@ -214,6 +214,9 @@
     <ClCompile Include="src\MapHeader.cpp">
       <Filter>Source\LoadMap</Filter>
     </ClCompile>
+    <ClCompile Include="src\VictoryState.cpp">
+      <Filter>Source\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -344,6 +347,9 @@
     </ClInclude>
     <ClInclude Include="src\MapHeader.h">
       <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VictoryState.h">
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

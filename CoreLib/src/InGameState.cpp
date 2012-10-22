@@ -66,9 +66,17 @@ void InGameState::update(float p_dt)
 		
 		if (m_stats->getNumPills() < 1)
 		{
-			m_currentMap = (m_currentMap+1) % 5;
-			m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
-			restart();
+			if (m_currentMap < m_maps.size() - 1)
+			{
+				m_currentMap = m_currentMap+1;
+				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+				restart();
+			}
+			else
+			{
+				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+				m_parent->requestStateChange(m_parent->getVictoryState());
+			}
 			return;
 		}
 
@@ -88,7 +96,6 @@ void InGameState::update(float p_dt)
 				Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
 				m_bombs.push_back(b);
 				m_gameObjects.push_back(b);
-				int a = 0;
 			}
 		}
 
