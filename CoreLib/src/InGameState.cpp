@@ -6,40 +6,9 @@
 InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): State(p_parent)
 {
 	m_io = p_io;
-	// Allocation: Moved to onEntry (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		m_factory = new GOFactory(p_io);
-		m_tileMap = NULL;
-		m_stats = NULL;
-		m_currentMap = 1;
-		if (p_reset)
-			restart();
-	}
-	
-	onEntry(); // alternative
-	*/
 }
 InGameState::~InGameState()
 {
-	// Deallocation: Moved to onExit (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		for (int i = m_gameObjects.size() - 1; i >= 0; i--)
-		{
-			delete m_gameObjects.at(i);
-		}
-		m_gameObjects.clear();
-		if (m_tileMap)
-			delete m_tileMap;
-		if (m_stats)
-			delete m_stats;
-		if (m_factory)
-			delete m_factory;
-	}
-	*/
 	onExit();
 }
 
@@ -95,8 +64,8 @@ void InGameState::update(float p_dt)
 		
 		if (m_stats->getNumPills() < 1)
 		{
-			m_currentMap = (m_currentMap+1) % 5;
-			restart();
+			m_currentMap = (m_currentMap+1) % 4;
+			restart(true);
 			return;
 		}
 
@@ -215,7 +184,7 @@ bool InGameState::checkDynamicCollision()
 
 	return collision;
 }
-void InGameState::restart()
+void InGameState::restart(bool p_onComplete)
 {
 	if (m_io)
 	{
@@ -229,14 +198,19 @@ void InGameState::restart()
 		m_bombs.clear();
 		if (m_tileMap)
 			delete m_tileMap;
-		if (m_stats)
-			delete m_stats;
 		if (m_gui)
 			delete m_gui;
 
 		m_tileMap	= 0;
 		MapLoader mapParser;
-		m_stats = new GameStats(m_parent->getNewTimerInstance());
+
+		int tscore = 0;
+		if (m_stats)
+		{
+			tscore = m_stats->getTotalScore();
+			delete m_stats;
+		}
+		m_stats = new GameStats(m_parent->getNewTimerInstance(), tscore);
 
 		stringstream ss;
 		ss << m_currentMap;

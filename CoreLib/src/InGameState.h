@@ -28,7 +28,8 @@ public:
 	void handleInput(InputInfo p_input);
 	void draw(float p_dt);
 	bool checkDynamicCollision();
-	void restart();
+	//Flag to indicate if restart was called when completing a level
+	void restart(bool p_onComplete = false);
 	bool onEntry();
 	bool onExit();
 };
