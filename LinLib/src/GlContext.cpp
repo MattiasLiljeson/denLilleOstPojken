@@ -5,6 +5,9 @@ GlContext* GlContext::s_instance = NULL;
 
 GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
 {
+	// Make sure the error flags are set to false
+	handleGlErrors();
+
 	s_instance				= this;
 	m_screenWidth			= p_screenWidth;
 	m_screenHeight			= p_screenHeight;
@@ -32,6 +35,8 @@ GlContext::~GlContext()
 int GlContext::init()
 {
 	//Initialize GLFW
+	handleGlErrors();
+
 	if(initGLFW() == GAME_FAIL)
 		return GAME_FAIL;
 	if (initGLFWWindow() == GAME_FAIL)
@@ -39,9 +44,16 @@ int GlContext::init()
 	if (initGlew() == GAME_FAIL)
 		return GAME_FAIL; 
 
+	handleGlErrors();
 	glfwSetWindowTitle("Den lille ostpojken");
+	handleGlErrors();
+
 	glfwEnable( GLFW_STICKY_KEYS );
+	handleGlErrors();
+
 	glViewport(0, 0, getScreenWidth(), getScreenHeight());
+	handleGlErrors();
+
 	m_spriteRenderer = new GlSpriteRenderer(this);
 	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
@@ -49,24 +61,31 @@ int GlContext::init()
 	initKeyMappings();
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
+	handleGlErrors();
+
 	posX = 400;
 	posY = 300;
 	m_initialized = true;
 
 	glEnable(GL_DEPTH_TEST);
+	handleGlErrors();
 
 	return GAME_OK;
 }
 int GlContext::initGLFW()
 {
 	if (glfwInit() != GL_TRUE)
+	{
+		handleGlErrors();
 		return GAME_FAIL;
+	}
+	handleGlErrors();
 	return GAME_OK;
 }
 int GlContext::initGLFWWindow()
 {
 	//Set Window Properties
-	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antiliasing
+	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antialiasing
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3); //Major GL version
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2); //Minor GL version
 
@@ -80,16 +99,37 @@ int GlContext::initGLFWWindow()
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
 		GLFW_WINDOW) != GL_TRUE)
 	{
+		handleGlErrors();
 		return GAME_FAIL;
 	}
+	handleGlErrors();
 	return GAME_OK;
 }
 int GlContext::initGlew()
 {
 	if (glewInit() != GLEW_OK)
+	{
+		handleGlErrors();
 		return GAME_FAIL;
+	}
+	handleGlErrors();
 	return GAME_OK;
 }
+
+int GlContext::handleGlErrors()
+{
+	GLenum failCode = 0;
+	const char* failMsg;
+
+	do{
+		failCode = glGetError();
+		failMsg = GLDebug::GLErrorString(failCode);
+		std::cout<<failMsg<<endl;
+	} while (failCode != 0);
+
+	return failCode;
+}
+
 bool GlContext::isInitialized() const
 {
 	return m_initialized;
@@ -170,6 +210,7 @@ int GlContext::beginDraw()
 	glClearColor(0, 0, 0, 1.0);
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	handleGlErrors();
 	return GAME_OK;
 }
 
@@ -193,6 +234,7 @@ int GlContext::drawSprite( SpriteInfo* p_spriteInfo )
 int GlContext::endDraw()
 {
 	glfwSwapBuffers();
+	handleGlErrors();
 	return GAME_OK;
 }
 
@@ -230,6 +272,7 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 void GlContext::setWindowText(string p_text)
 {
 	glfwSetWindowTitle(p_text.c_str());
+	handleGlErrors();
 }
 
 int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
@@ -252,10 +295,13 @@ int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 void GlContext::spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint texture)
 {
 	glBindTexture(GL_TEXTURE_2D, texture);
+	handleGlErrors();
 
 	int textureWidth, textureHeight;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
+	handleGlErrors();
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
+	handleGlErrors();
 
 	p_spriteInfo->textureRect.width = textureWidth;
 	p_spriteInfo->textureRect.height = textureHeight;

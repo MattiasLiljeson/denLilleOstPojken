@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\GlContext.h" />
+    <ClInclude Include="src\GlDebug.h" />
     <ClInclude Include="src\GlSpriteRenderer.h" />
     <ClInclude Include="src\GlSpriteShader.h" />
     <ClInclude Include="src\GlTextureManager.h" />

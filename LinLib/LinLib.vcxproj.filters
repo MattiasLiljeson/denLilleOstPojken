@@ -13,5 +13,6 @@
     <ClInclude Include="src\LinTimer.h" />
     <ClInclude Include="src\GlTextureManager.h" />
     <ClInclude Include="src\GlSpriteRenderer.h" />
+    <ClInclude Include="src\GlDebug.h" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,11 @@
 #ifndef GLCONTEXT_H
 #define GLCONTEXT_H
 
+#include <iostream>
+#include <string>
 #include <IOContext.h>
 #include <CommonUtility.h>
+#include "GlDebug.h"
 #include "GlSpriteRenderer.h"
 #include "GlTextureManager.h"
 
@@ -31,6 +34,8 @@ private:
 	int initGLFWWindow();
 	int initGlew();
 	void initKeyMappings();
+
+	int handleGlErrors();
 
 	int spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo);
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
