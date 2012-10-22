@@ -62,3 +62,4 @@ assets/
 !*/Guitar.exe.Config
 !CommonLib/external/SFML/lib/sfml-audio-s-d.lib
 !CommonLib/external/SFML/lib/sfml-audio-s.lib
+*.onetoc2
