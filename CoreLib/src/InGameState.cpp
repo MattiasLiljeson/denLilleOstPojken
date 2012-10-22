@@ -3,9 +3,10 @@
 #include "Game.h"
 #include <Circle.h>
 
-InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): State(p_parent)
+InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset): State(p_parent)
 {
 	m_io = p_io;
+	m_maps = p_maps;
 }
 InGameState::~InGameState()
 {
@@ -23,6 +24,7 @@ bool InGameState::onEntry()
 			m_stats = NULL;
 			m_currentMap = 0;
 			m_gui = NULL;
+			m_parent->getCommonResources()->totalScore = 0;
 		}
 		restart();
 		m_resourcesAllocated=true;
@@ -64,8 +66,9 @@ void InGameState::update(float p_dt)
 		
 		if (m_stats->getNumPills() < 1)
 		{
-			m_currentMap = (m_currentMap+1) % 4;
-			restart(true);
+			m_currentMap = (m_currentMap+1) % 5;
+			m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+			restart();
 			return;
 		}
 
@@ -123,7 +126,7 @@ void InGameState::update(float p_dt)
 			if (m_stats->getNumLives() > 0)
 				m_avatar->revive(m_startTile);
 			else
-				m_parent->requestStateChange(m_parent->getMenuState());
+				m_parent->requestStateChange(m_parent->getGameOverState());
 
 
 		}
@@ -184,7 +187,7 @@ bool InGameState::checkDynamicCollision()
 
 	return collision;
 }
-void InGameState::restart(bool p_onComplete)
+void InGameState::restart()
 {
 	if (m_io)
 	{
@@ -210,11 +213,11 @@ void InGameState::restart(bool p_onComplete)
 			tscore = m_stats->getTotalScore();
 			delete m_stats;
 		}
-		m_stats = new GameStats(m_parent->getNewTimerInstance(), tscore);
+		m_stats = new GameStats(m_parent->getNewTimerInstance(), m_maps[m_currentMap].parTime, tscore);
 
 		stringstream ss;
 		ss << m_currentMap;
-		string mapString = "../Maps/" + ss.str() + ".txt";
+		string mapString = "../Maps/" + m_maps[m_currentMap].filename;
 		mapParser.parseMap(mapString, m_io, m_stats, m_factory);
 
 		m_tileMap = mapParser.getTileMap();

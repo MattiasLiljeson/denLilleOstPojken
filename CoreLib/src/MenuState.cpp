@@ -69,8 +69,9 @@ void MenuState::initMenuItems()
 //=========================================================================
 // Public Functions
 //=========================================================================
-MenuState::MenuState(StateManager* p_parent, IODevice* p_io): State(p_parent)
+MenuState::MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps): State(p_parent)
 {
+	m_maps = p_maps;
 	m_io = p_io;
 	m_factory = NULL;
 	m_itemSelectSnd = NULL;

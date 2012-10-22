@@ -15,7 +15,7 @@ public:
 	}
 	void setup()
 	{
-		GameStats stats(NULL);
+		GameStats stats(NULL, 20);
 		SuperPill pill(NULL, NULL, &stats,NULL);
 		newEntry(TestData("Position", pill.getPostion() == fVector2(0, 0)));
 		newEntry(TestData("Not Consumed", !pill.isConsumed()));
