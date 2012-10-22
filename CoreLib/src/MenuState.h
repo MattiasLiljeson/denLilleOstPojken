@@ -2,12 +2,12 @@
 #define MENUSTATE_H
 
 #include "GOFactory.h"
-#include "MenuItem.h"
 #include "SoundInfo.h"
 #include "State.h"
 #include "TextArea.h"
 #include <vector>
 #include <cmath>
+#include "MenuSubState.h"
 
 using namespace std;
 
@@ -15,26 +15,29 @@ class MenuState: public State
 {
 private:
 	IODevice* m_io;
-
-	float m_totTime;
-	unsigned int m_currItemIdx;
-	vector<MenuItem*> m_menuItems;
-	MenuItem* m_bgItem;
-
 	GOFactory* m_factory;
 
-	SoundInfo* m_itemSelectSnd;
+	// Menus
+	vector<MenuSubState*> m_menus;
+	unsigned int m_currMenu;
+	unsigned int m_currItemIdx;
 
-public:
-	// MI = menu item
-	enum { MI_LEVEL_SELECT, MI_HIGHSCORE, MI_CREDITS, MI_EXIT };
+	float m_totTime;
+	MenuItem* m_bgItem;
+	SoundInfo* m_itemSelectSnd;
 
 private:
 	//utility functions
+	void resetItemOffset( int p_idx );
 	void nextItem();
 	void prevItem();
+	void setCurrMenu( int p_menu );
+
+	void selectMmItem();
+	void selectLsItem();
+	void selectExState();
+
 	bool playSound();
-	void indentItem( int p_idx, int p_amount );
 
 	void initMenuItems();
 

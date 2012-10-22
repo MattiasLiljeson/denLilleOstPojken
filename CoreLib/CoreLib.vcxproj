@@ -44,6 +44,7 @@
     <ClCompile Include="src\MapLoader.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
+    <ClCompile Include="src\MenuSubState.cpp" />
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Pill.cpp" />
     <ClCompile Include="src\PillEatenState.cpp" />
@@ -87,6 +88,7 @@
     <ClInclude Include="src\MapLoader.h" />
     <ClInclude Include="src\MenuItem.h" />
     <ClInclude Include="src\MenuState.h" />
+    <ClInclude Include="src\MenuSubState.h" />
     <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />
     <ClInclude Include="src\PillEatenState.h" />

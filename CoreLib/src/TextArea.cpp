@@ -153,3 +153,11 @@ void TextArea::setOrigin( fVector2 p_newOrigin )
 		setGlyphPos( i, m_currAnchor, p_newOrigin );
 	}
 }
+
+void TextArea::setVisible( bool p_visible )
+{
+	for( unsigned int i=0; i<m_glyphs.size(); i++ )
+	{
+		m_glyphs[i]->setVisibility( p_visible );
+	}
+}

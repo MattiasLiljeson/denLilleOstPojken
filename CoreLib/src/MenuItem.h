@@ -38,6 +38,8 @@ public:
 	int setTextOffset( float p_x, float p_y );
 	int setBasePosition( float p_x, float p_y );
 
+	void setVisible(bool p_visible);
+
 };
 
 #endif

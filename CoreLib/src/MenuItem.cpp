@@ -65,12 +65,20 @@ int MenuItem::setTextOffset( float p_x, float p_y )
 	
 }
 
-int MenuItem::setBasePosition(float p_x, float p_y )
+int MenuItem::setBasePosition( float p_x, float p_y )
 {
 	m_basePosition.x = p_x;
 	m_basePosition.y = p_y;
 	
-	if(updateSprite() == GAME_OK && updateText() == GAME_OK)
+	if( updateSprite() == GAME_OK && updateText() == GAME_OK )
 			return GAME_OK;
 	return GAME_FAIL;
+}
+
+void MenuItem::setVisible( bool p_visible )
+{
+	if(m_spriteInfo != NULL)
+		m_spriteInfo->visible = p_visible;
+	if(m_text != NULL)
+		m_text->setVisible( p_visible );
 }

@@ -28,7 +28,7 @@ int Glyph::setRect(Rect p_rect)
 	}
 }
 
-int Glyph::setVisibility(bool p_set)
+int Glyph::setVisibility( bool p_set )
 {
 	if(m_spriteInfo != NULL)
 	{

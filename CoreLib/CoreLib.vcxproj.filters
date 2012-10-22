@@ -211,6 +211,9 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="src\MenuSubState.cpp">
+      <Filter>Source\GameStates</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -338,6 +341,9 @@
     </ClInclude>
     <ClInclude Include="src\Animation.h">
       <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuSubState.h">
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
