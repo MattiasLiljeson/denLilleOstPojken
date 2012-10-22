@@ -88,6 +88,7 @@ void InGameState::update(float p_dt)
 				Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
 				m_bombs.push_back(b);
 				m_gameObjects.push_back(b);
+				int a = 0;
 			}
 		}
 
