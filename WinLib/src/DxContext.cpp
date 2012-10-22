@@ -140,7 +140,7 @@ int DxContext::initializeSwapChain()
 	scd.OutputWindow				= m_windowHandle;
 	scd.SampleDesc.Count			= 1;
 	scd.SampleDesc.Quality			= 0;
-	scd.Windowed					= false;
+	scd.Windowed					= true;
 	scd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	scd.BufferDesc.Scaling			= DXGI_MODE_SCALING_UNSPECIFIED;
 	scd.SwapEffect					= DXGI_SWAP_EFFECT_DISCARD;

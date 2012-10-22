@@ -3,6 +3,7 @@
 
 #include "State.h"
 #include "GameStats.h"
+#include "MapHeader.h"
 
 class InGameState: public State
 {
@@ -16,20 +17,20 @@ private:
 	GOFactory*				m_factory;
 	GUI*					m_gui;
 
-	//Temp
-	Tilemap* m_tileMap;
-	GameStats* m_stats;
-	int	m_currentMap;
-	Tile* m_startTile;
+	Tilemap*				m_tileMap;
+	GameStats*				m_stats;
+	vector<MapData>			m_maps;
+	int						m_currentMap;
+	Tile*					m_startTile;
 public:
-	InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset = false);
+	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
 	virtual ~InGameState();
 	void update(float p_dt);
 	void handleInput(InputInfo p_input);
 	void draw(float p_dt);
 	bool checkDynamicCollision();
 	//Flag to indicate if restart was called when completing a level
-	void restart(bool p_onComplete = false);
+	void restart();
 	bool onEntry();
 	bool onExit();
 };

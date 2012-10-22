@@ -8,6 +8,7 @@
 #include "TextArea.h"
 #include <vector>
 #include <cmath>
+#include "MapHeader.h"
 
 using namespace std;
 
@@ -24,6 +25,7 @@ private:
 	GOFactory* m_factory;
 
 	SoundInfo* m_itemSelectSnd;
+	vector<MapData>	m_maps;
 
 public:
 	// MI = menu item
@@ -39,7 +41,7 @@ private:
 	void initMenuItems();
 
 public:
-	MenuState(StateManager* p_parent, IODevice* p_io);
+	MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps);
 	virtual ~MenuState();
 	void update(float p_dt);
 	void draw(float p_dt);

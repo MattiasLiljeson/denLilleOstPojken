@@ -27,6 +27,7 @@ private:
 	int				m_previousScore;
 	int				m_lives;
 
+	int				m_parTime;
 	int				m_itemSlot;
 	int				m_buffSlot;
 
@@ -34,7 +35,7 @@ private:
 	int				m_activate;
 
 public:
-	GameStats(Timer* p_timer, int p_previousScore = 0);
+	GameStats(Timer* p_timer, int p_parTime, int p_previousScore = 0);
 	~GameStats();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	void	setNumPills(const int p_numPills);
@@ -61,6 +62,7 @@ public:
 	void	activateItem();
 	int		getActivatedItem();
 	void	clearBuffs();
+	int		getParTime();
 };
 
 #endif

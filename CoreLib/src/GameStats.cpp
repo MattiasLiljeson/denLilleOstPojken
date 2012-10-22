@@ -1,10 +1,10 @@
 #include "GameStats.h"
 #include <iostream>
 
-GameStats::GameStats(Timer* p_timer, int p_previousScore)
+GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
 {
 	m_timer		= p_timer;
-
+	m_parTime	= p_parTime;
 	m_numPills	= 0;
 	m_speeded	= false;
 	m_superMode = false;
@@ -182,4 +182,8 @@ void GameStats::clearBuffs()
 	m_superMode	 = false;
 	m_superModeTimer->stop();
 	m_speedUpTimer->stop();
+}
+int GameStats::getParTime()
+{
+	return m_parTime;
 }

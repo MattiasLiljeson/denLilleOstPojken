@@ -32,7 +32,7 @@ void GUI::update(float p_dt)
 	text = "SCORE      : " + toString(m_stats->getScore());
 	m_score->getTextArea()->setText(text);
 
-	text = "PAR TIME    : " + toString((int)m_stats->getGameTimer()->getElapsedTime());
+	text = "PAR TIME    : " + toString((int)m_stats->getParTime());
 	m_parTime->getTextArea()->setText(text);
 
 	text = "TOTAL SCORE: " + toString(m_stats->getTotalScore());
