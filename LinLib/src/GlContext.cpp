@@ -15,7 +15,7 @@ GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
 
 	// Create texture manager and load default texture
 	m_textureManager = new GlTextureManager();
-	m_textureManager->getTexture("../Textures/default.png");
+	// m_textureManager->getTexture("../Textures/default.png");
 
 	m_initialized			= false;
 	if (init() != GAME_OK)
@@ -37,12 +37,22 @@ int GlContext::init()
 	//Initialize GLFW
 	GLErrCheck();
 
+	DEBUGPRINT(("Setting up context...\n"));
+
 	if(initGLFW() == GAME_FAIL)
 		return GAME_FAIL;
+
+	DEBUGPRINT(("GLFW inited!\n"));
+
 	if (initGLFWWindow() == GAME_FAIL)
 		return GAME_FAIL;
+
+	DEBUGPRINT(("GLFW Window inited!\n"));
+
 	if (initGlew() == GAME_FAIL)
 		return GAME_FAIL; 
+
+	DEBUGPRINT(("OpenGL & GLEW inited!\n"));
 
 	GLErrCheck();
 	glfwSetWindowTitle("Den lille ostpojken");
@@ -58,6 +68,8 @@ int GlContext::init()
 	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
 
+	DEBUGPRINT(("Sprite renderer created!\n"));
+
 	initKeyMappings();
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
@@ -69,6 +81,8 @@ int GlContext::init()
 
 	glEnable(GL_DEPTH_TEST);
 	GLErrCheck();
+
+	DEBUGPRINT(("GLContext created!\n"));
 
 	return GAME_OK;
 }

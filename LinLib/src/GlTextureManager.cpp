@@ -15,6 +15,7 @@ GlTextureManager::~GlTextureManager()
 int GlTextureManager::loadTexture(string p_filePath,
 	vector<TextureWithName>* p_textures)
 {
+	DEBUGPRINT((string("Loading texture '"+p_filePath+"'\n").c_str()));
 	int textureIndex = -1;
 
 	GLuint texture = 0;

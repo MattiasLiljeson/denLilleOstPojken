@@ -14,7 +14,7 @@ public:
 	static GLenum CheckGLError( const char* filename,const char* funcname,int line )
 	{
 		GLenum errorCode;
-		int lim=3;
+		int lim=1;
 		while( ( errorCode = glGetError() ) != GL_NO_ERROR && lim>0)
 		{
 			lim--;

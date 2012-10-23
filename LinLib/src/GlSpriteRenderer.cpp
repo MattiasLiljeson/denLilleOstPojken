@@ -7,6 +7,7 @@
 
 GlSpriteRenderer::GlSpriteRenderer(GlContext* p_context)
 {
+	DEBUGPRINT(("Creating sprite renderer...\n"));
 	m_initialized	= false;
 	m_context		= p_context;
 	m_spriteShader	= new GlSpriteShader();

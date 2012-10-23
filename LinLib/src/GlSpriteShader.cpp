@@ -2,6 +2,7 @@
 
 GlSpriteShader::GlSpriteShader()
 {
+	DEBUGPRINT(("Creating sprite shader...\n"));
 	m_initialized = false;
 
 	//Variables holding shader data
