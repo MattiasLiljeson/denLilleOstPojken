@@ -23,6 +23,7 @@ private:
 	int						m_currentMap;
 	Tile*					m_startTile;
 	float					m_victoryTime;
+	int						m_desiredMap;
 
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
@@ -33,6 +34,8 @@ public:
 	bool checkDynamicCollision();
 	//Flag to indicate if restart was called when completing a level
 	void restart();
+	int setCurrentMap( MapData p_map );
+	int setCurrentMap( int p_mapIdx );
 	bool onEntry();
 	bool onExit();
 };

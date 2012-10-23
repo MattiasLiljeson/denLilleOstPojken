@@ -348,14 +348,13 @@
     <ClInclude Include="src\Animation.h">
       <Filter>Source</Filter>
     </ClInclude>
-<<<<<<< HEAD
     <ClInclude Include="src\MenuSubState.h">
-=======
+		<Filter>Source\GameStates</Filter>
+    </ClInclude>
     <ClInclude Include="src\MapHeader.h">
       <Filter>Source\LoadMap</Filter>
     </ClInclude>
     <ClInclude Include="src\VictoryState.h">
->>>>>>> origin/s4u62t1_states
       <Filter>Source\GameStates</Filter>
     </ClInclude>
   </ItemGroup>

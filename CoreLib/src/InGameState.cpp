@@ -7,6 +7,14 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 {
 	m_io = p_io;
 	m_maps = p_maps;
+	m_currentMap = 0;
+	m_desiredMap = -1;
+	m_avatar	= NULL;
+	m_factory	= NULL;
+	m_gui		= NULL;
+	m_tileMap	= NULL;
+	m_stats		= NULL;
+	m_startTile = NULL;
 }
 InGameState::~InGameState()
 {
@@ -59,6 +67,13 @@ bool InGameState::onExit()
 
 void InGameState::update(float p_dt)
 {
+	if(m_desiredMap != -1)
+	{
+		m_currentMap = m_desiredMap;
+		m_desiredMap = -1;
+		restart();
+	}
+
 	if (m_io)
 	{
 		InputInfo input = m_io->fetchInput();
@@ -247,6 +262,36 @@ void InGameState::restart()
 
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();
+	}
+}
+
+int InGameState::setCurrentMap( MapData p_map )
+{
+	bool found =  false;
+	unsigned int idx = 0;
+	while( !found && idx<m_maps.size() )
+	{
+		if(m_maps[idx].filename == p_map.filename)
+			found = true;
+	}
+
+	if(found)
+		return setCurrentMap(idx);
+	else
+		return GAME_FAIL;
+}
+
+int InGameState::setCurrentMap( int p_mapIdx )
+{
+	if(p_mapIdx < m_maps.size() )
+	{
+		m_desiredMap = p_mapIdx;
+		restart();
+		return GAME_OK;
+	}
+	else
+	{
+		return GAME_FAIL;
 	}
 }
 

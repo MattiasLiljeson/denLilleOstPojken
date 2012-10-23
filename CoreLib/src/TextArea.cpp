@@ -106,8 +106,10 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p
 TextArea::~TextArea()
 {
 	for (unsigned int i=0;i<m_maxLength;i++)
+	{
 		delete m_glyphs[i];
-	
+		m_glyphs[i] = NULL;
+	}
 	m_glyphs.clear();
 }
 

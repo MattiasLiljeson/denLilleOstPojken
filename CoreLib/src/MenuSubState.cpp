@@ -1,12 +1,19 @@
 #include "MenuSubState.h"
 
-MenuSubState::MenuSubState( int p_type, GOFactory* p_goFactory )
+MenuSubState::MenuSubState( vector<MapData> p_maps, int p_type, GOFactory* p_goFactory )
 {
-	// HACK: hard coded values used to set positions of elements according to
-	// fullHD resolution
+	//std values
 	fw = 1.0f/1920.0f;
 	fh = 1.0f/1080.0f;
+	m_firstItemPos	= fVector3( 0.5f, 0.5f, 0.9f );
+	m_itemSize		= fVector2( fh*600.0f, fh*64.0f );
+	m_itemTextOffset= fVector2( 0.0f, 0.0f );
+	m_itemFontSize	= fVector2( fw*32, fh*32 );
+	m_itemDistance	= 100*fh;
+	m_itemBackgroundTexturePath = "";
 
+	m_maps = p_maps;
+	m_currItem = 0;
 
 	m_goFactory = p_goFactory;
 
@@ -38,6 +45,7 @@ void MenuSubState::clear()
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{
 		delete m_items[i];
+		m_items[i] = NULL;
 	}
 	m_items.clear();
 	m_texts.clear();
@@ -51,26 +59,21 @@ void MenuSubState::setToMain()
 	m_texts[MM_CREDITS]			= "CREDITS";
 	m_texts[MM_EXIT]			= "EXIT";
 
-	for(int i=0; i<MM_NUM_ITEMS ; i++ )
-	{
-		m_items.push_back( m_goFactory->createMenuItem( 
-			fVector3( 0.5f, 0.5f - i*fh*100.0f, 0.9f ), fVector2( fh*600.0f, fh*64.0f ),
-			m_texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"" ));
-	}
+	createItems();
 }
 
 void MenuSubState::setToLevelSelect()
 {
 	m_texts.resize(LS_NUM_ITEMS);
-	m_texts[LS_MAIN]		= "GO BACK TO MAIN";
-	m_texts[LS_START_LEVEL]	= "START LEVEL";
+	m_texts[LS_MAIN] = "GO BACK TO MAIN";
 
-	for(int i=0; i<LS_NUM_ITEMS ; i++ )
+	for( unsigned int i=0; i<m_maps.size(); i++ )
 	{
-		m_items.push_back( m_goFactory->createMenuItem( 
-			fVector3( 0.5f, 0.5f - i*fh*100.0f, 0.9f ), fVector2( fh*600.0f, fh*64.0f ),
-			m_texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"" ));
+		m_texts.push_back(m_maps[i].name);
 	}
+	// More items, Maps, need more space
+	m_firstItemPos.y += 0.3f;
+	createItems();
 }
 
 void MenuSubState::setToHighscore()
@@ -89,11 +92,18 @@ void MenuSubState::setToExit()
 	m_texts[EX_YES]	= "YES";
 	m_texts[EX_NO]	= "NO";
 
-	for(int i=0; i<EX_NUM_ITEMS ; i++ )
+	createItems();
+}
+
+void MenuSubState::createItems()
+{
+	fVector3 itemPos = m_firstItemPos;
+	for( unsigned int i=0; i<m_texts.size(); i++ )
 	{
+		itemPos.y -= m_itemDistance;
 		m_items.push_back( m_goFactory->createMenuItem( 
-			fVector3( 0.5f, 0.5f - i*fh*100.0f, 0.9f ), fVector2( fh*600.0f, fh*64.0f ),
-			m_texts[i], fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"" ));
+			itemPos, m_itemSize, m_texts[i], m_itemTextOffset, m_itemFontSize,
+			m_itemBackgroundTexturePath));
 	}
 }
 

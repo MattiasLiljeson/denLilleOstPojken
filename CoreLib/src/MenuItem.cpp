@@ -40,7 +40,9 @@ MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
 MenuItem::~MenuItem()
 {
 	delete m_font;
+	m_font = NULL;
 	delete m_text;
+	m_text = NULL;
 }
 
 void MenuItem::update( float p_deltaTime, InputInfo p_inputInfo )

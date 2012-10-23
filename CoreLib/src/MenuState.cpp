@@ -35,9 +35,11 @@ void MenuState::prevItem()
 
 void MenuState::setCurrMenu( int p_menu )
 {
+	m_menus[m_currMenu]->m_currItem = m_currItemIdx;
 	m_menus[m_currMenu]->deActivate();
 	m_currMenu = p_menu;
 	m_menus[m_currMenu]->activate();
+	m_currItemIdx = m_menus[m_currMenu]->m_currItem;
 }
 
 void MenuState::selectMmItem()
@@ -60,17 +62,30 @@ void MenuState::selectMmItem()
 
 void MenuState::selectLsItem()
 {
-	switch(m_currItemIdx)
+	if( m_currItemIdx == MenuSubState::LS_MAIN )
 	{
-	case MenuSubState::LS_MAIN:
 		setCurrMenu(MenuSubState::MENU_MAIN);
-		break;
-	case MenuSubState::LS_START_LEVEL:
-		m_parent->requestStateChange(m_parent->getInGameState());
-		break;
-	default:
-		break;
 	}
+	else
+	{
+		// Get map idx by removing all static items from item index
+		int mapIdx = m_currItemIdx - MenuSubState::LS_NUM_ITEMS;
+		InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
+		inGame->setCurrentMap(mapIdx);
+		m_parent->requestStateChange(m_parent->getInGameState());
+	}
+
+	//switch(m_currItemIdx)
+	//{
+	//case MenuSubState::LS_MAIN:
+	//	setCurrMenu(MenuSubState::MENU_MAIN);
+	//	break;
+	//case MenuSubState::LS_START_LEVEL:
+	//	m_parent->requestStateChange(m_parent->getInGameState());
+	//	break;
+	//default:
+	//	break;
+	//}
 }
 
 
@@ -111,11 +126,11 @@ void MenuState::initMenuItems()
 		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
 		fVector2(fw*32, fh*32), "../Textures/SplashScreen.png" );
 
-	m_menus.push_back(new MenuSubState( MenuSubState::MENU_MAIN, m_factory));
-	m_menus.push_back(new MenuSubState( MenuSubState::MENU_LEVEL_SELECT, m_factory));
-	m_menus.push_back(new MenuSubState( MenuSubState::MENU_HIGHSCORE, m_factory));
-	m_menus.push_back(new MenuSubState( MenuSubState::MENU_CREDITS, m_factory));
-	m_menus.push_back(new MenuSubState( MenuSubState::MENU_EXIT, m_factory));
+	m_menus.push_back(new MenuSubState( m_maps, MenuSubState::MENU_MAIN, m_factory));
+	m_menus.push_back(new MenuSubState( m_maps, MenuSubState::MENU_LEVEL_SELECT, m_factory));
+	m_menus.push_back(new MenuSubState( m_maps, MenuSubState::MENU_HIGHSCORE, m_factory));
+	m_menus.push_back(new MenuSubState( m_maps, MenuSubState::MENU_CREDITS, m_factory));
+	m_menus.push_back(new MenuSubState( m_maps, MenuSubState::MENU_EXIT, m_factory));
 
 	for( unsigned int i=0; i<m_menus.size(); i++)
 	{
@@ -131,7 +146,7 @@ void MenuState::initMenuItems()
 //=========================================================================
 // Public Functions
 //=========================================================================
-MenuState::MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps): State(p_parent)
+MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps ): State(p_parent)
 {
 	m_maps = p_maps;
 	m_io = p_io;
@@ -172,7 +187,11 @@ bool MenuState::onExit()
 		{
 			delete m_bgItem;
 			for( unsigned int menuIdx=0; menuIdx<m_menus.size(); menuIdx++ )
+			{
+				// MEMORY LEAK: NOT 
 				delete m_menus[menuIdx];
+				m_menus[menuIdx] = NULL;
+			}
 			m_menus.clear();
 			delete m_factory;		
 			m_io->clearSpriteInfos();

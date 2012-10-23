@@ -10,6 +10,7 @@
 #include <cmath>
 #include "MenuSubState.h"
 #include "MapHeader.h"
+#include "InGameState.h"
 
 using namespace std;
 
@@ -53,3 +54,4 @@ public:
 	bool onEntry();
 	bool onExit();
 };
+#endif

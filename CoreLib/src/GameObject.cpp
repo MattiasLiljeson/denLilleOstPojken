@@ -32,6 +32,7 @@ GameObject::~GameObject()
 	m_gameStats = NULL;
 	m_currentState = NULL;
 	delete m_basicIdleState;
+	m_basicIdleState = NULL;
 }
 
 int GameObject::switchState(GOState* p_newState, bool p_forceSwitchToSame)
