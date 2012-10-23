@@ -62,6 +62,18 @@ void InGameState::update(float p_dt)
 	if (m_io)
 	{
 		InputInfo input = m_io->fetchInput();
+
+		if (input.keys[InputInfo::P_KEY] == InputInfo::KEYPRESSED)
+		{
+			m_paused = !m_paused;
+			if (m_paused)
+				m_gui->pause();
+			else
+				m_gui->unpause();
+		}
+		if (m_paused)
+			p_dt = 0;
+
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
 			m_parent->requestStateChange(m_parent->getMenuState());
@@ -246,6 +258,7 @@ void InGameState::restart()
 		m_monsters = mapParser.getMonsters();
 		m_traps = mapParser.getTraps();
 		m_gui = mapParser.getGUI();
+		m_paused = false;
 
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();

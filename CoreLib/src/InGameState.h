@@ -24,6 +24,8 @@ private:
 	Tile*					m_startTile;
 	float					m_victoryTime;
 
+	bool					m_paused;
+
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
 	virtual ~InGameState();
