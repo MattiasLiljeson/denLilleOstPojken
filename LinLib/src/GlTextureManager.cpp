@@ -35,12 +35,12 @@ int GlTextureManager::loadTexture(string p_filePath,
 	}
 	else
 	{
-		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
+		glGenTextures(1, &texture);  GLErrCheck();
+		glBindTexture(GL_TEXTURE_2D, texture);  GLErrCheck();
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, 
-			GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+			GL_RGBA, GL_UNSIGNED_BYTE, &image[0]);  GLErrCheck();
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR); GLErrCheck();
+		glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR); GLErrCheck();
 		
 		textureIndex = (int)m_textures.size();
 

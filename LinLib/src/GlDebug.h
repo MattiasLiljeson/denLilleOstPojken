@@ -11,12 +11,13 @@ using namespace std;
 class GLDebug
 {
 public:
-	static void CheckGLError( const char* filename,const char* funcname,int line )
+	static GLenum CheckGLError( const char* filename,const char* funcname,int line )
 	{
-		GLenum errorCode = GL_NO_ERROR;
-
-		while( ( errorCode = glGetError() ) != GL_NO_ERROR )
+		GLenum errorCode;
+		int lim=3;
+		while( ( errorCode = glGetError() ) != GL_NO_ERROR && lim>0)
 		{
+			lim--;
 			const char* errorString = GLErrorString(errorCode);
 
 			if( errorString != NULL )
@@ -32,21 +33,25 @@ public:
 				else
 				{
 					stringstream ss;
-					ss << "OpenGL Error: [" << errorString << "] ( in: " << filename << ", " << funcname << ", line " << line << " )";
+					ss << "OpenGL Error: [" << errorString << "] ( in: " << filename << ", " << funcname << ", line " << line << " )\n";
 					s = ss.str();
 					const char * cs = s.c_str();
 					
-					// HACK: DebugPrint crashes! Therefore hard-coded!
-					#ifdef _WIN32
+					
+					DEBUGPRINT((s.c_str()));
+					
+					// HACK: DebugPrint crashes! Therefore hard-coded! // works now? (check above) voodoo
+					/*#ifdef _WIN32
 						#include <Windows.h>
 						OutputDebugStringA( cs );
 					#else
 						#include <iostream>
 						std::cout<<msg;
-					#endif
+					#endif*/
 				}
 			}
 		}
+		return errorCode;
 	}
 	static const char* GLErrorString(GLenum code)
 	{
@@ -72,7 +77,6 @@ public:
 			return "Default: Unknown error";
 		}
 	}
-
 };
 
 #if defined(DEBUG) || defined(_DEBUG)

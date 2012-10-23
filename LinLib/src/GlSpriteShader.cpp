@@ -9,29 +9,29 @@ GlSpriteShader::GlSpriteShader()
 	GLint vsCompiled, fsCompiled, linked;
 
 	//Load the shader code
-	const char* vsCode = readShader("../Shaders/testGL.vert");
-	const char* fsCode = readShader("../Shaders/testGL.frag");
+	const char* vsCode = readShader("../Shaders/testGL.vert"); GLErrCheck();
+	const char* fsCode = readShader("../Shaders/testGL.frag"); GLErrCheck();
 
 	if (!vsCode || !fsCode)
 		return;
 
 	//Create the shaders
-	vertexShader = glCreateShader(GL_VERTEX_SHADER);
+	vertexShader = glCreateShader(GL_VERTEX_SHADER); GLErrCheck();
 
 	if (!vertexShader)
 		return;
 
-	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER); GLErrCheck();
 	if (!fragmentShader)
 		return;
 
 	//Initialize and compile the shaders with the given source
-	glShaderSource(vertexShader, 1, (const GLchar**)&vsCode, NULL);
-	glShaderSource(fragmentShader, 1, (const GLchar**)&fsCode, NULL);	
+	glShaderSource(vertexShader, 1, (const GLchar**)&vsCode, NULL); GLErrCheck();
+	glShaderSource(fragmentShader, 1, (const GLchar**)&fsCode, NULL); GLErrCheck();	 
 	glCompileShader(vertexShader);
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, (GLint*)&vsCompiled);
+	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, (GLint*)&vsCompiled); GLErrCheck();
 	glCompileShader(fragmentShader);
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, (GLint*)&fsCompiled);
+	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, (GLint*)&fsCompiled); GLErrCheck();
 
 	delete[] vsCode;
 	delete[] fsCode;
@@ -41,24 +41,24 @@ GlSpriteShader::GlSpriteShader()
 
 	//Create the combined shader program
 	m_id = glCreateProgram();
-	glAttachShader(m_id, vertexShader);
-	glAttachShader(m_id, fragmentShader);
+	glAttachShader(m_id, vertexShader); GLErrCheck();
+	glAttachShader(m_id, fragmentShader); GLErrCheck();
 	
-	glLinkProgram(m_id);
-	glGetProgramiv(m_id,GL_LINK_STATUS,&linked);
+	glLinkProgram(m_id); GLErrCheck();
+	glGetProgramiv(m_id,GL_LINK_STATUS,&linked); GLErrCheck();
 	if (!linked)
 		return;
 
 	//Get a reference to the vertex index used as input to the vertex shader.
 	//This is needed by the IA stage.
-	m_position = glGetAttribLocation(m_id, "MCVertex");
-	m_texCoord = glGetAttribLocation(m_id, "MCTexCoord");
+	m_position = glGetAttribLocation(m_id, "MCVertex"); GLErrCheck();
+	m_texCoord = glGetAttribLocation(m_id, "MCTexCoord"); GLErrCheck();
 
-	m_textureRectConstant		= glGetUniformLocation(m_id, "TextureRect");
-	m_centerPositionConstant	= glGetUniformLocation(m_id, "CenterPosition");
-	m_halfScaleConstant			= glGetUniformLocation(m_id, "HalfScale");
-	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize");
-	m_sampler					= glGetUniformLocation(m_id, "gSampler");
+	m_textureRectConstant		= glGetUniformLocation(m_id, "TextureRect"); GLErrCheck();
+	m_centerPositionConstant	= glGetUniformLocation(m_id, "CenterPosition"); GLErrCheck();
+	m_halfScaleConstant			= glGetUniformLocation(m_id, "HalfScale"); GLErrCheck();
+	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize"); GLErrCheck();
+	m_sampler					= glGetUniformLocation(m_id, "gSampler"); GLErrCheck();
 
 	m_initialized = true;
 }

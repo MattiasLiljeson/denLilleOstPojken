@@ -6,6 +6,7 @@
 #include "GlSpriteShader.h"
 #include "LodePNG.h"
 #include "SpriteInfo.h"
+#include "GlDebug.h"
 
 using namespace std;
 

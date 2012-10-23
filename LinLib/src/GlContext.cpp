@@ -6,7 +6,7 @@ GlContext* GlContext::s_instance = NULL;
 GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
 {
 	// Make sure the error flags are set to false
-	handleGlErrors();
+	GLErrCheck();
 
 	s_instance				= this;
 	m_screenWidth			= p_screenWidth;
@@ -35,7 +35,7 @@ GlContext::~GlContext()
 int GlContext::init()
 {
 	//Initialize GLFW
-	handleGlErrors();
+	GLErrCheck();
 
 	if(initGLFW() == GAME_FAIL)
 		return GAME_FAIL;
@@ -44,15 +44,15 @@ int GlContext::init()
 	if (initGlew() == GAME_FAIL)
 		return GAME_FAIL; 
 
-	handleGlErrors();
+	GLErrCheck();
 	glfwSetWindowTitle("Den lille ostpojken");
-	handleGlErrors();
+	GLErrCheck();
 
 	glfwEnable( GLFW_STICKY_KEYS );
-	handleGlErrors();
+	GLErrCheck();
 
 	glViewport(0, 0, getScreenWidth(), getScreenHeight());
-	handleGlErrors();
+	GLErrCheck();
 
 	m_spriteRenderer = new GlSpriteRenderer(this);
 	if (!m_spriteRenderer->isInitialized())
@@ -61,14 +61,14 @@ int GlContext::init()
 	initKeyMappings();
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
-	handleGlErrors();
+	GLErrCheck();
 
 	posX = 400;
 	posY = 300;
 	m_initialized = true;
 
 	glEnable(GL_DEPTH_TEST);
-	handleGlErrors();
+	GLErrCheck();
 
 	return GAME_OK;
 }
@@ -76,10 +76,10 @@ int GlContext::initGLFW()
 {
 	if (glfwInit() != GL_TRUE)
 	{
-		handleGlErrors();
+		GLErrCheck();
 		return GAME_FAIL;
 	}
-	handleGlErrors();
+	GLErrCheck();
 	return GAME_OK;
 }
 int GlContext::initGLFWWindow()
@@ -87,7 +87,7 @@ int GlContext::initGLFWWindow()
 	//Set Window Properties
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antialiasing
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3); //Major GL version
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2); //Minor GL version
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 3); //Minor GL version
 
 	//Additional parameters for the window creation.
 	//In this case it is specified that opengl with its core profile
@@ -99,33 +99,36 @@ int GlContext::initGLFWWindow()
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
 		GLFW_WINDOW) != GL_TRUE)
 	{
-		handleGlErrors();
+		GLErrCheck();
 		return GAME_FAIL;
 	}
-	handleGlErrors();
+	GLErrCheck();
 	return GAME_OK;
 }
 int GlContext::initGlew()
 {
+	glewExperimental = GL_TRUE; // Added by Jarl 2012-10-23
 	if (glewInit() != GLEW_OK)
 	{
-		handleGlErrors();
+		GLErrCheck();
 		return GAME_FAIL;
 	}
-	handleGlErrors();
+	GLErrCheck();
 	return GAME_OK;
 }
 
 int GlContext::handleGlErrors()
 {
-	GLenum failCode = 0;
-	const char* failMsg;
+	GLenum failCode = GLErrCheck();
+	// const char* failMsg;
+	// int lim=3;
 
-	do{
+	/*do{
 		failCode = glGetError();
 		failMsg = GLDebug::GLErrorString(failCode);
 		std::cout<<failMsg<<endl;
-	} while (failCode != 0);
+		lim--;
+	} while (failCode != GL_NO_ERROR && lim>0);*/
 
 	return failCode;
 }
@@ -210,7 +213,7 @@ int GlContext::beginDraw()
 	glClearColor(0, 0, 0, 1.0);
 	glClearDepth(1.0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	handleGlErrors();
+	GLErrCheck();
 	return GAME_OK;
 }
 
@@ -234,7 +237,7 @@ int GlContext::drawSprite( SpriteInfo* p_spriteInfo )
 int GlContext::endDraw()
 {
 	glfwSwapBuffers();
-	handleGlErrors();
+	GLErrCheck();
 	return GAME_OK;
 }
 
@@ -272,7 +275,7 @@ int GlContext::spriteSetUnindexedTexture(SpriteInfo* p_spriteInfo)
 void GlContext::setWindowText(string p_text)
 {
 	glfwSetWindowTitle(p_text.c_str());
-	handleGlErrors();
+	GLErrCheck();
 }
 
 int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
@@ -295,13 +298,13 @@ int GlContext::spriteSetDefaultTexture(SpriteInfo* p_spriteInfo)
 void GlContext::spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint texture)
 {
 	glBindTexture(GL_TEXTURE_2D, texture);
-	handleGlErrors();
+	GLErrCheck();
 
 	int textureWidth, textureHeight;
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &textureWidth);
-	handleGlErrors();
+	GLErrCheck();
 	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &textureHeight);
-	handleGlErrors();
+	GLErrCheck();
 
 	p_spriteInfo->textureRect.width = textureWidth;
 	p_spriteInfo->textureRect.height = textureHeight;

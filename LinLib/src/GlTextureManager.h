@@ -11,6 +11,7 @@
 #include "LodePNG.h"
 #include <vector>
 #include <string>
+#include "GlDebug.h"
 
 using namespace std;
 
