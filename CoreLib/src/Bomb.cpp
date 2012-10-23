@@ -1,6 +1,6 @@
 #include "Bomb.h"
 
-Bomb::Bomb(vector<pair<Tile*, SpriteInfo*>> p_flames, Tile* p_tile, Tilemap* p_map): GameObject(NULL)
+Bomb::Bomb(vector<pair<Tile*, SpriteInfo*> > p_flames, Tile* p_tile, Tilemap* p_map): GameObject(NULL)
 {
 	m_flameSpawn = p_flames;
 	m_elapsedTime = 0.0f;

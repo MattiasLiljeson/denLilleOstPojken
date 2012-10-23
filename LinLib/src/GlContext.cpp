@@ -133,7 +133,7 @@ int GlContext::initGlew()
 
 int GlContext::handleGlErrors()
 {
-	GLenum failCode = GLErrCheck();
+	// GLenum failCode = GLErrCheck();
 	// const char* failMsg;
 	// int lim=3;
 
@@ -144,7 +144,7 @@ int GlContext::handleGlErrors()
 		lim--;
 	} while (failCode != GL_NO_ERROR && lim>0);*/
 
-	return failCode;
+	return 1;// (int)failCode;
 }
 
 bool GlContext::isInitialized() const
@@ -371,7 +371,8 @@ void GlContext::initKeyMappings()
 		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
 	
 	// HACK: Doesn't work in glfw. Nothing works...
-	for(int i = 0; i < 10; i++)
-		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
+	// Don't push it to the repo then ffs. Breaks the linux build. Commented out for now
+	/* for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i; */
 
 }

@@ -99,7 +99,7 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
-	vector<pair<Tile*, SpriteInfo*>> flames;
+	vector<pair<Tile*, SpriteInfo*> > flames;
 	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
 	for (int i = 0; i < 4; i++)
 	{
@@ -264,7 +264,7 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 		float finalTextPosY = scrH * (p_position.y + p_textOffset.y);
 
 		font = new GlyphMap(
-			" !®}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZƒ¿¡≈ÁCCCIIiÒÛˆÚˆˆA‹UUU;§",
+			" !¬®}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ√Ñ√Ä√Å√Ö√ßCCCIIi√±√≥√∂√≤√∂√∂A√úUUU;¬§",
 			"../Textures/bubblemad_32x32.png", 32, 32);
 
 		text = new TextArea(font, p_text.size(), this, finalTextPosX,

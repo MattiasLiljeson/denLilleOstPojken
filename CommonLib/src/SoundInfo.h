@@ -1,7 +1,7 @@
 #ifndef SOUNDINFO_H
 #define SOUNDINFO_H
 
-#include <SFML\Audio.hpp>
+#include <SFML/Audio.hpp>
 #include <string>
 
 using namespace std;

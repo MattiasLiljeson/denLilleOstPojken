@@ -28,7 +28,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	m_theme = m_width = m_height = 0;
 	char comma;
 	char equals;
-	vector<vector<TilePosition>> switches(8);
+	vector<vector<TilePosition> > switches(8);
 	if(file)
 	{
 		//Begining the parsing of the map
@@ -50,11 +50,11 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 
 		m_tileMap = m_factory->CreateTileMap(m_theme, m_width, m_height, map);
 		
-		vector<vector<Switch*>> newSwitches(8);
+		vector<vector<Switch*> > newSwitches(8);
 		for(unsigned int i = 0; i < newSwitches.size(); i++)
 			newSwitches[i] = vector<Switch*>();
 
-		vector<vector<WallSwitch*>> newWallSwitches(8);
+		vector<vector<WallSwitch*> > newWallSwitches(8);
 		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
 			newWallSwitches[i] = vector<WallSwitch*>();
 		

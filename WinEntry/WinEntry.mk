@@ -28,12 +28,12 @@ projectPaths = ../CommonLib ../CoreLib ../LinLib
 # Space separated list of directories where libs that the project uses reside. 
 # This list is ONLY for linux libs. Correspodning header files are added to
 # 'libIncludePaths'.
-_libPaths = external/glew/lin-lib external/glfw/lin-lib
-libIncludePaths = external/glew/include/ external/glfw/include/
+_libPaths = external/glew/lin-lib external/glfw/lin-lib external/SFML/lib/
+libIncludePaths = external/glew/include/ external/glfw/include/ external/SFML/include/
 
 # Specify the file names of the libs that should be used when compiling.
 # The file MUST be prefixed with 'lib' and suffiex with '.a'
-__libs = libglfw.a libGLEW.a libGLEWmx.a
+__libs = libGLU.a libGL.a libglfw.a libGLEW.a libGLEWmx.a libsfml-audio.so.1.6
 
 include ../solutionSettings.mk
 include ../compileAndLink.mk
