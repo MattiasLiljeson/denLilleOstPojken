@@ -371,7 +371,7 @@ void GlContext::initKeyMappings()
 		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
 	
 	// HACK: Doesn't work in glfw. Nothing works...
-	// Don't push it to the repo then ffs. Breaks the linux build. Commented out for now
+	// Using VK_-keys breaks the Linux build. It's commented out for now.
 	/* for(int i = 0; i < 10; i++)
 		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i; */
 
