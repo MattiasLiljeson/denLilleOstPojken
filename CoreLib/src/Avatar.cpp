@@ -26,8 +26,9 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
 	else
 		m_size = fVector2();
-	// HACK: depenedent on resolution.
-	m_offset = 16;
+
+	m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+
 	m_shadow = p_shadow;
 	if (m_shadow)
 		m_shadow->visible = false;
@@ -92,13 +93,13 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 				{
 					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
 					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
-					m_offset = 16 + 16 * (6-remaining);
+					m_offset = (16 + 8 * (6-remaining)) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 				}
 				else
 				{
 					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
 					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
-					m_offset = 32;
+					m_offset = 24 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 				}
 			}
 		}
@@ -106,7 +107,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		{
 			m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
 			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
-			m_offset = 16;
+			m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 		}
 
 		if (m_shadow)
@@ -196,7 +197,7 @@ bool Avatar::inAir()
 }
 bool Avatar::isDead()
 {
-	return m_currentState == m_avatarKilledState;
+	return m_currentState == m_avatarKilledState && m_avatarKilledState->hasDied();
 }
 void Avatar::revive(Tile* p_newPosition)
 {
@@ -206,4 +207,11 @@ void Avatar::revive(Tile* p_newPosition)
 void Avatar::setCurrentAnimation(Animation* p_animation)
 {
 	m_currentAnimation = p_animation;
+}
+fVector2 Avatar::getPostion()
+{
+	float dt = m_navigationData->dt;
+	fVector2 p1 = m_navigationData->m_currentTile->getPosition();
+	fVector2 p2 = m_navigationData->m_nextTile->getPosition();
+	return p1 * (1-dt) + p2 * dt;
 }

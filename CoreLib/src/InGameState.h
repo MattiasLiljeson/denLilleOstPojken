@@ -25,6 +25,8 @@ private:
 	float					m_victoryTime;
 	int						m_desiredMap;
 
+	bool					m_paused;
+
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
 	virtual ~InGameState();

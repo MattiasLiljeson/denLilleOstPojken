@@ -394,6 +394,22 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
+	PauseStruct pauseData;
+	pos = fVector3(0.5f, 0.7f, 0.9f); 
+	texts = "GAME PAUSED";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	pauseData.paused = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.6f, 0.9f); 
+	texts = "PRESS P TO UNPAUSE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	pauseData.pressToPlay = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 	//End added by Anton
 
 
@@ -419,5 +435,5 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, x, y, speed, bomb);
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, x, y, speed, bomb);
 }

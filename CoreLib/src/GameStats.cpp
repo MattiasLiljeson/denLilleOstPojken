@@ -47,7 +47,14 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
 	{
-		m_powerUpTimers.at(index)->tick();
+		if (p_deltaTime > 0)
+		{
+			if (m_powerUpTimers[index]->isPaused())
+				m_powerUpTimers[index]->start();
+			m_powerUpTimers.at(index)->tick();
+		}
+		else
+			m_powerUpTimers[index]->pause();
 	}
 
 	if(m_superMode)

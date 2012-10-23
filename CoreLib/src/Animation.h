@@ -23,6 +23,7 @@ public:
 	void update(float p_dt);
 	Rect getCurrentFrame();
 	bool hasFinished();
+	void restart();
 };
 
 #endif

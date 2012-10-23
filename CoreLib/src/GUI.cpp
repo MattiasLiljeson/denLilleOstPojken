@@ -3,7 +3,7 @@
 #include <ToString.h>
 
 GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
-	VictoryStruct p_victory, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
+	VictoryStruct p_victory, PauseStruct p_pauseData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -20,12 +20,26 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTim
 	m_victoryData.baseScore->getTextArea()->setText("");
 	m_victoryData.multiplier->getTextArea()->setText("");
 	m_victoryData.finalScore->getTextArea()->setText("");
+
+	m_pauseData = p_pauseData;
+	m_pauseData.paused->getTextArea()->setText("");
+	m_pauseData.pressToPlay->getTextArea()->setText("");
 }
 GUI::~GUI()
 {
 	delete m_elapsedTime;
 	delete m_buffPowerUp;
 	delete m_itemPowerUp;
+	delete m_parTime;
+	delete m_score;
+	delete m_totalScore;
+
+	delete m_victoryData.victory;
+	delete m_victoryData.baseScore;
+	delete m_victoryData.multiplier;
+	delete m_victoryData.finalScore;
+	delete m_pauseData.paused;
+	delete m_pauseData.pressToPlay;
 }
 void GUI::update(float p_dt)
 {
@@ -71,4 +85,14 @@ void GUI::showMultiplier(float p_multiplier)
 void GUI::showTotalScore(int p_finalScore)
 {
 	m_victoryData.finalScore->getTextArea()->setText("FINAL SCORE: " + toString(p_finalScore));
+}
+void GUI::pause()
+{
+	m_pauseData.paused->getTextArea()->setText("GAME PAUSED");
+	m_pauseData.pressToPlay->getTextArea()->setText("PRESS P TO UNPAUSE");
+}
+void GUI::unpause()
+{
+	m_pauseData.paused->getTextArea()->setText("");
+	m_pauseData.pressToPlay->getTextArea()->setText("");
 }

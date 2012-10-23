@@ -79,6 +79,18 @@ void InGameState::update(float p_dt)
 	if (m_io)
 	{
 		InputInfo input = m_io->fetchInput();
+
+		if (input.keys[InputInfo::P_KEY] == InputInfo::KEYPRESSED)
+		{
+			m_paused = !m_paused;
+			if (m_paused)
+				m_gui->pause();
+			else
+				m_gui->unpause();
+		}
+		if (m_paused)
+			p_dt = 0;
+
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
 			m_parent->requestStateChange(m_parent->getMenuState());
@@ -86,11 +98,11 @@ void InGameState::update(float p_dt)
 		if (m_stats->getNumPills() < 1)
 		{
 			if(input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
+
 			{			
 				if (m_currentMap < m_maps.size() - 1)
 				{
 					m_currentMap = m_currentMap+1;
-					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 					restart();
 				}
 				else
@@ -159,7 +171,10 @@ void InGameState::update(float p_dt)
 				if (m_stats->getNumLives() > 0)
 					m_avatar->revive(m_startTile);
 				else
+				{
+					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore()-m_stats->getScore();
 					m_parent->requestStateChange(m_parent->getGameOverState());
+				}
 
 
 			}
@@ -271,6 +286,7 @@ void InGameState::restart()
 		m_monsters = mapParser.getMonsters();
 		m_traps = mapParser.getTraps();
 		m_gui = mapParser.getGUI();
+		m_paused = false;
 
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();
