@@ -195,7 +195,7 @@ bool Avatar::inAir()
 }
 bool Avatar::isDead()
 {
-	return m_currentState == m_avatarKilledState;
+	return m_currentState == m_avatarKilledState && m_avatarKilledState->hasDied();
 }
 void Avatar::revive(Tile* p_newPosition)
 {

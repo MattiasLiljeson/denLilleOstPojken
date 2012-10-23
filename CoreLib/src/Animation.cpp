@@ -36,3 +36,8 @@ bool Animation::hasFinished()
 {
 	return m_currentFrame >= m_frameCount;
 }
+void Animation::restart()
+{
+	m_currentFrame = 0;
+	m_dt = 0;
+}
