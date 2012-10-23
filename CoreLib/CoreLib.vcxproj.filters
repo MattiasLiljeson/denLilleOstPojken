@@ -212,6 +212,12 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuSubState.cpp">
+		<Filter>Source\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapHeader.cpp">
+      <Filter>Source\LoadMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VictoryState.cpp">
       <Filter>Source\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
@@ -342,7 +348,14 @@
     <ClInclude Include="src\Animation.h">
       <Filter>Source</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="src\MenuSubState.h">
+=======
+    <ClInclude Include="src\MapHeader.h">
+      <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VictoryState.h">
+>>>>>>> origin/s4u62t1_states
       <Filter>Source\GameStates</Filter>
     </ClInclude>
   </ItemGroup>

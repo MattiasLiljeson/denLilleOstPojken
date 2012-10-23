@@ -607,5 +607,4 @@ void DxContext::initKeyMappings()
 
 	for(int i = 0; i < 10; i++)
 		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
-
 }

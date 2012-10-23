@@ -3,46 +3,15 @@
 #include "Game.h"
 #include <Circle.h>
 
-InGameState::InGameState(StateManager* p_parent, IODevice* p_io, bool p_reset): State(p_parent)
+InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset): State(p_parent)
 {
 	m_io = p_io;
-	// Allocation: Moved to onEntry (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		m_factory = new GOFactory(p_io);
-		m_tileMap = NULL;
-		m_stats = NULL;
-		m_currentMap = 1;
-		if (p_reset)
-			restart();
-	}
-	
-	onEntry(); // alternative
-	*/
+	m_maps = p_maps;
 }
 InGameState::~InGameState()
 {
-	// Deallocation: Moved to onExit (Added by Jarl 2012-10-15)
-	/*
-	if (m_io)
-	{
-		for (int i = m_gameObjects.size() - 1; i >= 0; i--)
-		{
-			delete m_gameObjects.at(i);
-		}
-		m_gameObjects.clear();
-		if (m_tileMap)
-			delete m_tileMap;
-		if (m_stats)
-			delete m_stats;
-		if (m_factory)
-			delete m_factory;
-	}
-	*/
 	onExit();
 }
-
 bool InGameState::onEntry()
 {
 	if (!m_resourcesAllocated)
@@ -54,6 +23,7 @@ bool InGameState::onEntry()
 			m_stats = NULL;
 			m_currentMap = 0;
 			m_gui = NULL;
+			m_parent->getCommonResources()->totalScore = 0;
 		}
 		restart();
 		m_resourcesAllocated=true;
@@ -92,71 +62,90 @@ void InGameState::update(float p_dt)
 	if (m_io)
 	{
 		InputInfo input = m_io->fetchInput();
-		
-		if (m_stats->getNumPills() < 1)
-		{
-			m_currentMap = (m_currentMap+1) % 4;
-			restart();
-			return;
-		}
-
-		for (unsigned int index = 0; index < m_gameObjects.size(); index++)
-		{
-			m_gameObjects[index]->update(p_dt, input);
-		};
-
-		checkDynamicCollision();
-
-	
-		if (m_stats)
-		{
-			m_stats->update(p_dt, input);
-			if (m_stats->getActivatedItem() == 0)
-			{
-				Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
-				m_bombs.push_back(b);
-				m_gameObjects.push_back(b);
-			}
-		}
-
-		if (m_gui)
-			m_gui->update(p_dt);
-
-		int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
-
-		stringstream ss;
-
-		ss << elapsed;
-
-		string text = "Elapsed Game Time: " + ss.str() + " seconds";
-
-		m_io->setWindowText(text);
-
-		if (input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED)
-		{
-			//restart();
-			//return;
-		}
-		//
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}
-		/*
-		if(input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning())
+		if (m_stats->getNumPills() < 1)
 		{
-			m_parent->terminate();
+			if(input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
+			{			
+				if (m_currentMap < m_maps.size() - 1)
+				{
+					m_currentMap = m_currentMap+1;
+					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+					restart();
+				}
+				else
+				{
+					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+					m_parent->requestStateChange(m_parent->getVictoryState());
+				}
+				return;
+			}
+			else if (m_victoryTime > 2.4f)
+			{
+				m_gui->showTotalScore(m_stats->getScore() * m_stats->getMultiplier());
+			}
+			else if (m_victoryTime > 2.1f)
+			{
+				m_gui->showMultiplier(m_stats->getMultiplier());
+			}
+			else if (m_victoryTime > 1.8f)
+			{
+				m_gui->showBaseScore(m_stats->getScore());
+			}
+			else if (m_victoryTime > 1.5f)
+			{
+				m_gui->showVictory();
+			}
+			m_victoryTime+= p_dt;
+			m_io->toneSceneBlackAndWhite(min(m_victoryTime / 1, 1.0f));
 		}
-		*/
-		if (m_avatar->isDead())
+		else
 		{
-			m_stats->loseLife();
-			if (m_stats->getNumLives() > 0)
-				m_avatar->revive(m_startTile);
-			else
-				m_parent->requestStateChange(m_parent->getMenuState());
+			for (unsigned int index = 0; index < m_gameObjects.size(); index++)
+			{
+				m_gameObjects[index]->update(p_dt, input);
+			};
+
+			checkDynamicCollision();
+
+	
+			if (m_stats)
+			{
+				m_stats->update(p_dt, input);
+				if (m_stats->getActivatedItem() == 0)
+				{
+					Bomb* b = m_factory->CreateBomb(m_avatar->getClosestTile(), m_tileMap); 
+					m_bombs.push_back(b);
+					m_gameObjects.push_back(b);
+				}
+			}
+
+			if (m_gui)
+				m_gui->update(p_dt);
+
+			int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
+
+			stringstream ss;
+
+			ss << elapsed;
+
+			string text = "Elapsed Game Time: " + ss.str() + " seconds";
+
+			m_io->setWindowText(text);
+
+			if (m_avatar->isDead())
+			{
+				m_stats->loseLife();
+				if (m_stats->getNumLives() > 0)
+					m_avatar->revive(m_startTile);
+				else
+					m_parent->requestStateChange(m_parent->getGameOverState());
 
 
+			}
 		}
 	}
 }
@@ -219,6 +208,7 @@ void InGameState::restart()
 {
 	if (m_io)
 	{
+		m_victoryTime = 0;
 		m_io->clearSpriteInfos();
 		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
@@ -229,18 +219,23 @@ void InGameState::restart()
 		m_bombs.clear();
 		if (m_tileMap)
 			delete m_tileMap;
-		if (m_stats)
-			delete m_stats;
 		if (m_gui)
 			delete m_gui;
 
 		m_tileMap	= 0;
 		MapLoader mapParser;
-		m_stats = new GameStats(m_parent->getNewTimerInstance());
+
+		int tscore = 0;
+		if (m_stats)
+		{
+			tscore = m_stats->getTotalScore();
+			delete m_stats;
+		}
+		m_stats = new GameStats(m_parent->getNewTimerInstance(), m_maps[m_currentMap].parTime, tscore);
 
 		stringstream ss;
 		ss << m_currentMap;
-		string mapString = "../Maps/" + ss.str() + ".txt";
+		string mapString = "../Maps/" + m_maps[m_currentMap].filename;
 		mapParser.parseMap(mapString, m_io, m_stats, m_factory);
 
 		m_tileMap = mapParser.getTileMap();

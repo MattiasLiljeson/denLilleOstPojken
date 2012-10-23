@@ -134,7 +134,11 @@ void DxSpriteRenderer::draw()
 		(float)m_spriteInfo->textureRect.width / textureDesc.Width,
 		(float)m_spriteInfo->textureRect.height / textureDesc.Height);
 
- 	m_shader->setBuffer(m_spriteData, m_texture);
+	//Added by Anton
+	PostProcessBuffer ppbuffer;
+	ppbuffer.ppEffects = Vector4(m_spriteInfo->bwFraction, m_spriteInfo->sepiaFraction, 0, 0);
+
+ 	m_shader->setBuffer(m_spriteData, ppbuffer, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);
 	m_deviceContext->PSSetShader(m_shader->getPixelShader().Data, 0, 0);
 	m_deviceContext->HSSetShader(NULL, 0, 0);

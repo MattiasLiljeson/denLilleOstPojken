@@ -2,12 +2,14 @@
 #define MENUSTATE_H
 
 #include "GOFactory.h"
+#include "MenuItem.h"
 #include "SoundInfo.h"
 #include "State.h"
 #include "TextArea.h"
 #include <vector>
 #include <cmath>
 #include "MenuSubState.h"
+#include "MapHeader.h"
 
 using namespace std;
 
@@ -25,6 +27,7 @@ private:
 	float m_totTime;
 	MenuItem* m_bgItem;
 	SoundInfo* m_itemSelectSnd;
+	vector<MapData>	m_maps;
 
 private:
 	//utility functions
@@ -42,7 +45,7 @@ private:
 	void initMenuItems();
 
 public:
-	MenuState(StateManager* p_parent, IODevice* p_io);
+	MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps);
 	virtual ~MenuState();
 	void update(float p_dt);
 	void draw(float p_dt);
@@ -50,5 +53,3 @@ public:
 	bool onEntry();
 	bool onExit();
 };
-
-#endif

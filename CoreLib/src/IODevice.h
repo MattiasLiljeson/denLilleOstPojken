@@ -41,6 +41,8 @@ public:
 	int			getScreenHeight();
 	void		setWindowText(string p_text);
 
+	void		toneSceneBlackAndWhite(float p_fraction);
+
 
 };
 
