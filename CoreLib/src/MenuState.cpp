@@ -3,6 +3,7 @@
 
 #include "DebugPrint.h"
 #include "ToString.h"
+#include <algorithm>
 
 //=========================================================================
 // Private Functions
@@ -77,11 +78,62 @@ MenuState::MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_m
 	m_itemSelectSnd = NULL;
 	m_currItemIdx = 0;
 	m_totTime = 0.0f;
+	readHighScore();
 }
 
 MenuState::~MenuState()
 {
 	onExit();
+	writeHighScore();
+}
+
+void MenuState::readHighScore()
+{
+	ifstream file;
+	file.open("../Highscore/score.txt", ios::in);
+	if (file.is_open())
+	{
+		while (!file.eof())
+		{
+			HighScoreItem data;
+			file >> data.score;
+			m_highscore.push_back(data);
+		}
+		file.close();
+	}
+	sort(m_highscore.begin(), m_highscore.end());
+}
+void MenuState::updateHighScore()
+{
+	int newScore = m_parent->getCommonResources()->totalScore;
+	if (newScore > 0 && newScore > m_highscore.back().score)
+	{
+		m_highscore.back().score = newScore;
+		for (int i = m_highscore.size()-1; i > 0; i--)
+		{
+			if (m_highscore[i] < m_highscore[i-1])
+			{
+				HighScoreItem temp = m_highscore[i];
+				m_highscore[i] = m_highscore[i-1];
+				m_highscore[i-1] = temp;
+			}
+		}
+	}
+	m_parent->getCommonResources()->totalScore = 0;
+}
+void MenuState::writeHighScore()
+{
+	ofstream file;
+	file.open("../Highscore/score.txt", ios::out);
+	if (file.is_open())
+	{
+		for (int i = 0; i < m_highscore.size(); i++)
+		{
+			file << m_highscore[i].score;
+			file << endl;
+		}
+		file.close();
+	}
 }
 
 bool MenuState::onEntry()
@@ -94,6 +146,7 @@ bool MenuState::onEntry()
 			m_io->clearSpriteInfos();
 			if (m_factory)
 				initMenuItems();
+			updateHighScore();
 		}
 		m_resourcesAllocated = true;
 	}

@@ -12,6 +12,15 @@
 
 using namespace std;
 
+struct HighScoreItem
+{
+	int score;
+	bool operator<(const HighScoreItem& p_other)
+	{
+		return score > p_other.score;
+	}
+};
+
 class MenuState: public State
 {
 private:
@@ -26,6 +35,7 @@ private:
 
 	SoundInfo* m_itemSelectSnd;
 	vector<MapData>	m_maps;
+	vector<HighScoreItem> m_highscore;
 
 public:
 	// MI = menu item
@@ -39,6 +49,10 @@ private:
 	void indentItem( int p_idx, int p_amount );
 
 	void initMenuItems();
+
+	void readHighScore();
+	void updateHighScore();
+	void writeHighScore();
 
 public:
 	MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps);

@@ -73,7 +73,6 @@ void InGameState::update(float p_dt)
 				if (m_currentMap < m_maps.size() - 1)
 				{
 					m_currentMap = m_currentMap+1;
-					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 					restart();
 				}
 				else
@@ -142,7 +141,10 @@ void InGameState::update(float p_dt)
 				if (m_stats->getNumLives() > 0)
 					m_avatar->revive(m_startTile);
 				else
+				{
+					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore()-m_stats->getScore();
 					m_parent->requestStateChange(m_parent->getGameOverState());
+				}
 
 
 			}
