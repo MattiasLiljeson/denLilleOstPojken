@@ -243,5 +243,15 @@ void MenuState::handleInput(InputInfo p_input)
 	}
 
 	else if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning() )
-		setCurrMenu(MenuSubState::MENU_MAIN);
+		switch(m_currMenu)
+		{
+			// Go to exit menu if in main
+		case MenuSubState::MENU_MAIN:
+			setCurrMenu(MenuSubState::MENU_EXIT);
+			break;
+			
+			// Else go to main
+		default:
+			setCurrMenu(MenuSubState::MENU_MAIN);
+	}
 }
