@@ -1,6 +1,6 @@
 #include "MenuSubState.h"
 
-MenuSubState::MenuSubState( vector<MapData> p_maps, int p_type, GOFactory* p_goFactory )
+MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory )
 {
 	//std values
 	fw = 1.0f/1920.0f;
@@ -13,6 +13,7 @@ MenuSubState::MenuSubState( vector<MapData> p_maps, int p_type, GOFactory* p_goF
 	m_itemBackgroundTexturePath = "";
 
 	m_maps = p_maps;
+	m_highscore = p_highscore;
 	m_currItem = 0;
 
 	m_goFactory = p_goFactory;
@@ -26,8 +27,10 @@ MenuSubState::MenuSubState( vector<MapData> p_maps, int p_type, GOFactory* p_goF
 			setToLevelSelect();
 			break;
 		case MENU_HIGHSCORE:
+			setToHighscore();
 			break;
 		case MENU_CREDITS:
+			setToCredits();
 			break;
 		case MENU_EXIT:
 			setToExit();
@@ -67,23 +70,43 @@ void MenuSubState::setToLevelSelect()
 	m_texts.resize(LS_NUM_ITEMS);
 	m_texts[LS_MAIN] = "GO BACK TO MAIN";
 
-	for( unsigned int i=0; i<m_maps.size(); i++ )
+	for( unsigned int i=0; i<m_maps->size(); i++ )
 	{
-		m_texts.push_back(m_maps[i].name);
+		m_texts.push_back((*m_maps)[i].name);
 	}
 	// More items, Maps, need more space
 	m_firstItemPos.y += 0.3f;
+	m_itemDistance *= 0.5f;
 	createItems();
 }
 
 void MenuSubState::setToHighscore()
 {
-	// Not implemented yet
+	for( unsigned int i=0; i<m_highscore->size(); i++ )
+	{
+		stringstream ss;
+		ss << (*m_highscore)[i].score;
+		m_texts.push_back(ss.str());
+	}
+	// More items, Maps, need more space
+	m_firstItemPos.y += 0.3f;
+	m_itemDistance *= 0.5f;
+	createItems();
 }
 
 void MenuSubState::setToCredits()
 {
-	// Not implemented yet
+	m_texts.push_back("        CODER OF DESTINY: ANTON ANDERSSON ");
+	m_texts.push_back("          EVIL SCIENTIST: ALEXANDER BRODEN");
+	m_texts.push_back("BARBARIAN FROM THE NORTH: JOHAN CARLBERG  ");
+	m_texts.push_back("      THE VIENNAN ARTIST: JARL LARSSON    ");
+	m_texts.push_back("MASTER OF TIME AND SPACE: MATTIAS LILJESON");
+	m_texts.push_back("                  MR CEO: ROBIN THUNSTROM ");
+
+	// More items, Names, need more space
+	m_firstItemPos.y += 0.3f;
+	m_itemDistance *= 0.5f;
+	createItems();
 }
 
 void MenuSubState::setToExit()

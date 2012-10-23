@@ -14,15 +14,6 @@
 
 using namespace std;
 
-struct HighScoreItem
-{
-	int score;
-	bool operator<(const HighScoreItem& p_other)
-	{
-		return score > p_other.score;
-	}
-};
-
 class MenuState: public State
 {
 private:
