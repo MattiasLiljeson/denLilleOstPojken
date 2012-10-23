@@ -188,7 +188,6 @@ bool MenuState::onExit()
 			delete m_bgItem;
 			for( unsigned int menuIdx=0; menuIdx<m_menus.size(); menuIdx++ )
 			{
-				// MEMORY LEAK: NOT 
 				delete m_menus[menuIdx];
 				m_menus[menuIdx] = NULL;
 			}

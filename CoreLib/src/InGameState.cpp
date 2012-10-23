@@ -9,8 +9,8 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_maps = p_maps;
 	m_currentMap = 0;
 	m_desiredMap = -1;
+	m_factory = new GOFactory(m_io);
 	m_avatar	= NULL;
-	m_factory	= NULL;
 	m_gui		= NULL;
 	m_tileMap	= NULL;
 	m_stats		= NULL;
@@ -18,6 +18,11 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 }
 InGameState::~InGameState()
 {
+	if (m_factory)
+	{
+		delete m_factory;
+		m_factory = NULL;
+	}
 	onExit();
 }
 bool InGameState::onEntry()
@@ -26,7 +31,6 @@ bool InGameState::onEntry()
 	{
 		if (m_io)
 		{
-			m_factory = new GOFactory(m_io);
 			m_tileMap = NULL;
 			m_stats = NULL;
 			m_currentMap = 0;
@@ -54,8 +58,6 @@ bool InGameState::onExit()
 				delete m_tileMap;
 			if (m_stats)
 				delete m_stats;
-			if (m_factory)
-				delete m_factory;
 			if (m_gui)
 				delete m_gui;
 		}
@@ -227,15 +229,25 @@ void InGameState::restart()
 		m_io->clearSpriteInfos();
 		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
-			delete m_gameObjects[i];
+			if( m_gameObjects[i] != NULL)
+			{
+				delete m_gameObjects[i];
+				m_gameObjects[i] = NULL;
+			}
 		}
 		m_gameObjects.clear();
 		m_monsters.clear();
 		m_bombs.clear();
 		if (m_tileMap)
+		{
 			delete m_tileMap;
+			m_tileMap = NULL;
+		}
 		if (m_gui)
+		{
 			delete m_gui;
+			m_gui = NULL;
+		}
 
 		m_tileMap	= 0;
 		MapLoader mapParser;
@@ -286,7 +298,7 @@ int InGameState::setCurrentMap( int p_mapIdx )
 	if(p_mapIdx < m_maps.size() )
 	{
 		m_desiredMap = p_mapIdx;
-		restart();
+		//restart();
 		return GAME_OK;
 	}
 	else
