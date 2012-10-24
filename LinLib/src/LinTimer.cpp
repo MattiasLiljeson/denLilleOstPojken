@@ -27,7 +27,6 @@ LinTimer::LinTimer(): Timer()
 }
 void LinTimer::start()
 {
-	mElapsedTime = 0;
 	if (!mRunning)
 	{
 		if (clock_gettime(m_timerType, &m_currentTime)==-1)
@@ -38,9 +37,11 @@ void LinTimer::start()
 void LinTimer::stop()
 {
 	mRunning = false;
+	mElapsedTime = 0;
 }
 void LinTimer::pause()
 {
+	mRunning = false;
 }
 void LinTimer::tick()
 {
@@ -48,10 +49,10 @@ void LinTimer::tick()
 	{
 		timespec now;
 		if (clock_gettime(m_timerType, &now)==-1)
-        	cout<<"clock_gettime() failed";
-		mDeltaTime = (double)(diff(m_currentTime,now).tv_nsec/m_freq.tv_nsec*1000000000.0);
-		mDeltaTime = 0.01;
+        		cout<<"clock_gettime() failed";
+		mDeltaTime = (double)(diff(m_currentTime,now).tv_nsec) / (double)m_freq.tv_nsec/1000000000.0;
 		mElapsedTime += mDeltaTime;
+		cout<<"dt: "<<mDeltaTime<<endl;
 		m_currentTime = now;
 	}
 }
@@ -65,8 +66,8 @@ timespec LinTimer::diff(const timespec& start, const timespec& end)
 	timespec temp;
 	if ((end.tv_nsec-start.tv_nsec)<0) 
 	{
-		temp.tv_sec = end.tv_sec-start.tv_sec-1;
-		temp.tv_nsec = 1000000000+end.tv_nsec-start.tv_nsec;
+		temp.tv_sec = end.tv_sec-start.tv_sec-1.0;
+		temp.tv_nsec = 1000000000.0+end.tv_nsec-start.tv_nsec;
 	} 
 	else 
 	{
@@ -75,7 +76,3 @@ timespec LinTimer::diff(const timespec& start, const timespec& end)
 	}
 	return temp;
 }
-/*
-int clock_getres(clockid_t clock_id, struct timespec *res);
-int clock_gettime(clockid_t clock_id, struct timespec *tp);
-*/
