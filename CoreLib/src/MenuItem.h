@@ -33,6 +33,7 @@ public:
 	virtual ~MenuItem();
 
 	void update(float p_deltaTime, InputInfo p_inputInfo);
+	void animateText( float p_freq, float p_amplitude, float p_speed );
 
 	TextArea* getTextArea();
 

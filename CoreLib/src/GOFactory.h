@@ -66,8 +66,8 @@ public:
 		string p_text="", fVector2 p_textOffset=fVector2(),
 		fVector2 p_fontSize=fVector2(), string p_bgTexPath="" );
 
-	Glyph*		CreateGlyph(const string& p_texture, 
-				float p_x, float p_y, fVector2 p_size);
+	Glyph*		CreateGlyph(const string& p_texture, float p_x, float p_y,
+					fVector2 p_size, GlyphAnimation* p_anim8on = NULL);
 
 	GUI*		CreateGUI(GameStats* p_gameStats);
 

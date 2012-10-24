@@ -57,9 +57,9 @@ private:
 public:
 	MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps);
 	virtual ~MenuState();
-	void update(float p_dt);
-	void draw(float p_dt);
-	void handleInput(InputInfo p_input);
+	void update( float p_dt );
+	void draw( float p_dt );
+	void handleInput( InputInfo p_input );
 	bool onEntry();
 	bool onExit();
 };

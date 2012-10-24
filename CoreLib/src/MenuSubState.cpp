@@ -43,6 +43,14 @@ MenuSubState::~MenuSubState()
 	clear();
 }
 
+void MenuSubState::update( float p_dt )
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+	{
+		m_items[i]->update( p_dt, InputInfo());
+	}
+}
+
 void MenuSubState::clear()
 {
 	for( unsigned int i=0; i<m_items.size(); i++)

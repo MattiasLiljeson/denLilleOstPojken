@@ -54,6 +54,8 @@ struct MenuSubState
 	MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory);
 	~MenuSubState();
 	
+	void update( float p_dt );
+
 	void clear();
 	void setToMain();
 	void setToLevelSelect();

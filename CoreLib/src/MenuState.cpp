@@ -272,14 +272,12 @@ bool MenuState::onExit()
 }
 
 void MenuState::update(float p_dt)
-{
-	m_totTime +=  p_dt;
-
-	float fac = sin(m_totTime*5)*3;
-	float fac2 = cos(m_totTime*5)*3;
+{	
+	for( unsigned int i=0; i<m_menus.size(); i++)
+		m_menus[i]->update( p_dt );
 
 	if(m_currMenu < m_menus.size() && m_currItemIdx < m_menus[m_currMenu]->m_items.size())
-		m_menus[m_currMenu]->m_items[m_currItemIdx]->setTextOffset(fac2, fac);
+		m_menus[m_currMenu]->m_items[m_currItemIdx]->animateText( 10.0f, 3.0f, 1.0f );
 
 	if (m_io)
 	{
@@ -290,7 +288,6 @@ void MenuState::update(float p_dt)
 		// it has to the last function called in update.
 		handleInput(input);
 	}
-	//m_menus[m_currMenu]->activate();
 
 }
 void MenuState::draw(float p_dt)

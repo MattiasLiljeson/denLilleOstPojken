@@ -86,6 +86,9 @@
     <Filter Include="Source\GameObject\WallSwitch">
       <UniqueIdentifier>{1368adc0-a60c-47dc-b0ec-e712dc969a17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameObject\Glyph\Glyph Animation">
+      <UniqueIdentifier>{fe380880-e7b3-433d-977c-a5793fbe8279}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -212,13 +215,16 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuSubState.cpp">
-		<Filter>Source\GameStates</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\MapHeader.cpp">
       <Filter>Source\LoadMap</Filter>
     </ClCompile>
     <ClCompile Include="src\VictoryState.cpp">
       <Filter>Source\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphAnimSinus.cpp">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -349,13 +355,19 @@
       <Filter>Source</Filter>
     </ClInclude>
     <ClInclude Include="src\MenuSubState.h">
-		<Filter>Source\GameStates</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\MapHeader.h">
       <Filter>Source\LoadMap</Filter>
     </ClInclude>
     <ClInclude Include="src\VictoryState.h">
       <Filter>Source\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimation.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimSinus.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
