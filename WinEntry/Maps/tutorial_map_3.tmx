@@ -8,9 +8,9 @@
    eJztwQEJAAAAAqDo/+h+hNoAAAAAAAAAfBpXMAAD
   </data>
  </layer>
- <layer name="THE_ONE_LAYER" width="60" height="31" visible="0">
+ <layer name="THE_ONE_LAYER" width="60" height="31">
   <data encoding="base64" compression="zlib">
-   eJztz7EJgEAQAMFTNHwsQdTYFqzEfmzb6+EQfJhg8t0WEQ0AOjSlqzNz4XdLyxDxpDv+78zOtfC7p7EzR+EXAAAAAPjGC44pcoM=
+   eJztz7ENQAAQQNEjlGIEwR4mEYa1mBtAy0Xyilf96g8RMQDAD3RpK9IX/M5pbCL2eHamK/vxQp8KfpfUFlkLfgEAAACAb9x9rG1m
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="31"/>
