@@ -24,6 +24,11 @@ struct SpriteBuffer
 	Vector4 TextureRect;
 };
 
+struct PostProcessBuffer
+{
+	Vector4 ppEffects;
+};
+
 class DxSpriteShader
 {
 private:
@@ -33,12 +38,13 @@ private:
 	PixelShaderData				m_psd;
 	ID3D11InputLayout*			m_inputLayout;
 	ID3D11Buffer*				m_buffer;
+	ID3D11Buffer*				m_ppBuffer;
 	bool						m_initialized;
 public:
 						DxSpriteShader(ID3D11Device* p_device, 
 							ID3D11DeviceContext* p_deviceContext);
 	virtual				~DxSpriteShader();
-	void				setBuffer(SpriteBuffer p_buffer, 
+	void				setBuffer(SpriteBuffer p_buffer, PostProcessBuffer p_ppBuffer,
 							ID3D11ShaderResourceView* p_texture);
 	VertexShaderData	getVertexShader();
 	PixelShaderData		getPixelShader();

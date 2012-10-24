@@ -61,6 +61,18 @@ DxSpriteShader::DxSpriteShader(ID3D11Device* p_device,
 	if (bufRes != S_OK)
 		return;
 
+	BufferDesc.Usage				= D3D11_USAGE_DYNAMIC;
+	BufferDesc.ByteWidth			= sizeof(PostProcessBuffer);
+	BufferDesc.BindFlags			= D3D11_BIND_CONSTANT_BUFFER;
+	BufferDesc.CPUAccessFlags		= D3D11_CPU_ACCESS_WRITE;
+	BufferDesc.MiscFlags			= 0;
+	BufferDesc.StructureByteStride	= 0;
+
+
+	bufRes = m_device->CreateBuffer(&BufferDesc, NULL, &m_ppBuffer);
+	if (bufRes != S_OK)
+		return;
+
 	m_initialized = true;
 }
 DxSpriteShader::~DxSpriteShader()
@@ -78,11 +90,12 @@ DxSpriteShader::~DxSpriteShader()
 	if (m_psd.Data)
 		m_psd.Data->Release();
 }
-void DxSpriteShader::setBuffer(SpriteBuffer p_buffer, 
+void DxSpriteShader::setBuffer(SpriteBuffer p_buffer, PostProcessBuffer p_ppBuffer,
 	ID3D11ShaderResourceView* p_texture)
 {
 	D3D11_MAPPED_SUBRESOURCE resource;
 	SpriteBuffer* buffer;
+	PostProcessBuffer* ppBuffer;
 
 	m_deviceContext->Map(m_buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 	buffer = (SpriteBuffer*)resource.pData;
@@ -92,10 +105,17 @@ void DxSpriteShader::setBuffer(SpriteBuffer p_buffer,
 	buffer->TextureRect = p_buffer.TextureRect;
 	m_deviceContext->Unmap(m_buffer, 0);
 
+	m_deviceContext->Map(m_ppBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
+	ppBuffer = (PostProcessBuffer*)resource.pData;
+	ppBuffer->ppEffects = p_ppBuffer.ppEffects;
+	m_deviceContext->Unmap(m_ppBuffer, 0);
+
+
 	m_deviceContext->PSSetShaderResources(0, 1, &p_texture);
 
 	unsigned int bufferNumber = 0;
 	m_deviceContext->VSSetConstantBuffers(bufferNumber, 1, &m_buffer);
+	m_deviceContext->PSSetConstantBuffers(bufferNumber, 1, &m_ppBuffer);
 }
 VertexShaderData DxSpriteShader::getVertexShader()
 {

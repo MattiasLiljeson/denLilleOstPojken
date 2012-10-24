@@ -13,7 +13,7 @@ public:
 	}
 	void setup()
 	{
-		GameStats stats(NULL);
+		GameStats stats(NULL, 20);
 		newEntry(TestData("Initial Pill Count", stats.getNumPills() == 0));
 		newEntry(TestData("Null Timer", stats.getGameTimer() == 0));
 		newEntry(TestData("Initial Score", stats.getScore() == 0));

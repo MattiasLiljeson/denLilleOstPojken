@@ -15,6 +15,7 @@ public:
 	void start();
 	void stop();
 	void tick();
+	void pause();
 	Timer* newInstance();
 };
 

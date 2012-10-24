@@ -29,7 +29,8 @@ public:
 		newEntry(TestData("New Current State", manager.getCurrentState() == manager.getDesiredState()));
 
 		newSection("Invalid States");
-		State* outer = new InGameState(&manager, NULL);
+		vector<MapData> maps;
+		State* outer = new InGameState(&manager, NULL, maps);
 		manager.requestStateChange(outer);
 		newEntry(TestData("Same Desired State", manager.getDesiredState() != outer));
 

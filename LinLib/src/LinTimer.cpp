@@ -9,6 +9,9 @@ void LinTimer::start()
 void LinTimer::stop()
 {
 }
+void LinTimer::pause()
+{
+}
 void LinTimer::tick()
 {
 }

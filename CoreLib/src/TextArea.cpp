@@ -106,8 +106,10 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p
 TextArea::~TextArea()
 {
 	for (unsigned int i=0;i<m_maxLength;i++)
+	{
 		delete m_glyphs[i];
-	
+		m_glyphs[i] = NULL;
+	}
 	m_glyphs.clear();
 }
 
@@ -151,5 +153,13 @@ void TextArea::setOrigin( fVector2 p_newOrigin )
 	for( unsigned int i=0; i<m_glyphs.size(); i++ )
 	{
 		setGlyphPos( i, m_currAnchor, p_newOrigin );
+	}
+}
+
+void TextArea::setVisible( bool p_visible )
+{
+	for( unsigned int i=0; i<m_glyphs.size(); i++ )
+	{
+		m_glyphs[i]->setVisibility( p_visible );
 	}
 }

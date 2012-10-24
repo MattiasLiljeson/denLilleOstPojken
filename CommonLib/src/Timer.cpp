@@ -13,11 +13,13 @@ double Timer::getDeltaTime()
 }
 double Timer::getElapsedTime()
 {
-	if (mRunning)
-		return mElapsedTime;
-	return 0.0;
+	return mElapsedTime;
 }
 bool Timer::isStopped()
 {
-	return !mRunning;
+	return !mRunning && mElapsedTime == 0.0;
+}
+bool Timer::isPaused()
+{
+	return !mRunning && !isStopped();
 }
