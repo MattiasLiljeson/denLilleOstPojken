@@ -36,11 +36,15 @@ private:
 	void resetItemOffset( int p_idx );
 	void nextItem();
 	void prevItem();
+	void nextSelectableItem();
+	void prevSelectableItem();
 	void setCurrMenu( int p_menu );
 
 	void selectMmItem();
 	void selectLsItem();
-	void selectExState();
+	void selectHsItem();
+	void selectCrItem();
+	void selectExItem();
 
 	bool playSound();
 

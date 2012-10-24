@@ -63,6 +63,7 @@ void MenuSubState::setToMain()
 	m_texts[MM_EXIT]			= "EXIT";
 
 	createItems();
+	setAllSelectable();
 }
 
 void MenuSubState::setToLevelSelect()
@@ -78,10 +79,14 @@ void MenuSubState::setToLevelSelect()
 	m_firstItemPos.y += 0.3f;
 	m_itemDistance *= 0.5f;
 	createItems();
+	setAllSelectable();
 }
 
 void MenuSubState::setToHighscore()
 {
+	m_texts.resize(HS_NUM_ITEMS);
+	m_texts[HS_MAIN] = "GO BACK TO MAIN";
+
 	for( unsigned int i=0; i<m_highscore->size(); i++ )
 	{
 		stringstream ss;
@@ -90,12 +95,15 @@ void MenuSubState::setToHighscore()
 	}
 	// More items, Maps, need more space
 	m_firstItemPos.y += 0.3f;
-	m_itemDistance *= 0.5f;
+	//m_itemDistance *= 0.5f;
 	createItems();
 }
 
 void MenuSubState::setToCredits()
 {
+	m_texts.resize(CR_NUM_ITEMS);
+	m_texts[CR_MAIN] = "GO BACK TO MAIN";
+
 	m_texts.push_back("        CODER OF DESTINY: ANTON ANDERSSON ");
 	m_texts.push_back("          EVIL SCIENTIST: ALEXANDER BRODEN");
 	m_texts.push_back("BARBARIAN FROM THE NORTH: JOHAN CARLBERG  ");
@@ -105,7 +113,7 @@ void MenuSubState::setToCredits()
 
 	// More items, Names, need more space
 	m_firstItemPos.y += 0.3f;
-	m_itemDistance *= 0.5f;
+	//m_itemDistance *= 0.5f;
 	createItems();
 }
 
@@ -116,6 +124,7 @@ void MenuSubState::setToExit()
 	m_texts[EX_NO]	= "NO";
 
 	createItems();
+	setAllSelectable();
 }
 
 void MenuSubState::createItems()
@@ -128,6 +137,11 @@ void MenuSubState::createItems()
 			itemPos, m_itemSize, m_texts[i], m_itemTextOffset, m_itemFontSize,
 			m_itemBackgroundTexturePath));
 	}
+	
+	setAllUnSelectable();
+	// The first item is always selectable as it's the menu item back to 
+	// the main menu;
+	setFirstSelectable();
 }
 
 void MenuSubState::activate()
@@ -143,5 +157,26 @@ void MenuSubState::deActivate()
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{
 		m_items[i]->setVisible(false);
+	}
+}
+
+void MenuSubState::setFirstSelectable()
+{
+	m_items.front()->setSelectable(true);
+}
+
+void MenuSubState::setAllSelectable()
+{
+	for( unsigned int i=0; i<m_items.size(); i++ )
+	{
+		m_items[i]->setSelectable(true);
+	}
+}
+
+void MenuSubState::setAllUnSelectable()
+{
+	for( unsigned int i=0; i<m_items.size(); i++ )
+	{
+		m_items[i]->setSelectable(false);
 	}
 }

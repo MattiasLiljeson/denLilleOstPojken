@@ -44,6 +44,10 @@ struct MenuSubState
 	enum { MM_LEVEL_SELECT, MM_HIGHSCORE, MM_CREDITS, MM_EXIT, MM_NUM_ITEMS };
 	// Level Select
 	enum { LS_MAIN, LS_NUM_ITEMS };
+	// Highscore
+	enum { HS_MAIN, HS_NUM_ITEMS };
+	// Credits
+	enum { CR_MAIN, CR_NUM_ITEMS };
 	// Exit
 	enum { EX_YES, EX_NO, EX_NUM_ITEMS };
 
@@ -60,6 +64,9 @@ struct MenuSubState
 
 	void activate();
 	void deActivate();
+	void setFirstSelectable();
+	void setAllSelectable();
+	void setAllUnSelectable();
 };
 
 #endif

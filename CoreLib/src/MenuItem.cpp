@@ -84,3 +84,13 @@ void MenuItem::setVisible( bool p_visible )
 	if(m_text != NULL)
 		m_text->setVisible( p_visible );
 }
+
+void MenuItem::setSelectable( bool p_selectable )
+{
+	m_selectable = p_selectable;
+}
+
+bool MenuItem::isSelectable()
+{
+	return m_selectable;
+}
