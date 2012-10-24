@@ -8,6 +8,9 @@
 #include "TextArea.h"
 #include <vector>
 #include <cmath>
+#include "MenuSubState.h"
+#include "MapHeader.h"
+#include "InGameState.h"
 
 using namespace std;
 
@@ -15,31 +18,44 @@ class MenuState: public State
 {
 private:
 	IODevice* m_io;
-
-	float m_totTime;
-	unsigned int m_currItemIdx;
-	vector<MenuItem*> m_menuItems;
-	MenuItem* m_bgItem;
-
 	GOFactory* m_factory;
 
-	SoundInfo* m_itemSelectSnd;
+	// Menus
+	vector<MenuSubState*> m_menus;
+	unsigned int m_currMenu;
+	unsigned int m_currItemIdx;
 
-public:
-	// MI = menu item
-	enum { MI_LEVEL_SELECT, MI_HIGHSCORE, MI_CREDITS, MI_EXIT };
+	float m_totTime;
+	MenuItem* m_bgItem;
+	SoundInfo* m_itemSelectSnd;
+	vector<MapData>	m_maps;
+	vector<HighScoreItem> m_highscore;
 
 private:
 	//utility functions
+	void resetItemOffset( int p_idx );
 	void nextItem();
 	void prevItem();
+	void nextSelectableItem();
+	void prevSelectableItem();
+	void setCurrMenu( int p_menu );
+
+	void selectMmItem();
+	void selectLsItem();
+	void selectHsItem();
+	void selectCrItem();
+	void selectExItem();
+
 	bool playSound();
-	void indentItem( int p_idx, int p_amount );
 
 	void initMenuItems();
+	
+	void readHighScore();
+	void updateHighScore();
+	void writeHighScore();
 
 public:
-	MenuState(StateManager* p_parent, IODevice* p_io);
+	MenuState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps);
 	virtual ~MenuState();
 	void update(float p_dt);
 	void draw(float p_dt);

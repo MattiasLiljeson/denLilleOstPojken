@@ -40,7 +40,9 @@ MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
 MenuItem::~MenuItem()
 {
 	delete m_font;
+	m_font = NULL;
 	delete m_text;
+	m_text = NULL;
 }
 
 void MenuItem::update( float p_deltaTime, InputInfo p_inputInfo )
@@ -65,12 +67,30 @@ int MenuItem::setTextOffset( float p_x, float p_y )
 	
 }
 
-int MenuItem::setBasePosition(float p_x, float p_y )
+int MenuItem::setBasePosition( float p_x, float p_y )
 {
 	m_basePosition.x = p_x;
 	m_basePosition.y = p_y;
 	
-	if(updateSprite() == GAME_OK && updateText() == GAME_OK)
+	if( updateSprite() == GAME_OK && updateText() == GAME_OK )
 			return GAME_OK;
 	return GAME_FAIL;
+}
+
+void MenuItem::setVisible( bool p_visible )
+{
+	if(m_spriteInfo != NULL)
+		m_spriteInfo->visible = p_visible;
+	if(m_text != NULL)
+		m_text->setVisible( p_visible );
+}
+
+void MenuItem::setSelectable( bool p_selectable )
+{
+	m_selectable = p_selectable;
+}
+
+bool MenuItem::isSelectable()
+{
+	return m_selectable;
 }

@@ -73,6 +73,7 @@ public:
 	bool		isDead();
 	void		revive(Tile* p_newPosition);
 	void		setCurrentAnimation(Animation* p_animation);
+	fVector2	getPostion();
 };
 
 #endif

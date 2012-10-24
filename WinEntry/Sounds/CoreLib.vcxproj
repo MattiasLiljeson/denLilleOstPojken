@@ -41,11 +41,9 @@
     <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
-    <ClCompile Include="src\MapHeader.cpp" />
     <ClCompile Include="src\MapLoader.cpp" />
     <ClCompile Include="src\MenuItem.cpp" />
     <ClCompile Include="src\MenuState.cpp" />
-    <ClCompile Include="src\MenuSubState.cpp" />
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Pill.cpp" />
     <ClCompile Include="src\PillEatenState.cpp" />
@@ -61,7 +59,6 @@
     <ClCompile Include="src\Tilemap.cpp" />
     <ClCompile Include="src\TMFactory.cpp" />
     <ClCompile Include="src\Trap.cpp" />
-    <ClCompile Include="src\VictoryState.cpp" />
     <ClCompile Include="src\WallSwitch.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -87,11 +84,9 @@
     <ClInclude Include="src\GUI.h" />
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
-    <ClInclude Include="src\MapHeader.h" />
     <ClInclude Include="src\MapLoader.h" />
     <ClInclude Include="src\MenuItem.h" />
     <ClInclude Include="src\MenuState.h" />
-    <ClInclude Include="src\MenuSubState.h" />
     <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />
     <ClInclude Include="src\PillEatenState.h" />
@@ -108,7 +103,6 @@
     <ClInclude Include="src\TileTypes.h" />
     <ClInclude Include="src\TMFactory.h" />
     <ClInclude Include="src\Trap.h" />
-    <ClInclude Include="src\VictoryState.h" />
     <ClInclude Include="src\WallSwitch.h" />
   </ItemGroup>
   <ItemGroup>

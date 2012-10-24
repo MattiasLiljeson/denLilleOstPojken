@@ -1,14 +1,16 @@
 #include "GameStats.h"
 #include <iostream>
 
-GameStats::GameStats(Timer* p_timer)
+
+GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
 {
 	m_timer		= p_timer;
-
+	m_parTime	= p_parTime;
 	m_numPills	= 0;
 	m_speeded	= false;
 	m_superMode = false;
 	m_score		= 0;
+	m_previousScore = p_previousScore;
 	m_lives		= 3;
 	m_itemSlot	= -1;
 	m_buffSlot	= -1;
@@ -45,7 +47,14 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
 	{
-		m_powerUpTimers.at(index)->tick();
+		if (p_deltaTime > 0)
+		{
+			if (m_powerUpTimers[index]->isPaused())
+				m_powerUpTimers[index]->start();
+			m_powerUpTimers.at(index)->tick();
+		}
+		else
+			m_powerUpTimers[index]->pause();
 	}
 
 	if(m_superMode)
@@ -90,6 +99,7 @@ int GameStats::getNumPills()
 void GameStats::pillEaten()
 {
 	m_numPills -= 1;
+	addScore(PILL_EATEN);
 }
 void GameStats::addPill()
 {
@@ -130,6 +140,10 @@ void GameStats::addScore(int p_points)
 int GameStats::getScore() const
 {
 	return m_score;
+}
+int	GameStats::getTotalScore()
+{
+	return m_previousScore + m_score * getMultiplier();
 }
 Timer* GameStats::getGameTimer()
 {
@@ -176,4 +190,16 @@ void GameStats::clearBuffs()
 	m_superMode	 = false;
 	m_superModeTimer->stop();
 	m_speedUpTimer->stop();
+}
+int GameStats::getParTime()
+{
+	return m_parTime;
+}
+float GameStats::getMultiplier()
+{
+	float t = (float)m_gameTimer->getElapsedTime();
+	if (t > m_parTime)
+		return 1;
+	float frac = 1-(t / m_parTime);
+	return 1 + frac;
 }

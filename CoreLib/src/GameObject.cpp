@@ -32,6 +32,7 @@ GameObject::~GameObject()
 	m_gameStats = NULL;
 	m_currentState = NULL;
 	delete m_basicIdleState;
+	m_basicIdleState = NULL;
 }
 
 int GameObject::switchState(GOState* p_newState, bool p_forceSwitchToSame)
@@ -55,7 +56,7 @@ void GameObject::update(float p_deltaTime, InputInfo p_inputInfo)
 
 //getPosition and getRadius must be updated.
 //they cannot depend on spriteinformation
-fVector2 GameObject::getPostion() const 
+fVector2 GameObject::getPostion() 
 {
 	fVector2 position(0, 0);
 
@@ -68,7 +69,7 @@ fVector2 GameObject::getPostion() const
 	return position;
 }
 
-float GameObject::getRadius() const
+float GameObject::getRadius()
 {
 	if (!m_spriteInfo)
 		return 0;

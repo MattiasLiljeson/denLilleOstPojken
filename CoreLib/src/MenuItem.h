@@ -17,6 +17,7 @@ class TextArea;
 class MenuItem: public GameObject
 {
 private:
+	bool m_selectable;
 	fVector2 m_basePosition;
 	fVector2 m_textOffset; 
 	GlyphMap* m_font;
@@ -37,6 +38,10 @@ public:
 
 	int setTextOffset( float p_x, float p_y );
 	int setBasePosition( float p_x, float p_y );
+
+	void setVisible(bool p_visible);
+	void setSelectable( bool p_selectable );
+	bool isSelectable();
 
 };
 
