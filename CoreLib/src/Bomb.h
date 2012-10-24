@@ -47,13 +47,13 @@ public:
 class Bomb: public GameObject
 {
 private:
-	vector<pair<Tile*, SpriteInfo*>> m_flameSpawn;
+	vector<pair<Tile*, SpriteInfo*> > m_flameSpawn;
 	vector<Flame*> m_flames;
 	float m_elapsedTime;
 	int m_currentDist;
 	Tile* m_start;
 public:
-	Bomb(vector<pair<Tile*, SpriteInfo*>> p_flames, Tile* p_tile, Tilemap* p_map);
+	Bomb(vector<pair<Tile*, SpriteInfo*> > p_flames, Tile* p_tile, Tilemap* p_map);
 	virtual ~Bomb();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	bool	isColliding(Monster* p_monster);

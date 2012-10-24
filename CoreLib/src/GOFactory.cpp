@@ -99,7 +99,7 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
-	vector<pair<Tile*, SpriteInfo*>> flames;
+	vector<pair<Tile*, SpriteInfo*> > flames;
 	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
 	for (int i = 0; i < 4; i++)
 	{
