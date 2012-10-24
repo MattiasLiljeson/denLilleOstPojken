@@ -19,6 +19,7 @@ void main()
      vec4 diffuseTexel = texture2D( gSampler, TexCoord );
 	 //diffuseTexel.rgb *= Pos.z;
      FragColor = diffuseTexel;
+     FragColor = vec4(1, 0, 0, 1); //DEBUG:
      if ( FragColor.a == 0 )
-        FragColor = vec4( 0, 0, 0, 0 );
+        FragColor = vec4( 0, 0, 0, 1 );
 }

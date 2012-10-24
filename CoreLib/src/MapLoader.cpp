@@ -37,7 +37,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 			}
 		}
 
-		vector<vector<TilePosition>> switches; 
+		vector<vector<TilePosition> > switches; 
 		int x, y;
 		for (int i = 0; i < switchCount; i++)
 		{
