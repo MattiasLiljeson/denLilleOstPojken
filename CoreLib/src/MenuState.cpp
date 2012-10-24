@@ -127,11 +127,11 @@ void MenuState::initMenuItems()
 		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
 		fVector2(fw*32, fh*32), "../Textures/SplashScreen.png" );
 
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_MAIN, m_factory));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_LEVEL_SELECT, m_factory));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_HIGHSCORE, m_factory));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_CREDITS, m_factory));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_EXIT, m_factory));
+	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_MAIN, m_factory, m_parent));
+	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_LEVEL_SELECT, m_factory, m_parent));
+	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_HIGHSCORE, m_factory, m_parent));
+	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_CREDITS, m_factory, m_parent));
+	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_EXIT, m_factory, m_parent));
 
 	for( unsigned int i=0; i<m_menus.size(); i++)
 	{
@@ -210,7 +210,8 @@ void MenuState::writeHighScore()
 		for (int i = 0; i < m_highscore.size(); i++)
 		{
 			file << m_highscore[i].score;
-			file << endl;
+			if (i < m_highscore.size()-1)
+				file << endl;
 		}
 		file.close();
 	}

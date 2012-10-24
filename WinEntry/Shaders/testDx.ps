@@ -30,7 +30,7 @@ float4 PShader(VOut pIn) : SV_TARGET
 	}
 	
 	float value = (c.r + c.g + c.b) / 3; 
-	float4 bw = float4(0, 0, 0, 1);
+	float4 bw = float4(0, 0, 0, c.a);
     bw.r = value;
     bw.g = value;
     bw.b = value;

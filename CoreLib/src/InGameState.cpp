@@ -103,6 +103,11 @@ void InGameState::update(float p_dt)
 				if (m_currentMap < m_maps.size() - 1)
 				{
 					m_currentMap = m_currentMap+1;
+
+					if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+					{
+						m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+					}
 					restart();
 				}
 				else

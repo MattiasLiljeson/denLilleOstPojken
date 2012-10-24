@@ -72,6 +72,22 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	m_textureManager = new DxTextureManager(m_device);
 	m_textureManager->getTexture("../Textures/default.png");
 
+	D3D11_BLEND_DESC BlendStateDesc;
+	ZeroMemory(&BlendStateDesc, sizeof(D3D11_BLEND_DESC));
+	BlendStateDesc.RenderTarget[0].BlendEnable = TRUE;
+	BlendStateDesc.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	BlendStateDesc.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	BlendStateDesc.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+	BlendStateDesc.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+	BlendStateDesc.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+	BlendStateDesc.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+	BlendStateDesc.RenderTarget[0].RenderTargetWriteMask = 0x0f;
+	m_device->CreateBlendState(&BlendStateDesc, &m_alphaBlending);
+
+	float blendFactor[4] = { 0.0f, 0.0f, 0.0f, 0.0f };
+	UINT sampleMask   = 0xffffffff;
+	m_deviceContext->OMSetBlendState(m_alphaBlending, blendFactor, sampleMask);
+
 	m_initialized = true;
 }
 

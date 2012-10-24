@@ -1,7 +1,7 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 600
+//#define SCREEN_WIDTH 800
+//#define SCREEN_HEIGHT 600
 //#define SCREEN_WIDTH 500
 //#define SCREEN_HEIGHT 1050
 
@@ -9,7 +9,7 @@
 #define SCREEN_START_Y 0
 
 
-#define USE_DIRECTX
+//#define USE_DIRECTX
 
 #include <IOContext.h>
 #include <Game.h>

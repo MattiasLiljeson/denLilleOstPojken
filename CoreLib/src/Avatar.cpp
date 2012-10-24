@@ -79,7 +79,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
 			pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-			pY * h + h * 0.5f; // /*temp*/ + m_offset;
+			pY * h + h * 0.5f /*temp*/ + m_offset;
 	
 
 		bool super = false;
@@ -141,7 +141,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 				if (m_shadowQueue.size() > 1)
 				{
 					pos = m_shadowQueue[0]->getPosition() * (1-m_shadowDT) + m_shadowQueue[1]->getPosition() * m_shadowDT;
-					//pos.y += m_offset;
+					pos.y += m_offset;
 					if (m_shadowQueue[1] == m_navigationData->m_nextTile && m_shadowDT > m_navigationData->dt)
 						pos = fVector2(m_spriteInfo->transformInfo.translation[TransformInfo::X], m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
 				}
