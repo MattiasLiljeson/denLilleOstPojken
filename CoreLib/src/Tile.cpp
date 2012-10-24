@@ -10,6 +10,9 @@ Tile::Tile(bool p_type, TilePosition p_position, float p_width, float p_height, 
 	m_type = p_type;
 	m_collectable = NULL;
 }
+Tile::~Tile()
+{
+}
 bool Tile::getType()
 {
 	return m_type;
@@ -56,4 +59,8 @@ void Tile::switchState()
 		m_spriteInfo->visible = false;
 	else
 		m_spriteInfo->visible = true;
+}
+void Tile::setWalkAble(bool p_walkAble)
+{
+	m_type = p_walkAble;
 }

@@ -39,6 +39,9 @@ void LinTimer::stop()
 {
 	mRunning = false;
 }
+void LinTimer::pause()
+{
+}
 void LinTimer::tick()
 {
 	if (mRunning)

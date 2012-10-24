@@ -16,6 +16,8 @@ public:
 	double			getDeltaTime();
 	double			getElapsedTime();
 	bool			isStopped();
+	bool			isPaused();
+	virtual void	pause() = 0;
 };
 
 #endif

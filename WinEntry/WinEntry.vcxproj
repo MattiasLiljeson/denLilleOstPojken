@@ -85,6 +85,7 @@
     <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\CommonLib\external\SFML\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -99,6 +100,7 @@
     <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\CommonLib\external\SFML\lib;$(LibraryPath)</LibraryPath>
     <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingRelease|Win32'">
     <LinkIncremental>false</LinkIncremental>

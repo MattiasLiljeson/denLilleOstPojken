@@ -1,3 +1,11 @@
+cbuffer PostProcessBuffer
+{
+	//Index 0: Black and White Fraction
+	//Index 1: Sepia Fraction
+	//Index 2 and 3: Buff
+	float4 PPEffects;
+};
+
 Texture2D SpriteTexture;
 SamplerState SampleType
 {
@@ -20,5 +28,12 @@ float4 PShader(VOut pIn) : SV_TARGET
 		clip(-1);
 		//c = float4(0, 0, 0, 0);
 	}
-	return c;
+	
+	float value = (c.r + c.g + c.b) / 3; 
+	float4 bw = float4(0, 0, 0, 1);
+    bw.r = value;
+    bw.g = value;
+    bw.b = value;
+	
+	return PPEffects.x * bw + (1 - PPEffects.x) * c;
 }

@@ -14,9 +14,6 @@
     <Filter Include="Source\GameObject\Tilemap">
       <UniqueIdentifier>{0a10e61a-f306-4d33-a19a-c406fac7ac65}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\States">
-      <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source\GameObject\Monster">
       <UniqueIdentifier>{a2dde8ce-d32d-4ec7-8671-0119d706aaba}</UniqueIdentifier>
     </Filter>
@@ -49,21 +46,48 @@
     </Filter>
     <Filter Include="Source\GameObject\MenuItem">
       <UniqueIdentifier>{2f78a681-58f6-4393-85f0-549cb0111d5b}</UniqueIdentifier>
-	</Filter>
-    <Filter Include="Source\GameObject\States">
+    </Filter>
+    <Filter Include="Source\GameStates">
+      <UniqueIdentifier>{4ec1f6fc-b168-4a1c-9921-80693df62884}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\ObjectStates">
       <UniqueIdentifier>{8bafb84b-d993-4e69-ac3c-09fdcb1fb4e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\States\Pill">
+    <Filter Include="Source\GameObject\ObjectStates\Pill">
       <UniqueIdentifier>{002c6e1c-1474-4240-a21a-d6cc16a5552a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source\GameObject\States\Avatar">
+    <Filter Include="Source\GameObject\ObjectStates\Avatar">
       <UniqueIdentifier>{18c83fb2-c329-4ac1-9f94-05e004e7b3ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Text">
+      <UniqueIdentifier>{affd4781-051a-4fa5-939a-7257fd312641}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Text\GlyphMap">
+      <UniqueIdentifier>{b0485893-183e-48b3-9dc3-b99963d0779d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Glyph">
+      <UniqueIdentifier>{c6aaeac9-9cab-4c1f-bd28-eb146de95b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\ObjectStates\SpeedPill">
+      <UniqueIdentifier>{4e4733f5-e99e-4d5f-84ea-31cff6e39284}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Traps">
+      <UniqueIdentifier>{fa8692a9-f65a-43b0-a7ed-e8d398024bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Collectable\BombPill">
+      <UniqueIdentifier>{dbb45e59-0afd-4857-ae62-7e122ae71ee4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\Bomb">
+      <UniqueIdentifier>{cee6cb87-7e09-43f4-9aa2-6548c06cc1c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\FACTORY">
+      <UniqueIdentifier>{44b7f416-7caa-4c25-a415-abfbd2763608}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameObject\WallSwitch">
+      <UniqueIdentifier>{1368adc0-a60c-47dc-b0ec-e712dc969a17}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Game.cpp">
-      <Filter>Source</Filter>
-    </ClCompile>
     <ClCompile Include="src\GameObject.cpp">
       <Filter>Source\GameObject</Filter>
     </ClCompile>
@@ -83,16 +107,16 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\InGameState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\MenuState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\State.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\StateManager.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\Monster.cpp">
       <Filter>Source\GameObject\Monster</Filter>
@@ -119,25 +143,82 @@
       <Filter>Source\Collision</Filter>
     </ClCompile>
     <ClCompile Include="src\GameOverState.cpp">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\AI.cpp">
       <Filter>Source\AI</Filter>
     </ClCompile>
-    <ClCompile Include="src\GOFactory.cpp">
-      <Filter>Source\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="src\MenuItem.cpp">
       <Filter>Source\GameObject\MenuItem</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="src\GOState.cpp">
-      <Filter>Source\GameObject\States</Filter>
+      <Filter>Source\GameObject\ObjectStates</Filter>
     </ClCompile>
     <ClCompile Include="src\PillEatenState.cpp">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClCompile>
-    <ClCompile Include="src\PillIldeState.cpp">
-      <Filter>Source\GameObject\States\Pill</Filter>
+    <ClCompile Include="src\AvatarKilled.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BasicIdle.cpp">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SpeedPillUse.cpp">
+      <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphMap.cpp">
+      <Filter>Source\Text\GlyphMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Glyph.cpp">
+      <Filter>Source\GameObject\Glyph</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TextArea.cpp">
+      <Filter>Source\Text</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SuperPillEaten.cpp">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AvatarJumping.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AvatarWalking.cpp">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Trap.cpp">
+      <Filter>Source\GameObject\Traps</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\BombPill.cpp">
+      <Filter>Source\GameObject\Collectable\BombPill</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Bomb.cpp">
+      <Filter>Source\GameObject\Bomb</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GOFactory.cpp">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TMFactory.cpp">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClCompile>
+    <ClCompile Include="src\WallSwitch.cpp">
+      <Filter>Source\GameObject\WallSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Animation.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuSubState.cpp">
+		<Filter>Source\GameStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MapHeader.cpp">
+      <Filter>Source\LoadMap</Filter>
+    </ClCompile>
+    <ClCompile Include="src\VictoryState.cpp">
+      <Filter>Source\GameStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -163,16 +244,16 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\InGameState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\MenuState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\State.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\StateManager.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\Monster.h">
       <Filter>Source\GameObject\Monster</Filter>
@@ -199,25 +280,82 @@
       <Filter>Source\Collision</Filter>
     </ClInclude>
     <ClInclude Include="src\GameOverState.h">
-      <Filter>Source\States</Filter>
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\AI.h">
       <Filter>Source\AI</Filter>
     </ClInclude>
-    <ClInclude Include="src\GOFactory.h">
-      <Filter>Source\GameObject</Filter>
-    </ClInclude>
     <ClInclude Include="src\MenuItem.h">
       <Filter>Source\GameObject\MenuItem</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="src\GOState.h">
-      <Filter>Source\GameObject\States</Filter>
+      <Filter>Source\GameObject\ObjectStates</Filter>
     </ClInclude>
     <ClInclude Include="src\PillEatenState.h">
-      <Filter>Source\GameObject\States\Pill</Filter>
+      <Filter>Source\GameObject\ObjectStates\Pill</Filter>
     </ClInclude>
-    <ClInclude Include="src\PillIdleState.h">
-      <Filter>Source\GameObject\States\Pill</Filter>
+    <ClInclude Include="src\AvatarKilled.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BasicIdle.h">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SpeedPillUse.h">
+      <Filter>Source\GameObject\ObjectStates\SpeedPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphMap.h">
+      <Filter>Source\Text\GlyphMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Glyph.h">
+      <Filter>Source\GameObject\Glyph</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TextArea.h">
+      <Filter>Source\Text</Filter>
+    </ClInclude>
+    <ClInclude Include="src\SuperPillEaten.h">
+      <Filter>Source\GameObject\ObjectStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AvatarJumping.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\AvatarWalking.h">
+      <Filter>Source\GameObject\ObjectStates\Avatar</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Trap.h">
+      <Filter>Source\GameObject\Traps</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BombPill.h">
+      <Filter>Source\GameObject\Collectable\BombPill</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bomb.h">
+      <Filter>Source\GameObject\Bomb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GOFactory.h">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TMFactory.h">
+      <Filter>Source\GameObject\FACTORY</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TileTypes.h">
+      <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\WallSwitch.h">
+      <Filter>Source\GameObject\WallSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Animation.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuSubState.h">
+		<Filter>Source\GameStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MapHeader.h">
+      <Filter>Source\LoadMap</Filter>
+    </ClInclude>
+    <ClInclude Include="src\VictoryState.h">
+      <Filter>Source\GameStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

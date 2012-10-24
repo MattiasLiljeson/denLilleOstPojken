@@ -5,6 +5,14 @@ SoundManager::SoundManager()
 }
 SoundManager::~SoundManager()
 {
+	for(int i = 0; i < m_instances.size(); i++)
+	{
+		delete m_instances[i];
+	}
+	for(int i = 0; i < m_sounds.size(); i++)
+	{
+		delete m_sounds[i];
+	}
 	for (int i = 0; i < m_soundData.size(); i++)
 	{
 		delete m_soundData[i];
@@ -14,14 +22,29 @@ void SoundManager::update(float p_dt)
 {
 	for (int i = 0; i < m_instances.size(); i++)
 	{
-		if (m_instances[i]->play)
+		if(!m_instances[i]->deleted)
 		{
-			m_instances[i]->play = false;
-			playSound(m_instances[i]->id);
+			if (m_instances[i]->play)
+			{
+				m_instances[i]->play = false;
+				playSound(m_instances[i]->id);
+			}
+		}
+		else
+		{
+			delete m_instances[i];
+			m_instances[i] = m_instances.back();
+			m_instances.pop_back();
 		}
 	}
 	for (int i = 0; i < m_sounds.size(); i++)
 	{
+		if (m_sounds[i]->GetPlayingOffset() == 0)
+		{
+			delete m_sounds[i];
+			m_sounds[i] = m_sounds.back();
+			m_sounds.pop_back();
+		}
 	}
 }
 void SoundManager::addSound(SoundInfo* p_instance)
@@ -43,7 +66,8 @@ void SoundManager::playSound(string p_path)
 		{
 			sf::Sound* s = new sf::Sound(m_soundData[i]->buffer);
 			m_sounds.push_back(s);	
-			s->Play();	
+			s->Play();
+			s->SetPlayingOffset(0.001f);
 		}
 	}
 }

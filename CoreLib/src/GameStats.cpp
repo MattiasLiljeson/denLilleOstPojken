@@ -1,14 +1,20 @@
 #include "GameStats.h"
 #include <iostream>
 
-GameStats::GameStats(Timer* p_timer)
+
+GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
 {
 	m_timer		= p_timer;
-
+	m_parTime	= p_parTime;
 	m_numPills	= 0;
 	m_speeded	= false;
 	m_superMode = false;
 	m_score		= 0;
+	m_previousScore = p_previousScore;
+	m_lives		= 3;
+	m_itemSlot	= -1;
+	m_buffSlot	= -1;
+	m_activate = -1;
 
 	m_gameTimer = m_superModeTimer = m_speedUpTimer = NULL;
 
@@ -30,26 +36,30 @@ GameStats::~GameStats()
 {
 	delete m_timer;
 
-	while (!m_powerUpTimers.empty())
-	{
-		Timer* tempTimer = m_powerUpTimers.back();
-		m_powerUpTimers.pop_back();
-		delete tempTimer;
-	}
+	for(unsigned int i = 0; i < m_powerUpTimers.size(); i++)
+		delete m_powerUpTimers.at(i);
 }
 
-void GameStats::update(float p_deltaTime)
+void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	m_activate = -1;
 	m_timer->tick();
 
 	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
 	{
-		m_powerUpTimers.at(index)->tick();
+		if (p_deltaTime > 0)
+		{
+			if (m_powerUpTimers[index]->isPaused())
+				m_powerUpTimers[index]->start();
+			m_powerUpTimers.at(index)->tick();
+		}
+		else
+			m_powerUpTimers[index]->pause();
 	}
 
 	if(m_superMode)
 	{
-		if(m_superModeTimer->getElapsedTime() > 3)
+		if(m_superModeTimer->getElapsedTime() > 6)
 		{
 			std::cout << "Speed mode inactivated!=(" << std::endl;
 			m_superMode = false;
@@ -65,11 +75,20 @@ void GameStats::update(float p_deltaTime)
 			m_speedUpTimer->stop();
 		}
 	}
+
+	if (p_inputInfo.keys[InputInfo::X_KEY] == InputInfo::KEYPRESSED)
+		activateBuff();
+	if (p_inputInfo.keys[InputInfo::Z_KEY] == InputInfo::KEYPRESSED)
+		activateItem();
 }
 
 void GameStats::setNumPills(const int p_numPills)
 {
 	m_numPills = p_numPills;
+}
+int	GameStats::getNumLives()
+{
+	return m_lives;
 }
 
 int GameStats::getNumPills()
@@ -80,6 +99,7 @@ int GameStats::getNumPills()
 void GameStats::pillEaten()
 {
 	m_numPills -= 1;
+	addScore(PILL_EATEN);
 }
 void GameStats::addPill()
 {
@@ -88,7 +108,8 @@ void GameStats::addPill()
 void GameStats::setSpeeded()
 {
 	m_speeded = true;
-	m_speedUpTimer->start();
+	if (m_speedUpTimer)
+		m_speedUpTimer->start();
 }
 bool GameStats::isSpeeded()
 {
@@ -97,7 +118,8 @@ bool GameStats::isSpeeded()
 void GameStats::setSuperMode()
 {
 	m_superMode = true;
-	m_superModeTimer->start();
+	if (m_superModeTimer)
+		m_superModeTimer->start();
 }
 bool GameStats::isSuperMode()
 {
@@ -105,7 +127,11 @@ bool GameStats::isSuperMode()
 }
 float GameStats::superTimeRemaining()
 {
-	return 3 - m_superModeTimer->getElapsedTime();
+	return 6 - m_superModeTimer->getElapsedTime();
+}
+float GameStats::speededPercentElapsed()
+{
+	return m_speedUpTimer->getElapsedTime() / 3.0f;
 }
 void GameStats::addScore(int p_points)
 {
@@ -115,7 +141,65 @@ int GameStats::getScore() const
 {
 	return m_score;
 }
+int	GameStats::getTotalScore()
+{
+	return m_previousScore + m_score * getMultiplier();
+}
 Timer* GameStats::getGameTimer()
 {
 	return m_gameTimer;
+}
+void GameStats::loseLife()
+{
+	m_lives = max(0, m_lives-1);
+}
+void	GameStats::setItemSlot(int p_item)
+{
+	m_itemSlot = p_item;
+}
+int		GameStats::getItemSlot()
+{
+	return m_itemSlot;
+}
+void	GameStats::setBuffSlot(int p_buff)
+{
+	m_buffSlot = p_buff;
+}
+int		GameStats::getBuffSlot()
+{
+	return m_buffSlot;
+}
+void	GameStats::activateBuff()
+{
+	if (m_buffSlot == 0)
+		setSpeeded();
+	m_buffSlot = -1;
+}
+void	GameStats::activateItem()
+{
+	m_activate = m_itemSlot;
+	m_itemSlot = -1;
+}
+int GameStats::getActivatedItem()
+{
+	return m_activate;
+}
+void GameStats::clearBuffs()
+{
+	m_speeded	 = false;
+	m_superMode	 = false;
+	m_superModeTimer->stop();
+	m_speedUpTimer->stop();
+}
+int GameStats::getParTime()
+{
+	return m_parTime;
+}
+float GameStats::getMultiplier()
+{
+	float t = (float)m_gameTimer->getElapsedTime();
+	if (t > m_parTime)
+		return 1;
+	float frac = 1-(t / m_parTime);
+	return 1 + frac;
 }

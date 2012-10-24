@@ -1,25 +1,29 @@
 #include "GameObject.h"
 #include "GOState.h"
+#include "BasicIdle.h"
 
 GameObject::GameObject()
 {
-	m_spriteInfo	= NULL;
-	m_gameStats		= NULL;
-	m_currentState	= NULL;
+	m_spriteInfo		= NULL;
+	m_gameStats			= NULL;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::GameObject(SpriteInfo* p_spriteInfo)
 {
-	m_spriteInfo	= p_spriteInfo;
-	m_gameStats		= NULL;
-	m_currentState	= NULL;
+	m_spriteInfo		= p_spriteInfo;
+	m_gameStats			= NULL;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::GameObject(SpriteInfo* p_spriteInfo, GameStats* p_gameStats)
 {
-	m_spriteInfo	= p_spriteInfo;
-	m_gameStats		= p_gameStats;
-	m_currentState	= NULL;
+	m_spriteInfo		= p_spriteInfo;
+	m_gameStats			= p_gameStats;
+	m_basicIdleState	= new BasicIdle(this);
+	m_currentState		= m_basicIdleState;
 }
 
 GameObject::~GameObject()
@@ -27,6 +31,8 @@ GameObject::~GameObject()
 	m_spriteInfo = NULL;
 	m_gameStats = NULL;
 	m_currentState = NULL;
+	delete m_basicIdleState;
+	m_basicIdleState = NULL;
 }
 
 int GameObject::switchState(GOState* p_newState, bool p_forceSwitchToSame)
@@ -48,17 +54,28 @@ void GameObject::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_currentState->update(p_deltaTime, p_inputInfo);
 }
 
-fVector2 GameObject::getPostion() const 
+//getPosition and getRadius must be updated.
+//they cannot depend on spriteinformation
+fVector2 GameObject::getPostion() 
 {
-	fVector2 position;
+	fVector2 position(0, 0);
 
-	position.x = m_spriteInfo->transformInfo.translation[TransformInfo::X];
-	position.y = m_spriteInfo->transformInfo.translation[TransformInfo::Y];
+	if (m_spriteInfo)
+	{
+		position.x = m_spriteInfo->transformInfo.translation[TransformInfo::X];
+		position.y = m_spriteInfo->transformInfo.translation[TransformInfo::Y];
+	}
 
 	return position;
 }
 
-float GameObject::getRadius() const
+float GameObject::getRadius()
 {
-	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]/4.0f);
+	if (!m_spriteInfo)
+		return 0;
+	return (m_spriteInfo->transformInfo.scale[TransformInfo::X]);
+}
+SpriteInfo* GameObject::getSpriteInfo()
+{
+	return m_spriteInfo;
 }

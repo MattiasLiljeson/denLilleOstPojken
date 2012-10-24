@@ -15,13 +15,15 @@ public:
 	int				textureIndex;
 	bool			visible;
 	TransformInfo	transformInfo;
-	Rect			textureRect;	// The texture rect is specifying x and y-offset,
-									// and width and height in pixels. Defaults to the
-									// loaded texture width and height when being
-									// assigned an id.
-									
-									
+	float			bwFraction;
+	float			sepiaFraction;
 
+	// The texture rect is specifying x and y-offset,
+	// and width and height in pixels. Defaults to the
+	// loaded texture width and height when being
+	// assigned an id.
+	Rect			textureRect;	
+	
 	SpriteInfo()
 	{
 		textureFilePath = "";
@@ -38,6 +40,8 @@ public:
 		transformInfo.scale[2] = 0.0f;
 		textureRect.width = 0;
 		textureRect.height = 0;
+		bwFraction = 0;
+		sepiaFraction = 0;
 	}
 
 	SpriteInfo( string p_textureFilePath )

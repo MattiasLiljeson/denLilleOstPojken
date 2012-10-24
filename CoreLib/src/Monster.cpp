@@ -9,63 +9,90 @@ Monster::Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map): GameOb
 	m_ai = NULL;
 
 	m_nextTile = m_currentTile;
+
+	m_right = new Animation(fVector2(0, 0), 64, 64, 4, 0.2f, true);
+	m_left = new Animation(fVector2(0, 64), 64, 64, 4, 0.2f, true);
+	m_down = new Animation(fVector2(0, 128), 64, 64, 4, 0.2f, true);
+	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.2f, true);
+
+	m_currentAnimation = NULL;
 }
 
 Monster::~Monster()
 {
 	if(m_ai)
 		delete m_ai;
+
+	delete m_right;
+	delete m_left;
+	delete m_down;
+	delete m_up;
 }
 void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (!m_dead)
 	{
-		m_ai->update(p_deltaTime);
+		if (m_ai)
+			m_ai->update(p_deltaTime);
 
 		dt += p_deltaTime * 6;
-		if (dt > 1)
+		while (dt > 1)
 		{
 			dt -= 1;
-			m_currentTile = m_nextTile;
-			if (m_path.size() > 0)
+			if (m_currentTile)
 			{
-				if (m_path.back()->isFree())
+				m_currentTile = m_nextTile;
+				if (m_path.size() > 0)
 				{
-					m_nextTile = m_path.back();
-					m_path.pop_back();
+					if (m_path.back()->isFree())
+					{
+						m_nextTile = m_path.back();
+						m_path.pop_back();
+					}
+					else
+					{
+						m_path.clear();
+					}
 				}
 				else
 				{
-					m_path.clear();
-				}
-			}
-			else
-			{
-				m_ai->findTarget();
+					m_ai->findTarget();
 
-				if(m_path.size() == 0)
-				{
-					Tile* t;
-					do
+					if(m_path.size() == 0)
 					{
-						int rndX = rand() % m_map->getWidth();
-						int rndY = rand() % m_map->getHeight();
-						t = m_map->getTile(TilePosition(rndX, rndY));					
-					} while (!t->isFree());
+						Tile* t;
+						do
+						{
+							int rndX = rand() % m_map->getWidth();
+							int rndY = rand() % m_map->getHeight();
+							t = m_map->getTile(TilePosition(rndX, rndY));					
+						} while (!t->isFree());
 
-					FindPath(m_currentTile, t);
+						FindPath(m_currentTile, t);
+					}
 				}
 			}
 		}
-		TilePosition tp1 = m_currentTile->getTilePosition();
-		TilePosition tp2 = m_nextTile->getTilePosition();
-		float pX = tp1.x * (1-dt) + tp2.x * dt; 
-		float pY = tp1.y * (1-dt) + tp2.y * dt;  
 
-		float w = m_currentTile->getWidth();
-		float h = m_currentTile->getHeight();
-		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+		determineAnimation();
+		if (m_spriteInfo)
+		{
+			TilePosition tp1 = m_currentTile->getTilePosition();
+			TilePosition tp2 = m_nextTile->getTilePosition();
+			float pX = tp1.x * (1-dt) + tp2.x * dt; 
+			float pY = tp1.y * (1-dt) + tp2.y * dt;  
+
+			float w = m_currentTile->getWidth();
+			float h = m_currentTile->getHeight();
+			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+
+			if (m_currentAnimation)
+			{
+				m_currentAnimation->update(p_deltaTime);
+				m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+			}
+		}
 	}
 }
 Tile* Monster::getCurrentTile()
@@ -189,4 +216,29 @@ bool Monster::isDead()
 void Monster::addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap)
 {
 	m_ai = new AI(this,p_avatar,p_gameStats,p_tilemap);
+}
+
+void Monster::determineAnimation()
+{
+	if (m_currentTile && m_nextTile)
+	{
+		TilePosition t1 = m_currentTile->getTilePosition();
+		TilePosition t2 = m_nextTile->getTilePosition();
+		if (t2.x < t1.x)
+		{
+			m_currentAnimation = m_left;
+		}
+		else if (t2.x > t1.x)
+		{
+			m_currentAnimation = m_right;
+		}
+		else if (t2.y < t1.y)
+		{
+			m_currentAnimation = m_down;
+		}
+		else if (t2.y > t1.y)
+		{
+			m_currentAnimation = m_up;
+		}
+	}
 }

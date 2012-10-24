@@ -46,13 +46,7 @@ int GlContext::init()
 	if (!m_spriteRenderer->isInitialized())
 		return GAME_FAIL;
 
-	m_keyMappings[InputInfo::ESC]	= GLFW_KEY_ESC;
-	m_keyMappings[InputInfo::LEFT]	= GLFW_KEY_LEFT;
-	m_keyMappings[InputInfo::RIGHT]	= GLFW_KEY_RIGHT;
-	m_keyMappings[InputInfo::UP]	= GLFW_KEY_UP;
-	m_keyMappings[InputInfo::DOWN]  = GLFW_KEY_DOWN;
-	m_keyMappings[InputInfo::SPACE] = GLFW_KEY_SPACE;
-	m_keyMappings[InputInfo::ENTER] = GLFW_KEY_ENTER;
+	initKeyMappings();
 
 	glfwSetWindowSizeCallback(setWindowSizeCB);
 	posX = 400;
@@ -170,15 +164,6 @@ int GlContext::update(float p_dt)
 
 	return 0;
 }
-int GlContext::draw(float p_dt)
-{
-	glClearColor(0, 0, 0, 1.0);
-	glClearDepth(1.0);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	m_spriteRenderer->draw();
-	glfwSwapBuffers();
-	return 0;
-}
 
 int GlContext::beginDraw()
 {
@@ -293,4 +278,37 @@ int GlContext::addSprite( SpriteInfo* p_spriteInfo)
 		textureReadSuccess = GAME_FAIL;
 	}
 	return textureReadSuccess;
+}
+
+void GlContext::initKeyMappings()
+{
+	// Map glfw key IDs to our key ID system.
+	m_keyMappings[InputInfo::ESC]	= GLFW_KEY_ESC;
+	m_keyMappings[InputInfo::LEFT]	= GLFW_KEY_LEFT;
+	m_keyMappings[InputInfo::RIGHT]	= GLFW_KEY_RIGHT;
+	m_keyMappings[InputInfo::UP]	= GLFW_KEY_UP;
+	m_keyMappings[InputInfo::DOWN]  = GLFW_KEY_DOWN;
+
+	m_keyMappings[InputInfo::SPACE] = GLFW_KEY_SPACE;
+	m_keyMappings[InputInfo::ENTER] = GLFW_KEY_ENTER;
+	
+	m_keyMappings[InputInfo::LSHIFT] = GLFW_KEY_LSHIFT;
+	m_keyMappings[InputInfo::RSHIFT] = GLFW_KEY_RSHIFT;
+	m_keyMappings[InputInfo::LCTRL] = GLFW_KEY_LCTRL;
+	m_keyMappings[InputInfo::RCTRL] = GLFW_KEY_RCTRL;
+
+	m_keyMappings[InputInfo::PERIOD] = 46;
+	m_keyMappings[InputInfo::COMMA] = 44;
+	m_keyMappings[InputInfo::DASH] = 45;
+	
+	for(int i = 0; i < 26; i++)
+		m_keyMappings[InputInfo::A_KEY + i] = 65 + i;
+	
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
+	
+	// HACK: Doesn't work in glfw. Nothing works...
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
+
 }

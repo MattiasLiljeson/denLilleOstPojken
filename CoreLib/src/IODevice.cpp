@@ -66,7 +66,7 @@ void IODevice::addSpriteInfo( SpriteInfo* p_spriteInfo )
 }
 void IODevice::removeSpriteInfo(SpriteInfo* p_spriteInfo)
 {
-	for (int i = 0; i < m_spriteInfos.size(); i++)
+	for (unsigned int i = 0; i < m_spriteInfos.size(); i++)
 	{
 		if (m_spriteInfos[i] == p_spriteInfo)
 		{
@@ -78,7 +78,7 @@ void IODevice::removeSpriteInfo(SpriteInfo* p_spriteInfo)
 }
 void IODevice::clearSpriteInfos()
 {
-	for (int i = 0; i < m_spriteInfos.size(); i++)
+	for (unsigned int i = 0; i < m_spriteInfos.size(); i++)
 		delete m_spriteInfos[i];
 	m_spriteInfos.clear();
 }
@@ -99,13 +99,26 @@ bool IODevice::isRunning()
 }
 int	IODevice::getScreenWidth()
 {
-	return m_context->getScreenWidth();
+	if(m_context != NULL)
+		return m_context->getScreenWidth();
+	else
+		return GAME_FAIL;
 }
 int	IODevice::getScreenHeight()
 {
-	return m_context->getScreenHeight();
+	if(m_context != NULL)
+		return m_context->getScreenHeight();
+	else
+		return GAME_FAIL;
 }	
 void IODevice::setWindowText(string p_text)
 {
 	m_context->setWindowText(p_text);
+}
+void IODevice::toneSceneBlackAndWhite(float p_fraction)
+{
+	for (int i = 0; i < m_spriteInfos.size(); i++)
+	{
+		m_spriteInfos[i]->bwFraction = p_fraction;
+	}
 }

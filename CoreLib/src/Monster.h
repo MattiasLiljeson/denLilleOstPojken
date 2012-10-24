@@ -11,6 +11,7 @@
 #include "Tilemap.h"
 #include "Avatar.h"
 #include "AI.h"
+#include "Animation.h"
 
 struct AstarItem
 {
@@ -27,9 +28,10 @@ struct AstarItem
 class Monster: public GameObject
 {
 private:
-	Tile* m_currentTile;
-	Tile* m_nextTile;
-	Tilemap* m_map;
+	Tile*		m_currentTile;
+	Tile*		m_nextTile;
+	Tilemap*	m_map;
+	Tile*		m_startMap;
 
 	AI* m_ai;
 
@@ -38,11 +40,19 @@ private:
 
 	vector<Tile*> m_path;
 
+	Animation* m_left;
+	Animation* m_right;
+	Animation* m_up;
+	Animation* m_down;
+
+	Animation* m_currentAnimation;
+
 	bool m_dead;
 private:
 	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal,
 				vector<AstarItem>& p_queue);
 	int		FindTile(Tile* p_tile, vector<AstarItem>& p_queue);
+	void	determineAnimation();
 public:
 	Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map);
 	~Monster();

@@ -34,6 +34,10 @@ struct TilePosition
 		int ny = y + p_other.y;
 		return TilePosition(nx, ny);
 	}
+	bool operator==(const TilePosition& p_other)
+	{
+		return x == p_other.x && y == p_other.y;
+	}
 };
 
 class Tile: public GameObject
@@ -49,6 +53,7 @@ private:
 
 public:
 	Tile(bool p_type, TilePosition p_position, float p_width, float p_height, SpriteInfo* p_spriteInfo);
+	~Tile();
 	bool getType();
 	TilePosition getTilePosition();
 	fVector2		getPosition();
@@ -58,6 +63,7 @@ public:
 	void addPill(Collectable* p_pill);
 	bool removePill();
 	void switchState();
+	void setWalkAble(bool p_walkAble);
 };
 
 #endif

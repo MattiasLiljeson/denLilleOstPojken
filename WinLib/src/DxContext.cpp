@@ -61,14 +61,7 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	if (initializeViewport() == GAME_FAIL)
 		return;
 
-	//Map Windows key IDs to our key ID system.
-	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
-	m_keyMappings[InputInfo::LEFT]	= VK_LEFT;
-	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
-	m_keyMappings[InputInfo::UP]	= VK_UP;
-	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
-	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
-	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
+	initKeyMappings();
 
 	m_spriteRenderer = new DxSpriteRenderer(m_device, m_deviceContext, this);
 
@@ -147,7 +140,7 @@ int DxContext::initializeSwapChain()
 	scd.OutputWindow				= m_windowHandle;
 	scd.SampleDesc.Count			= 1;
 	scd.SampleDesc.Quality			= 0;
-	scd.Windowed					= TRUE;
+	scd.Windowed					= true;
 	scd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	scd.BufferDesc.Scaling			= DXGI_MODE_SCALING_UNSPECIFIED;
 	scd.SwapEffect					= DXGI_SWAP_EFFECT_DISCARD;
@@ -323,7 +316,7 @@ bool DxContext::isInitialized() const
 }
 int DxContext::setWindowPosition(int p_x, int p_y)
 {
-	if (SetWindowPos(m_windowHandle, HWND_TOPMOST, 
+	if (SetWindowPos(m_windowHandle, HWND_TOP, 
 		p_x, p_y, 0, 0, SWP_NOSIZE) == 0)
 	{
 		return GAME_FAIL;
@@ -428,30 +421,6 @@ int DxContext::update(float p_dt)
 	}
 	return GAME_OK;
 }
-int DxContext::draw(float p_dt)
-{
-	// REMOVE THIS FUNCTION
-	if (!m_resizing)
-	{
-		m_deviceContext->ClearRenderTargetView(m_backBuffer, 
-			D3DXCOLOR(0, 0, 0, 1.0f));
-
-		m_deviceContext->ClearDepthStencilView(m_depthStencilView, 
-			D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
-
-		SpriteInfo spriteInfo;
-		spriteInfo.transformInfo.translation[TransformInfo::X] = 100;
-		spriteInfo.transformInfo.translation[TransformInfo::Y] = 100;
-		spriteInfo.transformInfo.scale[TransformInfo::X] = 100;
-		spriteInfo.transformInfo.scale[TransformInfo::Y] = 100;
-
-		m_spriteRenderer->setSpriteInfo(&spriteInfo);
-		m_spriteRenderer->draw();
-
-		m_swapChain->Present(0, 0);
-	}
-	return GAME_OK;
-}
 
 int DxContext::beginDraw()
 {
@@ -536,7 +505,7 @@ int DxContext::endDraw()
 {
 	if (!m_resizing)
 	{
-		m_swapChain->Present(0, 0);
+		m_swapChain->Present(1, 0);
 	}
 	return GAME_OK;
 }
@@ -607,4 +576,35 @@ int DxContext::addSprite( SpriteInfo* p_spriteInfo )
 		textureReadSuccess = GAME_FAIL;
 	}
 	return textureReadSuccess;
+}
+
+void DxContext::initKeyMappings()
+{
+	//Map Windows key IDs to our key ID system.
+	m_keyMappings[InputInfo::ESC]	= VK_ESCAPE;
+	m_keyMappings[InputInfo::LEFT]	= VK_LEFT;
+	m_keyMappings[InputInfo::RIGHT] = VK_RIGHT;
+	m_keyMappings[InputInfo::UP]	= VK_UP;
+	m_keyMappings[InputInfo::DOWN]	= VK_DOWN;
+
+	m_keyMappings[InputInfo::SPACE] = VK_SPACE;
+	m_keyMappings[InputInfo::ENTER] = VK_RETURN;
+
+	m_keyMappings[InputInfo::LSHIFT] = VK_LSHIFT;
+	m_keyMappings[InputInfo::RSHIFT] = VK_RSHIFT;
+	m_keyMappings[InputInfo::LCTRL] = VK_LCONTROL;
+	m_keyMappings[InputInfo::RCTRL] = VK_RCONTROL;
+
+	m_keyMappings[InputInfo::COMMA] = VK_OEM_COMMA;
+	m_keyMappings[InputInfo::PERIOD] = VK_OEM_PERIOD;
+	m_keyMappings[InputInfo::DASH] = VK_OEM_MINUS;
+
+	for(int i = 0; i < 26; i++)
+		m_keyMappings[InputInfo::A_KEY + i] = 65 + i;
+	
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
+
+	for(int i = 0; i < 10; i++)
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
 }

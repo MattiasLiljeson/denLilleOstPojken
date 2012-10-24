@@ -1,23 +1,27 @@
 #include "SuperPill.h"
 
 
-SuperPill::SuperPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats): Collectable(p_spriteInfo,p_gameStats)
+SuperPill::SuperPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, SoundInfo* p_onEatSound) : Collectable(p_spriteInfo,p_gameStats)
 {
 	m_tile = p_tile;
-	m_tile->addPill(this);
+	if (m_tile)
+		m_tile->addPill(this);
 	m_consumed = false;
+	m_superPillEaten = new SuperPillEaten(this,p_onEatSound);
 }
 
 SuperPill::~SuperPill()
 {
-
+	if (m_superPillEaten)
+		delete m_superPillEaten;
 }
 
 void SuperPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if(m_consumed)
 	{
-		m_spriteInfo->visible = false;
+		if (m_spriteInfo)
+			m_spriteInfo->visible = false;
 	}
 }
 
@@ -27,6 +31,8 @@ void SuperPill::consume()
 	{
 		m_consumed = true;
 		m_tile = NULL;
-		m_gameStats->setSuperMode();
+		if(m_gameStats)
+			m_gameStats->setSuperMode();
+		switchState(m_superPillEaten);
 	}
 }
