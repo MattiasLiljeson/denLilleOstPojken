@@ -13,7 +13,8 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, v
 }
 Switch::~Switch()
 {
-	m_switchSound->deleted = true;
+	if (m_switchSound)
+		m_switchSound->deleted = true;
 }
 void Switch::setTargets(vector<WallSwitch*> p_targets)
 {

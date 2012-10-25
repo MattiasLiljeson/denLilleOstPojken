@@ -27,7 +27,10 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 	else
 		m_size = fVector2();
 
-	m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+	if (m_spriteInfo)
+		m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+	else
+		m_offset = 0;
 
 	m_shadow = p_shadow;
 	if (m_shadow)

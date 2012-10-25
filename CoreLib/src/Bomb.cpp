@@ -17,8 +17,11 @@ Bomb::~Bomb()
 	for (int i = 0; i < m_flames.size(); i++)
 		delete m_flames[i];
 	m_flames.clear();
-	m_tickSound->deleted = true;
-	m_blastSound->deleted = true;
+
+	if (m_tickSound)
+		m_tickSound->deleted = true;
+	if (m_blastSound)
+		m_blastSound->deleted = true;
 }
 void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {

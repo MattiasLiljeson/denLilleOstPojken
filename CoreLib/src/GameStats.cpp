@@ -171,9 +171,11 @@ int		GameStats::getBuffSlot()
 }
 void	GameStats::activateBuff()
 {
-	if (m_buffSlot == 0)
+	if (m_buffSlot == 0 && !m_speeded)
+	{
 		setSpeeded();
-	m_buffSlot = -1;
+		m_buffSlot = -1;
+	}
 }
 void	GameStats::activateItem()
 {
