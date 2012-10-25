@@ -11,7 +11,7 @@ private:
 public:
 	GlyphAnimSinus();
 	void update( float p_dt );
-	fVector3 getAnimation( fVector3 p_pos, float p_freq,
-		float p_amplitude, float p_speed );
+	TransformInfo getAnimation( TransformInfo p_transInfo,
+		float p_freq, float p_amplitude, float p_speed );
 };
 #endif // GLYPHANIMSINUS_H

@@ -10,12 +10,24 @@ void GlyphAnimSinus::update( float p_dt )
 	m_totTime += p_dt;
 }
 
-fVector3 GlyphAnimSinus::getAnimation( fVector3 p_pos, float p_freq,
-	float p_amplitude, float p_speed )
+TransformInfo GlyphAnimSinus::getAnimation( TransformInfo p_transInfo,
+	float p_freq, float p_amplitude, float p_speed )
 {
-	float fac = sin(p_pos.x*p_speed + m_totTime*p_freq)*p_amplitude;
-	p_pos.y += fac;
-	return p_pos;
+	float posX = p_transInfo.translation[TransformInfo::X];
+	float posY = p_transInfo.translation[TransformInfo::Y];
+	float scaX = p_transInfo.scale[TransformInfo::X];
+	float scaY = p_transInfo.scale[TransformInfo::Y];
+	float fac = sin(posX*p_freq + m_totTime*p_speed)*p_amplitude;
+	posY += fac;
+	scaX -= fac/p_amplitude;
+	scaY += fac/p_amplitude;
+
+
+	p_transInfo.translation[TransformInfo::X] = posX;
+	p_transInfo.translation[TransformInfo::Y] = posY;
+	p_transInfo.scale[TransformInfo::X] = scaX;
+	p_transInfo.scale[TransformInfo::Y] = scaY;
+	return p_transInfo;
 }
 
 

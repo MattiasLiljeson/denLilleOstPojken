@@ -3,9 +3,7 @@
 Glyph::Glyph( SpriteInfo* p_spriteInfo, GlyphAnimation* p_anim8or ) : GameObject(p_spriteInfo)
 {
 	m_anim8or = p_anim8or;
-	m_origin.x = p_spriteInfo->transformInfo.translation[TransformInfo::X];
-	m_origin.y = p_spriteInfo->transformInfo.translation[TransformInfo::Y];
-	m_origin.z = p_spriteInfo->transformInfo.translation[TransformInfo::Z];
+	m_origin = p_spriteInfo->transformInfo;
 }
 
 Glyph::~Glyph()
@@ -41,27 +39,21 @@ int Glyph::setVisibility( bool p_set )
 
 void Glyph::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	fVector3 pos = m_origin;
-
 	if( m_anim8or != NULL )
 	{
 		m_anim8or->update( p_deltaTime );
 	}
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pos.x;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pos.y;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = pos.z;
+	m_spriteInfo->transformInfo = m_origin;
 }
 
 void Glyph::animate( float p_freq, float p_amplitude, float p_speed )
 {
-	fVector3 pos = m_origin;
+	TransformInfo pos = m_origin;
 
 	if( m_anim8or != NULL )
 	{
 		pos = m_anim8or->getAnimation( m_origin, p_freq, p_amplitude, p_speed );
 	}
 
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pos.x;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pos.y;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Z] = pos.z;
+	m_spriteInfo->transformInfo = pos;
 }

@@ -142,7 +142,7 @@ void MenuState::initMenuItems()
 	m_bgItem = m_factory->createMenuItem( 
 		fVector3( 0.5f, 0.5f, 0.5f ), fVector2( 1.0f, 1.0f ),
 		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
-		fVector2(fw*32, fh*32), "../Textures/SplashScreen.png" );
+		fVector2(fw*20, fh*20), "../Textures/SplashScreen.png" );
 
 	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_MAIN, m_factory));
 	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_LEVEL_SELECT, m_factory));
@@ -277,7 +277,7 @@ void MenuState::update(float p_dt)
 		m_menus[i]->update( p_dt );
 
 	if(m_currMenu < m_menus.size() && m_currItemIdx < m_menus[m_currMenu]->m_items.size())
-		m_menus[m_currMenu]->m_items[m_currItemIdx]->animateText( 10.0f, 3.0f, 1.0f );
+		m_menus[m_currMenu]->m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
 
 	if (m_io)
 	{

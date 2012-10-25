@@ -5,7 +5,7 @@ MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>*
 	//std values
 	fw = 1.0f/1920.0f;
 	fh = 1.0f/1080.0f;
-	m_firstItemPos	= fVector3( 0.5f, 0.5f, 0.9f );
+	m_firstItemPos	= fVector3( 0.5f, 0.7f, 0.9f );
 	m_itemSize		= fVector2( fh*600.0f, fh*64.0f );
 	m_itemTextOffset= fVector2( 0.0f, 0.0f );
 	m_itemFontSize	= fVector2( fw*32, fh*32 );

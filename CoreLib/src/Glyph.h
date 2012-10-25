@@ -9,7 +9,7 @@
 class Glyph : public GameObject
 {
 private:
-	fVector3 m_origin;
+	TransformInfo m_origin;
 	GlyphAnimation* m_anim8or;
 
 public:
