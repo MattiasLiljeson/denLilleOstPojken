@@ -6,6 +6,7 @@ StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 	m_timer = p_timer;
 
 	m_commonResources.totalScore = 0;
+	m_commonResources.unlockedLevels = readUnlockedMaps();
 	MapHeader mh("../Maps/maps.txt");
 	m_inGameState = new InGameState(this, m_io, mh.getMaps());
 	m_menuState = new MenuState(this, m_io, mh.getMaps());
@@ -18,6 +19,7 @@ StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 }
 StateManager::~StateManager()
 {
+	writeUnlockedMaps(m_commonResources.unlockedLevels);
 	delete m_inGameState;
 	delete m_menuState;
 	delete m_gameOverState;
@@ -103,4 +105,27 @@ Timer* StateManager::getNewTimerInstance()
 CommonResources* StateManager::getCommonResources()
 {
 	return &m_commonResources;
+}
+int StateManager::readUnlockedMaps()
+{
+	ifstream file;
+	file.open("../Maps/unlocked.txt", ios::in);
+	if (file.is_open())
+	{
+		int unl;
+		file >> unl;
+		file.close();
+		return unl;
+	}
+	return 0;
+}
+void StateManager::writeUnlockedMaps(int p_value)
+{
+	ofstream file;
+	file.open("../Maps/unlocked.txt", ios::out);
+	if (file.is_open())
+	{
+		file << p_value;
+		file.close();
+	}
 }

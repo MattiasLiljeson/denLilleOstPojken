@@ -18,6 +18,13 @@ struct PauseStruct
 	MenuItem* paused;
 	MenuItem* pressToPlay;
 };
+struct DefeatStruct
+{
+	MenuItem* defeated;
+	MenuItem* cost;
+	MenuItem* cont;
+
+};
 
 class GUI
 {
@@ -33,24 +40,35 @@ private:
 	SpriteInfo* m_speedIcon;
 	SpriteInfo* m_bombIcon;
 
-	//Result texts
+	//Victory texts
 	VictoryStruct m_victoryData;
 
 	//Pause texts
 	PauseStruct m_pauseData;
 
+	//Defeat texts
+	DefeatStruct m_defeatData;
+
 public:
 	GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
-		VictoryStruct p_victory, PauseStruct p_pauseData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon);
+		VictoryStruct p_victory, PauseStruct p_pauseData, DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon);
 	virtual ~GUI();
 	void update(float p_dt);
 
+	//Victory texts
 	void showVictory();
 	void showBaseScore(int p_score);
 	void showMultiplier(float p_multiplier);
 	void showTotalScore(int p_finalScore);
+
+	//Pause texts
 	void pause();
 	void unpause();
+
+	//Defeat texts
+	void showDefeat();
+	void showCost();
+	void showContinue();
 };
 
 #endif

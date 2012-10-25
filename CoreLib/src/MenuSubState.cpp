@@ -1,6 +1,7 @@
 #include "MenuSubState.h"
+#include "StateManager.h"
 
-MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory )
+MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory, StateManager* p_stateParent)
 {
 	//std values
 	fw = 1.0f/1920.0f;
@@ -12,11 +13,14 @@ MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>*
 	m_itemDistance	= 100*fh;
 	m_itemBackgroundTexturePath = "";
 
+	m_type = p_type;
+
 	m_maps = p_maps;
 	m_highscore = p_highscore;
 	m_currItem = 0;
 
 	m_goFactory = p_goFactory;
+	m_stateParent = p_stateParent;
 
 	switch(p_type)
 	{
@@ -24,7 +28,7 @@ MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>*
 			setToMain();
 			break;
 		case MENU_LEVEL_SELECT:
-			setToLevelSelect();
+			setToLevelSelect(m_stateParent->getCommonResources()->unlockedLevels);
 			break;
 		case MENU_HIGHSCORE:
 			setToHighscore();
@@ -66,12 +70,12 @@ void MenuSubState::setToMain()
 	setAllSelectable();
 }
 
-void MenuSubState::setToLevelSelect()
+void MenuSubState::setToLevelSelect(int p_size)
 {
 	m_texts.resize(LS_NUM_ITEMS);
 	m_texts[LS_MAIN] = "GO BACK TO MAIN";
 
-	for( unsigned int i=0; i<m_maps->size(); i++ )
+	for( unsigned int i=0; i< p_size; i++ )
 	{
 		m_texts.push_back((*m_maps)[i].name);
 	}
@@ -80,6 +84,17 @@ void MenuSubState::setToLevelSelect()
 	m_itemDistance *= 0.5f;
 	createItems();
 	setAllSelectable();
+}
+void MenuSubState::addLevel()
+{
+	m_texts.push_back((*m_maps)[m_texts.size()-1].name);
+	fVector3 itemPos = m_firstItemPos;
+	itemPos.y -= m_itemDistance * m_texts.size();
+
+
+	m_items.push_back( m_goFactory->createMenuItem( 
+		itemPos, m_itemSize, m_texts.back(), m_itemTextOffset, m_itemFontSize,
+		m_itemBackgroundTexturePath));
 }
 
 void MenuSubState::setToHighscore()
@@ -146,6 +161,11 @@ void MenuSubState::createItems()
 
 void MenuSubState::activate()
 {
+	if (m_type == MENU_LEVEL_SELECT)
+	{
+		while (m_texts.size() - 1 < m_stateParent->getCommonResources()->unlockedLevels)
+			addLevel();
+	}
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{
 		m_items[i]->setVisible(true);

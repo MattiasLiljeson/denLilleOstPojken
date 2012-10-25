@@ -99,17 +99,29 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
+
 	vector<pair<Tile*, SpriteInfo*> > flames;
+
+	fVector3 pos = GetCenter(p_tile, 0.6f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.height = 64;
+	r.width = 64;
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Explosion_Animation.png",
+		pos, size, &r);
+	flames.push_back(pair<Tile*, SpriteInfo*>(p_tile, spriteInfo));
+
 	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
 	for (int i = 0; i < 4; i++)
 	{
 		Tile* curr = p_map->getTile(p_tile->getTilePosition() + dir[i]);
 		while (curr && curr->isFree())
 		{
-			fVector3 pos = GetCenter(curr, 0.6f); 
-			fVector2 size = GetScaledSize(curr, 0.7f);
+			pos = GetCenter(curr, 0.6f); 
+			size = GetScaledSize(curr, 0.7f);
 
-			Rect r;
 			r.x = 0;
 			r.y = 0;
 			r.height = 64;
@@ -122,7 +134,13 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		}
 	}
 
-	return new Bomb(flames, p_tile, p_map);
+	pos = GetCenter(p_tile, 0.5f); 
+	size = GetScaledSize(p_tile, 1.2f);
+
+	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
+		pos, size, NULL);
+
+	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast.wav",20));
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
@@ -157,7 +175,7 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
 		pos, size, &r);
-	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets);
+	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets, CreateSoundInfo("../Sounds/switch.wav",100));
 }
 
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
@@ -215,16 +233,8 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		SoundInfo* soundInfo = new SoundInfo();
 		soundInfo->play = false;
 		soundInfo->id = p_sound;
-		sf::SoundBuffer buffer;
-		buffer.LoadFromFile(p_sound);
-		sf::Sound* s = new sf::Sound(buffer);
-		s->SetVolume((float)p_volume);
-		s->Play();
-
+		soundInfo->volume = p_volume;
 		m_io->addSound(soundInfo);
-
-		delete s;
-
 		return soundInfo;
 	}
 	return NULL;
@@ -394,6 +404,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
+	//Pause
+
 	PauseStruct pauseData;
 	pos = fVector3(0.5f, 0.7f, 0.9f); 
 	texts = "GAME PAUSED";
@@ -410,6 +422,34 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pauseData.pressToPlay = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Defeat
+	DefeatStruct defeatData;
+
+	pos = fVector3(0.5f, 0.7f, 0.9f); 
+	texts = "DEFEAT";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.defeated = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.6f, 0.9f); 
+	texts = "CONTINUE WILL COST HALF YOUR TOTAL SCORE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cost = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.5f, 0.9f); 
+	texts = "PRESS ENTER TO CONTINUE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cont = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
 	//End added by Anton
 
 
@@ -435,5 +475,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, x, y, speed, bomb);
+
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb);
 }
+

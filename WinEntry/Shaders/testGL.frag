@@ -11,6 +11,7 @@ void main()
 
      FragColor = diffuseTexel;
 
-     if ( FragColor.a == 0 )
-        FragColor = vec4( 0, 0, 0, 1 );
+     if ( FragColor.a < 0.05f)
+        discard;
 }
+

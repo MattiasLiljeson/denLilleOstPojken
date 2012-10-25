@@ -3,7 +3,7 @@
 Monster::Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map): GameObject(p_spriteInfo)
 {
 	dt = 0;
-	m_currentTile = m_nextTile = p_tile;
+	m_startTile = m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
 	m_dead = false;
 	m_ai = NULL;
@@ -241,4 +241,10 @@ void Monster::determineAnimation()
 			m_currentAnimation = m_up;
 		}
 	}
+}
+void Monster::reset()
+{
+	dt = 0;
+	m_currentTile = m_nextTile = m_startTile;
+	m_path.clear();
 }

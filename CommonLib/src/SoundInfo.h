@@ -19,6 +19,7 @@ struct SoundInfo
 	bool play;
 	string id;
 	bool deleted;
+	float volume;
 	//This struct will include more info
 	//Should contain all relevant information of a 
 	//sound instance.
@@ -27,6 +28,7 @@ struct SoundInfo
 		deleted = false;
 		play	= false;
 		id		= "";
+		volume = 100;
 	}
 };
 

@@ -171,9 +171,11 @@ int		GameStats::getBuffSlot()
 }
 void	GameStats::activateBuff()
 {
-	if (m_buffSlot == 0)
+	if (m_buffSlot == 0 && !m_speeded)
+	{
 		setSpeeded();
-	m_buffSlot = -1;
+		m_buffSlot = -1;
+	}
 }
 void	GameStats::activateItem()
 {
@@ -202,4 +204,12 @@ float GameStats::getMultiplier()
 		return 1;
 	float frac = 1-(t / m_parTime);
 	return 1 + frac;
+}
+void GameStats::halvePreviousScore()
+{
+	m_previousScore*=0.5f;
+}
+int	GameStats::getPreviousScore()
+{
+	return m_previousScore;
 }

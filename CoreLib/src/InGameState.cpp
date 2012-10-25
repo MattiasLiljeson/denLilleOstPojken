@@ -93,43 +93,29 @@ void InGameState::update(float p_dt)
 
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
-			m_parent->requestStateChange(m_parent->getMenuState());
+			if (m_stats->getNumLives() > 0)
+			{
+				m_parent->getCommonResources()->totalScore = 0;
+				m_parent->requestStateChange(m_parent->getMenuState());
+			}
+			else
+			{
+				m_parent->getCommonResources()->totalScore = m_stats->getPreviousScore();
+				m_parent->requestStateChange(m_parent->getGameOverState());
+			}
 		}
-		if (m_stats->getNumPills() < 1)
+		if (m_stats->getNumPills() < 1 || m_stats->getNumLives() == 0)
 		{
-			if(input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
-
-			{			
-				if (m_currentMap < m_maps.size() - 1)
-				{
-					m_currentMap = m_currentMap+1;
-					restart();
-				}
-				else
-				{
-					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
-					m_parent->requestStateChange(m_parent->getVictoryState());
-				}
-				return;
-			}
-			else if (m_victoryTime > 2.4f)
+			//Victory
+			if (m_stats->getNumPills() < 1)
 			{
-				m_gui->showTotalScore(m_stats->getScore() * m_stats->getMultiplier());
+				updateOnVictory(p_dt, input);
 			}
-			else if (m_victoryTime > 2.1f)
+			else
 			{
-				m_gui->showMultiplier(m_stats->getMultiplier());
+				//Defeat
+				updateOnDefeat(p_dt, input);
 			}
-			else if (m_victoryTime > 1.8f)
-			{
-				m_gui->showBaseScore(m_stats->getScore());
-			}
-			else if (m_victoryTime > 1.5f)
-			{
-				m_gui->showVictory();
-			}
-			m_victoryTime+= p_dt;
-			m_io->toneSceneBlackAndWhite(min(m_victoryTime / 1, 1.0f));
 		}
 		else
 		{
@@ -169,11 +155,12 @@ void InGameState::update(float p_dt)
 			{
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
-					m_avatar->revive(m_startTile);
-				else
 				{
-					m_parent->getCommonResources()->totalScore = m_stats->getTotalScore()-m_stats->getScore();
-					m_parent->requestStateChange(m_parent->getGameOverState());
+					for (int i = 0; i < m_monsters.size(); i++)
+					{
+						m_monsters[i]->reset();
+					}
+					m_avatar->revive(m_startTile);
 				}
 
 
@@ -219,6 +206,15 @@ bool InGameState::checkDynamicCollision()
 			}
 		}
 	}
+
+	for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+	{
+		if (m_bombs[bomb]->isColliding(m_avatar))
+		{
+			m_avatar->kill();
+		}
+	}
+
 	if (!m_avatar->inAir())
 	{
 		for(unsigned int index = 0; index < m_traps.size(); index++)
@@ -241,6 +237,7 @@ void InGameState::restart()
 	if (m_io)
 	{
 		m_victoryTime = 0;
+		m_defeatTime = 0;
 		m_io->clearSpriteInfos();
 		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
@@ -335,5 +332,69 @@ void InGameState::handleInput( InputInfo p_input )
 		!m_io->isRunning() )
 	{
 		m_parent->terminate();
+	}
+}
+void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
+{
+	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
+	{			
+		if (m_currentMap < m_maps.size() - 1)
+		{
+			m_currentMap = m_currentMap+1;
+
+			if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+			{
+				m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+			}
+			restart();
+		}
+		else
+		{
+			m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+			m_parent->requestStateChange(m_parent->getVictoryState());
+		}
+		return;
+	}
+	else if (m_victoryTime > 2.4f)
+	{
+		m_gui->showTotalScore(m_stats->getScore() * m_stats->getMultiplier());
+	}
+	else if (m_victoryTime > 2.1f)
+	{
+		m_gui->showMultiplier(m_stats->getMultiplier());
+	}
+	else if (m_victoryTime > 1.8f)
+	{
+		m_gui->showBaseScore(m_stats->getScore());
+	}
+	else if (m_victoryTime > 1.5f)
+	{
+		m_gui->showVictory();
+	}
+	m_victoryTime+= p_dt;
+	m_io->toneSceneBlackAndWhite(min(m_victoryTime / 1, 1.0f));
+}
+void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
+{
+	m_defeatTime += p_dt;
+	m_io->toneSceneBlackAndWhite(min(m_defeatTime / 1, 1.0f));
+	
+	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_defeatTime > 3)
+	{
+		m_stats->addScore(-m_stats->getScore());
+		m_stats->halvePreviousScore();
+		restart();
+	}
+	else if (m_defeatTime > 2.1f)
+	{
+		m_gui->showContinue();
+	}
+	else if (m_defeatTime > 1.8f)
+	{
+		m_gui->showCost();
+	}
+	else if (m_defeatTime > 1.5f)
+	{
+		m_gui->showDefeat();
 	}
 }

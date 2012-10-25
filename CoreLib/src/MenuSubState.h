@@ -9,6 +9,8 @@
 
 using namespace std;
 
+class StateManager;
+
 struct HighScoreItem
 {
 	int score;
@@ -35,9 +37,12 @@ struct MenuSubState
 	vector<string>		m_texts;
 	vector<MenuItem*>	m_items;
 	int m_currItem;
+	int m_type;
 
 	vector<MapData>*	m_maps;
 	vector<HighScoreItem>* m_highscore;
+
+	StateManager* m_stateParent;
 
 	enum { MENU_MAIN, MENU_LEVEL_SELECT, MENU_HIGHSCORE, MENU_CREDITS, MENU_EXIT, NUM_MENUS };
 	// Main menu
@@ -51,12 +56,13 @@ struct MenuSubState
 	// Exit
 	enum { EX_YES, EX_NO, EX_NUM_ITEMS };
 
-	MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory);
+	MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory, StateManager* p_stateParent);
 	~MenuSubState();
 	
 	void clear();
 	void setToMain();
-	void setToLevelSelect();
+	void setToLevelSelect(int p_size);
+	void addLevel();
 	void setToHighscore();
 	void setToCredits();
 	void setToExit();

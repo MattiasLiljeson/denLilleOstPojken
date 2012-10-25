@@ -22,11 +22,15 @@ private:
 	vector<MapData>			m_maps;
 	int						m_currentMap;
 	Tile*					m_startTile;
+	float					m_defeatTime;
 	float					m_victoryTime;
 	int						m_desiredMap;
 
 	bool					m_paused;
 
+private:
+	void updateOnVictory(float p_dt, InputInfo p_input);
+	void updateOnDefeat(float p_dt, InputInfo p_input);
 public:
 	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
 	virtual ~InGameState();
