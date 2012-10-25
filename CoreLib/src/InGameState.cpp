@@ -93,6 +93,7 @@ void InGameState::update(float p_dt)
 
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
+			m_parent->getCommonResources()->totalScore = 0;
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}
 		if (m_stats->getNumPills() < 1)
