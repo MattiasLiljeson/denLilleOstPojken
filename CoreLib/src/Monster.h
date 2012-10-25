@@ -32,6 +32,7 @@ private:
 	Tile*		m_nextTile;
 	Tilemap*	m_map;
 	Tile*		m_startMap;
+	Tile*		m_startTile;
 
 	AI* m_ai;
 
@@ -62,6 +63,7 @@ public:
 	void	kill();
 	bool	isDead();
 	void	addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap);
+	void	reset();
 };
 
 #endif

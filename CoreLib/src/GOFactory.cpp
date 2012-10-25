@@ -394,6 +394,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
+	//Pause
+
 	PauseStruct pauseData;
 	pos = fVector3(0.5f, 0.7f, 0.9f); 
 	texts = "GAME PAUSED";
@@ -410,6 +412,34 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pauseData.pressToPlay = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Defeat
+	DefeatStruct defeatData;
+
+	pos = fVector3(0.5f, 0.7f, 0.9f); 
+	texts = "DEFEAT";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.defeated = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.6f, 0.9f); 
+	texts = "CONTINUE WILL COST HALF YOUR TOTAL SCORE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cost = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.5f, 0.9f); 
+	texts = "PRESS ENTER TO CONTINUE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cont = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
 	//End added by Anton
 
 
@@ -435,5 +465,5 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, x, y, speed, bomb);
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb);
 }

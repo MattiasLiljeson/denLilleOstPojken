@@ -3,7 +3,7 @@
 #include <ToString.h>
 
 GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
-	VictoryStruct p_victory, PauseStruct p_pauseData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
+	VictoryStruct p_victory, PauseStruct p_pauseData, DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -24,6 +24,11 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTim
 	m_pauseData = p_pauseData;
 	m_pauseData.paused->getTextArea()->setText("");
 	m_pauseData.pressToPlay->getTextArea()->setText("");
+
+	m_defeatData = p_defeatData;
+	m_defeatData.cont->getTextArea()->setText("");
+	m_defeatData.cost->getTextArea()->setText("");
+	m_defeatData.defeated->getTextArea()->setText("");
 }
 GUI::~GUI()
 {
@@ -40,6 +45,10 @@ GUI::~GUI()
 	delete m_victoryData.finalScore;
 	delete m_pauseData.paused;
 	delete m_pauseData.pressToPlay;
+	
+	delete m_defeatData.defeated;
+	delete m_defeatData.cont;
+	delete m_defeatData.cost;
 }
 void GUI::update(float p_dt)
 {
@@ -55,7 +64,7 @@ void GUI::update(float p_dt)
 	text = "PAR TIME    : " + toString((int)m_stats->getParTime());
 	m_parTime->getTextArea()->setText(text);
 
-	text = "TOTAL SCORE: " + toString(m_stats->getTotalScore());
+	text = "TOTAL SCORE: " + toString(m_stats->getPreviousScore());
 	m_totalScore->getTextArea()->setText(text);
 
 	if (m_stats->getBuffSlot() == 0)
@@ -95,4 +104,16 @@ void GUI::unpause()
 {
 	m_pauseData.paused->getTextArea()->setText("");
 	m_pauseData.pressToPlay->getTextArea()->setText("");
+}
+void GUI::showDefeat()
+{
+	m_defeatData.defeated->getTextArea()->setText("DEFEAT");
+}
+void GUI::showCost()
+{
+	m_defeatData.cost->getTextArea()->setText("CONTINUE WILL COST HALF YOUR TOTAL SCORE");
+}
+void GUI::showContinue()
+{
+	m_defeatData.cont->getTextArea()->setText("PRESS ENTER TO CONTINUE");
 }

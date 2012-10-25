@@ -64,6 +64,8 @@ public:
 	void	clearBuffs();
 	int		getParTime();
 	float	getMultiplier();
+	void	halvePreviousScore();
+	int		getPreviousScore();
 };
 
 #endif

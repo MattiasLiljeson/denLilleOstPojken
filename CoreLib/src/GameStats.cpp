@@ -203,3 +203,11 @@ float GameStats::getMultiplier()
 	float frac = 1-(t / m_parTime);
 	return 1 + frac;
 }
+void GameStats::halvePreviousScore()
+{
+	m_previousScore*=0.5f;
+}
+int	GameStats::getPreviousScore()
+{
+	return m_previousScore;
+}
