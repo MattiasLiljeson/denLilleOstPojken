@@ -32,6 +32,8 @@ public:
 				int p_tileSizeX, int p_tileSizeY);
 	Tile*		CreatePathTile(int p_type, TilePosition p_position,
 				int p_tileSizeX, int p_tileSizeY);
+	Tile*		CreateDecorationTile(int p_type, TilePosition p_position,
+				int p_tileSizeX, int p_tileSizeY);
 	Tile*		CreateBasicWalkableTile(TilePosition, int , int );
 	Tile*		CreateWallSwitch(int p_type, TilePosition,	int , int );
 };

@@ -34,6 +34,20 @@ void MenuState::prevItem()
 	playSound();
 }
 
+void MenuState::nextSelectableItem()
+{
+	do{
+		nextItem();
+	} while( !m_menus[m_currMenu]->m_items[m_currItemIdx]->isSelectable() );
+}
+
+void MenuState::prevSelectableItem()
+{
+	do {
+		prevItem();
+	} while( !m_menus[m_currMenu]->m_items[m_currItemIdx]->isSelectable() );
+}
+
 void MenuState::setCurrMenu( int p_menu )
 {
 	m_menus[m_currMenu]->m_currItem = m_currItemIdx;
@@ -75,22 +89,25 @@ void MenuState::selectLsItem()
 		inGame->setCurrentMap(mapIdx);
 		m_parent->requestStateChange(m_parent->getInGameState());
 	}
-
-	//switch(m_currItemIdx)
-	//{
-	//case MenuSubState::LS_MAIN:
-	//	setCurrMenu(MenuSubState::MENU_MAIN);
-	//	break;
-	//case MenuSubState::LS_START_LEVEL:
-	//	m_parent->requestStateChange(m_parent->getInGameState());
-	//	break;
-	//default:
-	//	break;
-	//}
 }
 
+void MenuState::selectHsItem()
+{
+	if( m_currItemIdx == MenuSubState::HS_MAIN )
+	{
+		setCurrMenu(MenuSubState::MENU_MAIN);
+	}
+}
 
-void MenuState::selectExState()
+void MenuState::selectCrItem()
+{
+	if( m_currItemIdx == MenuSubState::CR_MAIN )
+	{
+		setCurrMenu(MenuSubState::MENU_MAIN);
+	}
+}
+
+void MenuState::selectExItem()
 {
 	switch(m_currItemIdx)
 	{
@@ -285,11 +302,11 @@ void MenuState::handleInput(InputInfo p_input)
 {
 	if( p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED )
-		prevItem();
+		prevSelectableItem();
 
 	else if ( p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED )
-		nextItem();
+		nextSelectableItem();
 
 	if ( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
@@ -304,8 +321,14 @@ void MenuState::handleInput(InputInfo p_input)
 		case MenuSubState::MENU_LEVEL_SELECT:
 			selectLsItem();
 			break;
+		case MenuSubState::MENU_HIGHSCORE:
+			selectHsItem();
+			break;
+		case MenuSubState::MENU_CREDITS:
+			selectCrItem();
+			break;
 		case MenuSubState::MENU_EXIT:
-			selectExState();
+			selectExItem();
 			break;
 		default:
 			break;
