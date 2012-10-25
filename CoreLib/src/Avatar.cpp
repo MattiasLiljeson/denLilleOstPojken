@@ -188,8 +188,11 @@ void Avatar::setTilePosition(Tile* p_newPosition)
 }
 void Avatar::kill()
 {
-	switchState(m_avatarKilledState);
-	m_gameStats->clearBuffs();
+	if (m_currentState != m_avatarKilledState)
+	{
+		switchState(m_avatarKilledState);
+		m_gameStats->clearBuffs();
+	}
 }
 bool Avatar::inAir()
 {

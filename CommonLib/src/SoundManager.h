@@ -21,7 +21,7 @@ public:
 
 	void update(float p_dt);
 	void addSound(SoundInfo* p_instance);
-	void playSound(string p_path);
+	void playSound(SoundInfo* p_info);
 };
 
 #endif

@@ -206,6 +206,15 @@ bool InGameState::checkDynamicCollision()
 			}
 		}
 	}
+
+	for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+	{
+		if (m_bombs[bomb]->isColliding(m_avatar))
+		{
+			m_avatar->kill();
+		}
+	}
+
 	if (!m_avatar->inAir())
 	{
 		for(unsigned int index = 0; index < m_traps.size(); index++)

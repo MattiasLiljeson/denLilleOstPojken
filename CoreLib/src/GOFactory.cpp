@@ -100,16 +100,27 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
 	vector<pair<Tile*, SpriteInfo*>> flames;
+
+	fVector3 pos = GetCenter(p_tile, 0.6f); 
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.height = 64;
+	r.width = 64;
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Explosion_Animation.png",
+		pos, size, &r);
+	flames.push_back(pair<Tile*, SpriteInfo*>(p_tile, spriteInfo));
+
 	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
 	for (int i = 0; i < 4; i++)
 	{
 		Tile* curr = p_map->getTile(p_tile->getTilePosition() + dir[i]);
 		while (curr && curr->isFree())
 		{
-			fVector3 pos = GetCenter(curr, 0.6f); 
-			fVector2 size = GetScaledSize(curr, 0.7f);
+			pos = GetCenter(curr, 0.6f); 
+			size = GetScaledSize(curr, 0.7f);
 
-			Rect r;
 			r.x = 0;
 			r.y = 0;
 			r.height = 64;
@@ -122,7 +133,13 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		}
 	}
 
-	return new Bomb(flames, p_tile, p_map);
+	pos = GetCenter(p_tile, 0.5f); 
+	size = GetScaledSize(p_tile, 1.2f);
+
+	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
+		pos, size, NULL);
+
+	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast.wav",20));
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
@@ -215,16 +232,8 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		SoundInfo* soundInfo = new SoundInfo();
 		soundInfo->play = false;
 		soundInfo->id = p_sound;
-		sf::SoundBuffer buffer;
-		buffer.LoadFromFile(p_sound);
-		sf::Sound* s = new sf::Sound(buffer);
-		s->SetVolume((float)p_volume);
-		s->Play();
-
+		soundInfo->volume = p_volume;
 		m_io->addSound(soundInfo);
-
-		delete s;
-
 		return soundInfo;
 	}
 	return NULL;
