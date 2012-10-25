@@ -52,7 +52,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 	{
-		switchState(m_avatarJumpingState);
+		if (m_currentState != m_avatarKilledState)
+			switchState(m_avatarJumpingState);
 	}
 	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
 	{

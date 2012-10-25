@@ -174,7 +174,7 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
 		pos, size, &r);
-	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets);
+	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets, CreateSoundInfo("../Sounds/switch.wav",100));
 }
 
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
