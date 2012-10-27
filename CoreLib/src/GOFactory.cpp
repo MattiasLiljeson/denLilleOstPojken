@@ -139,7 +139,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
 		pos, size, NULL);
 
-	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast.wav",20));
+	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast_2.wav",100));
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
