@@ -89,6 +89,12 @@
     <Filter Include="Source\GameObject\Glyph\Glyph Animation">
       <UniqueIdentifier>{fe380880-e7b3-433d-977c-a5793fbe8279}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameStates\MenuStates">
+      <UniqueIdentifier>{595b4a5b-7196-433f-864f-af858cf778e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\GameStates\MenuStates\MenuSubStates">
+      <UniqueIdentifier>{df6d4fd4-8551-46e5-9292-37a6d9f93eb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -110,9 +116,6 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClCompile>
     <ClCompile Include="src\InGameState.cpp">
-      <Filter>Source\GameStates</Filter>
-    </ClCompile>
-    <ClCompile Include="src\MenuState.cpp">
       <Filter>Source\GameStates</Filter>
     </ClCompile>
     <ClCompile Include="src\State.cpp">
@@ -214,9 +217,6 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Source</Filter>
     </ClCompile>
-    <ClCompile Include="src\MenuSubState.cpp">
-      <Filter>Source\GameStates</Filter>
-    </ClCompile>
     <ClCompile Include="src\MapHeader.cpp">
       <Filter>Source\LoadMap</Filter>
     </ClCompile>
@@ -225,6 +225,33 @@
     </ClCompile>
     <ClCompile Include="src\GlyphAnimSinus.cpp">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuSubState.cpp">
+      <Filter>Source\GameStates\MenuStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuState.cpp">
+      <Filter>Source\GameStates\MenuStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LevelSelectSubState.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ExitSubState.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HighscoreSubState.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\CreditsSubState.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MainSubState.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuSubStateManager.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\MenuSubStateFactory.cpp">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -250,9 +277,6 @@
       <Filter>Source\GameObject\Collectable\Pill</Filter>
     </ClInclude>
     <ClInclude Include="src\InGameState.h">
-      <Filter>Source\GameStates</Filter>
-    </ClInclude>
-    <ClInclude Include="src\MenuState.h">
       <Filter>Source\GameStates</Filter>
     </ClInclude>
     <ClInclude Include="src\State.h">
@@ -354,9 +378,6 @@
     <ClInclude Include="src\Animation.h">
       <Filter>Source</Filter>
     </ClInclude>
-    <ClInclude Include="src\MenuSubState.h">
-      <Filter>Source\GameStates</Filter>
-    </ClInclude>
     <ClInclude Include="src\MapHeader.h">
       <Filter>Source\LoadMap</Filter>
     </ClInclude>
@@ -368,6 +389,36 @@
     </ClInclude>
     <ClInclude Include="src\GlyphAnimSinus.h">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuSubState.h">
+      <Filter>Source\GameStates\MenuStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuState.h">
+      <Filter>Source\GameStates\MenuStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\LevelSelectSubState.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ExitSubState.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighscoreSubState.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MainSubState.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\CreditsSubState.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuSubStateManager.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuSubStateFactory.h">
+      <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\MenuItemProperties.h">
+      <Filter>Source\GameStates\MenuStates</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

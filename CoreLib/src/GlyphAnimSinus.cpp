@@ -27,6 +27,12 @@ TransformInfo GlyphAnimSinus::getAnimation( TransformInfo p_transInfo,
 	p_transInfo.translation[TransformInfo::Y] = posY;
 	p_transInfo.scale[TransformInfo::X] = scaX;
 	p_transInfo.scale[TransformInfo::Y] = scaY;
+
+	// Rotation does not work
+	//p_transInfo.rotation[TransformInfo::X] = scaY;
+	//p_transInfo.rotation[TransformInfo::Y] = scaY;
+	//p_transInfo.rotation[TransformInfo::Z] = scaY;
+
 	return p_transInfo;
 }
 
