@@ -1,7 +1,7 @@
 #include "GameStats.h"
 #include <iostream>
 #include "Monster.h"
-
+#include "Collectable.h"
 
 GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
 {
@@ -13,8 +13,8 @@ GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
 	m_score		= 0;
 	m_previousScore = p_previousScore;
 	m_lives		= 3;
-	m_itemSlot	= -1;
-	m_buffSlot	= -1;
+	m_itemSlot	= NULL;
+	m_buffSlot	= NULL;
 	m_activate = -1;
 
 	m_gameTimer = m_superModeTimer = m_speedUpTimer = NULL;
@@ -176,34 +176,39 @@ void GameStats::loseLife()
 {
 	m_lives = max(0, m_lives-1);
 }
-void	GameStats::setItemSlot(int p_item)
+void GameStats::setItemSlot(Collectable* p_item)
 {
 	m_itemSlot = p_item;
 }
-int		GameStats::getItemSlot()
+Collectable* GameStats::getItemSlot()
 {
 	return m_itemSlot;
 }
-void	GameStats::setBuffSlot(int p_buff)
+void GameStats::setBuffSlot(Collectable* p_buff)
 {
 	m_buffSlot = p_buff;
 }
-int		GameStats::getBuffSlot()
+Collectable* GameStats::getBuffSlot()
 {
 	return m_buffSlot;
 }
-void	GameStats::activateBuff()
+void GameStats::activateBuff()
 {
-	if (m_buffSlot == 0 && !m_speeded)
+	if (m_buffSlot != NULL && !m_speeded)
 	{
+		m_buffSlot->activate();
 		setSpeeded();
-		m_buffSlot = -1;
+		m_buffSlot = NULL;
 	}
 }
-void	GameStats::activateItem()
+void GameStats::activateItem()
 {
-	m_activate = m_itemSlot;
-	m_itemSlot = -1;
+	if(m_itemSlot != NULL)
+	{
+		m_activate = 0;
+		m_itemSlot->activate();
+		m_itemSlot = NULL;
+	}
 }
 int GameStats::getActivatedItem()
 {

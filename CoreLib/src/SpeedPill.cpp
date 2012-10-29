@@ -19,11 +19,15 @@ void SpeedPill::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 void SpeedPill::consume()
 {
-	if (!m_consumed && m_gameStats->getBuffSlot() == -1)
+	if (!m_consumed && m_gameStats->getBuffSlot() == NULL)
 	{
 		m_consumed = true;
 		m_tile = NULL;
-		m_gameStats->setBuffSlot(0);
-		switchState(m_eatenStaten);
+		m_gameStats->setBuffSlot(this);
+		m_spriteInfo->visible = false;
 	}
+}
+void SpeedPill::activate()
+{
+	switchState(m_eatenStaten);
 }

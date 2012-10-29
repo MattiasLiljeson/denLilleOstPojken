@@ -14,6 +14,7 @@ public:
 	virtual ~BombPill();
 	void update(float p_deltaTime, InputInfo p_inputInfo);
 	void consume();
+	void activate();
 };
 
 #endif

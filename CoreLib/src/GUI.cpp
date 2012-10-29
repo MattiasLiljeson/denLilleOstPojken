@@ -71,11 +71,11 @@ void GUI::update(float p_dt)
 	text = "TOTAL SCORE: " + toString(m_stats->getPreviousScore());
 	m_totalScore->getTextArea()->setText(text);
 
-	if (m_stats->getBuffSlot() == 0)
+	if (m_stats->getBuffSlot() != NULL)
 		m_speedIcon->visible = true;
 	else
 		m_speedIcon->visible = false;
-	if (m_stats->getItemSlot() == 0)
+	if (m_stats->getItemSlot() != NULL)
 		m_bombIcon->visible = true;
 	else
 		m_bombIcon->visible = false;

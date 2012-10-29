@@ -16,6 +16,7 @@ public:
 	virtual void consume() = 0;
 	virtual bool isConsumed();
 	virtual void update(float p_deltaTime, InputInfo p_inputInfo);
+	virtual void activate();
 };
 
 #endif

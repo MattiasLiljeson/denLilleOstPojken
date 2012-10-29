@@ -5,6 +5,7 @@
 #include <vector>
 #include <InputInfo.h>
 
+class Collectable;
 class Monster;
 
 using namespace std;
@@ -34,8 +35,8 @@ private:
 	int				m_lives;
 
 	int				m_parTime;
-	int				m_itemSlot;
-	int				m_buffSlot;
+	Collectable*	m_itemSlot;
+	Collectable*	m_buffSlot;
 
 	//Flag to indicate the spawn of an item
 	int				m_activate;
@@ -60,13 +61,16 @@ public:
 	int		getTotalScore();
 	Timer*	getGameTimer();
 	void	loseLife();
-	void	setItemSlot(int p_item);
-	int		getItemSlot();
-	void	setBuffSlot(int p_buff);
-	int		getBuffSlot();
+
+	void			setItemSlot(Collectable* p_item);
+	Collectable*	getItemSlot();
+	void			setBuffSlot(Collectable* p_buff);
+	Collectable*	getBuffSlot();
+
 	void	activateBuff();
 	void	activateItem();
 	int		getActivatedItem();
+
 	void	clearBuffs();
 	int		getParTime();
 	float	getMultiplier();

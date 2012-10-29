@@ -22,3 +22,7 @@ bool Collectable::isConsumed()
 void Collectable::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 }
+void Collectable::activate()
+{
+
+}
