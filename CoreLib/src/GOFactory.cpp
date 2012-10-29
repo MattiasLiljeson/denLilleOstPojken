@@ -63,7 +63,7 @@ WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	fVector2 size = GetScaledSize(p_tile, 1.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
 		pos, size, NULL);
@@ -81,7 +81,7 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.5f);
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Pill_32.png",
 		pos, size, NULL);
@@ -99,10 +99,10 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
-	vector<pair<Tile*, SpriteInfo*>> flames;
+	vector<pair<Tile*, SpriteInfo*> > flames;
 
 	fVector3 pos = GetCenter(p_tile, 0.6f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 	Rect r;
 	r.x = 0;
 	r.y = 0;
@@ -119,7 +119,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		while (curr && curr->isFree())
 		{
 			pos = GetCenter(curr, 0.6f); 
-			size = GetScaledSize(curr, 0.7f);
+			size = GetScaledSize(curr, 1.2f);
 
 			r.x = 0;
 			r.y = 0;
@@ -134,7 +134,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	}
 
 	pos = GetCenter(p_tile, 0.5f); 
-	size = GetScaledSize(p_tile, 1.2f);
+	size = GetScaledSize(p_tile, 2.0f);
 
 	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
 		pos, size, NULL);
@@ -163,8 +163,8 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
 	vector<WallSwitch*> p_targets)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 1.7f);
 
 	Rect r;
 	r.x = 0;
