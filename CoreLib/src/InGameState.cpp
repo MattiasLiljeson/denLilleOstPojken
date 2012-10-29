@@ -37,7 +37,6 @@ bool InGameState::onEntry()
 			m_gui = NULL;
 			m_parent->getCommonResources()->totalScore = 0;
 		}
-		restart();
 		m_resourcesAllocated=true;
 	}
 	return true;
