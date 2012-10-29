@@ -102,6 +102,17 @@ Timer* StateManager::getNewTimerInstance()
 {
 	return m_timer->newInstance();
 }
+
+void StateManager::stopMainTimer()
+{
+	m_timer->stop();
+}
+
+void StateManager::startMainTimer()
+{
+	m_timer->start();
+}
+
 CommonResources* StateManager::getCommonResources()
 {
 	return &m_commonResources;
