@@ -6,3 +6,4 @@ FOREST The_Maze.txt 30
 HAUNTED_MAZE Haunted_Maze.txt 40
 COURTYARD PacMan.txt 60
 GARDEN Garden.txt 40
+ABANDONED_BREWERY Abandoned_Brewery.txt 100
