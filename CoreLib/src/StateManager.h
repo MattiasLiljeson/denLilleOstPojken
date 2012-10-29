@@ -56,6 +56,8 @@ public:
 	bool isTerminated();
 
 	Timer* getNewTimerInstance();
+	void stopMainTimer();
+	void startMainTimer();
 
 	CommonResources* getCommonResources();
 
