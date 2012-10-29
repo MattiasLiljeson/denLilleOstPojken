@@ -29,3 +29,9 @@ void WallSwitch::switchState()
 	}
 
 }
+
+void WallSwitch::reset()
+{
+	m_spriteInfo->textureRect.x = 0;
+	m_tile->setWalkAble(false);
+}

@@ -135,6 +135,8 @@ void InGameState::update(float p_dt)
 					m_bombs.push_back(b);
 					m_gameObjects.push_back(b);
 				}
+				if (m_stats->getGameTimer()->getElapsedTime() < 2)
+					m_io->fadeSceneToBlack(max(0.0, 4 * (0.25 - m_stats->getGameTimer()->getElapsedTime())));
 			}
 
 			if (m_gui)
@@ -155,10 +157,11 @@ void InGameState::update(float p_dt)
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
 				{
-					for (int i = 0; i < m_monsters.size(); i++)
+					for (int i = 0; i < m_gameObjects.size(); i++)
 					{
-						m_monsters[i]->reset();
+						m_gameObjects[i]->reset();
 					}
+
 					m_avatar->revive(m_startTile);
 				}
 
@@ -237,6 +240,7 @@ void InGameState::restart()
 	{
 		m_victoryTime = 0;
 		m_defeatTime = 0;
+		m_toneOutTimer = 0;
 		m_io->clearSpriteInfos();
 		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
@@ -286,6 +290,8 @@ void InGameState::restart()
 
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();
+
+		m_io->fadeSceneToBlack(1.0f);
 	}
 
 	m_parent->stopMainTimer();
@@ -353,22 +359,8 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 	{
 		if( m_victoryTime >= 3 )
 		{
-			if (m_currentMap < m_maps.size() - 1)
-			{
-				m_currentMap = m_currentMap+1;
-
-				if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
-				{
-					m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
-				}
-				restart();
-			}
-			else
-			{
-				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
-				m_parent->requestStateChange(m_parent->getVictoryState());
-			}
-			return;
+			if (m_toneOutTimer == 0)
+				m_toneOutTimer += p_dt;
 		}
 		else
 		{
@@ -400,6 +392,31 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 	}
 	m_victoryTime+= p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_victoryTime / 1, 1.0f));
+
+	if (m_toneOutTimer > 0)
+	{
+		m_toneOutTimer += p_dt;
+		m_io->fadeSceneToBlack(min(m_toneOutTimer*4, 1.0f));
+		if (m_toneOutTimer > 0.25f)
+		{
+			if (m_currentMap < m_maps.size() - 1)
+			{
+				m_currentMap = m_currentMap+1;
+
+				if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+				{
+					m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+				}
+				restart();
+			}
+			else
+			{
+				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+				m_parent->requestStateChange(m_parent->getVictoryState());
+			}
+			return;
+		}
+	}
 }
 void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 {
@@ -408,9 +425,8 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	
 	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_defeatTime > 3)
 	{
-		m_stats->addScore(-m_stats->getScore());
-		m_stats->halvePreviousScore();
-		restart();
+		if (m_toneOutTimer == 0)
+			m_toneOutTimer += p_dt;
 	}
 	else if (m_defeatTime > 2.1f)
 	{
@@ -423,5 +439,16 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	else if (m_defeatTime > 1.5f)
 	{
 		m_gui->showDefeat();
+	}
+	if (m_toneOutTimer > 0)
+	{
+		m_toneOutTimer += p_dt;
+		m_io->fadeSceneToBlack(min(m_toneOutTimer*4, 1.0f));
+		if (m_toneOutTimer > 0.25f)
+		{
+			m_stats->addScore(-m_stats->getScore());
+			m_stats->halvePreviousScore();
+			restart();
+		}
 	}
 }

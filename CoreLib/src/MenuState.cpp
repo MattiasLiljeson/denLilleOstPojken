@@ -84,10 +84,7 @@ void MenuState::selectLsItem()
 	else
 	{
 		// Get map idx by removing all static items from item index
-		int mapIdx = m_currItemIdx - MenuSubState::LS_NUM_ITEMS;
-		InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
-		inGame->setCurrentMap(mapIdx);
-		m_parent->requestStateChange(m_parent->getInGameState());
+		m_requestedLevel = m_currItemIdx - MenuSubState::LS_NUM_ITEMS;
 	}
 }
 
@@ -245,6 +242,9 @@ bool MenuState::onEntry()
 			if (m_factory)
 				initMenuItems();
 			updateHighScore();
+
+			m_requestedLevel = -1;
+			m_requestedTimer = 0;
 		}
 		m_resourcesAllocated = true;
 	}
@@ -289,7 +289,25 @@ void MenuState::update(float p_dt)
 		// NOTE: The way this function works right now
 		// (triggers state change and sprite dealloc), 
 		// it has to the last function called in update.
-		handleInput(input);
+
+		//Only handle input when no level has been selected
+		if (m_requestedLevel == -1)
+			handleInput(input);
+
+		if (m_requestedLevel != -1)
+		{
+			if (m_requestedTimer > 0.25f)
+			{
+				InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
+				inGame->setCurrentMap(m_requestedLevel);
+				m_parent->requestStateChange(m_parent->getInGameState());
+			}
+			else
+			{
+				m_io->fadeSceneToBlack(min(m_requestedTimer*4, 1.0f));
+			}
+			m_requestedTimer += p_dt;
+		}
 	}
 	//m_menus[m_currMenu]->activate();
 
