@@ -338,12 +338,12 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
 	float timings[6] =
 	{
-		3.0f,
-		2.4f,
-		2.1f,
-		1.8f,
-		1.5f,
-		0.0f
+		3.0f,	// Finished
+		2.4f,	// Total score
+		2.1f,	// Multiplier
+		1.8f,	// Base score
+		1.5f,	// Victory time
+		0.0f	// Fade out
 	};
 
 	if( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
