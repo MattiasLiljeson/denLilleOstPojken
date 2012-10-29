@@ -12,6 +12,8 @@ Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameS
 	m_consumed = false;
 
 	m_eatenState = new PillEatenState(this, p_spriteInfo, p_soundInfo, p_gameStats);
+	m_origin = p_spriteInfo->transformInfo;
+	flotyAnimTick=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
 }
 Pill::~Pill()
 {
@@ -19,6 +21,10 @@ Pill::~Pill()
 }
 void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	// do a floaty animation:
+	flotyAnimTick+=p_deltaTime*5.0f;
+	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = m_origin.translation[TransformInfo::Y]+sin(flotyAnimTick)*1.5f;
+	// run base updates
 	GameObject::update(p_deltaTime, p_inputInfo);
 }
 bool Pill::isConsumed()

@@ -31,6 +31,10 @@ private:
 	vector<MapData>	m_maps;
 	vector<HighScoreItem> m_highscore;
 
+	//New - To add fade functionality
+	int m_requestedLevel;
+	float m_requestedTimer;
+
 private:
 	//utility functions
 	void resetItemOffset( int p_idx );

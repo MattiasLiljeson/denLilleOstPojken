@@ -92,6 +92,8 @@ int GlSpriteRenderer::draw()
 	glUniform2f(m_spriteShader->getScreenSizeConstant(), 
 		(GLfloat)m_context->getScreenWidth(), (GLfloat)m_context->getScreenHeight()
 	);
+	glUniform1f(m_spriteShader->getBWFraction(), m_spriteInfo->bwFraction);
+	glUniform1f(m_spriteShader->getFadeToBlackFraction(), m_spriteInfo->fadeToBlackFraction);
 
 	glEnableVertexAttribArray(m_spriteShader->getPostionIndex());
 	glEnableVertexAttribArray(m_spriteShader->getTexCoordIndex());

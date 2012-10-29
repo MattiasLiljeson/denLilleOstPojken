@@ -29,6 +29,7 @@ public:
 	GameObject(SpriteInfo* p_spriteInfo, GameStats* p_gameStats);
 	virtual			~GameObject();
 	virtual void	update(float p_deltaTime, InputInfo p_inputInfo);
+	virtual void	reset();
 	virtual fVector2	getPostion();
 	virtual float			getRadius();
 	SpriteInfo*		getSpriteInfo();

@@ -24,6 +24,7 @@ private:
 	Tile*					m_startTile;
 	float					m_defeatTime;
 	float					m_victoryTime;
+	float					m_toneOutTimer;
 	int						m_desiredMap;
 
 	bool					m_paused;

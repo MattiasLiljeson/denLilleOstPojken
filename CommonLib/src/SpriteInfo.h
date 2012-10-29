@@ -17,6 +17,7 @@ public:
 	TransformInfo	transformInfo;
 	float			bwFraction;
 	float			sepiaFraction;
+	float			fadeToBlackFraction;
 
 	// The texture rect is specifying x and y-offset,
 	// and width and height in pixels. Defaults to the
@@ -42,6 +43,7 @@ public:
 		textureRect.height = 0;
 		bwFraction = 0;
 		sepiaFraction = 0;
+		fadeToBlackFraction = 0;
 	}
 
 	SpriteInfo( string p_textureFilePath )
