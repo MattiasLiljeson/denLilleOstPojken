@@ -336,24 +336,49 @@ void InGameState::handleInput( InputInfo p_input )
 }
 void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
-	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
-	{			
-		if (m_currentMap < m_maps.size() - 1)
-		{
-			m_currentMap = m_currentMap+1;
+	float timings[6] =
+	{
+		3.0f,
+		2.4f,
+		2.1f,
+		1.8f,
+		1.5f,
+		0.0f
+	};
 
-			if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+	if( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
+		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
+	{
+		if( m_victoryTime >= 3 )
+		{
+			if (m_currentMap < m_maps.size() - 1)
 			{
-				m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+				m_currentMap = m_currentMap+1;
+
+				if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+				{
+					m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+				}
+				restart();
 			}
-			restart();
+			else
+			{
+				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+				m_parent->requestStateChange(m_parent->getVictoryState());
+			}
+			return;
 		}
 		else
 		{
-			m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
-			m_parent->requestStateChange(m_parent->getVictoryState());
+			for( int i = 1; i < 6; i++)
+			{
+				if( m_victoryTime > timings[i] )
+				{
+					m_victoryTime = timings[i - 1];
+					break;
+				}
+			}
 		}
-		return;
 	}
 	else if (m_victoryTime > 2.4f)
 	{
