@@ -22,14 +22,14 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 64;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/player.png",
 		pos, size, &r);
-	SpriteInfo* shadow = CreateSpriteInfo("../Textures/player.png",
+	SpriteInfo* shadow = CreateSpriteInfo("../Textures/playerShadow.png",
 		pos, size, &r);
 	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.0f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
 		pos, size, NULL);
@@ -38,7 +38,7 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_sta
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 1.4f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Trap_Spikes.png",
 		pos, size, NULL);
@@ -47,7 +47,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 {	
 	fVector3 pos = GetCenter(p_tile,0.1f);
-	fVector2 size = GetScaledSize(p_tile,1.4f);
+	fVector2 size = GetScaledSize(p_tile,2.0f);
 
 	Rect r;
 	r.x = 0;
@@ -63,7 +63,7 @@ WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
 		pos, size, NULL);
@@ -72,7 +72,7 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
 		pos, size, NULL);

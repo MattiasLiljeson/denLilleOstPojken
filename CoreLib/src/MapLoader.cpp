@@ -135,17 +135,6 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 			}
 		}
 
-		/*for(unsigned int i = 0; i < newSwitches.size(); i++)
-		{
-			for (unsigned int j = 0; j < newSwitches[i]->size(); j++)
-			{
-				delete newSwitches[i]->at(j);
-			}
-			delete newSwitches[i];
-		}
-		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
-			delete newWallSwitches[i];*/
-
 		for (int i = 0; i < m_monsters.size(); i++)
 		{
 			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
