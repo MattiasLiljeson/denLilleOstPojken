@@ -22,7 +22,7 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 64;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/player.png",
 		pos, size, &r);
-	SpriteInfo* shadow = CreateSpriteInfo("../Textures/player.png",
+	SpriteInfo* shadow = CreateSpriteInfo("../Textures/playerShadow.png",
 		pos, size, &r);
 	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
