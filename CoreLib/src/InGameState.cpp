@@ -288,6 +288,9 @@ void InGameState::restart()
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();
 	}
+
+	m_parent->stopMainTimer();
+	m_parent->startMainTimer();
 }
 
 int InGameState::setCurrentMap( MapData p_map )
