@@ -5,12 +5,17 @@
 #include <vector>
 #include <InputInfo.h>
 
+class Monster;
+
 using namespace std;
 
 enum
 {
 	MONSTER_KILLED = 100, PILL_EATEN = 10
 };
+
+const static int MONSTER_BEGINRESPAWN = 10;
+const static int MONSTER_RESPAWNTIME = 12;
 
 class GameStats
 {
@@ -23,6 +28,7 @@ private:
 	Timer*			m_speedUpTimer;
 	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
+	vector<pair<Monster*, Timer*>>	m_monstersRespawnTimers;
 	int				m_score;
 	int				m_previousScore;
 	int				m_lives;
@@ -66,6 +72,8 @@ public:
 	float	getMultiplier();
 	void	halvePreviousScore();
 	int		getPreviousScore();
+	void	monsterKilled(Monster*);
+	float	getTimeUntilMonsterRespawn(Monster*);
 };
 
 #endif

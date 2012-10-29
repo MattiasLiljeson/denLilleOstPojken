@@ -46,7 +46,7 @@ public:
 	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 
 	Avatar*		CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
-	Monster*	CreateMonster(Tile* p_tile, Tilemap* p_map);
+	Monster*	CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats);
 	Trap*		CreateTrap(Tile* p_tile, Tilemap* p_map);
 
 	SuperPill*	CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);

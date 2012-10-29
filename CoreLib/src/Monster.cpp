@@ -1,28 +1,32 @@
 #include "Monster.h"
 
-Monster::Monster(SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map): GameObject(p_spriteInfo)
+Monster::Monster(	GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
+					SoundInfo* p_monsterKilledSound)
+	: GameObject(p_spriteInfo,p_gameStats)
 {
 	dt = 0;
 	m_startTile = m_currentTile = m_nextTile = p_tile;
 	m_map = p_map;
+	m_respawning = false;
 	m_dead = false;
 	m_ai = NULL;
 
-	m_nextTile = m_currentTile;
+	m_monsterKilledSound = p_monsterKilledSound;
 
 	m_right = new Animation(fVector2(0, 0), 64, 64, 4, 0.2f, true);
 	m_left = new Animation(fVector2(0, 64), 64, 64, 4, 0.2f, true);
 	m_down = new Animation(fVector2(0, 128), 64, 64, 4, 0.2f, true);
 	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.2f, true);
 
-	m_currentAnimation = NULL;
+	m_currentAnimation = m_left;
 }
 
 Monster::~Monster()
 {
 	if(m_ai)
 		delete m_ai;
-
+	if(m_monsterKilledSound)
+		m_monsterKilledSound->deleted = true;
 	delete m_right;
 	delete m_left;
 	delete m_down;
@@ -74,18 +78,10 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			}
 		}
 
-		determineAnimation();
-		if (m_spriteInfo)
+		if(m_spriteInfo)
 		{
-			TilePosition tp1 = m_currentTile->getTilePosition();
-			TilePosition tp2 = m_nextTile->getTilePosition();
-			float pX = tp1.x * (1-dt) + tp2.x * dt; 
-			float pY = tp1.y * (1-dt) + tp2.y * dt;  
-
-			float w = m_currentTile->getWidth();
-			float h = m_currentTile->getHeight();
-			m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-			m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+			determineAnimation();
+			transformSpriteInformation();
 
 			if (m_currentAnimation)
 			{
@@ -94,6 +90,22 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 			}
 		}
 	}
+	else if (m_respawning)
+	{
+		//DO VISUALFEEBACK
+	}
+}
+void Monster::transformSpriteInformation()
+{
+	TilePosition tp1 = m_currentTile->getTilePosition();
+	TilePosition tp2 = m_nextTile->getTilePosition();
+	float pX = tp1.x * (1-dt) + tp2.x * dt; 
+	float pY = tp1.y * (1-dt) + tp2.y * dt;  
+
+	float w = m_currentTile->getWidth();
+	float h = m_currentTile->getHeight();
+	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
 }
 Tile* Monster::getCurrentTile()
 {
@@ -204,9 +216,14 @@ int	Monster::FindTile(Tile* p_tile, vector<AstarItem>& p_queue)
 }
 void Monster::kill()
 {
+	if(m_monsterKilledSound)
+		m_monsterKilledSound->play = true;
+	reset();
 	m_dead = true;
 	if (m_spriteInfo)
 		m_spriteInfo->visible = false;
+
+	m_gameStats->monsterKilled(this);
 }
 bool Monster::isDead()
 {
@@ -247,4 +264,18 @@ void Monster::reset()
 	dt = 0;
 	m_currentTile = m_nextTile = m_startTile;
 	m_path.clear();
+	transformSpriteInformation();
+}
+
+void Monster::respawn()
+{
+	m_dead = false;
+	m_respawning = false;
+}
+
+void Monster::beginRespawn()
+{
+	m_respawning = true;
+	if(m_spriteInfo)
+		m_spriteInfo->visible = true;
 }

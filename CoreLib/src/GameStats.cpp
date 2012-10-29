@@ -1,5 +1,6 @@
 #include "GameStats.h"
 #include <iostream>
+#include "Monster.h"
 
 
 GameStats::GameStats(Timer* p_timer, int p_parTime, int p_previousScore)
@@ -38,6 +39,9 @@ GameStats::~GameStats()
 
 	for(unsigned int i = 0; i < m_powerUpTimers.size(); i++)
 		delete m_powerUpTimers.at(i);
+
+	for(unsigned int i = 0; i < m_monstersRespawnTimers.size(); i++)
+		delete m_monstersRespawnTimers.at(i).second;
 }
 
 void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
@@ -45,7 +49,7 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 	m_activate = -1;
 	m_timer->tick();
 
-	for(int unsigned index = 0; index<m_powerUpTimers.size(); index++)
+	for(unsigned int index = 0; index<m_powerUpTimers.size(); index++)
 	{
 		if (p_deltaTime > 0)
 		{
@@ -55,6 +59,25 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 		else
 			m_powerUpTimers[index]->pause();
+	}
+	for(unsigned int index = 0; index < m_monstersRespawnTimers.size(); index++)
+	{
+		Timer* timer = m_monstersRespawnTimers[index].second;
+		Monster* monster = m_monstersRespawnTimers[index].first;
+
+		if(p_deltaTime > 0)
+			timer->tick();
+
+		if(timer->getElapsedTime() >= MONSTER_BEGINRESPAWN)
+			monster->beginRespawn();
+		if(timer->getElapsedTime() >= MONSTER_RESPAWNTIME)
+		{
+			monster->respawn();
+			timer = NULL;
+			delete m_monstersRespawnTimers[index].second;
+			m_monstersRespawnTimers[index] = m_monstersRespawnTimers.back();
+			m_monstersRespawnTimers.pop_back();
+		}
 	}
 
 	if(m_superMode)
@@ -212,4 +235,21 @@ void GameStats::halvePreviousScore()
 int	GameStats::getPreviousScore()
 {
 	return m_previousScore;
+}
+void GameStats::monsterKilled(Monster* p_monster)
+{
+	pair<Monster*, Timer*> newPair(p_monster,m_timer->newInstance());
+	newPair.second->start();
+	m_monstersRespawnTimers.push_back(newPair);
+};
+
+float GameStats::getTimeUntilMonsterRespawn(Monster* p_monster)
+{
+	for(unsigned int i = 0;i < m_monstersRespawnTimers.size(); i++)
+	{
+		if (m_monstersRespawnTimers[i].first == p_monster)
+			return m_monstersRespawnTimers[i].second->getElapsedTime() - MONSTER_RESPAWNTIME;
+	}
+
+	return 0;
 }
