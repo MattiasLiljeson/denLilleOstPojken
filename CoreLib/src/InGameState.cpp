@@ -156,10 +156,11 @@ void InGameState::update(float p_dt)
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
 				{
-					for (int i = 0; i < m_monsters.size(); i++)
+					for (int i = 0; i < m_gameObjects.size(); i++)
 					{
-						m_monsters[i]->reset();
+						m_gameObjects[i]->reset();
 					}
+
 					m_avatar->revive(m_startTile);
 				}
 
