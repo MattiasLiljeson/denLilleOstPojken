@@ -37,7 +37,6 @@ bool InGameState::onEntry()
 			m_gui = NULL;
 			m_parent->getCommonResources()->totalScore = 0;
 		}
-		restart();
 		m_resourcesAllocated=true;
 	}
 	return true;
@@ -158,10 +157,11 @@ void InGameState::update(float p_dt)
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
 				{
-					for (int i = 0; i < m_monsters.size(); i++)
+					for (int i = 0; i < m_gameObjects.size(); i++)
 					{
-						m_monsters[i]->reset();
+						m_gameObjects[i]->reset();
 					}
+
 					m_avatar->revive(m_startTile);
 				}
 
@@ -293,6 +293,9 @@ void InGameState::restart()
 
 		m_io->fadeSceneToBlack(1.0f);
 	}
+
+	m_parent->stopMainTimer();
+	m_parent->startMainTimer();
 }
 
 int InGameState::setCurrentMap( MapData p_map )
@@ -343,12 +346,12 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
 	float timings[6] =
 	{
-		3.0f,
-		2.4f,
-		2.1f,
-		1.8f,
-		1.5f,
-		0.0f
+		3.0f,	// Finished
+		2.4f,	// Total score
+		2.1f,	// Multiplier
+		1.8f,	// Base score
+		1.5f,	// Victory time
+		0.0f	// Fade out
 	};
 
 	if( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||

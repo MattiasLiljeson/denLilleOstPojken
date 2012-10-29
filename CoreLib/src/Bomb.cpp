@@ -25,7 +25,7 @@ Bomb::~Bomb()
 }
 void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if (m_countDown > 2.2f)
+	if (m_countDown > 1.5f)
 	{
 		if (m_currentDist > 0)
 			m_spriteInfo->visible = false;

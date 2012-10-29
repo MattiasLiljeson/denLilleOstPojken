@@ -54,6 +54,12 @@ void GameObject::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_currentState->update(p_deltaTime, p_inputInfo);
 }
 
+void GameObject::reset()
+{
+	// Overload this function if you want to do something to the object
+	// when the Avatar dies. (i.e. reset states etc.)
+}
+
 //getPosition and getRadius must be updated.
 //they cannot depend on spriteinformation
 fVector2 GameObject::getPostion() 
