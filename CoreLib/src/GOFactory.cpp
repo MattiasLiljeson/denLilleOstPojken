@@ -63,7 +63,7 @@ WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	fVector2 size = GetScaledSize(p_tile, 1.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
 		pos, size, NULL);
@@ -102,7 +102,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	vector<pair<Tile*, SpriteInfo*> > flames;
 
 	fVector3 pos = GetCenter(p_tile, 0.6f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
 	Rect r;
 	r.x = 0;
 	r.y = 0;
@@ -119,7 +119,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		while (curr && curr->isFree())
 		{
 			pos = GetCenter(curr, 0.6f); 
-			size = GetScaledSize(curr, 2.0f);
+			size = GetScaledSize(curr, 1.2f);
 
 			r.x = 0;
 			r.y = 0;
