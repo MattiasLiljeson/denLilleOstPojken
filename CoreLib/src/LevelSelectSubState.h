@@ -4,22 +4,19 @@
 #include "StateManager.h"
 #include <vector>
 
-#include "MenuSubState.h"
+#include "MenuSubStateInterface.h"
+#include "MenuSubStateManager.h"
 
-class StateManager;
-class MenuSubStateManager;
+using namespace std;
 
-class LevelSelectSubState : public MenuSubState
+class LevelSelectSubState : public MenuSubStateInterface
 {
-private:
-	vector<MapData>	m_maps;
-
 public:
 	enum { LS_MAIN, LS_NUM_ITEMS };
-	LevelSelectSubState( MenuSubStateManager* p_manager, vector<MapData> p_maps );
-	~LevelSelectSubState();
 
-	virtual void selectBtn();
+	LevelSelectSubState();
+	~LevelSelectSubState();
+	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
 };
 
 #endif // LEVELSELECTSUBSTATE_H

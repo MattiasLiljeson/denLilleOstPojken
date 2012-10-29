@@ -41,24 +41,25 @@ MenuSubState::MenuSubState( MenuSubStateManager* p_manager )
 {
 	m_manager = p_manager;
 	m_currItemIdx = 0;
-
-	//std values
-	fw = 1.0f/1920.0f;
-	fh = 1.0f/1080.0f;
-
-	m_properties.m_firstItemPos	= fVector3( 0.5f, 0.7f, 0.9f );
-	m_properties.m_itemSize		= fVector2( fh*600.0f, fh*64.0f );
-	m_properties.m_itemTextOffset= fVector2( 0.0f, 0.0f );
-	m_properties.m_itemFontSize	= fVector2( fw*32, fh*32 );
-	m_properties.m_itemDistance	= 100*fh;
-	m_properties.m_itemBackgroundTexturePath = "";
-
-	setAllNonVisible();
+	m_behaviour = NULL;
 }
 
 MenuSubState::~MenuSubState()
 {
 	clear();
+}
+
+void MenuSubState::clear()
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+	{
+		delete m_items[i];
+		m_items[i] = NULL;
+	}
+	m_items.clear();
+	//m_texts.clear();
+	delete m_behaviour;
+	m_behaviour = NULL;
 }
 
 void MenuSubState::upBtn()
@@ -71,46 +72,16 @@ void MenuSubState::downBtn()
 	nextSelectableItem();
 }
 
+void MenuSubState::selectBtn()
+{
+	if(m_behaviour != NULL)
+		m_behaviour->selectBtn( m_currItemIdx, m_manager );
+}
+
 void MenuSubState::escBtn()
-{
-	m_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
-}
-
-void MenuSubState::update( float p_dt )
-{
-	for( unsigned int i=0; i<m_items.size(); i++)
-		m_items[i]->update( p_dt, InputInfo());
-}
-
-void MenuSubState::clear()
-{
-	for( unsigned int i=0; i<m_items.size(); i++)
-	{
-		delete m_items[i];
-		m_items[i] = NULL;
-	}
-	m_items.clear();
-	m_texts.clear();
-}
-
-vector<string> MenuSubState::getTexts()
-{
-	return m_texts;
-}
-
-MenuItemProperties MenuSubState::getProperties()
-{
-	return m_properties;
-}
-
-void MenuSubState::addItems( vector<MenuItem*> p_items )
-{
-	for( unsigned int i=0; i<m_texts.size(); i++ )
-	{
-		m_items.push_back( p_items[i] );
-	}
-	setAllNonSelectable();
-	setFirstSelectable(); // First item is always "return to main menu"
+{	
+	if(m_behaviour != NULL)
+		m_behaviour->escBtn( m_currItemIdx, m_manager );
 }
 
 void MenuSubState::onEntry()
@@ -121,6 +92,47 @@ void MenuSubState::onEntry()
 void MenuSubState::onExit()
 {
 	setAllNonVisible();
+}
+
+void MenuSubState::update( float p_dt )
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->update( p_dt, InputInfo());
+}
+
+//void MenuSubState::setTexts( vector<string> p_texts )
+//{
+//	m_texts = p_texts;
+//}
+//
+//vector<string> MenuSubState::getTexts()
+//{
+//	return m_texts;
+//}
+
+void MenuSubState::setBehaviour( MenuSubStateInterface* p_behaviour )
+{
+	m_behaviour = p_behaviour;
+}
+
+void MenuSubState::setProperties( MenuItemProperties p_properties )
+{
+	m_properties = p_properties;
+}
+
+MenuItemProperties MenuSubState::getProperties()
+{
+	return m_properties;
+}
+
+void MenuSubState::addItems( vector<MenuItem*> p_items )
+{
+	for( unsigned int i=0; i<p_items.size(); i++ )
+	{
+		m_items.push_back( p_items[i] );
+	}
+	setAllNonSelectable();
+	setFirstSelectable(); // First item is always "return to main menu"
 }
 
 void MenuSubState::setFirstSelectable()

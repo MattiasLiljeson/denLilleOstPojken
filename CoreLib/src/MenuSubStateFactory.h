@@ -22,6 +22,15 @@ using namespace std;
 class MenuSubStateManager;
 class MenuSubState;
 
+struct HighScoreItem
+{
+	int score;
+	bool operator<(const HighScoreItem& p_other)
+	{
+		return score > p_other.score;
+	}
+};
+
 class MenuSubStateFactory
 {
 private:
@@ -31,13 +40,32 @@ private:
 public:
 	MenuSubStateFactory( GOFactory* p_gof, MenuSubStateManager* p_manager );
 	~MenuSubStateFactory();
+
 	MenuSubState* createMain();
+	vector<string> createMainTexts();
+	MenuItemProperties createMainProperties();
+
 	MenuSubState* createLevelSelect( vector<MapData> p_maps );
+	vector<string> createLevelSelectTexts( vector<MapData> p_maps );
+	MenuItemProperties createLevelSelectProperties();
+
 	MenuSubState* createHighscore();
+	vector<string> createHighscoreTexts();
+	MenuItemProperties createHighscoreProperties();
+
 	MenuSubState* createCredits();
+	vector<string> createCreditsTexts();
+	MenuItemProperties createCreditsProperties();
+
 	MenuSubState* createExit();
-	void initMenu(MenuSubState* p_menu);
+	vector<string> createExitTexts();
+	MenuItemProperties createExitProperties();
+
 	vector<MenuItem*> createItems( MenuItemProperties p_properties,
 		vector<string> p_texts );
+	MenuSubState* createMenuSubState();
+
+	vector<HighScoreItem> readHighScore();
+	void writeHighScore( vector<HighScoreItem> p_highscores );
 };
 #endif // MENUSUBSTATEFACTORY_H

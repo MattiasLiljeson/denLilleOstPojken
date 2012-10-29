@@ -420,5 +420,8 @@
     <ClInclude Include="src\MenuItemProperties.h">
       <Filter>Source\GameStates\MenuStates</Filter>
     </ClInclude>
+    <ClInclude Include="src\MenuSubStateInterface.h">
+      <Filter>Source\GameStates\MenuStates</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

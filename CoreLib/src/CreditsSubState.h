@@ -1,18 +1,17 @@
 #ifndef CREDITSSUBSTATE_H
 #define CREDITSSUBSTATE_H
 
-#include "MenuSubState.h"
+#include "MenuSubStateInterface.h"
+#include "MenuSubStateManager.h"
 
-class MenuSubStateManager;
-
-class CreditsSubState : public MenuSubState
+class CreditsSubState : public MenuSubStateInterface
 {
 public:
 	enum { CR_MAIN, CR_NUM_ITEMS };
-	CreditsSubState( MenuSubStateManager* p_manager );
-	~CreditsSubState();
 
-	virtual void selectBtn();
+	CreditsSubState();
+	~CreditsSubState();
+	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
 };
 
 #endif // CreditsSubState_h__

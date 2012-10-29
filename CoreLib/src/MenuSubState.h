@@ -6,18 +6,18 @@
 #include "MenuItem.h"
 #include "MenuItemProperties.h"
 #include "MenuSubStateManager.h"
+#include "MenuSubStateInterface.h"
 #include <vector>
 #include <string>
 
 using namespace std;
 
+class MenuSubStateInterface;
 class MenuSubStateManager;
 
 class MenuSubState
 {
 protected:
-	//GOFactory* m_goFactory;
-	//MenuState* m_menuState;
 	MenuSubStateManager* m_manager;
 	MenuItemProperties m_properties;
 
@@ -27,7 +27,8 @@ protected:
 	float fw;
 	float fh;
 
-	vector<string>		m_texts;
+	MenuSubStateInterface* m_behaviour;
+	//vector<string>		m_texts;
 	vector<MenuItem*>	m_items;
 	int m_currItemIdx;
 
@@ -40,21 +41,24 @@ protected:
 public:
 	MenuSubState( MenuSubStateManager* m_manager );
 	virtual ~MenuSubState();
+	void clear();
 	
 	virtual void upBtn();
 	virtual void downBtn();
-	virtual void selectBtn() = 0;
+	virtual void selectBtn();
 	virtual void escBtn();
-
-	void update( float p_dt );
-
-	void clear();
-	vector<string> getTexts();
-	MenuItemProperties getProperties();
-	void addItems(vector<MenuItem*> p_items);
 
 	virtual void onEntry();
 	virtual void onExit();
+
+	void update( float p_dt );
+
+	//void setTexts( vector<string> p_texts );
+	//vector<string> getTexts();
+	void setBehaviour( MenuSubStateInterface* p_behaviour );
+	void setProperties( MenuItemProperties p_properties );
+	MenuItemProperties getProperties();
+	void addItems(vector<MenuItem*> p_items);
 
 	void setFirstSelectable();
 	void setAllSelectable();

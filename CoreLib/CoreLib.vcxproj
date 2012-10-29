@@ -109,6 +109,7 @@
     <ClInclude Include="src\MenuState.h" />
     <ClInclude Include="src\MenuSubState.h" />
     <ClInclude Include="src\MenuSubStateFactory.h" />
+    <ClInclude Include="src\MenuSubStateInterface.h" />
     <ClInclude Include="src\MenuSubStateManager.h" />
     <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />

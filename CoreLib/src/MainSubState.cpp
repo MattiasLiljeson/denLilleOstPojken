@@ -1,45 +1,36 @@
 #include "MenuSubState.h"
 #include "MainSubState.h"
 
-MainSubState::MainSubState(  MenuSubStateManager* p_manager  )
-	: MenuSubState( p_manager )
+MainSubState::MainSubState()
 {
-	m_texts.resize(MM_NUM_ITEMS);
-	m_texts[MM_LEVEL_SELECT]	= "LEVEL SELECT";
-	m_texts[MM_HIGHSCORE]		= "HIGHSCORE";
-	m_texts[MM_CREDITS]			= "CREDITS";
-	m_texts[MM_EXIT]			= "EXIT";
-
-	createItems();
-	setAllSelectable();
 }
 
 MainSubState::~MainSubState()
 {
 }
 
-void MainSubState::selectBtn()
+void MainSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
 {
-	switch(m_currItemIdx)
+	switch(p_currItemIdx)
 	{
 	case MM_LEVEL_SELECT:
-		m_manager->reqMenuChange( MenuSubStateManager::MENU_LEVEL_SELECT );
+		p_manager->reqMenuChange( MenuSubStateManager::MENU_LEVEL_SELECT );
 		break;
 	case MM_HIGHSCORE:
-		m_manager->reqMenuChange( MenuSubStateManager::MENU_HIGHSCORE );
+		p_manager->reqMenuChange( MenuSubStateManager::MENU_HIGHSCORE );
 		break;
 	case MM_CREDITS:
-		m_manager->reqMenuChange( MenuSubStateManager::MENU_CREDITS );
+		p_manager->reqMenuChange( MenuSubStateManager::MENU_CREDITS );
 		break;
 	case MM_EXIT:
-		m_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
+		p_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
 		break;
 	default:
 		break;
 	}
 }
 
-void MainSubState::escBtn()
+void MainSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
 {
-	m_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
+	p_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
 }
