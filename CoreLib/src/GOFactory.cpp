@@ -81,7 +81,7 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.5f);
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Pill_32.png",
 		pos, size, NULL);
@@ -102,7 +102,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	vector<pair<Tile*, SpriteInfo*> > flames;
 
 	fVector3 pos = GetCenter(p_tile, 0.6f); 
-	fVector2 size = GetScaledSize(p_tile, 0.7f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 	Rect r;
 	r.x = 0;
 	r.y = 0;
@@ -119,7 +119,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		while (curr && curr->isFree())
 		{
 			pos = GetCenter(curr, 0.6f); 
-			size = GetScaledSize(curr, 0.7f);
+			size = GetScaledSize(curr, 2.0f);
 
 			r.x = 0;
 			r.y = 0;
@@ -134,7 +134,7 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 	}
 
 	pos = GetCenter(p_tile, 0.5f); 
-	size = GetScaledSize(p_tile, 1.2f);
+	size = GetScaledSize(p_tile, 2.0f);
 
 	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
 		pos, size, NULL);
