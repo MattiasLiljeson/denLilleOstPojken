@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="60" height="31" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="tilemap1" tilewidth="32" tileheight="32">
-  <image source="../Textures/tilemap1.png" width="960" height="960"/>
+ <tileset firstgid="1" name="tilemap_garden" tilewidth="32" tileheight="32">
+  <image source="../Textures/tilemap_garden.png" width="960" height="960"/>
  </tileset>
  <layer name="background" width="60" height="31">
   <data encoding="base64" compression="zlib">
-   eJztwQEJAAAAAqDo/+h+hNoAAAAAAAAAfBpXMAAD
+   eJztwQEJAAAAAqD6f7ofoTYAAAAAAAAAnwY6IAAC
   </data>
  </layer>
- <layer name="THE_ONE_LAYER" width="60" height="31" visible="0">
+ <layer name="THE_ONE_LAYER" width="60" height="31">
   <data encoding="base64" compression="zlib">
-   eJztz7EJgEAQAMFTNHwsQdTYFqzEfmzb6+EQfJhg8t0WEQ0AOjSlqzNz4XdLyxDxpDv+78zOtfC7p7EzR+EXAAAAAPjGC44pcoM=
+   eJzlmEeLFEEYhntr9agreNR1Z1cMoCvGg67uxXA0zUHXiOG2ZgVdPRguYg5gwIN6MwcwgD/AHMAA/gBzAAN492lmGsvP/qqrt5plwMNDVVHT1f3O91W9VVWKoqj0n9JoomgQNEHJ/N13jPZoGANjYVyNlhNM5Vt9NLXRngxToD1F70yYBbNhTg2Wc6Es9Lo0ddBeAAthkejrpL0KVsMaWFuD5TpYDxtgI2wybk2baW+BLtgq+vbQ3gv7YD8cgINwCA4HlkWPF5dH4Khxa4rz4DicgJOi7xzt83ABLsIluAxX4GpgWfR4cXkNrhu3Jhd3+e09uA8P4CE8gsfwJLAsery4fArPcuiTvOHZt/AO3sMH+Aif4HNgWfR4cfkFvmbolZ5je89482etT+juf1crSM+xvcde6xN68Uy7Qm8YAAOhUdTLkdsXfb5T7gW6Ew/pObb3pK31zTzTUBdFSyiXwu5qfTE0wUSYBG2iHut1+WLeuGjxyBpHeo7mPcla38IzRlAP26p658F86BD1WK/LF/PGRYtHKSOPpOdo3pOs9eXoX5otvWn95eq7pC/mydGsvUASj1JGHknP0bwnWetD9EpfzJOjWXuBJB6ljDySnqN5T7LWh+gdwvNDYRgMN/lyNGsvYHuva3+VF01vl4feqbx7GkyHGSZfjmbtBWzvzbO/ukH/TbgFt0221jzxXcZ4y2EFrDT5cjQUTddz6i/gJbwqWO92xtsBO2GXyZej8v32d/n4uqbrG/Xv8AN+Fqw35jRjnoGzJl+OuvT6+Lqmqw9m2hcaoF+933z2nb+haOP5+LqmawT1kdAKo4TetDngG1+Zc6F3RfYdjs967NKVIP0jbQ746pU5F3JXJO9wunvelUj/SJsDid5TVb3aOihzLuSuSPPoUKR/aHMg1ttaV9GrrYMy52zvLeIOx6XDjsEdJR4x0j+0OdASVc4NgyN9HZQ5Z3tvEXc4Lr12DF4r8Uiw/UP2pfleWg6k/c723qLucDQftmPwS4mHj4en+V5aDqT9zvbeou5wNB+2Y9BfmZM+Hu57ng059+ZBe48dA21O+nyj7zmkyPOKi5D3+Dzr63tF+WMWIe/pqW/sCX4DJ5yk/Q==
   </data>
  </layer>
  <objectgroup name="collision" width="60" height="31"/>
