@@ -2,8 +2,11 @@
 #include "MenuItem.h"
 #include <ToString.h>
 
-GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
-	VictoryStruct p_victory, PauseStruct p_pauseData, DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
+GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives,
+	MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime,
+	MenuItem* p_totalScore, VictoryStruct p_victory, PauseStruct p_pauseData,
+	DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item,
+	SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -55,7 +58,8 @@ void GUI::update(float p_dt)
 	for (int i = 2; i >= m_stats->getNumLives(); i--)
 		m_lives[i]->visible = false;
 
-	string text = "ELAPSED TIME: " + toString((int)m_stats->getGameTimer()->getElapsedTime());
+	string text = "ELAPSED TIME: " + toString(
+		(int)m_stats->getGameTimer()->getElapsedTime());
 	m_elapsedTime->getTextArea()->setText(text);
 
 	text = "SCORE      : " + toString(m_stats->getScore());

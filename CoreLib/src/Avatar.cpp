@@ -23,7 +23,8 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 
 	m_currentAnimation = NULL;
 	if (m_spriteInfo)
-		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X],
+		p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
 	else
 		m_size = fVector2();
 

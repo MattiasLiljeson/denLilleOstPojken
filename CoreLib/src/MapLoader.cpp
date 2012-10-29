@@ -86,7 +86,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] > SWITCHES && map[index] <= WALLSWITCHES)
 				{
 					WallSwitch* newWallSwitch = m_factory->CreateWallSwitch(
-													m_tileMap->getTile(TilePosition(j,i)));
+						m_tileMap->getTile(TilePosition(j,i)));
 					int wallSwitchIndex = map[index] - (SWITCHES+1);
 					newWallSwitches.at(wallSwitchIndex).push_back(newWallSwitch);
 					m_gameObjects.push_back(newWallSwitch);
@@ -94,7 +94,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] > CBSPAWN && map[index] <= ENEMIESPAWN )
 				{
 					Monster* monster = m_factory->CreateMonster(
-												m_tileMap->getTile(TilePosition(j, i)), m_tileMap,m_stats);
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap,m_stats);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
