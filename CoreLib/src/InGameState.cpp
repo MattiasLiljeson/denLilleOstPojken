@@ -296,6 +296,11 @@ void InGameState::restart()
 
 	m_parent->stopMainTimer();
 	m_parent->startMainTimer();
+
+	//ANTON FIX!
+	//Makes sure the game starts at time 0
+	m_stats->getGameTimer()->stop();
+	m_stats->getGameTimer()->start();
 }
 
 int InGameState::setCurrentMap( MapData p_map )
