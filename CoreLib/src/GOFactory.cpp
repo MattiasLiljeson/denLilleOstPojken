@@ -99,7 +99,7 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
-	vector<pair<Tile*, SpriteInfo*>> flames;
+	vector<pair<Tile*, SpriteInfo*> > flames;
 
 	fVector3 pos = GetCenter(p_tile, 0.6f); 
 	fVector2 size = GetScaledSize(p_tile, 0.7f);
@@ -163,8 +163,8 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
 	vector<WallSwitch*> p_targets)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 1.7f);
 
 	Rect r;
 	r.x = 0;
