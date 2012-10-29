@@ -34,6 +34,7 @@ private:
 	Timer* m_timer;
 
 	CommonResources m_commonResources;
+
 private:
 	int readUnlockedMaps();
 	void writeUnlockedMaps(int p_value);
