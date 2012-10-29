@@ -59,10 +59,11 @@ private:
 	float m_shadowDT;
 
 public:
-	Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, SoundInfo* p_jumpSound);
+	Avatar(	SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, 
+			Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, 
+			SoundInfo* p_jumpSound);
 	virtual ~Avatar();
-	void	update(float p_deltaTime, InputInfo p_inputInfo);
-
+	void		update(float p_deltaTime, InputInfo p_inputInfo);
 	Tile*		getCurrentTile();
 	Tile*		getClosestTile();
 	int			getDirection();
@@ -74,6 +75,7 @@ public:
 	void		revive(Tile* p_newPosition);
 	void		setCurrentAnimation(Animation* p_animation);
 	fVector2	getPostion();
+	void		reset();
 };
 
 #endif

@@ -222,3 +222,7 @@ fVector2 Avatar::getPostion()
 	fVector2 p2 = m_navigationData->m_nextTile->getPosition();
 	return p1 * (1-dt) + p2 * dt;
 }
+void Avatar::reset()
+{
+
+}
