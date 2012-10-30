@@ -5,7 +5,7 @@
 #include "Glyph.h"
 #include "IODevice.h"
 #include "MenuItem.h"
-#include "Monster.h"
+#include "Rat.h"
 #include "Pill.h"
 #include "SpeedPill.h"
 #include "SuperPill.h"

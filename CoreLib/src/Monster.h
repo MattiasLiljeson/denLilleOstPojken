@@ -27,7 +27,7 @@ struct AstarItem
 
 class Monster: public GameObject
 {
-private:
+protected:
 	Tile*		m_currentTile;
 	Tile*		m_nextTile;
 	Tilemap*	m_map;
@@ -51,6 +51,8 @@ private:
 	bool	m_dead;
 	bool	m_respawning;
 	SoundInfo* m_monsterKilledSound;
+protected:
+	Monster(GameStats* p_gameStats, SpriteInfo* p_spriteInfo);
 private:
 	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal,
 				vector<AstarItem>& p_queue);
@@ -58,9 +60,7 @@ private:
 	void	determineAnimation();
 	void	transformSpriteInformation();
 public:
-	Monster(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
-			SoundInfo* p_monsterKilled);
-	~Monster();
+	virtual ~Monster();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	Tile*	getCurrentTile();
 	void	FindPath(Tile* p_start, Tile* p_goal);

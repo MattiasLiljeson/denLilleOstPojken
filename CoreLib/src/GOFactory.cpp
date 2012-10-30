@@ -33,7 +33,7 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_sta
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
 		pos, size, NULL);
-	return new Monster(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+	return new Rat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
 }
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {

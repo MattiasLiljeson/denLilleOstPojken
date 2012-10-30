@@ -57,6 +57,7 @@
     <ClCompile Include="src\Monster.cpp" />
     <ClCompile Include="src\Pill.cpp" />
     <ClCompile Include="src\PillEatenState.cpp" />
+    <ClCompile Include="src\Rat.cpp" />
     <ClCompile Include="src\SpeedPill.cpp" />
     <ClCompile Include="src\SpeedPillUse.cpp" />
     <ClCompile Include="src\State.cpp" />
@@ -114,6 +115,7 @@
     <ClInclude Include="src\Monster.h" />
     <ClInclude Include="src\Pill.h" />
     <ClInclude Include="src\PillEatenState.h" />
+    <ClInclude Include="src\Rat.h" />
     <ClInclude Include="src\SpeedPill.h" />
     <ClInclude Include="src\State.h" />
     <ClInclude Include="src\StateManager.h" />

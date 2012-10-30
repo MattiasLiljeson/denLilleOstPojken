@@ -253,6 +253,9 @@
     <ClCompile Include="src\MenuSubStateFactory.cpp">
       <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
     </ClCompile>
+    <ClCompile Include="src\Rat.cpp">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -422,6 +425,9 @@
     </ClInclude>
     <ClInclude Include="src\MenuSubStateInterface.h">
       <Filter>Source\GameStates\MenuStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rat.h">
+      <Filter>Source\GameObject\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
