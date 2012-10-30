@@ -53,9 +53,6 @@ void SoundManager::update(float p_dt)
 			delete m_sounds[i].sound;
 			m_sounds[i] = m_sounds.back();
 			m_sounds.pop_back();
-
-			// Johan test:
-			i--;
 		}
 	}
 	

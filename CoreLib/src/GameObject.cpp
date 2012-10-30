@@ -6,6 +6,7 @@ GameObject::GameObject()
 {
 	m_spriteInfo		= NULL;
 	m_gameStats			= NULL;
+	m_basicIdleState	= NULL;
 	m_basicIdleState	= new BasicIdle(this);
 	m_currentState		= m_basicIdleState;
 }
@@ -14,6 +15,7 @@ GameObject::GameObject(SpriteInfo* p_spriteInfo)
 {
 	m_spriteInfo		= p_spriteInfo;
 	m_gameStats			= NULL;
+	m_basicIdleState	= NULL;
 	m_basicIdleState	= new BasicIdle(this);
 	m_currentState		= m_basicIdleState;
 }
@@ -22,6 +24,7 @@ GameObject::GameObject(SpriteInfo* p_spriteInfo, GameStats* p_gameStats)
 {
 	m_spriteInfo		= p_spriteInfo;
 	m_gameStats			= p_gameStats;
+	m_basicIdleState	= NULL;
 	m_basicIdleState	= new BasicIdle(this);
 	m_currentState		= m_basicIdleState;
 }
