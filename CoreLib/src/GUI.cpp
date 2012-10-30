@@ -91,7 +91,7 @@ void GUI::showBaseScore(int p_score)
 }
 void GUI::showMultiplier(float p_multiplier)
 {
-	int temp = p_multiplier * 100;
+	int temp = (int)( p_multiplier * 100 );
 	p_multiplier = temp * 0.01f;
 	m_victoryData.multiplier->getTextArea()->setText("MULTIPLIER: " + toString(p_multiplier));
 }

@@ -136,7 +136,17 @@ void InGameState::update(float p_dt)
 					m_gameObjects.push_back(b);
 				}
 				if (m_stats->getGameTimer()->getElapsedTime() < 2)
-					m_io->fadeSceneToBlack(max(0.0, 4 * (0.25 - m_stats->getGameTimer()->getElapsedTime())));
+				{
+					// Edited by Johan:
+					// made it readable.
+					double arbitraryTimeValue =
+						4 * (0.25 - m_stats->getGameTimer()->getElapsedTime());
+
+					float timeFraction =
+						(float)( max(0.0, arbitraryTimeValue) );
+
+					m_io->fadeSceneToBlack(timeFraction);
+				}
 			}
 
 			if (m_gui)
@@ -157,7 +167,7 @@ void InGameState::update(float p_dt)
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
 				{
-					for (int i = 0; i < m_gameObjects.size(); i++)
+					for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 					{
 						m_gameObjects[i]->reset();
 					}
@@ -199,7 +209,7 @@ bool InGameState::checkDynamicCollision()
 					m_avatar->kill();
 			}
 		}
-		for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+		for (unsigned int bomb = 0; bomb < m_bombs.size(); bomb++)
 		{
 			if (m_bombs[bomb]->isColliding(monster) && !monster->isDead())
 			{
@@ -209,7 +219,7 @@ bool InGameState::checkDynamicCollision()
 		}
 	}
 
-	for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+	for (unsigned int bomb = 0; bomb < m_bombs.size(); bomb++)
 	{
 		if (m_bombs[bomb]->isColliding(m_avatar))
 		{
@@ -321,7 +331,7 @@ int InGameState::setCurrentMap( MapData p_map )
 
 int InGameState::setCurrentMap( int p_mapIdx )
 {
-	if(p_mapIdx < m_maps.size() )
+	if( (unsigned int)p_mapIdx < m_maps.size() )
 	{
 		m_desiredMap = p_mapIdx;
 		//restart();
@@ -381,7 +391,8 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 	}
 	else if (m_victoryTime > 2.4f)
 	{
-		m_gui->showTotalScore(m_stats->getScore() * m_stats->getMultiplier());
+		int totalScore = (int)(m_stats->getScore() * m_stats->getMultiplier());
+		m_gui->showTotalScore(totalScore);
 	}
 	else if (m_victoryTime > 2.1f)
 	{
@@ -404,7 +415,7 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 		m_io->fadeSceneToBlack(min(m_toneOutTimer*4, 1.0f));
 		if (m_toneOutTimer > 0.25f)
 		{
-			if (m_currentMap < m_maps.size() - 1)
+			if ( (unsigned int)(m_currentMap) < m_maps.size() - 1 )
 			{
 				m_currentMap = m_currentMap+1;
 

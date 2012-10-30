@@ -24,7 +24,7 @@ AvatarWalking::~AvatarWalking()
 int AvatarWalking::onEnter()
 {
 	Avatar* av = (Avatar*)m_gameObject;
-	av->setCurrentAnimation(m_down);
+	determineAnimation();
 	return GAME_OK;
 }
 
@@ -163,7 +163,7 @@ void AvatarWalking::determineAnimation()
 	{
 		av->setCurrentAnimation(m_up);
 	}
-	else if (m_navigationData->m_direction == Direction::DOWN)
+	else
 	{
 		av->setCurrentAnimation(m_down);
 	}

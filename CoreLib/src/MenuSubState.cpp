@@ -75,7 +75,7 @@ void MenuSubState::setToLevelSelect(int p_size)
 	m_texts.resize(LS_NUM_ITEMS);
 	m_texts[LS_MAIN] = "GO BACK TO MAIN";
 
-	for( unsigned int i=0; i< p_size; i++ )
+	for( int i=0; i< p_size; i++ )
 	{
 		m_texts.push_back((*m_maps)[i].name);
 	}
@@ -163,8 +163,12 @@ void MenuSubState::activate()
 {
 	if (m_type == MENU_LEVEL_SELECT)
 	{
-		while (m_texts.size() - 1 < m_stateParent->getCommonResources()->unlockedLevels)
+		unsigned int numUnlockedLevels =
+			(unsigned int)m_stateParent->getCommonResources()->unlockedLevels;
+		while (m_texts.size() - 1 < numUnlockedLevels)
+		{
 			addLevel();
+		}
 	}
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{

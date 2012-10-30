@@ -12,11 +12,48 @@ AvatarJumping::AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigat
 	m_gameStats = p_stats;
 	m_jumpSound = p_jumpSound;
 
-	m_right = new Animation(fVector2(0, 256), 64, 64, 8, 0.08f, true);
-	m_left = new Animation(fVector2(0, 320), 64, 64, 8, 0.08f, true);
-	m_down = new Animation(fVector2(0, 384), 64, 64, 8, 0.08f, true);
-	m_up = new Animation(fVector2(0, 448), 64, 64, 8, 0.08f, true);
+	m_airTime = 0.5f;
+	int frames = 8;
+	float frac = m_airTime / frames;
+	m_right = new Animation(fVector2(0, 256), 64, 64, frames, frac, true);
+	m_left = new Animation(fVector2(0, 320), 64, 64, frames, frac, true);
+	m_down = new Animation(fVector2(0, 384), 64, 64, frames, frac, true);
+	m_up = new Animation(fVector2(0, 448), 64, 64, frames, frac, true);
 }
+
+void AvatarJumping::checkInput(InputInfo p_inputInfo)
+{
+	int m_desired = m_navigationData->m_desired;
+	if (p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::LEFT] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::A_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::LEFT;
+	}
+	else if (p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::RIGHT] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::D_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::RIGHT;
+	}
+	if (p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::DOWN;
+	}
+	else if (p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::UP] == InputInfo::KEYPRESSED
+		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYDOWN
+		|| p_inputInfo.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED)
+	{
+		m_desired = Direction::UP;
+	}
+	m_navigationData->m_desired = m_desired;
+}	
 
 AvatarJumping::~AvatarJumping()
 {
@@ -45,6 +82,9 @@ int AvatarJumping::onExit()
 int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 {
 	Avatar* av = ((Avatar*)m_gameObject);
+
+	checkInput(p_inputInfo);
+
 	//Move logic
 	m_navigationData->dt += p_dt * 6;
 	if (m_gameStats && m_gameStats->isSpeeded())
@@ -69,18 +109,8 @@ int AvatarJumping::update(float p_dt, InputInfo p_inputInfo)
 		m_navigationData->dt = 0;
 	
 	//Jump logic
-	float jumptime = 0.08f * 8;
-	float factor;
-	if (m_elapsedTime <= jumptime * 0.5f)
-		factor = m_elapsedTime / (jumptime*0.5f);
-	else
-		factor = (jumptime - m_elapsedTime) / (jumptime*0.5f);
-	if (m_gameObject && m_gameObject->getSpriteInfo())
-	{
-		factor *= 0.25f;
-		m_gameObject->getSpriteInfo()->transformInfo.scale[TransformInfo::X] = originalSize.x * (1+factor);
-		m_gameObject->getSpriteInfo()->transformInfo.scale[TransformInfo::Y] = originalSize.y * (1+factor);
-	}
+	float jumptime = this->m_airTime;
+
 	m_elapsedTime += p_dt;
 	if (m_elapsedTime > jumptime)
 		m_hasLanded = true;

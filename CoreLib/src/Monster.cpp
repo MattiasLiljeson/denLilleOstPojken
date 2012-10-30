@@ -18,7 +18,7 @@ Monster::Monster(	GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile
 	m_down = new Animation(fVector2(0, 128), 64, 64, 4, 0.1f, true);
 	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.1f, true);
 
-	m_currentAnimation = m_left;
+	m_currentAnimation = m_down;
 }
 
 Monster::~Monster()
@@ -85,7 +85,8 @@ void Monster::update(float p_deltaTime, InputInfo p_inputInfo)
 
 			if (m_currentAnimation)
 			{
-				m_currentAnimation->update(p_deltaTime);
+				if (m_currentTile != m_nextTile)
+					m_currentAnimation->update(p_deltaTime);
 				m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
 			}
 		}
@@ -249,22 +250,25 @@ void Monster::determineAnimation()
 		{
 			m_currentAnimation = m_right;
 		}
-		else if (t2.y < t1.y)
-		{
-			m_currentAnimation = m_down;
-		}
 		else if (t2.y > t1.y)
 		{
 			m_currentAnimation = m_up;
+		}
+		else if (t2.y < t1.y)
+		{
+			m_currentAnimation = m_down;
 		}
 	}
 }
 void Monster::reset()
 {
+	m_currentAnimation = m_down;
 	dt = 0;
 	m_currentTile = m_nextTile = m_startTile;
 	m_path.clear();
 	transformSpriteInformation();
+	beginRespawn();
+	respawn();
 }
 
 void Monster::respawn()
