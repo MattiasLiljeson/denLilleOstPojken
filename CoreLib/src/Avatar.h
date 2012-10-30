@@ -50,6 +50,7 @@ private:
 
 	float dt;
 
+	float m_avatarOriginalRadius;
 	fVector2 m_size;
 	float m_offset;
 
@@ -75,6 +76,7 @@ public:
 	void		revive(Tile* p_newPosition);
 	void		setCurrentAnimation(Animation* p_animation);
 	fVector2	getPostion();
+	float		getRadius();
 	void		reset();
 };
 

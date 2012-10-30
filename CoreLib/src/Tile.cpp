@@ -64,3 +64,8 @@ void Tile::setWalkAble(bool p_walkAble)
 {
 	m_type = p_walkAble;
 }
+
+Collectable* Tile::getCollectable()
+{
+	return m_collectable;
+}
