@@ -1,6 +1,6 @@
-#include "Rat.h"
+#include "InfectedRat.h"
 
-Rat::Rat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
+InfectedRat::InfectedRat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
 					SoundInfo* p_monsterKilledSound)
 	: Monster(p_gameStats, p_spriteInfo)
 {
@@ -19,18 +19,31 @@ Rat::Rat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap
 	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.1f, true);
 
 	m_currentAnimation = m_down;
+	m_rushing = false;
+	m_rushCooldown = 0;
 }
-Rat::~Rat()
+InfectedRat::~InfectedRat()
 {
 }
-void Rat::update(float p_deltaTime, InputInfo p_inputInfo)
+void InfectedRat::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	if (!m_dead)
 	{
-		if (m_ai)
-			m_ai->update(p_deltaTime);
+		//Check to see if the infected rat can "see" the avatar
+		if (!m_rushing && m_ai->seesTarget() && m_rushCooldown == 0 && !m_gameStats->isSuperMode())
+		{
+			FindPath(m_currentTile, m_ai->findRushTile());
+			m_rushing = true;
+			m_rushCooldown = 10;
+			dt = 1 - dt;
+			Tile* temp = m_currentTile;
+			m_currentTile = m_nextTile;
+			m_nextTile = temp;
+		}
 
-		dt += p_deltaTime * 6;
+
+		m_rushCooldown = max(0.0f, m_rushCooldown - p_deltaTime);
+		dt += p_deltaTime * (6 + m_rushing * 6);
 		while (dt > 1)
 		{
 			dt -= 1;
@@ -51,8 +64,6 @@ void Rat::update(float p_deltaTime, InputInfo p_inputInfo)
 				}
 				else
 				{
-					m_ai->findTarget();
-
 					if(m_path.size() == 0)
 					{
 						Tile* t;
@@ -64,6 +75,7 @@ void Rat::update(float p_deltaTime, InputInfo p_inputInfo)
 						} while (!t->isFree());
 
 						FindPath(m_currentTile, t);
+						m_rushing = false;
 					}
 				}
 			}

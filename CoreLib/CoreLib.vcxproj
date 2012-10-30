@@ -43,6 +43,7 @@
     <ClCompile Include="src\GOState.cpp" />
     <ClCompile Include="src\GUI.cpp" />
     <ClCompile Include="src\HighscoreSubState.cpp" />
+    <ClCompile Include="src\InfectedRat.cpp" />
     <ClCompile Include="src\InGameState.cpp" />
     <ClCompile Include="src\IODevice.cpp" />
     <ClCompile Include="src\LevelSelectSubState.cpp" />
@@ -99,6 +100,7 @@
     <ClInclude Include="src\GOState.h" />
     <ClInclude Include="src\GUI.h" />
     <ClInclude Include="src\HighscoreSubState.h" />
+    <ClInclude Include="src\InfectedRat.h" />
     <ClInclude Include="src\InGameState.h" />
     <ClInclude Include="src\IODevice.h" />
     <ClInclude Include="src\LevelSelectSubState.h" />

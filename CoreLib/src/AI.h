@@ -26,6 +26,8 @@ public:
 	void chaseTarget();
 	void fleeFromTarget();
 	bool randBool();
+	bool seesTarget();
+	Tile* findRushTile();
 };
 
 #endif

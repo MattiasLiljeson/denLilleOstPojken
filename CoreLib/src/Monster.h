@@ -53,7 +53,7 @@ protected:
 	SoundInfo* m_monsterKilledSound;
 protected:
 	Monster(GameStats* p_gameStats, SpriteInfo* p_spriteInfo);
-private:
+protected:
 	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal,
 				vector<AstarItem>& p_queue);
 	int		FindTile(Tile* p_tile, vector<AstarItem>& p_queue);
@@ -61,7 +61,7 @@ private:
 	void	transformSpriteInformation();
 public:
 	virtual ~Monster();
-	void	update(float p_deltaTime, InputInfo p_inputInfo);
+	virtual void	update(float p_deltaTime, InputInfo p_inputInfo) = 0;
 	Tile*	getCurrentTile();
 	void	FindPath(Tile* p_start, Tile* p_goal);
 	void	kill();
