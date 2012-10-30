@@ -97,7 +97,13 @@ void MenuSubState::onExit()
 void MenuSubState::update( float p_dt )
 {
 	for( unsigned int i=0; i<m_items.size(); i++)
-		m_items[i]->update( p_dt, InputInfo());
+	{
+		if( m_items[i] != NULL )
+			m_items[i]->update( p_dt, InputInfo());
+	}
+
+	if( m_currItemIdx < m_items.size() )
+		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
 }
 
 //void MenuSubState::setTexts( vector<string> p_texts )

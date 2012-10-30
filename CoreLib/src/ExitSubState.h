@@ -18,6 +18,7 @@ public:
 	ExitSubState();
 	~ExitSubState();
 	void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
+	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
 };
 
 #endif // EXITSUBSTATE_H

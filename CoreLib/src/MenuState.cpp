@@ -79,7 +79,8 @@ MenuState::~MenuState()
 
 bool MenuState::onEntry()
 {
-	if (!m_resourcesAllocated) // only allocate once
+	// Only allocate if not allocated already
+	if (!m_resourcesAllocated)
 	{
 		if (m_io)
 			createMenus();
@@ -90,7 +91,8 @@ bool MenuState::onEntry()
 
 bool MenuState::onExit()
 {
-	if (m_resourcesAllocated) // only deallocate if allocated
+	// Only deallocate if allocated
+	if (m_resourcesAllocated)
 	{
 		if (m_io)
 			removeMenus();
@@ -102,9 +104,6 @@ bool MenuState::onExit()
 void MenuState::update( float p_dt )
 {	
 	m_manager->update( p_dt );
-
-	//if( m_currMenu < m_menus.size() )
-	//	m_menus[m_currMenu]->m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
 
 	if( m_io )
 	{

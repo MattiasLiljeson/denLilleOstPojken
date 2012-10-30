@@ -15,3 +15,8 @@ void ExitSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager 
 	else if( p_currItemIdx == EX_NO)
 		p_manager->reqMenuChange(MenuSubStateManager::MENU_MAIN);
 }
+
+void ExitSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+{
+	p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+}

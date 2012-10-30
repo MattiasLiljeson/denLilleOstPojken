@@ -45,7 +45,7 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps )
 	MenuItemProperties props	= createLevelSelectProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->addItems( items );
-	tmp->setBehaviour( new MainSubState() );
+	tmp->setBehaviour( new LevelSelectSubState() );
 	tmp->setAllSelectable();
 	return tmp;
 }
@@ -77,7 +77,7 @@ MenuSubState* MenuSubStateFactory::createHighscore()
 	MenuItemProperties props	= createHighscoreProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->addItems( items );
-	tmp->setBehaviour( new MainSubState() );
+	tmp->setBehaviour( new HighscoreSubState() );
 	tmp->setAllNonSelectable();
 	tmp->setFirstSelectable();
 	return tmp;
@@ -114,7 +114,7 @@ MenuSubState* MenuSubStateFactory::createCredits()
 	MenuItemProperties props	= createCreditsProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->addItems( items );
-	tmp->setBehaviour( new MainSubState() );
+	tmp->setBehaviour( new CreditsSubState() );
 	tmp->setAllNonSelectable();
 	tmp->setFirstSelectable();
 	return tmp;
@@ -150,8 +150,8 @@ MenuSubState* MenuSubStateFactory::createExit()
 	MenuItemProperties props	= createExitProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->addItems( items );
-	tmp->setBehaviour( new MainSubState() );
-	tmp->setAllNonSelectable();
+	tmp->setBehaviour( new ExitSubState() );
+	tmp->setAllSelectable();
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createExitTexts()

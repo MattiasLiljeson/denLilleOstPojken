@@ -22,3 +22,8 @@ void LevelSelectSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_m
 		p_manager->setCurrentMap( mapIdx );
 	}
 }
+
+void LevelSelectSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+{
+	p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+}

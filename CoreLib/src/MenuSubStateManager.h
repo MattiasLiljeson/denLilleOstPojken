@@ -21,13 +21,13 @@ private:
 	int m_currMenu;
 
 public:
-	enum { MENU_MAIN, MENU_LEVEL_SELECT, MENU_HIGHSCORE, MENU_CREDITS, MENU_EXIT, NUM_MENUS };
+	enum Menu { MENU_MAIN, MENU_LEVEL_SELECT, MENU_HIGHSCORE, MENU_CREDITS, MENU_EXIT, NUM_MENUS };
 
 	MenuSubStateManager( MenuState* p_parent );
 	~MenuSubStateManager();
 	void reqMenuChange( int p_state );
 	void handleInput( InputInfo p_input );
-	void addMenu( MenuSubState* p_menu, int p_type );
+	void addMenu( MenuSubState* p_menu, Menu p_type );
 	void update( float p_dt );
 	void terminateGame();
 	void setCurrentMap( int p_mapIdx );

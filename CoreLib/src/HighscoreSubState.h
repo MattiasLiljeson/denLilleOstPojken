@@ -24,9 +24,7 @@ public:
 	~HighscoreSubState();
 
 	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
-
-	virtual void onEntry();
-	virtual void onExit();
+	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
 };
 
 #endif // HIGHSCORESUBSTATE_H

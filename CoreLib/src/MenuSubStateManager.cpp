@@ -3,6 +3,11 @@
 MenuSubStateManager::MenuSubStateManager( MenuState* p_parent )
 {
 	m_menus.resize( NUM_MENUS );
+	for( unsigned int i=0; i<m_menus.size(); i++ )
+		m_menus[i] = NULL;
+
+	m_parent = p_parent;
+	m_currMenu = 0;
 }
 
 MenuSubStateManager::~MenuSubStateManager()
@@ -16,9 +21,12 @@ MenuSubStateManager::~MenuSubStateManager()
 
 void MenuSubStateManager::reqMenuChange( int p_menu )
 {
-	m_menus[m_currMenu]->onExit();
-	m_currMenu = p_menu;
-	m_menus[m_currMenu]->onEntry();
+	if( m_menus[p_menu] != NULL)
+	{
+		m_menus[m_currMenu]->onExit();
+		m_currMenu = p_menu;
+		m_menus[m_currMenu]->onEntry();
+	}
 }
 
 void MenuSubStateManager::handleInput(InputInfo p_input)
@@ -37,19 +45,26 @@ void MenuSubStateManager::handleInput(InputInfo p_input)
 
 	if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED )
 		m_menus[m_currMenu]->escBtn();
-
-	// || !m_io->isRunning()
 }
 
-void MenuSubStateManager::addMenu( MenuSubState* p_menu, int p_type )
+void MenuSubStateManager::addMenu( MenuSubState* p_menu, Menu p_type )
 {
-	m_menus[p_type] = p_menu;
+	if( p_menu != NULL)
+	{
+		m_menus[p_type] = p_menu;
+	
+		if( p_type == MENU_MAIN)
+			m_menus[p_type]->setAllVisible();
+		else
+			m_menus[p_type]->setAllNonVisible();
+	}
 }
 
 void MenuSubStateManager::update( float p_dt )
 {
 	for( unsigned int i=0; i<m_menus.size(); i++ )
-		m_menus[i]->update( p_dt );
+		if( m_menus[i] != NULL)
+			m_menus[i]->update( p_dt );
 }
 
 void MenuSubStateManager::terminateGame()

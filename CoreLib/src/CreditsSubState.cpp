@@ -16,3 +16,8 @@ void CreditsSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manag
 		p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
 	}
 }
+
+void CreditsSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+{
+	p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+}

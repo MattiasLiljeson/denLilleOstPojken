@@ -21,14 +21,7 @@ protected:
 	MenuSubStateManager* m_manager;
 	MenuItemProperties m_properties;
 
-	// As the menu is rendered with 0.0 - 1.0 these small variables makes
-	// it possible to define sizes, positions etc using fullHD as a
-	// reference
-	float fw;
-	float fh;
-
 	MenuSubStateInterface* m_behaviour;
-	//vector<string>		m_texts;
 	vector<MenuItem*>	m_items;
 	int m_currItemIdx;
 

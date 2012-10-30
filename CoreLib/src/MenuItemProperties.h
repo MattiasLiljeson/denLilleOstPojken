@@ -12,10 +12,12 @@ struct MenuItemProperties
 
 	MenuItemProperties()
 	{
-		//std values
+		// As the menu is rendered with 0.0 - 1.0 these small variables makes
+		// it possible to define sizes, positions etc using fullHD as a reference
 		float fw = 1.0f/1920.0f;
 		float fh = 1.0f/1080.0f;
 
+		//std values
 		m_firstItemPos	= fVector3( 0.5f, 0.7f, 0.9f );
 		m_itemSize		= fVector2( fh*600.0f, fh*64.0f );
 		m_itemTextOffset= fVector2( 0.0f, 0.0f );
