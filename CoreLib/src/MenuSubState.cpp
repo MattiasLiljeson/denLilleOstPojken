@@ -138,7 +138,7 @@ void MenuSubState::updateInEntry( float p_dt )
 }
 void MenuSubState::updateInMenu( float p_dt )
 {
-	if( m_currItemIdx < m_items.size() )
+	if( (unsigned int)m_currItemIdx < m_items.size() )
 		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
 }
 void MenuSubState::updateInExit( float p_dt )
