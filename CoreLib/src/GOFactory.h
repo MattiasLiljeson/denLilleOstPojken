@@ -23,6 +23,7 @@
 #include "Bomb.h"
 #include "TMFactory.h"
 #include "WallSwitch.h"
+#include "TileTypes.h"
 
 // forward declarations
 class Glyph;
@@ -60,7 +61,9 @@ public:
 				float p_height);
 
 	Switch*		CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
-				vector<WallSwitch*> p_targets);
+				vector<WallSwitch*> p_targets, int p_type);
+	
+	WallSwitch* CreateWallSwitch(Tile* p_tile, int p_type);
 
 	MenuItem* createMenuItem( fVector3 p_position, fVector2 p_size,
 		string p_text="", fVector2 p_textOffset=fVector2(),
@@ -74,7 +77,6 @@ public:
 	SpriteInfo*	CreateSpriteInfo(string p_texture, fVector3 p_position,
 				fVector2 p_size, Rect* p_sourceRect);
 
-	WallSwitch* CreateWallSwitch(Tile* p_tile);
 };
 
 #endif
