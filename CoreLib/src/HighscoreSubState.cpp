@@ -9,15 +9,15 @@ HighscoreSubState::~HighscoreSubState()
 {
 }
 
-void HighscoreSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void HighscoreSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
 	if( p_currItemIdx == HS_MAIN )
 	{
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_MAIN );
 	}
 }
 
-void HighscoreSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void HighscoreSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
-	p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+	p_menu->setNextMenu( MenuSubStateManager::MENU_MAIN );
 }

@@ -25,6 +25,13 @@ protected:
 	vector<MenuItem*>	m_items;
 	int m_currItemIdx;
 
+	int m_currState;
+	int m_nextMenu;
+	float m_stateTimer;
+
+public:
+	enum { IN_ENTRY, IN_MENU, IN_EXIT };
+
 protected:
 	void nextItem();
 	void prevItem();
@@ -45,13 +52,16 @@ public:
 	virtual void onExit();
 
 	void update( float p_dt );
+	void updateInEntry( float p_dt );
+	void updateInMenu( float p_dt );
+	void updateInExit( float p_dt );
 
-	//void setTexts( vector<string> p_texts );
-	//vector<string> getTexts();
 	void setBehaviour( MenuSubStateInterface* p_behaviour );
 	void setProperties( MenuItemProperties p_properties );
 	MenuItemProperties getProperties();
 	void addItems(vector<MenuItem*> p_items);
+
+	void setNextMenu( int p_menu );
 
 	void setFirstSelectable();
 	void setAllSelectable();

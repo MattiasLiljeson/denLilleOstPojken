@@ -11,8 +11,8 @@ public:
 
 	MainSubState();
 	~MainSubState();
-	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
-	virtual void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
+	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
+	virtual void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
 };
 
 #endif // MAINSUBSTATE_H

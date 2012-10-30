@@ -11,8 +11,8 @@ public:
 
 	CreditsSubState();
 	~CreditsSubState();
-	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
-	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
+	virtual void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
+	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
 };
 
 #endif // CreditsSubState_h__

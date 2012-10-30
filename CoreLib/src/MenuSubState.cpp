@@ -41,6 +41,9 @@ MenuSubState::MenuSubState( MenuSubStateManager* p_manager )
 {
 	m_manager = p_manager;
 	m_currItemIdx = 0;
+	m_currState = IN_ENTRY;
+	m_nextMenu = 0;
+	m_stateTimer = 0.0f;
 	m_behaviour = NULL;
 }
 
@@ -57,7 +60,6 @@ void MenuSubState::clear()
 		m_items[i] = NULL;
 	}
 	m_items.clear();
-	//m_texts.clear();
 	delete m_behaviour;
 	m_behaviour = NULL;
 }
@@ -75,18 +77,21 @@ void MenuSubState::downBtn()
 void MenuSubState::selectBtn()
 {
 	if(m_behaviour != NULL)
-		m_behaviour->selectBtn( m_currItemIdx, m_manager );
+		m_behaviour->selectBtn( m_currItemIdx, m_manager, this );
 }
 
 void MenuSubState::escBtn()
 {	
 	if(m_behaviour != NULL)
-		m_behaviour->escBtn( m_currItemIdx, m_manager );
+		m_behaviour->escBtn( m_currItemIdx, m_manager, this );
 }
 
 void MenuSubState::onEntry()
 {
 	setAllVisible();
+	m_currState = IN_ENTRY;
+	m_stateTimer = 0.0f;
+	m_nextMenu = 0;
 }
 
 void MenuSubState::onExit()
@@ -96,25 +101,57 @@ void MenuSubState::onExit()
 
 void MenuSubState::update( float p_dt )
 {
+	m_stateTimer += p_dt;
+
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{
 		if( m_items[i] != NULL )
 			m_items[i]->update( p_dt, InputInfo());
 	}
 
+	switch( m_currState )
+	{
+	case IN_ENTRY:
+		updateInEntry( p_dt );
+		break;
+	case IN_MENU:
+		updateInMenu( p_dt );
+		break;
+	case IN_EXIT:
+		updateInExit( p_dt );
+		break;
+	}
+}
+
+void MenuSubState::updateInEntry( float p_dt )
+{
+	if(m_stateTimer > 1.0f)
+	{
+		m_currState = IN_MENU;
+		m_stateTimer = 0.0f;
+	}
+	else
+	{
+		// do something
+	}
+}
+void MenuSubState::updateInMenu( float p_dt )
+{
 	if( m_currItemIdx < m_items.size() )
 		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
 }
-
-//void MenuSubState::setTexts( vector<string> p_texts )
-//{
-//	m_texts = p_texts;
-//}
-//
-//vector<string> MenuSubState::getTexts()
-//{
-//	return m_texts;
-//}
+void MenuSubState::updateInExit( float p_dt )
+{
+	if(m_stateTimer > 1.0f)
+	{
+		m_manager->reqMenuChange( m_nextMenu );
+		m_stateTimer = 0.0f;
+	}
+	else
+	{
+		// do something
+	}
+}
 
 void MenuSubState::setBehaviour( MenuSubStateInterface* p_behaviour )
 {
@@ -138,7 +175,15 @@ void MenuSubState::addItems( vector<MenuItem*> p_items )
 		m_items.push_back( p_items[i] );
 	}
 	setAllNonSelectable();
-	setFirstSelectable(); // First item is always "return to main menu"
+	// First item is always "return to main menu"
+	setFirstSelectable();
+}
+
+void MenuSubState::setNextMenu( int p_menu )
+{
+	m_nextMenu = p_menu;
+	m_currState = IN_EXIT;
+	m_stateTimer = 0.0f;
 }
 
 void MenuSubState::setFirstSelectable()

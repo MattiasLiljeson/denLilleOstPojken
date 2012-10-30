@@ -9,11 +9,11 @@ LevelSelectSubState::~LevelSelectSubState()
 {
 }
 
-void LevelSelectSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void LevelSelectSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
 	if( p_currItemIdx == LS_MAIN )
 	{
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_MAIN );
 	}
 	else
 	{
@@ -23,7 +23,7 @@ void LevelSelectSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_m
 	}
 }
 
-void LevelSelectSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void LevelSelectSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
-	p_manager->reqMenuChange( MenuSubStateManager::MENU_MAIN );
+	p_menu->setNextMenu( MenuSubStateManager::MENU_MAIN );
 }

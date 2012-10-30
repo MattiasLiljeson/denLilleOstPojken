@@ -17,8 +17,8 @@ public:
 	
 	ExitSubState();
 	~ExitSubState();
-	void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
-	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager );
+	void selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
+	void escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu );
 };
 
 #endif // EXITSUBSTATE_H

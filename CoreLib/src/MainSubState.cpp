@@ -9,28 +9,28 @@ MainSubState::~MainSubState()
 {
 }
 
-void MainSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void MainSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
 	switch(p_currItemIdx)
 	{
 	case MM_LEVEL_SELECT:
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_LEVEL_SELECT );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_LEVEL_SELECT );
 		break;
 	case MM_HIGHSCORE:
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_HIGHSCORE );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_HIGHSCORE );
 		break;
 	case MM_CREDITS:
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_CREDITS );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_CREDITS );
 		break;
 	case MM_EXIT:
-		p_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
+		p_menu->setNextMenu( MenuSubStateManager::MENU_EXIT );
 		break;
 	default:
 		break;
 	}
 }
 
-void MainSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager )
+void MainSubState::escBtn( int p_currItemIdx, MenuSubStateManager* p_manager, MenuSubState* p_menu )
 {
-	p_manager->reqMenuChange( MenuSubStateManager::MENU_EXIT );
+	p_menu->setNextMenu( MenuSubStateManager::MENU_EXIT );
 }
