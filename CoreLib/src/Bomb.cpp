@@ -14,7 +14,7 @@ Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*>> p_flames, Tile
 }
 Bomb::~Bomb()
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		delete m_flames[i];
 	m_flames.clear();
 
@@ -34,7 +34,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 		if (m_elapsedTime > 0.1f)
 		{
 			bool played = false;
-			for (int i = 0; i < m_flameSpawn.size(); i++)
+			for ( unsigned int i = 0; i < m_flameSpawn.size(); i++ )
 			{
 				TilePosition diff = m_flameSpawn[i].first->getTilePosition() - m_start->getTilePosition();
 				int l = abs(diff.x) + abs(diff.y);
@@ -56,7 +56,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_elapsedTime -= 0.1f;
 		}
 
-		for (int i = 0; i < m_flames.size(); i++)
+		for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		{
 			m_flames[i]->update(p_deltaTime);
 		}
@@ -74,7 +74,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 bool Bomb::isColliding(Monster* p_monster)
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 	{
 		if (!m_flames[i]->isDead())
 		{
@@ -86,7 +86,7 @@ bool Bomb::isColliding(Monster* p_monster)
 }
 bool Bomb::isColliding(Avatar* p_avatar)
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 	{
 		if (!m_flames[i]->isDead())
 		{

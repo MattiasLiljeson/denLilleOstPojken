@@ -232,7 +232,7 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		SoundInfo* soundInfo = new SoundInfo();
 		soundInfo->play = false;
 		soundInfo->id = p_sound;
-		soundInfo->volume = p_volume;
+		soundInfo->volume = (float)p_volume;
 		m_io->addSound(soundInfo);
 		return soundInfo;
 	}
@@ -311,7 +311,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
 
-	Rect guiRect(0, 0, m_io->getScreenWidth(), guiHeight*m_io->getScreenHeight());
+	Rect guiRect(0, 0, m_io->getScreenWidth(),
+		(int)(guiHeight) * m_io->getScreenHeight());
 
 	vector<SpriteInfo*> lives;
 	for (int i = 0; i < 3; i++)

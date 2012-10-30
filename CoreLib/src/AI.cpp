@@ -105,5 +105,5 @@ void AI::fleeFromTarget()
 }
 bool AI::randBool()
 {
-	return rand() % 2;
+	return ( rand() % 2 == 1 );
 }

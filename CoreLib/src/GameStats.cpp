@@ -150,11 +150,11 @@ bool GameStats::isSuperMode()
 }
 float GameStats::superTimeRemaining()
 {
-	return 6 - m_superModeTimer->getElapsedTime();
+	return (float)( 6 - m_superModeTimer->getElapsedTime() );
 }
 float GameStats::speededPercentElapsed()
 {
-	return m_speedUpTimer->getElapsedTime() / 3.0f;
+	return (float)( m_speedUpTimer->getElapsedTime() / 3.0f );
 }
 void GameStats::addScore(int p_points)
 {
@@ -166,7 +166,7 @@ int GameStats::getScore() const
 }
 int	GameStats::getTotalScore()
 {
-	return m_previousScore + m_score * getMultiplier();
+	return (int)( m_previousScore + m_score * getMultiplier() );
 }
 Timer* GameStats::getGameTimer()
 {
@@ -235,7 +235,8 @@ float GameStats::getMultiplier()
 }
 void GameStats::halvePreviousScore()
 {
-	m_previousScore*=0.5f;
+	m_previousScore /= 2;
+//	m_previousScore *= 0.5f;
 }
 int	GameStats::getPreviousScore()
 {
@@ -253,7 +254,13 @@ float GameStats::getTimeUntilMonsterRespawn(Monster* p_monster)
 	for(unsigned int i = 0;i < m_monstersRespawnTimers.size(); i++)
 	{
 		if (m_monstersRespawnTimers[i].first == p_monster)
-			return m_monstersRespawnTimers[i].second->getElapsedTime() - MONSTER_RESPAWNTIME;
+		{
+			float timeLeft =
+				(float)(m_monstersRespawnTimers[i].second->getElapsedTime() -
+				MONSTER_RESPAWNTIME);
+
+			return timeLeft;
+		}
 	}
 
 	return 0;

@@ -10,7 +10,7 @@
 //=========================================================================
 void MenuState::resetItemOffset( int p_idx )
 {
-	if(m_currMenu < m_menus.size() && p_idx < m_menus[m_currMenu]->m_items.size())
+	if(m_currMenu < m_menus.size() && (unsigned int)p_idx < m_menus[m_currMenu]->m_items.size())
 		m_menus[m_currMenu]->m_items[p_idx]->setTextOffset(0.0f, 0.0f);
 }
 
@@ -221,7 +221,7 @@ void MenuState::writeHighScore()
 	file.open("../Highscore/score.txt", ios::out);
 	if (file.is_open())
 	{
-		for (int i = 0; i < m_highscore.size(); i++)
+		for (unsigned int i = 0; i < m_highscore.size(); i++)
 		{
 			file << m_highscore[i].score;
 			if (i < m_highscore.size()-1)
