@@ -4,6 +4,9 @@ MenuSubStateFactory::MenuSubStateFactory( GOFactory* p_gof, MenuSubStateManager*
 {
 	m_gof = p_gof;
 	m_manager = p_manager;
+	m_menuBackSoundPath = "../Sounds/esc.wav";
+	m_navigationSoundPath = "../Sounds/nav.wav";
+	m_itemSelectSoundPath = "../Sounds/sel.wav";
 }
 
 MenuSubStateFactory::~MenuSubStateFactory()
@@ -20,6 +23,11 @@ MenuSubState* MenuSubStateFactory::createMain()
 	tmp->addItems( items );
 	tmp->setBehaviour( new MainSubState() );
 	tmp->setAllSelectable();
+
+	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
+	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
+	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
+	
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createMainTexts()
@@ -52,7 +60,11 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 		items[i]->setSelectable( false );
 
 	tmp->addItems( items );
-
+	
+	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
+	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
+	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
+	
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_maps, int p_numUnlockedLevels )
@@ -88,6 +100,11 @@ MenuSubState* MenuSubStateFactory::createHighscore()
 	tmp->setBehaviour( new HighscoreSubState() );
 	tmp->setAllNonSelectable();
 	tmp->setFirstSelectable();
+
+	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
+	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
+	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
+	
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createHighscoreTexts()
@@ -125,6 +142,11 @@ MenuSubState* MenuSubStateFactory::createCredits()
 	tmp->setBehaviour( new CreditsSubState() );
 	tmp->setAllNonSelectable();
 	tmp->setFirstSelectable();
+	
+	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
+	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
+	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
+	
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createCreditsTexts()
@@ -160,6 +182,11 @@ MenuSubState* MenuSubStateFactory::createExit()
 	tmp->addItems( items );
 	tmp->setBehaviour( new ExitSubState() );
 	tmp->setAllSelectable();
+	
+	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
+	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
+	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
+	
 	return tmp;
 }
 vector<string> MenuSubStateFactory::createExitTexts()
@@ -234,15 +261,3 @@ void MenuSubStateFactory::writeHighScore( vector<HighScoreItem> p_highscores )
 		file.close();
 	}
 }
-
-//void MenuSubState::addLevel()
-//{
-//	m_texts.push_back((*m_maps)[m_texts.size()-1].name);
-//	fVector3 itemPos = m_firstItemPos;
-//	itemPos.y -= m_itemDistance * m_texts.size();
-//
-//
-//	m_items.push_back( m_goFactory->createMenuItem( 
-//		itemPos, m_itemSize, m_texts.back(), m_itemTextOffset, m_itemFontSize,
-//		m_itemBackgroundTexturePath));
-//}

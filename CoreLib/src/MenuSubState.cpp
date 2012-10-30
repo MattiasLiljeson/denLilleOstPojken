@@ -49,6 +49,9 @@ MenuSubState::MenuSubState( MenuSubStateManager* p_manager )
 	m_introTime = 0.1f;
 	m_outroTime = 0.1f;
 	m_selectedTime = 0.1f;
+
+	m_itemSelectSnd = NULL;
+	m_menuNavigatonSnd = NULL;
 }
 
 MenuSubState::~MenuSubState()
@@ -71,23 +74,29 @@ void MenuSubState::clear()
 void MenuSubState::upBtn()
 {
 	prevSelectableItem();
+	playSound( m_menuNavigatonSnd );
 }
 
 void MenuSubState::downBtn()
 {
 	nextSelectableItem();
+	playSound( m_menuNavigatonSnd );
 }
 
 void MenuSubState::selectBtn()
 {
 	if(m_behaviour != NULL)
 		m_behaviour->selectBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_itemSelectSnd );
 }
 
 void MenuSubState::escBtn()
 {	
 	if(m_behaviour != NULL)
 		m_behaviour->escBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_menuBackSnd );
 }
 
 void MenuSubState::onEntry()
@@ -207,6 +216,21 @@ void MenuSubState::addItems( vector<MenuItem*> p_items )
 	}
 }
 
+void MenuSubState::setMenuBackSnd( SoundInfo* p_menuBackSnd )
+{
+	m_menuBackSnd = p_menuBackSnd;
+}
+
+void MenuSubState::setMenuNavigatonSnd( SoundInfo* p_menuNavigatonSnd )
+{
+	m_menuNavigatonSnd = p_menuNavigatonSnd;
+}
+
+void MenuSubState::setItemSelectSnd( SoundInfo* p_itemSelectSnd )
+{
+	m_itemSelectSnd = p_itemSelectSnd;
+}
+
 void MenuSubState::setNextMenu( int p_menu )
 {
 	m_nextMenu = p_menu;
@@ -249,4 +273,17 @@ void MenuSubState::setAllNonVisible()
 {
 	for( unsigned int i=0; i<m_items.size(); i++)
 		m_items[i]->setVisible(false);
+}
+
+bool MenuSubState::playSound( SoundInfo* p_sound)
+{
+	if( p_sound != NULL )
+	{
+		p_sound->play = true;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

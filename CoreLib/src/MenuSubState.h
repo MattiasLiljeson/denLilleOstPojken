@@ -32,6 +32,10 @@ protected:
 	float m_introTime;
 	float m_outroTime;
 	float m_selectedTime;
+	
+	SoundInfo* m_menuBackSnd;
+	SoundInfo* m_menuNavigatonSnd;
+	SoundInfo* m_itemSelectSnd;
 
 public:
 	enum { IN_ENTRY, IN_MENU, ITEM_SELECTED, IN_EXIT };
@@ -65,6 +69,9 @@ public:
 	void setProperties( MenuItemProperties p_properties );
 	MenuItemProperties getProperties();
 	void addItems(vector<MenuItem*> p_items);
+	void setMenuBackSnd( SoundInfo* p_menuBackSnd);
+	void setMenuNavigatonSnd( SoundInfo* p_menuNavigatonSnd);
+	void setItemSelectSnd( SoundInfo* p_itemSelectSnd );
 
 	void setNextMenu( int p_menu );
 	void setItemSelected();
@@ -74,6 +81,8 @@ public:
 	void setAllNonSelectable();
 	void setAllVisible();
 	void setAllNonVisible();
+
+	bool playSound( SoundInfo* p_sound );
 };
 
 #endif

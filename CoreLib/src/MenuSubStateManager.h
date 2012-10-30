@@ -17,8 +17,8 @@ class MenuSubStateManager
 private:
 	MenuState* m_parent;
 	vector<MenuSubState*> m_menus;
-
 	int m_currMenu;
+
 
 public:
 	enum Menu { MENU_MAIN, MENU_LEVEL_SELECT, MENU_HIGHSCORE, MENU_CREDITS, MENU_EXIT, NUM_MENUS };

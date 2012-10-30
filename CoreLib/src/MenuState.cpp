@@ -4,19 +4,6 @@
 //=========================================================================
 // Private Functions
 //=========================================================================
-bool MenuState::playSound()
-{
-	if( m_itemSelectSnd != NULL )
-	{
-		m_itemSelectSnd->play = true;
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 void MenuState::createMenus()
 {
 	m_io->clearSpriteInfos();
@@ -38,8 +25,6 @@ void MenuState::createMenus()
 	m_manager->addMenu( m_menuFactory->createHighscore(), MenuSubStateManager::MENU_HIGHSCORE );
 	m_manager->addMenu( m_menuFactory->createCredits(), MenuSubStateManager::MENU_CREDITS );
 	m_manager->addMenu( m_menuFactory->createExit(), MenuSubStateManager::MENU_EXIT );
-
-	m_itemSelectSnd = m_gof->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
 }
 
 
@@ -65,7 +50,6 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 	m_maps = p_maps;
 	m_io = p_io;
 	m_gof = NULL;
-	m_itemSelectSnd = NULL;
 }
 
 MenuState::~MenuState()
