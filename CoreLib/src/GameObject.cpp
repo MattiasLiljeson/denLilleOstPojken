@@ -31,7 +31,8 @@ GameObject::~GameObject()
 	m_spriteInfo = NULL;
 	m_gameStats = NULL;
 	m_currentState = NULL;
-	delete m_basicIdleState;
+	if( m_basicIdleState != NULL )
+		delete m_basicIdleState;
 	m_basicIdleState = NULL;
 }
 

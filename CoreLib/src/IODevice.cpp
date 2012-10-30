@@ -79,7 +79,13 @@ void IODevice::removeSpriteInfo(SpriteInfo* p_spriteInfo)
 void IODevice::clearSpriteInfos()
 {
 	for (unsigned int i = 0; i < m_spriteInfos.size(); i++)
-		delete m_spriteInfos[i];
+	{
+		if( m_spriteInfos[i] != NULL )
+		{
+			delete m_spriteInfos[i];
+			m_spriteInfos[i] = NULL;
+		}
+	}
 	m_spriteInfos.clear();
 }
 

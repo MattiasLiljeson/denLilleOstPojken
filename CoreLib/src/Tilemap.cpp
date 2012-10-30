@@ -10,7 +10,11 @@ Tilemap::~Tilemap()
 {
 	for (int i = 0; i < m_width * m_height; i++)
 	{
-		delete m_tiles[i];
+		if( m_tiles[i] != NULL )
+		{
+			delete m_tiles[i];
+			m_tiles[i] = NULL;
+		}
 	}
 	delete[] m_tiles;
 }
