@@ -37,6 +37,8 @@
     <ClCompile Include="src\GameOverState.cpp" />
     <ClCompile Include="src\GameStats.cpp" />
     <ClCompile Include="src\Glyph.cpp" />
+    <ClCompile Include="src\GlyphAnimIn.cpp" />
+    <ClCompile Include="src\GlyphAnimOut.cpp" />
     <ClCompile Include="src\GlyphAnimSinus.cpp" />
     <ClCompile Include="src\GlyphMap.cpp" />
     <ClCompile Include="src\GOFactory.cpp" />
@@ -94,6 +96,8 @@
     <ClInclude Include="src\GameStats.h" />
     <ClInclude Include="src\Glyph.h" />
     <ClInclude Include="src\GlyphAnimation.h" />
+    <ClInclude Include="src\GlyphAnimIn.h" />
+    <ClInclude Include="src\GlyphAnimOut.h" />
     <ClInclude Include="src\GlyphAnimSinus.h" />
     <ClInclude Include="src\GlyphMap.h" />
     <ClInclude Include="src\GOFactory.h" />

@@ -22,16 +22,23 @@ protected:
 	MenuItemProperties m_properties;
 
 	MenuSubStateInterface* m_behaviour;
-	vector<MenuItem*>	m_items;
+	vector<MenuItem*> m_items;
 
 	int m_currItemIdx;
 
 	int m_currState;
 	int m_nextMenu;
 	float m_stateTimer;
+	float m_introTime;
+	float m_outroTime;
+	float m_selectedTime;
+	
+	SoundInfo* m_menuBackSnd;
+	SoundInfo* m_menuNavigatonSnd;
+	SoundInfo* m_itemSelectSnd;
 
 public:
-	enum { IN_ENTRY, IN_MENU, IN_EXIT };
+	enum { IN_ENTRY, IN_MENU, ITEM_SELECTED, IN_EXIT };
 
 protected:
 	void nextItem();
@@ -55,19 +62,27 @@ public:
 	void update( float p_dt );
 	void updateInEntry( float p_dt );
 	void updateInMenu( float p_dt );
+	void updateItemSelected( float p_dt );
 	void updateInExit( float p_dt );
 
 	void setBehaviour( MenuSubStateInterface* p_behaviour );
 	void setProperties( MenuItemProperties p_properties );
 	MenuItemProperties getProperties();
 	void addItems(vector<MenuItem*> p_items);
+	void setMenuBackSnd( SoundInfo* p_menuBackSnd);
+	void setMenuNavigatonSnd( SoundInfo* p_menuNavigatonSnd);
+	void setItemSelectSnd( SoundInfo* p_itemSelectSnd );
 
 	void setNextMenu( int p_menu );
+	void setItemSelected();
+	void setInExit();
 	void setFirstSelectable();
 	void setAllSelectable();
 	void setAllNonSelectable();
 	void setAllVisible();
 	void setAllNonVisible();
+
+	bool playSound( SoundInfo* p_sound );
 };
 
 #endif

@@ -37,6 +37,10 @@ private:
 	GOFactory* m_gof;
 	MenuSubStateManager* m_manager;
 
+	string m_menuBackSoundPath;
+	string m_navigationSoundPath;
+	string m_itemSelectSoundPath;
+
 public:
 	MenuSubStateFactory( GOFactory* p_gof, MenuSubStateManager* p_manager );
 	~MenuSubStateFactory();

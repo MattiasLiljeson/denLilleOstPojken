@@ -24,6 +24,8 @@
 #include "TMFactory.h"
 #include "WallSwitch.h"
 #include "TileTypes.h"
+#include "GlyphAnimIn.h"
+#include "GlyphAnimOut.h"
 #include "InfectedRat.h"
 #include <string>
 
@@ -71,8 +73,12 @@ public:
 		string p_text="", fVector2 p_textOffset=fVector2(),
 		fVector2 p_fontSize=fVector2(), string p_bgTexPath="" );
 
+	TextArea* createMenuItemTextArea( fVector3 p_position,
+	string p_text, fVector2 p_textOffset, fVector2 p_fontSize );
+
 	Glyph*		CreateGlyph(const string& p_texture, float p_x, float p_y,
-					fVector2 p_size, GlyphAnimation* p_anim8on = NULL);
+					fVector2 p_size,
+					vector<GlyphAnimation*> p_animations = vector<GlyphAnimation*>());
 
 	GUI*		CreateGUI(GameStats* p_gameStats);
 
