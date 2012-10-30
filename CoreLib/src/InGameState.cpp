@@ -123,8 +123,9 @@ void InGameState::update(float p_dt)
 				m_gameObjects[index]->update(p_dt, input);
 			};
 
-			checkDynamicCollision();
+			checkAndResolveDynamicCollision();
 
+			checkAndResolveStaticCollision();
 	
 			if (m_stats)
 			{
@@ -185,11 +186,10 @@ void InGameState::draw(float p_dt)
 {
 }
 
-bool InGameState::checkDynamicCollision()
+void InGameState::checkAndResolveDynamicCollision()
 {
 	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
 
-	bool collision = false;
 	for(unsigned int index = 0; index < m_monsters.size(); index++)
 	{
 		Monster* monster = m_monsters.at(index);
@@ -199,7 +199,6 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(monsterBC))
 			{
-				collision = true;
 				if (m_stats->isSuperMode())
 				{
 					monster->kill();
@@ -236,14 +235,56 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(trapBC))
 			{
-				collision = true;
 				m_avatar->kill();
 			}
 		}
 	}
-
-	return collision;
 }
+
+void InGameState::checkAndResolveStaticCollision()
+{
+	Tile* tileAheadOfAvatar = NULL;
+	Tile* avatarTile;
+	TilePosition tilePositionAheadOfAvatar;
+	TilePosition avatarTilePosition;
+
+	avatarTile = m_avatar->getCurrentTile();
+	avatarTilePosition = avatarTile->getTilePosition();
+	int avatarDirection = m_avatar->getDirection();
+	
+	tilePositionAheadOfAvatar = avatarTilePosition;
+	if( avatarDirection == Direction::LEFT )
+		tilePositionAheadOfAvatar.x -= 1;
+	else if( avatarDirection == Direction::RIGHT )
+		tilePositionAheadOfAvatar.x += 1;
+	else if( avatarDirection == Direction::DOWN )
+		tilePositionAheadOfAvatar.y -= 1;
+	else if( avatarDirection == Direction::UP )
+		tilePositionAheadOfAvatar.y += 1;
+	
+	tileAheadOfAvatar = m_tileMap->getTile( tilePositionAheadOfAvatar );
+
+	if( tileAheadOfAvatar != NULL )
+	{
+		// There is a tile ahead of avatar.
+		Collectable* collectableAheadOfAvatar = tileAheadOfAvatar->getCollectable();
+		if( collectableAheadOfAvatar != NULL )
+		{
+			Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
+
+			Circle pillBC(collectableAheadOfAvatar->getPostion(),
+				collectableAheadOfAvatar->getRadius() / 4);
+
+			if( avatarBC.collidesWith( pillBC ) )
+			{
+				collectableAheadOfAvatar->consume();
+			}
+		}
+
+	}
+
+}
+
 void InGameState::restart()
 {
 	if (m_io)

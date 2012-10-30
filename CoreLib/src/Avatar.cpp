@@ -36,6 +36,9 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 	m_shadow = p_shadow;
 	if (m_shadow)
 		m_shadow->visible = false;
+
+
+	m_avatarOriginalRadius = m_spriteInfo->textureRect.width / 2.0f;
 }
 
 Avatar::~Avatar()
@@ -228,6 +231,12 @@ fVector2 Avatar::getPostion()
 	fVector2 p2 = m_navigationData->m_nextTile->getPosition();
 	return p1 * (1-dt) + p2 * dt;
 }
+
+float Avatar::getRadius()
+{
+	return m_avatarOriginalRadius;
+}
+
 void Avatar::reset()
 {
 	m_navigationData->m_direction = Direction::NONE;

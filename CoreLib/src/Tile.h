@@ -61,6 +61,7 @@ public:
 	float getHeight();
 	bool isFree();
 	void addPill(Collectable* p_pill);
+	Collectable* getCollectable();
 	bool removePill();
 	void switchState();
 	void setWalkAble(bool p_walkAble);
