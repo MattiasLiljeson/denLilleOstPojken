@@ -78,7 +78,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				{
 					Switch* newSwitch = m_factory->CreateSwitch(
 											m_tileMap->getTile(TilePosition(j, i)),
-											m_stats, vector<WallSwitch*>());
+											m_stats, vector<WallSwitch*>(), map[index]);
 					int switchIndex = map[index] - (PATHS+1);
 					newSwitches[switchIndex].push_back(newSwitch);
 					m_gameObjects.push_back(newSwitch);
@@ -86,7 +86,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] > SWITCHES && map[index] <= WALLSWITCHES)
 				{
 					WallSwitch* newWallSwitch = m_factory->CreateWallSwitch(
-						m_tileMap->getTile(TilePosition(j,i)));
+						m_tileMap->getTile(TilePosition(j,i)),map[index]);
 					int wallSwitchIndex = map[index] - (SWITCHES+1);
 					newWallSwitches.at(wallSwitchIndex).push_back(newWallSwitch);
 					m_gameObjects.push_back(newWallSwitch);

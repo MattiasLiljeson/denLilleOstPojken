@@ -44,22 +44,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 		pos, size, NULL);
 	return new Trap(spriteInfo, p_tile, p_map);
 }
-WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
-{	
-	fVector3 pos = GetCenter(p_tile,0.1f);
-	fVector2 size = GetScaledSize(p_tile,2.0f);
 
-	Rect r;
-	r.x = 0;
-	r.y = 0;
-	r.height = 64;
-	r.width = 64;
-
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Blockade_Tileset.png",
-		pos,size,&r);
-
-	return new WallSwitch(spriteInfo,p_tile);
-}
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
@@ -161,20 +146,41 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
-	vector<WallSwitch*> p_targets)
+	vector<WallSwitch*> p_targets, int p_type)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 1.7f);
 
+	int yOffset = (p_type - (TileTypes::PATHS+1))*64;
+
 	Rect r;
 	r.x = 0;
-	r.y = 0;
+	r.y = yOffset;
 	r.width = 64;
 	r.height = 64;
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
 		pos, size, &r);
 	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets, CreateSoundInfo("../Sounds/switch.wav",100));
+}
+
+WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile, int p_type)
+{	
+	fVector3 pos = GetCenter(p_tile,0.1f);
+	fVector2 size = GetScaledSize(p_tile,2.0f);
+
+	int yOffset = (p_type - (TileTypes::SWITCHES+1))*64;
+
+	Rect r;
+	r.x = 0;
+	r.y = yOffset;
+	r.height = 64;
+	r.width = 64;
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Blockade_Tileset.png",
+		pos,size,&r);
+
+	return new WallSwitch(spriteInfo,p_tile);
 }
 
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
