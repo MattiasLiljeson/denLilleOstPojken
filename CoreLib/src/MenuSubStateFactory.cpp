@@ -46,7 +46,7 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->setBehaviour( new LevelSelectSubState() );
 	
-	for( unsigned int i = 0; i<p_numUnlockedLevels; i++ )
+	for( int i = 0; i<p_numUnlockedLevels; i++ )
 		items[i]->setSelectable( true );
 	for( unsigned int i = p_numUnlockedLevels; i<items.size(); i++ )
 		items[i]->setSelectable( false );
@@ -64,7 +64,7 @@ vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_ma
 	for( unsigned int i=0; i<p_maps.size(); i++ )
 	{
 		texts.push_back( p_maps[i].name );
-		if(i+1 >= p_numUnlockedLevels)
+		if((int)i+1 >= p_numUnlockedLevels)
 			texts.back() += " (LOCKED)";
 	}
 	return texts;

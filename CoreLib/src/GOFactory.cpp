@@ -273,32 +273,53 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 	TextArea* text = NULL;
 	if( p_text != "" )
 	{
-		unsigned int fontWidth = (unsigned int)(scrW * p_fontSize.x);
-		unsigned int fontHeight = (unsigned int)(scrH * p_fontSize.y);
-		float finalTextPosX = scrW * (p_position.x + p_textOffset.x);
-		float finalTextPosY = scrH * (p_position.y + p_textOffset.y);
-
-		font = new GlyphMap(
-			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
-			"../Textures/bubblemad_32x32.png", 32, 32);
-
-		text = new TextArea( font, p_text.size(), this, finalTextPosX,
-			finalTextPosY, TextArea::CEN_CENTER,
-			fVector2(fontWidth/32.0f, fontHeight/32.0f), true );
+		text = createMenuItemTextArea(p_position, p_text, p_textOffset, p_fontSize );
 		text->setText( p_text );
 	}
 
 	return new MenuItem( spriteInfo, text, font, finalPos, finalTextOffset );
 }
 
+TextArea* GOFactory::createMenuItemTextArea( fVector3 p_position,
+	string p_text, fVector2 p_textOffset, fVector2 p_fontSize )
+{
+	float scrW = GAME_FAIL;
+	float scrH = GAME_FAIL;
+	if(m_io != NULL)
+	{
+		scrW = (float)m_io->getScreenWidth();
+		scrH = (float)m_io->getScreenHeight();
+	}
+
+	unsigned int fontWidth = (unsigned int)(scrW * p_fontSize.x);
+	unsigned int fontHeight = (unsigned int)(scrH * p_fontSize.y);
+	float finalTextPosX = scrW * (p_position.x + p_textOffset.x);
+	float finalTextPosY = scrH * (p_position.y + p_textOffset.y);
+
+	GlyphMap* font = new GlyphMap(
+			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
+			"../Textures/bubblemad_32x32.png", 32, 32);
+
+	vector<GlyphAnimation*> animators;
+	animators.push_back( new GlyphAnimIn() ); // Intro
+	animators.push_back( new GlyphAnimSinus() ); // In menu
+	animators.push_back( new GlyphAnimSinus() ); // Selected
+	animators.push_back( new GlyphAnimOut() ); // Outro
+
+	TextArea* text = new TextArea( font, p_text.size(), this, finalTextPosX,
+			finalTextPosY, TextArea::CEN_CENTER,
+			fVector2(fontWidth/32.0f, fontHeight/32.0f), animators);
+
+	return text;
+}
 
 Glyph* GOFactory::CreateGlyph( const string& p_texture, float p_x,
-	float p_y, fVector2 p_size, GlyphAnimation* p_anim8on )
+	float p_y, fVector2 p_size, vector<GlyphAnimation*> p_animations )
 {
 	fVector3 pos = fVector3(p_x, p_y, 0.99f);
 	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
 	// spriteInfo->visible = false;
-	return new Glyph( spriteInfo, p_anim8on );
+	return new Glyph( spriteInfo );
 }
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)

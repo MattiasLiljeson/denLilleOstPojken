@@ -2,7 +2,7 @@
 
 GlyphAnimSinus::GlyphAnimSinus()
 {
-	m_totTime = 0.0f;
+	reset();
 }
 
 void GlyphAnimSinus::update( float p_dt )
@@ -36,5 +36,7 @@ TransformInfo GlyphAnimSinus::getAnimation( TransformInfo p_transInfo,
 	return p_transInfo;
 }
 
-
-
+void GlyphAnimSinus::reset()
+{
+	m_totTime = 0.0f;
+}

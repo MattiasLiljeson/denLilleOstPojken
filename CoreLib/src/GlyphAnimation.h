@@ -12,5 +12,6 @@ public:
 	virtual void update( float p_dt ) = 0;
 	virtual TransformInfo getAnimation( TransformInfo p_transInfo,
 		float p_freq,  float p_amplitude, float p_speed ) = 0;
+	virtual void reset() = 0;
 };
 #endif // GLYPHANIMATION_H

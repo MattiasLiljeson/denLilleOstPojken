@@ -37,6 +37,7 @@ private:
 	float m_xOrigin;
 	float m_yOrigin;
 	fVector2 m_glyphScale;
+	vector<GlyphAnimation*> m_animators;
 
 private: 
 	fVector2 getGlyphRelPos( int p_idx, ANCHOR p_anchor );
@@ -53,7 +54,8 @@ private:
 public:
 	TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength,
 		GOFactory* p_factory, float p_xOrigin, float p_yOrigin,
-		ANCHOR p_anchor, fVector2 p_glyphScale, bool p_useAnim8on = false );
+		ANCHOR p_anchor, fVector2 p_glyphScale, 
+		vector<GlyphAnimation*> p_animators = vector<GlyphAnimation*>());
 	virtual			~TextArea();
 
 	const string&	getText() const {return m_text;}
@@ -62,16 +64,17 @@ public:
 	* @return GAME_FAIL if the submitted string is longer than maxlength of
 	* this textArea.
 	*/
-	int				setText(const string& p_text);
+	int	setText(const string& p_text);
 
-	unsigned int	getMaxLength() const {return m_maxLength;}
-	void			update(float p_deltaTime, InputInfo p_inputInfo);
-	void			animateText( float p_freq, float p_amplitude, float p_speed );
+	unsigned int getMaxLength() const {return m_maxLength;}
+	void update(float p_deltaTime, InputInfo p_inputInfo);
+	void animateText( float p_freq, float p_amplitude, float p_speed, int p_animIdx );
+	void resetAnimation( int p_idx );
 
-	float			getOriginX(){return m_xOrigin;}
-	float			getOriginY(){return m_yOrigin;}
-	void			setOrigin( fVector2 p_newOrigin );
-	void			setVisible( bool p_visible );
+	float getOriginX(){return m_xOrigin;}
+	float getOriginY(){return m_yOrigin;}
+	void setOrigin( fVector2 p_newOrigin );
+	void setVisible( bool p_visible );
 };
 
 #endif
