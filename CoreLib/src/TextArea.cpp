@@ -77,8 +77,9 @@ float TextArea::calcAnchorOffsetY( int p_idx, ANCHOR p_anchor )
 	return (float)GAME_FAIL;
 }
 
-TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_factory, 
-				   float p_xOrigin, float p_yOrigin, ANCHOR p_anchor, fVector2 p_glyphScale )
+TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength,
+	GOFactory* p_factory, float p_xOrigin, float p_yOrigin,
+	ANCHOR p_anchor, fVector2 p_glyphScale, bool p_useAnim8on )
 {
 	m_glyphMap = p_glyphMap;
 	m_maxLength = p_maxLength;
@@ -93,11 +94,15 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p
 	float glyphWidth = (float)(m_glyphMap->getCharWidth()) * p_glyphScale.x;
 	float glyphHeight = (float)(m_glyphMap->getCharHeight()) * p_glyphScale.y;
 
+	GlyphAnimation* anim8on = NULL;
+
 	for (unsigned int i=0;i<m_maxLength;i++)
 	{
+		if(p_useAnim8on)
+			anim8on = new GlyphAnimSinus();
 		Glyph* g = p_factory->CreateGlyph( texturePath,
 			getGlyphAbsPosX(i, p_anchor), getGlyphAbsPosY(i, p_anchor), 
-			fVector2( glyphWidth, glyphHeight ) );
+			fVector2(glyphWidth, glyphHeight), anim8on );
 
 		m_glyphs.push_back(g);
 	}
@@ -127,11 +132,11 @@ int TextArea::setText(const string& p_text)
 			Glyph* g = m_glyphs[i];
 			if (i<m_text.length())
 			{
-				g->setRect(m_glyphMap->getCharRect(m_text[i]));
-				g->setVisibility(true);
+				g->setRect( m_glyphMap->getCharRect(m_text[i]) );
+				g->setVisibility( true );
 			}
 			else
-				g->setVisibility(false);
+				g->setVisibility( false );
 		}
 	}
 
@@ -140,9 +145,17 @@ int TextArea::setText(const string& p_text)
 
 void TextArea::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	for (unsigned int i=0;i<m_glyphs.size();i++)
+	for( unsigned int i=0; i<m_glyphs.size(); i++ )
 	{
-		m_glyphs[i]->update(p_deltaTime,p_inputInfo);
+		m_glyphs[i]->update( p_deltaTime, p_inputInfo );
+	}
+}
+
+void TextArea::animateText( float p_freq, float p_amplitude, float p_speed )
+{
+	for( unsigned int i=0; i<m_glyphs.size(); i++ )
+	{
+		m_glyphs[i]->animate( p_freq, p_amplitude, p_speed );
 	}
 }
 

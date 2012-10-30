@@ -282,8 +282,9 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
 			"../Textures/bubblemad_32x32.png", 32, 32);
 
-		text = new TextArea(font, p_text.size(), this, finalTextPosX,
-			finalTextPosY, TextArea::CEN_CENTER, fVector2(fontWidth/32.0f, fontHeight/32.0f));
+		text = new TextArea( font, p_text.size(), this, finalTextPosX,
+			finalTextPosY, TextArea::CEN_CENTER,
+			fVector2(fontWidth/32.0f, fontHeight/32.0f), true );
 		text->setText( p_text );
 	}
 
@@ -291,13 +292,13 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 }
 
 
-Glyph* GOFactory::CreateGlyph( const string& p_texture, 
-							  float p_x, float p_y, fVector2 p_size)
+Glyph* GOFactory::CreateGlyph( const string& p_texture, float p_x,
+	float p_y, fVector2 p_size, GlyphAnimation* p_anim8on )
 {
 	fVector3 pos = fVector3(p_x, p_y, 0.99f);
 	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
 	// spriteInfo->visible = false;
-	return new Glyph(spriteInfo);
+	return new Glyph( spriteInfo, p_anim8on );
 }
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)

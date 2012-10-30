@@ -4,6 +4,7 @@
 #include <vector>
 #include "Glyph.h"
 #include "GlyphMap.h"
+#include "GlyphAnimSinus.h"
 #include "GOFactory.h"
 using namespace std;
 
@@ -50,8 +51,9 @@ private:
 	float calcAnchorOffsetY( int p_idx, ANCHOR p_anchor );
 
 public:
-	TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength, GOFactory* p_factory, 
-			 float p_xOrigin, float p_yOrigin, ANCHOR p_anchor, fVector2 p_glyphScale );
+	TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength,
+		GOFactory* p_factory, float p_xOrigin, float p_yOrigin,
+		ANCHOR p_anchor, fVector2 p_glyphScale, bool p_useAnim8on = false );
 	virtual			~TextArea();
 
 	const string&	getText() const {return m_text;}
@@ -64,6 +66,7 @@ public:
 
 	unsigned int	getMaxLength() const {return m_maxLength;}
 	void			update(float p_deltaTime, InputInfo p_inputInfo);
+	void			animateText( float p_freq, float p_amplitude, float p_speed );
 
 	float			getOriginX(){return m_xOrigin;}
 	float			getOriginY(){return m_yOrigin;}
