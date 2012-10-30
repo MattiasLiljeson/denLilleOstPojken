@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="31" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tilemap_garden" tilewidth="32" tileheight="32">
+  <image source="../Textures/tilemap_garden.png" width="960" height="960"/>
+ </tileset>
+ <layer name="background" width="60" height="31" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwQEJAAAAAqD6f7ofoTYAAAAAAAAAnwY6IAAC
+  </data>
+ </layer>
+ <layer name="THE_ONE_LAYER" width="60" height="31">
+  <data encoding="base64" compression="zlib">
+   eJy1mMduFEEQhnuHeCBzBi822Ctji3wCGwmMAWNMsC/gAKx9QeQggbERYAkhcpDAawsBF0QOF8QTkMMF8QTk8BD8pZ3Wlmu7e3p2zeHT9M5Uh7+7qrt6m5VSzYIWT6YFSk0HJSAZuOsfwvfDoBscAbNAOagADaycCvz7l+j+T6ONM+AsOAfOgwvgYpCvNUo3/74Y9ZeAGlBraUvXu4rv10A/yIDloA6sAJ2sXB/Y+4vSqbmDNu6Ce+A+eAAegkcx9DaLtqm8CfU3g1bQFuTb2sZMz22wT4daO1m5q4D1leN+gTZeglfgNXgD3oJ3od4kmIvyPDAfLAALwaIg+00j9UgfjdLKOQb74+AEOMnKfQX6M2/7C9r4Cr6B7+AH+Al+Mb1NKK8D68EGsJG+WfTy+B0Ag2A/OAAOBvm+YPLFW7C7AW4GQ8tRuvh4eLsuP5XsQD87wS6wG+wBe8E+oUPOJ4/fS+AyuGIZc5zxJD2J266eH9d+ZtNBdXn8PgZPwNMgepwjQe0wM8owFzZc+xnXIfXy+KXnB/DRQ+8M0AraQjKMNkaakTGg7dpBSYQfcFz72XumQ8YQP2Po+Qf89dQ7CBIgKJIRYVsuvVKzaz/7zXTIWLT5pfQtabcUfDaMsZD2dFs1lrqynTh7irSjdZqIRerAcwt4BnoNfdOYWkOb26F9e5F21M8nlbXZqrJ+TfWqEzk6VC5etM8XqpfmuVTl+1YPzQGYxJgMutn7ycNklwj7pHIFGGMhFdoUoleXef6bCnJxSeOrBlWgMnzOEe/l7yoPu3FgAqhn70vCPvvD9TNpJq3kMwNF6CVtPP+tN+hdCVZ56p3tYadt+Hsaf2m4xqTZtIdnQq3kC2Ueek13INLG898ug97VoIGNr9uht9LDztSe3u9kXJmQWm16TXcg6oPnv31MLx+vy0+5ndYSZWda36SKn//rskmvvAM1szo8/y1GLzG+SL1x8n/X/Mg7ENcr4f48BTSCqRYdhdg1CTutN27+75ofeU935fRa7xqwFmxP5Mr6faP4HceuVw2103rj5v++8yP3aJPeoyq7J6ZV/h6pz4sUs+Okhd1YYXdd2Gm9cfN/3/nx0UvxNlrZz36to0e5cwSiLrSz5dllYb9x8/+482Pzae3PM8GpxNBcT+d7z0G5WDd5R0oz/+DrKM9G3W/c/D/O/PC80qZ3GVsjU64XtW62dZRnI70z5XlJlT9WbRf3fhSlV+Y5POZkPOt18zk7CXk20jtTnmfSq+18/wNrMbQhNZd6rpdcN5+zk5BnI70z5Xkmvdou6v8xrluWpV5bfLnwPRvIVp6N9M6U55k0aDvbnc/nHiHHboqvKHzPBlcbMs/z9Vmbbl+9pviKwvds8GlLU6xem53sxxRfUfieDT5t2fwzzp3XhezPFF9R+J4NUTpd8VisXlnfR9f/wHaGuPgH4LtVUQ==
+  </data>
+ </layer>
+ <objectgroup name="object" width="60" height="31" visible="0"/>
+ <objectgroup name="collision" width="60" height="31" visible="0"/>
+</map>
