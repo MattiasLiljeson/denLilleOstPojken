@@ -23,9 +23,11 @@ void Pill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	// do a floaty animation:
 	flotyAnimTick+=p_deltaTime*5.0f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = m_origin.translation[TransformInfo::Y]+sin(flotyAnimTick)*1.5f;
+	if (m_currentState != m_eatenState)
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = m_origin.translation[TransformInfo::Y]+sin(flotyAnimTick)*1.5f;
 	// run base updates
 	GameObject::update(p_deltaTime, p_inputInfo);
+	m_currentState->update(p_deltaTime, p_inputInfo);
 }
 bool Pill::isConsumed()
 {

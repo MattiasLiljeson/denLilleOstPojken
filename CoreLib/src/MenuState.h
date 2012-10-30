@@ -35,6 +35,9 @@ private:
 	int m_requestedLevel;
 	float m_requestedTimer;
 
+	//Music
+	SoundInfo* m_backgroundMusic;
+
 private:
 	//utility functions
 	void resetItemOffset( int p_idx );

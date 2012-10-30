@@ -170,6 +170,7 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 	m_currItemIdx = 0;
 	m_totTime = 0.0f;
 	m_currMenu = MenuSubState::MENU_MAIN;
+	m_backgroundMusic = NULL;
 	readHighScore();
 }
 
@@ -245,6 +246,17 @@ bool MenuState::onEntry()
 
 			m_requestedLevel = -1;
 			m_requestedTimer = 0;
+
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+			}
+			m_backgroundMusic = new SoundInfo();
+			m_backgroundMusic->id = "../Sounds/POL-misty-cave-short.wav";
+			m_backgroundMusic->play = true;
+			m_backgroundMusic->volume = 20;
+			m_io->addSong(m_backgroundMusic);
+
 		}
 		m_resourcesAllocated = true;
 	}
@@ -266,6 +278,12 @@ bool MenuState::onExit()
 			m_menus.clear();
 			delete m_factory;		
 			m_io->clearSpriteInfos();
+
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
+			}
 		}
 		m_resourcesAllocated=false;
 	}

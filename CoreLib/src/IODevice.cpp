@@ -92,6 +92,10 @@ void IODevice::addSound(SoundInfo* p_soundInfo)
 {
 	m_soundManager.addSound(p_soundInfo);
 }
+void IODevice::addSong(SoundInfo* p_song)
+{
+	m_soundManager.addSong(p_song);
+}
 
 bool IODevice::isRunning()
 {

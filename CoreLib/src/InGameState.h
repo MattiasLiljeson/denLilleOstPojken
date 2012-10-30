@@ -29,6 +29,9 @@ private:
 
 	bool					m_paused;
 
+	//Music
+	SoundInfo* m_backgroundMusic;
+
 private:
 	void updateOnVictory(float p_dt, InputInfo p_input);
 	void updateOnDefeat(float p_dt, InputInfo p_input);

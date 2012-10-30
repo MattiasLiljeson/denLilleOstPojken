@@ -15,6 +15,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_tileMap	= NULL;
 	m_stats		= NULL;
 	m_startTile = NULL;
+	m_backgroundMusic = NULL;
 }
 InGameState::~InGameState()
 {
@@ -59,6 +60,11 @@ bool InGameState::onExit()
 				delete m_stats;
 			if (m_gui)
 				delete m_gui;
+
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+			}
 		}
 		m_resourcesAllocated=false;
 	}
@@ -136,7 +142,13 @@ void InGameState::update(float p_dt)
 					m_gameObjects.push_back(b);
 				}
 				if (m_stats->getGameTimer()->getElapsedTime() < 2)
+				{
 					m_io->fadeSceneToBlack(max(0.0, 4 * (0.25 - m_stats->getGameTimer()->getElapsedTime())));
+				}
+				if (m_stats->getGameTimer()->getElapsedTime() < 5)
+					m_backgroundMusic->volume = 20 * (float)m_stats->getGameTimer()->getElapsedTime() / 5.0f;
+				else
+					m_backgroundMusic->volume = 20;
 			}
 
 			if (m_gui)
@@ -296,6 +308,17 @@ void InGameState::restart()
 
 	m_parent->stopMainTimer();
 	m_parent->startMainTimer();
+
+	//Ugly - Should be corrected. Leave for now
+	if (m_backgroundMusic)
+	{
+		m_backgroundMusic->deleted = true;
+	}
+	m_backgroundMusic = new SoundInfo();
+	m_backgroundMusic->id = "../Sounds/POL-misty-cave-short.wav";
+	m_backgroundMusic->play = true;
+	m_backgroundMusic->volume = 0;
+	m_io->addSong(m_backgroundMusic);
 
 	//ANTON FIX!
 	//Makes sure the game starts at time 0
