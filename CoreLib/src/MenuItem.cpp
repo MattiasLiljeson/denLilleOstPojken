@@ -47,6 +47,12 @@ MenuItem::~MenuItem()
 
 void MenuItem::update( float p_deltaTime, InputInfo p_inputInfo )
 {
+	m_text->update( p_deltaTime, p_inputInfo );
+}
+
+void MenuItem::animateText( float p_freq, float p_amplitude, float p_speed )
+{
+	m_text->animateText( p_freq, p_amplitude, p_speed );
 }
 
 TextArea* MenuItem::getTextArea()

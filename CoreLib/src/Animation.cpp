@@ -26,10 +26,10 @@ void Animation::update(float p_dt)
 Rect Animation::getCurrentFrame()
 {
 	Rect r;
-	r.x = m_start.x + m_frameWidth*m_currentFrame;
-	r.y = m_start.y;
-	r.width = m_frameWidth;
-	r.height = m_frameHeight;
+	r.x = (int)( m_start.x + m_frameWidth*m_currentFrame );
+	r.y = (int)( m_start.y );
+	r.width = (int)( m_frameWidth );
+	r.height = (int)( m_frameHeight );
 	return r;
 }
 bool Animation::hasFinished()

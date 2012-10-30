@@ -5,11 +5,11 @@ SoundManager::SoundManager()
 }
 SoundManager::~SoundManager()
 {
-	for(int i = 0; i < m_instances.size(); i++)
+	for( unsigned int i = 0; i < m_instances.size(); i++ )
 	{
 		delete m_instances[i];
 	}
-	for(int i = 0; i < m_sounds.size(); i++)
+	for( unsigned int i = 0; i < m_sounds.size(); i++ )
 	{
 		delete m_sounds[i].sound;
 	}
@@ -17,7 +17,7 @@ SoundManager::~SoundManager()
 	{
 		delete m_songs[i].song;
 	}
-	for (int i = 0; i < m_soundData.size(); i++)
+	for ( unsigned int i = 0; i < m_soundData.size(); i++ )
 	{
 		delete m_soundData[i];
 	}
@@ -28,7 +28,7 @@ SoundManager::~SoundManager()
 }
 void SoundManager::update(float p_dt)
 {
-	for (int i = 0; i < m_instances.size(); i++)
+	for ( unsigned int i = 0; i < m_instances.size(); i++ )
 	{
 		if(!m_instances[i]->deleted)
 		{
@@ -45,7 +45,7 @@ void SoundManager::update(float p_dt)
 			m_instances.pop_back();
 		}
 	}
-	for (int i = 0; i < m_sounds.size(); i++)
+	for ( unsigned int i = 0; i < m_sounds.size(); i++ )
 	{
 		m_sounds[i].sound->SetVolume(m_sounds[i].info->volume);
 		if (m_sounds[i].sound->GetPlayingOffset() == 0)
@@ -69,7 +69,7 @@ void SoundManager::update(float p_dt)
 void SoundManager::addSound(SoundInfo* p_instance)
 {
 	m_instances.push_back(p_instance);
-	for (int i = 0; i < m_soundData.size(); i++)
+	for ( unsigned int i = 0; i < m_soundData.size(); i++ )
 	{
 		if (m_soundData[i]->path == p_instance->id)
 			return;
@@ -79,7 +79,7 @@ void SoundManager::addSound(SoundInfo* p_instance)
 }
 void SoundManager::playSound(SoundInfo* p_info)
 {
-	for (int i = 0; i < m_soundData.size(); i++)
+	for ( unsigned int i = 0; i < m_soundData.size(); i++ )
 	{
 		if (m_soundData[i]->path == p_info->id)
 		{

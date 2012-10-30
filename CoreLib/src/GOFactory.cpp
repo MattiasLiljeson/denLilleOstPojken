@@ -44,22 +44,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 		pos, size, NULL);
 	return new Trap(spriteInfo, p_tile, p_map);
 }
-WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
-{	
-	fVector3 pos = GetCenter(p_tile,0.1f);
-	fVector2 size = GetScaledSize(p_tile,2.0f);
 
-	Rect r;
-	r.x = 0;
-	r.y = 0;
-	r.height = 64;
-	r.width = 64;
-
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Blockade_Tileset.png",
-		pos,size,&r);
-
-	return new WallSwitch(spriteInfo,p_tile);
-}
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
@@ -161,20 +146,41 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 	return new Tile(p_type, p_position, p_width, p_height, spriteInfo);
 }
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
-	vector<WallSwitch*> p_targets)
+	vector<WallSwitch*> p_targets, int p_type)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 1.7f);
 
+	int yOffset = (p_type - (TileTypes::PATHS+1))*64;
+
 	Rect r;
 	r.x = 0;
-	r.y = 0;
+	r.y = yOffset;
 	r.width = 64;
 	r.height = 64;
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
 		pos, size, &r);
 	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets, CreateSoundInfo("../Sounds/switch.wav",100));
+}
+
+WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile, int p_type)
+{	
+	fVector3 pos = GetCenter(p_tile,0.1f);
+	fVector2 size = GetScaledSize(p_tile,2.0f);
+
+	int yOffset = (p_type - (TileTypes::SWITCHES+1))*64;
+
+	Rect r;
+	r.x = 0;
+	r.y = yOffset;
+	r.height = 64;
+	r.width = 64;
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Blockade_Tileset.png",
+		pos,size,&r);
+
+	return new WallSwitch(spriteInfo,p_tile);
 }
 
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
@@ -232,7 +238,7 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		SoundInfo* soundInfo = new SoundInfo();
 		soundInfo->play = false;
 		soundInfo->id = p_sound;
-		soundInfo->volume = p_volume;
+		soundInfo->volume = (float)p_volume;
 		m_io->addSound(soundInfo);
 		return soundInfo;
 	}
@@ -276,8 +282,9 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
 			"../Textures/bubblemad_32x32.png", 32, 32);
 
-		text = new TextArea(font, p_text.size(), this, finalTextPosX,
-			finalTextPosY, TextArea::CEN_CENTER, fVector2(fontWidth/32.0f, fontHeight/32.0f));
+		text = new TextArea( font, p_text.size(), this, finalTextPosX,
+			finalTextPosY, TextArea::CEN_CENTER,
+			fVector2(fontWidth/32.0f, fontHeight/32.0f), true );
 		text->setText( p_text );
 	}
 
@@ -285,13 +292,13 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 }
 
 
-Glyph* GOFactory::CreateGlyph( const string& p_texture, 
-							  float p_x, float p_y, fVector2 p_size)
+Glyph* GOFactory::CreateGlyph( const string& p_texture, float p_x,
+	float p_y, fVector2 p_size, GlyphAnimation* p_anim8on )
 {
 	fVector3 pos = fVector3(p_x, p_y, 0.99f);
 	SpriteInfo* spriteInfo = CreateSpriteInfo(p_texture,pos, p_size, NULL);
 	// spriteInfo->visible = false;
-	return new Glyph(spriteInfo);
+	return new Glyph( spriteInfo, p_anim8on );
 }
 
 GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
@@ -311,7 +318,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
 
-	Rect guiRect(0, 0, m_io->getScreenWidth(), guiHeight*m_io->getScreenHeight());
+	Rect guiRect(0, 0, m_io->getScreenWidth(),
+		(int)(guiHeight) * m_io->getScreenHeight());
 
 	vector<SpriteInfo*> lives;
 	for (int i = 0; i < 3; i++)
