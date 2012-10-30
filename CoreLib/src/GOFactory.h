@@ -25,6 +25,7 @@
 #include "WallSwitch.h"
 #include "TileTypes.h"
 #include "InfectedRat.h"
+#include <string>
 
 // forward declarations
 class Glyph;
@@ -48,8 +49,7 @@ public:
 	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 
 	Avatar*		CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
-	Monster*	CreateRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats);
-	Monster*	CreateInfectedRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats);
+	Monster*	CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats, int p_type);
 	Trap*		CreateTrap(Tile* p_tile, Tilemap* p_map);
 
 	SuperPill*	CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);
