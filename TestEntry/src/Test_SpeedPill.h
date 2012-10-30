@@ -15,7 +15,7 @@ public:
 	void setup()
 	{
 		GameStats stats(NULL, 20);
-		SpeedPill pill(NULL, NULL, &stats, NULL);
+		SpeedPill pill(NULL, NULL, &stats,NULL, NULL);
 		newEntry(TestData("Position", pill.getPostion() == fVector2(0, 0)));
 		newEntry(TestData("Not Consumed", !pill.isConsumed()));
 		newEntry(TestData("Not Speeded", stats.getBuffSlot() != 0));
