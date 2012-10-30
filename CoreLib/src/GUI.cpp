@@ -18,7 +18,7 @@ GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTi
 	m_buffSlot = p_buffSlot;
 	m_itemSlot = p_itemSlot;
 	m_bombItem = p_bombIcon;
-	m_speedItem = p_speedIcon;
+	m_speedBuff = p_speedIcon;
 	m_victoryData = p_victory;
 	m_victoryData.victory->getTextArea()->setText("");
 	m_victoryData.baseScore->getTextArea()->setText("");
@@ -75,7 +75,7 @@ void GUI::update(float p_dt)
 	text = "TOTAL SCORE: " + toString(m_stats->getPreviousScore());
 	m_totalScore->getTextArea()->setText(text);
 
-	setSpecialVisible(m_stats->getBuffSlot(),m_speedItem);
+	setSpecialVisible(m_stats->getBuffSlot(),m_speedBuff);
 	setSpecialVisible(m_stats->getItemSlot(),m_bombItem);
 }
 void GUI::setSpecialVisible(Collectable* p_collectable, SpriteInfo* p_special)

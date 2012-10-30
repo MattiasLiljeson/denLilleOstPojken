@@ -41,7 +41,7 @@ private:
 	MenuItem* m_buffPowerUp;
 	SpriteInfo* m_buffSlot;
 	SpriteInfo* m_itemSlot;
-	SpriteInfo* m_speedItem;
+	SpriteInfo* m_speedBuff;
 	SpriteInfo* m_bombItem;
 
 	//Victory texts

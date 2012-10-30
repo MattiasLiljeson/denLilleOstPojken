@@ -467,7 +467,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
 	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
-	SpriteInfo* bomb = CreateSpriteInfo("../Textures/itemguislot.png",
+	SpriteInfo* bomb = CreateSpriteInfo("../Textures/buffguislot.png",
 		pos, size, NULL);
 
 	pos.z = pos.z + 0.01f;
@@ -480,7 +480,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 	
 	pos = fVector3((1920-150)*widthFraction, height - 0.08f * height * 0.5f, 0.9f);
-	SpriteInfo* speed = CreateSpriteInfo("../Textures/powerupguislot.png",
+	SpriteInfo* speed = CreateSpriteInfo("../Textures/itemguislot.png",
 		pos, size, NULL);
 
 	pos.z = pos.z + 0.01f;
