@@ -1,6 +1,6 @@
 #include "SpeedPill.h"
 
-SpeedPill::SpeedPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, SoundInfo* p_onUseSound): Collectable(p_spriteInfo, p_gameStats)
+SpeedPill::SpeedPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, CollectableContainer* p_container, SoundInfo* p_onUseSound): Collectable(p_spriteInfo, p_gameStats,p_container)
 {
 	m_tile = p_tile;
 	if (m_tile)
@@ -16,6 +16,7 @@ SpeedPill::~SpeedPill()
 }
 void SpeedPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	Collectable::update(p_deltaTime,p_inputInfo); // call collectable generic update
 }
 void SpeedPill::consume()
 {

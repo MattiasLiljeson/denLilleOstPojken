@@ -47,7 +47,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector3 pos = GetCenter(p_tile, 0.19f); 
 	fVector2 size = GetScaledSize(p_tile, 1.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
@@ -57,11 +57,23 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	fVector2 size = GetScaledSize(p_tile, 1.3f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/speedpowerup.png",
 		pos, size, NULL);
-	return new SpeedPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+
+	pos = GetCenter(p_tile, 0.12f); 
+	size = GetScaledSize(p_tile, 1.5f);
+	SpriteInfo* containerSpriteInfo = CreateSpriteInfo("../Textures/buff_ball.png",
+		pos, size, NULL);	
+	
+	pos = GetCenter(p_tile, 0.11f); 
+	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/buff_ball_caustic.png",
+		pos, size, NULL);
+
+	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+
+	return new SpeedPill(spriteInfo, p_tile, p_gameStats, container, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
@@ -78,9 +90,22 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Dynamite.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/bombitem.png",
 		pos, size, NULL);
-	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/GunCock.wav",100));
+
+	pos = GetCenter(p_tile, 0.12f); 
+	size = GetScaledSize(p_tile, 1.5f);
+	SpriteInfo* containerSpriteInfo = CreateSpriteInfo("../Textures/item_box.png",
+		pos, size, NULL);	
+
+	pos = GetCenter(p_tile, 0.11f); 
+	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/item_box_caustic.png",
+		pos, size, NULL);
+
+	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+
+	return new BombPill(spriteInfo, p_tile, p_gameStats, container ,CreateSoundInfo("../Sounds/GunCock.wav",100));
+
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
@@ -118,11 +143,16 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		}
 	}
 
-	pos = GetCenter(p_tile, 0.5f); 
+	pos = GetCenter(p_tile, 0.19f); 
 	size = GetScaledSize(p_tile, 2.0f);
 
-	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
-		pos, size, NULL);
+	Rect br;
+	br.x = 0;
+	br.y = 0;
+	br.height = 64;
+	br.width = 64;
+	spriteInfo = CreateSpriteInfo("../Textures/bombitem_anim.png",
+		pos, size, &br);
 
 	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast_2.wav",100));
 }
