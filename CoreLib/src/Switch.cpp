@@ -1,6 +1,8 @@
 #include "Switch.h"
 
-Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*> p_targets): Collectable(p_spriteInfo, p_gameStats)
+Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats,
+	vector<WallSwitch*> p_targets, SoundInfo* p_switchSound):
+	Collectable(p_spriteInfo, p_gameStats)
 {
 	m_targets = p_targets;
 
@@ -9,9 +11,12 @@ Switch::Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, v
 		m_tile->addPill(this);
 	m_consumed = false;
 	m_cooldown = 0;
+	m_switchSound = p_switchSound;
 }
 Switch::~Switch()
 {
+	if (m_switchSound)
+		m_switchSound->deleted = true;
 }
 void Switch::setTargets(vector<WallSwitch*> p_targets)
 {
@@ -31,6 +36,13 @@ void Switch::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 	m_cooldown = max(m_cooldown - p_deltaTime, 0.0f);
 }
+
+void Switch::reset()
+{
+	m_spriteInfo->textureRect.x = 0;
+	m_cooldown = 0;
+}
+
 void Switch::consume()
 {
 	if (m_cooldown <= 0)
@@ -39,6 +51,7 @@ void Switch::consume()
 		{
 			m_targets.at(i)->switchState();
 		}
+		m_switchSound->play = true;
 		m_cooldown = 5;
 	}
 }

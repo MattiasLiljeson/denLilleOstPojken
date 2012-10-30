@@ -4,7 +4,7 @@
 // Will only print in debug, will replace call in release with "nothing"
 // call like this: DEBUGPRINT(("text"));
 #ifdef _DEBUG
-	void debugPrint(const char* msg);
+	static void debugPrint(const char* msg);
 	#define DEBUGPRINT(x) debugPrint x
 	#ifdef _WIN32
 		#include <Windows.h>

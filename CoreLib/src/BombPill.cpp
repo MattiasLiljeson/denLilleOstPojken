@@ -21,11 +21,13 @@ void BombPill::consume()
 		m_consumed = true;
 		m_tile = NULL;
 		if (m_gameStats)
-			m_gameStats->setItemSlot(0);
-
-		if (m_onUseSound)
-			m_onUseSound->play = true;
+			m_gameStats->setItemSlot(this);
 		if (m_spriteInfo)
 			m_spriteInfo->visible = false;
 	}
+}
+void BombPill::activate()
+{
+	if (m_onUseSound)
+		m_onUseSound->play = true;
 }

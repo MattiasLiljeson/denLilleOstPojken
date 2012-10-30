@@ -18,7 +18,7 @@ public:
 		Avatar* av = factory.CreateAvatar(NULL, NULL, NULL);
 		newEntry(TestData("Create Avatar", av != NULL));
 		
-		Monster* mon = factory.CreateMonster(NULL, NULL);
+		Monster* mon = factory.CreateMonster(NULL, NULL, NULL);
 		newEntry(TestData("Create Monster", mon != NULL));
 		
 		Pill* pill = factory.CreatePill(NULL, NULL);

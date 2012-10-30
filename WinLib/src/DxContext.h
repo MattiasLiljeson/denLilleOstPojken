@@ -31,6 +31,8 @@ private:
 
 	DxSpriteRenderer* m_spriteRenderer; // Pre allocated for speed
 
+	ID3D11BlendState* m_alphaBlending;
+
 private:
 	int initializeWindow();
 	int initializeSwapChain();

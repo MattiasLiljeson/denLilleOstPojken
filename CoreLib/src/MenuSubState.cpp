@@ -1,5 +1,6 @@
 #include "MenuState.h"
 #include "MenuSubState.h"
+#include "StateManager.h"
 
 //=========================================================================
 // Private Functions
@@ -174,9 +175,6 @@ void MenuSubState::addItems( vector<MenuItem*> p_items )
 	{
 		m_items.push_back( p_items[i] );
 	}
-	setAllNonSelectable();
-	// First item is always "return to main menu"
-	setFirstSelectable();
 }
 
 void MenuSubState::setNextMenu( int p_menu )

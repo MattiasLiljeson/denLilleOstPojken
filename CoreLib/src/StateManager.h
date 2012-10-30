@@ -16,6 +16,7 @@ enum
 struct CommonResources
 {
 	int totalScore;
+	int unlockedLevels;
 };
 
 class StateManager
@@ -34,6 +35,9 @@ private:
 
 	CommonResources m_commonResources;
 
+private:
+	int readUnlockedMaps();
+	void writeUnlockedMaps(int p_value);
 public:
 	StateManager(IODevice* p_io, Timer* p_timer);
 	virtual ~StateManager();
@@ -53,6 +57,8 @@ public:
 	bool isTerminated();
 
 	Timer* getNewTimerInstance();
+	void stopMainTimer();
+	void startMainTimer();
 
 	CommonResources* getCommonResources();
 

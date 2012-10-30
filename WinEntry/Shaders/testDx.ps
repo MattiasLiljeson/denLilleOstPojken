@@ -2,7 +2,8 @@ cbuffer PostProcessBuffer
 {
 	//Index 0: Black and White Fraction
 	//Index 1: Sepia Fraction
-	//Index 2 and 3: Buff
+	//Index 2: Fade to black
+	//Index 3: Buff
 	float4 PPEffects;
 };
 
@@ -30,10 +31,11 @@ float4 PShader(VOut pIn) : SV_TARGET
 	}
 	
 	float value = (c.r + c.g + c.b) / 3; 
-	float4 bw = float4(0, 0, 0, 1);
+	float4 bw = float4(0, 0, 0, c.a);
     bw.r = value;
     bw.g = value;
     bw.b = value;
 	
-	return PPEffects.x * bw + (1 - PPEffects.x) * c;
+	c = PPEffects.x * bw + (1 - PPEffects.x) * c;
+	return c * (1 - PPEffects.z);
 }

@@ -21,13 +21,17 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 	m_walking = new AvatarWalking(this, m_navigationData, p_stats);
 	switchState(m_walking);
 
-	m_currentAnimation = NULL;
+	reset();
 	if (m_spriteInfo)
-		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X], p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+		m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X],
+		p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
 	else
 		m_size = fVector2();
 
-	m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+	if (m_spriteInfo)
+		m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+	else
+		m_offset = 0;
 
 	m_shadow = p_shadow;
 	if (m_shadow)
@@ -52,7 +56,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 	{
-		switchState(m_avatarJumpingState);
+		if (m_currentState != m_avatarKilledState)
+			switchState(m_avatarJumpingState);
 	}
 	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
 	{
@@ -61,7 +66,12 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if (m_currentAnimation)
 	{
-		m_currentAnimation->update(p_deltaTime);
+		if (m_navigationData->m_direction != Direction::NONE)
+			m_currentAnimation->update(p_deltaTime);
+		else
+		{
+			m_currentAnimation->restart();
+		}
 		
 		if (m_spriteInfo)
 			m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
@@ -79,7 +89,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
 			pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-			pY * h + h * 0.5f; // /*temp*/ + m_offset;
+			pY * h + h * 0.5f /*temp*/ + m_offset;
 	
 
 		bool super = false;
@@ -141,7 +151,7 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 				if (m_shadowQueue.size() > 1)
 				{
 					pos = m_shadowQueue[0]->getPosition() * (1-m_shadowDT) + m_shadowQueue[1]->getPosition() * m_shadowDT;
-					//pos.y += m_offset;
+					pos.y += m_offset;
 					if (m_shadowQueue[1] == m_navigationData->m_nextTile && m_shadowDT > m_navigationData->dt)
 						pos = fVector2(m_spriteInfo->transformInfo.translation[TransformInfo::X], m_spriteInfo->transformInfo.translation[TransformInfo::Y]);
 				}
@@ -188,8 +198,11 @@ void Avatar::setTilePosition(Tile* p_newPosition)
 }
 void Avatar::kill()
 {
-	switchState(m_avatarKilledState);
-	m_gameStats->clearBuffs();
+	if (m_currentState != m_avatarKilledState)
+	{
+		switchState(m_avatarKilledState);
+		m_gameStats->clearBuffs();
+	}
 }
 bool Avatar::inAir()
 {
@@ -214,4 +227,8 @@ fVector2 Avatar::getPostion()
 	fVector2 p1 = m_navigationData->m_currentTile->getPosition();
 	fVector2 p2 = m_navigationData->m_nextTile->getPosition();
 	return p1 * (1-dt) + p2 * dt;
+}
+void Avatar::reset()
+{
+	m_navigationData->m_direction = Direction::NONE;
 }

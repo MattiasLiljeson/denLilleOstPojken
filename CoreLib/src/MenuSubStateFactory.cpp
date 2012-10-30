@@ -38,18 +38,24 @@ MenuItemProperties MenuSubStateFactory::createMainProperties()
 	return MenuItemProperties(); // Nothing special
 }
 
-MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps )
+MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, int p_numUnlockedLevels )
 {
 	MenuSubState* tmp			= createMenuSubState();
-	vector<string> texts		= createLevelSelectTexts( p_maps );
+	vector<string> texts		= createLevelSelectTexts( p_maps, p_numUnlockedLevels );
 	MenuItemProperties props	= createLevelSelectProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
-	tmp->addItems( items );
 	tmp->setBehaviour( new LevelSelectSubState() );
-	tmp->setAllSelectable();
+	
+	for( unsigned int i = 0; i<p_numUnlockedLevels; i++ )
+		items[i]->setSelectable( true );
+	for( unsigned int i = p_numUnlockedLevels; i<items.size(); i++ )
+		items[i]->setSelectable( false );
+
+	tmp->addItems( items );
+
 	return tmp;
 }
-vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_maps )
+vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_maps, int p_numUnlockedLevels )
 {
 	vector<string> texts;
 	texts.resize( LevelSelectSubState::LS_NUM_ITEMS );
@@ -58,6 +64,8 @@ vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_ma
 	for( unsigned int i=0; i<p_maps.size(); i++ )
 	{
 		texts.push_back( p_maps[i].name );
+		if(i+1 >= p_numUnlockedLevels)
+			texts.back() += " (LOCKED)";
 	}
 	return texts;
 }
@@ -226,3 +234,15 @@ void MenuSubStateFactory::writeHighScore( vector<HighScoreItem> p_highscores )
 		file.close();
 	}
 }
+
+//void MenuSubState::addLevel()
+//{
+//	m_texts.push_back((*m_maps)[m_texts.size()-1].name);
+//	fVector3 itemPos = m_firstItemPos;
+//	itemPos.y -= m_itemDistance * m_texts.size();
+//
+//
+//	m_items.push_back( m_goFactory->createMenuItem( 
+//		itemPos, m_itemSize, m_texts.back(), m_itemTextOffset, m_itemFontSize,
+//		m_itemBackgroundTexturePath));
+//}

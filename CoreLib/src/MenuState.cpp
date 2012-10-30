@@ -4,12 +4,6 @@
 //=========================================================================
 // Private Functions
 //=========================================================================
-//void MenuState::resetItemOffset( int p_idx )
-//{
-//	if(m_currMenu < m_menus.size() && p_idx < m_menus[m_currMenu]->m_items.size())
-//		m_menus[m_currMenu]->m_items[p_idx]->setTextOffset(0.0f, 0.0f);
-//}
-
 bool MenuState::playSound()
 {
 	if( m_itemSelectSnd != NULL )
@@ -37,8 +31,10 @@ void MenuState::createMenus()
 		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
 		fVector2(fw*20, fh*20), "../Textures/SplashScreen.png" );
 
+	int unlocked = m_parent->getCommonResources()->unlockedLevels;
+
 	m_manager->addMenu( m_menuFactory->createMain(), MenuSubStateManager::MENU_MAIN );
-	m_manager->addMenu( m_menuFactory->createLevelSelect(m_maps), MenuSubStateManager::MENU_LEVEL_SELECT );
+	m_manager->addMenu( m_menuFactory->createLevelSelect(m_maps, unlocked), MenuSubStateManager::MENU_LEVEL_SELECT);
 	m_manager->addMenu( m_menuFactory->createHighscore(), MenuSubStateManager::MENU_HIGHSCORE );
 	m_manager->addMenu( m_menuFactory->createCredits(), MenuSubStateManager::MENU_CREDITS );
 	m_manager->addMenu( m_menuFactory->createExit(), MenuSubStateManager::MENU_EXIT );
@@ -83,7 +79,11 @@ bool MenuState::onEntry()
 	if (!m_resourcesAllocated)
 	{
 		if (m_io)
+		{
 			createMenus();
+			//m_requestedLevel = -1;
+			//m_requestedTimer = 0;
+		}
 		m_resourcesAllocated = true;
 	}
 	return true;
@@ -112,6 +112,25 @@ void MenuState::update( float p_dt )
 		// NOTE: This function has to the last function called in update.
 		// (may trigger state-change and sprite dealloc)
 		handleInput(input);
+
+		//Only handle input when no level has been selected
+		//if (m_requestedLevel == -1)
+		//	handleInput(input);
+		//
+		//if (m_requestedLevel != -1)
+		//{
+		//	if (m_requestedTimer > 0.25f)
+		//	{
+		//		InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
+		//		inGame->setCurrentMap(m_requestedLevel);
+		//		m_parent->requestStateChange(m_parent->getInGameState());
+		//	}
+		//	else
+		//	{
+		//		m_io->fadeSceneToBlack(min(m_requestedTimer*4, 1.0f));
+		//	}
+		//	m_requestedTimer += p_dt;
+		//}
 	}
 
 }

@@ -47,6 +47,10 @@ private:
 	MenuItem* m_bgItem;
 	SoundInfo* m_itemSelectSnd;
 
+	//New - To add fade functionality
+	int m_requestedLevel;
+	float m_requestedTimer;
+
 private:
 	//utility functions
 	//void resetItemOffset( int p_idx );

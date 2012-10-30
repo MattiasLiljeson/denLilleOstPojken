@@ -23,6 +23,7 @@ protected:
 
 	MenuSubStateInterface* m_behaviour;
 	vector<MenuItem*>	m_items;
+
 	int m_currItemIdx;
 
 	int m_currState;
@@ -62,7 +63,6 @@ public:
 	void addItems(vector<MenuItem*> p_items);
 
 	void setNextMenu( int p_menu );
-
 	void setFirstSelectable();
 	void setAllSelectable();
 	void setAllNonSelectable();

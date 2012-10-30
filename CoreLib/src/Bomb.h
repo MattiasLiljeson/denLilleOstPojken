@@ -5,6 +5,8 @@
 #include "Tilemap.h"
 #include "Monster.h"
 #include "Animation.h"
+#include "Avatar.h"
+
 
 class Flame
 {
@@ -19,7 +21,7 @@ public:
 		m_spriteInfo = p_spriteInfo;
 		m_spriteInfo->visible = true;
 		m_dt = 0;
-		m_animation = new Animation(fVector2(0, 0), 64, 64, 5, 0.15f);
+		m_animation = new Animation(fVector2(0, 0), 64, 64, 7, 0.2f-(rand()%10)*0.005f );
 		m_tile = p_tile;
 	}
 	virtual ~Flame()
@@ -50,13 +52,19 @@ private:
 	vector<pair<Tile*, SpriteInfo*>> m_flameSpawn;
 	vector<Flame*> m_flames;
 	float m_elapsedTime;
+	float m_countDown;
+	float m_tickCounter;
 	int m_currentDist;
 	Tile* m_start;
+
+	SoundInfo* m_tickSound;
+	SoundInfo* m_blastSound;
 public:
-	Bomb(vector<pair<Tile*, SpriteInfo*>> p_flames, Tile* p_tile, Tilemap* p_map);
+	Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*>> p_flames, Tile* p_tile, Tilemap* p_map, SoundInfo* p_tick, SoundInfo* p_blast);
 	virtual ~Bomb();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	bool	isColliding(Monster* p_monster);
+	bool	isColliding(Avatar* p_avatar);
 };
 
 #endif

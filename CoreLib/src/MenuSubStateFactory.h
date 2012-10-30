@@ -45,8 +45,8 @@ public:
 	vector<string> createMainTexts();
 	MenuItemProperties createMainProperties();
 
-	MenuSubState* createLevelSelect( vector<MapData> p_maps );
-	vector<string> createLevelSelectTexts( vector<MapData> p_maps );
+	MenuSubState* createLevelSelect( vector<MapData> p_maps, int p_numUnlockedLevels );
+	vector<string> createLevelSelectTexts( vector<MapData> p_maps, int p_numUnlockedLevels );
 	MenuItemProperties createLevelSelectProperties();
 
 	MenuSubState* createHighscore();

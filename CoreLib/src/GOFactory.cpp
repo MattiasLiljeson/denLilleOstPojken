@@ -22,23 +22,23 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 	r.height = 64;
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/player.png",
 		pos, size, &r);
-	SpriteInfo* shadow = CreateSpriteInfo("../Textures/player.png",
+	SpriteInfo* shadow = CreateSpriteInfo("../Textures/playerShadow.png",
 		pos, size, &r);
 	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
-Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map)
+Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.0f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
 		pos, size, NULL);
-	return new Monster(spriteInfo, p_tile, p_map);
+	return new Monster(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
 }
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 1.4f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Trap_Spikes.png",
 		pos, size, NULL);
@@ -47,7 +47,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 {	
 	fVector3 pos = GetCenter(p_tile,0.1f);
-	fVector2 size = GetScaledSize(p_tile,1.4f);
+	fVector2 size = GetScaledSize(p_tile,2.0f);
 
 	Rect r;
 	r.x = 0;
@@ -63,7 +63,7 @@ WallSwitch* GOFactory::CreateWallSwitch(Tile* p_tile)
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector2 size = GetScaledSize(p_tile, 1.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
 		pos, size, NULL);
@@ -72,7 +72,7 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
 		pos, size, NULL);
@@ -81,12 +81,12 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 0.5f);
+	fVector2 size = GetScaledSize(p_tile, 0.7f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Pill_32.png",
 		pos, size, NULL);
 	
-	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_pill.wav",100), p_tile, p_gameStats);
+	return new Pill(spriteInfo, CreateSoundInfo("../Sounds/new_eat_pill_DRIP.wav",100), p_tile, p_gameStats);
 }
 BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 {
@@ -99,17 +99,28 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
-	vector<pair<Tile*, SpriteInfo*>> flames;
+	vector<pair<Tile*, SpriteInfo*> > flames;
+
+	fVector3 pos = GetCenter(p_tile, 0.6f); 
+	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	Rect r;
+	r.x = 0;
+	r.y = 0;
+	r.height = 64;
+	r.width = 64;
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Explosion_Animation.png",
+		pos, size, &r);
+	flames.push_back(pair<Tile*, SpriteInfo*>(p_tile, spriteInfo));
+
 	TilePosition dir[] = {TilePosition(1, 0), TilePosition(-1, 0), TilePosition(0, 1), TilePosition(0, -1)};
 	for (int i = 0; i < 4; i++)
 	{
 		Tile* curr = p_map->getTile(p_tile->getTilePosition() + dir[i]);
 		while (curr && curr->isFree())
 		{
-			fVector3 pos = GetCenter(curr, 0.6f); 
-			fVector2 size = GetScaledSize(curr, 0.7f);
+			pos = GetCenter(curr, 0.6f); 
+			size = GetScaledSize(curr, 1.2f);
 
-			Rect r;
 			r.x = 0;
 			r.y = 0;
 			r.height = 64;
@@ -122,7 +133,13 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		}
 	}
 
-	return new Bomb(flames, p_tile, p_map);
+	pos = GetCenter(p_tile, 0.5f); 
+	size = GetScaledSize(p_tile, 2.0f);
+
+	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
+		pos, size, NULL);
+
+	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast_2.wav",100));
 }
 
 Tilemap* GOFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector<int> p_mapData)
@@ -146,8 +163,8 @@ Tile* GOFactory::CreateTile(bool p_type, TilePosition p_position, float p_width,
 Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats, 
 	vector<WallSwitch*> p_targets)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 1.2f);
+	fVector3 pos = GetCenter(p_tile, 0.1f); 
+	fVector2 size = GetScaledSize(p_tile, 1.7f);
 
 	Rect r;
 	r.x = 0;
@@ -157,7 +174,7 @@ Switch* GOFactory::CreateSwitch(Tile* p_tile, GameStats* p_gameStats,
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Switch_Tileset.png",
 		pos, size, &r);
-	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets);
+	return new Switch(spriteInfo, p_tile, p_gameStats, p_targets, CreateSoundInfo("../Sounds/switch.wav",100));
 }
 
 SpriteInfo* GOFactory::CreateSpriteInfo(string p_texture, fVector3 p_position,
@@ -215,16 +232,8 @@ SoundInfo* GOFactory::CreateSoundInfo(string p_sound, int p_volume)
 		SoundInfo* soundInfo = new SoundInfo();
 		soundInfo->play = false;
 		soundInfo->id = p_sound;
-		sf::SoundBuffer buffer;
-		buffer.LoadFromFile(p_sound);
-		sf::Sound* s = new sf::Sound(buffer);
-		s->SetVolume((float)p_volume);
-		s->Play();
-
+		soundInfo->volume = (float)p_volume;
 		m_io->addSound(soundInfo);
-
-		delete s;
-
 		return soundInfo;
 	}
 	return NULL;
@@ -303,7 +312,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	float widthFraction = m_io->getScreenWidth() / 1920.0f;
 	int height = m_io->getScreenHeight();
 
-	Rect guiRect(0, 0, m_io->getScreenWidth(), guiHeight*m_io->getScreenHeight());
+	Rect guiRect(0, 0, m_io->getScreenWidth(),
+		(int)(guiHeight) * m_io->getScreenHeight());
 
 	vector<SpriteInfo*> lives;
 	for (int i = 0; i < 3; i++)
@@ -395,6 +405,8 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
+	//Pause
+
 	PauseStruct pauseData;
 	pos = fVector3(0.5f, 0.7f, 0.9f); 
 	texts = "GAME PAUSED";
@@ -411,30 +423,58 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pauseData.pressToPlay = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	//Defeat
+	DefeatStruct defeatData;
+
+	pos = fVector3(0.5f, 0.7f, 0.9f); 
+	texts = "DEFEAT";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.defeated = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.6f, 0.9f); 
+	texts = "CONTINUE WILL COST HALF YOUR TOTAL SCORE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cost = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f, 0.5f, 0.9f); 
+	texts = "PRESS ENTER TO CONTINUE";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
+	defeatData.cont = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+
 	//End added by Anton
 
 
-	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos = fVector3(1- 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string xtext = "X";
 	MenuItem* x = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 	
-	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3((1920-100)*widthFraction, height - 0.08f * height*0.5f, 0.9f);
 	size = fVector2(50*widthFraction, 50*heightFraction);
 	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
 		pos, size, NULL);
 
 
-	pos = fVector3(1- 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
-	pos = fVector3((1920-100)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
+	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
 	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, x, y, speed, bomb);
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb);
 }

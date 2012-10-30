@@ -27,7 +27,6 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	int value;
 	m_theme = m_width = m_height = 0;
 	char comma;
-	char equals;
 	vector<vector<TilePosition>> switches(8);
 	if(file)
 	{
@@ -86,7 +85,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] > SWITCHES && map[index] <= WALLSWITCHES)
 				{
 					WallSwitch* newWallSwitch = m_factory->CreateWallSwitch(
-													m_tileMap->getTile(TilePosition(j,i)));
+						m_tileMap->getTile(TilePosition(j,i)));
 					int wallSwitchIndex = map[index] - (SWITCHES+1);
 					newWallSwitches.at(wallSwitchIndex).push_back(newWallSwitch);
 					m_gameObjects.push_back(newWallSwitch);
@@ -94,7 +93,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] > CBSPAWN && map[index] <= ENEMIESPAWN )
 				{
 					Monster* monster = m_factory->CreateMonster(
-												m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap,m_stats);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}
@@ -135,18 +134,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 			}
 		}
 
-		/*for(unsigned int i = 0; i < newSwitches.size(); i++)
-		{
-			for (unsigned int j = 0; j < newSwitches[i]->size(); j++)
-			{
-				delete newSwitches[i]->at(j);
-			}
-			delete newSwitches[i];
-		}
-		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
-			delete newWallSwitches[i];*/
-
-		for (int i = 0; i < m_monsters.size(); i++)
+		for (unsigned int i = 0; i < m_monsters.size(); i++)
 		{
 			m_monsters[i]->addMonsterAI(m_avatar, m_stats, m_tileMap);
 		}

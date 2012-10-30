@@ -37,7 +37,7 @@ Tilemap* TMFactory::CreateTileMap(int p_theme, int p_width, int p_height, vector
 		for(int col = 0; col < p_width; col++)
 		{
 			tiles[row*p_width+col] = CreateSingleTile(p_mapData[row*p_width+col],
-				TilePosition(col,row),tileSizeX,tileSizeY);
+				TilePosition(col,row),(int)(tileSizeX),(int)(tileSizeY));
 		}
 	}
 	newTilemap = new Tilemap(p_width, p_height, tiles);
@@ -52,7 +52,9 @@ Tile* TMFactory::CreateSingleTile(int p_type, TilePosition p_position,int p_tile
 		newTile = CreateWallTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
 	else if(p_type > WALLS && p_type <= PATHS)
 		newTile = CreatePathTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
-	else 
+	else if(p_type > TRAPS)
+		newTile = CreateDecorationTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
+	else
 		newTile = CreateBasicWalkableTile(p_position,p_tileSizeX,p_tileSizeY);
 
 	return newTile;
@@ -72,10 +74,11 @@ Tile* TMFactory::CreateWallTile(int p_type, TilePosition p_position,int p_tileSi
 
 	fVector3 pos	= fVector3(	p_position.x * p_tileSizeX + p_tileSizeX * 0.5f,
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
-	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
+	fVector2 size	= fVector2( (float)(p_tileSizeX), (float)(p_tileSizeY) );
 
 	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
-	newTile = new Tile(false,p_position,p_tileSizeX,p_tileSizeY,sprite);
+	newTile = new Tile (false, p_position, (float)(p_tileSizeX),
+		(float)(p_tileSizeY), sprite);
 
 	return newTile;
 }
@@ -93,10 +96,34 @@ Tile* TMFactory::CreatePathTile(int p_type, TilePosition p_position,int p_tileSi
 
 	fVector3 pos	= fVector3(	p_position.x * p_tileSizeX + p_tileSizeX * 0.5f,
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
-	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
+	fVector2 size	= fVector2( (float)(p_tileSizeX), (float)(p_tileSizeY) );
 
 	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
-	newTile = new Tile(true,p_position,p_tileSizeX,p_tileSizeY,sprite);
+	newTile = new Tile(true, p_position, (float)(p_tileSizeX),
+		(float)(p_tileSizeY), sprite);
+
+	return newTile;
+}
+
+Tile* TMFactory::CreateDecorationTile(int p_type, TilePosition p_position,int p_tileSizeX, int p_tileSizeY)
+{
+	Tile* newTile;
+	int row = p_type / 30;
+	int col = (p_type - (row*30))-1;
+
+	Rect r;
+	r.x			= col*32;
+	r.y			= row*32;
+	r.width		= 32;
+	r.height	= 32;
+
+	fVector3 pos	= fVector3(	p_position.x * p_tileSizeX + p_tileSizeX * 0.5f,
+		p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
+	fVector2 size	= fVector2( (float)(p_tileSizeX), (float)(p_tileSizeY) );
+
+	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
+	newTile = new Tile(true, p_position, (float)(p_tileSizeX),
+		(float)(p_tileSizeY),sprite);
 
 	return newTile;
 }
@@ -115,10 +142,11 @@ Tile* TMFactory::CreateBasicWalkableTile(TilePosition p_position, int p_tileSize
 
 	fVector3 pos	= fVector3(	p_position.x * p_tileSizeX + p_tileSizeX * 0.5f,
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
-	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
+	fVector2 size	= fVector2( (float)(p_tileSizeX), (float)(p_tileSizeY) );
 
 	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
-	newTile = new Tile(true,p_position,p_tileSizeX,p_tileSizeY,sprite);
+	newTile = new Tile(true, p_position, (float)(p_tileSizeX),
+		(float)(p_tileSizeY), sprite);
 
 	return newTile;
 }
@@ -137,10 +165,11 @@ Tile* TMFactory::CreateWallSwitch(int p_type,TilePosition p_position, int p_tile
 
 	fVector3 pos	= fVector3(	p_position.x * p_tileSizeX + p_tileSizeX * 0.5f,
 								p_position.y * p_tileSizeY + p_tileSizeY * 0.5f, 0.0f);
-	fVector2 size	= fVector2( p_tileSizeX, p_tileSizeY );
+	fVector2 size	= fVector2( (float)(p_tileSizeX), (float)(p_tileSizeY) );
 
 	SpriteInfo* sprite = m_GOFactory->CreateSpriteInfo(m_currentTileMap, pos,size, &r);
-	newTile = new Tile(false,p_position,p_tileSizeX,p_tileSizeY,sprite);
+	newTile = new Tile(false, p_position, (float)(p_tileSizeX),
+		(float)(p_tileSizeY), sprite);
 
 	return newTile;
 }
