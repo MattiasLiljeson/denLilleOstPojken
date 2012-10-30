@@ -3,7 +3,8 @@
 Glyph::Glyph( SpriteInfo* p_spriteInfo, GlyphAnimation* p_anim8or ) : GameObject(p_spriteInfo)
 {
 	m_anim8or = p_anim8or;
-	m_origin = p_spriteInfo->transformInfo;
+	if(p_spriteInfo != NULL)
+		m_origin = p_spriteInfo->transformInfo;
 }
 
 Glyph::~Glyph()

@@ -73,7 +73,8 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		m_tickCounter += p_deltaTime;
 		m_animation->update(m_countDown);
-		m_spriteInfo->textureRect = m_animation->getCurrentFrame();
+		if(m_spriteInfo != NULL)
+			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		if (m_tickCounter > 0.5f)
 		{
 			m_tickCounter -= 0.5f;

@@ -53,7 +53,8 @@ void MenuState::removeMenus()
 	m_manager = NULL;
 	delete m_gof;
 	m_gof = NULL;
-	m_io->clearSpriteInfos();
+	if(m_io != NULL)
+		m_io->clearSpriteInfos();
 }
 
 
@@ -64,9 +65,12 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 {
 	m_maps = p_maps;
 	m_io = p_io;
-	m_gof = NULL;
-	m_itemSelectSnd = NULL;
-	m_backgroundMusic = NULL;
+	m_gof				= NULL;
+	m_itemSelectSnd		= NULL;
+	m_backgroundMusic	= NULL;
+	m_bgItem			= NULL;
+	m_menuFactory		= NULL;
+	m_manager			= NULL;
 }
 
 MenuState::~MenuState()

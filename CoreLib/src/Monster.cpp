@@ -25,8 +25,12 @@ void Monster::transformSpriteInformation()
 
 	float w = m_currentTile->getWidth();
 	float h = m_currentTile->getHeight();
-	m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
-	m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+
+	if(m_spriteInfo != NULL)
+	{
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] = pX * w + w * 0.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = pY * h + h * 0.5f;
+	}
 }
 Tile* Monster::getCurrentTile()
 {
@@ -144,7 +148,8 @@ void Monster::kill()
 	if (m_spriteInfo)
 		m_spriteInfo->visible = false;
 
-	m_gameStats->monsterKilled(this);
+	if(m_gameStats != NULL)
+		m_gameStats->monsterKilled(this);
 }
 bool Monster::isDead()
 {
@@ -186,7 +191,8 @@ void Monster::reset()
 	dt = 0;
 	m_currentTile = m_nextTile = m_startTile;
 	m_path.clear();
-	transformSpriteInformation();
+	if(m_nextTile != NULL)
+		transformSpriteInformation();
 	beginRespawn();
 	respawn();
 }

@@ -6,8 +6,11 @@ PillEatenState::PillEatenState(GameObject* p_gameObject, SpriteInfo* p_spriteInf
 	m_onEatSound = p_onEatSound;
 	m_gameStats = p_gameStats;
 	m_elapsedTime = 0;
-	m_startScale = fVector2(m_spriteInfo->transformInfo.scale[TransformInfo::X],
-							m_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+	if (m_spriteInfo != NULL)
+	{
+		m_startScale = fVector2(m_spriteInfo->transformInfo.scale[TransformInfo::X],
+								m_spriteInfo->transformInfo.scale[TransformInfo::Y]);
+	}
 }
 PillEatenState::~PillEatenState()
 {

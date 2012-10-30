@@ -16,8 +16,11 @@ private:
 public:
 	CollectableContainer(SpriteInfo* p_container,SpriteInfo* p_containerShadow)
 	{
-		m_origin = p_container->transformInfo;
-		m_elapsedTime=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+		if(p_container != NULL) 
+		{
+			m_origin = p_container->transformInfo;
+			m_elapsedTime=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+		}
 		m_outroTime=0.0f;
 		m_container = p_container;
 		m_containerShadow = p_containerShadow;

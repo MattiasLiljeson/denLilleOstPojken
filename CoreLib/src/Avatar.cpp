@@ -29,7 +29,10 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_size = fVector2();
 
 	if (m_spriteInfo)
+	{
 		m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+		m_avatarOriginalRadius = m_spriteInfo->textureRect.width / 2.0f;
+	}
 	else
 		m_offset = 0;
 
@@ -38,7 +41,6 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_shadow->visible = false;
 
 
-	m_avatarOriginalRadius = m_spriteInfo->textureRect.width / 2.0f;
 }
 
 Avatar::~Avatar()
