@@ -13,6 +13,7 @@ struct MapData
 {
 	string	name;
 	string	filename;
+	string	backgroundMusic;
 	int		parTime;
 };
 

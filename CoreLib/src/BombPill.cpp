@@ -24,10 +24,12 @@ void BombPill::consume()
 			m_gameStats->setItemSlot(this);
 		if (m_spriteInfo)
 			m_spriteInfo->visible = false;
+		if (m_onUseSound)
+			m_onUseSound->play = true;
 	}
 }
 void BombPill::activate()
 {
-	if (m_onUseSound)
-		m_onUseSound->play = true;
+	//if (m_onUseSound)
+		//m_onUseSound->play = true;
 }

@@ -86,7 +86,7 @@ bool MenuState::onEntry()
 				m_backgroundMusic->deleted = true;
 			}
 			m_backgroundMusic = new SoundInfo();
-			m_backgroundMusic->id = "../Sounds/POL-misty-cave-short.wav";
+			m_backgroundMusic->id = "../Sounds/Music/POL-misty-cave-short.wav";
 			m_backgroundMusic->play = true;
 			m_backgroundMusic->volume = 20;
 			m_io->addSong(m_backgroundMusic);

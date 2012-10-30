@@ -157,8 +157,6 @@ void InGameState::update(float p_dt)
 					m_backgroundMusic->volume = 20 * (float)m_stats->getGameTimer()->getElapsedTime() / 5.0f;
 				else
 					m_backgroundMusic->volume = 20;
-				
-				}
 			}
 
 			if (m_gui)
@@ -325,7 +323,7 @@ void InGameState::restart()
 		m_backgroundMusic->deleted = true;
 	}
 	m_backgroundMusic = new SoundInfo();
-	m_backgroundMusic->id = "../Sounds/POL-misty-cave-short.wav";
+	m_backgroundMusic->id = "../Sounds/Music/" + m_maps[m_currentMap].backgroundMusic;
 	m_backgroundMusic->play = true;
 	m_backgroundMusic->volume = 0;
 	m_io->addSong(m_backgroundMusic);

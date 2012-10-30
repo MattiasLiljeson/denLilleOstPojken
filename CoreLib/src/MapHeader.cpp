@@ -12,6 +12,7 @@ MapHeader::MapHeader(string p_file)
 			file >> data.name;
 			file >> data.filename;
 			file >> data.parTime;
+			file >> data.backgroundMusic;
 			m_maps.push_back(data);
 		}
 		file.close();

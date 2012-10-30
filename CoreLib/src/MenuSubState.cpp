@@ -126,7 +126,7 @@ void MenuSubState::update( float p_dt )
 
 void MenuSubState::updateInEntry( float p_dt )
 {
-	if(m_stateTimer > 1.0f)
+	if(m_stateTimer > 0.0f)
 	{
 		m_currState = IN_MENU;
 		m_stateTimer = 0.0f;
@@ -143,7 +143,7 @@ void MenuSubState::updateInMenu( float p_dt )
 }
 void MenuSubState::updateInExit( float p_dt )
 {
-	if(m_stateTimer > 1.0f)
+	if(m_stateTimer > 0.0f)
 	{
 		m_manager->reqMenuChange( m_nextMenu );
 		m_stateTimer = 0.0f;

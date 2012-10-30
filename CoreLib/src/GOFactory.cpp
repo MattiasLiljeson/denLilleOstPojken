@@ -80,7 +80,7 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Dynamite.png",
 		pos, size, NULL);
-	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/GunCock.wav",100));
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
