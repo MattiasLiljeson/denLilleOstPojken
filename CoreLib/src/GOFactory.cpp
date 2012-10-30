@@ -498,7 +498,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 
 	//End added by Anton
 
-	pos		= fVector3(1 - 250/scrW, 1 - guiHeight*0.5f, 0.9f);
+	pos		= fVector3(1 - 350/scrW, 1 - guiHeight*0.5f, 0.9f);
 	size	= fVector2(64*widthFraction, 64*heightFraction);
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
@@ -512,7 +512,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pos.z = pos.z + 0.01f;
 	SpriteInfo* speedIcon = CreateSpriteInfo("../Textures/speedpowerup.png", pos,size,NULL);
 
-	pos = fVector3(1 - 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos = fVector3(1 - 200/scrW, 1 - guiHeight*0.5f, 0.9f); 
 	string xtext = "X";
 	MenuItem* x = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
