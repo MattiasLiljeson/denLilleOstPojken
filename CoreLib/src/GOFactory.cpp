@@ -459,28 +459,32 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 
 	//End added by Anton
 
-
-	pos = fVector3(1- 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
-	string xtext = "X";
-	MenuItem* x = createMenuItem( 
-			pos, fVector2( 0.0f, 0.0f ),
-			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
-	
-	pos = fVector3((1920-100)*widthFraction, height - 0.08f * height*0.5f, 0.9f);
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
-		pos, size, NULL);
-
-
-	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos		= fVector3(1 - 250/scrW, 1 - guiHeight*0.5f, 0.9f);
+	size	= fVector2(64*widthFraction, 64*heightFraction);
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
 	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
-	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
+	SpriteInfo* bomb = CreateSpriteInfo("../Textures/buffguislot.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb);
+	pos.z = pos.z + 0.01f;
+	SpriteInfo* speedIcon = CreateSpriteInfo("../Textures/speedpowerup.png", pos,size,NULL);
+
+	pos = fVector3(1 - 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	string xtext = "X";
+	MenuItem* x = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+	
+	pos = fVector3((1920-150)*widthFraction, height - 0.08f * height * 0.5f, 0.9f);
+	SpriteInfo* speed = CreateSpriteInfo("../Textures/itemguislot.png",
+		pos, size, NULL);
+
+	pos.z = pos.z + 0.01f;
+	SpriteInfo* bombIcon = CreateSpriteInfo("../Textures/bombitem.png",pos,size,NULL);
+
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb, bombIcon, speedIcon);
 }

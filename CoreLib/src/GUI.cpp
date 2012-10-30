@@ -2,11 +2,10 @@
 #include "MenuItem.h"
 #include <ToString.h>
 
-GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives,
-	MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime,
-	MenuItem* p_totalScore, VictoryStruct p_victory, PauseStruct p_pauseData,
-	DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item,
-	SpriteInfo* p_speedIcon, SpriteInfo* p_bombIcon)
+GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, 
+			MenuItem* p_parTime, MenuItem* p_totalScore, VictoryStruct p_victory, PauseStruct p_pauseData, 
+			DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_buffSlot, 
+			SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -16,8 +15,10 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives,
 	m_score = p_score;
 	m_buffPowerUp = p_buff;
 	m_itemPowerUp = p_item;
-	m_speedIcon = p_speedIcon;
-	m_bombIcon = p_bombIcon;
+	m_buffSlot = p_buffSlot;
+	m_itemSlot = p_itemSlot;
+	m_bombItem = p_bombIcon;
+	m_speedBuff = p_speedIcon;
 	m_victoryData = p_victory;
 	m_victoryData.victory->getTextArea()->setText("");
 	m_victoryData.baseScore->getTextArea()->setText("");
@@ -32,6 +33,9 @@ GUI::GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives,
 	m_defeatData.cont->getTextArea()->setText("");
 	m_defeatData.cost->getTextArea()->setText("");
 	m_defeatData.defeated->getTextArea()->setText("");
+
+	m_buffSlot->visible = true;
+	m_itemSlot->visible = true;
 }
 GUI::~GUI()
 {
@@ -71,15 +75,15 @@ void GUI::update(float p_dt)
 	text = "TOTAL SCORE: " + toString(m_stats->getPreviousScore());
 	m_totalScore->getTextArea()->setText(text);
 
-	if (m_stats->getBuffSlot() != NULL)
-		m_speedIcon->visible = true;
+	setSpecialVisible(m_stats->getBuffSlot(),m_speedBuff);
+	setSpecialVisible(m_stats->getItemSlot(),m_bombItem);
+}
+void GUI::setSpecialVisible(Collectable* p_collectable, SpriteInfo* p_special)
+{
+	if(p_collectable != NULL)
+		p_special->visible = true;
 	else
-		m_speedIcon->visible = false;
-	if (m_stats->getItemSlot() != NULL)
-		m_bombIcon->visible = true;
-	else
-		m_bombIcon->visible = false;
-	
+		p_special->visible = false;
 }
 void GUI::showVictory()
 {
