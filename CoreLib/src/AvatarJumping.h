@@ -22,8 +22,12 @@ private:
 	Animation* m_right;
 	Animation* m_up;
 	Animation* m_down;
+
+	float m_airTime;
+
 private:
 	void determineAnimation();
+	void checkInput(InputInfo p_inputInfo);
 
 public:
 	AvatarJumping(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats, SoundInfo* p_jumpSound);
