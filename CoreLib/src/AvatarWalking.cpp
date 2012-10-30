@@ -7,10 +7,10 @@ GOState(p_gameObject)
 	m_navigationData = p_navigationData;
 	m_gameStats = p_stats;
 
-	m_right = new Animation(fVector2(0, 0), 64, 64, 8, 0.10f, true);
-	m_left = new Animation(fVector2(0, 64), 64, 64, 8, 0.10f, true);
-	m_down = new Animation(fVector2(0, 128), 64, 64, 8, 0.10f, true);
-	m_up = new Animation(fVector2(0, 192), 64, 64, 8, 0.10f, true);
+	m_right = new Animation(fVector2(0, 0), 64, 64, 8, 0.06f, true);
+	m_left = new Animation(fVector2(0, 64), 64, 64, 8, 0.06f, true);
+	m_down = new Animation(fVector2(0, 128), 64, 64, 8, 0.06f, true);
+	m_up = new Animation(fVector2(0, 192), 64, 64, 8, 0.06f, true);
 }
 
 AvatarWalking::~AvatarWalking()

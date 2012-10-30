@@ -15,6 +15,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_tileMap	= NULL;
 	m_stats		= NULL;
 	m_startTile = NULL;
+	m_backgroundMusic = NULL;
 }
 InGameState::~InGameState()
 {
@@ -59,6 +60,11 @@ bool InGameState::onExit()
 				delete m_stats;
 			if (m_gui)
 				delete m_gui;
+
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+			}
 		}
 		m_resourcesAllocated=false;
 	}
@@ -123,8 +129,9 @@ void InGameState::update(float p_dt)
 				m_gameObjects[index]->update(p_dt, input);
 			};
 
-			checkDynamicCollision();
+			checkAndResolveDynamicCollision();
 
+			checkAndResolveStaticCollision();
 	
 			if (m_stats)
 			{
@@ -147,6 +154,10 @@ void InGameState::update(float p_dt)
 
 					m_io->fadeSceneToBlack(timeFraction);
 				}
+				if (m_stats->getGameTimer()->getElapsedTime() < 5)
+					m_backgroundMusic->volume = 20 * (float)m_stats->getGameTimer()->getElapsedTime() / 5.0f;
+				else
+					m_backgroundMusic->volume = 20;
 			}
 
 			if (m_gui)
@@ -185,11 +196,10 @@ void InGameState::draw(float p_dt)
 {
 }
 
-bool InGameState::checkDynamicCollision()
+void InGameState::checkAndResolveDynamicCollision()
 {
 	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
 
-	bool collision = false;
 	for(unsigned int index = 0; index < m_monsters.size(); index++)
 	{
 		Monster* monster = m_monsters.at(index);
@@ -199,7 +209,6 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(monsterBC))
 			{
-				collision = true;
 				if (m_stats->isSuperMode())
 				{
 					monster->kill();
@@ -236,14 +245,56 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(trapBC))
 			{
-				collision = true;
 				m_avatar->kill();
 			}
 		}
 	}
-
-	return collision;
 }
+
+void InGameState::checkAndResolveStaticCollision()
+{
+	Tile* tileAheadOfAvatar = NULL;
+	Tile* avatarTile;
+	TilePosition tilePositionAheadOfAvatar;
+	TilePosition avatarTilePosition;
+
+	avatarTile = m_avatar->getCurrentTile();
+	avatarTilePosition = avatarTile->getTilePosition();
+	int avatarDirection = m_avatar->getDirection();
+	
+	tilePositionAheadOfAvatar = avatarTilePosition;
+	if( avatarDirection == Direction::LEFT )
+		tilePositionAheadOfAvatar.x -= 1;
+	else if( avatarDirection == Direction::RIGHT )
+		tilePositionAheadOfAvatar.x += 1;
+	else if( avatarDirection == Direction::DOWN )
+		tilePositionAheadOfAvatar.y -= 1;
+	else if( avatarDirection == Direction::UP )
+		tilePositionAheadOfAvatar.y += 1;
+	
+	tileAheadOfAvatar = m_tileMap->getTile( tilePositionAheadOfAvatar );
+
+	if( tileAheadOfAvatar != NULL )
+	{
+		// There is a tile ahead of avatar.
+		Collectable* collectableAheadOfAvatar = tileAheadOfAvatar->getCollectable();
+		if( collectableAheadOfAvatar != NULL )
+		{
+			Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
+
+			Circle pillBC(collectableAheadOfAvatar->getPostion(),
+				collectableAheadOfAvatar->getRadius() / 4);
+
+			if( avatarBC.collidesWith( pillBC ) )
+			{
+				collectableAheadOfAvatar->consume();
+			}
+		}
+
+	}
+
+}
+
 void InGameState::restart()
 {
 	if (m_io)
@@ -306,6 +357,17 @@ void InGameState::restart()
 
 	m_parent->stopMainTimer();
 	m_parent->startMainTimer();
+
+	//Ugly - Should be corrected. Leave for now
+	if (m_backgroundMusic)
+	{
+		m_backgroundMusic->deleted = true;
+	}
+	m_backgroundMusic = new SoundInfo();
+	m_backgroundMusic->id = "../Sounds/Music/" + m_maps[m_currentMap].backgroundMusic;
+	m_backgroundMusic->play = true;
+	m_backgroundMusic->volume = 0;
+	m_io->addSong(m_backgroundMusic);
 
 	//ANTON FIX!
 	//Makes sure the game starts at time 0

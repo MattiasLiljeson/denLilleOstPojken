@@ -26,14 +26,23 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 		pos, size, &r);
 	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
-Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
+Monster* GOFactory::CreateRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
 	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
 		pos, size, NULL);
-	return new Monster(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+	return new Rat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+}
+Monster* GOFactory::CreateInfectedRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
+{
+	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector2 size = GetScaledSize(p_tile, 2.0f);
+
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat2.png",
+		pos, size, NULL);
+	return new InfectedRat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
 }
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {
@@ -47,7 +56,7 @@ Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 
 SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 {
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
+	fVector3 pos = GetCenter(p_tile, 0.19f); 
 	fVector2 size = GetScaledSize(p_tile, 1.5f);
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_SuperCheesy.png",
@@ -57,11 +66,23 @@ SuperPill* GOFactory::CreateSuperPill(Tile* p_tile, GameStats* p_gameStats)
 SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	fVector2 size = GetScaledSize(p_tile, 1.3f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Speed.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/speedpowerup.png",
 		pos, size, NULL);
-	return new SpeedPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+
+	pos = GetCenter(p_tile, 0.12f); 
+	size = GetScaledSize(p_tile, 1.5f);
+	SpriteInfo* containerSpriteInfo = CreateSpriteInfo("../Textures/buff_ball.png",
+		pos, size, NULL);	
+	
+	pos = GetCenter(p_tile, 0.11f); 
+	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/buff_ball_caustic.png",
+		pos, size, NULL);
+
+	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+
+	return new SpeedPill(spriteInfo, p_tile, p_gameStats, container, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
 Pill* GOFactory::CreatePill(Tile* p_tile, GameStats* p_gameStats)
 {
@@ -78,9 +99,22 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 	fVector3 pos = GetCenter(p_tile, 0.1f); 
 	fVector2 size = GetScaledSize(p_tile, 1.2f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/Item_Dynamite.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/bombitem.png",
 		pos, size, NULL);
-	return new BombPill(spriteInfo, p_tile, p_gameStats, CreateSoundInfo("../Sounds/use_power-up.wav",100));
+
+	pos = GetCenter(p_tile, 0.12f); 
+	size = GetScaledSize(p_tile, 1.5f);
+	SpriteInfo* containerSpriteInfo = CreateSpriteInfo("../Textures/item_box.png",
+		pos, size, NULL);	
+
+	pos = GetCenter(p_tile, 0.11f); 
+	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/item_box_caustic.png",
+		pos, size, NULL);
+
+	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+
+	return new BombPill(spriteInfo, p_tile, p_gameStats, container ,CreateSoundInfo("../Sounds/GunCock.wav",100));
+
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 {
@@ -118,11 +152,16 @@ Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
 		}
 	}
 
-	pos = GetCenter(p_tile, 0.5f); 
+	pos = GetCenter(p_tile, 0.19f); 
 	size = GetScaledSize(p_tile, 2.0f);
 
-	spriteInfo = CreateSpriteInfo("../Textures/dynamite.png",
-		pos, size, NULL);
+	Rect br;
+	br.x = 0;
+	br.y = 0;
+	br.height = 64;
+	br.width = 64;
+	spriteInfo = CreateSpriteInfo("../Textures/bombitem_anim.png",
+		pos, size, &br);
 
 	return new Bomb(spriteInfo, flames, p_tile, p_map, CreateSoundInfo("../Sounds/Click.wav",100), CreateSoundInfo("../Sounds/blast_2.wav",100));
 }
@@ -480,28 +519,32 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 
 	//End added by Anton
 
-
-	pos = fVector3(1- 150/scrW, 1 - guiHeight*0.5f, 0.9f); 
-	string xtext = "X";
-	MenuItem* x = createMenuItem( 
-			pos, fVector2( 0.0f, 0.0f ),
-			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
-	
-	pos = fVector3((1920-100)*widthFraction, height - 0.08f * height*0.5f, 0.9f);
-	size = fVector2(50*widthFraction, 50*heightFraction);
-	SpriteInfo* speed = CreateSpriteInfo("../Textures/drug.png",
-		pos, size, NULL);
-
-
-	pos = fVector3(1- 350/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos		= fVector3(1 - 350/scrW, 1 - guiHeight*0.5f, 0.9f);
+	size	= fVector2(64*widthFraction, 64*heightFraction);
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),
 			ytext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
 	pos = fVector3((1920-300)*widthFraction, height - 0.08f * height*0.5f, 0.9f); 
-	SpriteInfo* bomb = CreateSpriteInfo("../Textures/hero.png",
+	SpriteInfo* bomb = CreateSpriteInfo("../Textures/buffguislot.png",
 		pos, size, NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb);
+	pos.z = pos.z + 0.01f;
+	SpriteInfo* speedIcon = CreateSpriteInfo("../Textures/speedpowerup.png", pos,size,NULL);
+
+	pos = fVector3(1 - 200/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	string xtext = "X";
+	MenuItem* x = createMenuItem( 
+			pos, fVector2( 0.0f, 0.0f ),
+			xtext, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
+	
+	pos = fVector3((1920-150)*widthFraction, height - 0.08f * height * 0.5f, 0.9f);
+	SpriteInfo* speed = CreateSpriteInfo("../Textures/itemguislot.png",
+		pos, size, NULL);
+
+	pos.z = pos.z + 0.01f;
+	SpriteInfo* bombIcon = CreateSpriteInfo("../Textures/bombitem.png",pos,size,NULL);
+
+	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb, bombIcon, speedIcon);
 }

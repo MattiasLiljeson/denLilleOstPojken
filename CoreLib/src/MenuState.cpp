@@ -50,6 +50,7 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 	m_maps = p_maps;
 	m_io = p_io;
 	m_gof = NULL;
+	m_backgroundMusic = NULL;
 }
 
 MenuState::~MenuState()
@@ -64,6 +65,16 @@ bool MenuState::onEntry()
 	{
 		if (m_io)
 		{
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+			}
+			m_backgroundMusic = new SoundInfo();
+			m_backgroundMusic->id = "../Sounds/Music/POL-misty-cave-short.wav";
+			m_backgroundMusic->play = true;
+			m_backgroundMusic->volume = 20;
+			m_io->addSong(m_backgroundMusic);
+
 			createMenus();
 			//m_requestedLevel = -1;
 			//m_requestedTimer = 0;
@@ -79,7 +90,14 @@ bool MenuState::onExit()
 	if (m_resourcesAllocated)
 	{
 		if (m_io)
-			removeMenus();
+		{
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
+			}
+		}
+		removeMenus();
 		m_resourcesAllocated = false;
 	}
 	return true;

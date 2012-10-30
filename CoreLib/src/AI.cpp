@@ -107,3 +107,41 @@ bool AI::randBool()
 {
 	return ( rand() % 2 == 1 );
 }
+bool AI::seesTarget()
+{
+	TilePosition pos = m_master->getCurrentTile()->getTilePosition();
+	TilePosition avpos = m_avatar->getCurrentTile()->getTilePosition();
+	TilePosition diff = avpos - pos;
+	if (abs(diff.x) == 0 || abs(diff.y) == 0)
+	{
+		//If the monster and the avatar are in the same column or row
+		diff.x /= max(1, abs(diff.x));
+		diff.y /= max(1, abs(diff.y));
+		while (!(pos == avpos))
+		{
+			if (!m_tilemap->getTile(pos)->isFree())
+				return false;
+			pos = pos + diff;
+		}
+		return true;
+	}
+	return false;
+}
+Tile* AI::findRushTile()
+{
+	TilePosition pos = m_master->getCurrentTile()->getTilePosition();
+	TilePosition avpos = m_avatar->getCurrentTile()->getTilePosition();
+	TilePosition diff = avpos - pos;
+
+	//If the monster and the avatar are in the same column or row
+	diff.x /= max(1, abs(diff.x));
+	diff.y /= max(1, abs(diff.y));
+
+	Tile* t = m_tilemap->getTile(pos);
+	while (t && t->isFree())
+	{
+		pos = pos + diff;
+		t = m_tilemap->getTile(pos);
+	}
+	return m_tilemap->getTile(pos - diff);
+}

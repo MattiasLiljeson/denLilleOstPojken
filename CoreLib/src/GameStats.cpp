@@ -100,9 +100,9 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 	}
 
 	if (p_inputInfo.keys[InputInfo::X_KEY] == InputInfo::KEYPRESSED)
-		activateBuff();
-	if (p_inputInfo.keys[InputInfo::Z_KEY] == InputInfo::KEYPRESSED)
 		activateItem();
+	if (p_inputInfo.keys[InputInfo::Z_KEY] == InputInfo::KEYPRESSED)
+		activateBuff();
 }
 
 void GameStats::setNumPills(const int p_numPills)

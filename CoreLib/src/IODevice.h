@@ -36,6 +36,7 @@ public:
 	void		clearSpriteInfos();
 
 	void		addSound(SoundInfo* p_soundInfo);
+	void		addSong(SoundInfo* p_song);
 
 	int			getScreenWidth();
 	int			getScreenHeight();

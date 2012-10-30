@@ -11,13 +11,16 @@ Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*>> p_flames, Tile
 	m_tickSound = p_tick;
 	m_tickCounter = 0;
 	m_blastSound = p_blast;
+
+	m_animation = new Animation(fVector2(0, 0), 64, 64, 12, 4.3f);
 }
 Bomb::~Bomb()
 {
 	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		delete m_flames[i];
 	m_flames.clear();
-
+	if (m_animation)
+		delete m_animation;
 	if (m_tickSound)
 		m_tickSound->deleted = true;
 	if (m_blastSound)
@@ -25,10 +28,15 @@ Bomb::~Bomb()
 }
 void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if (m_countDown > 1.5f)
+	if (m_countDown > 1.0f)
 	{
-		if (m_currentDist > 0)
+		if (m_currentDist > 0 && m_countDown > 2.0f)
 			m_spriteInfo->visible = false;
+		else
+		{
+			m_animation->update(m_countDown);
+			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
+		}
 		m_elapsedTime += p_deltaTime;
 	
 		if (m_elapsedTime > 0.1f)
@@ -64,6 +72,8 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 	else
 	{
 		m_tickCounter += p_deltaTime;
+		m_animation->update(m_countDown);
+		m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		if (m_tickCounter > 0.5f)
 		{
 			m_tickCounter -= 0.5f;

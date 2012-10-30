@@ -10,6 +10,9 @@ private:
 	SpriteInfo* m_spriteInfo;
 	SoundInfo* m_onEatSound;
 	GameStats* m_gameStats;
+
+	float m_elapsedTime;
+	fVector2 m_startScale;
 public:
 	PillEatenState(GameObject* p_gameObject, SpriteInfo* p_spriteInfo, SoundInfo* p_onEatSound, GameStats* p_gameStats);
 	virtual ~PillEatenState();

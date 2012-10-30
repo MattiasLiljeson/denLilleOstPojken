@@ -34,6 +34,9 @@ private:
 	int m_requestedLevel;
 	float m_requestedTimer;
 
+	//Music
+	SoundInfo* m_backgroundMusic;
+
 private:
 	void createMenus();
 	void removeMenus();

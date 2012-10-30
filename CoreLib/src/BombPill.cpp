@@ -1,6 +1,6 @@
 #include "BombPill.h"
 
-BombPill::BombPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, SoundInfo* p_onUseSound): Collectable(p_spriteInfo, p_gameStats)
+BombPill::BombPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, CollectableContainer* p_container, SoundInfo* p_onUseSound): Collectable(p_spriteInfo, p_gameStats, p_container)
 {
 	m_tile = p_tile;
 	if (m_tile)
@@ -13,6 +13,7 @@ BombPill::~BombPill()
 }
 void BombPill::update(float p_deltaTime, InputInfo p_inputInfo)
 {
+	Collectable::update(p_deltaTime,p_inputInfo); // call collectable generic update
 }
 void BombPill::consume()
 {
@@ -24,10 +25,12 @@ void BombPill::consume()
 			m_gameStats->setItemSlot(this);
 		if (m_spriteInfo)
 			m_spriteInfo->visible = false;
+		if (m_onUseSound)
+			m_onUseSound->play = true;
 	}
 }
 void BombPill::activate()
 {
-	if (m_onUseSound)
-		m_onUseSound->play = true;
+	//if (m_onUseSound)
+		//m_onUseSound->play = true;
 }
