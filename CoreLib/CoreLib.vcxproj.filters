@@ -450,5 +450,8 @@
     <ClInclude Include="src\InfectedRat.h">
       <Filter>Source\GameObject\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="src\HighScore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

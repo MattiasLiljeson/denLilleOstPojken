@@ -495,7 +495,6 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 				m_parent->requestStateChange(m_parent->getVictoryState());
 			}
-			return;
 		}
 	}
 }
@@ -517,6 +516,7 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	{
 		m_gui->showDefeat();
 	}
+
 	if (m_toneOutTimer > 0)
 	{
 		m_toneOutTimer += p_dt;
