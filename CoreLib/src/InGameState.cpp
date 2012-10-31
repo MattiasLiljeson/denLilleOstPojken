@@ -10,12 +10,15 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_currentMap = 0;
 	m_desiredMap = -1;
 	m_factory = new GOFactory(m_io);
-	m_avatar			= NULL;
-	m_gui				= NULL;
-	m_tileMap			= NULL;
-	m_stats				= NULL;
-	m_startTile			= NULL;
-	m_backgroundMusic	= NULL;
+
+	m_avatar	= NULL;
+	m_gui		= NULL;
+	m_tileMap	= NULL;
+	m_stats		= NULL;
+	m_startTile = NULL;
+	m_backgroundMusic = NULL;
+	m_defeat = NULL;
+	m_victory = NULL;
 }
 InGameState::~InGameState()
 {
@@ -65,6 +68,16 @@ bool InGameState::onExit()
 			{
 				m_backgroundMusic->deleted = true;
 				m_backgroundMusic = NULL;
+			}
+			if (m_defeat)
+			{
+				m_defeat->deleted = true;
+				m_defeat = NULL;
+			}
+			if (m_victory)
+			{
+				m_victory->deleted = true;
+				m_victory = NULL;
 			}
 		}
 		m_resourcesAllocated=false;
@@ -170,7 +183,7 @@ void InGameState::update(float p_dt)
 
 			ss << elapsed;
 
-			string text = "Elapsed Game Time: " + ss.str() + " seconds";
+			string text = "Elapsed Game Time: " + ss.str() + " seconds. FPS: " + toString(1.0f / p_dt);
 
 			m_io->setWindowText(text);
 
@@ -370,6 +383,20 @@ void InGameState::restart()
 	m_backgroundMusic->volume = 0;
 	m_io->addSong(m_backgroundMusic);
 
+	//Add sound effects
+	if (m_defeat)
+	{
+		m_defeat->deleted = true;
+	}
+	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
+
+	if (m_victory)
+	{
+		m_victory->deleted = true;
+	}
+	m_victory = m_factory->CreateSoundInfo("../Sounds/victory.wav", 100);
+
+
 	//ANTON FIX!
 	//Makes sure the game starts at time 0
 	m_stats->getGameTimer()->stop();
@@ -422,6 +449,11 @@ void InGameState::handleInput( InputInfo p_input )
 }
 void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_victoryTime), 0.0f);
+	m_victory->volume = 20;
+	if (m_victoryTime == 0)
+		m_victory->play = true;
+
 	float timings[6] =
 	{
 		3.0f,	// Finished
@@ -498,6 +530,10 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 }
 void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_defeatTime), 0.0f);
+	m_defeat->volume = max(100*m_defeatTime, 0.0f);
+	if (m_defeatTime == 0)
+		m_defeat->play = true;
 	m_defeatTime += p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_defeatTime / 1, 1.0f));
 	

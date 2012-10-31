@@ -13,7 +13,12 @@ private:
 	Tile* m_tile;
 	PillEatenState* m_eatenState;
 	float flotyAnimTick;
+
 	TransformInfo m_origin;
+
+	//Scale the pill back and forth
+	bool m_tickUp;
+	float m_scaleTick;
 public:
 	Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats);
 	virtual ~Pill();
