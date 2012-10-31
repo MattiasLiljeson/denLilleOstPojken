@@ -78,13 +78,14 @@ bool MenuState::onEntry()
 			m_backgroundMusic->id = "../Sounds/Music/POL-misty-cave-short.wav";
 			m_backgroundMusic->play = true;
 			m_backgroundMusic->volume = 20;
-			m_io->addSong(m_backgroundMusic);
+			m_io->addSong( m_backgroundMusic );
 
 			createMenus();
 			m_requestedLevel = -1;
 			m_requestedTimer = 0.0f;
 			m_entrying = true;
 			m_entryTimer = 0.0f;
+
 		}
 		m_resourcesAllocated = true;
 	}

@@ -70,6 +70,8 @@ void GameOverState::update(float p_dt)
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !
 			m_io->isRunning())
 		{
+			// Update highscoretable
+			HighScoreFunctions::updateHighScore(m_parent->getCommonResources()->totalScore);
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}
 	}
