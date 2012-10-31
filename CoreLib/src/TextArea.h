@@ -74,6 +74,7 @@ public:
 	float getOriginX(){return m_xOrigin;}
 	float getOriginY(){return m_yOrigin;}
 	void setOrigin( fVector2 p_newOrigin );
+	bool getVisible();
 	void setVisible( bool p_visible );
 };
 

@@ -141,8 +141,8 @@ void MenuState::update( float p_dt )
 		{
 			if (m_requestedTimer > fadeTime)
 			{
-				InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
-				inGame->setCurrentMap(m_requestedLevel);
+				InGameState* inGame = dynamic_cast<InGameState*>( m_parent->getInGameState() );
+				inGame->setCurrentMap( m_requestedLevel );
 				m_parent->requestStateChange(m_parent->getInGameState());
 			}
 			else
