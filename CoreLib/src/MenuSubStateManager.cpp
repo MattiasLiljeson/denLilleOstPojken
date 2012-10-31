@@ -62,9 +62,6 @@ void MenuSubStateManager::addMenu( MenuSubState* p_menu, Menu p_type )
 
 void MenuSubStateManager::update( float p_dt )
 {
-	//for( unsigned int i=0; i<m_menus.size(); i++ )
-	//	if( m_menus[i] != NULL)
-	//		m_menus[i]->update( p_dt );
 	if( m_menus[m_currMenu] != NULL)
 		m_menus[m_currMenu]->update( p_dt );
 }
@@ -74,9 +71,7 @@ void MenuSubStateManager::terminateGame()
 	m_parent->getParent()->terminate();
 }
 
-void MenuSubStateManager::setCurrentMap( int p_mapIdx )
+void MenuSubStateManager::requestMap( int p_mapIdx )
 {
-	InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getParent()->getInGameState());
-	inGame->setCurrentMap(p_mapIdx);
-	m_parent->getParent()->requestStateChange(m_parent->getParent()->getInGameState());
+	m_parent->requestMap( p_mapIdx );
 }

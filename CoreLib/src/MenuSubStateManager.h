@@ -19,7 +19,6 @@ private:
 	vector<MenuSubState*> m_menus;
 	int m_currMenu;
 
-
 public:
 	enum Menu { MENU_MAIN, MENU_LEVEL_SELECT, MENU_HIGHSCORE, MENU_CREDITS, MENU_EXIT, NUM_MENUS };
 
@@ -30,6 +29,6 @@ public:
 	void addMenu( MenuSubState* p_menu, Menu p_type );
 	void update( float p_dt );
 	void terminateGame();
-	void setCurrentMap( int p_mapIdx );
+	void requestMap( int p_mapIdx );
 };
 #endif // MENUSUBSTATEMANAGER_H

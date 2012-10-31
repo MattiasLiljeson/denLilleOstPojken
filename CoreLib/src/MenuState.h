@@ -51,7 +51,7 @@ public:
 	void update( float p_dt );
 	void draw( float p_dt );
 	void handleInput( InputInfo p_input );
-	void reqMenuChange( int p_menu );
+	void requestMap( int p_mapIdx );
 	StateManager* getParent();
 };
 
