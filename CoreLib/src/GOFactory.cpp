@@ -26,24 +26,28 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 		pos, size, &r);
 	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
 }
-Monster* GOFactory::CreateRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
+Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats, int p_type)
 {
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
 	fVector2 size = GetScaledSize(p_tile, 2.0f);
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat.png",
-		pos, size, NULL);
-	return new Rat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
-}
-Monster* GOFactory::CreateInfectedRat(Tile* p_tile, Tilemap* p_map, GameStats* p_stats)
-{
-	fVector3 pos = GetCenter(p_tile, 0.2f); 
-	fVector2 size = GetScaledSize(p_tile, 2.0f);
+	std::string spriteInfoPath;
+	int type = p_type - (TileTypes::ENEMIESPAWN-30);
+	if(type == 1)
+		spriteInfoPath = "../Textures/rat.png";
+	else if(type == 2)
+		spriteInfoPath = "../Textures/rat2.png";
 
-	SpriteInfo* spriteInfo = CreateSpriteInfo("../Textures/rat2.png",
+	SpriteInfo* spriteInfo = CreateSpriteInfo( spriteInfoPath,
 		pos, size, NULL);
-	return new InfectedRat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+	if(type == 1)
+		return new Rat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+	else if(type == 2)
+		return new InfectedRat(p_stats, spriteInfo, p_tile, p_map, CreateSoundInfo("../Sounds/monster_killed_v2.wav",100));
+
+	return NULL;
 }
+
 Trap* GOFactory::CreateTrap(Tile* p_tile, Tilemap* p_map)
 {
 	fVector3 pos = GetCenter(p_tile, 0.1f); 

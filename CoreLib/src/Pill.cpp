@@ -12,8 +12,11 @@ Pill::Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameS
 	m_consumed = false;
 
 	m_eatenState = new PillEatenState(this, p_spriteInfo, p_soundInfo, p_gameStats);
-	m_origin = p_spriteInfo->transformInfo;
-	flotyAnimTick=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	if(p_spriteInfo != NULL)
+	{
+		m_origin = p_spriteInfo->transformInfo;
+		flotyAnimTick=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	}
 }
 Pill::~Pill()
 {

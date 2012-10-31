@@ -92,8 +92,8 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				}
 				else if (map[index] > CBSPAWN && map[index] <= ENEMIESPAWN )
 				{
-					Monster* monster = m_factory->CreateInfectedRat(
-						m_tileMap->getTile(TilePosition(j, i)), m_tileMap,m_stats);
+					Monster* monster = m_factory->CreateMonster(
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap,m_stats, map[index]);
 					m_monsters.push_back(monster);
 					m_gameObjects.push_back(monster);
 				}

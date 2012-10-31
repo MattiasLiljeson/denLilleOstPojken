@@ -2,7 +2,8 @@
 
 Glyph::Glyph( SpriteInfo* p_spriteInfo ) : GameObject(p_spriteInfo)
 {
-	m_origin = p_spriteInfo->transformInfo;
+	if(p_spriteInfo != NULL)
+		m_origin = p_spriteInfo->transformInfo;
 }
 
 Glyph::~Glyph()

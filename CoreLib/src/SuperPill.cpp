@@ -9,8 +9,11 @@ SuperPill::SuperPill(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameSt
 	m_consumed = false;
 	m_superPillEaten = new SuperPillEaten(this,p_onEatSound);
 
-	m_origin = p_spriteInfo->transformInfo;
-	flotyAnimTick=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	if(p_spriteInfo != NULL)
+	{
+		m_origin = p_spriteInfo->transformInfo;
+		flotyAnimTick=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	}
 }
 
 SuperPill::~SuperPill()

@@ -115,8 +115,9 @@ TextArea::~TextArea()
 		m_glyphs[i] = NULL;
 	}
 	m_glyphs.clear();
-	delete m_glyphMap;
-	m_glyphMap = NULL;
+	//if(m_glyphMap != NULL)
+	//	delete m_glyphMap;
+	//m_glyphMap = NULL;
 
 	for( unsigned int i=0; i<m_animators.size(); i++ )
 	{

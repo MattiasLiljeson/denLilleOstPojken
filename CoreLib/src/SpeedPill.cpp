@@ -25,7 +25,8 @@ void SpeedPill::consume()
 		m_consumed = true;
 		m_tile = NULL;
 		m_gameStats->setBuffSlot(this);
-		m_spriteInfo->visible = false;
+		if(m_spriteInfo != NULL)
+			m_spriteInfo->visible = false;
 	}
 }
 void SpeedPill::activate()
