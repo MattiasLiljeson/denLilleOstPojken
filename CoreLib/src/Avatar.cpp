@@ -29,7 +29,10 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_size = fVector2();
 
 	if (m_spriteInfo)
+	{
 		m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+		m_avatarOriginalRadius = m_spriteInfo->textureRect.width / 2.0f;
+	}
 	else
 		m_offset = 0;
 
@@ -37,8 +40,13 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 	if (m_shadow)
 		m_shadow->visible = false;
 
+	m_timeSinceSpawn = 0;
 
-	m_avatarOriginalRadius = m_spriteInfo->textureRect.width / 2.0f;
+	//Overlays
+	m_overlays.push_back(HulkOverlay(0, 0, 0, 0));
+	m_overlays.push_back(HulkOverlay(1, 0, 0, 0));
+	m_overlays.push_back(HulkOverlay(0, 1, 0, 0));
+	m_overlays.push_back(HulkOverlay(0, 0, 1, 0));
 }
 
 Avatar::~Avatar()
@@ -55,29 +63,39 @@ Avatar::~Avatar()
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	GameObject::update(p_deltaTime, p_inputInfo);
+	m_timeSinceSpawn += p_deltaTime;
 
-	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
+	//Don't move the avatar until he has finished spawning
+	if (m_timeSinceSpawn > SPAWNTIME)
 	{
-		if (m_currentState != m_avatarKilledState)
-			switchState(m_avatarJumpingState);
-	}
-	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
-	{
-		switchState(m_walking);
-	}
-
-	if (m_currentAnimation)
-	{
-		if (m_navigationData->m_direction != Direction::NONE || m_currentState == m_avatarKilledState)
-			m_currentAnimation->update(p_deltaTime);
-		else
+		GameObject::update(p_deltaTime, p_inputInfo);
+		if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 		{
-			m_currentAnimation->restart();
+			if (m_currentState != m_avatarKilledState)
+				switchState(m_avatarJumpingState);
 		}
+		if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
+		{
+			switchState(m_walking);
+		}
+
+		if (m_currentAnimation)
+		{
+			if (m_navigationData->m_direction != Direction::NONE || m_currentState == m_avatarKilledState)
+			{
+				if (m_gameStats->isSpeeded() && m_currentState == m_walking)
+					m_currentAnimation->update(p_deltaTime*2);
+				else
+					m_currentAnimation->update(p_deltaTime);
+			}
+			else
+			{
+				m_currentAnimation->restart();
+			}
 		
-		if (m_spriteInfo)
-			m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+			if (m_spriteInfo)
+				m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+		}
 	}
 
 	if (m_spriteInfo)
@@ -99,28 +117,46 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		if (m_gameStats->isSuperMode())
 		{
 			float remaining = m_gameStats->superTimeRemaining();
-			if ((int)(remaining*6) % 2 != 0 || remaining >= 1)
+			float elapsed = m_gameStats->superTimeElapsed();
+
+			int overlayPasses = 10;
+			float overlayPos = (elapsed / (remaining + elapsed) * (m_overlays.size()-1)) * overlayPasses;
+
+			float frac = overlayPos - (int)overlayPos;
+
+			HulkOverlay ov1 = m_overlays[(int)overlayPos % m_overlays.size()];
+			HulkOverlay ov2 = m_overlays[(int)(overlayPos+1) % m_overlays.size()];
+
+			m_spriteInfo->overlay[0] = (1-frac)*ov1.color[0] + frac*ov2.color[0];
+			m_spriteInfo->overlay[1] = (1-frac)*ov1.color[1] + frac*ov2.color[1];
+			m_spriteInfo->overlay[2] = (1-frac)*ov1.color[2] + frac*ov2.color[2];
+			m_spriteInfo->overlay[3] = (1-frac)*ov1.color[3] + frac*ov2.color[3];
+			super = true;
+			if (elapsed < 1)
 			{
-				super = true;
-				if (remaining > 5)
-				{
-					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
-					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
-					m_offset = (16 + 8 * (6-remaining)) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
-				}
-				else
-				{
-					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
-					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
-					m_offset = 24 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
-				}
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
+				m_offset = (16 + 8 * (6-remaining)) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			}
+			else if (remaining > 1)
+			{
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
+				m_offset = 24 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			}
+			else
+			{
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + remaining);
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + remaining);
+				m_offset = (16 + 8 * remaining) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 			}
 		}
-		if (!super)
+		else
 		{
-			m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
-			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
-			m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			m_spriteInfo->overlay[0] = 0;
+			m_spriteInfo->overlay[1] = 0;
+			m_spriteInfo->overlay[2] = 0;
+			m_spriteInfo->overlay[3] = 0;
 		}
 
 		if (m_shadow)
@@ -173,7 +209,14 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 				m_shadow->visible = false;
 			}
 		}
+
+		if (m_timeSinceSpawn < SPAWNTIME)
+		{
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] += (SPAWNTIME - m_timeSinceSpawn) / SPAWNTIME * 2000;
+		}
 	}
+	if (isDead())
+		m_spriteInfo->visible = false;
 }
 Tile* Avatar::getCurrentTile()
 {
@@ -219,6 +262,12 @@ void Avatar::revive(Tile* p_newPosition)
 {
 	m_navigationData->m_currentTile = p_newPosition;
 	switchState(m_walking);
+
+	//Added by Anton
+	m_timeSinceSpawn = 0;
+	m_spriteInfo->transformInfo.translation[TransformInfo::Y] += (SPAWNTIME - m_timeSinceSpawn) / SPAWNTIME * 2000;
+	m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+	m_spriteInfo->visible = true;
 }
 void Avatar::setCurrentAnimation(Animation* p_animation)
 {

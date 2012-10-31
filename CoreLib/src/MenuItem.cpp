@@ -26,11 +26,10 @@ int MenuItem::updateSprite()
 }
 
 
-MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
+MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text,
 	fVector2 p_basePosition, fVector2 p_textOffset )
 	: GameObject(p_spriteInfo)
 {
-	m_font = p_font;
 	m_text = p_text;
 
 	setBasePosition( p_basePosition.x, p_basePosition.y );
@@ -39,8 +38,6 @@ MenuItem::MenuItem(SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
 
 MenuItem::~MenuItem()
 {
-	delete m_font;
-	m_font = NULL;
 	delete m_text;
 	m_text = NULL;
 }
@@ -50,10 +47,16 @@ void MenuItem::update( float p_deltaTime, InputInfo p_inputInfo )
 	m_text->update( p_deltaTime, p_inputInfo );
 }
 
-void MenuItem::animateText( float p_freq, float p_amplitude, float p_speed )
+void MenuItem::animateText( float p_freq, float p_amplitude, float p_speed, int p_animIdx )
 {
-	m_text->animateText( p_freq, p_amplitude, p_speed );
+	m_text->animateText( p_freq, p_amplitude, p_speed, p_animIdx);
 }
+
+void MenuItem::resetAnimation( int p_idx )
+{
+	m_text->resetAnimation( p_idx );
+}
+
 
 TextArea* MenuItem::getTextArea()
 {

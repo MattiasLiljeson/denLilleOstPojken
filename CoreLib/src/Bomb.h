@@ -41,6 +41,10 @@ public:
 	{
 		return m_tile;
 	}
+	void hide()
+	{
+		m_spriteInfo->visible = false;
+	}
 };
 
 //Class that handles a bomb
@@ -67,6 +71,7 @@ public:
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	bool	isColliding(Monster* p_monster);
 	bool	isColliding(Avatar* p_avatar);
+	void	reset();
 };
 
 #endif

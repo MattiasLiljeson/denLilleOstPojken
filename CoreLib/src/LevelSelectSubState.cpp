@@ -19,7 +19,7 @@ void LevelSelectSubState::selectBtn( int p_currItemIdx, MenuSubStateManager* p_m
 	{
 		// Get map idx by removing all static items from item index
 		int mapIdx = p_currItemIdx - LS_NUM_ITEMS;
-		p_manager->setCurrentMap( mapIdx );
+		p_manager->requestMap( mapIdx );
 	}
 }
 

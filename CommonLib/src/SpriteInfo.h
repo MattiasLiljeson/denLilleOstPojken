@@ -24,6 +24,9 @@ public:
 	// loaded texture width and height when being
 	// assigned an id.
 	Rect			textureRect;	
+
+	//Color Overlay
+	float	overlay[4];
 	
 	SpriteInfo()
 	{
@@ -44,6 +47,7 @@ public:
 		bwFraction = 0;
 		sepiaFraction = 0;
 		fadeToBlackFraction = 0;
+		overlay[0] = overlay[1] = overlay[2] = overlay[3] = 0;
 	}
 
 	SpriteInfo( string p_textureFilePath )

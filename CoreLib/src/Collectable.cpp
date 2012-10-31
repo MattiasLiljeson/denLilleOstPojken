@@ -3,8 +3,11 @@
 
 void Collectable::InitTransformOrigin()
 {
-	m_origin = m_spriteInfo->transformInfo;
-	m_elapsedTime=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	if(m_spriteInfo != NULL)
+	{
+		m_origin = m_spriteInfo->transformInfo;
+		m_elapsedTime=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+	}
 }
 
 Collectable::Collectable(): GameObject(NULL, NULL)

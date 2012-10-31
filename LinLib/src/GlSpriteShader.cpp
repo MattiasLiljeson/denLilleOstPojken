@@ -60,6 +60,7 @@ GlSpriteShader::GlSpriteShader()
 	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize");
 	m_bwFraction				= glGetUniformLocation(m_id, "bwFraction");
 	m_fadeToBlackFraction		= glGetUniformLocation(m_id, "fadeToBlack");
+	m_colorOverlay				= glGetUniformLocation(m_id, "colorOverlay");
 	m_sampler					= glGetUniformLocation(m_id, "gSampler");
 
 	m_initialized = true;
@@ -136,5 +137,9 @@ GLuint GlSpriteShader::getTextureSampler()
 bool GlSpriteShader::isInitialized()
 {
 	return m_initialized;
+}
+GLint GlSpriteShader::getColorOverlay()
+{
+	return m_colorOverlay;
 }
 

@@ -16,7 +16,7 @@ public:
 	void setup()
 	{
 		GOFactory factory(NULL);
-		GlyphMap glyphMap(
+		GlyphMap* glyphMap = new GlyphMap(
 			" !¨}_%#'()$+,-./0123456789:{<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZÄÀÁÅçCCCIIiñóöòööAÜUUU;¤",
 			"../Textures/bubblemad_32x32.png", 32, 32);
 
@@ -24,7 +24,7 @@ public:
 		int maxLength = 3;
 		float originX = 11;
 		float originY = 12;
-		TextArea ta(&glyphMap, maxLength, &factory, originX, originY, TextArea::CEN_CENTER, fVector2());
+		TextArea ta(glyphMap, maxLength, &factory, originX, originY, TextArea::CEN_CENTER, fVector2());
 
 		{
 			int setText = ta.setText("test");

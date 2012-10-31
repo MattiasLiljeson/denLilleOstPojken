@@ -13,7 +13,7 @@ public:
 	{
 		{
 			newSection( "MenuItem with NULLs as args to ctor" );
-			MenuItem mi( NULL, NULL, NULL, fVector2(), fVector2() );
+			MenuItem mi( NULL, NULL, fVector2(), fVector2() );
 			newEntry( TestData( "setTextOffset()", mi.setTextOffset( 0.0f, 0.0f ) == GAME_FAIL));
 			newEntry( TestData( "setBasePosition()", mi.setBasePosition( 0.0f, 0.0f ) == GAME_FAIL));
 		}
@@ -29,7 +29,7 @@ public:
 			float originX = 11;
 			float originY = 12;
 			TextArea* ta = new TextArea(gm, maxLength, &factory, originX, originY, TextArea::CEN_CENTER, fVector2());
-			MenuItem mi(si, ta, gm, fVector2(), fVector2());
+			MenuItem mi(si, ta, fVector2(), fVector2());
 
 			newEntry( TestData( "setTextOffset()", mi.setTextOffset( 0.0f, 0.0f ) == GAME_OK));
 			newEntry( TestData( "setBasePosition()", mi.setBasePosition( 0.0f, 0.0f ) == GAME_OK));

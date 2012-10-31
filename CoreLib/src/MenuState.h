@@ -5,7 +5,6 @@
 #include "InGameState.h"
 #include "MapHeader.h"
 #include "MenuItem.h"
-//#include "MenuSubState.h"
 #include "MenuSubStateFactory.h"
 #include "MenuSubStateManager.h"
 #include "SoundInfo.h"
@@ -13,20 +12,6 @@
 #include "TextArea.h"
 #include <cmath>
 #include <vector>
-
-//#include "CreditsSubState.h"
-//#include "ExitSubState.h"
-//#include "HighscoreSubState.h"
-//#include "LevelSelectSubState.h"
-//#include "MainSubState.h"
-
-//class MenuSubState;
-//class CreditsSubState;
-//class ExitSubState;
-//class HighscoreSubState;
-//class LevelSelectSubState;
-//class MainSubState;
-
 
 class MenuSubStateManager;
 class MenuSubStateFactory;
@@ -45,20 +30,16 @@ private:
 
 	vector<MapData> m_maps;
 	MenuItem* m_bgItem;
-	SoundInfo* m_itemSelectSnd;
-
 	//New - To add fade functionality
 	int m_requestedLevel;
 	float m_requestedTimer;
+	bool m_entrying;
+	float m_entryTimer;
 
 	//Music
 	SoundInfo* m_backgroundMusic;
 
 private:
-	//utility functions
-	//void resetItemOffset( int p_idx );
-
-	bool playSound();
 	void createMenus();
 	void removeMenus();
 
@@ -72,7 +53,7 @@ public:
 	void update( float p_dt );
 	void draw( float p_dt );
 	void handleInput( InputInfo p_input );
-	void reqMenuChange( int p_menu );
+	void requestMap( int p_mapIdx );
 	StateManager* getParent();
 };
 

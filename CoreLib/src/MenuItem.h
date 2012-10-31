@@ -20,7 +20,6 @@ private:
 	bool m_selectable;
 	fVector2 m_basePosition;
 	fVector2 m_textOffset; 
-	GlyphMap* m_font;
 	TextArea* m_text;
 
 private:
@@ -28,13 +27,13 @@ private:
 	int updateSprite();
 
 public:
-	MenuItem( SpriteInfo* p_spriteInfo, TextArea* p_text, GlyphMap* p_font,
+	MenuItem( SpriteInfo* p_spriteInfo, TextArea* p_text,
 		fVector2 p_basePosition, fVector2 p_textOffset);
 	virtual ~MenuItem();
 
 	void update(float p_deltaTime, InputInfo p_inputInfo);
-	void animateText( float p_freq, float p_amplitude, float p_speed );
-
+	void animateText( float p_freq, float p_amplitude, float p_speed, int p_animIdx );
+	void resetAnimation( int p_idx );
 	TextArea* getTextArea();
 
 	int setTextOffset( float p_x, float p_y );

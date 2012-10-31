@@ -73,7 +73,8 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		m_tickCounter += p_deltaTime;
 		m_animation->update(m_countDown);
-		m_spriteInfo->textureRect = m_animation->getCurrentFrame();
+		if(m_spriteInfo != NULL)
+			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		if (m_tickCounter > 0.5f)
 		{
 			m_tickCounter -= 0.5f;
@@ -105,4 +106,15 @@ bool Bomb::isColliding(Avatar* p_avatar)
 		}
 	}
 	return false;
+}
+void Bomb::reset()
+{
+	//Kills the bomb
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
+	{
+		m_flames[i]->hide();
+		delete m_flames[i];
+	}
+	m_flames.clear();
+	m_flameSpawn.clear();
 }

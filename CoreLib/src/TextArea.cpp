@@ -79,7 +79,7 @@ float TextArea::calcAnchorOffsetY( int p_idx, ANCHOR p_anchor )
 
 TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength,
 	GOFactory* p_factory, float p_xOrigin, float p_yOrigin,
-	ANCHOR p_anchor, fVector2 p_glyphScale, bool p_useAnim8on )
+	ANCHOR p_anchor, fVector2 p_glyphScale, vector<GlyphAnimation*> p_animators )
 {
 	m_glyphMap = p_glyphMap;
 	m_maxLength = p_maxLength;
@@ -94,18 +94,17 @@ TextArea::TextArea( GlyphMap* p_glyphMap, unsigned int p_maxLength,
 	float glyphWidth = (float)(m_glyphMap->getCharWidth()) * p_glyphScale.x;
 	float glyphHeight = (float)(m_glyphMap->getCharHeight()) * p_glyphScale.y;
 
-	GlyphAnimation* anim8on = NULL;
+	m_animators = p_animators;
 
 	for (unsigned int i=0;i<m_maxLength;i++)
 	{
-		if(p_useAnim8on)
-			anim8on = new GlyphAnimSinus();
 		Glyph* g = p_factory->CreateGlyph( texturePath,
 			getGlyphAbsPosX(i, p_anchor), getGlyphAbsPosY(i, p_anchor), 
-			fVector2(glyphWidth, glyphHeight), anim8on );
+			fVector2(glyphWidth, glyphHeight));
 
 		m_glyphs.push_back(g);
 	}
+
 }
 
 TextArea::~TextArea()
@@ -116,6 +115,15 @@ TextArea::~TextArea()
 		m_glyphs[i] = NULL;
 	}
 	m_glyphs.clear();
+	if(m_glyphMap != NULL)
+		delete m_glyphMap;
+	m_glyphMap = NULL;
+
+	for( unsigned int i=0; i<m_animators.size(); i++ )
+	{
+		delete m_animators[i];
+		m_animators[i] = NULL;
+	}
 }
 
 int TextArea::setText(const string& p_text)
@@ -149,14 +157,23 @@ void TextArea::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		m_glyphs[i]->update( p_deltaTime, p_inputInfo );
 	}
+	for( unsigned int i=0; i<m_animators.size(); i++ )
+	{
+		m_animators[i]->update( p_deltaTime );
+	}
 }
 
-void TextArea::animateText( float p_freq, float p_amplitude, float p_speed )
+void TextArea::animateText( float p_freq, float p_amplitude, float p_speed, int p_animIdx )
 {
 	for( unsigned int i=0; i<m_glyphs.size(); i++ )
 	{
-		m_glyphs[i]->animate( p_freq, p_amplitude, p_speed );
+		m_glyphs[i]->animate(m_animators[p_animIdx], p_freq, p_amplitude, p_speed);
 	}
+}
+
+void TextArea::resetAnimation( int p_idx )
+{
+	m_animators[p_idx]->reset();
 }
 
 void TextArea::setOrigin( fVector2 p_newOrigin )
@@ -167,6 +184,12 @@ void TextArea::setOrigin( fVector2 p_newOrigin )
 	{
 		setGlyphPos( i, m_currAnchor, p_newOrigin );
 	}
+}
+
+bool TextArea::getVisible()
+{
+	// HACK: returns only the first elments visibility
+	return m_glyphs[0]->getVisibility();
 }
 
 void TextArea::setVisible( bool p_visible )

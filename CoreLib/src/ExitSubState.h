@@ -12,7 +12,6 @@ using namespace std;
 class ExitSubState : public MenuSubStateInterface
 {
 public:
-	vector<string> m_texts; 
 	enum { EX_YES, EX_NO, EX_NUM_ITEMS };
 	
 	ExitSubState();
