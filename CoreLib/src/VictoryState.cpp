@@ -70,6 +70,11 @@ void VictoryState::update(float p_dt)
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !
 			m_io->isRunning())
 		{
+			// Update highscoretable
+			HighScoreFunctions::updateHighScore(m_parent->getCommonResources()->totalScore);
+			// Set totalscore to zero so that you start from zero the next time you play
+			m_parent->getCommonResources()->totalScore = 0;
+
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}
 	}

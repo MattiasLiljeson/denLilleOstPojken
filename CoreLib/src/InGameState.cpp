@@ -492,8 +492,6 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 			{
 				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 				m_parent->requestStateChange(m_parent->getVictoryState());
-				// Update highscoretable
-				HighScoreFunctions::updateHighScore(m_parent->getCommonResources()->totalScore);
 			}
 		}
 	}
