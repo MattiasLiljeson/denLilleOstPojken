@@ -320,7 +320,7 @@ MenuItem* GOFactory::createMenuItem( fVector3 p_position, fVector2 p_size,
 		text->setText( p_text );
 	}
 
-	return new MenuItem( spriteInfo, text, font, finalPos, finalTextOffset );
+	return new MenuItem( spriteInfo, text, finalPos, finalTextOffset );
 }
 
 TextArea* GOFactory::createMenuItemTextArea( fVector3 p_position,
