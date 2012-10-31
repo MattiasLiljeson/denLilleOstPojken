@@ -14,32 +14,37 @@ private:
 	float m_outroTime;
 	bool m_done;
 	TransformInfo m_targetPosition;
+	float m_transitionTime; // Time it takes for the whole transition.
 public:
-	CollectableContainer(SpriteInfo* p_container,SpriteInfo* p_containerShadow)
+	CollectableContainer(SpriteInfo* p_container,SpriteInfo* p_containerShadow,
+		TransformInfo p_transitionTarget )
 	{
 		if(p_container != NULL) 
 		{
 			m_origin = p_container->transformInfo;
-			m_elapsedTime=m_origin.translation[TransformInfo::X] + m_origin.translation[TransformInfo::Y];
+			m_targetPosition = p_transitionTarget;
+
+			m_elapsedTime=m_origin.translation[TransformInfo::X] +
+				m_origin.translation[TransformInfo::Y];
+
 		}
 		m_outroTime=0.0f;
 		m_container = p_container;
 		m_containerShadow = p_containerShadow;
 		m_done=false;
-		m_targetPosition.translation[TransformInfo::X] = 0;
-		m_targetPosition.translation[TransformInfo::Y] = 0;
+		m_transitionTime = 0.25f;
 	}
 
 	void playOutro(float p_dt)
 	{
 		if (!m_done)
 		{
-			if (m_outroTime<1.0f)
+			if ( m_outroTime < m_transitionTime )
 			{
 				m_outroTime+=p_dt;
 				TransformInfo deltaPosition;
 
-				// Get position diff between target and origin,
+				// Get position difference between target and origin,
 				// target could be changed in run-time if needed.
 				deltaPosition.translation[TransformInfo::X] =
 					m_targetPosition.translation[TransformInfo::X] -
@@ -49,19 +54,19 @@ public:
 					m_targetPosition.translation[TransformInfo::Y] -
 					m_origin.translation[TransformInfo::Y];
 
+				float deltaTime = m_outroTime / m_transitionTime;
+
 				// Calculate transitional position for the container dependent
 				// of outroTime.
 				m_container->transformInfo.translation[TransformInfo::X] =
 					m_origin.translation[TransformInfo::X] +
-					deltaPosition.translation[TransformInfo::X] * m_outroTime;
+					deltaPosition.translation[TransformInfo::X] * deltaTime;
 
 				m_container->transformInfo.translation[TransformInfo::Y] =
 					m_origin.translation[TransformInfo::Y] +
-					deltaPosition.translation[TransformInfo::Y] * m_outroTime;
+					deltaPosition.translation[TransformInfo::Y] * deltaTime;
 
-//				m_container->transformInfo.translation[TransformInfo::Y] +=
-//					m_outroTime*p_dt*2000.0f;
-
+				// Create squishy effect.
 				m_container->transformInfo.scale[TransformInfo::Y] =
 					m_origin.scale[TransformInfo::Y]*(1.0f+m_outroTime);
 
