@@ -33,18 +33,22 @@ void MenuSubStateManager::handleInput(InputInfo p_input)
 {
 	if( p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED )
-		m_menus[m_currMenu]->upBtn();
+		if( m_menus[m_currMenu] != NULL )
+			m_menus[m_currMenu]->upBtn();
 
 	if( p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED )
-		m_menus[m_currMenu]->downBtn();
+		if( m_menus[m_currMenu] != NULL )
+			m_menus[m_currMenu]->downBtn();
 
 	if( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
 		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
-		m_menus[m_currMenu]->selectBtn();
+		if( m_menus[m_currMenu] != NULL )
+			m_menus[m_currMenu]->selectBtn();
 
 	if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED )
-		m_menus[m_currMenu]->escBtn();
+		if( m_menus[m_currMenu] != NULL )
+			m_menus[m_currMenu]->escBtn();
 }
 
 void MenuSubStateManager::addMenu( MenuSubState* p_menu, Menu p_type )
