@@ -440,7 +440,7 @@
     </ClInclude>
     <ClInclude Include="src\GlyphAnimOut.h">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
-	</ClCompile>
+	</ClInclude>
     <ClInclude Include="src\Rat.h">
       <Filter>Source\GameObject\Monster</Filter>
     </ClInclude>
