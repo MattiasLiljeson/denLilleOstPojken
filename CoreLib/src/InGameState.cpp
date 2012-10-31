@@ -379,7 +379,7 @@ void InGameState::restart()
 	//Add sound effects
 	if (m_defeat)
 	{
-		delete m_defeat;
+		m_defeat->deleted = true;
 	}
 	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
 
