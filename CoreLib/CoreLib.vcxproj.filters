@@ -95,6 +95,9 @@
     <Filter Include="Source\GameStates\MenuStates\MenuSubStates">
       <UniqueIdentifier>{df6d4fd4-8551-46e5-9292-37a6d9f93eb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameStates\MenuStates\SubState">
+      <UniqueIdentifier>{9ce300a8-c96a-4451-95ab-948e5c5d9722}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -258,7 +261,7 @@
     </ClCompile>
     <ClCompile Include="src\GlyphAnimOut.cpp">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
-	</ClCompile>
+    </ClCompile>
     <ClCompile Include="src\Rat.cpp">
       <Filter>Source\GameObject\Monster</Filter>
     </ClCompile>
@@ -440,7 +443,7 @@
     </ClInclude>
     <ClInclude Include="src\GlyphAnimOut.h">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
-	</ClInclude>
+    </ClInclude>
     <ClInclude Include="src\Rat.h">
       <Filter>Source\GameObject\Monster</Filter>
     </ClInclude>

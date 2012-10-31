@@ -10,12 +10,12 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_currentMap = 0;
 	m_desiredMap = -1;
 	m_factory = new GOFactory(m_io);
-	m_avatar	= NULL;
-	m_gui		= NULL;
-	m_tileMap	= NULL;
-	m_stats		= NULL;
-	m_startTile = NULL;
-	m_backgroundMusic = NULL;
+	m_avatar			= NULL;
+	m_gui				= NULL;
+	m_tileMap			= NULL;
+	m_stats				= NULL;
+	m_startTile			= NULL;
+	m_backgroundMusic	= NULL;
 }
 InGameState::~InGameState()
 {
@@ -505,10 +505,6 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	{
 		if (m_toneOutTimer == 0)
 			m_toneOutTimer += p_dt;
-	}
-	else if (m_defeatTime > 2.1f)
-	{
-		m_gui->showContinue();
 	}
 	else if (m_defeatTime > 1.8f)
 	{

@@ -90,6 +90,9 @@ void SoundManager::playSound(SoundInfo* p_info)
 			activeSound.info = p_info;
 			m_sounds.push_back(activeSound);	
 			s->Play();
+			// Offseting by 0.001 seconds so that it can later
+			// be checked if the current playing offset is equals 0
+			// if so the sound has been played
 			s->SetPlayingOffset(0.001f);
 			s->SetVolume(p_info->volume);
 			return;

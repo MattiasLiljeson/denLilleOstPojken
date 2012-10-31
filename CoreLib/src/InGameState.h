@@ -4,6 +4,7 @@
 #include "State.h"
 #include "GameStats.h"
 #include "MapHeader.h"
+#include "TextArea.h"
 
 class InGameState: public State
 {
@@ -30,7 +31,8 @@ private:
 	bool					m_paused;
 
 	//Music
-	SoundInfo* m_backgroundMusic;
+	SoundInfo*				m_backgroundMusic;
+
 
 private:
 	void updateOnVictory(float p_dt, InputInfo p_input);

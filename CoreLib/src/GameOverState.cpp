@@ -26,6 +26,11 @@ void GameOverState::initGameOverItems()
 	m_scoreText = m_factory->createMenuItem( 
 		fVector3(0.5f, 0.4f, 0.9f), fVector2(fh*600.0f, fh*64.0f),
 		text, fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"");
+
+	text = "PRESS ENTER TO CONTINUE!";
+	m_continueText = m_factory->createMenuItem(
+		fVector3(0.5f, 0.2f, 0.9f), fVector2(fh*600.0f, fh*64.0f),
+		text, fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"");
 }
 
 bool GameOverState::onEntry()
@@ -67,8 +72,10 @@ void GameOverState::update(float p_dt)
 	{
 		InputInfo input = m_io->fetchInput();
 
-		if (input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !
-			m_io->isRunning())
+		if (input.keys[InputInfo::ESC]   == InputInfo::KEYRELEASED	|| 
+			input.keys[InputInfo::ENTER] == InputInfo::KEYRELEASED	||
+			input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED	||
+			!m_io->isRunning())
 		{
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}

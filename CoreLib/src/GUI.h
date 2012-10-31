@@ -3,6 +3,7 @@
 
 #include "GameStats.h"
 #include <SpriteInfo.h>
+#include <string>
 
 class MenuItem;
 
@@ -18,12 +19,15 @@ struct PauseStruct
 	MenuItem* paused;
 	MenuItem* pressToPlay;
 };
+struct ContinueStruct
+{
+	MenuItem*	pressToContinue;
+	MenuItem*	pressToEnd;
+};
 struct DefeatStruct
 {
 	MenuItem* defeated;
 	MenuItem* cost;
-	MenuItem* cont;
-
 };
 
 class GUI
@@ -53,10 +57,13 @@ private:
 	//Defeat texts
 	DefeatStruct m_defeatData;
 
+	//Continue texts
+	ContinueStruct m_continue;
+
 public:
 	GUI(GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, MenuItem* p_parTime, MenuItem* p_totalScore, 
 		VictoryStruct p_victory, PauseStruct p_pauseData, DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_buffSlot, 
-		SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon);
+		SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon, ContinueStruct p_continue);
 	virtual ~GUI();
 	void update(float p_dt);
 
@@ -75,7 +82,10 @@ public:
 	//Defeat texts
 	void showDefeat();
 	void showCost();
+
+	//Information texts
 	void showContinue();
+	void showEnd();
 };
 
 #endif
