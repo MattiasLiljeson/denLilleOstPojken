@@ -123,7 +123,7 @@ void MenuState::update( float p_dt )
 		//Only handle input when no level has been selected
 		float fadeTime = 0.25f;
 		float fadeFac = 1.0f/fadeTime;
-		if (m_requestedLevel == -1)
+		if ( m_requestedLevel == -1 )
 		{
 			handleInput(input);
 		}
@@ -131,13 +131,13 @@ void MenuState::update( float p_dt )
 		{
 			if (m_requestedTimer > fadeTime)
 			{
-				InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
-				inGame->setCurrentMap(m_requestedLevel);
+				InGameState* inGame = dynamic_cast<InGameState*>( m_parent->getInGameState() );
+				inGame->setCurrentMap( m_requestedLevel );
 				m_parent->requestStateChange(m_parent->getInGameState());
 			}
 			else
 			{
-				m_io->fadeSceneToBlack(min(m_requestedTimer*fadeFac, 1.0f));
+				m_io->fadeSceneToBlack( min(m_requestedTimer*fadeFac, 1.0f) );
 			}
 			m_requestedTimer += p_dt;
 		}

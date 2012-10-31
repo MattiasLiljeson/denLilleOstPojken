@@ -186,6 +186,12 @@ void TextArea::setOrigin( fVector2 p_newOrigin )
 	}
 }
 
+bool TextArea::getVisible()
+{
+	// HACK: returns only the first elments visibility
+	m_glyphs[0]->getVisibility();
+}
+
 void TextArea::setVisible( bool p_visible )
 {
 	for( unsigned int i=0; i<m_glyphs.size(); i++ )
