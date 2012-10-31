@@ -32,6 +32,9 @@ private:
 	//Music
 	SoundInfo* m_backgroundMusic;
 
+	//Sound effects
+	SoundInfo* m_defeat;
+
 private:
 	void updateOnVictory(float p_dt, InputInfo p_input);
 	void updateOnDefeat(float p_dt, InputInfo p_input);

@@ -57,13 +57,12 @@ Avatar::~Avatar()
 
 void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	GameObject::update(p_deltaTime, p_inputInfo);
-
 	m_timeSinceSpawn += p_deltaTime;
 
 	//Don't move the avatar until he has finished spawning
 	if (m_timeSinceSpawn > SPAWNTIME)
 	{
+		GameObject::update(p_deltaTime, p_inputInfo);
 		if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 		{
 			if (m_currentState != m_avatarKilledState)

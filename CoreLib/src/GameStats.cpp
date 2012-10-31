@@ -68,11 +68,21 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 		if(p_deltaTime > 0)
 			timer->tick();
 
-		if(timer->getElapsedTime() >= MONSTER_BEGINRESPAWN)
-			monster->beginRespawn();
-		if(timer->getElapsedTime() >= MONSTER_RESPAWNTIME)
+		if (monster->isDead())
 		{
-			monster->respawn();
+			if(timer->getElapsedTime() >= MONSTER_BEGINRESPAWN)
+				monster->beginRespawn();
+			if(timer->getElapsedTime() >= MONSTER_RESPAWNTIME)
+			{
+				monster->respawn();
+				timer = NULL;
+				delete m_monstersRespawnTimers[index].second;
+				m_monstersRespawnTimers[index] = m_monstersRespawnTimers.back();
+				m_monstersRespawnTimers.pop_back();
+			}
+		}
+		else
+		{
 			timer = NULL;
 			delete m_monstersRespawnTimers[index].second;
 			m_monstersRespawnTimers[index] = m_monstersRespawnTimers.back();

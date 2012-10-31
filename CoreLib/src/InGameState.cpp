@@ -370,6 +370,10 @@ void InGameState::restart()
 	m_backgroundMusic->volume = 0;
 	m_io->addSong(m_backgroundMusic);
 
+	//Add sound effects
+	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
+
+
 	//ANTON FIX!
 	//Makes sure the game starts at time 0
 	m_stats->getGameTimer()->stop();
@@ -499,6 +503,10 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 }
 void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_defeatTime), 0.0f);
+	m_defeat->volume = max(100*m_defeatTime, 0.0f);
+	if (m_defeatTime == 0)
+		m_defeat->play = true;
 	m_defeatTime += p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_defeatTime / 1, 1.0f));
 	

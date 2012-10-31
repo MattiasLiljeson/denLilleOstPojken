@@ -32,7 +32,8 @@ InfectedRat::~InfectedRat()
 }
 void InfectedRat::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	m_timeSinceSpawn += p_deltaTime;
+	if (!m_dead)
+		m_timeSinceSpawn += p_deltaTime;
 	if (!m_dead && m_timeSinceSpawn > SPAWNTIME)
 	{
 		//Check to see if the infected rat can "see" the avatar

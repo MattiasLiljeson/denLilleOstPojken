@@ -28,7 +28,8 @@ Rat::~Rat()
 }
 void Rat::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	m_timeSinceSpawn += p_deltaTime;
+	if (!m_dead)
+		m_timeSinceSpawn += p_deltaTime;
 	if (!m_dead && m_timeSinceSpawn > SPAWNTIME)
 	{
 		if (m_ai)
