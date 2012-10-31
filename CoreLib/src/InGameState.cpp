@@ -64,6 +64,7 @@ bool InGameState::onExit()
 			if (m_backgroundMusic)
 			{
 				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
 			}
 		}
 		m_resourcesAllocated=false;

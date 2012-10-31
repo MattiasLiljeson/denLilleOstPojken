@@ -35,7 +35,7 @@ void SoundManager::update(float p_dt)
 			if (m_instances[i]->play)
 			{
 				m_instances[i]->play = false;
-				playSound(m_instances[i]);
+				//playSound(m_instances[i]);
 			}
 		}
 		else
@@ -59,7 +59,13 @@ void SoundManager::update(float p_dt)
 	for (int i = 0; i < m_songs.size(); i++)
 	{
 		if (m_songs[i].info->deleted)
+		{
 			stopAndRemoveInstance(m_songs[i].info);
+			delete m_songs[i].song;
+			m_songs[i] = m_songs.back();
+			m_songs.pop_back();
+			i--;
+		}
 		else
 		{
 			m_songs[i].song->SetVolume(m_songs[i].info->volume);
@@ -134,18 +140,6 @@ void SoundManager::stopAndRemoveInstance(SoundInfo* p_instance)
 			delete m_sounds[i].sound;
 			m_sounds[i] = m_sounds.back();
 			m_sounds.pop_back();
-			i--;
-		}
-	}
-	
-	//Remove the playing song
-	for (int i = 0; i < m_songs.size(); i++)
-	{
-		if (m_songs[i].info == p_instance)
-		{
-			delete m_songs[i].song;
-			m_songs[i] = m_songs.back();
-			m_songs.pop_back();
 			i--;
 		}
 	}

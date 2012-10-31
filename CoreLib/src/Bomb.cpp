@@ -107,3 +107,14 @@ bool Bomb::isColliding(Avatar* p_avatar)
 	}
 	return false;
 }
+void Bomb::reset()
+{
+	//Kills the bomb
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
+	{
+		m_flames[i]->hide();
+		delete m_flames[i];
+	}
+	m_flames.clear();
+	m_flameSpawn.clear();
+}
