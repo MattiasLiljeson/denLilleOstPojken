@@ -26,6 +26,7 @@
 #include "TileTypes.h"
 #include "GlyphAnimIn.h"
 #include "GlyphAnimOut.h"
+#include "GlyphAnimShake.h"
 #include "InfectedRat.h"
 #include <string>
 

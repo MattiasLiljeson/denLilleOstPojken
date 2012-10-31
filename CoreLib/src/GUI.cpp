@@ -36,6 +36,14 @@ GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTi
 
 	m_buffSlot->visible = true;
 	m_itemSlot->visible = true;
+
+	m_lastIterationScore = 0;
+	m_scoreShakeAccumulated = 0.0f;
+	m_scoreShakeDecayFactor = 50.0f;
+	m_scoreShakeMult = 0.3f;
+
+	m_timeShakeTime = 10.0f;
+	m_timeShakeMult = 10.0f;
 }
 GUI::~GUI()
 {
@@ -62,21 +70,51 @@ void GUI::update(float p_dt)
 	for (int i = 2; i >= m_stats->getNumLives(); i--)
 		m_lives[i]->visible = false;
 
-	string text = "ELAPSED TIME: " + toString(
-		(int)m_stats->getGameTimer()->getElapsedTime());
+	// Shake elapsed time when close to par time
+	float parTime = m_stats->getParTime();
+	float elapsedTime = m_stats->getGameTimer()->getElapsedTime();
+	float timeDiff = parTime - elapsedTime;
+	float timeShake = (1.0f - timeDiff/m_timeShakeTime)*m_timeShakeMult;
+
+	string text = "ELAPSED TIME: " + toString( (int)elapsedTime );
 	m_elapsedTime->getTextArea()->setText(text);
+		m_elapsedTime->update( p_dt, p_input );
+	if( 0.0f < timeDiff && timeDiff < m_timeShakeTime )
+	{
+		m_elapsedTime->animateText( 0.01f, timeShake, 10.0f, 4 );
+	}
 
-	text = "SCORE      : " + toString(m_stats->getScore());
-	m_score->getTextArea()->setText(text);
-
-	text = "PAR TIME    : " + toString((int)m_stats->getParTime());
+	text = "PAR TIME    : " + toString( (int)parTime );
 	m_parTime->getTextArea()->setText(text);
+
+	// Score shake calculation
+	int newScore = m_stats->getScore();
+	int scoreDiff = newScore - m_lastIterationScore;
+	m_lastIterationScore = newScore;
+	m_scoreShakeAccumulated += ( (float)scoreDiff * m_scoreShakeMult );
+	m_scoreShakeAccumulated -= ( m_scoreShakeDecayFactor*p_dt );
+	if( m_scoreShakeAccumulated < 1.0f )
+		m_scoreShakeAccumulated = 0.0f;
+
+	text = "SCORE      : " + toString( newScore );
+	m_score->getTextArea()->setText( text );
+	m_score->update( p_dt, p_input );
+	m_score->animateText( 0.01f, m_scoreShakeAccumulated, 10.0f, 4 );
 
 	text = "TOTAL SCORE: " + toString(m_stats->getPreviousScore());
 	m_totalScore->getTextArea()->setText(text);
 
 	setSpecialVisible(m_stats->getBuffSlot(),m_speedBuff);
 	setSpecialVisible(m_stats->getItemSlot(),m_bombItem);
+
+	if(m_continue.pressToEnd->getTextArea()->getVisible() || m_continue.pressToContinue->getTextArea()->getVisible())
+	{
+		m_continue.pressToEnd->update( p_dt, p_input );
+		m_continue.pressToContinue->update( p_dt, p_input );
+		
+		m_continue.pressToContinue->animateText(0.02f,2.0f,15.0f,2);
+		m_continue.pressToEnd->animateText(0.05f,2.0f,15.0f,2);
+	}
 }
 void GUI::setSpecialVisible(Collectable* p_collectable, SpriteInfo* p_special)
 {

@@ -167,13 +167,15 @@ void TextArea::animateText( float p_freq, float p_amplitude, float p_speed, int 
 {
 	for( unsigned int i=0; i<m_glyphs.size(); i++ )
 	{
-		m_glyphs[i]->animate(m_animators[p_animIdx], p_freq, p_amplitude, p_speed);
+		if( (unsigned int) p_animIdx < m_animators.size() )
+			m_glyphs[i]->animate(m_animators[p_animIdx], p_freq, p_amplitude, p_speed);
 	}
 }
 
 void TextArea::resetAnimation( int p_idx )
 {
-	m_animators[p_idx]->reset();
+	if( (unsigned int) p_idx < m_animators.size() )
+		m_animators[p_idx]->reset();
 }
 
 void TextArea::setOrigin( fVector2 p_newOrigin )

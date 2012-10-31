@@ -36,6 +36,16 @@ private:
 	MenuItem* m_score;
 	MenuItem* m_totalScore;
 
+	// Shake score item when picking up score.
+	int m_lastIterationScore;
+	float m_scoreShakeAccumulated;
+	float m_scoreShakeDecayFactor;
+	float m_scoreShakeMult;
+
+	// Shake elapsed time when close to par time
+	float m_timeShakeTime;
+	float m_timeShakeMult;
+
 	//Item/Buff-related
 	MenuItem* m_itemPowerUp;
 	MenuItem* m_buffPowerUp;

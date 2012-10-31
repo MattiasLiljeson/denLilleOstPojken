@@ -17,11 +17,11 @@ TransformInfo GlyphAnimSinus::getAnimation( TransformInfo p_transInfo,
 	float posY = p_transInfo.translation[TransformInfo::Y];
 	float scaX = p_transInfo.scale[TransformInfo::X];
 	float scaY = p_transInfo.scale[TransformInfo::Y];
+
 	float fac = sin(posX*p_freq + m_totTime*p_speed)*p_amplitude;
 	posY += fac;
 	scaX -= fac/p_amplitude;
 	scaY += fac/p_amplitude;
-
 
 	p_transInfo.translation[TransformInfo::X] = posX;
 	p_transInfo.translation[TransformInfo::Y] = posY;

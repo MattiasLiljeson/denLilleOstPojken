@@ -4,6 +4,8 @@
 #include "State.h"
 #include "GameStats.h"
 #include "MapHeader.h"
+#include "TextArea.h"
+#include "HighScore.h"
 
 class InGameState: public State
 {

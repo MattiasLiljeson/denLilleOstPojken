@@ -348,6 +348,7 @@ TextArea* GOFactory::createMenuItemTextArea( fVector3 p_position,
 	animators.push_back( new GlyphAnimSinus() ); // In menu
 	animators.push_back( new GlyphAnimSinus() ); // Selected
 	animators.push_back( new GlyphAnimOut() ); // Outro
+	animators.push_back( new GlyphAnimShake() ); //Shake in GUI
 
 	TextArea* text = new TextArea( font, p_text.size(), this, finalTextPosX,
 			finalTextPosY, TextArea::CEN_CENTER,

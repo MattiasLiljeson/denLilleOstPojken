@@ -265,6 +265,9 @@
     <ClCompile Include="src\InfectedRat.cpp">
       <Filter>Source\GameObject\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="src\GlyphAnimShake.cpp">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -446,6 +449,12 @@
     </ClInclude>
     <ClInclude Include="src\InfectedRat.h">
       <Filter>Source\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimShake.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
