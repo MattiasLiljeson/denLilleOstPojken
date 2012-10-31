@@ -17,6 +17,7 @@ public:
 	Glyph( SpriteInfo* p_spriteInfo );
 	virtual			~Glyph();
 	int				setRect(Rect p_rect);
+	bool			getVisibility();
 	int				setVisibility(bool p_visible);
 	virtual void	update(float p_deltaTime, InputInfo p_inputInfo);
 	void			animate( GlyphAnimation* p_animation, float p_freq, float p_amplitude, float p_speed );
