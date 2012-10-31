@@ -73,6 +73,9 @@ void VictoryState::update(float p_dt)
 	{
 		InputInfo input = m_io->fetchInput();
 
+		m_continueText->getTextArea()->update(p_dt,input);
+		m_continueText->getTextArea()->animateText(0.02f,2.0f,15.0f,2);
+
 		if (input.keys[InputInfo::ESC]   == InputInfo::KEYRELEASED	|| 
 			input.keys[InputInfo::ENTER] == InputInfo::KEYRELEASED	||
 			input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED	||

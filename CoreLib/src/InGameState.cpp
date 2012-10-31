@@ -97,6 +97,9 @@ void InGameState::update(float p_dt)
 		if (m_paused)
 			p_dt = 0;
 
+		if (m_gui)
+				m_gui->update(p_dt,input);
+
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
 			if (m_stats->getNumLives() > 0)
@@ -161,8 +164,7 @@ void InGameState::update(float p_dt)
 					m_backgroundMusic->volume = 20;
 			}
 
-			if (m_gui)
-				m_gui->update(p_dt);
+			
 
 			int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 

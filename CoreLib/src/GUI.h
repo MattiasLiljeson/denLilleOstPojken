@@ -65,7 +65,7 @@ public:
 		VictoryStruct p_victory, PauseStruct p_pauseData, DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_buffSlot, 
 		SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon, ContinueStruct p_continue);
 	virtual ~GUI();
-	void update(float p_dt);
+	void update(float p_dt, InputInfo p_input);
 
 	void setSpecialVisible(Collectable* p_collectable, SpriteInfo* p_special);
 
