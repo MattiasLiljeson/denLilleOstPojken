@@ -5,7 +5,7 @@
 GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTime, MenuItem* p_score, 
 			MenuItem* p_parTime, MenuItem* p_totalScore, VictoryStruct p_victory, PauseStruct p_pauseData, 
 			DefeatStruct p_defeatData, MenuItem* p_buff, MenuItem* p_item, SpriteInfo* p_buffSlot, 
-			SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon)
+			SpriteInfo* p_itemSlot,	SpriteInfo* p_bombIcon, SpriteInfo* p_speedIcon, ContinueStruct p_continue)
 {
 	m_totalScore = p_totalScore;
 	m_parTime = p_parTime;
@@ -19,6 +19,7 @@ GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTi
 	m_itemSlot = p_itemSlot;
 	m_bombItem = p_bombIcon;
 	m_speedBuff = p_speedIcon;
+
 	m_victoryData = p_victory;
 	m_victoryData.victory->getTextArea()->setText("");
 	m_victoryData.baseScore->getTextArea()->setText("");
@@ -30,9 +31,15 @@ GUI::GUI(	GameStats* p_stats, vector<SpriteInfo*> p_lives, MenuItem* p_elapsedTi
 	m_pauseData.pressToPlay->getTextArea()->setText("");
 
 	m_defeatData = p_defeatData;
-	m_defeatData.cont->getTextArea()->setText("");
 	m_defeatData.cost->getTextArea()->setText("");
 	m_defeatData.defeated->getTextArea()->setText("");
+
+	
+	m_continue = p_continue;
+	m_continue.pressToContinue->getTextArea()->setText("");
+	m_continue.pressToEnd->getTextArea()->setText("");
+	m_continue.pressToContinue->getTextArea()->animateText(0.2f,2.0f,5.0f,3);
+	m_continue.pressToEnd->getTextArea()->animateText(0.2f,2.0f,5.0f,3);
 
 	m_buffSlot->visible = true;
 	m_itemSlot->visible = true;
@@ -54,8 +61,10 @@ GUI::~GUI()
 	delete m_pauseData.pressToPlay;
 	
 	delete m_defeatData.defeated;
-	delete m_defeatData.cont;
 	delete m_defeatData.cost;
+
+	delete m_continue.pressToContinue;
+	delete m_continue.pressToEnd;
 }
 void GUI::update(float p_dt)
 {
@@ -88,6 +97,7 @@ void GUI::setSpecialVisible(Collectable* p_collectable, SpriteInfo* p_special)
 void GUI::showVictory()
 {
 	m_victoryData.victory->getTextArea()->setText("VICTORY!");
+	showContinue();
 }
 void GUI::showBaseScore(int p_score)
 {
@@ -116,6 +126,7 @@ void GUI::unpause()
 void GUI::showDefeat()
 {
 	m_defeatData.defeated->getTextArea()->setText("DEFEAT");
+	showEnd();
 }
 void GUI::showCost()
 {
@@ -123,5 +134,9 @@ void GUI::showCost()
 }
 void GUI::showContinue()
 {
-	m_defeatData.cont->getTextArea()->setText("PRESS ENTER TO CONTINUE");
+	m_continue.pressToContinue->getTextArea()->setText("PRESS ENTER TO CONTIUNE!");
+}
+void GUI::showEnd()
+{
+	m_continue.pressToEnd->getTextArea()->setText("PRESS ENTER TO CONTINUE OR ESC TO QUIT!");
 }

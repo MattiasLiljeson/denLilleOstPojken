@@ -468,7 +468,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
 	pos = fVector3(0.5f, 0.4f, 0.9f); 
-	texts = "TOTAL SCORE:      ";
+	texts = "FINAL SCORE:      ";
 	fontSize = 32.0f;
 	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
 	victoryData.finalScore = createMenuItem( 
@@ -513,15 +513,27 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			pos, fVector2( 0.0f, 0.0f ),
 			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
 
-	pos = fVector3(0.5f, 0.5f, 0.9f); 
-	texts = "PRESS ENTER TO CONTINUE";
-	fontSize = 32.0f;
-	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh); 
-	defeatData.cont = createMenuItem( 
-			pos, fVector2( 0.0f, 0.0f ),
-			texts, fVector2(0.0f, 0.0f), fontSizeScaled,"" );
-
 	//End added by Anton
+
+	//Press enter to continue
+	ContinueStruct continueStruct;
+
+	pos = fVector3(0.5f,0.2f,0.9f);
+	texts = "PRESS ENTER TO CONTINUE!";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh);
+	continueStruct.pressToContinue = createMenuItem(
+			pos, fVector2(0,0),
+			texts,fVector2(0,0), fontSizeScaled,"" );
+
+	pos = fVector3(0.5f,0.2f,0.9f);
+	texts = "PRESS ENTER TO CONTINUE OR ESC TO QUIT!";
+	fontSize = 32.0f;
+	fontSizeScaled = fVector2(fontSize*fw, fontSize*fh);
+	continueStruct.pressToEnd = createMenuItem(
+			pos, fVector2(0,0),
+			texts,fVector2(0,0), fontSizeScaled,"" );
+
 
 	pos		= fVector3(1 - 350/scrW, 1 - guiHeight*0.5f, 0.9f);
 	size	= fVector2(64*widthFraction, 64*heightFraction);
@@ -550,5 +562,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pos.z = pos.z + 0.01f;
 	SpriteInfo* bombIcon = CreateSpriteInfo("../Textures/bombitem.png",pos,size,NULL);
 
-	return new GUI(p_gameStats, lives, elapsed, score, par, totalscore, victoryData, pauseData, defeatData, x, y, speed, bomb, bombIcon, speedIcon);
+	return new GUI(	p_gameStats, lives, elapsed, score, par, totalscore, victoryData, 
+					pauseData, defeatData, x, y, speed, bomb, bombIcon, speedIcon, 
+					continueStruct);
 }
