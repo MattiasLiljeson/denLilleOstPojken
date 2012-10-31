@@ -67,8 +67,8 @@ public:
 	void	kill();
 	bool	isDead();
 	void	addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap);
-	void	reset();
-	void	beginRespawn();
+	virtual void	reset();
+	virtual void	beginRespawn();
 	void	respawn();
 };
 

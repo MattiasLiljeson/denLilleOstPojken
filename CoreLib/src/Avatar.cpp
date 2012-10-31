@@ -40,7 +40,7 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 	if (m_shadow)
 		m_shadow->visible = false;
 
-
+	m_timeSinceSpawn = 0;
 }
 
 Avatar::~Avatar()
@@ -59,32 +59,38 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 {
 	GameObject::update(p_deltaTime, p_inputInfo);
 
-	if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
-	{
-		if (m_currentState != m_avatarKilledState)
-			switchState(m_avatarJumpingState);
-	}
-	if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
-	{
-		switchState(m_walking);
-	}
+	m_timeSinceSpawn += p_deltaTime;
 
-	if (m_currentAnimation)
+	//Don't move the avatar until he has finished spawning
+	if (m_timeSinceSpawn > SPAWNTIME)
 	{
-		if (m_navigationData->m_direction != Direction::NONE || m_currentState == m_avatarKilledState)
+		if (p_inputInfo.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED)
 		{
-			if (m_gameStats->isSpeeded() && m_currentState == m_walking)
-				m_currentAnimation->update(p_deltaTime*2);
+			if (m_currentState != m_avatarKilledState)
+				switchState(m_avatarJumpingState);
+		}
+		if (m_currentState == m_avatarJumpingState && m_avatarJumpingState->hasLanded())
+		{
+			switchState(m_walking);
+		}
+
+		if (m_currentAnimation)
+		{
+			if (m_navigationData->m_direction != Direction::NONE || m_currentState == m_avatarKilledState)
+			{
+				if (m_gameStats->isSpeeded() && m_currentState == m_walking)
+					m_currentAnimation->update(p_deltaTime*2);
+				else
+					m_currentAnimation->update(p_deltaTime);
+			}
 			else
-				m_currentAnimation->update(p_deltaTime);
-		}
-		else
-		{
-			m_currentAnimation->restart();
-		}
+			{
+				m_currentAnimation->restart();
+			}
 		
-		if (m_spriteInfo)
-			m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+			if (m_spriteInfo)
+				m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
+		}
 	}
 
 	if (m_spriteInfo)
@@ -180,6 +186,11 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 				m_shadow->visible = false;
 			}
 		}
+
+		if (m_timeSinceSpawn < SPAWNTIME)
+		{
+			m_spriteInfo->transformInfo.translation[TransformInfo::Y] += (SPAWNTIME - m_timeSinceSpawn) / SPAWNTIME * 2000;
+		}
 	}
 }
 Tile* Avatar::getCurrentTile()
@@ -226,6 +237,10 @@ void Avatar::revive(Tile* p_newPosition)
 {
 	m_navigationData->m_currentTile = p_newPosition;
 	switchState(m_walking);
+
+	//Added by Anton
+	m_timeSinceSpawn = 0;
+	m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
 }
 void Avatar::setCurrentAnimation(Animation* p_animation)
 {

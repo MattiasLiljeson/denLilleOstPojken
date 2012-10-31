@@ -59,6 +59,11 @@ private:
 	int m_currShadowDir;
 	float m_shadowDT;
 
+
+	//Spawn Information
+	float m_timeSinceSpawn;
+	static const int SPAWNTIME = 1.0f;
+
 public:
 	Avatar(	SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, 
 			Tile* p_startTile, GameStats* p_stats, SoundInfo* p_avatarKilledSound, 
