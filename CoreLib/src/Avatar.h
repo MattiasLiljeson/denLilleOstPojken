@@ -37,6 +37,18 @@ struct NavigationData
 	float dt;
 };
 
+struct HulkOverlay
+{
+	float color[4];
+	HulkOverlay(float r, float g, float b, float a)
+	{
+		color[0] = r;
+		color[1] = g;
+		color[2] = b;
+		color[3] = a;
+	}
+};
+
 class Avatar : public GameObject
 {
 private:
@@ -58,6 +70,14 @@ private:
 	deque<Tile*> m_shadowQueue;
 	int m_currShadowDir;
 	float m_shadowDT;
+
+
+	//Spawn Information
+	float m_timeSinceSpawn;
+	static const int SPAWNTIME = 1.0f;
+
+	//Super color overlays
+	vector<HulkOverlay> m_overlays;
 
 public:
 	Avatar(	SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, 

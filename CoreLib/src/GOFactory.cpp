@@ -84,7 +84,17 @@ SpeedPill* GOFactory::CreateSpeedPill(Tile* p_tile, GameStats* p_gameStats)
 	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/buff_ball_caustic.png",
 		pos, size, NULL);
 
-	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+	float heightFraction = m_io->getScreenHeight() / 1080.0f;
+	float widthFraction = m_io->getScreenWidth() / 1920.0f;
+	float height = (float)m_io->getScreenHeight();
+
+	// transitionTarget is where the container will go on pick-up.
+	TransformInfo transitionTarget;
+	transitionTarget.translation[TransformInfo::X] = (1920-300) * widthFraction;
+	transitionTarget.translation[TransformInfo::Y] = height - 0.08f * height*0.5f;
+
+	CollectableContainer* container = new CollectableContainer(
+		containerSpriteInfo,containerShadowSpriteInfo, transitionTarget);
 
 	return new SpeedPill(spriteInfo, p_tile, p_gameStats, container, CreateSoundInfo("../Sounds/use_power-up.wav",100));
 }
@@ -114,10 +124,21 @@ BombPill* GOFactory::CreateBombPill(Tile* p_tile, GameStats* p_gameStats)
 	pos = GetCenter(p_tile, 0.11f); 
 	SpriteInfo* containerShadowSpriteInfo = CreateSpriteInfo("../Textures/item_box_caustic.png",
 		pos, size, NULL);
+	
+	float heightFraction = m_io->getScreenHeight() / 1080.0f;
+	float widthFraction = m_io->getScreenWidth() / 1920.0f;
+	float height = (float)m_io->getScreenHeight();
 
-	CollectableContainer* container = new CollectableContainer(containerSpriteInfo,containerShadowSpriteInfo);
+	// transitionTarget is where the container will go on pick-up.
+	TransformInfo transitionTarget;
+	transitionTarget.translation[TransformInfo::X] = (1920-150) * widthFraction;
+	transitionTarget.translation[TransformInfo::Y] = height - 0.08f * height * 0.5f;
 
-	return new BombPill(spriteInfo, p_tile, p_gameStats, container ,CreateSoundInfo("../Sounds/GunCock.wav",100));
+	CollectableContainer* container = new CollectableContainer(
+		containerSpriteInfo,containerShadowSpriteInfo, transitionTarget);
+
+	return new BombPill(spriteInfo, p_tile, p_gameStats, container,
+		CreateSoundInfo("../Sounds/GunCock.wav",100));
 
 }
 Bomb* GOFactory::CreateBomb(Tile* p_tile, Tilemap* p_map)
@@ -536,6 +557,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 			texts,fVector2(0,0), fontSizeScaled,"" );
 
 
+	// Item slots: Speed and Bomb.
 	pos		= fVector3(1 - 350/scrW, 1 - guiHeight*0.5f, 0.9f);
 	size	= fVector2(64*widthFraction, 64*heightFraction);
 	string ytext = "Z";

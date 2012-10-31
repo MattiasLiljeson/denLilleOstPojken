@@ -5,6 +5,7 @@ cbuffer PostProcessBuffer
 	//Index 2: Fade to black
 	//Index 3: Buff
 	float4 PPEffects;
+	float4 ColorOverlay;
 };
 
 Texture2D SpriteTexture;
@@ -29,6 +30,9 @@ float4 PShader(VOut pIn) : SV_TARGET
 		clip(-1);
 		//c = float4(0, 0, 0, 0);
 	}
+	
+	c += ColorOverlay;
+	c.a = min(c.a, 1.0f);
 	
 	float value = (c.r + c.g + c.b) / 3; 
 	float4 bw = float4(0, 0, 0, c.a);
