@@ -71,13 +71,13 @@ int GlContext::initGLFWWindow()
 	//Set Window Properties
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antiliasing
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3); //Major GL version
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2); //Minor GL version
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 0); //Minor GL version
 
 	//Additional parameters for the window creation.
 	//In this case it is specified that opengl with its core profile
 	//is to be created. This avoids creation with support of old
 	//and deprecated parts of the system.
-	glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	//glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
  
 	//Open the Window
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
