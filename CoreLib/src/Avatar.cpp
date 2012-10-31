@@ -157,6 +157,9 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_spriteInfo->overlay[1] = 0;
 			m_spriteInfo->overlay[2] = 0;
 			m_spriteInfo->overlay[3] = 0;
+			/*m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
+			m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;*/
 		}
 
 		if (m_shadow)
@@ -268,6 +271,15 @@ void Avatar::revive(Tile* p_newPosition)
 	m_spriteInfo->transformInfo.translation[TransformInfo::Y] += (SPAWNTIME - m_timeSinceSpawn) / SPAWNTIME * 2000;
 	m_spriteInfo->textureRect = m_currentAnimation->getCurrentFrame();
 	m_spriteInfo->visible = true;
+
+	//Added to handle super mode
+	m_spriteInfo->overlay[0] = 0;
+	m_spriteInfo->overlay[1] = 0;
+	m_spriteInfo->overlay[2] = 0;
+	m_spriteInfo->overlay[3] = 0;
+	m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
+		m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
+	m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 }
 void Avatar::setCurrentAnimation(Animation* p_animation)
 {
