@@ -17,6 +17,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_startTile = NULL;
 	m_backgroundMusic = NULL;
 	m_defeat = NULL;
+	m_victory = NULL;
 }
 InGameState::~InGameState()
 {
@@ -71,6 +72,11 @@ bool InGameState::onExit()
 			{
 				m_defeat->deleted = true;
 				m_defeat = NULL;
+			}
+			if (m_victory)
+			{
+				m_victory->deleted = true;
+				m_victory = NULL;
 			}
 		}
 		m_resourcesAllocated=false;
@@ -383,6 +389,12 @@ void InGameState::restart()
 	}
 	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
 
+	if (m_victory)
+	{
+		m_victory->deleted = true;
+	}
+	m_victory = m_factory->CreateSoundInfo("../Sounds/victory.wav", 100);
+
 
 	//ANTON FIX!
 	//Makes sure the game starts at time 0
@@ -436,6 +448,11 @@ void InGameState::handleInput( InputInfo p_input )
 }
 void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_victoryTime), 0.0f);
+	m_victory->volume = 20;
+	if (m_victoryTime == 0)
+		m_victory->play = true;
+
 	float timings[6] =
 	{
 		3.0f,	// Finished
