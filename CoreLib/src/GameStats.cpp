@@ -92,7 +92,7 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if(m_superMode)
 	{
-		if(m_superModeTimer->getElapsedTime() > 6)
+		if(m_superModeTimer->getElapsedTime() > SUPERTIME)
 		{
 			std::cout << "Speed mode inactivated!=(" << std::endl;
 			m_superMode = false;
@@ -158,9 +158,13 @@ bool GameStats::isSuperMode()
 {
 	return m_superMode;
 }
+float GameStats::superTimeElapsed()
+{
+	return (float)(m_superModeTimer->getElapsedTime());
+}
 float GameStats::superTimeRemaining()
 {
-	return (float)( 6 - m_superModeTimer->getElapsedTime() );
+	return (float)(SUPERTIME - m_superModeTimer->getElapsedTime() );
 }
 float GameStats::speededPercentElapsed()
 {

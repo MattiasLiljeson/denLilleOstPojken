@@ -41,6 +41,12 @@ Avatar::Avatar(SpriteInfo* p_spriteInfo, SpriteInfo* p_shadow, Tilemap* p_map, T
 		m_shadow->visible = false;
 
 	m_timeSinceSpawn = 0;
+
+	//Overlays
+	m_overlays.push_back(HulkOverlay(0, 0, 0, 0));
+	m_overlays.push_back(HulkOverlay(1, 0, 0, 0));
+	m_overlays.push_back(HulkOverlay(0, 1, 0, 0));
+	m_overlays.push_back(HulkOverlay(0, 0, 1, 0));
 }
 
 Avatar::~Avatar()
@@ -111,28 +117,46 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		if (m_gameStats->isSuperMode())
 		{
 			float remaining = m_gameStats->superTimeRemaining();
-			if ((int)(remaining*6) % 2 != 0 || remaining >= 1)
+			float elapsed = m_gameStats->superTimeElapsed();
+
+			int overlayPasses = 10;
+			float overlayPos = (elapsed / (remaining + elapsed) * (m_overlays.size()-1)) * overlayPasses;
+
+			float frac = overlayPos - (int)overlayPos;
+
+			HulkOverlay ov1 = m_overlays[(int)overlayPos % m_overlays.size()];
+			HulkOverlay ov2 = m_overlays[(int)(overlayPos+1) % m_overlays.size()];
+
+			m_spriteInfo->overlay[0] = (1-frac)*ov1.color[0] + frac*ov2.color[0];
+			m_spriteInfo->overlay[1] = (1-frac)*ov1.color[1] + frac*ov2.color[1];
+			m_spriteInfo->overlay[2] = (1-frac)*ov1.color[2] + frac*ov2.color[2];
+			m_spriteInfo->overlay[3] = (1-frac)*ov1.color[3] + frac*ov2.color[3];
+			super = true;
+			if (elapsed < 1)
 			{
-				super = true;
-				if (remaining > 5)
-				{
-					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
-					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
-					m_offset = (16 + 8 * (6-remaining)) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
-				}
-				else
-				{
-					m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
-					m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
-					m_offset = 24 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
-				}
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + 6-remaining);
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + 6 - remaining);
+				m_offset = (16 + 8 * (6-remaining)) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			}
+			else if (remaining > 1)
+			{
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*2;
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*2;
+				m_offset = 24 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			}
+			else
+			{
+				m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x*(1 + remaining);
+				m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y*(1 + remaining);
+				m_offset = (16 + 8 * remaining) * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
 			}
 		}
-		if (!super)
+		else
 		{
-			m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x;
-			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y;
-			m_offset = 16 * m_spriteInfo->transformInfo.scale[TransformInfo::Y] / 64;
+			m_spriteInfo->overlay[0] = 0;
+			m_spriteInfo->overlay[1] = 0;
+			m_spriteInfo->overlay[2] = 0;
+			m_spriteInfo->overlay[3] = 0;
 		}
 
 		if (m_shadow)

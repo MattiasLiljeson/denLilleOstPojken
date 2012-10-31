@@ -108,6 +108,7 @@ void DxSpriteShader::setBuffer(SpriteBuffer p_buffer, PostProcessBuffer p_ppBuff
 	m_deviceContext->Map(m_ppBuffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &resource);
 	ppBuffer = (PostProcessBuffer*)resource.pData;
 	ppBuffer->ppEffects = p_ppBuffer.ppEffects;
+	ppBuffer->colorOverlay = p_ppBuffer.colorOverlay;
 	m_deviceContext->Unmap(m_ppBuffer, 0);
 
 
