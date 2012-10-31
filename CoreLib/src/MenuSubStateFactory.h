@@ -16,20 +16,12 @@
 #include "ExitSubState.h"
 #include <vector>
 #include <string>
+#include "HighScore.h"
 
 using namespace std;
 
 class MenuSubStateManager;
 class MenuSubState;
-
-struct HighScoreItem
-{
-	int score;
-	bool operator<(const HighScoreItem& p_other)
-	{
-		return score > p_other.score;
-	}
-};
 
 class MenuSubStateFactory
 {
@@ -68,8 +60,6 @@ public:
 	vector<MenuItem*> createItems( MenuItemProperties p_properties,
 		vector<string> p_texts );
 	MenuSubState* createMenuSubState();
-
-	vector<HighScoreItem> readHighScore();
-	void writeHighScore( vector<HighScoreItem> p_highscores );
+	
 };
 #endif // MENUSUBSTATEFACTORY_H

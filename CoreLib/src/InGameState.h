@@ -32,7 +32,8 @@ private:
 	bool					m_paused;
 
 	//Music
-	SoundInfo* m_backgroundMusic;
+	SoundInfo*				m_backgroundMusic;
+
 
 private:
 	void updateOnVictory(float p_dt, InputInfo p_input);

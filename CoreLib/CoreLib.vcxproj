@@ -105,6 +105,7 @@
     <ClInclude Include="src\GOFactory.h" />
     <ClInclude Include="src\GOState.h" />
     <ClInclude Include="src\GUI.h" />
+    <ClInclude Include="src\HighScore.h" />
     <ClInclude Include="src\HighscoreSubState.h" />
     <ClInclude Include="src\InfectedRat.h" />
     <ClInclude Include="src\InGameState.h" />

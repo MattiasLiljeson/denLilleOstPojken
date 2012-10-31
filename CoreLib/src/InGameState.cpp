@@ -10,12 +10,12 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_currentMap = 0;
 	m_desiredMap = -1;
 	m_factory = new GOFactory(m_io);
-	m_avatar	= NULL;
-	m_gui		= NULL;
-	m_tileMap	= NULL;
-	m_stats		= NULL;
-	m_startTile = NULL;
-	m_backgroundMusic = NULL;
+	m_avatar			= NULL;
+	m_gui				= NULL;
+	m_tileMap			= NULL;
+	m_stats				= NULL;
+	m_startTile			= NULL;
+	m_backgroundMusic	= NULL;
 }
 InGameState::~InGameState()
 {
@@ -97,6 +97,9 @@ void InGameState::update(float p_dt)
 		if (m_paused)
 			p_dt = 0;
 
+		if (m_gui)
+				m_gui->update(p_dt,input);
+
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
 			if (m_stats->getNumLives() > 0)
@@ -161,8 +164,7 @@ void InGameState::update(float p_dt)
 					m_backgroundMusic->volume = 20;
 			}
 
-			if (m_gui)
-				m_gui->update(p_dt);
+			
 
 			int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 
@@ -493,7 +495,6 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 				m_parent->requestStateChange(m_parent->getVictoryState());
 			}
-			return;
 		}
 	}
 }
@@ -507,10 +508,6 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 		if (m_toneOutTimer == 0)
 			m_toneOutTimer += p_dt;
 	}
-	else if (m_defeatTime > 2.1f)
-	{
-		m_gui->showContinue();
-	}
 	else if (m_defeatTime > 1.8f)
 	{
 		m_gui->showCost();
@@ -519,6 +516,7 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	{
 		m_gui->showDefeat();
 	}
+
 	if (m_toneOutTimer > 0)
 	{
 		m_toneOutTimer += p_dt;

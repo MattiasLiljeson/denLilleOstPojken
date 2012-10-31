@@ -55,7 +55,13 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 	tmp->setBehaviour( new LevelSelectSubState() );
 	
 	for( int i = 0; i<p_numUnlockedLevels; i++ )
-		items[i]->setSelectable( true );
+	{
+		// HACK: break if there are more unlocked levels than maps
+		if( (unsigned int) i == items.size())
+			break;
+		else
+			items[i]->setSelectable( true );
+	}
 	for( unsigned int i = p_numUnlockedLevels; i<items.size(); i++ )
 		items[i]->setSelectable( false );
 
@@ -113,7 +119,7 @@ vector<string> MenuSubStateFactory::createHighscoreTexts()
 	texts.resize(HighscoreSubState::HS_NUM_ITEMS);
 	texts[HighscoreSubState::HS_MAIN] = "GO BACK TO MAIN";
 
-	vector<HighScoreItem> highscores = readHighScore();
+	vector<HighScoreItem> highscores = HighScoreFunctions::readHighScore();
 	for( unsigned int i=0; i<highscores.size(); i++ )
 	{
 		stringstream ss;
@@ -226,38 +232,4 @@ vector<MenuItem*> MenuSubStateFactory::createItems( MenuItemProperties p_propert
 MenuSubState* MenuSubStateFactory::createMenuSubState()
 {
 	return new MenuSubState( m_manager );
-}
-
-vector<HighScoreItem> MenuSubStateFactory::readHighScore()
-{
-	vector<HighScoreItem> highscores;
-	ifstream file;
-	file.open("../Highscore/score.txt", ios::in);
-	if (file.is_open())
-	{
-		while (!file.eof())
-		{
-			HighScoreItem data;
-			file >> data.score;
-			highscores.push_back(data);
-		}
-		file.close();
-	}
-	sort(highscores.begin(), highscores.end());
-	return highscores;
-}
-
-void MenuSubStateFactory::writeHighScore( vector<HighScoreItem> p_highscores )
-{
-	ofstream file;
-	file.open("../Highscore/score.txt", ios::out);
-	if (file.is_open())
-	{
-		for( unsigned int i = 0; i < p_highscores.size(); i++)
-		{
-			file << p_highscores[i].score;
-			file << endl;
-		}
-		file.close();
-	}
 }
