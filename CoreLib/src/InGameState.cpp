@@ -16,6 +16,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_stats		= NULL;
 	m_startTile = NULL;
 	m_backgroundMusic = NULL;
+	m_defeat = NULL;
 }
 InGameState::~InGameState()
 {
@@ -65,6 +66,11 @@ bool InGameState::onExit()
 			{
 				m_backgroundMusic->deleted = true;
 				m_backgroundMusic = NULL;
+			}
+			if (m_defeat)
+			{
+				m_defeat->deleted = true;
+				m_defeat = NULL;
 			}
 		}
 		m_resourcesAllocated=false;
@@ -170,7 +176,7 @@ void InGameState::update(float p_dt)
 
 			ss << elapsed;
 
-			string text = "Elapsed Game Time: " + ss.str() + " seconds";
+			string text = "Elapsed Game Time: " + ss.str() + " seconds. FPS: " + toString(1.0f / p_dt);
 
 			m_io->setWindowText(text);
 
@@ -371,6 +377,10 @@ void InGameState::restart()
 	m_io->addSong(m_backgroundMusic);
 
 	//Add sound effects
+	if (m_defeat)
+	{
+		delete m_defeat;
+	}
 	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
 
 
