@@ -83,6 +83,8 @@ bool MenuState::onEntry()
 			createMenus();
 			m_requestedLevel = -1;
 			m_requestedTimer = 0.0f;
+			m_entrying = true;
+			m_entryTimer = 0.0f;
 		}
 		m_resourcesAllocated = true;
 	}
@@ -123,7 +125,15 @@ void MenuState::update( float p_dt )
 		//Only handle input when no level has been selected
 		float fadeTime = 0.25f;
 		float fadeFac = 1.0f/fadeTime;
-		if (m_requestedLevel == -1)
+		if( m_entrying )
+		{
+			if (m_entryTimer > fadeTime)
+				m_entrying = false;
+			else
+				m_io->fadeSceneToBlack( min(1.0f - m_entryTimer*fadeFac, 1.0f) );
+			m_entryTimer += p_dt;
+		}
+		else if ( m_requestedLevel == -1 )
 		{
 			handleInput(input);
 		}
@@ -137,7 +147,7 @@ void MenuState::update( float p_dt )
 			}
 			else
 			{
-				m_io->fadeSceneToBlack(min(m_requestedTimer*fadeFac, 1.0f));
+				m_io->fadeSceneToBlack( min(m_requestedTimer*fadeFac, 1.0f) );
 			}
 			m_requestedTimer += p_dt;
 		}

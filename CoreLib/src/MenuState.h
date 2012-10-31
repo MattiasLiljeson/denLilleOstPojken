@@ -33,6 +33,8 @@ private:
 	//New - To add fade functionality
 	int m_requestedLevel;
 	float m_requestedTimer;
+	bool m_entrying;
+	float m_entryTimer;
 
 	//Music
 	SoundInfo* m_backgroundMusic;
