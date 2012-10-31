@@ -13,6 +13,8 @@ private:
 	float m_timeSinceSpawn;
 	static const int SPAWNTIME = 2;
 	fVector2 m_size;
+
+	fVector2 m_offset;
 public:
 	InfectedRat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
 			SoundInfo* p_monsterKilled);

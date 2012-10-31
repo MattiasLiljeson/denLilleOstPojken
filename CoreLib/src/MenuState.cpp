@@ -129,7 +129,10 @@ void MenuState::update( float p_dt )
 		if( m_entrying )
 		{
 			if (m_entryTimer > fadeTime)
+			{
+				m_io->fadeSceneToBlack(0);
 				m_entrying = false;
+			}
 			else
 				m_io->fadeSceneToBlack( min(1.0f - m_entryTimer*fadeFac, 1.0f) );
 			m_entryTimer += p_dt;

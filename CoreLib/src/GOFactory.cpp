@@ -28,15 +28,18 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats, int p_type)
 {
+	int type = p_type - (TileTypes::ENEMIESPAWN-30);
 	fVector3 pos = GetCenter(p_tile, 0.2f); 
 	fVector2 size = GetScaledSize(p_tile, 2.0f);
-
+	if (type == 2)
+	{
+		size = GetScaledSize(p_tile, 100 / p_tile->getWidth());
+	}
 	std::string spriteInfoPath;
-	int type = p_type - (TileTypes::ENEMIESPAWN-30);
 	if(type == 1)
 		spriteInfoPath = "../Textures/rat.png";
 	else if(type == 2)
-		spriteInfoPath = "../Textures/rat2.png";
+		spriteInfoPath = "../Textures/robotaparte.png";
 
 	SpriteInfo* spriteInfo = CreateSpriteInfo( spriteInfoPath,
 		pos, size, NULL);
