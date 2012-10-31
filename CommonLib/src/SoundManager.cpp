@@ -35,7 +35,7 @@ void SoundManager::update(float p_dt)
 			if (m_instances[i]->play)
 			{
 				m_instances[i]->play = false;
-				//playSound(m_instances[i]);
+				playSound(m_instances[i]);
 			}
 		}
 		else
