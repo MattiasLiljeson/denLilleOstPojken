@@ -33,7 +33,8 @@ void SuperPill::update(float p_deltaTime, InputInfo p_inputInfo)
 	{
 		// do a floaty animation:
 		flotyAnimTick+=p_deltaTime*5.0f;
-		m_spriteInfo->transformInfo.translation[TransformInfo::Y] = m_origin.translation[TransformInfo::Y]+sin(flotyAnimTick)*1.5f;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
+			m_origin.translation[TransformInfo::Y]+sin(flotyAnimTick)*1.5f;
 	}
 }
 
