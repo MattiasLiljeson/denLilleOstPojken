@@ -10,3 +10,4 @@ GARDEN Garden.txt 40 POL-gunman-short.wav
 ABANDONED_BREWERY Abandoned_Brewery.txt 100 POL-air-ducts-short.wav
 THE_ONE_MAP The_one_map.txt 60 POL-tekno-labs-short.wav
 FINAL_MAP 0.txt 20 POL-rescue-short.wav
+CAGE_OF_THE_ELVES Cage_of_the_elves.txt 20 POL-rescue-short.wav
