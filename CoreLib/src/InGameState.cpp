@@ -145,8 +145,6 @@ void InGameState::update(float p_dt)
 				}
 				if (m_stats->getGameTimer()->getElapsedTime() < 2)
 				{
-					// Edited by Johan:
-					// made it readable.
 					double arbitraryTimeValue =
 						4 * (0.25 - m_stats->getGameTimer()->getElapsedTime());
 

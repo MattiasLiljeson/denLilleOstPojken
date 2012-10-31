@@ -13,6 +13,7 @@ private:
 	float m_elapsedTime;
 	float m_outroTime;
 	bool m_done;
+	TransformInfo m_targetPosition;
 public:
 	CollectableContainer(SpriteInfo* p_container,SpriteInfo* p_containerShadow)
 	{
@@ -25,6 +26,8 @@ public:
 		m_container = p_container;
 		m_containerShadow = p_containerShadow;
 		m_done=false;
+		m_targetPosition.translation[TransformInfo::X] = 0;
+		m_targetPosition.translation[TransformInfo::Y] = 0;
 	}
 
 	void playOutro(float p_dt)
@@ -34,10 +37,38 @@ public:
 			if (m_outroTime<1.0f)
 			{
 				m_outroTime+=p_dt;
-				m_container->transformInfo.translation[TransformInfo::Y] += m_outroTime*p_dt*2000.0f;
-				m_container->transformInfo.scale[TransformInfo::Y] = m_origin.scale[TransformInfo::Y]*(1.0f+m_outroTime);
-				m_containerShadow->transformInfo.scale[TransformInfo::X] = m_origin.scale[TransformInfo::X]*(1.0f-m_outroTime);
-				m_containerShadow->transformInfo.scale[TransformInfo::Y] = m_origin.scale[TransformInfo::Y]*(1.0f-m_outroTime);
+				TransformInfo deltaPosition;
+
+				// Get position diff between target and origin,
+				// target could be changed in run-time if needed.
+				deltaPosition.translation[TransformInfo::X] =
+					m_targetPosition.translation[TransformInfo::X] -
+					m_origin.translation[TransformInfo::X];
+
+				deltaPosition.translation[TransformInfo::Y] =
+					m_targetPosition.translation[TransformInfo::Y] -
+					m_origin.translation[TransformInfo::Y];
+
+				// Calculate transitional position for the container dependent
+				// of outroTime.
+				m_container->transformInfo.translation[TransformInfo::X] =
+					m_origin.translation[TransformInfo::X] +
+					deltaPosition.translation[TransformInfo::X] * m_outroTime;
+
+				m_container->transformInfo.translation[TransformInfo::Y] =
+					m_origin.translation[TransformInfo::Y] +
+					deltaPosition.translation[TransformInfo::Y] * m_outroTime;
+
+//				m_container->transformInfo.translation[TransformInfo::Y] +=
+//					m_outroTime*p_dt*2000.0f;
+
+				m_container->transformInfo.scale[TransformInfo::Y] =
+					m_origin.scale[TransformInfo::Y]*(1.0f+m_outroTime);
+
+				m_containerShadow->transformInfo.scale[TransformInfo::X] =
+					m_origin.scale[TransformInfo::X]*(1.0f-m_outroTime);
+				m_containerShadow->transformInfo.scale[TransformInfo::Y] =
+					m_origin.scale[TransformInfo::Y]*(1.0f-m_outroTime);
 			}
 			else
 			{
