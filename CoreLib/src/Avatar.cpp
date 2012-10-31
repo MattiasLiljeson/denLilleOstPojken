@@ -72,7 +72,12 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 	if (m_currentAnimation)
 	{
 		if (m_navigationData->m_direction != Direction::NONE || m_currentState == m_avatarKilledState)
-			m_currentAnimation->update(p_deltaTime);
+		{
+			if (m_gameStats->isSpeeded() && m_currentState == m_walking)
+				m_currentAnimation->update(p_deltaTime*2);
+			else
+				m_currentAnimation->update(p_deltaTime);
+		}
 		else
 		{
 			m_currentAnimation->restart();

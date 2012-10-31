@@ -39,7 +39,7 @@ void SuperPill::update(float p_deltaTime, InputInfo p_inputInfo)
 
 void SuperPill::consume()
 {
-	if(!m_consumed)
+	if(!m_consumed && !m_gameStats->isSuperMode())
 	{
 		m_consumed = true;
 		m_tile = NULL;
