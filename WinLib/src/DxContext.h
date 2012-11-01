@@ -9,8 +9,6 @@
 class DxContext: public IOContext
 {
 private:
-	int						m_screenWidth;
-	int						m_screenHeight;
 	IDXGISwapChain*			m_swapChain;
 	ID3D11Device*			m_device;
 	ID3D11DeviceContext*	m_deviceContext; 
@@ -50,7 +48,7 @@ private:
 		ID3D11ShaderResourceView* p_textureResourceView);  
 public:
 				DxContext(HINSTANCE pInstanceHandle, 
-					int p_screenWidth, int p_screenHeight);
+					int p_screenWidth, int p_screenHeight, bool p_windowed );
 	virtual		~DxContext();
 	bool		isInitialized() const;
 	int			setWindowPosition(int p_x, int p_y);

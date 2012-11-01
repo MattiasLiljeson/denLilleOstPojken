@@ -1,6 +1,6 @@
 #include "IOContext.h"
 
-IOContext::IOContext()
+IOContext::IOContext( int p_screenWidth, int p_screenHeight, bool p_windowed )
 {
 	m_running = true;
 
@@ -8,6 +8,10 @@ IOContext::IOContext()
 	{
 		m_input.keys[i] = InputInfo::KEYUP;
 	}
+
+	m_screenWidth			= p_screenWidth;
+	m_screenHeight			= p_screenHeight;
+	m_windowed				= p_windowed;
 }
 IOContext::~IOContext()
 {

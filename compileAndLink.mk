@@ -91,4 +91,4 @@ info:
 	@echo =======================================================
 
 clean : 
-	rm -rf $(masDir)
+	rm -rf $(masDir) $(binDir)

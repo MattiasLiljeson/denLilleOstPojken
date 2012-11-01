@@ -12,7 +12,7 @@ using namespace std;
 struct HighScoreItem
 {
 	int score;
-	bool operator<(const HighScoreItem& p_other)
+	bool operator<(const HighScoreItem& p_other) const
 	{
 		return score > p_other.score;
 	}
