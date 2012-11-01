@@ -3,11 +3,10 @@
 
 GlContext* GlContext::s_instance = NULL;
 
-GlContext::GlContext(int p_screenWidth, int p_screenHeight) : IOContext()
+GlContext::GlContext(int p_screenWidth, int p_screenHeight, bool p_windowed )
+	: IOContext( p_screenWidth, p_screenHeight, p_windowed )
 {
 	s_instance				= this;
-	m_screenWidth			= p_screenWidth;
-	m_screenHeight			= p_screenHeight;
 	m_totalGameTime			= 0;
 
 	// Create texture manager and load default texture

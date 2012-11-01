@@ -54,7 +54,9 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->setBehaviour( new LevelSelectSubState() );
 	
-	for( int i = 0; i<p_numUnlockedLevels; i++ )
+	for( int i = LevelSelectSubState::LS_NUM_ITEMS;
+		i< LevelSelectSubState::LS_NUM_ITEMS + p_numUnlockedLevels;
+		i++ )
 	{
 		// HACK: break if there are more unlocked levels than maps
 		if( (unsigned int) i == items.size())
@@ -62,11 +64,12 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 		else
 			items[i]->setSelectable( true );
 	}
-	for( unsigned int i = p_numUnlockedLevels; i<items.size(); i++ )
+	for( unsigned int i = LevelSelectSubState::LS_NUM_ITEMS + p_numUnlockedLevels; i<items.size(); i++ )
 		items[i]->setSelectable( false );
 
 	tmp->addItems( items );
-	
+	tmp->setSelectable( LevelSelectSubState::LS_PAD, false );
+
 	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
 	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
 	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
@@ -82,7 +85,7 @@ vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_ma
 	for( unsigned int i=0; i<p_maps.size(); i++ )
 	{
 		texts.push_back( p_maps[i].name );
-		if((int)i+1 >= p_numUnlockedLevels)
+		if((int)i >= p_numUnlockedLevels)
 			texts.back() += " (LOCKED)";
 	}
 	return texts;
@@ -91,7 +94,7 @@ MenuItemProperties MenuSubStateFactory::createLevelSelectProperties()
 {
 	// More items, Maps, need more space
 	MenuItemProperties properties;
-	properties.m_firstItemPos.y += 0.3f;
+	properties.m_firstItemPos.y += 0.25f;
 	properties.m_itemDistance *= 0.5f;
 	return properties;
 }
@@ -118,6 +121,7 @@ vector<string> MenuSubStateFactory::createHighscoreTexts()
 	vector<string> texts;
 	texts.resize(HighscoreSubState::HS_NUM_ITEMS);
 	texts[HighscoreSubState::HS_MAIN] = "GO BACK TO MAIN";
+	texts.push_back("");
 
 	vector<HighScoreItem> highscores = HighScoreFunctions::readHighScore();
 	for( unsigned int i=0; i<highscores.size(); i++ )
@@ -132,9 +136,8 @@ vector<string> MenuSubStateFactory::createHighscoreTexts()
 MenuItemProperties MenuSubStateFactory::createHighscoreProperties()
 {
 	MenuItemProperties properties;
-	// More items, Highscores, need more space
-	properties.m_firstItemPos.y += 0.3f;
-	//m_itemDistance *= 0.5f;
+	//properties.m_firstItemPos.y += 0.1f;
+	properties.m_itemDistance *= 0.5f;
 	return properties;
 }
 
@@ -160,22 +163,23 @@ vector<string> MenuSubStateFactory::createCreditsTexts()
 	vector<string> texts;
 	texts.resize(CreditsSubState::CR_NUM_ITEMS);
 	texts[CreditsSubState::CR_MAIN] = "GO BACK TO MAIN";
-
-	texts.push_back("        CODER OF DESTINY: ANTON ANDERSSON ");
-	texts.push_back("          EVIL SCIENTIST: ALEXANDER BRODEN");
-	texts.push_back("BARBARIAN FROM THE NORTH: JOHAN CARLBERG  ");
-	texts.push_back("      THE VIENNAN ARTIST: JARL LARSSON    ");
-	texts.push_back("MASTER OF TIME AND SPACE: MATTIAS LILJESON");
-	texts.push_back("                  MR CEO: ROBIN THUNSTROM ");
+	texts.push_back("");
+	texts.push_back("DEVELOPERS OF DESTINY:");
+	//texts.push_back("-------------------");
+	texts.push_back("ANTON ANDERSSON");
+	texts.push_back("ALEXANDER BRODEN");
+	texts.push_back("JOHAN CARLBERG");
+	texts.push_back("JARL LARSSON");
+	texts.push_back("MATTIAS LILJESON");
+	texts.push_back("ROBIN THUNSTROM");
 
 	return texts;	
 }
 MenuItemProperties MenuSubStateFactory::createCreditsProperties()
 {
 	MenuItemProperties properties;
-	// More items, Names, need more space
-	properties.m_firstItemPos.y += 0.3f;
-	//m_itemDistance *= 0.5f;
+	//properties.m_firstItemPos.y += 0.1f;
+	properties.m_itemDistance *= 0.5f;
 	return properties;
 }
 
@@ -188,6 +192,8 @@ MenuSubState* MenuSubStateFactory::createExit()
 	tmp->addItems( items );
 	tmp->setBehaviour( new ExitSubState() );
 	tmp->setAllSelectable();
+	tmp->setSelectable( ExitSubState::EX_QUESTION, false );
+	tmp->setSelectable( ExitSubState::EX_PAD, false );
 	
 	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
 	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
@@ -199,6 +205,7 @@ vector<string> MenuSubStateFactory::createExitTexts()
 {
 	vector<string> texts;
 	texts.resize( ExitSubState::EX_NUM_ITEMS );
+	texts[ExitSubState::EX_QUESTION]	= "DO YOU REALLY WANT TO QUIT ?";
 	texts[ExitSubState::EX_YES]	= "YES";
 	texts[ExitSubState::EX_NO]	= "NO";
 
@@ -206,7 +213,10 @@ vector<string> MenuSubStateFactory::createExitTexts()
 }
 MenuItemProperties MenuSubStateFactory::createExitProperties()
 {
-	return MenuItemProperties(); // Nothing special
+	MenuItemProperties properties;
+	properties.m_firstItemPos.y -= 0.1f;
+	properties.m_itemDistance *= 0.5f;
+	return properties;
 }
 
 vector<MenuItem*> MenuSubStateFactory::createItems( MenuItemProperties p_properties,

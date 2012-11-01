@@ -44,17 +44,20 @@ MenuItem::~MenuItem()
 
 void MenuItem::update( float p_deltaTime, InputInfo p_inputInfo )
 {
-	m_text->update( p_deltaTime, p_inputInfo );
+	if( m_text != NULL )
+		m_text->update( p_deltaTime, p_inputInfo );
 }
 
 void MenuItem::animateText( float p_freq, float p_amplitude, float p_speed, int p_animIdx )
 {
-	m_text->animateText( p_freq, p_amplitude, p_speed, p_animIdx);
+	if( m_text != NULL )
+		m_text->animateText( p_freq, p_amplitude, p_speed, p_animIdx);
 }
 
 void MenuItem::resetAnimation( int p_idx )
 {
-	m_text->resetAnimation( p_idx );
+	if( m_text != NULL )
+		m_text->resetAnimation( p_idx );
 }
 
 

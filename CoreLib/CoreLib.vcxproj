@@ -35,6 +35,7 @@
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\GameOverState.cpp" />
+    <ClCompile Include="src\GameSettings.cpp" />
     <ClCompile Include="src\GameStats.cpp" />
     <ClCompile Include="src\Glyph.cpp" />
     <ClCompile Include="src\GlyphAnimIn.cpp" />
@@ -94,6 +95,7 @@
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\GameOverState.h" />
+    <ClInclude Include="src\GameSettings.h" />
     <ClInclude Include="src\GameStats.h" />
     <ClInclude Include="src\Glyph.h" />
     <ClInclude Include="src\GlyphAnimation.h" />

@@ -271,6 +271,9 @@
     <ClCompile Include="src\GlyphAnimShake.cpp">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameSettings.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Game.h">
@@ -458,6 +461,9 @@
     </ClInclude>
     <ClInclude Include="src\GlyphAnimShake.h">
       <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameSettings.h">
+      <Filter>Source</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

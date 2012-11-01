@@ -24,7 +24,7 @@ Avatar* GOFactory::CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_
 		pos, size, &r);
 	SpriteInfo* shadow = CreateSpriteInfo("../Textures/playerShadow.png",
 		pos, size, &r);
-	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",100));
+	return new Avatar(spriteInfo, shadow, p_map, p_startTile, p_stats, CreateSoundInfo("../Sounds/avatar_killed.wav",100), CreateSoundInfo("../Sounds/jump.wav",50));
 }
 Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats, int p_type)
 {
@@ -33,7 +33,8 @@ Monster* GOFactory::CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_sta
 	fVector2 size = GetScaledSize(p_tile, 2.0f);
 	if (type == 2)
 	{
-		size = GetScaledSize(p_tile, 100 / p_tile->getWidth());
+		float frac = p_tile->getWidth() / 32.0f;
+		size = fVector2(100 * frac, 100*frac);
 	}
 	std::string spriteInfoPath;
 	if(type == 1)
@@ -561,7 +562,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 
 
 	// Item slots: Speed and Bomb.
-	pos		= fVector3(1 - 350/scrW, 1 - guiHeight*0.5f, 0.9f);
+	pos		= fVector3(1 - 350/1920.0f, 1 - guiHeight*0.5f, 0.9f);
 	size	= fVector2(64*widthFraction, 64*heightFraction);
 	string ytext = "Z";
 	MenuItem* y = createMenuItem( 
@@ -575,7 +576,7 @@ GUI* GOFactory::CreateGUI(GameStats* p_gameStats)
 	pos.z = pos.z + 0.01f;
 	SpriteInfo* speedIcon = CreateSpriteInfo("../Textures/speedpowerup.png", pos,size,NULL);
 
-	pos = fVector3(1 - 200/scrW, 1 - guiHeight*0.5f, 0.9f); 
+	pos = fVector3(1 - 200/1920.0f, 1 - guiHeight*0.5f, 0.9f); 
 	string xtext = "X";
 	MenuItem* x = createMenuItem( 
 			pos, fVector2( 0.0f, 0.0f ),

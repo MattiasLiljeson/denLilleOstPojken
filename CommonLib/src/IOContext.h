@@ -11,9 +11,12 @@ private:
 	bool m_running;	
 protected:
 	InputInfo	m_input;
+	int			m_screenWidth;
+	int			m_screenHeight;
+	bool		m_windowed;
 	bool		m_initialized;
 public:
-					IOContext();
+					IOContext( int p_screenWidth, int p_screenHeight, bool p_windowed );
 	virtual			~IOContext();
 	virtual bool	isInitialized() const = 0;
 	virtual int		setWindowPosition(int p_x, int p_y) = 0;
