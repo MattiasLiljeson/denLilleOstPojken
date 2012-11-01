@@ -12,7 +12,7 @@ Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*> > p_flames, Til
 	m_tickCounter = 0;
 	m_blastSound = p_blast;
 
-	m_animation = new Animation(fVector2(0, 0), 64, 64, 12, 4.3f);
+	m_animation = new Animation(fVector2(0, 0), 64, 64, 12, 0.12f);
 }
 Bomb::~Bomb()
 {
@@ -34,7 +34,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_spriteInfo->visible = false;
 		else
 		{
-			m_animation->update(m_countDown);
+			m_animation->update(p_deltaTime);
 			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		}
 		m_elapsedTime += p_deltaTime;
@@ -72,7 +72,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 	else
 	{
 		m_tickCounter += p_deltaTime;
-		m_animation->update(m_countDown);
+		m_animation->update(p_deltaTime);
 		if(m_spriteInfo != NULL)
 			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		if (m_tickCounter > 0.5f)

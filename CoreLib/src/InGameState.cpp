@@ -211,8 +211,8 @@ void InGameState::tickWhenCloseToParTime()
 	if(m_clock != NULL)
 	{
 		float tickTime = 10.f;
-		float parTime = m_stats->getParTime();
-		float elapsedTime = m_stats->getGameTimer()->getElapsedTime();
+		float parTime = (float)m_stats->getParTime();
+		float elapsedTime = (float)m_stats->getGameTimer()->getElapsedTime();
 		float timeDiff = parTime - elapsedTime;
 
 		if( 0.0f < timeDiff && timeDiff < tickTime )
@@ -222,7 +222,8 @@ void InGameState::tickWhenCloseToParTime()
 			{
 				if( !playingSnd )
 				{
-					m_clock->volume = 100 - (int)(timeDiff*10.0f); 
+//					m_clock->volume = 100 - (int)(timeDiff*10.0f); // NO!
+					m_clock->volume = 100.0f - timeDiff*10.0f; // ^_^
 					m_clock->play = true;
 				}
 				playingSnd = true;

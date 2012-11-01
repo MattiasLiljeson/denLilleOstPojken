@@ -79,8 +79,8 @@ void GUI::update(float p_dt, InputInfo p_input)
 		m_lives[i]->visible = false;
 
 	// Shake elapsed time when close to par time
-	float parTime = m_stats->getParTime();
-	float elapsedTime = m_stats->getGameTimer()->getElapsedTime();
+	float parTime = (float)m_stats->getParTime();
+	float elapsedTime = (float)m_stats->getGameTimer()->getElapsedTime();
 	float timeDiff = parTime - elapsedTime;
 	float timeShake = (1.0f - timeDiff/m_timeShakeTime)*m_timeShakeMult;
 

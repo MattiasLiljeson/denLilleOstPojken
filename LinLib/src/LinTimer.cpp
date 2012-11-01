@@ -1,3 +1,4 @@
+#ifndef _WIN32
 #include "LinTimer.h"
 
 LinTimer::LinTimer(): Timer()
@@ -76,3 +77,4 @@ timespec LinTimer::diff(const timespec& start, const timespec& end)
 	}
 	return temp;
 }
+#endif
