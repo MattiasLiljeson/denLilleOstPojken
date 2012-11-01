@@ -26,7 +26,7 @@ InfectedRat::InfectedRat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile*
 	m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X],
 						p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
 
-	m_offset = fVector2(0, -25);
+	m_offset = fVector2(0, -m_size.y*0.15f);
 }
 InfectedRat::~InfectedRat()
 {
@@ -109,13 +109,13 @@ void InfectedRat::update(float p_deltaTime, InputInfo p_inputInfo)
 		}
 
 		if (m_currentAnimation == m_right)
-			m_offset = fVector2(15, 10);
+			m_offset = fVector2(m_size.x*0.15f, m_size.y*0.1f);
 		else if (m_currentAnimation == m_left)
-			m_offset = fVector2(-15, 10);
+			m_offset = fVector2(-m_size.x*0.15f, m_size.y*0.1f);
 		else if (m_currentAnimation == m_up)
-			m_offset = fVector2(0, 15);
+			m_offset = fVector2(0, m_size.y*0.15f);
 		else if (m_currentAnimation == m_down)
-			m_offset = fVector2(0, -15);
+			m_offset = fVector2(0, -m_size.y*0.15f);
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] += m_offset.x;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] += m_offset.y;
 	}
@@ -125,6 +125,7 @@ void InfectedRat::reset()
 	Monster::reset();
 	m_timeSinceSpawn = 0;
 	m_spriteInfo->transformInfo.scale[TransformInfo::X] = 0;
+
 	m_spriteInfo->transformInfo.scale[TransformInfo::Y] = 0;
 }
 void InfectedRat::beginRespawn()
