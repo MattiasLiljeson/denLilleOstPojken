@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="31" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tilemap_winecellar" tilewidth="32" tileheight="32">
+  <image source="../Textures/tilemap_winecellar.png" width="960" height="960"/>
+ </tileset>
+ <layer name="background" width="60" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztwQEJAAAAAqDo/+h+hNoAAAAAAAAAfBpXMAAD
+  </data>
+ </layer>
+ <layer name="THE_ONE_LAYER" width="60" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztl1EOgyAMhnnzcXM7h7o7+Lh5A0+y028mJSGsxVIKuMjDn7hSy/9ZQDcaY8amLFoDqu0tF28H8q9re8vJ6/b16Lwpa3LLmYFxdq6599bYC1T93J5T5q3FmyNfgzf07EPz5haHV7LW14h6WO0efl++uoKwGBX3Yz1z3j3vEl5OrycYG3Zi3NwH8ixSvYf6V5sXy9fwT63ff+Pl+pfyvjwtMPYkYne478bIpWqn+i9xvlrZvk2F5nuDfN4O4u43j2Q9Y3nbWWvPGp/XHePMwfHk85TmHczvvpyQsdK8/n8WLd5tL/r7ckHGtHmtMF5KoRwuL1fSeqExbP9Sz06rv6l9k3raq3lGXu4a4651CW9sPYl/al7NPGl/tT1p3pObN4d3yZl5FN5Y7xLFvmeoWOq76qj6d/+Nt/GembepjD6YrpDZ
+  </data>
+ </layer>
+ <objectgroup name="object" width="60" height="31"/>
+ <objectgroup name="collision" width="60" height="31"/>
+</map>
