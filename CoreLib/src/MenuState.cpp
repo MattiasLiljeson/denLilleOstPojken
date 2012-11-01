@@ -13,9 +13,10 @@ void MenuState::createMenus()
 
 	float fw = 1.0f/1920.0f;
 	float fh = 1.0f/1080.0f;
+
 	m_bgItem = m_gof->createMenuItem( 
 		fVector3( 0.5f, 0.5f, 0.5f ), fVector2( 1.0f, 1.0f ),
-		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
+		"COPYRIGHT 2012 MAJESTIC 6", fVector2(0.0f, -fh*500.0f),
 		fVector2(fw*20, fh*20), "../Textures/SplashScreen.png" );
 
 	int unlocked = m_parent->getCommonResources()->unlockedLevels;
@@ -32,6 +33,7 @@ void MenuState::removeMenus()
 {
 	delete m_bgItem;
 	m_bgItem = NULL;
+
 	delete m_menuFactory;
 	m_menuFactory = NULL;
 	delete m_manager;
