@@ -1,6 +1,6 @@
 #include "Bomb.h"
 
-Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*>> p_flames, Tile* p_tile, Tilemap* p_map, SoundInfo* p_tick, SoundInfo* p_blast): GameObject(p_sprite)
+Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*> > p_flames, Tile* p_tile, Tilemap* p_map, SoundInfo* p_tick, SoundInfo* p_blast): GameObject(p_sprite)
 {
 	m_flameSpawn = p_flames;
 	m_elapsedTime = 0.0f;
@@ -95,6 +95,7 @@ bool Bomb::isColliding(Monster* p_monster)
 	}
 	return false;
 }
+
 bool Bomb::isColliding(Avatar* p_avatar)
 {
 	for ( unsigned int i = 0; i < m_flames.size(); i++ )

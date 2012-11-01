@@ -1,6 +1,9 @@
 #ifndef FVECTOR3_H
 #define FVECTOR3_H
 
+#include <math.h>
+using namespace std;
+
 struct fVector3
 {
 	float x;

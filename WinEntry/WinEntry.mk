@@ -5,10 +5,10 @@
 outFile = Game
 
 # Compiler flags when compiling objects
-cFlags = -c
+cFlags = -c -g
 
 # Linker flags used when linking binary
-lFlags =
+lFlags = $(shell pkg-config --libs --cflags libglfw2)
 
 # Link when compiling is done. This should not be done for "libraries". "link" 
 # should be set to 'true' or 'false'. Everything other than 'true' results in 
@@ -33,7 +33,7 @@ libIncludePaths = external/glew/include/ external/glfw/include/
 
 # Specify the file names of the libs that should be used when compiling.
 # The file MUST be prefixed with 'lib' and suffiex with '.a'
-__libs = libglfw.a libGLEW.a libGLEWmx.a
+__libs = libglfw.a libGLEW.a libGLU.a libGL.a libXrandr.a libX11.a libm.a libsfml-audio.a libsfml-system.a
 
 include ../solutionSettings.mk
 include ../compileAndLink.mk
