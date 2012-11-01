@@ -7,6 +7,7 @@ LEGEND_OF_THE_DRUNKEN_MASTER 4.txt 20 POL-moving-around-short.wav
 FOREST The_Maze.txt 25 POL-rise-up-short.wav
 HAUNTED_MAZE Haunted_Maze.txt 40 POL-mad-plans-short.wav
 GARDEN Garden.txt 40 POL-gunman-short.wav
+CHEESECAKE_CAVE Cheese_cake_cave.txt 200 POL-mad-plans-short.wav
 ABANDONED_BREWERY Abandoned_Brewery.txt 100 POL-air-ducts-short.wav
 THE_ONE_MAP The_one_map.txt 60 POL-tekno-labs-short.wav
 CAGE_OF_THE_ELVES Cage_of_the_elves.txt 20 POL-rescue-short.wav
