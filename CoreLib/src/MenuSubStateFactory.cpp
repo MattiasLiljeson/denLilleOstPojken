@@ -54,7 +54,9 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 	vector<MenuItem*> items		= createItems( props, texts );
 	tmp->setBehaviour( new LevelSelectSubState() );
 	
-	for( int i = 0; i<p_numUnlockedLevels; i++ )
+	for( int i = LevelSelectSubState::LS_NUM_ITEMS;
+		i< LevelSelectSubState::LS_NUM_ITEMS + p_numUnlockedLevels;
+		i++ )
 	{
 		// HACK: break if there are more unlocked levels than maps
 		if( (unsigned int) i == items.size())
@@ -62,11 +64,12 @@ MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, in
 		else
 			items[i]->setSelectable( true );
 	}
-	for( unsigned int i = p_numUnlockedLevels; i<items.size(); i++ )
+	for( unsigned int i = LevelSelectSubState::LS_NUM_ITEMS + p_numUnlockedLevels; i<items.size(); i++ )
 		items[i]->setSelectable( false );
 
 	tmp->addItems( items );
-	
+	tmp->setSelectable( LevelSelectSubState::LS_PAD, false );
+
 	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
 	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
 	tmp->setItemSelectSnd( m_gof->CreateSoundInfo( m_itemSelectSoundPath, 80 ) );
@@ -82,7 +85,7 @@ vector<string> MenuSubStateFactory::createLevelSelectTexts( vector<MapData> p_ma
 	for( unsigned int i=0; i<p_maps.size(); i++ )
 	{
 		texts.push_back( p_maps[i].name );
-		if((int)i+1 >= p_numUnlockedLevels)
+		if((int)i >= p_numUnlockedLevels)
 			texts.back() += " (LOCKED)";
 	}
 	return texts;
