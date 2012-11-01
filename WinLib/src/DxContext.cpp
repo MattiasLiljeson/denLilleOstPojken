@@ -87,6 +87,8 @@ DxContext::DxContext(HINSTANCE pInstanceHandle,
 	UINT sampleMask   = 0xffffffff;
 	m_deviceContext->OMSetBlendState(m_alphaBlending, blendFactor, sampleMask);
 
+
+	ShowCursor(false);
 	m_initialized = true;
 }
 
