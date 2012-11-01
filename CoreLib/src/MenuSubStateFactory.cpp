@@ -26,9 +26,9 @@ MenuSubState* MenuSubStateFactory::createMain()
 
 	// Add logo!
 	items.push_back( m_gof->createMenuItem( 
-		fVector3( 0.5f, 0.66f, 0.7f ), fVector2( 640.0f*fw, 350.0f*fh ),
+		fVector3( 0.5f, 0.66f, 0.7f ), fVector2( 960.0f*fw, 525.0f*fh ),
 		"", fVector2(0.0f, 0.0f),
-		fVector2(fw*20, fh*20), "../Textures/default.png" ));
+		fVector2(fw*20, fh*20), "../Textures/logo.png" ));
 
 	tmp->addItems( items );
 	tmp->setBehaviour( new MainSubState() );
