@@ -1,8 +1,3 @@
-#define SCREEN_WIDTH 1920
-#define SCREEN_HEIGHT 1080
-//#define SCREEN_WIDTH 640
-//#define SCREEN_HEIGHT 360
-
 #define SCREEN_START_X 0
 #define SCREEN_START_Y 0
 
