@@ -17,7 +17,7 @@ void BombPill::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 void BombPill::consume()
 {
-	if (!m_consumed)
+	if (!m_consumed && m_gameStats->getItemSlot() == NULL)
 	{
 		m_consumed = true;
 		m_tile = NULL;

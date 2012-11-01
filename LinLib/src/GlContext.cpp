@@ -76,7 +76,8 @@ int GlContext::initGLFWWindow()
 	//In this case it is specified that opengl with its core profile
 	//is to be created. This avoids creation with support of old
 	//and deprecated parts of the system.
-	//glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	// glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
  
 	//Open the Window
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
@@ -310,7 +311,9 @@ void GlContext::initKeyMappings()
 		m_keyMappings[InputInfo::NUM_0 + i] = 48 + i;
 	
 	// HACK: Doesn't work in glfw. Nothing works...
+	// Do not use VK-keys in linux
+/*
 	for(int i = 0; i < 10; i++)
-		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;
+		m_keyMappings[InputInfo::NUMPAD_0 + i] = VK_NUMPAD0 + i;*/
 
 }

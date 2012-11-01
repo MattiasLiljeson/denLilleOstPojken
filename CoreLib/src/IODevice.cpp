@@ -3,6 +3,7 @@
 
 IODevice::IODevice()
 {
+	m_context=NULL;
 }
 
 IODevice::~IODevice()

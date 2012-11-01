@@ -48,11 +48,11 @@ Tile* TMFactory::CreateSingleTile(int p_type, TilePosition p_position,int p_tile
 {
 	Tile* newTile;
 
-	if(p_type > 0 && p_type <= WALLS)
+	if(p_type > 0 && p_type <= TileTypes::WALLS)
 		newTile = CreateWallTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
-	else if(p_type > WALLS && p_type <= PATHS)
+	else if(p_type > TileTypes::WALLS && p_type <= TileTypes::PATHS)
 		newTile = CreatePathTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
-	else if(p_type > TRAPS)
+	else if(p_type > TileTypes::TRAPS)
 		newTile = CreateDecorationTile(p_type, p_position,p_tileSizeX,p_tileSizeY);
 	else
 		newTile = CreateBasicWalkableTile(p_position,p_tileSizeX,p_tileSizeY);

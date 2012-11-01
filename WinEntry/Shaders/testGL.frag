@@ -13,8 +13,10 @@ void main()
      vec4 diffuseTexel = texture2D( gSampler, TexCoord );
 
      FragColor = diffuseTexel;
+
      if ( FragColor.a < 0.05f)
         discard;
+
 		
 	FragColor += colorOverlay;
 	FragColor.a = min(FragColor.a, 1.0f);
@@ -28,3 +30,4 @@ void main()
 	FragColor = bwFraction * bw + (1 - bwFraction) * FragColor;
 	FragColor *= (1-fadeToBlack);
 }
+

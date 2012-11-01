@@ -66,7 +66,9 @@ private:
 	SoundInfo* m_tickSound;
 	SoundInfo* m_blastSound;
 public:
+
 	Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*> > p_flames, Tile* p_tile, Tilemap* p_map, SoundInfo* p_tick, SoundInfo* p_blast);
+
 	virtual ~Bomb();
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	bool	isColliding(Monster* p_monster);

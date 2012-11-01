@@ -29,7 +29,7 @@ private:
 	Timer*			m_speedUpTimer;
 	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
-	vector<pair<Monster*, Timer*>>	m_monstersRespawnTimers;
+	vector<pair<Monster*, Timer*> >	m_monstersRespawnTimers;
 	int				m_score;
 	int				m_previousScore;
 	int				m_lives;
