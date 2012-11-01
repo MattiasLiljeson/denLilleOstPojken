@@ -81,6 +81,7 @@ public:
 	void setAllNonSelectable();
 	void setAllVisible();
 	void setAllNonVisible();
+	void setSelectable( int p_idx, bool p_selectable );
 
 	bool playSound( SoundInfo* p_sound );
 };

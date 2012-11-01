@@ -106,6 +106,12 @@ void MenuSubState::onEntry()
 	m_stateTimer = 0.0f;
 	m_nextMenu = 0;
 
+	// When the first item is non-selectable and currIdx has been set to 0 in the
+	// ctor the next selectyable item needs to be highklighted, oterwise the 
+	// non-selectable item will be highlighted.
+	if(!m_items[m_currItemIdx]->isSelectable())
+		nextSelectableItem();
+
 	for( unsigned int i=0; i<m_items.size(); i++)
 	{
 		if( m_items[i] != NULL )
@@ -273,6 +279,12 @@ void MenuSubState::setAllNonVisible()
 {
 	for( unsigned int i=0; i<m_items.size(); i++)
 		m_items[i]->setVisible(false);
+}
+
+void MenuSubState::setSelectable( int p_idx, bool p_selectable )
+{
+	if(p_idx < (int)m_items.size())
+		m_items[p_idx]->setSelectable(p_selectable);
 }
 
 bool MenuSubState::playSound( SoundInfo* p_sound)

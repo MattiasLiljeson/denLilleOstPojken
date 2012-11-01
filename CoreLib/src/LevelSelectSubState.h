@@ -12,7 +12,7 @@ using namespace std;
 class LevelSelectSubState : public MenuSubStateInterface
 {
 public:
-	enum { LS_MAIN, LS_NUM_ITEMS };
+	enum { LS_MAIN, LS_PAD, LS_NUM_ITEMS };
 
 	LevelSelectSubState();
 	~LevelSelectSubState();
