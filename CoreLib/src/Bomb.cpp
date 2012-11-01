@@ -67,6 +67,8 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 		for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		{
 			m_flames[i]->update(p_deltaTime);
+			if (m_flames[i]->isDead())
+				m_flames[i]->hide();
 		}
 	}
 	else
