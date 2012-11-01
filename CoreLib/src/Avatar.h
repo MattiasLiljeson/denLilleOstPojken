@@ -74,7 +74,7 @@ private:
 
 	//Spawn Information
 	float m_timeSinceSpawn;
-	static const int SPAWNTIME = 1.0f;
+	static const int SPAWNTIME = 1;
 
 	//Super color overlays
 	vector<HulkOverlay> m_overlays;

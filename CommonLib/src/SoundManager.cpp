@@ -13,7 +13,7 @@ SoundManager::~SoundManager()
 	{
 		delete m_sounds[i].sound;
 	}
-	for(int i = 0; i < m_songs.size(); i++)
+	for(unsigned int i = 0; i < m_songs.size(); i++)
 	{
 		delete m_songs[i].song;
 	}
@@ -21,7 +21,7 @@ SoundManager::~SoundManager()
 	{
 		delete m_soundData[i];
 	}
-	for (int i = 0; i < m_songData.size(); i++)
+	for (unsigned int i = 0; i < m_songData.size(); i++)
 	{
 		delete m_songData[i];
 	}
@@ -56,7 +56,7 @@ void SoundManager::update(float p_dt)
 		}
 	}
 	
-	for (int i = 0; i < m_songs.size(); i++)
+	for (unsigned int i = 0; i < m_songs.size(); i++)
 	{
 		if (m_songs[i].info->deleted)
 		{
@@ -105,7 +105,7 @@ void SoundManager::playSound(SoundInfo* p_info)
 		}
 	}
 
-	for (int i = 0; i < m_songData.size(); i++)
+	for (unsigned int i = 0; i < m_songData.size(); i++)
 	{
 		if (m_songData[i]->path == p_info->id)
 		{
@@ -125,7 +125,7 @@ void SoundManager::playSound(SoundInfo* p_info)
 void SoundManager::addSong(SoundInfo* p_song)
 {
 	m_instances.push_back(p_song);
-	for (int i = 0; i < m_songData.size(); i++)
+	for (unsigned int i = 0; i < m_songData.size(); i++)
 	{
 		if (m_songData[i]->path == p_song->id)
 			return;
@@ -136,7 +136,7 @@ void SoundManager::addSong(SoundInfo* p_song)
 void SoundManager::stopAndRemoveInstance(SoundInfo* p_instance)
 {
 	//Remove the playing sound
-	for (int i = 0; i < m_sounds.size(); i++)
+	for (unsigned int i = 0; i < m_sounds.size(); i++)
 	{
 		if (m_sounds[i].info == p_instance)
 		{
@@ -148,7 +148,7 @@ void SoundManager::stopAndRemoveInstance(SoundInfo* p_instance)
 	}
 
 	//Remove the instance
-	for (int i = 0; i < m_instances.size(); i++)
+	for (unsigned int i = 0; i < m_instances.size(); i++)
 	{
 		if(m_instances[i] == p_instance)
 		{
