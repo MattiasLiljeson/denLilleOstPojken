@@ -36,6 +36,7 @@ private:
 
 
 	//Sound effects
+	SoundInfo* m_clock;
 	SoundInfo* m_defeat;
 	SoundInfo* m_victory;
 
@@ -47,6 +48,7 @@ public:
 		bool p_reset = false);
 	virtual ~InGameState();
 	void update(float p_dt);
+	void tickWhenCloseToParTime();
 	void handleInput(InputInfo p_input);
 	void draw(float p_dt);
 	void checkAndResolveDynamicCollision();

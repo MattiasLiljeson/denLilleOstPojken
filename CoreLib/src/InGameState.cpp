@@ -17,6 +17,7 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_stats		= NULL;
 	m_startTile = NULL;
 	m_backgroundMusic = NULL;
+	m_clock = NULL;
 	m_defeat = NULL;
 	m_victory = NULL;
 }
@@ -199,9 +200,35 @@ void InGameState::update(float p_dt)
 
 					m_avatar->revive(m_startTile);
 				}
-
-
 			}
+			tickWhenCloseToParTime();
+		}
+	}
+}
+
+void InGameState::tickWhenCloseToParTime()
+{
+	if(m_clock != NULL)
+	{
+		float tickTime = 10.f;
+		float parTime = m_stats->getParTime();
+		float elapsedTime = m_stats->getGameTimer()->getElapsedTime();
+		float timeDiff = parTime - elapsedTime;
+
+		if( 0.0f < timeDiff && timeDiff < tickTime )
+		{
+			static bool playingSnd = false;
+			if( timeDiff- floor(timeDiff) < 0.1f)
+			{
+				if( !playingSnd )
+				{
+					m_clock->volume = 100 - (int)(timeDiff*10.0f); 
+					m_clock->play = true;
+				}
+				playingSnd = true;
+			}
+			else
+				playingSnd = false;
 		}
 	}
 }
@@ -384,6 +411,12 @@ void InGameState::restart()
 	m_io->addSong(m_backgroundMusic);
 
 	//Add sound effects
+	if (m_clock)
+	{
+		m_clock->deleted = true;
+	}
+	m_clock = m_factory->CreateSoundInfo("../Sounds/bell.wav", 100);
+
 	if (m_defeat)
 	{
 		m_defeat->deleted = true;
