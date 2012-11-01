@@ -17,12 +17,14 @@ private:
 	float	m_totalGameTime;
 	bool	m_initialized;
 	int		m_keyMappings[InputInfo::NUM_KEYS];
+	int		m_windowMode;
 
 	//temp
 	float				posX;
 	float				posY;
 	GlSpriteRenderer*	m_spriteRenderer;
 	GlTextureManager*	m_textureManager;
+
 
 private:
 	int init();

@@ -8,6 +8,7 @@ GlContext::GlContext(int p_screenWidth, int p_screenHeight, bool p_windowed )
 {
 	s_instance				= this;
 	m_totalGameTime			= 0;
+	p_windowed?m_windowMode=GLFW_WINDOW:m_windowMode=GLFW_FULLSCREEN;
 
 	// Create texture manager and load default texture
 	m_textureManager = new GlTextureManager();
@@ -81,7 +82,7 @@ int GlContext::initGLFWWindow()
  
 	//Open the Window
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 
-		GLFW_WINDOW) != GL_TRUE)
+		m_windowMode) != GL_TRUE)
 	{
 		return GAME_FAIL;
 	}
