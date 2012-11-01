@@ -20,9 +20,20 @@ MenuSubState* MenuSubStateFactory::createMain()
 	vector<string> texts		= createMainTexts();
 	MenuItemProperties props	= createMainProperties();
 	vector<MenuItem*> items		= createItems( props, texts );
+	
+	float fw = 1.0f/1920.0f;
+	float fh = 1.0f/1080.0f;
+
+	// Add logo!
+	items.push_back( m_gof->createMenuItem( 
+		fVector3( 0.5f, 0.66f, 0.7f ), fVector2( 640.0f*fw, 350.0f*fh ),
+		"", fVector2(0.0f, 0.0f),
+		fVector2(fw*20, fh*20), "../Textures/default.png" ));
+
 	tmp->addItems( items );
 	tmp->setBehaviour( new MainSubState() );
 	tmp->setAllSelectable();
+	tmp->setSelectable( MainSubState::MM_NUM_ITEMS, false );
 
 	tmp->setMenuBackSnd( m_gof->CreateSoundInfo( m_menuBackSoundPath, 80 ) );
 	tmp->setMenuNavigatonSnd( m_gof->CreateSoundInfo( m_navigationSoundPath, 80 ) );
@@ -43,7 +54,10 @@ vector<string> MenuSubStateFactory::createMainTexts()
 }
 MenuItemProperties MenuSubStateFactory::createMainProperties()
 {
-	return MenuItemProperties(); // Nothing special
+	// Make roo m for the logo
+	MenuItemProperties properties;
+	properties.m_firstItemPos.y -= 0.2f;
+	return properties;
 }
 
 MenuSubState* MenuSubStateFactory::createLevelSelect( vector<MapData> p_maps, int p_numUnlockedLevels )
