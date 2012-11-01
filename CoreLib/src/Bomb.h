@@ -7,6 +7,7 @@
 #include "Animation.h"
 #include "Avatar.h"
 
+
 class Flame
 {
 private:
@@ -20,7 +21,7 @@ public:
 		m_spriteInfo = p_spriteInfo;
 		m_spriteInfo->visible = true;
 		m_dt = 0;
-		m_animation = new Animation(fVector2(0, 0), 64, 64, 5, 0.15f);
+		m_animation = new Animation(fVector2(0, 0), 64, 64, 7, 0.2f-(rand()%10)*0.005f );
 		m_tile = p_tile;
 	}
 	virtual ~Flame()
@@ -40,6 +41,10 @@ public:
 	{
 		return m_tile;
 	}
+	void hide()
+	{
+		m_spriteInfo->visible = false;
+	}
 };
 
 //Class that handles a bomb
@@ -56,6 +61,8 @@ private:
 	int m_currentDist;
 	Tile* m_start;
 
+	Animation*	m_animation;
+
 	SoundInfo* m_tickSound;
 	SoundInfo* m_blastSound;
 public:
@@ -66,6 +73,7 @@ public:
 	void	update(float p_deltaTime, InputInfo p_inputInfo);
 	bool	isColliding(Monster* p_monster);
 	bool	isColliding(Avatar* p_avatar);
+	void	reset();
 };
 
 #endif

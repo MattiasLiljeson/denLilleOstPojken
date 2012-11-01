@@ -34,6 +34,7 @@ private:
 	Timer* m_timer;
 
 	CommonResources m_commonResources;
+
 private:
 	int readUnlockedMaps();
 	void writeUnlockedMaps(int p_value);
@@ -56,6 +57,8 @@ public:
 	bool isTerminated();
 
 	Timer* getNewTimerInstance();
+	void stopMainTimer();
+	void startMainTimer();
 
 	CommonResources* getCommonResources();
 

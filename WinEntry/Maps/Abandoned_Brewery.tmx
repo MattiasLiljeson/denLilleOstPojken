@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="60" height="31" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tilemap_winecellar" tilewidth="32" tileheight="32">
+  <image source="../Textures/tilemap_winecellar.png" width="960" height="960"/>
+ </tileset>
+ <layer name="background" width="60" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztwQEJAAAAAqDo/+h+hNoAAAAAAAAAfBpXMAAD
+  </data>
+ </layer>
+ <layer name="THE_ONE_LAYER" width="60" height="31">
+  <data encoding="base64" compression="zlib">
+   eJztWElOAzEQ7LCceQIJOQJPAE45wBfY8o2IkCtPSIi48gTgIcB/sIVbVGq6M54FgWAOJVkTu6fK3V12pi8i/Q4dOnTo8CexFXDsYPsXxWwLg4CXgKuAC8BlwG7AfsBBZiydG2OeU7zrgOcU86f1TgN6ARsJmwE3idtpwFlmLJ0bY06MmNMf1Iu5mBCPAehdV5tevZbFrFIzbYFzcZS4Rn0nidtRGnNteriENV7MqjVTBWW50VzMiWvU9wA67qVYm6/GszmseTBi3ktezdT1tIGs5mYsRT/aM7jOSEvEEPYw8j/sfeWvn+Lg/Bjz1tizYSavunpv0ns2jbHyRa7oVdpn2G+DpFWh3Hguvhv3DGvb49VU764x1hpmvjhP+wz7jfOoeee5nj9pbrW2PY5N9GoPaSytYcwx84zP1/XYqOR3y584t0PxOdbViz00g1jsU8gzrlmkNQuxvfiuVz5nZsTG3CqPc7E51tG7FLs3NMe6H/H+8yaf9yzLr9iL+I5izblNcd/l6/6msbUP2GOWDfU+9oq9oecB1pblVxgLzxA8n70zxPKrGHsC67al2L/Kt67eqaz2Bt8htLbYr1gL1x2ez+p71p5w7DmssXg1uXNy/yJHrNlYW+hXuEa1WPnievB6UWPviX02M682zl+PI873zkavH6x69M74Jryq6tX13LdWDeacjXG8Y/gCj9H/9fzCPcI+tvg21Yv1hpq4BuO+D2W9lqeSPWH/596Y07M29eo+sh+jJq1B9c+RFL2kyngkfm9gH1v8mujF/wHr/Fj3HfMxllUvscYL4/lYiv6D77H8mvnV0ct3XbzzWvdcy2/YU8rg3f/xPezXFr86enMQecQ7jVebud8jrPOb4y0rxPtOvfi9jv/n536PwHrh//38ve67vm/kwKupurXVdrz/jA8CPFMg
+  </data>
+ </layer>
+ <objectgroup name="object" width="60" height="31"/>
+ <objectgroup name="collision" width="60" height="31"/>
+</map>

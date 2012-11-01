@@ -11,13 +11,16 @@ Bomb::Bomb(SpriteInfo* p_sprite, vector<pair<Tile*, SpriteInfo*> > p_flames, Til
 	m_tickSound = p_tick;
 	m_tickCounter = 0;
 	m_blastSound = p_blast;
+
+	m_animation = new Animation(fVector2(0, 0), 64, 64, 12, 4.3f);
 }
 Bomb::~Bomb()
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		delete m_flames[i];
 	m_flames.clear();
-
+	if (m_animation)
+		delete m_animation;
 	if (m_tickSound)
 		m_tickSound->deleted = true;
 	if (m_blastSound)
@@ -25,16 +28,21 @@ Bomb::~Bomb()
 }
 void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if (m_countDown > 2.2f)
+	if (m_countDown > 1.0f)
 	{
-		if (m_currentDist > 0)
+		if (m_currentDist > 0 && m_countDown > 2.0f)
 			m_spriteInfo->visible = false;
+		else
+		{
+			m_animation->update(m_countDown);
+			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
+		}
 		m_elapsedTime += p_deltaTime;
 	
 		if (m_elapsedTime > 0.1f)
 		{
 			bool played = false;
-			for (int i = 0; i < m_flameSpawn.size(); i++)
+			for ( unsigned int i = 0; i < m_flameSpawn.size(); i++ )
 			{
 				TilePosition diff = m_flameSpawn[i].first->getTilePosition() - m_start->getTilePosition();
 				int l = abs(diff.x) + abs(diff.y);
@@ -56,7 +64,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_elapsedTime -= 0.1f;
 		}
 
-		for (int i = 0; i < m_flames.size(); i++)
+		for ( unsigned int i = 0; i < m_flames.size(); i++ )
 		{
 			m_flames[i]->update(p_deltaTime);
 		}
@@ -64,6 +72,9 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 	else
 	{
 		m_tickCounter += p_deltaTime;
+		m_animation->update(m_countDown);
+		if(m_spriteInfo != NULL)
+			m_spriteInfo->textureRect = m_animation->getCurrentFrame();
 		if (m_tickCounter > 0.5f)
 		{
 			m_tickCounter -= 0.5f;
@@ -74,7 +85,7 @@ void Bomb::update(float p_deltaTime, InputInfo p_inputInfo)
 }
 bool Bomb::isColliding(Monster* p_monster)
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 	{
 		if (!m_flames[i]->isDead())
 		{
@@ -87,7 +98,7 @@ bool Bomb::isColliding(Monster* p_monster)
 
 bool Bomb::isColliding(Avatar* p_avatar)
 {
-	for (int i = 0; i < m_flames.size(); i++)
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
 	{
 		if (!m_flames[i]->isDead())
 		{
@@ -97,4 +108,14 @@ bool Bomb::isColliding(Avatar* p_avatar)
 	}
 	return false;
 }
-
+void Bomb::reset()
+{
+	//Kills the bomb
+	for ( unsigned int i = 0; i < m_flames.size(); i++ )
+	{
+		m_flames[i]->hide();
+		delete m_flames[i];
+	}
+	m_flames.clear();
+	m_flameSpawn.clear();
+}

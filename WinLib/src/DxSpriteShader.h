@@ -27,6 +27,7 @@ struct SpriteBuffer
 struct PostProcessBuffer
 {
 	Vector4 ppEffects;
+	Vector4	colorOverlay;
 };
 
 class DxSpriteShader

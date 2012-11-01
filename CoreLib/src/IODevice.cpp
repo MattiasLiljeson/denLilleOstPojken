@@ -92,6 +92,10 @@ void IODevice::addSound(SoundInfo* p_soundInfo)
 {
 	m_soundManager.addSound(p_soundInfo);
 }
+void IODevice::addSong(SoundInfo* p_song)
+{
+	m_soundManager.addSong(p_song);
+}
 
 bool IODevice::isRunning()
 {
@@ -117,8 +121,16 @@ void IODevice::setWindowText(string p_text)
 }
 void IODevice::toneSceneBlackAndWhite(float p_fraction)
 {
-	for (int i = 0; i < m_spriteInfos.size(); i++)
+	for (unsigned int i = 0; i < m_spriteInfos.size(); i++)
 	{
 		m_spriteInfos[i]->bwFraction = p_fraction;
+		//m_spriteInfos[i]->fadeToBlackFraction = p_fraction;
+	}
+}
+void IODevice::fadeSceneToBlack(float p_fraction)
+{
+	for (unsigned int i = 0; i < m_spriteInfos.size(); i++)
+	{
+		m_spriteInfos[i]->fadeToBlackFraction = p_fraction;
 	}
 }

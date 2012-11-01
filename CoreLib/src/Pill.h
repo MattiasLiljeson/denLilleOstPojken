@@ -12,6 +12,11 @@ class Pill: public Collectable
 private:
 	Tile* m_tile;
 	PillEatenState* m_eatenState;
+	float flotyAnimTick;
+	float flotyAnimOffset;
+
+	TransformInfo m_origin;
+
 public:
 	Pill(SpriteInfo* p_spriteInfo, SoundInfo* p_soundInfo, Tile* p_tile, GameStats* p_gameStats);
 	virtual ~Pill();

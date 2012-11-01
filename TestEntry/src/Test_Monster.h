@@ -11,7 +11,7 @@ private:
 	void nullMonster()
 	{
 		newSection("Null Monster");
-		Monster monster(NULL, NULL, NULL);
+		Rat monster(NULL,NULL, NULL, NULL,NULL);
 		newEntry(TestData("Null Tile", !monster.getCurrentTile()));
 		newEntry(TestData("Null Position", monster.getPostion() == fVector2(0, 0)));
 		newEntry(TestData("Null Radius", monster.getRadius() == 0));
@@ -33,7 +33,7 @@ private:
 
 		Tilemap map(2, 2, tiles);
 		newSection("Actual Monster");
-		Monster monster(NULL, tiles[2], &map);
+		Rat monster(NULL, NULL, tiles[2], &map,NULL);
 
 		newEntry(TestData("Correct Tile", monster.getCurrentTile() == tiles[2]));
 		newEntry(TestData("Correct Position", monster.getPostion() == fVector2(0, 0)));

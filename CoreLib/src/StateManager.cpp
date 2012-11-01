@@ -46,13 +46,16 @@ void StateManager::update(float p_dt)
 		m_terminated = true;
 		return; // FFS!!!!
 	}
-
 	if (m_desiredState != m_currentState)
 	{
 		m_currentState->onExit(); // Added by Jarl 2012-10-15, lets the callee handle its exit
 		switchState();
 		// Call the current state's entry function.
 		m_currentState->onEntry();
+	}
+	if (p_dt > 0.1f)
+	{
+		return;
 	}
 	m_currentState->update(p_dt);
 }
@@ -102,6 +105,17 @@ Timer* StateManager::getNewTimerInstance()
 {
 	return m_timer->newInstance();
 }
+
+void StateManager::stopMainTimer()
+{
+	m_timer->stop();
+}
+
+void StateManager::startMainTimer()
+{
+	m_timer->start();
+}
+
 CommonResources* StateManager::getCommonResources()
 {
 	return &m_commonResources;

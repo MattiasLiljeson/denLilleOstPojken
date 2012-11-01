@@ -3,6 +3,7 @@
 
 #include "Test.h"
 #include <GOFactory.h>
+#include <TileTypes.h>
 
 class Test_GOFactory: public Test
 {
@@ -18,7 +19,7 @@ public:
 		Avatar* av = factory.CreateAvatar(NULL, NULL, NULL);
 		newEntry(TestData("Create Avatar", av != NULL));
 		
-		Monster* mon = factory.CreateMonster(NULL, NULL);
+		Monster* mon = factory.CreateMonster(NULL, NULL, NULL, 300);
 		newEntry(TestData("Create Monster", mon != NULL));
 		
 		Pill* pill = factory.CreatePill(NULL, NULL);
@@ -34,7 +35,7 @@ public:
 			fVector3(), fVector2(), "", fVector2() );
 		newEntry(TestData("Create Menu Item", menuItem != NULL));
 
-		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, vector<WallSwitch*>());
+		Switch* goSwitch = factory.CreateSwitch(NULL, NULL, vector<WallSwitch*>(),TileTypes::PATHS);
 		newEntry(TestData("Create Switch", goSwitch != NULL));
 
 		Tile* tile = factory.CreateTile(true, TilePosition(0, 0), 10, 10);

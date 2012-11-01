@@ -15,10 +15,12 @@ private:
 	float m_cooldown;
 	SoundInfo* m_switchSound;
 public:
-	Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats, vector<WallSwitch*> p_targets, SoundInfo* p_switchSound);
+	Switch(SpriteInfo* p_spriteInfo, Tile* p_tile, GameStats* p_gameStats,
+		vector<WallSwitch*> p_targets, SoundInfo* p_switchSound);
 	~Switch();
 	void setTargets(vector<WallSwitch*> p_targets);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
+	void reset();
 	void consume();
 };
 

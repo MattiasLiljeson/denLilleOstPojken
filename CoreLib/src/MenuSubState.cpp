@@ -1,45 +1,57 @@
+#include "MenuState.h"
 #include "MenuSubState.h"
 #include "StateManager.h"
 
-MenuSubState::MenuSubState( vector<HighScoreItem>* p_highscore, vector<MapData>* p_maps, int p_type, GOFactory* p_goFactory, StateManager* p_stateParent)
+//=========================================================================
+// Private Functions
+//=========================================================================
+void MenuSubState::nextItem()
 {
-	//std values
-	fw = 1.0f/1920.0f;
-	fh = 1.0f/1080.0f;
-	m_firstItemPos	= fVector3( 0.5f, 0.5f, 0.9f );
-	m_itemSize		= fVector2( fh*600.0f, fh*64.0f );
-	m_itemTextOffset= fVector2( 0.0f, 0.0f );
-	m_itemFontSize	= fVector2( fw*32, fh*32 );
-	m_itemDistance	= 100*fh;
-	m_itemBackgroundTexturePath = "";
+	if( m_currItemIdx == m_items.size() -1 )
+		m_currItemIdx = 0;
+	else
+		m_currItemIdx++;
+}
 
-	m_type = p_type;
+void MenuSubState::prevItem()
+{
+	if( m_currItemIdx == 0 )
+		m_currItemIdx =  m_items.size()-1;
+	else
+		m_currItemIdx--;
+}
 
-	m_maps = p_maps;
-	m_highscore = p_highscore;
-	m_currItem = 0;
+void MenuSubState::nextSelectableItem()
+{
+	do{
+		nextItem();
+	} while( !m_items[m_currItemIdx]->isSelectable() );
+}
 
-	m_goFactory = p_goFactory;
-	m_stateParent = p_stateParent;
+void MenuSubState::prevSelectableItem()
+{
+	do {
+		prevItem();
+	} while( !m_items[m_currItemIdx]->isSelectable() );
+}
 
-	switch(p_type)
-	{
-		case MENU_MAIN:
-			setToMain();
-			break;
-		case MENU_LEVEL_SELECT:
-			setToLevelSelect(m_stateParent->getCommonResources()->unlockedLevels);
-			break;
-		case MENU_HIGHSCORE:
-			setToHighscore();
-			break;
-		case MENU_CREDITS:
-			setToCredits();
-			break;
-		case MENU_EXIT:
-			setToExit();
-			break;
-	}
+//=========================================================================
+// Public Functions
+//=========================================================================
+MenuSubState::MenuSubState( MenuSubStateManager* p_manager )
+{
+	m_manager = p_manager;
+	m_currItemIdx = 0;
+	m_currState = IN_ENTRY;
+	m_nextMenu = 0;
+	m_stateTimer = 0.0f;
+	m_behaviour = NULL;
+	m_introTime = 0.1f;
+	m_outroTime = 0.1f;
+	m_selectedTime = 0.1f;
+
+	m_itemSelectSnd = NULL;
+	m_menuNavigatonSnd = NULL;
 }
 
 MenuSubState::~MenuSubState()
@@ -55,129 +67,189 @@ void MenuSubState::clear()
 		m_items[i] = NULL;
 	}
 	m_items.clear();
-	m_texts.clear();
+	delete m_behaviour;
+	m_behaviour = NULL;
 }
 
-void MenuSubState::setToMain()
+void MenuSubState::upBtn()
 {
-	m_texts.resize(MM_NUM_ITEMS);
-	m_texts[MM_LEVEL_SELECT]	= "LEVEL SELECT";
-	m_texts[MM_HIGHSCORE]		= "HIGHSCORE";
-	m_texts[MM_CREDITS]			= "CREDITS";
-	m_texts[MM_EXIT]			= "EXIT";
-
-	createItems();
-	setAllSelectable();
+	prevSelectableItem();
+	playSound( m_menuNavigatonSnd );
 }
 
-void MenuSubState::setToLevelSelect(int p_size)
+void MenuSubState::downBtn()
 {
-	m_texts.resize(LS_NUM_ITEMS);
-	m_texts[LS_MAIN] = "GO BACK TO MAIN";
+	nextSelectableItem();
+	playSound( m_menuNavigatonSnd );
+}
 
-	for( unsigned int i=0; i< p_size; i++ )
+void MenuSubState::selectBtn()
+{
+	if(m_behaviour != NULL)
+		m_behaviour->selectBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_itemSelectSnd );
+}
+
+void MenuSubState::escBtn()
+{	
+	if(m_behaviour != NULL)
+		m_behaviour->escBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_menuBackSnd );
+}
+
+void MenuSubState::onEntry()
+{
+	setAllVisible();
+	m_currState = IN_ENTRY;
+	m_stateTimer = 0.0f;
+	m_nextMenu = 0;
+
+	// When the first item is non-selectable and currIdx has been set to 0 in the
+	// ctor the next selectyable item needs to be highklighted, oterwise the 
+	// non-selectable item will be highlighted.
+	if(!m_items[m_currItemIdx]->isSelectable())
+		nextSelectableItem();
+
+	for( unsigned int i=0; i<m_items.size(); i++)
 	{
-		m_texts.push_back((*m_maps)[i].name);
+		if( m_items[i] != NULL )
+			m_items[i]->resetAnimation(IN_ENTRY);
 	}
-	// More items, Maps, need more space
-	m_firstItemPos.y += 0.3f;
-	m_itemDistance *= 0.5f;
-	createItems();
-	setAllSelectable();
-}
-void MenuSubState::addLevel()
-{
-	m_texts.push_back((*m_maps)[m_texts.size()-1].name);
-	fVector3 itemPos = m_firstItemPos;
-	itemPos.y -= m_itemDistance * m_texts.size();
-
-
-	m_items.push_back( m_goFactory->createMenuItem( 
-		itemPos, m_itemSize, m_texts.back(), m_itemTextOffset, m_itemFontSize,
-		m_itemBackgroundTexturePath));
 }
 
-void MenuSubState::setToHighscore()
+void MenuSubState::onExit()
 {
-	m_texts.resize(HS_NUM_ITEMS);
-	m_texts[HS_MAIN] = "GO BACK TO MAIN";
+	setAllNonVisible();
+}
 
-	for( unsigned int i=0; i<m_highscore->size(); i++ )
+void MenuSubState::update( float p_dt )
+{
+	m_stateTimer += p_dt;
+
+	for( unsigned int i=0; i<m_items.size(); i++)
 	{
-		stringstream ss;
-		ss << (*m_highscore)[i].score;
-		m_texts.push_back(ss.str());
+		if( m_items[i] != NULL )
+			m_items[i]->update( p_dt, InputInfo());
 	}
-	// More items, Maps, need more space
-	m_firstItemPos.y += 0.3f;
-	//m_itemDistance *= 0.5f;
-	createItems();
-}
 
-void MenuSubState::setToCredits()
-{
-	m_texts.resize(CR_NUM_ITEMS);
-	m_texts[CR_MAIN] = "GO BACK TO MAIN";
-
-	m_texts.push_back("        CODER OF DESTINY: ANTON ANDERSSON ");
-	m_texts.push_back("          EVIL SCIENTIST: ALEXANDER BRODEN");
-	m_texts.push_back("BARBARIAN FROM THE NORTH: JOHAN CARLBERG  ");
-	m_texts.push_back("      THE VIENNAN ARTIST: JARL LARSSON    ");
-	m_texts.push_back("MASTER OF TIME AND SPACE: MATTIAS LILJESON");
-	m_texts.push_back("                  MR CEO: ROBIN THUNSTROM ");
-
-	// More items, Names, need more space
-	m_firstItemPos.y += 0.3f;
-	//m_itemDistance *= 0.5f;
-	createItems();
-}
-
-void MenuSubState::setToExit()
-{
-	m_texts.resize(EX_NUM_ITEMS);
-	m_texts[EX_YES]	= "YES";
-	m_texts[EX_NO]	= "NO";
-
-	createItems();
-	setAllSelectable();
-}
-
-void MenuSubState::createItems()
-{
-	fVector3 itemPos = m_firstItemPos;
-	for( unsigned int i=0; i<m_texts.size(); i++ )
+	switch( m_currState )
 	{
-		itemPos.y -= m_itemDistance;
-		m_items.push_back( m_goFactory->createMenuItem( 
-			itemPos, m_itemSize, m_texts[i], m_itemTextOffset, m_itemFontSize,
-			m_itemBackgroundTexturePath));
+	case IN_ENTRY:
+		updateInEntry( p_dt );
+		break;
+	case IN_MENU:
+		updateInMenu( p_dt );
+		break;
+	case ITEM_SELECTED:
+		updateItemSelected( p_dt );
+		break;
+	case IN_EXIT:
+		updateInExit( p_dt );
+		break;
 	}
+}
+
+void MenuSubState::updateInEntry( float p_dt )
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->animateText( 0.02f, 2.0f, m_introTime, m_currState);
+
+	if(m_stateTimer > m_introTime)
+	{
+		m_currState = IN_MENU;
+		m_stateTimer = 0.0f;
+	}
+	else
+	{
+		// do something
+	}
+}
+void MenuSubState::updateInMenu( float p_dt )
+{
+	if( (unsigned int)m_currItemIdx < m_items.size() )
+		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f, m_currState);
+}
+
+void MenuSubState::updateItemSelected( float p_dt )
+{
+	if( (unsigned int)m_currItemIdx < m_items.size() )
+		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 150.0f, m_currState);
 	
-	setAllUnSelectable();
-	// The first item is always selectable as it's the menu item back to 
-	// the main menu;
-	setFirstSelectable();
-}
-
-void MenuSubState::activate()
-{
-	if (m_type == MENU_LEVEL_SELECT)
+	if(m_stateTimer > m_selectedTime)
 	{
-		while (m_texts.size() - 1 < m_stateParent->getCommonResources()->unlockedLevels)
-			addLevel();
-	}
-	for( unsigned int i=0; i<m_items.size(); i++)
-	{
-		m_items[i]->setVisible(true);
+		m_currState = IN_EXIT;
 	}
 }
 
-void MenuSubState::deActivate()
+void MenuSubState::updateInExit( float p_dt )
 {
 	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->animateText( 0.02f, 2.0f, m_outroTime, m_currState);
+
+	if(m_stateTimer > m_outroTime)
 	{
-		m_items[i]->setVisible(false);
+		m_manager->reqMenuChange( m_nextMenu );
+		m_stateTimer = 0.0f;
 	}
+	else
+	{
+		// do something
+	}
+}
+
+void MenuSubState::setBehaviour( MenuSubStateInterface* p_behaviour )
+{
+	m_behaviour = p_behaviour;
+}
+
+void MenuSubState::setProperties( MenuItemProperties p_properties )
+{
+	m_properties = p_properties;
+}
+
+MenuItemProperties MenuSubState::getProperties()
+{
+	return m_properties;
+}
+
+void MenuSubState::addItems( vector<MenuItem*> p_items )
+{
+	for( unsigned int i=0; i<p_items.size(); i++ )
+	{
+		m_items.push_back( p_items[i] );
+	}
+}
+
+void MenuSubState::setMenuBackSnd( SoundInfo* p_menuBackSnd )
+{
+	m_menuBackSnd = p_menuBackSnd;
+}
+
+void MenuSubState::setMenuNavigatonSnd( SoundInfo* p_menuNavigatonSnd )
+{
+	m_menuNavigatonSnd = p_menuNavigatonSnd;
+}
+
+void MenuSubState::setItemSelectSnd( SoundInfo* p_itemSelectSnd )
+{
+	m_itemSelectSnd = p_itemSelectSnd;
+}
+
+void MenuSubState::setNextMenu( int p_menu )
+{
+	m_nextMenu = p_menu;
+	setItemSelected();
+}
+
+void MenuSubState::setItemSelected()
+{
+	m_currState = ITEM_SELECTED;
+	m_stateTimer = 0.0f;	
+
+	if( m_items[m_currItemIdx] != NULL )
+		m_items[m_currItemIdx]->resetAnimation(ITEM_SELECTED);
 }
 
 void MenuSubState::setFirstSelectable()
@@ -188,15 +260,42 @@ void MenuSubState::setFirstSelectable()
 void MenuSubState::setAllSelectable()
 {
 	for( unsigned int i=0; i<m_items.size(); i++ )
-	{
 		m_items[i]->setSelectable(true);
-	}
 }
 
-void MenuSubState::setAllUnSelectable()
+void MenuSubState::setAllNonSelectable()
 {
 	for( unsigned int i=0; i<m_items.size(); i++ )
-	{
 		m_items[i]->setSelectable(false);
+}
+
+void MenuSubState::setAllVisible()
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->setVisible(true);
+}
+
+void MenuSubState::setAllNonVisible()
+{
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->setVisible(false);
+}
+
+void MenuSubState::setSelectable( int p_idx, bool p_selectable )
+{
+	if(p_idx < (int)m_items.size())
+		m_items[p_idx]->setSelectable(p_selectable);
+}
+
+bool MenuSubState::playSound( SoundInfo* p_sound)
+{
+	if( p_sound != NULL )
+	{
+		p_sound->play = true;
+		return true;
+	}
+	else
+	{
+		return false;
 	}
 }

@@ -14,6 +14,13 @@ struct SoundData
 	SoundData(string p_path);
 };
 
+struct SongData
+{
+	string path;
+	SongData();
+	SongData(string p_path);
+};
+
 struct SoundInfo
 {
 	bool play;

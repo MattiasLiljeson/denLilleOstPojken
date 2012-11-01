@@ -20,10 +20,11 @@ public:
 private:
 	void initGameOverItems();
 private:
-	IODevice* m_io;
-	GOFactory* m_factory;
-	MenuItem* m_victoryText;
-	MenuItem* m_scoreText;
+	IODevice*	m_io;
+	GOFactory*	m_factory;
+	MenuItem*	m_victoryText;
+	MenuItem*	m_scoreText;
+	MenuItem*	m_continueText;
 
 };
 

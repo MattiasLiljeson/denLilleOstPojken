@@ -1,14 +1,16 @@
 #include "AvatarWalking.h"
 
-AvatarWalking::AvatarWalking(GameObject* p_gameObject, NavigationData* p_navigationData, GameStats* p_stats) : GOState(p_gameObject)
+AvatarWalking::AvatarWalking(GameObject* p_gameObject,
+	NavigationData* p_navigationData, GameStats* p_stats):
+GOState(p_gameObject)
 {
 	m_navigationData = p_navigationData;
 	m_gameStats = p_stats;
 
-	m_right = new Animation(fVector2(0, 0), 64, 64, 8, 0.10f, true);
-	m_left = new Animation(fVector2(0, 64), 64, 64, 8, 0.10f, true);
-	m_down = new Animation(fVector2(0, 128), 64, 64, 8, 0.10f, true);
-	m_up = new Animation(fVector2(0, 192), 64, 64, 8, 0.10f, true);
+	m_right = new Animation(fVector2(0, 0), 64, 64, 8, 0.06f, true);
+	m_left = new Animation(fVector2(0, 64), 64, 64, 8, 0.06f, true);
+	m_down = new Animation(fVector2(0, 128), 64, 64, 8, 0.06f, true);
+	m_up = new Animation(fVector2(0, 192), 64, 64, 8, 0.06f, true);
 }
 
 AvatarWalking::~AvatarWalking()
@@ -22,7 +24,7 @@ AvatarWalking::~AvatarWalking()
 int AvatarWalking::onEnter()
 {
 	Avatar* av = (Avatar*)m_gameObject;
-	av->setCurrentAnimation(m_down);
+	determineAnimation();
 	return GAME_OK;
 }
 
@@ -94,7 +96,9 @@ int AvatarWalking::update(float p_dt, InputInfo p_inputInfo)
 	{
 		if (check180())
 		{
-			Tile* destination = m_navigationData->m_map->getTile(m_navigationData->m_currentTile->getTilePosition() + Directions[m_navigationData->m_desired]);
+			Tile* destination = m_navigationData->m_map->getTile(
+				m_navigationData->m_currentTile->getTilePosition() +
+				Directions[m_navigationData->m_desired]);
 			Tile* temp = m_navigationData->m_currentTile;
 			m_navigationData->m_currentTile = m_navigationData->m_nextTile;
 			m_navigationData->m_nextTile = m_navigationData->m_queuedTile = temp;
@@ -105,7 +109,9 @@ int AvatarWalking::update(float p_dt, InputInfo p_inputInfo)
 		}
 		else
 		{
-			Tile* destination = m_navigationData->m_map->getTile(m_navigationData->m_nextTile->getTilePosition() + Directions[m_navigationData->m_desired]);
+			Tile* destination = m_navigationData->m_map->getTile(
+				m_navigationData->m_nextTile->getTilePosition() +
+				Directions[m_navigationData->m_desired]);
 			if (destination && destination->isFree())
 			{
 				m_navigationData->m_queuedTile = destination;
@@ -125,8 +131,11 @@ int AvatarWalking::update(float p_dt, InputInfo p_inputInfo)
 			m_navigationData->m_currentTile = m_navigationData->m_nextTile;
 			m_navigationData->m_nextTile = m_navigationData->m_queuedTile;
 
-			m_navigationData->m_queuedTile = m_navigationData->m_map->getTile(m_navigationData->m_nextTile->getTilePosition() + Directions[av->getDirection()]);
-			if (!m_navigationData->m_queuedTile || !m_navigationData->m_queuedTile->isFree())
+			m_navigationData->m_queuedTile = m_navigationData->m_map->getTile(
+				m_navigationData->m_nextTile->getTilePosition() +
+				Directions[av->getDirection()]);
+			if (!m_navigationData->m_queuedTile ||
+				!m_navigationData->m_queuedTile->isFree())
 				m_navigationData->m_queuedTile = m_navigationData->m_nextTile;
 
 			m_navigationData->m_currentTile->removePill();
@@ -154,7 +163,7 @@ void AvatarWalking::determineAnimation()
 	{
 		av->setCurrentAnimation(m_up);
 	}
-	else if (m_navigationData->m_direction == Direction::DOWN)
+	else
 	{
 		av->setCurrentAnimation(m_down);
 	}

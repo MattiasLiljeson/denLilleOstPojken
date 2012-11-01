@@ -5,12 +5,18 @@
 #include <vector>
 #include <InputInfo.h>
 
+class Collectable;
+class Monster;
+
 using namespace std;
 
 enum
 {
 	MONSTER_KILLED = 100, PILL_EATEN = 10
 };
+
+const static int MONSTER_BEGINRESPAWN = 10;
+const static int MONSTER_RESPAWNTIME = 12;
 
 class GameStats
 {
@@ -23,16 +29,19 @@ private:
 	Timer*			m_speedUpTimer;
 	Timer*			m_gameTimer;
 	vector<Timer*>	m_powerUpTimers;
+	vector<pair<Monster*, Timer*>>	m_monstersRespawnTimers;
 	int				m_score;
 	int				m_previousScore;
 	int				m_lives;
 
 	int				m_parTime;
-	int				m_itemSlot;
-	int				m_buffSlot;
+	Collectable*	m_itemSlot;
+	Collectable*	m_buffSlot;
 
 	//Flag to indicate the spawn of an item
 	int				m_activate;
+
+	static const int SUPERTIME = 6;
 
 public:
 	GameStats(Timer* p_timer, int p_parTime, int p_previousScore = 0);
@@ -47,6 +56,7 @@ public:
 	bool	isSpeeded();
 	void	setSuperMode();
 	bool	isSuperMode();
+	float   superTimeElapsed();
 	float   superTimeRemaining();
 	float	speededPercentElapsed();
 	void	addScore(int p_points);
@@ -54,18 +64,23 @@ public:
 	int		getTotalScore();
 	Timer*	getGameTimer();
 	void	loseLife();
-	void	setItemSlot(int p_item);
-	int		getItemSlot();
-	void	setBuffSlot(int p_buff);
-	int		getBuffSlot();
+
+	void			setItemSlot(Collectable* p_item);
+	Collectable*	getItemSlot();
+	void			setBuffSlot(Collectable* p_buff);
+	Collectable*	getBuffSlot();
+
 	void	activateBuff();
 	void	activateItem();
 	int		getActivatedItem();
+
 	void	clearBuffs();
 	int		getParTime();
 	float	getMultiplier();
 	void	halvePreviousScore();
 	int		getPreviousScore();
+	void	monsterKilled(Monster*);
+	float	getTimeUntilMonsterRespawn(Monster*);
 };
 
 #endif

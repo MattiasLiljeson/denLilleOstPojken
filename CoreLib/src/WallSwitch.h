@@ -14,6 +14,7 @@ private:
 public:
 	WallSwitch(SpriteInfo* p_spriteInfo, Tile* p_tile);
 	void update(float p_deltaTime, InputInfo p_inputInfo);
+	void reset();
 	void switchState();
 };
 

@@ -10,11 +10,16 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_currentMap = 0;
 	m_desiredMap = -1;
 	m_factory = new GOFactory(m_io);
+
 	m_avatar	= NULL;
 	m_gui		= NULL;
 	m_tileMap	= NULL;
 	m_stats		= NULL;
 	m_startTile = NULL;
+	m_backgroundMusic = NULL;
+	m_clock = NULL;
+	m_defeat = NULL;
+	m_victory = NULL;
 }
 InGameState::~InGameState()
 {
@@ -37,7 +42,6 @@ bool InGameState::onEntry()
 			m_gui = NULL;
 			m_parent->getCommonResources()->totalScore = 0;
 		}
-		restart();
 		m_resourcesAllocated=true;
 	}
 	return true;
@@ -60,6 +64,22 @@ bool InGameState::onExit()
 				delete m_stats;
 			if (m_gui)
 				delete m_gui;
+
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
+			}
+			if (m_defeat)
+			{
+				m_defeat->deleted = true;
+				m_defeat = NULL;
+			}
+			if (m_victory)
+			{
+				m_victory->deleted = true;
+				m_victory = NULL;
+			}
 		}
 		m_resourcesAllocated=false;
 	}
@@ -90,6 +110,9 @@ void InGameState::update(float p_dt)
 		}
 		if (m_paused)
 			p_dt = 0;
+
+		if (m_gui)
+				m_gui->update(p_dt,input);
 
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
@@ -124,8 +147,9 @@ void InGameState::update(float p_dt)
 				m_gameObjects[index]->update(p_dt, input);
 			};
 
-			checkDynamicCollision();
+			checkAndResolveDynamicCollision();
 
+			checkAndResolveStaticCollision();
 	
 			if (m_stats)
 			{
@@ -136,10 +160,23 @@ void InGameState::update(float p_dt)
 					m_bombs.push_back(b);
 					m_gameObjects.push_back(b);
 				}
+				if (m_stats->getGameTimer()->getElapsedTime() < 2)
+				{
+					double arbitraryTimeValue =
+						4 * (0.25 - m_stats->getGameTimer()->getElapsedTime());
+
+					float timeFraction =
+						(float)( max(0.0, arbitraryTimeValue) );
+
+					m_io->fadeSceneToBlack(timeFraction);
+				}
+				if (m_stats->getGameTimer()->getElapsedTime() < 5)
+					m_backgroundMusic->volume = 20 * (float)m_stats->getGameTimer()->getElapsedTime() / 5.0f;
+				else
+					m_backgroundMusic->volume = 20;
 			}
 
-			if (m_gui)
-				m_gui->update(p_dt);
+			
 
 			int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 
@@ -147,7 +184,7 @@ void InGameState::update(float p_dt)
 
 			ss << elapsed;
 
-			string text = "Elapsed Game Time: " + ss.str() + " seconds";
+			string text = "Elapsed Game Time: " + ss.str() + " seconds. FPS: " + toString(1.0f / p_dt);
 
 			m_io->setWindowText(text);
 
@@ -156,15 +193,42 @@ void InGameState::update(float p_dt)
 				m_stats->loseLife();
 				if (m_stats->getNumLives() > 0)
 				{
-					for (int i = 0; i < m_monsters.size(); i++)
+					for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 					{
-						m_monsters[i]->reset();
+						m_gameObjects[i]->reset();
 					}
+
 					m_avatar->revive(m_startTile);
 				}
-
-
 			}
+			tickWhenCloseToParTime();
+		}
+	}
+}
+
+void InGameState::tickWhenCloseToParTime()
+{
+	if(m_clock != NULL)
+	{
+		float tickTime = 10.f;
+		float parTime = m_stats->getParTime();
+		float elapsedTime = m_stats->getGameTimer()->getElapsedTime();
+		float timeDiff = parTime - elapsedTime;
+
+		if( 0.0f < timeDiff && timeDiff < tickTime )
+		{
+			static bool playingSnd = false;
+			if( timeDiff- floor(timeDiff) < 0.1f)
+			{
+				if( !playingSnd )
+				{
+					m_clock->volume = 100 - (int)(timeDiff*10.0f); 
+					m_clock->play = true;
+				}
+				playingSnd = true;
+			}
+			else
+				playingSnd = false;
 		}
 	}
 }
@@ -173,11 +237,10 @@ void InGameState::draw(float p_dt)
 {
 }
 
-bool InGameState::checkDynamicCollision()
+void InGameState::checkAndResolveDynamicCollision()
 {
 	Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
 
-	bool collision = false;
 	for(unsigned int index = 0; index < m_monsters.size(); index++)
 	{
 		Monster* monster = m_monsters.at(index);
@@ -187,7 +250,6 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(monsterBC))
 			{
-				collision = true;
 				if (m_stats->isSuperMode())
 				{
 					monster->kill();
@@ -197,7 +259,7 @@ bool InGameState::checkDynamicCollision()
 					m_avatar->kill();
 			}
 		}
-		for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+		for (unsigned int bomb = 0; bomb < m_bombs.size(); bomb++)
 		{
 			if (m_bombs[bomb]->isColliding(monster) && !monster->isDead())
 			{
@@ -207,7 +269,7 @@ bool InGameState::checkDynamicCollision()
 		}
 	}
 
-	for (int bomb = 0; bomb < m_bombs.size(); bomb++)
+	for (unsigned int bomb = 0; bomb < m_bombs.size(); bomb++)
 	{
 		if (m_bombs[bomb]->isColliding(m_avatar))
 		{
@@ -224,20 +286,63 @@ bool InGameState::checkDynamicCollision()
 
 			if(avatarBC.collidesWith(trapBC))
 			{
-				collision = true;
 				m_avatar->kill();
 			}
 		}
 	}
-
-	return collision;
 }
+
+void InGameState::checkAndResolveStaticCollision()
+{
+	Tile* tileAheadOfAvatar = NULL;
+	Tile* avatarTile;
+	TilePosition tilePositionAheadOfAvatar;
+	TilePosition avatarTilePosition;
+
+	avatarTile = m_avatar->getCurrentTile();
+	avatarTilePosition = avatarTile->getTilePosition();
+	int avatarDirection = m_avatar->getDirection();
+	
+	tilePositionAheadOfAvatar = avatarTilePosition;
+	if( avatarDirection == Direction::LEFT )
+		tilePositionAheadOfAvatar.x -= 1;
+	else if( avatarDirection == Direction::RIGHT )
+		tilePositionAheadOfAvatar.x += 1;
+	else if( avatarDirection == Direction::DOWN )
+		tilePositionAheadOfAvatar.y -= 1;
+	else if( avatarDirection == Direction::UP )
+		tilePositionAheadOfAvatar.y += 1;
+	
+	tileAheadOfAvatar = m_tileMap->getTile( tilePositionAheadOfAvatar );
+
+	if( tileAheadOfAvatar != NULL )
+	{
+		// There is a tile ahead of avatar.
+		Collectable* collectableAheadOfAvatar = tileAheadOfAvatar->getCollectable();
+		if( collectableAheadOfAvatar != NULL )
+		{
+			Circle avatarBC(m_avatar->getPostion(), m_avatar->getRadius() / 4);
+
+			Circle pillBC(collectableAheadOfAvatar->getPostion(),
+				collectableAheadOfAvatar->getRadius() / 4);
+
+			if( avatarBC.collidesWith( pillBC ) )
+			{
+				collectableAheadOfAvatar->consume();
+			}
+		}
+
+	}
+
+}
+
 void InGameState::restart()
 {
 	if (m_io)
 	{
 		m_victoryTime = 0;
 		m_defeatTime = 0;
+		m_toneOutTimer = 0;
 		m_io->clearSpriteInfos();
 		for (unsigned int i = 0; i < m_gameObjects.size(); i++)
 		{
@@ -287,7 +392,48 @@ void InGameState::restart()
 
 		if (m_avatar)
 			m_startTile = m_avatar->getCurrentTile();
+
+		m_io->fadeSceneToBlack(1.0f);
 	}
+
+	m_parent->stopMainTimer();
+	m_parent->startMainTimer();
+
+	//Ugly - Should be corrected. Leave for now
+	if (m_backgroundMusic)
+	{
+		m_backgroundMusic->deleted = true;
+	}
+	m_backgroundMusic = new SoundInfo();
+	m_backgroundMusic->id = "../Sounds/Music/" + m_maps[m_currentMap].backgroundMusic;
+	m_backgroundMusic->play = true;
+	m_backgroundMusic->volume = 0;
+	m_io->addSong(m_backgroundMusic);
+
+	//Add sound effects
+	if (m_clock)
+	{
+		m_clock->deleted = true;
+	}
+	m_clock = m_factory->CreateSoundInfo("../Sounds/bell.wav", 100);
+
+	if (m_defeat)
+	{
+		m_defeat->deleted = true;
+	}
+	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
+
+	if (m_victory)
+	{
+		m_victory->deleted = true;
+	}
+	m_victory = m_factory->CreateSoundInfo("../Sounds/victory.wav", 100);
+
+
+	//ANTON FIX!
+	//Makes sure the game starts at time 0
+	m_stats->getGameTimer()->stop();
+	m_stats->getGameTimer()->start();
 }
 
 int InGameState::setCurrentMap( MapData p_map )
@@ -308,7 +454,7 @@ int InGameState::setCurrentMap( MapData p_map )
 
 int InGameState::setCurrentMap( int p_mapIdx )
 {
-	if(p_mapIdx < m_maps.size() )
+	if( (unsigned int)p_mapIdx < m_maps.size() )
 	{
 		m_desiredMap = p_mapIdx;
 		//restart();
@@ -336,28 +482,45 @@ void InGameState::handleInput( InputInfo p_input )
 }
 void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
-	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_victoryTime > 3)
-	{			
-		if (m_currentMap < m_maps.size() - 1)
-		{
-			m_currentMap = m_currentMap+1;
+	m_backgroundMusic->volume = max(20*(1-m_victoryTime), 0.0f);
+	m_victory->volume = 20;
+	if (m_victoryTime == 0)
+		m_victory->play = true;
 
-			if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
-			{
-				m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
-			}
-			restart();
+	float timings[6] =
+	{
+		3.0f,	// Finished
+		2.4f,	// Total score
+		2.1f,	// Multiplier
+		1.8f,	// Base score
+		1.5f,	// Victory time
+		0.0f	// Fade out
+	};
+
+	if( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
+		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
+	{
+		if( m_victoryTime >= 3 )
+		{
+			if (m_toneOutTimer == 0)
+				m_toneOutTimer += p_dt;
 		}
 		else
 		{
-			m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
-			m_parent->requestStateChange(m_parent->getVictoryState());
+			for( int i = 1; i < 6; i++)
+			{
+				if( m_victoryTime > timings[i] )
+				{
+					m_victoryTime = timings[i - 1];
+					break;
+				}
+			}
 		}
-		return;
 	}
 	else if (m_victoryTime > 2.4f)
 	{
-		m_gui->showTotalScore(m_stats->getScore() * m_stats->getMultiplier());
+		int totalScore = (int)(m_stats->getScore() * m_stats->getMultiplier());
+		m_gui->showTotalScore(totalScore);
 	}
 	else if (m_victoryTime > 2.1f)
 	{
@@ -373,21 +536,44 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 	}
 	m_victoryTime+= p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_victoryTime / 1, 1.0f));
+
+	if (m_toneOutTimer > 0)
+	{
+		m_toneOutTimer += p_dt;
+		m_io->fadeSceneToBlack(min(m_toneOutTimer*4, 1.0f));
+		if (m_toneOutTimer > 0.25f)
+		{
+			if ( (unsigned int)(m_currentMap) < m_maps.size() - 1 )
+			{
+				m_currentMap = m_currentMap+1;
+
+				if (m_parent->getCommonResources()->unlockedLevels < m_currentMap+1)
+				{
+					m_parent->getCommonResources()->unlockedLevels = m_currentMap+1;
+				}
+				restart();
+			}
+			else
+			{
+				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
+				m_parent->requestStateChange(m_parent->getVictoryState());
+			}
+		}
+	}
 }
 void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_defeatTime), 0.0f);
+	m_defeat->volume = max(100*m_defeatTime, 0.0f);
+	if (m_defeatTime == 0)
+		m_defeat->play = true;
 	m_defeatTime += p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_defeatTime / 1, 1.0f));
 	
 	if(p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED && m_defeatTime > 3)
 	{
-		m_stats->addScore(-m_stats->getScore());
-		m_stats->halvePreviousScore();
-		restart();
-	}
-	else if (m_defeatTime > 2.1f)
-	{
-		m_gui->showContinue();
+		if (m_toneOutTimer == 0)
+			m_toneOutTimer += p_dt;
 	}
 	else if (m_defeatTime > 1.8f)
 	{
@@ -396,5 +582,17 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	else if (m_defeatTime > 1.5f)
 	{
 		m_gui->showDefeat();
+	}
+
+	if (m_toneOutTimer > 0)
+	{
+		m_toneOutTimer += p_dt;
+		m_io->fadeSceneToBlack(min(m_toneOutTimer*4, 1.0f));
+		if (m_toneOutTimer > 0.25f)
+		{
+			m_stats->addScore(-m_stats->getScore());
+			m_stats->halvePreviousScore();
+			restart();
+		}
 	}
 }

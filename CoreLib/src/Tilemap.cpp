@@ -17,7 +17,7 @@ Tilemap::~Tilemap()
 Tile* Tilemap::getTile(TilePosition p_position)
 {
 	if (!isValidPosition(p_position))
-		return 0;
+		return NULL;
 
 	return m_tiles[p_position.y * m_width + p_position.x];
 }

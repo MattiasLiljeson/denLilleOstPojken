@@ -4,6 +4,8 @@
 #include "State.h"
 #include "GameStats.h"
 #include "MapHeader.h"
+#include "TextArea.h"
+#include "HighScore.h"
 
 class InGameState: public State
 {
@@ -24,20 +26,33 @@ private:
 	Tile*					m_startTile;
 	float					m_defeatTime;
 	float					m_victoryTime;
+	float					m_toneOutTimer;
 	int						m_desiredMap;
 
 	bool					m_paused;
+
+	//Music
+	SoundInfo*				m_backgroundMusic;
+
+
+	//Sound effects
+	SoundInfo* m_clock;
+	SoundInfo* m_defeat;
+	SoundInfo* m_victory;
 
 private:
 	void updateOnVictory(float p_dt, InputInfo p_input);
 	void updateOnDefeat(float p_dt, InputInfo p_input);
 public:
-	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps, bool p_reset = false);
+	InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData> p_maps,
+		bool p_reset = false);
 	virtual ~InGameState();
 	void update(float p_dt);
+	void tickWhenCloseToParTime();
 	void handleInput(InputInfo p_input);
 	void draw(float p_dt);
-	bool checkDynamicCollision();
+	void checkAndResolveDynamicCollision();
+	void checkAndResolveStaticCollision();
 	//Flag to indicate if restart was called when completing a level
 	void restart();
 	int setCurrentMap( MapData p_map );

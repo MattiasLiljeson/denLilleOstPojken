@@ -58,6 +58,9 @@ GlSpriteShader::GlSpriteShader()
 	m_centerPositionConstant	= glGetUniformLocation(m_id, "CenterPosition");
 	m_halfScaleConstant			= glGetUniformLocation(m_id, "HalfScale");
 	m_screenSizeConstant		= glGetUniformLocation(m_id, "ScreenSize");
+	m_bwFraction				= glGetUniformLocation(m_id, "bwFraction");
+	m_fadeToBlackFraction		= glGetUniformLocation(m_id, "fadeToBlack");
+	m_colorOverlay				= glGetUniformLocation(m_id, "colorOverlay");
 	m_sampler					= glGetUniformLocation(m_id, "gSampler");
 
 	m_initialized = true;
@@ -119,7 +122,14 @@ GLint GlSpriteShader::getTextureRectConstant()
 {
 	return m_textureRectConstant;
 }
-
+GLint GlSpriteShader::getBWFraction()
+{
+	return m_bwFraction;
+}
+GLint GlSpriteShader::getFadeToBlackFraction()
+{
+	return m_fadeToBlackFraction;
+}
 GLuint GlSpriteShader::getTextureSampler()
 {
 	return m_sampler;
@@ -127,5 +137,9 @@ GLuint GlSpriteShader::getTextureSampler()
 bool GlSpriteShader::isInitialized()
 {
 	return m_initialized;
+}
+GLint GlSpriteShader::getColorOverlay()
+{
+	return m_colorOverlay;
 }
 

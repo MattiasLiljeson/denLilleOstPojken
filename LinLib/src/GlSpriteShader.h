@@ -22,6 +22,9 @@ private:
 	GLint	m_halfScaleConstant;
 	GLint	m_screenSizeConstant;
 	GLint	m_textureRectConstant;
+	GLint	m_bwFraction;
+	GLint	m_colorOverlay;
+	GLint	m_fadeToBlackFraction;
 	GLuint	m_sampler;
 	bool	m_initialized;
 public:
@@ -34,6 +37,9 @@ public:
 	GLint	getHalfScaleConstant();
 	GLint	getScreenSizeConstant();
 	GLint	getTextureRectConstant();
+	GLint	getBWFraction();
+	GLint	getFadeToBlackFraction();
+	GLint	getColorOverlay();
 	GLuint	getTextureSampler();
 	bool	isInitialized();
 };

@@ -1,7 +1,11 @@
 #define SCREEN_WIDTH 1920
 #define SCREEN_HEIGHT 1080
-//#define SCREEN_WIDTH 800
-// #define SCREEN_HEIGHT 600
+#define SCREEN_WIDTH 640
+#define SCREEN_HEIGHT 360
+//#define SCREEN_WIDTH 1280
+//#define SCREEN_HEIGHT 720
+//#define SCREEN_WIDTH 640
+//#define SCREEN_HEIGHT 360
 //#define SCREEN_WIDTH 500
 //#define SCREEN_HEIGHT 1050
 
@@ -97,12 +101,10 @@ int WINAPI WinMain(HINSTANCE hInstance,
 
 int main(int argc, char** argv)
 {
-
-	cout<<"Running Linux Build..."<<endl;
-	Timer* timer = new LinTimer();
-
+	cout<<"Running Linux Build...";
 	IOContext* context = new GlContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 
+//	context->setWindowSize(800, 600);
 
 	context->setWindowPosition(SCREEN_START_X, SCREEN_START_Y);
 
@@ -111,6 +113,8 @@ int main(int argc, char** argv)
 		delete context;
 		return 1;
 	}
+
+	Timer* timer = new LinTimer();
 
 	Game* game = new Game(timer, context);
 

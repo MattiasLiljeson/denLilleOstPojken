@@ -78,6 +78,7 @@ int GlContext::initGLFWWindow()
 	//is to be created. This avoids creation with support of old
 	//and deprecated parts of the system.
 	// glfwOpenWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
  
 	//Open the Window
 	if (glfwOpenWindow(getScreenWidth(), getScreenHeight(), 0, 0, 0, 0, 32, 0, 

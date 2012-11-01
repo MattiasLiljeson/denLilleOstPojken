@@ -1,165 +1,47 @@
 #include "MenuState.h"
 #include "StateManager.h"
 
-#include "DebugPrint.h"
-#include "ToString.h"
-#include <algorithm>
-
 //=========================================================================
 // Private Functions
 //=========================================================================
-void MenuState::resetItemOffset( int p_idx )
+void MenuState::createMenus()
 {
-	if(m_currMenu < m_menus.size() && p_idx < m_menus[m_currMenu]->m_items.size())
-		m_menus[m_currMenu]->m_items[p_idx]->setTextOffset(0.0f, 0.0f);
-}
+	m_io->clearSpriteInfos();
+	m_gof = new GOFactory(m_io);
+	m_manager = new MenuSubStateManager(this);
+	m_menuFactory = new MenuSubStateFactory(m_gof, m_manager);
 
-void MenuState::nextItem()
-{
-	if( m_currItemIdx == m_menus[m_currMenu]->m_items.size() -1 )
-		m_currItemIdx = 0;
-	else
-		m_currItemIdx++;
-
-	playSound();
-}
-
-void MenuState::prevItem()
-{
-	if( m_currItemIdx == 0 )
-		m_currItemIdx =  m_menus[m_currMenu]->m_items.size()-1;
-	else
-		m_currItemIdx--;
-
-	playSound();
-}
-
-void MenuState::nextSelectableItem()
-{
-	do{
-		nextItem();
-	} while( !m_menus[m_currMenu]->m_items[m_currItemIdx]->isSelectable() );
-}
-
-void MenuState::prevSelectableItem()
-{
-	do {
-		prevItem();
-	} while( !m_menus[m_currMenu]->m_items[m_currItemIdx]->isSelectable() );
-}
-
-void MenuState::setCurrMenu( int p_menu )
-{
-	m_menus[m_currMenu]->m_currItem = m_currItemIdx;
-	m_menus[m_currMenu]->deActivate();
-	m_currMenu = p_menu;
-	m_menus[m_currMenu]->activate();
-	m_currItemIdx = m_menus[m_currMenu]->m_currItem;
-}
-
-void MenuState::selectMmItem()
-{
-	switch(m_currItemIdx)
-	{
-	case MenuSubState::MM_LEVEL_SELECT:
-		setCurrMenu(MenuSubState::MENU_LEVEL_SELECT); break;
-	case MenuSubState::MM_HIGHSCORE:
-		setCurrMenu(MenuSubState::MENU_HIGHSCORE); break;
-	case MenuSubState::MM_CREDITS:
-		setCurrMenu(MenuSubState::MENU_CREDITS); break;
-	case MenuSubState::MM_EXIT:
-		setCurrMenu(MenuSubState::MENU_EXIT); break;
-	default:
-		break;
-	}
-}
-
-
-void MenuState::selectLsItem()
-{
-	if( m_currItemIdx == MenuSubState::LS_MAIN )
-	{
-		setCurrMenu(MenuSubState::MENU_MAIN);
-	}
-	else
-	{
-		// Get map idx by removing all static items from item index
-		int mapIdx = m_currItemIdx - MenuSubState::LS_NUM_ITEMS;
-		InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
-		inGame->setCurrentMap(mapIdx);
-		m_parent->requestStateChange(m_parent->getInGameState());
-	}
-}
-
-void MenuState::selectHsItem()
-{
-	if( m_currItemIdx == MenuSubState::HS_MAIN )
-	{
-		setCurrMenu(MenuSubState::MENU_MAIN);
-	}
-}
-
-void MenuState::selectCrItem()
-{
-	if( m_currItemIdx == MenuSubState::CR_MAIN )
-	{
-		setCurrMenu(MenuSubState::MENU_MAIN);
-	}
-}
-
-void MenuState::selectExItem()
-{
-	switch(m_currItemIdx)
-	{
-	case MenuSubState::EX_YES:
-		m_parent->terminate();
-		break;
-	case MenuSubState::EX_NO:
-		setCurrMenu(MenuSubState::MENU_MAIN);
-		break;
-	default:
-		break;
-	}
-}
-
-bool MenuState::playSound()
-{
-	if( m_itemSelectSnd != NULL )
-	{
-		m_itemSelectSnd->play = true;
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
-void MenuState::initMenuItems()
-{
 	float fw = 1.0f/1920.0f;
 	float fh = 1.0f/1080.0f;
-	m_bgItem = m_factory->createMenuItem( 
+	m_bgItem = m_gof->createMenuItem( 
 		fVector3( 0.5f, 0.5f, 0.5f ), fVector2( 1.0f, 1.0f ),
 		"COPYRIGHT 2012 MAJESTIC 12", fVector2(0.0f, -fh*500.0f),
-		fVector2(fw*32, fh*32), "../Textures/SplashScreen.png" );
+		fVector2(fw*20, fh*20), "../Textures/SplashScreen.png" );
 
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_MAIN, m_factory, m_parent));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_LEVEL_SELECT, m_factory, m_parent));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_HIGHSCORE, m_factory, m_parent));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_CREDITS, m_factory, m_parent));
-	m_menus.push_back(new MenuSubState( &m_highscore, &m_maps, MenuSubState::MENU_EXIT, m_factory, m_parent));
+	int unlocked = m_parent->getCommonResources()->unlockedLevels;
 
-	for( unsigned int i=0; i<m_menus.size(); i++)
-	{
-		m_menus[i]->deActivate();
-	}
-
-	m_currMenu = 0;
-	m_menus[m_currMenu]->activate();
-
-	m_itemSelectSnd = m_factory->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
+	m_manager->addMenu( m_menuFactory->createMain(), MenuSubStateManager::MENU_MAIN );
+	m_manager->addMenu( m_menuFactory->createLevelSelect(m_maps, unlocked), MenuSubStateManager::MENU_LEVEL_SELECT);
+	m_manager->addMenu( m_menuFactory->createHighscore(), MenuSubStateManager::MENU_HIGHSCORE );
+	m_manager->addMenu( m_menuFactory->createCredits(), MenuSubStateManager::MENU_CREDITS );
+	m_manager->addMenu( m_menuFactory->createExit(), MenuSubStateManager::MENU_EXIT );
 }
+
+
+void MenuState::removeMenus()
+{
+	delete m_bgItem;
+	m_bgItem = NULL;
+	delete m_menuFactory;
+	m_menuFactory = NULL;
+	delete m_manager;
+	m_manager = NULL;
+	delete m_gof;
+	m_gof = NULL;
+	if(m_io != NULL)
+		m_io->clearSpriteInfos();
+}
+
 
 //=========================================================================
 // Public Functions
@@ -168,83 +50,42 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 {
 	m_maps = p_maps;
 	m_io = p_io;
-	m_factory = NULL;
-	m_itemSelectSnd = NULL;
-	m_currItemIdx = 0;
-	m_totTime = 0.0f;
-	m_currMenu = MenuSubState::MENU_MAIN;
-	readHighScore();
+
+	m_gof				= NULL;
+	m_backgroundMusic	= NULL;
+	m_bgItem			= NULL;
+	m_menuFactory		= NULL;
+	m_manager			= NULL;
 }
 
 MenuState::~MenuState()
 {
 	onExit();
-	writeHighScore();
-}
-
-void MenuState::readHighScore()
-{
-	ifstream file;
-	file.open("../Highscore/score.txt", ios::in);
-	if (file.is_open())
-	{
-		while (!file.eof())
-		{
-			HighScoreItem data;
-			file >> data.score;
-			m_highscore.push_back(data);
-		}
-		file.close();
-	}
-	sort(m_highscore.begin(), m_highscore.end());
-}
-
-void MenuState::updateHighScore()
-{
-	int newScore = m_parent->getCommonResources()->totalScore;
-	if (newScore > 0 && newScore > m_highscore.back().score)
-	{
-		m_highscore.back().score = newScore;
-		for (int i = m_highscore.size()-1; i > 0; i--)
-		{
-			if (m_highscore[i] < m_highscore[i-1])
-			{
-				HighScoreItem temp = m_highscore[i];
-				m_highscore[i] = m_highscore[i-1];
-				m_highscore[i-1] = temp;
-			}
-		}
-	}
-	m_parent->getCommonResources()->totalScore = 0;
-}
-
-void MenuState::writeHighScore()
-{
-	ofstream file;
-	file.open("../Highscore/score.txt", ios::out);
-	if (file.is_open())
-	{
-		for (int i = 0; i < m_highscore.size(); i++)
-		{
-			file << m_highscore[i].score;
-			if (i < m_highscore.size()-1)
-				file << endl;
-		}
-		file.close();
-	}
 }
 
 bool MenuState::onEntry()
 {
-	if (!m_resourcesAllocated) // only allocate once
+	// Only allocate if not allocated already
+	if (!m_resourcesAllocated)
 	{
 		if (m_io)
 		{
-			m_factory = new GOFactory(m_io);
-			m_io->clearSpriteInfos();
-			if (m_factory)
-				initMenuItems();
-			updateHighScore();
+			if (m_backgroundMusic)
+			{
+				m_backgroundMusic->deleted = true;
+			}
+			m_backgroundMusic = new SoundInfo();
+			m_backgroundMusic->id = "../Sounds/Music/POL-misty-cave-short.wav";
+			m_backgroundMusic->play = true;
+			m_backgroundMusic->volume = 20;
+			m_io->addSong( m_backgroundMusic );
+
+			createMenus();
+			m_requestedLevel = -1;
+			m_requestedTimer = 0.0f;
+			m_entrying = true;
+			m_entryTimer = 0.0f;
+
 		}
 		m_resourcesAllocated = true;
 	}
@@ -253,45 +94,68 @@ bool MenuState::onEntry()
 
 bool MenuState::onExit()
 {
-	if (m_resourcesAllocated) // only deallocate if allocated
+	// Only deallocate if allocated
+	if (m_resourcesAllocated)
 	{
 		if (m_io)
 		{
-			delete m_bgItem;
-			for( unsigned int menuIdx=0; menuIdx<m_menus.size(); menuIdx++ )
+			if (m_backgroundMusic)
 			{
-				delete m_menus[menuIdx];
-				m_menus[menuIdx] = NULL;
+				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
 			}
-			m_menus.clear();
-			delete m_factory;		
-			m_io->clearSpriteInfos();
 		}
-		m_resourcesAllocated=false;
+		removeMenus();
+		m_resourcesAllocated = false;
 	}
 	return true;
 }
 
-void MenuState::update(float p_dt)
-{
-	m_totTime +=  p_dt;
+void MenuState::update( float p_dt )
+{	
+	m_manager->update( p_dt );
 
-	float fac = sin(m_totTime*5)*3;
-	float fac2 = cos(m_totTime*5)*3;
-
-	if(m_currMenu < m_menus.size() && m_currItemIdx < m_menus[m_currMenu]->m_items.size())
-		m_menus[m_currMenu]->m_items[m_currItemIdx]->setTextOffset(fac2, fac);
-
-	if (m_io)
+	if( m_io )
 	{
 		InputInfo input = m_io->fetchInput();
 
-		// NOTE: The way this function works right now
-		// (triggers state change and sprite dealloc), 
-		// it has to the last function called in update.
-		handleInput(input);
+		// NOTE: This function has to the last function called in update.
+		// (may trigger state-change and sprite dealloc)
+		//handleInput(input);
+
+		//Only handle input when no level has been selected
+		float fadeTime = 0.25f;
+		float fadeFac = 1.0f/fadeTime;
+		if( m_entrying )
+		{
+			if (m_entryTimer > fadeTime)
+			{
+				m_io->fadeSceneToBlack(0);
+				m_entrying = false;
+			}
+			else
+				m_io->fadeSceneToBlack( min(1.0f - m_entryTimer*fadeFac, 1.0f) );
+			m_entryTimer += p_dt;
+		}
+		else if ( m_requestedLevel == -1 )
+		{
+			handleInput(input);
+		}
+		else
+		{
+			if (m_requestedTimer > fadeTime)
+			{
+				InGameState* inGame = dynamic_cast<InGameState*>( m_parent->getInGameState() );
+				inGame->setCurrentMap( m_requestedLevel );
+				m_parent->requestStateChange(m_parent->getInGameState());
+			}
+			else
+			{
+				m_io->fadeSceneToBlack( min(m_requestedTimer*fadeFac, 1.0f) );
+			}
+			m_requestedTimer += p_dt;
+		}
 	}
-	//m_menus[m_currMenu]->activate();
 
 }
 void MenuState::draw(float p_dt)
@@ -300,55 +164,15 @@ void MenuState::draw(float p_dt)
 
 void MenuState::handleInput(InputInfo p_input)
 {
-	if( p_input.keys[InputInfo::UP] == InputInfo::KEYPRESSED ||
-		p_input.keys[InputInfo::W_KEY] == InputInfo::KEYPRESSED )
-		prevSelectableItem();
+	m_manager->handleInput( p_input );
+}
 
-	else if ( p_input.keys[InputInfo::DOWN] == InputInfo::KEYPRESSED ||
-		p_input.keys[InputInfo::S_KEY] == InputInfo::KEYPRESSED )
-		nextSelectableItem();
+void MenuState::requestMap( int p_mapIdx )
+{
+	m_requestedLevel = p_mapIdx;
+}
 
-	if ( p_input.keys[InputInfo::ENTER] == InputInfo::KEYPRESSED ||
-		p_input.keys[InputInfo::SPACE] == InputInfo::KEYPRESSED )
-	{
-		m_menus[m_currMenu]->deActivate();
-
-		switch(m_currMenu)
-		{
-		case MenuSubState::MENU_MAIN:
-			selectMmItem();
-			break;
-		case MenuSubState::MENU_LEVEL_SELECT:
-			selectLsItem();
-			break;
-		case MenuSubState::MENU_HIGHSCORE:
-			selectHsItem();
-			break;
-		case MenuSubState::MENU_CREDITS:
-			selectCrItem();
-			break;
-		case MenuSubState::MENU_EXIT:
-			selectExItem();
-			break;
-		default:
-			break;
-		}
-		
-		m_menus[m_currMenu]->activate();
-
-		m_currItemIdx = 0;
-	}
-
-	else if( p_input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !m_io->isRunning() )
-		switch(m_currMenu)
-		{
-			// Go to exit menu if in main
-		case MenuSubState::MENU_MAIN:
-			setCurrMenu(MenuSubState::MENU_EXIT);
-			break;
-			
-			// Else go to main
-		default:
-			setCurrMenu(MenuSubState::MENU_MAIN);
-	}
+StateManager* MenuState::getParent()
+{
+	return m_parent;
 }
