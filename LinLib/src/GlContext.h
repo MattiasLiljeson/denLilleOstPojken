@@ -12,9 +12,8 @@ class GlContext: public IOContext
 {
 private:
 	static GlContext* s_instance;
+
 private:
-	int		m_screenWidth;
-	int		m_screenHeight;
 	float	m_totalGameTime;
 	bool	m_initialized;
 	int		m_keyMappings[InputInfo::NUM_KEYS];
@@ -36,7 +35,7 @@ private:
 	int spriteSetDefaultTexture(SpriteInfo* p_spriteInfo);
 	void spriteSetTextureRect(SpriteInfo* p_spriteInfo, GLuint p_textureResourceView);  
 public:
-							GlContext(int p_screenWidth, int p_screenHeight);
+							GlContext(int p_screenWidth, int p_screenHeight, bool p_windowed);
 	virtual					~GlContext();
 	bool					isInitialized() const;
 	int						setWindowPosition(int p_x, int p_y);

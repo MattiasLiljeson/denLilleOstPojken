@@ -24,10 +24,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message,
 }
 
 DxContext::DxContext(HINSTANCE pInstanceHandle, 
-	int p_screenWidth, int p_screenHeight) : IOContext()
+	int p_screenWidth, int p_screenHeight, bool p_windowed ) 
+	: IOContext(p_screenWidth, p_screenHeight, p_windowed )
 {
-	m_screenWidth			= p_screenWidth;
-	m_screenHeight			= p_screenHeight;
 	m_instanceHandle		= pInstanceHandle;
 	m_swapChain				= NULL;
 	m_device				= NULL;
@@ -156,7 +155,7 @@ int DxContext::initializeSwapChain()
 	scd.OutputWindow				= m_windowHandle;
 	scd.SampleDesc.Count			= 1;
 	scd.SampleDesc.Quality			= 0;
-	scd.Windowed					= true;
+	scd.Windowed					= m_windowed;
 	scd.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 	scd.BufferDesc.Scaling			= DXGI_MODE_SCALING_UNSPECIFIED;
 	scd.SwapEffect					= DXGI_SWAP_EFFECT_DISCARD;
