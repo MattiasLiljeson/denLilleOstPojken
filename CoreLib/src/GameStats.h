@@ -41,6 +41,8 @@ private:
 	//Flag to indicate the spawn of an item
 	int				m_activate;
 
+	static const int SUPERTIME = 6;
+
 public:
 	GameStats(Timer* p_timer, int p_parTime, int p_previousScore = 0);
 	~GameStats();
@@ -54,6 +56,7 @@ public:
 	bool	isSpeeded();
 	void	setSuperMode();
 	bool	isSuperMode();
+	float   superTimeElapsed();
 	float   superTimeRemaining();
 	float	speededPercentElapsed();
 	void	addScore(int p_points);

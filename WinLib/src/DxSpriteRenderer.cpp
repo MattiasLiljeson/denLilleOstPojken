@@ -137,6 +137,7 @@ void DxSpriteRenderer::draw()
 	//Added by Anton
 	PostProcessBuffer ppbuffer;
 	ppbuffer.ppEffects = Vector4(m_spriteInfo->bwFraction, m_spriteInfo->sepiaFraction, m_spriteInfo->fadeToBlackFraction, 0);
+	ppbuffer.colorOverlay = Vector4(m_spriteInfo->overlay[0], m_spriteInfo->overlay[1], m_spriteInfo->overlay[2], m_spriteInfo->overlay[3]);
 
  	m_shader->setBuffer(m_spriteData, ppbuffer, m_texture);
 	m_deviceContext->VSSetShader(m_shader->getVertexShader().Data, 0, 0);

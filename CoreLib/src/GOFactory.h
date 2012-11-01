@@ -5,7 +5,7 @@
 #include "Glyph.h"
 #include "IODevice.h"
 #include "MenuItem.h"
-#include "Monster.h"
+#include "Rat.h"
 #include "Pill.h"
 #include "SpeedPill.h"
 #include "SuperPill.h"
@@ -24,6 +24,11 @@
 #include "TMFactory.h"
 #include "WallSwitch.h"
 #include "TileTypes.h"
+#include "GlyphAnimIn.h"
+#include "GlyphAnimOut.h"
+#include "GlyphAnimShake.h"
+#include "InfectedRat.h"
+#include <string>
 
 // forward declarations
 class Glyph;
@@ -47,7 +52,7 @@ public:
 	SoundInfo*	CreateSoundInfo(string p_sound, int p_volume);
 
 	Avatar*		CreateAvatar(Tilemap* p_map, Tile* p_startTile, GameStats* p_stats);
-	Monster*	CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats);
+	Monster*	CreateMonster(Tile* p_tile, Tilemap* p_map, GameStats* p_stats, int p_type);
 	Trap*		CreateTrap(Tile* p_tile, Tilemap* p_map);
 
 	SuperPill*	CreateSuperPill(Tile* p_tile, GameStats* p_gameStats);
@@ -69,8 +74,12 @@ public:
 		string p_text="", fVector2 p_textOffset=fVector2(),
 		fVector2 p_fontSize=fVector2(), string p_bgTexPath="" );
 
+	TextArea* createMenuItemTextArea( fVector3 p_position,
+	string p_text, fVector2 p_textOffset, fVector2 p_fontSize );
+
 	Glyph*		CreateGlyph(const string& p_texture, float p_x, float p_y,
-					fVector2 p_size, GlyphAnimation* p_anim8on = NULL);
+					fVector2 p_size,
+					vector<GlyphAnimation*> p_animations = vector<GlyphAnimation*>());
 
 	GUI*		CreateGUI(GameStats* p_gameStats);
 

@@ -95,6 +95,9 @@
     <Filter Include="Source\GameStates\MenuStates\MenuSubStates">
       <UniqueIdentifier>{df6d4fd4-8551-46e5-9292-37a6d9f93eb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source\GameStates\MenuStates\SubState">
+      <UniqueIdentifier>{9ce300a8-c96a-4451-95ab-948e5c5d9722}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\GameObject.cpp">
@@ -252,6 +255,21 @@
     </ClCompile>
     <ClCompile Include="src\MenuSubStateFactory.cpp">
       <Filter>Source\GameStates\MenuStates\MenuSubStates</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphAnimIn.cpp">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphAnimOut.cpp">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Rat.cpp">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="src\InfectedRat.cpp">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GlyphAnimShake.cpp">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -422,6 +440,24 @@
     </ClInclude>
     <ClInclude Include="src\MenuSubStateInterface.h">
       <Filter>Source\GameStates\MenuStates</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimIn.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimOut.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rat.h">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="src\InfectedRat.h">
+      <Filter>Source\GameObject\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HighScore.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GlyphAnimShake.h">
+      <Filter>Source\GameObject\Glyph\Glyph Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -46,6 +46,12 @@ MenuSubState::MenuSubState( MenuSubStateManager* p_manager )
 	m_nextMenu = 0;
 	m_stateTimer = 0.0f;
 	m_behaviour = NULL;
+	m_introTime = 0.1f;
+	m_outroTime = 0.1f;
+	m_selectedTime = 0.1f;
+
+	m_itemSelectSnd = NULL;
+	m_menuNavigatonSnd = NULL;
 }
 
 MenuSubState::~MenuSubState()
@@ -68,23 +74,29 @@ void MenuSubState::clear()
 void MenuSubState::upBtn()
 {
 	prevSelectableItem();
+	playSound( m_menuNavigatonSnd );
 }
 
 void MenuSubState::downBtn()
 {
 	nextSelectableItem();
+	playSound( m_menuNavigatonSnd );
 }
 
 void MenuSubState::selectBtn()
 {
 	if(m_behaviour != NULL)
 		m_behaviour->selectBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_itemSelectSnd );
 }
 
 void MenuSubState::escBtn()
 {	
 	if(m_behaviour != NULL)
 		m_behaviour->escBtn( m_currItemIdx, m_manager, this );
+
+	playSound( m_menuBackSnd );
 }
 
 void MenuSubState::onEntry()
@@ -93,6 +105,12 @@ void MenuSubState::onEntry()
 	m_currState = IN_ENTRY;
 	m_stateTimer = 0.0f;
 	m_nextMenu = 0;
+
+	for( unsigned int i=0; i<m_items.size(); i++)
+	{
+		if( m_items[i] != NULL )
+			m_items[i]->resetAnimation(IN_ENTRY);
+	}
 }
 
 void MenuSubState::onExit()
@@ -118,6 +136,9 @@ void MenuSubState::update( float p_dt )
 	case IN_MENU:
 		updateInMenu( p_dt );
 		break;
+	case ITEM_SELECTED:
+		updateItemSelected( p_dt );
+		break;
 	case IN_EXIT:
 		updateInExit( p_dt );
 		break;
@@ -126,7 +147,10 @@ void MenuSubState::update( float p_dt )
 
 void MenuSubState::updateInEntry( float p_dt )
 {
-	if(m_stateTimer > 0.0f)
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->animateText( 0.02f, 2.0f, m_introTime, m_currState);
+
+	if(m_stateTimer > m_introTime)
 	{
 		m_currState = IN_MENU;
 		m_stateTimer = 0.0f;
@@ -139,11 +163,26 @@ void MenuSubState::updateInEntry( float p_dt )
 void MenuSubState::updateInMenu( float p_dt )
 {
 	if( (unsigned int)m_currItemIdx < m_items.size() )
-		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f );
+		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 15.0f, m_currState);
 }
+
+void MenuSubState::updateItemSelected( float p_dt )
+{
+	if( (unsigned int)m_currItemIdx < m_items.size() )
+		m_items[m_currItemIdx]->animateText( 0.02f, 2.0f, 150.0f, m_currState);
+	
+	if(m_stateTimer > m_selectedTime)
+	{
+		m_currState = IN_EXIT;
+	}
+}
+
 void MenuSubState::updateInExit( float p_dt )
 {
-	if(m_stateTimer > 0.0f)
+	for( unsigned int i=0; i<m_items.size(); i++)
+		m_items[i]->animateText( 0.02f, 2.0f, m_outroTime, m_currState);
+
+	if(m_stateTimer > m_outroTime)
 	{
 		m_manager->reqMenuChange( m_nextMenu );
 		m_stateTimer = 0.0f;
@@ -177,11 +216,34 @@ void MenuSubState::addItems( vector<MenuItem*> p_items )
 	}
 }
 
+void MenuSubState::setMenuBackSnd( SoundInfo* p_menuBackSnd )
+{
+	m_menuBackSnd = p_menuBackSnd;
+}
+
+void MenuSubState::setMenuNavigatonSnd( SoundInfo* p_menuNavigatonSnd )
+{
+	m_menuNavigatonSnd = p_menuNavigatonSnd;
+}
+
+void MenuSubState::setItemSelectSnd( SoundInfo* p_itemSelectSnd )
+{
+	m_itemSelectSnd = p_itemSelectSnd;
+}
+
 void MenuSubState::setNextMenu( int p_menu )
 {
 	m_nextMenu = p_menu;
-	m_currState = IN_EXIT;
-	m_stateTimer = 0.0f;
+	setItemSelected();
+}
+
+void MenuSubState::setItemSelected()
+{
+	m_currState = ITEM_SELECTED;
+	m_stateTimer = 0.0f;	
+
+	if( m_items[m_currItemIdx] != NULL )
+		m_items[m_currItemIdx]->resetAnimation(ITEM_SELECTED);
 }
 
 void MenuSubState::setFirstSelectable()
@@ -211,4 +273,17 @@ void MenuSubState::setAllNonVisible()
 {
 	for( unsigned int i=0; i<m_items.size(); i++)
 		m_items[i]->setVisible(false);
+}
+
+bool MenuSubState::playSound( SoundInfo* p_sound)
+{
+	if( p_sound != NULL )
+	{
+		p_sound->play = true;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }

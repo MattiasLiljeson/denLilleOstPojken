@@ -1,14 +1,13 @@
 #include "Glyph.h"
 
-Glyph::Glyph( SpriteInfo* p_spriteInfo, GlyphAnimation* p_anim8or ) : GameObject(p_spriteInfo)
+Glyph::Glyph( SpriteInfo* p_spriteInfo ) : GameObject(p_spriteInfo)
 {
-	m_anim8or = p_anim8or;
-	m_origin = p_spriteInfo->transformInfo;
+	if(p_spriteInfo != NULL)
+		m_origin = p_spriteInfo->transformInfo;
 }
 
 Glyph::~Glyph()
 {
-	delete m_anim8or;
 }
 
 int Glyph::setRect(Rect p_rect)
@@ -22,6 +21,14 @@ int Glyph::setRect(Rect p_rect)
 	{
 		return GAME_FAIL;
 	}
+}
+
+bool Glyph::getVisibility()
+{
+	if(m_spriteInfo != NULL)
+		return m_spriteInfo->visible;
+	else
+		return false;
 }
 
 int Glyph::setVisibility( bool p_set )
@@ -39,21 +46,15 @@ int Glyph::setVisibility( bool p_set )
 
 void Glyph::update(float p_deltaTime, InputInfo p_inputInfo)
 {
-	if( m_anim8or != NULL )
-	{
-		m_anim8or->update( p_deltaTime );
-	}
 	m_spriteInfo->transformInfo = m_origin;
 }
 
-void Glyph::animate( float p_freq, float p_amplitude, float p_speed )
+void Glyph::animate( GlyphAnimation* p_animation, float p_freq, float p_amplitude, float p_speed )
 {
 	TransformInfo pos = m_origin;
 
-	if( m_anim8or != NULL )
-	{
-		pos = m_anim8or->getAnimation( m_origin, p_freq, p_amplitude, p_speed );
-	}
+	if( p_animation != NULL)
+		pos = p_animation->getAnimation( m_origin, p_freq, p_amplitude, p_speed );
 
 	m_spriteInfo->transformInfo = pos;
 }

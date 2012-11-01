@@ -27,7 +27,7 @@ struct AstarItem
 
 class Monster: public GameObject
 {
-private:
+protected:
 	Tile*		m_currentTile;
 	Tile*		m_nextTile;
 	Tilemap*	m_map;
@@ -51,24 +51,24 @@ private:
 	bool	m_dead;
 	bool	m_respawning;
 	SoundInfo* m_monsterKilledSound;
-private:
+protected:
+	Monster(GameStats* p_gameStats, SpriteInfo* p_spriteInfo);
+protected:
 	int		UpdateQueue(Tile* p_tile, int p_parent, int p_toStart, int p_toGoal,
 				vector<AstarItem>& p_queue);
 	int		FindTile(Tile* p_tile, vector<AstarItem>& p_queue);
 	void	determineAnimation();
 	void	transformSpriteInformation();
 public:
-	Monster(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile* p_tile, Tilemap* p_map,
-			SoundInfo* p_monsterKilled);
-	~Monster();
-	void	update(float p_deltaTime, InputInfo p_inputInfo);
+	virtual ~Monster();
+	virtual void	update(float p_deltaTime, InputInfo p_inputInfo) = 0;
 	Tile*	getCurrentTile();
 	void	FindPath(Tile* p_start, Tile* p_goal);
 	void	kill();
 	bool	isDead();
 	void	addMonsterAI(Avatar* p_avatar, GameStats* p_gameStats, Tilemap* p_tilemap);
-	void	reset();
-	void	beginRespawn();
+	virtual void	reset();
+	virtual void	beginRespawn();
 	void	respawn();
 };
 

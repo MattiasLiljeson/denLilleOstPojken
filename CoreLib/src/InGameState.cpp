@@ -10,12 +10,15 @@ InGameState::InGameState(StateManager* p_parent, IODevice* p_io, vector<MapData>
 	m_currentMap = 0;
 	m_desiredMap = -1;
 	m_factory = new GOFactory(m_io);
+
 	m_avatar	= NULL;
 	m_gui		= NULL;
 	m_tileMap	= NULL;
 	m_stats		= NULL;
 	m_startTile = NULL;
 	m_backgroundMusic = NULL;
+	m_defeat = NULL;
+	m_victory = NULL;
 }
 InGameState::~InGameState()
 {
@@ -64,6 +67,17 @@ bool InGameState::onExit()
 			if (m_backgroundMusic)
 			{
 				m_backgroundMusic->deleted = true;
+				m_backgroundMusic = NULL;
+			}
+			if (m_defeat)
+			{
+				m_defeat->deleted = true;
+				m_defeat = NULL;
+			}
+			if (m_victory)
+			{
+				m_victory->deleted = true;
+				m_victory = NULL;
 			}
 		}
 		m_resourcesAllocated=false;
@@ -95,6 +109,9 @@ void InGameState::update(float p_dt)
 		}
 		if (m_paused)
 			p_dt = 0;
+
+		if (m_gui)
+				m_gui->update(p_dt,input);
 
 		if (input.keys[InputInfo::ESC] == InputInfo::KEYRELEASED)
 		{
@@ -144,8 +161,6 @@ void InGameState::update(float p_dt)
 				}
 				if (m_stats->getGameTimer()->getElapsedTime() < 2)
 				{
-					// Edited by Johan:
-					// made it readable.
 					double arbitraryTimeValue =
 						4 * (0.25 - m_stats->getGameTimer()->getElapsedTime());
 
@@ -160,8 +175,7 @@ void InGameState::update(float p_dt)
 					m_backgroundMusic->volume = 20;
 			}
 
-			if (m_gui)
-				m_gui->update(p_dt);
+			
 
 			int elapsed = (int)m_stats->getGameTimer()->getElapsedTime();
 
@@ -169,7 +183,7 @@ void InGameState::update(float p_dt)
 
 			ss << elapsed;
 
-			string text = "Elapsed Game Time: " + ss.str() + " seconds";
+			string text = "Elapsed Game Time: " + ss.str() + " seconds. FPS: " + toString(1.0f / p_dt);
 
 			m_io->setWindowText(text);
 
@@ -369,6 +383,20 @@ void InGameState::restart()
 	m_backgroundMusic->volume = 0;
 	m_io->addSong(m_backgroundMusic);
 
+	//Add sound effects
+	if (m_defeat)
+	{
+		m_defeat->deleted = true;
+	}
+	m_defeat = m_factory->CreateSoundInfo("../Sounds/failure.wav", 100);
+
+	if (m_victory)
+	{
+		m_victory->deleted = true;
+	}
+	m_victory = m_factory->CreateSoundInfo("../Sounds/victory.wav", 100);
+
+
 	//ANTON FIX!
 	//Makes sure the game starts at time 0
 	m_stats->getGameTimer()->stop();
@@ -421,6 +449,11 @@ void InGameState::handleInput( InputInfo p_input )
 }
 void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_victoryTime), 0.0f);
+	m_victory->volume = 20;
+	if (m_victoryTime == 0)
+		m_victory->play = true;
+
 	float timings[6] =
 	{
 		3.0f,	// Finished
@@ -492,12 +525,15 @@ void InGameState::updateOnVictory(float p_dt, InputInfo p_input)
 				m_parent->getCommonResources()->totalScore = m_stats->getTotalScore();
 				m_parent->requestStateChange(m_parent->getVictoryState());
 			}
-			return;
 		}
 	}
 }
 void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 {
+	m_backgroundMusic->volume = max(20*(1-m_defeatTime), 0.0f);
+	m_defeat->volume = max(100*m_defeatTime, 0.0f);
+	if (m_defeatTime == 0)
+		m_defeat->play = true;
 	m_defeatTime += p_dt;
 	m_io->toneSceneBlackAndWhite(min(m_defeatTime / 1, 1.0f));
 	
@@ -505,10 +541,6 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	{
 		if (m_toneOutTimer == 0)
 			m_toneOutTimer += p_dt;
-	}
-	else if (m_defeatTime > 2.1f)
-	{
-		m_gui->showContinue();
 	}
 	else if (m_defeatTime > 1.8f)
 	{
@@ -518,6 +550,7 @@ void InGameState::updateOnDefeat(float p_dt, InputInfo p_input)
 	{
 		m_gui->showDefeat();
 	}
+
 	if (m_toneOutTimer > 0)
 	{
 		m_toneOutTimer += p_dt;

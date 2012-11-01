@@ -4,19 +4,6 @@
 //=========================================================================
 // Private Functions
 //=========================================================================
-bool MenuState::playSound()
-{
-	if( m_itemSelectSnd != NULL )
-	{
-		m_itemSelectSnd->play = true;
-		return true;
-	}
-	else
-	{
-		return false;
-	}
-}
-
 void MenuState::createMenus()
 {
 	m_io->clearSpriteInfos();
@@ -38,8 +25,6 @@ void MenuState::createMenus()
 	m_manager->addMenu( m_menuFactory->createHighscore(), MenuSubStateManager::MENU_HIGHSCORE );
 	m_manager->addMenu( m_menuFactory->createCredits(), MenuSubStateManager::MENU_CREDITS );
 	m_manager->addMenu( m_menuFactory->createExit(), MenuSubStateManager::MENU_EXIT );
-
-	m_itemSelectSnd = m_gof->CreateSoundInfo( "../Sounds/Plink_08.wav", 80 );
 }
 
 
@@ -53,7 +38,8 @@ void MenuState::removeMenus()
 	m_manager = NULL;
 	delete m_gof;
 	m_gof = NULL;
-	m_io->clearSpriteInfos();
+	if(m_io != NULL)
+		m_io->clearSpriteInfos();
 }
 
 
@@ -64,9 +50,12 @@ MenuState::MenuState( StateManager* p_parent, IODevice* p_io, vector<MapData> p_
 {
 	m_maps = p_maps;
 	m_io = p_io;
-	m_gof = NULL;
-	m_itemSelectSnd = NULL;
-	m_backgroundMusic = NULL;
+
+	m_gof				= NULL;
+	m_backgroundMusic	= NULL;
+	m_bgItem			= NULL;
+	m_menuFactory		= NULL;
+	m_manager			= NULL;
 }
 
 MenuState::~MenuState()
@@ -89,11 +78,14 @@ bool MenuState::onEntry()
 			m_backgroundMusic->id = "../Sounds/Music/POL-misty-cave-short.wav";
 			m_backgroundMusic->play = true;
 			m_backgroundMusic->volume = 20;
-			m_io->addSong(m_backgroundMusic);
+			m_io->addSong( m_backgroundMusic );
 
 			createMenus();
-			//m_requestedLevel = -1;
-			//m_requestedTimer = 0;
+			m_requestedLevel = -1;
+			m_requestedTimer = 0.0f;
+			m_entrying = true;
+			m_entryTimer = 0.0f;
+
 		}
 		m_resourcesAllocated = true;
 	}
@@ -129,26 +121,40 @@ void MenuState::update( float p_dt )
 
 		// NOTE: This function has to the last function called in update.
 		// (may trigger state-change and sprite dealloc)
-		handleInput(input);
+		//handleInput(input);
 
 		//Only handle input when no level has been selected
-		//if (m_requestedLevel == -1)
-		//	handleInput(input);
-		//
-		//if (m_requestedLevel != -1)
-		//{
-		//	if (m_requestedTimer > 0.25f)
-		//	{
-		//		InGameState* inGame = dynamic_cast<InGameState*>(m_parent->getInGameState());
-		//		inGame->setCurrentMap(m_requestedLevel);
-		//		m_parent->requestStateChange(m_parent->getInGameState());
-		//	}
-		//	else
-		//	{
-		//		m_io->fadeSceneToBlack(min(m_requestedTimer*4, 1.0f));
-		//	}
-		//	m_requestedTimer += p_dt;
-		//}
+		float fadeTime = 0.25f;
+		float fadeFac = 1.0f/fadeTime;
+		if( m_entrying )
+		{
+			if (m_entryTimer > fadeTime)
+			{
+				m_io->fadeSceneToBlack(0);
+				m_entrying = false;
+			}
+			else
+				m_io->fadeSceneToBlack( min(1.0f - m_entryTimer*fadeFac, 1.0f) );
+			m_entryTimer += p_dt;
+		}
+		else if ( m_requestedLevel == -1 )
+		{
+			handleInput(input);
+		}
+		else
+		{
+			if (m_requestedTimer > fadeTime)
+			{
+				InGameState* inGame = dynamic_cast<InGameState*>( m_parent->getInGameState() );
+				inGame->setCurrentMap( m_requestedLevel );
+				m_parent->requestStateChange(m_parent->getInGameState());
+			}
+			else
+			{
+				m_io->fadeSceneToBlack( min(m_requestedTimer*fadeFac, 1.0f) );
+			}
+			m_requestedTimer += p_dt;
+		}
 	}
 
 }
@@ -159,6 +165,11 @@ void MenuState::draw(float p_dt)
 void MenuState::handleInput(InputInfo p_input)
 {
 	m_manager->handleInput( p_input );
+}
+
+void MenuState::requestMap( int p_mapIdx )
+{
+	m_requestedLevel = p_mapIdx;
 }
 
 StateManager* MenuState::getParent()

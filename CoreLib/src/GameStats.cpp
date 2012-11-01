@@ -68,11 +68,21 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 		if(p_deltaTime > 0)
 			timer->tick();
 
-		if(timer->getElapsedTime() >= MONSTER_BEGINRESPAWN)
-			monster->beginRespawn();
-		if(timer->getElapsedTime() >= MONSTER_RESPAWNTIME)
+		if (monster->isDead())
 		{
-			monster->respawn();
+			if(timer->getElapsedTime() >= MONSTER_BEGINRESPAWN)
+				monster->beginRespawn();
+			if(timer->getElapsedTime() >= MONSTER_RESPAWNTIME)
+			{
+				monster->respawn();
+				timer = NULL;
+				delete m_monstersRespawnTimers[index].second;
+				m_monstersRespawnTimers[index] = m_monstersRespawnTimers.back();
+				m_monstersRespawnTimers.pop_back();
+			}
+		}
+		else
+		{
 			timer = NULL;
 			delete m_monstersRespawnTimers[index].second;
 			m_monstersRespawnTimers[index] = m_monstersRespawnTimers.back();
@@ -82,7 +92,7 @@ void GameStats::update(float p_deltaTime, InputInfo p_inputInfo)
 
 	if(m_superMode)
 	{
-		if(m_superModeTimer->getElapsedTime() > 6)
+		if(m_superModeTimer->getElapsedTime() > SUPERTIME)
 		{
 			std::cout << "Speed mode inactivated!=(" << std::endl;
 			m_superMode = false;
@@ -148,9 +158,13 @@ bool GameStats::isSuperMode()
 {
 	return m_superMode;
 }
+float GameStats::superTimeElapsed()
+{
+	return (float)(m_superModeTimer->getElapsedTime());
+}
 float GameStats::superTimeRemaining()
 {
-	return (float)( 6 - m_superModeTimer->getElapsedTime() );
+	return (float)(SUPERTIME - m_superModeTimer->getElapsedTime() );
 }
 float GameStats::speededPercentElapsed()
 {

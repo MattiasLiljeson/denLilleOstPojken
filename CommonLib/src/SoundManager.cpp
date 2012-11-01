@@ -59,7 +59,13 @@ void SoundManager::update(float p_dt)
 	for (int i = 0; i < m_songs.size(); i++)
 	{
 		if (m_songs[i].info->deleted)
+		{
 			stopAndRemoveInstance(m_songs[i].info);
+			delete m_songs[i].song;
+			m_songs[i] = m_songs.back();
+			m_songs.pop_back();
+			i--;
+		}
 		else
 		{
 			m_songs[i].song->SetVolume(m_songs[i].info->volume);
@@ -90,6 +96,9 @@ void SoundManager::playSound(SoundInfo* p_info)
 			activeSound.info = p_info;
 			m_sounds.push_back(activeSound);	
 			s->Play();
+			// Offseting by 0.001 seconds so that it can later
+			// be checked if the current playing offset is equals 0
+			// if so the sound has been played
 			s->SetPlayingOffset(0.001f);
 			s->SetVolume(p_info->volume);
 			return;
@@ -134,18 +143,6 @@ void SoundManager::stopAndRemoveInstance(SoundInfo* p_instance)
 			delete m_sounds[i].sound;
 			m_sounds[i] = m_sounds.back();
 			m_sounds.pop_back();
-			i--;
-		}
-	}
-	
-	//Remove the playing song
-	for (int i = 0; i < m_songs.size(); i++)
-	{
-		if (m_songs[i].info == p_instance)
-		{
-			delete m_songs[i].song;
-			m_songs[i] = m_songs.back();
-			m_songs.pop_back();
 			i--;
 		}
 	}

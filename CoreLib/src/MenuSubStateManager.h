@@ -17,7 +17,6 @@ class MenuSubStateManager
 private:
 	MenuState* m_parent;
 	vector<MenuSubState*> m_menus;
-
 	int m_currMenu;
 
 public:
@@ -30,6 +29,6 @@ public:
 	void addMenu( MenuSubState* p_menu, Menu p_type );
 	void update( float p_dt );
 	void terminateGame();
-	void setCurrentMap( int p_mapIdx );
+	void requestMap( int p_mapIdx );
 };
 #endif // MENUSUBSTATEMANAGER_H

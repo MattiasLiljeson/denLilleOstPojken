@@ -16,7 +16,7 @@ void VictoryState::initGameOverItems()
 {
 	float fw = 1.0f/1920.0f;
 	float fh = 1.0f/1080.0f;
-	string text = "VICTORY";
+	string text = "YOU ARE VICTORIOUS!";
 
 	m_victoryText = m_factory->createMenuItem( 
 		fVector3(0.5f, 0.6f, 0.9f), fVector2(fh*600.0f, fh*64.0f),
@@ -25,6 +25,11 @@ void VictoryState::initGameOverItems()
 	text = "FINAL SCORE: " + toString(m_parent->getCommonResources()->totalScore);
 	m_scoreText = m_factory->createMenuItem( 
 		fVector3(0.5f, 0.4f, 0.9f), fVector2(fh*600.0f, fh*64.0f),
+		text, fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"");
+
+	text = "PRESS ENTER TO CONTINUE!";
+	m_continueText = m_factory->createMenuItem(
+		fVector3(0.5f, 0.2f, 0.9f), fVector2(fh*600.0f, fh*64.0f),
 		text, fVector2(0.0f, 0.0f), fVector2(fw*32, fh*32),"");
 }
 
@@ -52,7 +57,8 @@ bool VictoryState::onExit()
 		{
 			delete m_victoryText;
 			delete m_scoreText;
-			delete m_factory;		
+			delete m_factory;
+			delete m_continueText;
 			m_io->clearSpriteInfos();
 		}
 		//
@@ -67,9 +73,19 @@ void VictoryState::update(float p_dt)
 	{
 		InputInfo input = m_io->fetchInput();
 
-		if (input.keys[InputInfo::ESC] == InputInfo::KEYPRESSED || !
-			m_io->isRunning())
+		m_continueText->getTextArea()->update(p_dt,input);
+		m_continueText->getTextArea()->animateText(0.02f,2.0f,15.0f,2);
+
+		if (input.keys[InputInfo::ESC]   == InputInfo::KEYRELEASED	|| 
+			input.keys[InputInfo::ENTER] == InputInfo::KEYRELEASED	||
+			input.keys[InputInfo::SPACE] == InputInfo::KEYRELEASED	||
+			!m_io->isRunning())
 		{
+			// Update highscoretable
+			HighScoreFunctions::updateHighScore(m_parent->getCommonResources()->totalScore);
+			// Set totalscore to zero so that you start from zero the next time you play
+			m_parent->getCommonResources()->totalScore = 0;
+
 			m_parent->requestStateChange(m_parent->getMenuState());
 		}
 	}
