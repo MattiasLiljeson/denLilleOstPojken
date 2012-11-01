@@ -13,10 +13,10 @@ InfectedRat::InfectedRat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile*
 
 	m_monsterKilledSound = p_monsterKilledSound;
 
-	m_right = new Animation(fVector2(0, 0), 64, 64, 4, 0.1f, true);
-	m_left = new Animation(fVector2(0, 64), 64, 64, 4, 0.1f, true);
-	m_down = new Animation(fVector2(0, 128), 64, 64, 4, 0.1f, true);
-	m_up = new Animation(fVector2(0, 192), 64, 64, 4, 0.1f, true);
+	m_right = new Animation(fVector2(0, 0), 100, 100, 4, 0.1f, true);
+	m_left = new Animation(fVector2(0, 100), 100, 100, 4, 0.1f, true);
+	m_down = new Animation(fVector2(0, 200), 100, 100, 4, 0.1f, true);
+	m_up = new Animation(fVector2(0, 300), 100, 100, 4, 0.1f, true);
 
 	m_currentAnimation = m_down;
 	m_rushing = false;
@@ -26,6 +26,7 @@ InfectedRat::InfectedRat(GameStats* p_gameStats, SpriteInfo* p_spriteInfo, Tile*
 	m_size = fVector2(p_spriteInfo->transformInfo.scale[TransformInfo::X],
 						p_spriteInfo->transformInfo.scale[TransformInfo::Y]);
 
+	m_offset = fVector2(0, -25);
 }
 InfectedRat::~InfectedRat()
 {
@@ -106,6 +107,17 @@ void InfectedRat::update(float p_deltaTime, InputInfo p_inputInfo)
 			m_spriteInfo->transformInfo.scale[TransformInfo::X] = m_size.x * frac;
 			m_spriteInfo->transformInfo.scale[TransformInfo::Y] = m_size.y * frac;
 		}
+
+		if (m_currentAnimation == m_right)
+			m_offset = fVector2(15, 10);
+		else if (m_currentAnimation == m_left)
+			m_offset = fVector2(-15, 10);
+		else if (m_currentAnimation == m_up)
+			m_offset = fVector2(0, 15);
+		else if (m_currentAnimation == m_down)
+			m_offset = fVector2(0, -15);
+		m_spriteInfo->transformInfo.translation[TransformInfo::X] += m_offset.x;
+		m_spriteInfo->transformInfo.translation[TransformInfo::Y] += m_offset.y;
 	}
 }
 void InfectedRat::reset()
