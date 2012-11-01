@@ -21,7 +21,7 @@ struct HighScoreItem
 class HighScoreFunctions
 {
 public:
-	static const int MAX_NUM_HIGHSCORE_ITEMS = 6; 
+	static const int MAX_NUM_HIGHSCORE_ITEMS = 8; 
 	static vector<HighScoreItem> readHighScore()
 	{
 		vector<HighScoreItem> highscores;

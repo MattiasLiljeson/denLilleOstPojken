@@ -12,7 +12,7 @@ using namespace std;
 class ExitSubState : public MenuSubStateInterface
 {
 public:
-	enum { EX_YES, EX_NO, EX_NUM_ITEMS };
+	enum { EX_QUESTION, EX_PAD, EX_YES, EX_NO, EX_NUM_ITEMS };
 	
 	ExitSubState();
 	~ExitSubState();
