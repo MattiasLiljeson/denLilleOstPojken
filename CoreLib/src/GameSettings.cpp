@@ -14,16 +14,22 @@ GameSettings::GameSettings()
 int GameSettings::readSettingsFile( string p_filePath )
 {
 	ifstream file( p_filePath.c_str(), ios::in );
-
+	string temp;
 	if( file.good() )
 	{
+		file>>temp;
 		file>>m_scrResX;
+		file>>temp;
 		file>>m_scrResY;
 
+		file>>temp;
+		file>>m_windowed;
+
+		file>>temp;
 		file>>m_scrStartX;
+		file>>temp;
 		file>>m_scrStartY;
 
-		file>>m_windowed;
 		return GAME_OK;
 	}
 	return GAME_FAIL;
