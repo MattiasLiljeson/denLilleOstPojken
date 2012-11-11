@@ -19,9 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\CommonLib\CommonLib.vcxproj">
       <Project>{f5a4e8f2-2caf-4aea-b215-7df7ee7944ee}</Project>
     </ProjectReference>
@@ -34,6 +31,18 @@
     <ProjectReference Include="..\WinLib\WinLib.vcxproj">
       <Project>{30b1f21b-d8cb-44dd-b477-77b4b1f26054}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="WinEntry.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\cheesy.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F04A3440-C9BF-46E0-AB4C-571F82E6CD52}</ProjectGuid>
@@ -83,8 +92,8 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\WinLib\external\dx\include;$(SolutionDir)\LinLib\src;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(SolutionDir)\CommonLib\external\SFML\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\CommonLib\external\SFML\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(ProjectDir)\bin\</OutDir>
-    <TargetName>$(ProjectName)_$(Configuration)</TargetName>
+    <OutDir>$(SolutionDir)/WinEntry/bin/</OutDir>
+    <TargetName>The_Little_Cheese_Boy_$(Configuration)</TargetName>
     <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='TestingDebug|Win32'">
