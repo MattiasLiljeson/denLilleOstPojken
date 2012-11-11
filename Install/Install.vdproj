@@ -3888,13 +3888,24 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_5641C84D4AB74910B00B9DCC96A99DB7"
                     {
-                    "Name" = "8:The Little Cheese Boy"
+                    "Name" = "8:Majestic 6"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
                     "Property" = "8:_D9099E9225A54BF0895380A9AD37E4EE"
                         "Folders"
                         {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_6A82067B8B7B4971A275E74C1FFA159E"
+                            {
+                            "Name" = "8:The Little Cheese Boy"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_7A8D358A2D4745D0976AEE99A6827B7F"
+                                "Folders"
+                                {
+                                }
+                            }
                         }
                     }
                 }
@@ -3916,7 +3927,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:The Little Cheese Boy"
         "ProductCode" = "8:{5453DC16-71CE-40EE-9D82-307829B91161}"
-        "PackageCode" = "8:{2BF180EB-1CF0-4AAF-9B83-B2329F06E996}"
+        "PackageCode" = "8:{F0480179-89C3-488F-AC0B-0183E5A064EC}"
         "UpgradeCode" = "8:{1C28A5D2-2657-4D81-BC6D-7832CCA9C546}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4059,7 +4070,7 @@
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
             "Target" = "8:_B55F066F473B4059BB7CE8CC3A755B04"
-            "Folder" = "8:_5641C84D4AB74910B00B9DCC96A99DB7"
+            "Folder" = "8:_6A82067B8B7B4971A275E74C1FFA159E"
             "WorkingFolder" = "8:_BFA244D7218F489B80397997B354D09D"
             "Icon" = "8:_32A5AF3E720F46848E36FE9E0B68AAD4"
             "Feature" = "8:"

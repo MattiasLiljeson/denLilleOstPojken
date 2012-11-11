@@ -92,7 +92,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(SolutionDir)\CommonLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\WinLib\src;$(SolutionDir)\WinLib\external\dx\include;$(SolutionDir)\LinLib\src;$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\include;$(SolutionDir)\LinLib\external\glew-1.9.0\include;$(SolutionDir)\CommonLib\external\SFML\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)\LinLib\external\glfw-2.7.6.bin.WIN32\lib-msvc100;$(SolutionDir)\CommonLib\bin;$(SolutionDir)\CoreLib\bin;$(SolutionDir)\WinLib\bin;$(SolutionDir)\WinLib\external\dx\lib\x86;$(SolutionDir)\LinLib\bin;$(SolutionDir)\LinLib\external\glew-1.9.0\lib;$(SolutionDir)\CommonLib\external\SFML\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)/WinEntry/bin/</OutDir>
+    <OutDir>$(ProjectDir)\bin\</OutDir>
     <TargetName>The_Little_Cheese_Boy_$(Configuration)</TargetName>
     <SourcePath>$(SolutionDir)\WinLib\src;$(SolutionDir)\LinLib\src;$(SolutionDir)\CoreLib\src;$(SolutionDir)\CommonLib\src;$(SourcePath)</SourcePath>
   </PropertyGroup>
