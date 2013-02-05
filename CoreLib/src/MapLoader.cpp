@@ -22,13 +22,13 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	if (!m_factory)
 		return GAME_FAIL;
 
-	fstream file(p_MapPath.c_str());
+	ifstream file(p_MapPath.c_str(), ios::in);
 
 	int value;
 	m_theme = m_width = m_height = 0;
 	char comma;
 	vector<vector<TilePosition> > switches(8);
-	if(file)
+	if(file.good())
 	{
 		//Begining the parsing of the map
 		parseHead(file);
