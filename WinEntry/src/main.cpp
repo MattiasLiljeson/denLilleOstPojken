@@ -28,8 +28,6 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	settings.readSettingsFile("../settings.cfg");
 
 	IOContext* context = new DxContext( hInstance, settings.m_scrResX, settings.m_scrResY, settings.m_windowed );
-	
-	//context->setWindowSize(800, 600);
 
 	context->setWindowPosition( settings.m_scrStartX, settings.m_scrStartY );
 

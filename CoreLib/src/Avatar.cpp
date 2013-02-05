@@ -110,8 +110,8 @@ void Avatar::update(float p_deltaTime, InputInfo p_inputInfo)
 		m_spriteInfo->transformInfo.translation[TransformInfo::X] =
 			pX * w + w * 0.5f;
 		m_spriteInfo->transformInfo.translation[TransformInfo::Y] =
-			pY * h + h * 0.5f /*temp*/ + m_offset;
-	
+			pY * h + h * 0.5f + m_offset;
+		
 
 		bool super = false;
 		if (m_gameStats->isSuperMode())
@@ -301,4 +301,6 @@ float Avatar::getRadius()
 void Avatar::reset()
 {
 	m_navigationData->m_direction = Direction::NONE;
+	m_navigationData->m_nextTile = m_navigationData->m_currentTile;
+	m_navigationData->m_queuedTile = m_navigationData->m_queuedTile;
 }

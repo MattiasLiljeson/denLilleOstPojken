@@ -26,13 +26,6 @@ DxSpriteRenderer::DxSpriteRenderer(ID3D11Device* p_device, ID3D11DeviceContext*
 	m_spriteData.HalfSize			= Vector2( 50, 50 );
 	m_spriteData.WindowSize			= Vector2( 800, 600 );
 
-
-	HRESULT res = D3DX11CreateShaderResourceViewFromFile(m_device, 
-		"..\\Textures\\LogoDx.png", NULL, 0, &m_texture, 0);
-
-	if (res != S_OK)
-		return;
-
 	m_initialized = true;
 }
 DxSpriteRenderer::~DxSpriteRenderer()

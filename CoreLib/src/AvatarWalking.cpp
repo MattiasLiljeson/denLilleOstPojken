@@ -119,11 +119,13 @@ int AvatarWalking::update(float p_dt, InputInfo p_inputInfo)
 			}
 		}
 	}
-	m_navigationData->dt += p_dt * 6;
+	float deltaMovement = p_dt*6;
+	m_navigationData->dt += deltaMovement;
+
 	if (m_gameStats && m_gameStats->isSpeeded())
 		m_navigationData->dt += p_dt * 3;
 
-	if (m_navigationData->m_currentTile)
+	if (m_navigationData->m_currentTile && (m_navigationData->m_direction != Direction::NONE) )
 	{
 		while (m_navigationData->dt > 1)
 		{

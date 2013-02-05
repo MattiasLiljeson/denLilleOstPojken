@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:Install"
+"ProjectName" = "8:The Little Cheese Boy Setup"
 "LanguageId" = "3:1033"
 "CodePage" = "3:1252"
 "UILanguageId" = "3:1033"
@@ -69,12 +69,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_1C64811514714EDCBB642FB0F3AE240B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_1DC0BF87EF2E437789E939530217D5FC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -88,12 +82,6 @@
         "Entry"
         {
         "MsmKey" = "8:_1EF38FECEB4644FFADBBBBDD951475FE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_1FF4C122ABE14B05A88F0CCF437EB4C6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,6 +153,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_40E0184FFD9D4804B60FB7968FF8C5CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_423E817EFC384BB7B18668385596BEB0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -189,7 +183,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_49750D6F90A846F4B58745A85CD046C1"
+        "MsmKey" = "8:_47966CD41D7143739206955A5C224D1A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -208,6 +202,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4D0E65C57B0B46368EB990D1508263AE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4DC3C6D50BF24E5AA5B61849EB343454"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -267,25 +267,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5E1458A304FB42E8A61421C05482C3D2"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_5E83100B7C0649D08857F895D66DD3C5"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_5ED0B4EAE8164E7283473EC617618695"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_608A64E9DC1A444ABE784660D311C6CA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -310,12 +292,6 @@
         "Entry"
         {
         "MsmKey" = "8:_65520E86CDA748948A4EE602258FDC7F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_66BB4DAE92BB42DDBD475A08F6C90FA7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -364,12 +340,6 @@
         "Entry"
         {
         "MsmKey" = "8:_7627D469BC084D31888E4A12B13E249A"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_76891098998641909650061F79FB283C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -483,19 +453,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_99D4E20FA6A24E3589201469A0C9AB07"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_9B381F4354B942E3ADD9661221336915"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_A132901EFB2049CEA79AE07E554A9D2B"
+        "MsmKey" = "8:_A34EA9EC4FAB418E88B2686DC7338FEC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -526,12 +490,6 @@
         "Entry"
         {
         "MsmKey" = "8:_A637D023D2554DD993570362582CBD2E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_A77304B04C144EB486470DCB1D40F866"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -609,6 +567,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B5AB3288906D487C8ACD898585A767D5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B6DD192E8A25443FB6B84DC4E03589CC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -622,6 +586,18 @@
         "Entry"
         {
         "MsmKey" = "8:_B96ABCC570E6406BB655224383C5D56E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BAEE29BB12524197849A813E2983A798"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BB73A354E4F1473A8DEE05AF50FA822B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -657,7 +633,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_C4F1F671E72E430BAE09DEE72050FA8B"
+        "MsmKey" = "8:_C8A5EEDFE3D54ED69599F9A5CB0084B4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -669,19 +645,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_CAAC4E58404F466D820506795639339C"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_CAEEAC2B00C54C41A7BF503C779E231D"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CE754695A7974B269363DCA2CE97025F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -771,18 +735,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_E95048B176654A309240727C2064FE47"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_EAA8A8BBF1AC42E8946A58C1BDA877B9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_EB30DA29D24F46D895735ABC6B3B50F4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -813,12 +765,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_F1ABF0AF45E04F44B22FDF1E88227DBE"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_F32C33197E2C40398A23ABF1EEA7AA0A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -838,6 +784,12 @@
         "Entry"
         {
         "MsmKey" = "8:_F940FC98404947EDAEB04BE18FD6BC6D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_FA3FE53B79BE494D92E51BD10F6ECC08"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -873,7 +825,7 @@
         "DisplayName" = "8:Debug"
         "IsDebugOnly" = "11:TRUE"
         "IsReleaseOnly" = "11:FALSE"
-        "OutputFilename" = "8:Debug\\TLCB_installer.msi"
+        "OutputFilename" = "8:Debug\\TheLittleCheeseBoy.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -883,13 +835,34 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
         "Release"
         {
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\Install.msi"
+        "OutputFilename" = "8:Release\\The Little Cheese Boy Setup.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -899,6 +872,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -1100,26 +1094,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C64811514714EDCBB642FB0F3AE240B"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\drug.png"
-            "TargetName" = "8:drug.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1DC0BF87EF2E437789E939530217D5FC"
             {
             "SourcePath" = "8:..\\WinEntry\\Maps\\maps.txt"
@@ -1164,26 +1138,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\playerShadow.png"
             "TargetName" = "8:playerShadow.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1FF4C122ABE14B05A88F0CCF437EB4C6"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\pill.png"
-            "TargetName" = "8:pill.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -1500,26 +1454,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_49750D6F90A846F4B58745A85CD046C1"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\monster.png"
-            "TargetName" = "8:monster.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4AB5F4D1398F43A8BCE024E96E2D3C07"
             {
             "SourcePath" = "8:..\\WinEntry\\Shaders\\testGL.frag"
@@ -1566,6 +1500,26 @@
             "TargetName" = "8:2.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4DC3C6D50BF24E5AA5B61849EB343454"
+            {
+            "SourcePath" = "8:..\\WinEntry\\Textures\\installation_logo.bmp"
+            "TargetName" = "8:installation_logo.bmp"
+            "Tag" = "8:"
+            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1760,72 +1714,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E1458A304FB42E8A61421C05482C3D2"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\green_button.png"
-            "TargetName" = "8:green_button.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5E83100B7C0649D08857F895D66DD3C5"
             {
             "SourcePath" = "8:..\\WinEntry\\Maps\\Abandoned_Brewery.txt"
             "TargetName" = "8:Abandoned_Brewery.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5ED0B4EAE8164E7283473EC617618695"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\LogoDx.png"
-            "TargetName" = "8:LogoDx.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_608A64E9DC1A444ABE784660D311C6CA"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\Red_button.png"
-            "TargetName" = "8:Red_button.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1906,26 +1800,6 @@
             "TargetName" = "8:Step_pipes.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66BB4DAE92BB42DDBD475A08F6C90FA7"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\jason.png"
-            "TargetName" = "8:jason.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2084,26 +1958,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\buff_ball.png"
             "TargetName" = "8:buff_ball.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_76891098998641909650061F79FB283C"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\floor.png"
-            "TargetName" = "8:floor.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -2480,52 +2334,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99D4E20FA6A24E3589201469A0C9AB07"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\wall.png"
-            "TargetName" = "8:wall.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B381F4354B942E3ADD9661221336915"
             {
             "SourcePath" = "8:..\\WinEntry\\settings.cfg"
             "TargetName" = "8:settings.cfg"
             "Tag" = "8:"
             "Folder" = "8:_5CBF81F9F70447F39C80EC3D0034761A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A132901EFB2049CEA79AE07E554A9D2B"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\hero.png"
-            "TargetName" = "8:hero.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2624,26 +2438,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\grass.png"
             "TargetName" = "8:grass.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A77304B04C144EB486470DCB1D40F866"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\SeaMonster.png"
-            "TargetName" = "8:SeaMonster.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -2883,7 +2677,7 @@
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B55F066F473B4059BB7CE8CC3A755B04"
             {
             "SourcePath" = "8:..\\WinEntry\\bin\\The_Little_Cheese_Boy_Debug.exe"
-            "TargetName" = "8:The_Little_Cheese_Boy_Debug.exe"
+            "TargetName" = "8:The_Little_Cheese_Boy.exe"
             "Tag" = "8:"
             "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
             "Condition" = "8:"
@@ -2946,6 +2740,26 @@
             "TargetName" = "8:Cheese_cake_cave.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BB73A354E4F1473A8DEE05AF50FA822B"
+            {
+            "SourcePath" = "8:..\\WinEntry\\Textures\\logo.png"
+            "TargetName" = "8:logo.png"
+            "Tag" = "8:"
+            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3060,12 +2874,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C4F1F671E72E430BAE09DEE72050FA8B"
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8A5EEDFE3D54ED69599F9A5CB0084B4"
             {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\dragon.png"
-            "TargetName" = "8:dragon.png"
+            "SourcePath" = "8:..\\WinEntry\\bin\\msvcp100.dll"
+            "TargetName" = "8:msvcp100.dll"
             "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3100,52 +2914,12 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAAC4E58404F466D820506795639339C"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\button.png"
-            "TargetName" = "8:button.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CAEEAC2B00C54C41A7BF503C779E231D"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\Music\\POL-stable-boy-short.wav"
             "TargetName" = "8:POL-stable-boy-short.wav"
             "Tag" = "8:"
             "Folder" = "8:_17D732617D8C47E6919C19BF52367A13"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE754695A7974B269363DCA2CE97025F"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\LogoGL.png"
-            "TargetName" = "8:LogoGL.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3440,46 +3214,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E95048B176654A309240727C2064FE47"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\French.PNG"
-            "TargetName" = "8:French.PNG"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EAA8A8BBF1AC42E8946A58C1BDA877B9"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\wine.png"
-            "TargetName" = "8:wine.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_EB30DA29D24F46D895735ABC6B3B50F4"
             {
             "SourcePath" = "8:..\\WinEntry\\bin\\libsndfile-1.dll"
@@ -3566,26 +3300,6 @@
             "TargetName" = "8:blast.wav"
             "Tag" = "8:"
             "Folder" = "8:_AC84BCC659CA4A9C9E9029974B611E8A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F1ABF0AF45E04F44B22FDF1E88227DBE"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\logo.png"
-            "TargetName" = "8:logo.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3927,7 +3641,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:The Little Cheese Boy"
         "ProductCode" = "8:{5453DC16-71CE-40EE-9D82-307829B91161}"
-        "PackageCode" = "8:{F0480179-89C3-488F-AC0B-0183E5A064EC}"
+        "PackageCode" = "8:{B1C995B0-3BD4-45D4-91A6-B002566CA1B1}"
         "UpgradeCode" = "8:{1C28A5D2-2657-4D81-BC6D-7832CCA9C546}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -4187,7 +3901,7 @@
                 {
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_09EFDA78154C42CF8C9003CBB9C3BD09"
                     {
-                    "Sequence" = "3:100"
+                    "Sequence" = "3:200"
                     "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4235,7 +3949,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_67396CF169F34B3CB9DFBE602BE8EA74"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4257,7 +3971,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_CBAC03255F9441168AC0ECF293A17967"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4273,6 +3987,52 @@
                             "ContextData" = "8:Bitmap"
                             "Attributes" = "3:4"
                             "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_D16C0BB3C22345FAA18309693DCC2B31"
+                    {
+                    "Sequence" = "3:500"
+                    "DisplayName" = "8:Read Me"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdAdminReadmeDlg.wid"
+                        "Properties"
+                        {
+                            "BannerBitmap"
+                            {
+                            "Name" = "8:BannerBitmap"
+                            "DisplayName" = "8:#1001"
+                            "Description" = "8:#1101"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:4"
+                            "Setting" = "3:1"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "ReadmeText"
+                            {
+                            "Name" = "8:ReadmeText"
+                            "DisplayName" = "8:#1010"
+                            "Description" = "8:#1110"
+                            "Type" = "3:6"
+                            "ContextData" = "8:"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
                             "UsePlugInResources" = "11:TRUE"
                             }
                         }
@@ -4317,9 +4077,45 @@
             "Attributes" = "3:1"
                 "Dialogs"
                 {
-                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_402A373E9CE2472390E7F4569A998BF8"
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_366048773BC54AE28CE665B972FBC166"
                     {
                     "Sequence" = "3:100"
+                    "DisplayName" = "8:Splash"
+                    "UseDynamicProperties" = "11:TRUE"
+                    "IsDependency" = "11:FALSE"
+                    "SourcePath" = "8:<VsdDialogDir>\\VsdSplashDlg.wid"
+                        "Properties"
+                        {
+                            "SplashBitmap"
+                            {
+                            "Name" = "8:SplashBitmap"
+                            "DisplayName" = "8:#1013"
+                            "Description" = "8:#1113"
+                            "Type" = "3:8"
+                            "ContextData" = "8:Bitmap"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:2"
+                            "Value" = "8:_4DC3C6D50BF24E5AA5B61849EB343454"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                            "Sunken"
+                            {
+                            "Name" = "8:Sunken"
+                            "DisplayName" = "8:#1007"
+                            "Description" = "8:#1107"
+                            "Type" = "3:5"
+                            "ContextData" = "8:4;True=4;False=0"
+                            "Attributes" = "3:0"
+                            "Setting" = "3:0"
+                            "Value" = "3:4"
+                            "DefaultValue" = "3:4"
+                            "UsePlugInResources" = "11:TRUE"
+                            }
+                        }
+                    }
+                    "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_402A373E9CE2472390E7F4569A998BF8"
+                    {
+                    "Sequence" = "3:200"
                     "DisplayName" = "8:Welcome"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4345,8 +4141,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
+                            "Setting" = "3:2"
+                            "Value" = "8:WARNING: This awesome computer program is protected by no copyright law and no international treaties. Unauthorized duplication or distribution of this program, or any portion of it, may not result in severe civil or criminal penalties, and there for its safe to use this program."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -4358,8 +4154,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1203"
+                            "Setting" = "3:2"
+                            "Value" = "8:Welcome to the installer of [ProductName] on your magnificent computer! NOTE: That you will have to run this game as an administrator or else it will crash when you load a map of your choice. Also if you currently have a lower resolution than 1920x1080 (aka Full HD) you might experience difficulties running the game. Solution to this problem is to lower the resolution in the ‘settings.cfg’ file (you can open it with notepad)."
                             "DefaultValue" = "8:#1203"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -4367,7 +4163,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_60C8C1A3D7C94C8D9AD28A33582EA950"
                     {
-                    "Sequence" = "3:200"
+                    "Sequence" = "3:300"
                     "DisplayName" = "8:Installation Folder"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4402,7 +4198,7 @@
                     }
                     "{688940B3-5CA9-4162-8DEE-2993FA9D8CBC}:_BE5E94B91A2C472E92DB4B69F4D6D48C"
                     {
-                    "Sequence" = "3:300"
+                    "Sequence" = "3:400"
                     "DisplayName" = "8:Confirm Installation"
                     "UseDynamicProperties" = "11:TRUE"
                     "IsDependency" = "11:FALSE"
@@ -4471,6 +4267,90 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_40E0184FFD9D4804B60FB7968FF8C5CC"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_ATL_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_47966CD41D7143739206955A5C224D1A"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_MFCLOC_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_A34EA9EC4FAB418E88B2686DC7338FEC"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_CRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_B5AB3288906D487C8ACD898585A767D5"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_MFC_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_BAEE29BB12524197849A813E2983A798"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_DebugCRT_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_FA3FE53B79BE494D92E51BD10F6ECC08"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:FALSE"
+            "SourcePath" = "8:C:\\Program Files (x86)\\Common Files\\Merge Modules\\Microsoft_VC100_DebugOpenMP_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
         }
         "ProjectOutput"
         {
