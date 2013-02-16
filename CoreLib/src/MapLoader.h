@@ -28,7 +28,7 @@ private:
 						m_width, 
 						m_height;
 private:
-	void parseHead(fstream &p_file);
+	void parseHead(ifstream &p_file);
 public:
 	MapLoader();
 	virtual ~MapLoader();

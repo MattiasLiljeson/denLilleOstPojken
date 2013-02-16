@@ -170,7 +170,7 @@ GUI* MapLoader::getGUI()
 {
 	return m_gui;
 }
-void MapLoader::parseHead(fstream &p_file)
+void MapLoader::parseHead(ifstream &p_file)
 {
 	string temp;
 	char dummy = 't';
