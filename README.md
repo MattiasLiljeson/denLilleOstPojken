@@ -1,6 +1,6 @@
 # The Little Cheeseboy aka "Den lille Ostpojken"
 ### About
-This as a game made in a project course at Blekinge Institute of Technology. The game is a pacman clone with a twist. More information can be found [here](http://www.indiedb.com/games/the-little-cheese-boy).
+This is a game made in a project course at Blekinge Institute of Technology. The game is a pacman clone with a twist. More information can be found [here](http://www.indiedb.com/games/the-little-cheese-boy).
 
 ###License
 Copyright (C) 2013 Majestic6
