@@ -1,0 +1,106 @@
+# The file and folder structure. 
+Download, compile if needed, and add these files to the folders according to the listing below.
+
+## Includes
+### Folder structure
+* CommonLib/external/SFML
+* CommonLib/external/SFML/include
+* CommonLib/external/SFML/include/SFML
+* CommonLib/external/SFML/include/SFML/Audio
+* CommonLib/external/SFML/include/SFML/Graphics
+* CommonLib/external/SFML/include/SFML/Network
+* CommonLib/external/SFML/include/SFML/Network/Unix
+* CommonLib/external/SFML/include/SFML/Network/Win32
+* CommonLib/external/SFML/include/SFML/System
+* CommonLib/external/SFML/include/SFML/System/Unix
+* CommonLib/external/SFML/include/SFML/System/Win32
+* CommonLib/external/SFML/include/SFML/Window
+
+### Files
+* CommonLib/external/SFML/include/SFML/Audio/AudioResource.hpp
+* CommonLib/external/SFML/include/SFML/Audio/Listener.hpp
+* CommonLib/external/SFML/include/SFML/Audio/Music.hpp
+* CommonLib/external/SFML/include/SFML/Audio/Sound.hppE
+* CommonLib/external/SFML/include/SFML/Audio/SoundBuffer.hpp
+* CommonLib/external/SFML/include/SFML/Audio/SoundBufferRecorder.hpp
+* CommonLib/external/SFML/include/SFML/Audio/SoundRecorder.hpp
+* CommonLib/external/SFML/include/SFML/Audio/SoundStream.hpp
+* CommonLib/external/SFML/include/SFML/Audio.hpp
+* CommonLib/external/SFML/include/SFML/Config.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Color.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Drawable.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Font.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Glyph.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Image.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Matrix3.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Matrix3.inl
+* CommonLib/external/SFML/include/SFML/Graphics/PostFX.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Rect.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Rect.inl
+* CommonLib/external/SFML/include/SFML/Graphics/RenderTarget.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/RenderWindow.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Shape.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/Sprite.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/String.hpp
+* CommonLib/external/SFML/include/SFML/Graphics/View.hpp
+* CommonLib/external/SFML/include/SFML/Graphics.hpp
+* CommonLib/external/SFML/include/SFML/Network/Ftp.hpp
+* CommonLib/external/SFML/include/SFML/Network/Http.hpp
+* CommonLib/external/SFML/include/SFML/Network/IPAddress.hpp
+* CommonLib/external/SFML/include/SFML/Network/Packet.hpp
+* CommonLib/external/SFML/include/SFML/Network/Selector.hpp
+* CommonLib/external/SFML/include/SFML/Network/Selector.inl
+* CommonLib/external/SFML/include/SFML/Network/SelectorBase.hpp
+* CommonLib/external/SFML/include/SFML/Network/SocketHelper.hpp
+* CommonLib/external/SFML/include/SFML/Network/Sockets.hpp
+* CommonLib/external/SFML/include/SFML/Network/SocketTCP.hpp
+* CommonLib/external/SFML/include/SFML/Network/SocketUDP.hpp
+* CommonLib/external/SFML/include/SFML/Network/Unix/SocketHelper.hpp
+* CommonLib/external/SFML/include/SFML/Network/Win32/SocketHelper.hpp
+* CommonLib/external/SFML/include/SFML/Network.hpp
+* CommonLib/external/SFML/include/SFML/System/Clock.hpp
+* CommonLib/external/SFML/include/SFML/System/Lock.hpp
+* CommonLib/external/SFML/include/SFML/System/Mutex.hpp
+* CommonLib/external/SFML/include/SFML/System/NonCopyable.hpp
+* CommonLib/external/SFML/include/SFML/System/Randomizer.hpp
+* CommonLib/external/SFML/include/SFML/System/Resource.hpp
+* CommonLib/external/SFML/include/SFML/System/Resource.inl
+* CommonLib/external/SFML/include/SFML/System/ResourcePtr.inl
+* CommonLib/external/SFML/include/SFML/System/Sleep.hpp
+* CommonLib/external/SFML/include/SFML/System/Thread.hpp
+* CommonLib/external/SFML/include/SFML/System/Unicode.hpp
+* CommonLib/external/SFML/include/SFML/System/Unicode.inl
+* CommonLib/external/SFML/include/SFML/System/Unix/Mutex.hpp
+* CommonLib/external/SFML/include/SFML/System/Unix/Thread.hpp
+* CommonLib/external/SFML/include/SFML/System/Vector2.hpp
+* CommonLib/external/SFML/include/SFML/System/Vector2.inl
+* CommonLib/external/SFML/include/SFML/System/Vector3.hpp
+* CommonLib/external/SFML/include/SFML/System/Vector3.inl
+* CommonLib/external/SFML/include/SFML/System/Win32/Mutex.hpp
+* CommonLib/external/SFML/include/SFML/System/Win32/Thread.hpp
+* CommonLib/external/SFML/include/SFML/System.hpp
+* CommonLib/external/SFML/include/SFML/Window/Context.hpp
+* CommonLib/external/SFML/include/SFML/Window/Event.hpp
+* CommonLib/external/SFML/include/SFML/Window/Input.hpp
+* CommonLib/external/SFML/include/SFML/Window/OpenGL.hpp
+* CommonLib/external/SFML/include/SFML/Window/VideoMode.hpp
+* CommonLib/external/SFML/include/SFML/Window/Window.hpp
+* CommonLib/external/SFML/include/SFML/Window/WindowHandle.hpp
+* CommonLib/external/SFML/include/SFML/Window/WindowListener.hpp
+* CommonLib/external/SFML/include/SFML/Window/WindowSettings.hpp
+* CommonLib/external/SFML/include/SFML/Window/WindowStyle.hpp
+* CommonLib/external/SFML/include/SFML/Window.hpp
+
+##Libraries
+### Folder structure
+* CommonLib/external/SFML/lib
+
+### Files
+* CommonLib/external/SFML/lib/sfml-audio-d.dll
+* CommonLib/external/SFML/lib/sfml-audio-s-d.lib
+* CommonLib/external/SFML/lib/sfml-audio-s.lib
+* CommonLib/external/SFML/lib/sfml-audio.dll
+* CommonLib/external/SFML/lib/sfml-system-d.dll
+* CommonLib/external/SFML/lib/sfml-system-s-d.lib
+* CommonLib/external/SFML/lib/sfml-system-s.lib
+* CommonLib/external/SFML/lib/sfml-system.dll
