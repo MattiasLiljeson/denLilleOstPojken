@@ -64,3 +64,15 @@ assets/
 !CommonLib/external/SFML/lib/sfml-audio-s-d.lib
 !CommonLib/external/SFML/lib/sfml-audio-s.lib
 *.onetoc2
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+Thumbs.db
