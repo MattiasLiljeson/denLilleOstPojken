@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
                BuildableName = "&#171;PROJECTNAME&#187;.app"
-               BlueprintName = "&#171;PROJECTNAME&#187;"
+               BlueprintName = "GameBinary"
                ReferencedContainer = "container:Mac OS X.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -34,7 +34,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
             BuildableName = "&#171;PROJECTNAME&#187;.app"
-            BlueprintName = "&#171;PROJECTNAME&#187;"
+            BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -43,7 +43,8 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
-      useCustomWorkingDirectory = "NO"
+      useCustomWorkingDirectory = "YES"
+      customWorkingDirectory = "/Users/jesper/projects/denLilleOstPojken/WinEntry/bin"
       buildConfiguration = "Debug"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
@@ -53,7 +54,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
             BuildableName = "&#171;PROJECTNAME&#187;.app"
-            BlueprintName = "&#171;PROJECTNAME&#187;"
+            BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -71,7 +72,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
             BuildableName = "&#171;PROJECTNAME&#187;.app"
-            BlueprintName = "&#171;PROJECTNAME&#187;"
+            BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

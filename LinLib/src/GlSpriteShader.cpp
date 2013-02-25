@@ -1,4 +1,5 @@
 #include "GlSpriteShader.h"
+#include <iostream>
 
 GlSpriteShader::GlSpriteShader()
 {
@@ -36,8 +37,14 @@ GlSpriteShader::GlSpriteShader()
 	delete[] vsCode;
 	delete[] fsCode;
 
-	if (!vsCompiled || !fsCompiled)
-		return;
+	if (!vsCompiled || !fsCompiled) {
+        char error[255];
+        glGetShaderInfoLog(vertexShader, 255, NULL, error);
+        std::cout << "Vertex shader error: " << std::endl << error << std::endl;
+        glGetShaderInfoLog(fragmentShader, 255, NULL, error);
+        std::cout << "Fragment shader error: " << std::endl << error << std::endl;
+        return;
+    }
 
 	//Create the combined shader program
 	m_id = glCreateProgram();

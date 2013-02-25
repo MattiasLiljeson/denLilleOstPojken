@@ -83,7 +83,7 @@
 		24122BB816DBE7A100DCEC91 /* GlSpriteShader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24122BB216DBE7A100DCEC91 /* GlSpriteShader.cpp */; };
 		24122BB916DBE7A100DCEC91 /* GlTextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24122BB416DBE7A100DCEC91 /* GlTextureManager.cpp */; };
 		24122BBC16DBF63300DCEC91 /* libglfw.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 24122BBB16DBF63300DCEC91 /* libglfw.dylib */; };
-		A01FB7870F07D328000AAC7B /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A01FB7860F07D328000AAC7B /* main.cpp */; };
+		24122BBE16DBF7BF00DCEC91 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24122BBD16DBF7BF00DCEC91 /* main.cpp */; };
 		A01FB7F70F07D381000AAC7B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7F60F07D381000AAC7B /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
@@ -270,9 +270,9 @@
 		24122BB416DBE7A100DCEC91 /* GlTextureManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GlTextureManager.cpp; path = ../LinLib/src/GlTextureManager.cpp; sourceTree = "<group>"; };
 		24122BB516DBE7A100DCEC91 /* GlTextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlTextureManager.h; path = ../LinLib/src/GlTextureManager.h; sourceTree = "<group>"; };
 		24122BBB16DBF63300DCEC91 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.dylib; sourceTree = "<group>"; };
-		A01FB77A0F07D2C5000AAC7B /* «PROJECTNAME».app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "«PROJECTNAME».app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		24122BBD16DBF7BF00DCEC91 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../WinEntry/src/main.cpp; sourceTree = "<group>"; };
+		A01FB77A0F07D2C5000AAC7B /* DenLillaOstpojken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenLillaOstpojken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01FB77D0F07D2C5000AAC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A01FB7860F07D328000AAC7B /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		A01FB7F60F07D381000AAC7B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
@@ -479,6 +479,7 @@
 			children = (
 				24122BBB16DBF63300DCEC91 /* libglfw.dylib */,
 				A01FB7830F07D30C000AAC7B /* Sources */,
+				24122BBD16DBF7BF00DCEC91 /* main.cpp */,
 				A01FB7820F07D309000AAC7B /* Resources */,
 				A01FB7810F07D304000AAC7B /* Frameworks */,
 				A01FB77B0F07D2C5000AAC7B /* Products */,
@@ -488,7 +489,7 @@
 		A01FB77B0F07D2C5000AAC7B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A01FB77A0F07D2C5000AAC7B /* «PROJECTNAME».app */,
+				A01FB77A0F07D2C5000AAC7B /* DenLillaOstpojken.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -522,7 +523,6 @@
 				24122B9D16DBE72000DCEC91 /* MacLib */,
 				24122AD916DBE4C500DCEC91 /* CoreLib */,
 				24122ABD16DBE4A900DCEC91 /* CommonLib */,
-				A01FB7860F07D328000AAC7B /* main.cpp */,
 			);
 			name = Sources;
 			sourceTree = "<group>";
@@ -530,9 +530,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A01FB7790F07D2C5000AAC7B /* «PROJECTNAME» */ = {
+		A01FB7790F07D2C5000AAC7B /* GameBinary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A01FB7800F07D2C6000AAC7B /* Build configuration list for PBXNativeTarget "«PROJECTNAME»" */;
+			buildConfigurationList = A01FB7800F07D2C6000AAC7B /* Build configuration list for PBXNativeTarget "GameBinary" */;
 			buildPhases = (
 				A01FB7760F07D2C5000AAC7B /* Resources */,
 				A01FB7770F07D2C5000AAC7B /* Sources */,
@@ -544,9 +544,9 @@
 			);
 			dependencies = (
 			);
-			name = "«PROJECTNAME»";
+			name = GameBinary;
 			productName = "«PROJECTNAME»";
-			productReference = A01FB77A0F07D2C5000AAC7B /* «PROJECTNAME».app */;
+			productReference = A01FB77A0F07D2C5000AAC7B /* DenLillaOstpojken.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -566,7 +566,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A01FB7790F07D2C5000AAC7B /* «PROJECTNAME» */,
+				A01FB7790F07D2C5000AAC7B /* GameBinary */,
 			);
 		};
 /* End PBXProject section */
@@ -586,7 +586,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A01FB7870F07D328000AAC7B /* main.cpp in Sources */,
 				24122AD316DBE4B500DCEC91 /* CommonUtility.cpp in Sources */,
 				24122AD416DBE4B500DCEC91 /* IOContext.cpp in Sources */,
 				24122AD516DBE4B500DCEC91 /* LodePNG.cpp in Sources */,
@@ -656,6 +655,7 @@
 				24122BB716DBE7A100DCEC91 /* GlSpriteRenderer.cpp in Sources */,
 				24122BB816DBE7A100DCEC91 /* GlSpriteShader.cpp in Sources */,
 				24122BB916DBE7A100DCEC91 /* GlTextureManager.cpp in Sources */,
+				24122BBE16DBF7BF00DCEC91 /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,8 +680,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -696,13 +696,16 @@
 					"../../glew-1.9.0/include",
 					"../../glfw-2.7.6/include",
 					../CommonLib/src/,
+					../LinLib/src/,
+					../CoreLib/src/,
+					../MacLib/src/,
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "../../glfw-2.7.6/lib/cocoa";
 				OTHER_LDFLAGS = "-lglfw";
 				PREBINDING = NO;
-				PRODUCT_NAME = "«PROJECTNAME»";
+				PRODUCT_NAME = DenLillaOstpojken;
 			};
 			name = Debug;
 		};
@@ -710,8 +713,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -725,13 +728,16 @@
 					"../../glew-1.9.0/include",
 					"../../glfw-2.7.6/include",
 					../CommonLib/src/,
+					../LinLib/src/,
+					../CoreLib/src/,
+					../MacLib/src/,
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "../../glfw-2.7.6/lib/cocoa";
 				OTHER_LDFLAGS = "-lglfw";
 				PREBINDING = NO;
-				PRODUCT_NAME = "«PROJECTNAME»";
+				PRODUCT_NAME = DenLillaOstpojken;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -748,7 +754,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A01FB7800F07D2C6000AAC7B /* Build configuration list for PBXNativeTarget "«PROJECTNAME»" */ = {
+		A01FB7800F07D2C6000AAC7B /* Build configuration list for PBXNativeTarget "GameBinary" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A01FB77E0F07D2C6000AAC7B /* Debug */,
