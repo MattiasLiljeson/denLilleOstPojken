@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
-               BuildableName = "&#171;PROJECTNAME&#187;.app"
+               BuildableName = "DenLillaOstpojken.app"
                BlueprintName = "GameBinary"
                ReferencedContainer = "container:Mac OS X.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
-            BuildableName = "&#171;PROJECTNAME&#187;.app"
+            BuildableName = "DenLillaOstpojken.app"
             BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
-            BuildableName = "&#171;PROJECTNAME&#187;.app"
+            BuildableName = "DenLillaOstpojken.app"
             BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>
@@ -71,7 +71,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "A01FB7790F07D2C5000AAC7B"
-            BuildableName = "&#171;PROJECTNAME&#187;.app"
+            BuildableName = "DenLillaOstpojken.app"
             BlueprintName = "GameBinary"
             ReferencedContainer = "container:Mac OS X.xcodeproj">
          </BuildableReference>

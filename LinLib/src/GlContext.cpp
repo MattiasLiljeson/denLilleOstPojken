@@ -35,6 +35,7 @@ int GlContext::init()
 		return GAME_FAIL;
 	if (initGLFWWindow() == GAME_FAIL)
 		return GAME_FAIL;
+    glewExperimental=1;
 	if (initGlew() == GAME_FAIL)
 		return GAME_FAIL; 
 

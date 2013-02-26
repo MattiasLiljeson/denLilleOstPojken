@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 42;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -84,6 +84,7 @@
 		24122BB916DBE7A100DCEC91 /* GlTextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24122BB416DBE7A100DCEC91 /* GlTextureManager.cpp */; };
 		24122BBC16DBF63300DCEC91 /* libglfw.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = 24122BBB16DBF63300DCEC91 /* libglfw.dylib */; };
 		24122BBE16DBF7BF00DCEC91 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 24122BBD16DBF7BF00DCEC91 /* main.cpp */; };
+		24858AC416DC2A4E00513866 /* glew.c in Sources */ = {isa = PBXBuildFile; fileRef = 24858AC116DC2A4E00513866 /* glew.c */; };
 		A01FB7F70F07D381000AAC7B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7F60F07D381000AAC7B /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
@@ -271,6 +272,7 @@
 		24122BB516DBE7A100DCEC91 /* GlTextureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GlTextureManager.h; path = ../LinLib/src/GlTextureManager.h; sourceTree = "<group>"; };
 		24122BBB16DBF63300DCEC91 /* libglfw.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libglfw.dylib; sourceTree = "<group>"; };
 		24122BBD16DBF7BF00DCEC91 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../WinEntry/src/main.cpp; sourceTree = "<group>"; };
+		24858AC116DC2A4E00513866 /* glew.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = glew.c; path = "../../glew-1.9.0/src/glew.c"; sourceTree = "<group>"; };
 		A01FB77A0F07D2C5000AAC7B /* DenLillaOstpojken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenLillaOstpojken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01FB77D0F07D2C5000AAC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01FB7F60F07D381000AAC7B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
@@ -474,6 +476,14 @@
 			name = LinLib;
 			sourceTree = "<group>";
 		};
+		24858AC016DC2A4400513866 /* glew */ = {
+			isa = PBXGroup;
+			children = (
+				24858AC116DC2A4E00513866 /* glew.c */,
+			);
+			name = glew;
+			sourceTree = "<group>";
+		};
 		A01FB76B0F07D2BC000AAC7B = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +529,7 @@
 		A01FB7830F07D30C000AAC7B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				24858AC016DC2A4400513866 /* glew */,
 				24122BAD16DBE78D00DCEC91 /* LinLib */,
 				24122B9D16DBE72000DCEC91 /* MacLib */,
 				24122AD916DBE4C500DCEC91 /* CoreLib */,
@@ -554,8 +565,11 @@
 /* Begin PBXProject section */
 		A01FB76D0F07D2BC000AAC7B /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+			};
 			buildConfigurationList = A01FB7700F07D2BC000AAC7B /* Build configuration list for PBXProject "Mac OS X" */;
-			compatibilityVersion = "Xcode 2.4";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -656,6 +670,7 @@
 				24122BB816DBE7A100DCEC91 /* GlSpriteShader.cpp in Sources */,
 				24122BB916DBE7A100DCEC91 /* GlTextureManager.cpp in Sources */,
 				24122BBE16DBF7BF00DCEC91 /* main.cpp in Sources */,
+				24858AC416DC2A4E00513866 /* glew.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,8 +695,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -689,9 +704,9 @@
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../SFML-1.6-dev-macosx-ub32+64/lib64\"";
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				HEADER_SEARCH_PATHS = (
 					"../../glew-1.9.0/include",
 					"../../glfw-2.7.6/include",
@@ -704,7 +719,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "../../glfw-2.7.6/lib/cocoa";
 				OTHER_LDFLAGS = "-lglfw";
-				PREBINDING = NO;
 				PRODUCT_NAME = DenLillaOstpojken;
 			};
 			name = Debug;
@@ -713,8 +727,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1)";
-				ARCHS_STANDARD_32_BIT_PRE_XCODE_3_1 = "ppc i386";
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -722,8 +736,8 @@
 					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../SFML-1.6-dev-macosx-ub32+64/lib64\"";
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				HEADER_SEARCH_PATHS = (
 					"../../glew-1.9.0/include",
 					"../../glfw-2.7.6/include",
@@ -736,7 +750,6 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = "../../glfw-2.7.6/lib/cocoa";
 				OTHER_LDFLAGS = "-lglfw";
-				PREBINDING = NO;
 				PRODUCT_NAME = DenLillaOstpojken;
 				ZERO_LINK = NO;
 			};

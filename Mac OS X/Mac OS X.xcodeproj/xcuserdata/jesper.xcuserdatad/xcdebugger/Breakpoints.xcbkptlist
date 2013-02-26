@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../LinLib/src/GlContext.cpp"
-         timestampString = "383515156.192886"
+         timestampString = "383522003.206445"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "33"
-         endingLineNumber = "33"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
          landmarkName = "GlContext::init()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -34,25 +34,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../LinLib/src/GlContext.cpp"
-         timestampString = "383516484.68097"
+         timestampString = "383596592.283053"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "83"
-         endingLineNumber = "83"
+         startingLineNumber = "87"
+         endingLineNumber = "87"
          landmarkName = "GlContext::initGLFWWindow()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../LinLib/src/GlContext.cpp"
-         timestampString = "383515483.955489"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "44"
-         endingLineNumber = "44"
-         landmarkName = "GlContext::init()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
