@@ -224,6 +224,7 @@
 		24DD6AFE16DE7A0D00FE039D /* bombitem.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 24DD68AE16DD40E000FE039D /* bombitem.png */; };
 		24DD6AFF16DE7ACA00FE039D /* SplashScreen.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 24DD68E116DD40E000FE039D /* SplashScreen.png */; };
 		24DD6B0016DE7AD600FE039D /* logo.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 24DD68CE16DD40E000FE039D /* logo.png */; };
+		24DD6B0616DE838B00FE039D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = 24DD6B0516DE838B00FE039D /* icon.iconset */; };
 		A01FB7F70F07D381000AAC7B /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A01FB7F60F07D381000AAC7B /* OpenGL.framework */; };
 /* End PBXBuildFile section */
 
@@ -802,6 +803,7 @@
 		24DD6AF616DD4C0300FE039D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		24DD6AF916DD4E5800FE039D /* ExecutableDirectoryPath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ExecutableDirectoryPath.h; path = ../CommonLib/src/ExecutableDirectoryPath.h; sourceTree = "<group>"; };
 		24DD6AFA16DD4F3200FE039D /* ExecutableDirectoryPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ExecutableDirectoryPath.cpp; path = ../MacLib/src/ExecutableDirectoryPath.cpp; sourceTree = "<group>"; };
+		24DD6B0516DE838B00FE039D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; path = icon.iconset; sourceTree = "<group>"; };
 		A01FB77A0F07D2C5000AAC7B /* DenLillaOstpojken.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DenLillaOstpojken.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A01FB77D0F07D2C5000AAC7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A01FB7F60F07D381000AAC7B /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
@@ -1252,6 +1254,7 @@
 		A01FB76B0F07D2BC000AAC7B = {
 			isa = PBXGroup;
 			children = (
+				24DD6B0516DE838B00FE039D /* icon.iconset */,
 				24DD684216DD40E000FE039D /* Highscore */,
 				24DD684416DD40E000FE039D /* Maps */,
 				24DD686C16DD40E000FE039D /* settings.cfg */,
@@ -1370,6 +1373,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24DD6B0616DE838B00FE039D /* icon.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
