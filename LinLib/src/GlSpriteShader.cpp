@@ -1,5 +1,6 @@
 #include "GlSpriteShader.h"
 #include <iostream>
+#include "ExecutableDirectoryPath.h"
 
 GlSpriteShader::GlSpriteShader()
 {
@@ -78,9 +79,11 @@ char* GlSpriteShader::readShader(char* p_path)
     long length;
  
 	//Open file for binary reading
-    file = fopen(p_path, "rb");
-    if (!file)
+    file = fopen(addExecutableDirectoryPath(p_path).c_str(), "rb");
+    if (!file) {
+        printf("Could not open shader: %s\n", addExecutableDirectoryPath(p_path).c_str());
         return NULL;
+    }
 
 	//Determine the size of the file
     fseek(file, 0, SEEK_END);

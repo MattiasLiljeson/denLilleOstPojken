@@ -1,4 +1,6 @@
 #include "GameSettings.h"
+#include "ExecutableDirectoryPath.h"
+#include <iostream>
 
 GameSettings::GameSettings()
 {
@@ -13,7 +15,7 @@ GameSettings::GameSettings()
 
 int GameSettings::readSettingsFile( string p_filePath )
 {
-	ifstream file( p_filePath.c_str(), ios::in );
+	ifstream file( addExecutableDirectoryPath(p_filePath.c_str()).c_str(), ios::in );
 	string temp;
 	if( file.good() )
 	{
@@ -31,6 +33,8 @@ int GameSettings::readSettingsFile( string p_filePath )
 		file>>m_scrStartY;
 
 		return GAME_OK;
-	}
+	} else {
+        std::cout << "Could not open settings file for reading";
+    }
 	return GAME_FAIL;
 }

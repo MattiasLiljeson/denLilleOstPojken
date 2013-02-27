@@ -1,9 +1,10 @@
 #include "SoundInfo.h"
+#include "ExecutableDirectoryPath.h"
 
 SoundData::SoundData(string p_path)
 {
 	path = p_path;
-	buffer.LoadFromFile(p_path);
+	buffer.LoadFromFile(addExecutableDirectoryPath(p_path.c_str()));
 }
 SoundData::SoundData()
 {

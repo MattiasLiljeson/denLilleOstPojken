@@ -1,4 +1,5 @@
 #include "SoundManager.h"
+#include "ExecutableDirectoryPath.h"
 
 SoundManager::SoundManager()
 {
@@ -110,7 +111,7 @@ void SoundManager::playSound(SoundInfo* p_info)
 		if (m_songData[i]->path == p_info->id)
 		{
 			sf::Music* s = new sf::Music();
-			s->OpenFromFile(p_info->id);
+			s->OpenFromFile(addExecutableDirectoryPath(p_info->id.c_str()));
 			ActiveSong activeSong;
 			activeSong.song = s;
 			activeSong.info = p_info;

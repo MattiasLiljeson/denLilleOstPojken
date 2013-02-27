@@ -7,19 +7,6 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../WinEntry/src/main.cpp"
-         timestampString = "383515107.018344"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
-         landmarkName = "main(int argc, char** argv)"
-         landmarkType = "7">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../LinLib/src/GlContext.cpp"
          timestampString = "383522003.206445"
          startingColumnNumber = "9223372036854775807"
@@ -47,11 +34,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../LinLib/src/GlSpriteShader.cpp"
-         timestampString = "383516291.082318"
+         timestampString = "383677098.683747"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "12"
-         endingLineNumber = "12"
+         startingLineNumber = "14"
+         endingLineNumber = "14"
          landmarkName = "GlSpriteShader::GlSpriteShader()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,12 +47,51 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../LinLib/src/GlSpriteShader.cpp"
-         timestampString = "383516291.082318"
+         timestampString = "383677098.683747"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "39"
-         endingLineNumber = "39"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
          landmarkName = "GlSpriteShader::GlSpriteShader()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../LinLib/src/GlSpriteRenderer.cpp"
+         timestampString = "383599131.831388"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "13"
+         endingLineNumber = "13"
+         landmarkName = "GlSpriteRenderer::GlSpriteRenderer(GlContext* p_context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../LinLib/src/GlSpriteRenderer.cpp"
+         timestampString = "383599684.11536"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "16"
+         endingLineNumber = "16"
+         landmarkName = "GlSpriteRenderer::GlSpriteRenderer(GlContext* p_context)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../LinLib/src/GlContext.cpp"
+         timestampString = "383598549.755195"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "37"
+         endingLineNumber = "37"
+         landmarkName = "GlContext::init()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
