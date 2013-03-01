@@ -5,6 +5,7 @@
 #include <fstream>
 #include <vector>
 
+#include "ExecutableDirectoryPath.h"
 //#include "StateManager.h"
 
 using namespace std;
@@ -26,7 +27,7 @@ public:
 	{
 		vector<HighScoreItem> highscores;
 		ifstream file;
-		file.open("../Highscore/score.txt", ios::in);
+		file.open(addExecutableDirectoryPath("../Highscore/score.txt").c_str(), ios::in);
 		if (file.is_open())
 		{
 			while (!file.eof())
@@ -36,7 +37,9 @@ public:
 				highscores.push_back(data);
 			}
 			file.close();
-		}
+		} else {
+            printf("Could not open highscore for reading\n");
+        }
 		sort(highscores.begin(), highscores.end());
 		return highscores;
 	}
@@ -65,7 +68,7 @@ public:
 	static void writeHighScore( vector<HighScoreItem> p_highscores )
 	{
 		ofstream file;
-		file.open("../Highscore/score.txt", ios::out);
+		file.open(addExecutableDirectoryPath("../Highscore/score.txt").c_str(), ios::out);
 		if (file.is_open())
 		{
 			for( unsigned int i = 0; i < p_highscores.size() && i < MAX_NUM_HIGHSCORE_ITEMS; i++)
@@ -74,7 +77,9 @@ public:
 				file << endl;
 			}
 			file.close();
-		}
+		} else {
+            printf("Could not open highscore for writing\n");
+        }
 	}
 };
 

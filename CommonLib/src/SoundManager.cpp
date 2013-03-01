@@ -1,4 +1,5 @@
 #include "SoundManager.h"
+#include "ExecutableDirectoryPath.h"
 
 SoundManager::SoundManager()
 {
@@ -48,7 +49,7 @@ void SoundManager::update(float p_dt)
 	for ( unsigned int i = 0; i < m_sounds.size(); i++ )
 	{
 		m_sounds[i].sound->SetVolume(m_sounds[i].info->volume);
-		if (m_sounds[i].sound->GetPlayingOffset() == 0)
+		if (m_sounds[i].sound->GetStatus() == sf::Sound::Stopped)
 		{
 			delete m_sounds[i].sound;
 			m_sounds[i] = m_sounds.back();
@@ -96,10 +97,6 @@ void SoundManager::playSound(SoundInfo* p_info)
 			activeSound.info = p_info;
 			m_sounds.push_back(activeSound);	
 			s->Play();
-			// Offseting by 0.001 seconds so that it can later
-			// be checked if the current playing offset is equals 0
-			// if so the sound has been played
-			s->SetPlayingOffset(0.001f);
 			s->SetVolume(p_info->volume);
 			return;
 		}
@@ -110,7 +107,7 @@ void SoundManager::playSound(SoundInfo* p_info)
 		if (m_songData[i]->path == p_info->id)
 		{
 			sf::Music* s = new sf::Music();
-			s->OpenFromFile(p_info->id);
+			s->OpenFromFile(addExecutableDirectoryPath(p_info->id.c_str()));
 			ActiveSong activeSong;
 			activeSong.song = s;
 			activeSong.info = p_info;

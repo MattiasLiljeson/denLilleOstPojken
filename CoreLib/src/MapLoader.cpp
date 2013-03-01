@@ -1,4 +1,6 @@
 #include "MapLoader.h"
+#include "ExecutableDirectoryPath.h"
+#include <iostream>
 
 MapLoader::MapLoader()
 {
@@ -22,7 +24,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	if (!m_factory)
 		return GAME_FAIL;
 
-	ifstream file(p_MapPath.c_str(), ios::in);
+	ifstream file(addExecutableDirectoryPath(p_MapPath.c_str()).c_str(), ios::in);
 
 	int value;
 	m_theme = m_width = m_height = 0;
@@ -142,7 +144,9 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 		m_gui = m_factory->CreateGUI(m_stats);
 
 		return GAME_OK;
-	}
+	} else {
+        std::cout << "Could not open map file for reading: " << addExecutableDirectoryPath(p_MapPath.c_str());
+    }
 	
 	return GAME_FAIL;
 }

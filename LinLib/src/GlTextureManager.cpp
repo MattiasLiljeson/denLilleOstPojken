@@ -1,4 +1,6 @@
 #include "GlTextureManager.h"
+#include "ExecutableDirectoryPath.h"
+#include <stdio.h>
 
 GlTextureManager::GlTextureManager()
 {
@@ -17,12 +19,20 @@ int GlTextureManager::loadTexture(string p_filePath,
 {
 	int textureIndex = -1;
 
+    std::string fullPath = addExecutableDirectoryPath(p_filePath.c_str());
+
 	GLuint texture = 0;
 
 	vector<unsigned char> rawImage;
 	lodepng::State state;
 
-	lodepng::load_file(rawImage, p_filePath);
+    FILE* file;
+    if (!(file = fopen(fullPath.c_str(), "r"))) {
+        printf("Could not load texture: %s\n", fullPath.c_str());
+    }
+    fclose(file);
+
+	lodepng::load_file(rawImage, fullPath);
 	std::vector<unsigned char> image;
 
 	unsigned int width = 0, height = 0, error = 0;

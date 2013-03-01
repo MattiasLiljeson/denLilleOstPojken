@@ -88,13 +88,17 @@ int WINAPI WinMain(HINSTANCE hInstance,
 	#endif
 #else
 
-// OpenGl Linux
+#if __APPLE__ && __MACH__
+
+// OpenGl Mac OS X
 #include <GlContext.h>
-#include <LinTimer.h>
+#include <MacTimer.h>
+#include <iostream>
+using namespace std;
 
 int main(int argc, char** argv)
 {
-	cout<<"Running Linux Build...";
+	cout<<"Running Mac OS X Build...";
 	GameSettings settings;
 	settings.readSettingsFile("../settings.cfg");
 	IOContext* context = new GlContext( settings.m_scrResX, settings.m_scrResY, settings.m_windowed );
@@ -120,4 +124,39 @@ int main(int argc, char** argv)
 	return 0;
 }
 
+#else
+
+// OpenGl Linux
+#include <GlContext.h>
+#include <LinTimer.h>
+
+int main(int argc, char** argv)
+{
+	cout<<"Running Linux Build...";
+	GameSettings settings;
+	settings.readSettingsFile("../settings.cfg");
+	IOContext* context = new GlContext( settings.m_scrResX, settings.m_scrResY, settings.m_windowed );
+    
+	context->setWindowPosition( settings.m_scrStartX, settings.m_scrStartY );
+    
+	if (!context->isInitialized())
+	{
+		delete context;
+		return 1;
+	}
+    
+	Timer* timer = new LinTimer();
+    
+	Game* game = new Game(timer, context);
+    
+	game->run();
+    
+    
+	delete timer;
+	delete context;
+	delete game;
+	return 0;
+}
+
+#endif
 #endif

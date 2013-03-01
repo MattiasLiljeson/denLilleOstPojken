@@ -38,6 +38,11 @@ int GlSpriteRenderer::initializeGeometry()
 
 	//Create a buffer and add the vertices to it.
 	//Buffer must be bound when the vertices are added.
+    
+    GLuint vbo;
+    glGenVertexArrays(1, &vbo);
+    glBindVertexArray(vbo);
+    
 	glGenBuffers(1,&m_vertexBuffer);
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexBuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(SpriteVertex)*6, 
