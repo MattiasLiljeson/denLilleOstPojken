@@ -1,4 +1,6 @@
 #include "GlSpriteShader.h"
+#include <iostream>
+#include "ExecutableDirectoryPath.h"
 
 GlSpriteShader::GlSpriteShader()
 {
@@ -36,8 +38,14 @@ GlSpriteShader::GlSpriteShader()
 	delete[] vsCode;
 	delete[] fsCode;
 
-	if (!vsCompiled || !fsCompiled)
-		return;
+	if (!vsCompiled || !fsCompiled) {
+        char error[255];
+        glGetShaderInfoLog(vertexShader, 255, NULL, error);
+        std::cout << "Vertex shader error: " << std::endl << error << std::endl;
+        glGetShaderInfoLog(fragmentShader, 255, NULL, error);
+        std::cout << "Fragment shader error: " << std::endl << error << std::endl;
+        return;
+    }
 
 	//Create the combined shader program
 	m_id = glCreateProgram();
@@ -71,9 +79,11 @@ char* GlSpriteShader::readShader(char* p_path)
     long length;
  
 	//Open file for binary reading
-    file = fopen(p_path, "rb");
-    if (!file)
+    file = fopen(addExecutableDirectoryPath(p_path).c_str(), "rb");
+    if (!file) {
+        printf("Could not open shader: %s\n", addExecutableDirectoryPath(p_path).c_str());
         return NULL;
+    }
 
 	//Determine the size of the file
     fseek(file, 0, SEEK_END);

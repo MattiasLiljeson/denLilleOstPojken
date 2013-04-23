@@ -35,6 +35,7 @@ int GlContext::init()
 		return GAME_FAIL;
 	if (initGLFWWindow() == GAME_FAIL)
 		return GAME_FAIL;
+    glewExperimental=1;
 	if (initGlew() == GAME_FAIL)
 		return GAME_FAIL; 
 
@@ -70,7 +71,7 @@ int GlContext::initGLFWWindow()
 	//Set Window Properties
 	glfwOpenWindowHint(GLFW_FSAA_SAMPLES, 4); //Use 4x Antiliasing
 	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MAJOR, 3); //Major GL version
-	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 0); //Minor GL version
+	glfwOpenWindowHint(GLFW_OPENGL_VERSION_MINOR, 2); //Minor GL version
 
 	//Additional parameters for the window creation.
 	//In this case it is specified that opengl with its core profile

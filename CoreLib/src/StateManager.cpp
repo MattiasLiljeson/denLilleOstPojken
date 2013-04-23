@@ -1,4 +1,5 @@
 #include "StateManager.h"
+#include "ExecutableDirectoryPath.h"
 
 StateManager::StateManager(IODevice* p_io, Timer* p_timer)
 {
@@ -123,23 +124,27 @@ CommonResources* StateManager::getCommonResources()
 int StateManager::readUnlockedMaps()
 {
 	ifstream file;
-	file.open("../Maps/unlocked.txt", ios::in);
+	file.open(addExecutableDirectoryPath("../Maps/unlocked.txt").c_str(), ios::in);
 	if (file.is_open())
 	{
 		int unl;
 		file >> unl;
 		file.close();
 		return unl;
-	}
+	} else {
+        printf("Could not open unlocked maps for reading\n");
+    }
 	return 0;
 }
 void StateManager::writeUnlockedMaps(int p_value)
 {
 	ofstream file;
-	file.open("../Maps/unlocked.txt", ios::out);
+	file.open(addExecutableDirectoryPath("../Maps/unlocked.txt").c_str(), ios::out);
 	if (file.is_open())
 	{
 		file << p_value;
 		file.close();
-	}
+	} else {
+        printf("Could not open unlocked maps for writing\n");
+    }
 }

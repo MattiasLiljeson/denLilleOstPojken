@@ -1,4 +1,4 @@
-#version 140
+#version 150
 in vec3 Pos;
 in vec2 TexCoord;
 uniform float bwFraction;
@@ -10,7 +10,7 @@ uniform sampler2D gSampler;
 
 void main()
 {
-     vec4 diffuseTexel = texture2D( gSampler, TexCoord );
+     vec4 diffuseTexel = texture( gSampler, TexCoord );
 
      FragColor = diffuseTexel;
 
