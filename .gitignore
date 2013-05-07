@@ -35,6 +35,9 @@ docs/
 doc/
 *.lastbuildstate
 
+/CommonLib/external/*
+
+
 #own
 [Oo]bj*/
 [Ii]pch/
@@ -61,8 +64,6 @@ assets/
 !external/SFML/lib/*
 !*/Guitar.exe
 !*/Guitar.exe.Config
-!CommonLib/external/SFML/lib/sfml-audio-s-d.lib
-!CommonLib/external/SFML/lib/sfml-audio-s.lib
 *.onetoc2
 
 
@@ -76,3 +77,12 @@ assets/
 Icon?
 ehthumbs.db
 Thumbs.db
+SFML
+glew
+glew-1.9.0
+glfw
+glfw-2.7.6.bin.WIN32
+dx
+/WinEntry/bin/OpenAL32.dll
+/WinEntry/bin/glew32.dll
+/WinEntry/bin/libsndfile-1.dll
