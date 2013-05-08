@@ -33,10 +33,11 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 	if(file.good())
 	{
 		//Begining the parsing of the map
-		parseHead(file);
+		int mapType = parseHead(file);
 
-		//Inverting the map layout
 		vector<int> map = vector<int>(m_width*m_height);
+		
+		//Inverting the map layout
 		for(int i = m_height - 1; i >= 0; i--)
 		{
 			for (int j = 0; j < m_width; j++)
@@ -50,7 +51,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 		}
 
 		m_tileMap = m_factory->CreateTileMap(m_theme, m_width, m_height, map);
-		
+
 		vector<vector<Switch*> > newSwitches(8);
 		for(unsigned int i = 0; i < newSwitches.size(); i++)
 			newSwitches[i] = vector<Switch*>();
@@ -58,7 +59,7 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 		vector<vector<WallSwitch*> > newWallSwitches(8);
 		for(unsigned int i = 0; i < newWallSwitches.size(); i++)
 			newWallSwitches[i] = vector<WallSwitch*>();
-		
+
 		//Create the gameobjects from the information recently parsed from the map
 		/**/for (int i = 0; i < m_height; i++)
 		{
@@ -68,18 +69,18 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				if (map[index] > TileTypes::WALLS && map[index] <= TileTypes::PATHS)
 				{
 					m_gameObjects.push_back(m_factory->CreatePill(
-											m_tileMap->getTile(TilePosition(j, i)), m_stats));
+						m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
 				else if (map[index] > TileTypes::ENEMIESPAWN && map[index] <= TileTypes::BUFFS)
 				{
 					m_gameObjects.push_back(m_factory->CreateSpeedPill(
-											m_tileMap->getTile(TilePosition(j, i)), m_stats));
+						m_tileMap->getTile(TilePosition(j, i)), m_stats));
 				}
 				else if (map[index] > TileTypes::PATHS && map[index] <= TileTypes::SWITCHES)
 				{
 					Switch* newSwitch = m_factory->CreateSwitch(
-											m_tileMap->getTile(TilePosition(j, i)),
-											m_stats, vector<WallSwitch*>(), map[index]);
+						m_tileMap->getTile(TilePosition(j, i)),
+						m_stats, vector<WallSwitch*>(), map[index]);
 					int switchIndex = map[index] - (TileTypes::PATHS+1);
 					newSwitches[switchIndex].push_back(newSwitch);
 					m_gameObjects.push_back(newSwitch);
@@ -102,23 +103,23 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 				else if (map[index] == TileTypes::CBSPAWN)
 				{
 					m_avatar = m_factory->CreateAvatar(m_tileMap,
-												m_tileMap->getTile(TilePosition(j, i)), m_stats);
+						m_tileMap->getTile(TilePosition(j, i)), m_stats);
 					m_gameObjects.push_back(m_avatar);
 				}
 				else if (map[index] > TileTypes::BUFFS && map[index] <= TileTypes::ITEMS)
 				{
 					m_gameObjects.push_back(m_factory->CreateBombPill(
-											m_tileMap->getTile(TilePosition(j,i)), m_stats));
+						m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
 				else if (map[index] > TileTypes::ITEMS && map[index] <= TileTypes::EATPOWERUP)
 				{
 					m_gameObjects.push_back(m_factory->CreateSuperPill(
-											m_tileMap->getTile(TilePosition(j,i)), m_stats));
+						m_tileMap->getTile(TilePosition(j,i)), m_stats));
 				}
 				else if (map[index] > TileTypes::EATPOWERUP && map[index] <= TileTypes::TRAPS)
 				{
 					Trap* trap = m_factory->CreateTrap(
-											m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
+						m_tileMap->getTile(TilePosition(j, i)), m_tileMap);
 					m_traps.push_back(trap);
 					m_gameObjects.push_back(trap);
 				}
@@ -145,9 +146,9 @@ int MapLoader::parseMap(string p_MapPath, IODevice* p_io, GameStats* p_stats,
 
 		return GAME_OK;
 	} else {
-        std::cout << "Could not open map file for reading: " << addExecutableDirectoryPath(p_MapPath.c_str());
-    }
-	
+		std::cout << "Could not open map file for reading: " << addExecutableDirectoryPath(p_MapPath.c_str());
+	}
+
 	return GAME_FAIL;
 }
 Tilemap* MapLoader::getTileMap()
@@ -174,33 +175,55 @@ GUI* MapLoader::getGUI()
 {
 	return m_gui;
 }
-void MapLoader::parseHead(ifstream &p_file)
+int MapLoader::parseHead(ifstream &p_file)
 {
 	string temp;
 	char dummy = 't';
-	
-	p_file >> temp;
-	while (dummy != '=')
-		p_file >> dummy;
-	p_file >> m_width;
-	dummy = 't';
-	
-	while (dummy != '=')
-		p_file >> dummy;
-	p_file >> m_height;
 
-	p_file >> temp;
-	p_file >> temp;
-	p_file >> temp;
-
-	p_file >> m_theme;
-
-	for(int i = m_height - 1; i >= 0; i--)
-	{
+	p_file >> dummy;
+	if(dummy == 'W'){
+		p_file >> temp; //Width=
+		p_file >> m_width;
+		p_file >> temp; //Height=
+		p_file >> m_height;
+		p_file >> temp; //TileMapTheme=
+		p_file >> temp; //type of theme
+		if(temp == "Tilemap_garden"){
+			m_theme = 1;
+		}
+		else{
+			m_theme = 2;
+		}
 		p_file >> temp;
-	}
 
-	p_file >> temp;
-	p_file >> temp;
-	p_file >> temp;
+		return 2; //Meaning the newer Map type 
+	}
+	else{
+		p_file >> temp; //[header]
+		while (dummy != '=') //width=
+			p_file >> dummy;
+		p_file >> m_width; 
+		dummy = 't';
+
+		while (dummy != '=') //height=
+			p_file >> dummy;
+		p_file >> m_height;
+
+		p_file >> temp; //[layer]
+		p_file >> temp; //type=background
+		p_file >> temp; //data=
+
+		p_file >> m_theme; 
+
+		for(int i = m_height - 1; i >= 0; i--)
+		{
+			p_file >> temp;
+		}
+
+		p_file >> temp; //[layer]
+		p_file >> temp; //type=THE_ONE_LAYER
+		p_file >> temp;	//data=
+
+		return 1; //Meaning the older Map type
+	}
 }
