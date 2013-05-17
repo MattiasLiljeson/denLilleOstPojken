@@ -39,12 +39,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_13B97E658E704B26BFC03F2F89F30AE1"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_140B25BE83CB47A6B44CE9EFF347B8A2"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -93,12 +87,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_2D3C61159E4942C18708BCC7FEB4133B"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_2E7E2B94F58B4801956963CAA8C7C63C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -118,12 +106,6 @@
         "Entry"
         {
         "MsmKey" = "8:_32A5AF3E720F46848E36FE9E0B68AAD4"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_341352EAF3C04255A41EF1F2805D69BD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -172,12 +154,6 @@
         "Entry"
         {
         "MsmKey" = "8:_4436673949B1434D9FE0CE20C3DA5DB9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_446CB1D85D92462AAB7C813FD34BD80F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -274,12 +250,6 @@
         "Entry"
         {
         "MsmKey" = "8:_62F7987BA7734F5C82760E25B33D409F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_64364BB8FFAE46D4B1E2B14DB13734E0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -489,12 +459,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A637D023D2554DD993570362582CBD2E"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_A9BD5AF989B440F19199EEAF614ACD3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -550,12 +514,6 @@
         "Entry"
         {
         "MsmKey" = "8:_AFA88B9A195A4888A3127E039B288ED9"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_B4615868946C4FDC9A1E47A92683DE3B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -628,12 +586,6 @@
         "Entry"
         {
         "MsmKey" = "8:_C2C265233CE14EAA9768B0FE74F7CF09"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C8A5EEDFE3D54ED69599F9A5CB0084B4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -994,26 +946,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_13B97E658E704B26BFC03F2F89F30AE1"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\pacman-1974_sheet.png"
-            "TargetName" = "8:pacman-1974_sheet.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_140B25BE83CB47A6B44CE9EFF347B8A2"
             {
             "SourcePath" = "8:..\\WinEntry\\Highscore\\score.txt"
@@ -1174,26 +1106,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2D3C61159E4942C18708BCC7FEB4133B"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\SuperPill.png"
-            "TargetName" = "8:SuperPill.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2E7E2B94F58B4801956963CAA8C7C63C"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\blast_2.wav"
@@ -1260,26 +1172,6 @@
             "TargetName" = "8:cheesy.ico"
             "Tag" = "8:"
             "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_341352EAF3C04255A41EF1F2805D69BD"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\pacman-1974.png"
-            "TargetName" = "8:pacman-1974.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1418,26 +1310,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Blockade_Tileset.png"
             "TargetName" = "8:Blockade_Tileset.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_446CB1D85D92462AAB7C813FD34BD80F"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\Cheese.png"
-            "TargetName" = "8:Cheese.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -1738,26 +1610,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\player_facings_readme.txt"
             "TargetName" = "8:player_facings_readme.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_64364BB8FFAE46D4B1E2B14DB13734E0"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\dynamite.png"
-            "TargetName" = "8:dynamite.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -2434,26 +2286,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A637D023D2554DD993570362582CBD2E"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\grass.png"
-            "TargetName" = "8:grass.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A9BD5AF989B440F19199EEAF614ACD3C"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\Music\\POL-rescue-short.wav"
@@ -2638,26 +2470,6 @@
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\bombitem_anim.png"
             "TargetName" = "8:bombitem_anim.png"
-            "Tag" = "8:"
-            "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B4615868946C4FDC9A1E47A92683DE3B"
-            {
-            "SourcePath" = "8:..\\WinEntry\\Textures\\TileMap_spreadsheet.png"
-            "TargetName" = "8:TileMap_spreadsheet.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
             "Condition" = "8:"
@@ -2860,26 +2672,6 @@
             "TargetName" = "8:Item_box_caustic.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C8A5EEDFE3D54ED69599F9A5CB0084B4"
-            {
-            "SourcePath" = "8:..\\WinEntry\\bin\\msvcp100.dll"
-            "TargetName" = "8:msvcp100.dll"
-            "Tag" = "8:"
-            "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
