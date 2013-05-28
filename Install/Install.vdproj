@@ -21,6 +21,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_08FD35008069407A8447DB1DCE0F82F7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_0A9D99E7902640CA9260524A9496BCCB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_0BA7D7B21415449DAE81847A6F9B6FEE"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -45,6 +57,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_17E0E55A79ED400FBF06115831D76D29"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_18560F9DD15D47CB8E2CFCAA2A01C633"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19516C86957044E2969D9252E4782D30"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1AFD435DB7984882B775AED8259C87E7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -58,6 +88,12 @@
         "Entry"
         {
         "MsmKey" = "8:_1C2F502B4BA0468F9A2CA771E0D7FCC2"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_1CDEE83197C142389E772E7A1C580848"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -81,7 +117,55 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_20B8D3DF8D7D4FB3BFACB056012C3B8E"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2120E941CD554F7FBF00999C1AC05F1C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_213BEC98B6ED0FE5FC90F9088A5BDA1A"
+        "OwnerKey" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_21D842D524C34A888FD8DCC7FFA250E6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2324DAC59BFA40E1890ABDD8E2C6824A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_25A2124831164185B8C297C23F844FC7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_26C05FCDB1A7439B8E6905C6B1620C91"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_280BB56BB92D4B74A99F9BE99F717250"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2DA4E1F6202A4B0F99A30C2B88339B50"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -105,13 +189,37 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_321908FB54B7482BB86B72416083F9A3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_32A5AF3E720F46848E36FE9E0B68AAD4"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_384FD20E7F3B4F94848668AE005892DE"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_3945BF65B2514FE6A0292C97C2A57A92"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_398B48A4152D4E24B21D880E63F163BA"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -165,6 +273,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_4866DEE350DC49489C32E0F815D8A756"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_49D5A181D93A497D917336008C537CC7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4A8921FE23594AFD8CF55457B2E14641"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_4AB5F4D1398F43A8BCE024E96E2D3C07"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -172,6 +298,12 @@
         "Entry"
         {
         "MsmKey" = "8:_4C98CE1F0B214BBE9774D0BEF0E81352"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_4CC0FCCCB93241C3BC09961D100FFE1C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -195,6 +327,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_51A3FCB23A3D455AAAEDA868F4D55142"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5226ED2C3EB64382B3C229434846BCB9"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_52CA191A650F43438F0FF9986C55860B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -202,6 +346,12 @@
         "Entry"
         {
         "MsmKey" = "8:_53EDAF481C424538BECD9853BB1692B1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_54A80DAC603047BD82E0FAE6F5E4C214"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -225,6 +375,18 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_56E597C36D5A40ABA007D5636C8F7DBA"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_59FC3C62E88742389201DC19389F969D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_59FD5AE4A6F7440997304BC8FF8F356D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -232,6 +394,12 @@
         "Entry"
         {
         "MsmKey" = "8:_5ACF8EA9E313437B82DC8EA3C3221DB8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5ADB2DB5F60644F29DE38F89CF0E5667"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -267,7 +435,31 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_6623684008464A93B645BF86596C2E0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_66C665095FD645199AD672908427AA59"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6C9A0E48310343039868C4A4D5F01141"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_6CDF1ABBEA494351BA217DB298AAAE91"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_6D7269AF467A48598CE67A58B1A84A33"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -285,6 +477,24 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_70A9D02CCB4B43A5A1A685D179E6466A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_70FA969B1F0D465AA5462D5EA230354B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_70FF7ED988C4469DBB56D6CD3C7F1619"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_71F005CD8E6644F9A1532995C20A6C5F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -292,6 +502,12 @@
         "Entry"
         {
         "MsmKey" = "8:_749359D321B84979ABF86281F6E62E90"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_74F717CC752547CF9627AE83789DA118"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -327,6 +543,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7A32E68748C9458CB9AEB330D5FE8F95"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7AEAB8049FD944F2BB39F3DBC76A532F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -351,7 +573,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_7D5D3C5508D941B4B1746803A1B92903"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_7F1BB25B1F484C5C9FB6A1FCBE97C005"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7FD9682B290C4921AF9D75A511C70D9D"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -369,7 +603,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_828FE48F99CB4179B8EE5D06EE80FBA0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8514BE94D381413E85407DF990D696D7"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8530D27A7D294AACB3595F283B28874B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -381,13 +627,31 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_856A57F229C64D659A8154874E9B6928"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8712C6DB532D4534BBA0CD5446505AA6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_8880B8FDD5884BCB91E480AC46688439"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_88B4E3C20A7647A5A1654C7C078952DD"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8A01FFAEFFA744ABBC115AEEDD4B8DDC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -405,7 +669,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_8C70C76501BA42CEB43ECE5B77711D14"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_8DDB6C25E4574477A8AD39E9483372D8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_90AD56899AF142C188C170CCB3DE2FE5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_917EF462B0CA48BE8E6B3CE4B69D9681"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -417,7 +699,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_95D1A138F4D04647979B998422905D47"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9778F77980D5499DA318830CBB91D743"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_99321A039FD142979414ECBFD6712E7D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9A4D107DC72D445FB005B2148E4E8091"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -429,7 +729,43 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_9CA72506B5F944AF963FA8ED3D289135"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E0DBF1BA955471F92FDDD3E7F6C9E2D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E5857B443C54ECBA20F81CD17A5979A"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9E94FF8BF95B42AB9DF499CFE10FD6D8"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_A34EA9EC4FAB418E88B2686DC7338FEC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3749113972241D19A0C7D1C8D2EEC28"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_A3DA08A1A72D49B69FF7C36F60839867"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -513,6 +849,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_AF661E232B1379B42754617F8E7346F5"
+        "OwnerKey" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_AFA88B9A195A4888A3127E039B288ED9"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -538,6 +880,18 @@
         "Entry"
         {
         "MsmKey" = "8:_B7CFA039922F4EF8BB24114EC456DF0C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B8D24E66150B4A4794D2888498A090E1"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B94A6603968A46819D67ADEA7EF1FAE7"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -573,7 +927,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BFF41AB44B3D46E2A7ECB00BB019F0CC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C01E0402716843A3A39587AE75990ED6"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_C12D3C9619F04795B0F91C7FFD1D7807"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -603,7 +969,31 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_CC35A5C37B924E94BFEBDDD93154E068"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_CFA96ED77AB941EB842E2E89AE1D4D34"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D110F6AAFA2949B7A3DE038B743D069F"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D13FDF6C8D514024B9EB3265B04D69EB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D1BB0D1AB05B4948B214C54F4C838E3C"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -621,7 +1011,25 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D44005F5D5D44761AC22B4B4BA70EBC3"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D4A021E1DECF46AFAEC97C808CEC11AC"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_D6982D88CA384918BEBE6D237BA68A50"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D75CCB6B894D4919AFA3AED46F5771DD"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -634,6 +1042,12 @@
         "Entry"
         {
         "MsmKey" = "8:_D8A80CB77D3D433389BEE8D867CE5233"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_D92DAE9FF4DD437A9E3EEE249654416A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -658,6 +1072,12 @@
         "Entry"
         {
         "MsmKey" = "8:_DF8F3D60E18D466387B81E096B105D72"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E290B8C4B8DB4EBA91449E97098C20AC"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -711,7 +1131,19 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_F092956921144D1787FA3B527C4B4EA4"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_F114821C6A884229822DE23B02137A8D"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_F126382E96BE40DC8CCE064F6E2BF123"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -765,8 +1197,44 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_FDBCFA20976644E89407AB9173E01FF0"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_FDEC9229476648EE9335203C034444F1"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_51A3FCB23A3D455AAAEDA868F4D55142"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_49D5A181D93A497D917336008C537CC7"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_213BEC98B6ED0FE5FC90F9088A5BDA1A"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AF661E232B1379B42754617F8E7346F5"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -862,6 +1330,14 @@
         {
             "LaunchCondition"
             {
+                "{A06ECF26-33A3-4562-8140-9B0E340D4F24}:_96872F2C8E3C42D8804E136C8CD5F693"
+                {
+                "Name" = "8:.NET Framework"
+                "Message" = "8:[VSDNETMSG]"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                "AllowLaterVersions" = "11:FALSE"
+                "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=131000"
+                }
             }
         }
         "File"
@@ -872,6 +1348,46 @@
             "TargetName" = "8:player.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_08FD35008069407A8447DB1DCE0F82F7"
+            {
+            "SourcePath" = "8:..\\WinEntry\\bin\\cheesyEditor.ico"
+            "TargetName" = "8:cheesyEditor.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0A9D99E7902640CA9260524A9496BCCB"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\Trap_Spikes.xnb"
+            "TargetName" = "8:Trap_Spikes.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -966,6 +1482,66 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_17E0E55A79ED400FBF06115831D76D29"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\TileSelector_v3.xnb"
+            "TargetName" = "8:TileSelector_v3.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_18560F9DD15D47CB8E2CFCAA2A01C633"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\paintTool.xnb"
+            "TargetName" = "8:paintTool.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_19516C86957044E2969D9252E4782D30"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\PaintingIcon.xnb"
+            "TargetName" = "8:PaintingIcon.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1AFD435DB7984882B775AED8259C87E7"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\dbg.png"
@@ -1012,6 +1588,26 @@
             "TargetName" = "8:3.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1CDEE83197C142389E772E7A1C580848"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\canvas_shadow_30px.xnb"
+            "TargetName" = "8:canvas_shadow_30px.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1086,12 +1682,183 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_20B8D3DF8D7D4FB3BFACB056012C3B8E"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\canvas_shadow.xnb"
+            "TargetName" = "8:canvas_shadow.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2120E941CD554F7FBF00999C1AC05F1C"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Characters\\napoleon.xnb"
+            "TargetName" = "8:napoleon.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_4B3A3524F1DA41739CEECCDFF67AD200"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_213BEC98B6ED0FE5FC90F9088A5BDA1A"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TomShane.Neoforce.Controls, Version=0.7.2407.1915, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_213BEC98B6ED0FE5FC90F9088A5BDA1A"
+                    {
+                    "Name" = "8:TomShane.Neoforce.Controls.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:TomShane.Neoforce.Controls.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_21D842D524C34A888FD8DCC7FFA250E6"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\aaline.xnb"
+            "TargetName" = "8:aaline.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2324DAC59BFA40E1890ABDD8E2C6824A"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\Blockade_Preview.xnb"
+            "TargetName" = "8:Blockade_Preview.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_25A2124831164185B8C297C23F844FC7"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Switch_Tileset.png"
             "TargetName" = "8:Switch_Tileset.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_26C05FCDB1A7439B8E6905C6B1620C91"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Powerups\\speedup.xnb"
+            "TargetName" = "8:speedup.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_2B91FE617E3F4FDABBC56DC0DA67B442"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_280BB56BB92D4B74A99F9BE99F717250"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Characters\\player.xnb"
+            "TargetName" = "8:player.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_4B3A3524F1DA41739CEECCDFF67AD200"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2DA4E1F6202A4B0F99A30C2B88339B50"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Characters\\rat.xnb"
+            "TargetName" = "8:rat.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_4B3A3524F1DA41739CEECCDFF67AD200"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1166,6 +1933,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_321908FB54B7482BB86B72416083F9A3"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\robotaparte.xnb"
+            "TargetName" = "8:robotaparte.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_32A5AF3E720F46848E36FE9E0B68AAD4"
             {
             "SourcePath" = "8:..\\WinEntry\\bin\\cheesy.ico"
@@ -1186,12 +1973,83 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_354BC3A3E4BD489DA9B887B0442AB92B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:MapEditor_TLCB, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_354BC3A3E4BD489DA9B887B0442AB92B"
+                    {
+                    "Name" = "8:MapEditor_TLCB.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Editor\\MapEditor_TLCB.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_384FD20E7F3B4F94848668AE005892DE"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\nav.wav"
             "TargetName" = "8:nav.wav"
             "Tag" = "8:"
             "Folder" = "8:_AC84BCC659CA4A9C9E9029974B611E8A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3945BF65B2514FE6A0292C97C2A57A92"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\EraserIcon.xnb"
+            "TargetName" = "8:EraserIcon.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_398B48A4152D4E24B21D880E63F163BA"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Skins\\Magenta.skin"
+            "TargetName" = "8:Magenta.skin"
+            "Tag" = "8:"
+            "Folder" = "8:_37FBB47330DA49A89367AD4EAB1A2645"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1326,6 +2184,77 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4866DEE350DC49489C32E0F815D8A756"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\info.xnb"
+            "TargetName" = "8:info.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_49D5A181D93A497D917336008C537CC7"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:TomShane.Neoforce.Controls, Version=0.7.2407.1915, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_49D5A181D93A497D917336008C537CC7"
+                    {
+                    "Name" = "8:TomShane.Neoforce.Controls.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Editor\\TomShane.Neoforce.Controls.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4A8921FE23594AFD8CF55457B2E14641"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\TileSheets\\tilemap_winecellar.png"
+            "TargetName" = "8:tilemap_winecellar.png"
+            "Tag" = "8:"
+            "Folder" = "8:_40AE74E60D3E4A3493D1DA462BC676F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4AB5F4D1398F43A8BCE024E96E2D3C07"
             {
             "SourcePath" = "8:..\\WinEntry\\Shaders\\testGL.frag"
@@ -1352,6 +2281,26 @@
             "TargetName" = "8:SplashScreen.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_4CC0FCCCB93241C3BC09961D100FFE1C"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\Switch_Tileset.xnb"
+            "TargetName" = "8:Switch_Tileset.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1426,6 +2375,57 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_51A3FCB23A3D455AAAEDA868F4D55142"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:artemis, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_51A3FCB23A3D455AAAEDA868F4D55142"
+                    {
+                    "Name" = "8:artemis.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Editor\\artemis.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5226ED2C3EB64382B3C229434846BCB9"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Arial12.xnb"
+            "TargetName" = "8:Arial12.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_52CA191A650F43438F0FF9986C55860B"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\new_eat_pill_DRIP.wav"
@@ -1452,6 +2452,26 @@
             "TargetName" = "8:cute_navigate_42.wav"
             "Tag" = "8:"
             "Folder" = "8:_B808F0D634244E689B5BAFA0E7D61B19"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_54A80DAC603047BD82E0FAE6F5E4C214"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\Blockade_Tileset.xnb"
+            "TargetName" = "8:Blockade_Tileset.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1526,6 +2546,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56E597C36D5A40ABA007D5636C8F7DBA"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\rat.xnb"
+            "TargetName" = "8:rat.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59FC3C62E88742389201DC19389F969D"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\RoadToolIcon.xnb"
+            "TargetName" = "8:RoadToolIcon.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_59FD5AE4A6F7440997304BC8FF8F356D"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Switch_Circle_Up.png"
@@ -1552,6 +2612,26 @@
             "TargetName" = "8:jump.wav"
             "Tag" = "8:"
             "Folder" = "8:_AC84BCC659CA4A9C9E9029974B611E8A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_5ADB2DB5F60644F29DE38F89CF0E5667"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\speedpowerup.xnb"
+            "TargetName" = "8:speedpowerup.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1666,12 +2746,92 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6623684008464A93B645BF86596C2E0B"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\TileSheets\\grid.xnb"
+            "TargetName" = "8:grid.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_40AE74E60D3E4A3493D1DA462BC676F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_66C665095FD645199AD672908427AA59"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\bombitem.xnb"
+            "TargetName" = "8:bombitem.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C9A0E48310343039868C4A4D5F01141"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\cheese.xnb"
+            "TargetName" = "8:cheese.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6CDF1ABBEA494351BA217DB298AAAE91"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Switch_Triangle_Down.png"
             "TargetName" = "8:Switch_Triangle_Down.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6D7269AF467A48598CE67A58B1A84A33"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\eraser.xnb"
+            "TargetName" = "8:eraser.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1726,6 +2886,66 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70A9D02CCB4B43A5A1A685D179E6466A"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Powerups\\super.xnb"
+            "TargetName" = "8:super.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_2B91FE617E3F4FDABBC56DC0DA67B442"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70FA969B1F0D465AA5462D5EA230354B"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\RoadIcon.xnb"
+            "TargetName" = "8:RoadIcon.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_70FF7ED988C4469DBB56D6CD3C7F1619"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Characters\\rat2.xnb"
+            "TargetName" = "8:rat2.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_4B3A3524F1DA41739CEECCDFF67AD200"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_71F005CD8E6644F9A1532995C20A6C5F"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\sel.wav"
@@ -1752,6 +2972,26 @@
             "TargetName" = "8:Item_Speed.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_74F717CC752547CF9627AE83789DA118"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\player.xnb"
+            "TargetName" = "8:player.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -1866,6 +3106,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7A32E68748C9458CB9AEB330D5FE8F95"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Skins\\Default.skin"
+            "TargetName" = "8:Default.skin"
+            "Tag" = "8:"
+            "Folder" = "8:_37FBB47330DA49A89367AD4EAB1A2645"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7AEAB8049FD944F2BB39F3DBC76A532F"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\Synth chords happy_BLASTWAVEFX_19019.wav"
@@ -1946,12 +3206,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7D5D3C5508D941B4B1746803A1B92903"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Characters\\characters.xnb"
+            "TargetName" = "8:characters.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_4B3A3524F1DA41739CEECCDFF67AD200"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7F1BB25B1F484C5C9FB6A1FCBE97C005"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\616geebeeyay-8x8.png"
             "TargetName" = "8:616geebeeyay-8x8.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FD9682B290C4921AF9D75A511C70D9D"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\canvas_grid.xnb"
+            "TargetName" = "8:canvas_grid.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2006,12 +3306,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_828FE48F99CB4179B8EE5D06EE80FBA0"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\pinOn.xnb"
+            "TargetName" = "8:pinOn.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8514BE94D381413E85407DF990D696D7"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\robotaparte.png"
             "TargetName" = "8:robotaparte.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8530D27A7D294AACB3595F283B28874B"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\largeWhiteDotGradient.xnb"
+            "TargetName" = "8:largeWhiteDotGradient.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2046,6 +3386,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_856A57F229C64D659A8154874E9B6928"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\white_dot.xnb"
+            "TargetName" = "8:white_dot.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8712C6DB532D4534BBA0CD5446505AA6"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Pill_32.png"
@@ -2066,12 +3426,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8880B8FDD5884BCB91E480AC46688439"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Skins\\Blue.skin"
+            "TargetName" = "8:Blue.skin"
+            "Tag" = "8:"
+            "Folder" = "8:_37FBB47330DA49A89367AD4EAB1A2645"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_88B4E3C20A7647A5A1654C7C078952DD"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Trap_Spikes.png"
             "TargetName" = "8:Trap_Spikes.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8A01FFAEFFA744ABBC115AEEDD4B8DDC"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\TileSheets\\tileSelector.xnb"
+            "TargetName" = "8:tileSelector.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_40AE74E60D3E4A3493D1DA462BC676F4"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2126,12 +3526,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8C70C76501BA42CEB43ECE5B77711D14"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\error.xnb"
+            "TargetName" = "8:error.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8DDB6C25E4574477A8AD39E9483372D8"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\monster_killed_v2.wav"
             "TargetName" = "8:monster_killed_v2.wav"
             "Tag" = "8:"
             "Folder" = "8:_AC84BCC659CA4A9C9E9029974B611E8A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_90AD56899AF142C188C170CCB3DE2FE5"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\chest.xnb"
+            "TargetName" = "8:chest.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_917EF462B0CA48BE8E6B3CE4B69D9681"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\rat2.xnb"
+            "TargetName" = "8:rat2.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2166,6 +3626,46 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_95D1A138F4D04647979B998422905D47"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\swiitchesPreview.xnb"
+            "TargetName" = "8:swiitchesPreview.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9778F77980D5499DA318830CBB91D743"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\custom.xnb"
+            "TargetName" = "8:custom.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_99321A039FD142979414ECBFD6712E7D"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\tilemap_garden.png"
@@ -2186,12 +3686,152 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9A4D107DC72D445FB005B2148E4E8091"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\arrow2.xnb"
+            "TargetName" = "8:arrow2.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9B381F4354B942E3ADD9661221336915"
             {
             "SourcePath" = "8:..\\WinEntry\\settings.cfg"
             "TargetName" = "8:settings.cfg"
             "Tag" = "8:"
             "Folder" = "8:_5CBF81F9F70447F39C80EC3D0034761A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9CA72506B5F944AF963FA8ED3D289135"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\textbox.xnb"
+            "TargetName" = "8:textbox.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E0DBF1BA955471F92FDDD3E7F6C9E2D"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Powerups\\powerups.xnb"
+            "TargetName" = "8:powerups.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_2B91FE617E3F4FDABBC56DC0DA67B442"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E5857B443C54ECBA20F81CD17A5979A"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Skins\\Green.skin"
+            "TargetName" = "8:Green.skin"
+            "Tag" = "8:"
+            "Folder" = "8:_37FBB47330DA49A89367AD4EAB1A2645"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9E94FF8BF95B42AB9DF499CFE10FD6D8"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\canvas_shadow_10px.xnb"
+            "TargetName" = "8:canvas_shadow_10px.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A3749113972241D19A0C7D1C8D2EEC28"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\TileSheets\\tilemap_garden.png"
+            "TargetName" = "8:tilemap_garden.png"
+            "Tag" = "8:"
+            "Folder" = "8:_40AE74E60D3E4A3493D1DA462BC676F4"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A3DA08A1A72D49B69FF7C36F60839867"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Arial10.xnb"
+            "TargetName" = "8:Arial10.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2466,6 +4106,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_AF661E232B1379B42754617F8E7346F5"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:artemis, Version=0.0.0.0, Culture=neutral, processorArchitecture=x86"
+                "ScatterAssemblies"
+                {
+                    "_AF661E232B1379B42754617F8E7346F5"
+                    {
+                    "Name" = "8:artemis.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:artemis.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_AFA88B9A195A4888A3127E039B288ED9"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\bombitem_anim.png"
@@ -2532,6 +4203,46 @@
             "TargetName" = "8:testglyph.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B8D24E66150B4A4794D2888498A090E1"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\radialMain.xnb"
+            "TargetName" = "8:radialMain.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B94A6603968A46819D67ADEA7EF1FAE7"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Arcadepix.xnb"
+            "TargetName" = "8:Arcadepix.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2626,12 +4337,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BFF41AB44B3D46E2A7ECB00BB019F0CC"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Radial\\Powerups\\bomb.xnb"
+            "TargetName" = "8:bomb.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_2B91FE617E3F4FDABBC56DC0DA67B442"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C01E0402716843A3A39587AE75990ED6"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\Switch_Square_Up.png"
             "TargetName" = "8:Switch_Square_Up.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C12D3C9619F04795B0F91C7FFD1D7807"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\debugBlock.xnb"
+            "TargetName" = "8:debugBlock.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2726,12 +4477,92 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CC35A5C37B924E94BFEBDDD93154E068"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Arial8.xnb"
+            "TargetName" = "8:Arial8.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFA96ED77AB941EB842E2E89AE1D4D34"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\buffguislot.png"
             "TargetName" = "8:buffguislot.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D110F6AAFA2949B7A3DE038B743D069F"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\radialTemp.xnb"
+            "TargetName" = "8:radialTemp.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D13FDF6C8D514024B9EB3265B04D69EB"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\node.xnb"
+            "TargetName" = "8:node.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D1BB0D1AB05B4948B214C54F4C838E3C"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Skins\\Purple.skin"
+            "TargetName" = "8:Purple.skin"
+            "Tag" = "8:"
+            "Folder" = "8:_37FBB47330DA49A89367AD4EAB1A2645"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2786,12 +4617,72 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D44005F5D5D44761AC22B4B4BA70EBC3"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\ok.xnb"
+            "TargetName" = "8:ok.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D4A021E1DECF46AFAEC97C808CEC11AC"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\warning.xnb"
+            "TargetName" = "8:warning.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6982D88CA384918BEBE6D237BA68A50"
             {
             "SourcePath" = "8:..\\WinEntry\\Textures\\bubblemad_32x32.png"
             "TargetName" = "8:bubblemad_32x32.png"
             "Tag" = "8:"
             "Folder" = "8:_ADC2EF47D5244E4B9ABCFC5C746FF947"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D75CCB6B894D4919AFA3AED46F5771DD"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\OtherSheets\\Item_SuperCheesy.xnb"
+            "TargetName" = "8:Item_SuperCheesy.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_90F4CA688FE44E1EB570A5E08204D980"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2832,6 +4723,26 @@
             "TargetName" = "8:menu_back_5.wav"
             "Tag" = "8:"
             "Folder" = "8:_B808F0D634244E689B5BAFA0E7D61B19"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D92DAE9FF4DD437A9E3EEE249654416A"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\pinOff.xnb"
+            "TargetName" = "8:pinOff.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -2912,6 +4823,26 @@
             "TargetName" = "8:Cage_of_the_elves.txt"
             "Tag" = "8:"
             "Folder" = "8:_E818E95581474C7FB5E393154EF5C926"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E290B8C4B8DB4EBA91449E97098C20AC"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\close.xnb"
+            "TargetName" = "8:close.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3086,12 +5017,52 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F092956921144D1787FA3B527C4B4EA4"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\Question.xnb"
+            "TargetName" = "8:Question.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F114821C6A884229822DE23B02137A8D"
             {
             "SourcePath" = "8:..\\WinEntry\\Sounds\\blast.wav"
             "TargetName" = "8:blast.wav"
             "Tag" = "8:"
             "Folder" = "8:_AC84BCC659CA4A9C9E9029974B611E8A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_F126382E96BE40DC8CCE064F6E2BF123"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\largeWhiteDot.xnb"
+            "TargetName" = "8:largeWhiteDot.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3246,6 +5217,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDBCFA20976644E89407AB9173E01FF0"
+            {
+            "SourcePath" = "8:..\\Editor\\Content\\collection.xnb"
+            "TargetName" = "8:collection.xnb"
+            "Tag" = "8:"
+            "Folder" = "8:_7D045F6DCEDE402D80337F9E3E7C4E87"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_FDEC9229476648EE9335203C034444F1"
             {
             "SourcePath" = "8:..\\WinEntry\\Shaders\\testDx.vs"
@@ -3348,6 +5339,94 @@
                         {
                         }
                     }
+                    "{9EF0B969-E518-4E46-987F-47570745A589}:_C5004214FC864CBB9E9526042EB16441"
+                    {
+                    "Name" = "8:Editor"
+                    "AlwaysCreate" = "11:FALSE"
+                    "Condition" = "8:"
+                    "Transitive" = "11:FALSE"
+                    "Property" = "8:_400D54376E6F4A89AB778E6F24B66B74"
+                        "Folders"
+                        {
+                            "{9EF0B969-E518-4E46-987F-47570745A589}:_7D045F6DCEDE402D80337F9E3E7C4E87"
+                            {
+                            "Name" = "8:Content"
+                            "AlwaysCreate" = "11:FALSE"
+                            "Condition" = "8:"
+                            "Transitive" = "11:FALSE"
+                            "Property" = "8:_B3C825BD2A514964BE61AF4895CDB0AF"
+                                "Folders"
+                                {
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_37FBB47330DA49A89367AD4EAB1A2645"
+                                    {
+                                    "Name" = "8:Skins"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_6C30FB9C5A6F499DA608D84CC31F6921"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_40AE74E60D3E4A3493D1DA462BC676F4"
+                                    {
+                                    "Name" = "8:TileSheets"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_86FF6B4450D342D7B275C362C81024AB"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_58A030C5D26E46B5A82A2A1B6920D843"
+                                    {
+                                    "Name" = "8:Radial"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_7B3351AA1DA54AD590887E4433074FE3"
+                                        "Folders"
+                                        {
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_2B91FE617E3F4FDABBC56DC0DA67B442"
+                                            {
+                                            "Name" = "8:Powerups"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_2102001702E948D0B520D892B798042C"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                            "{9EF0B969-E518-4E46-987F-47570745A589}:_4B3A3524F1DA41739CEECCDFF67AD200"
+                                            {
+                                            "Name" = "8:Characters"
+                                            "AlwaysCreate" = "11:FALSE"
+                                            "Condition" = "8:"
+                                            "Transitive" = "11:FALSE"
+                                            "Property" = "8:_78B9F0061AD648DB93ADA1E3C6590491"
+                                                "Folders"
+                                                {
+                                                }
+                                            }
+                                        }
+                                    }
+                                    "{9EF0B969-E518-4E46-987F-47570745A589}:_90F4CA688FE44E1EB570A5E08204D980"
+                                    {
+                                    "Name" = "8:OtherSheets"
+                                    "AlwaysCreate" = "11:FALSE"
+                                    "Condition" = "8:"
+                                    "Transitive" = "11:FALSE"
+                                    "Property" = "8:_E9EEF011A1E643B3A80E15F7B084318A"
+                                        "Folders"
+                                        {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_E818E95581474C7FB5E393154EF5C926"
                     {
                     "Name" = "8:Maps"
@@ -3419,6 +5498,13 @@
         }
         "LaunchCondition"
         {
+            "{836E08B8-0285-4809-BA42-01DB6754A45D}:_959052CF0C9649FC85B197AFCB4E09F8"
+            {
+            "Name" = "8:AdminRequirement"
+            "Condition" = "8:AdminUser"
+            "Message" = "8:<Error Message>"
+            "InstallUrl" = "8:"
+            }
         }
         "Locator"
         {
@@ -3432,15 +5518,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:The Little Cheese Boy"
-        "ProductCode" = "8:{5453DC16-71CE-40EE-9D82-307829B91161}"
-        "PackageCode" = "8:{B1C995B0-3BD4-45D4-91A6-B002566CA1B1}"
+        "ProductCode" = "8:{3A5A1DA3-CECF-45E2-A7D0-F2B8271C6EE4}"
+        "PackageCode" = "8:{D6844578-62C7-465C-8B16-F77A921200E5}"
         "UpgradeCode" = "8:{1C28A5D2-2657-4D81-BC6D-7832CCA9C546}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Majestic 6"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -3567,6 +5653,34 @@
             "Icon" = "8:_32A5AF3E720F46848E36FE9E0B68AAD4"
             "Feature" = "8:"
             }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_19F35B4667DB4CE5A96E3C3BFB55F2BC"
+            {
+            "Name" = "8:Map Editor TLCB Maximized"
+            "Arguments" = "8:maximizeWindow"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+            "Folder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "WorkingFolder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Icon" = "8:_08FD35008069407A8447DB1DCE0F82F7"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3684FF4E57144505A3EF4E068F45B6B6"
+            {
+            "Name" = "8:MapEditor_TLCB.exe"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+            "Folder" = "8:_BFA244D7218F489B80397997B354D09D"
+            "WorkingFolder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Icon" = "8:_08FD35008069407A8447DB1DCE0F82F7"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7A2C428DCD804612B7475210563BC945"
             {
             "Name" = "8:The Little Cheese Boy"
@@ -3579,6 +5693,48 @@
             "Folder" = "8:_6A82067B8B7B4971A275E74C1FFA159E"
             "WorkingFolder" = "8:_BFA244D7218F489B80397997B354D09D"
             "Icon" = "8:_32A5AF3E720F46848E36FE9E0B68AAD4"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_7C54ACA272494C44B925ED8C99545E78"
+            {
+            "Name" = "8:Map Editor TLCB"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+            "Folder" = "8:_6A82067B8B7B4971A275E74C1FFA159E"
+            "WorkingFolder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Icon" = "8:_08FD35008069407A8447DB1DCE0F82F7"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B8A4890EC1D6458BA6E8A83DACA5548A"
+            {
+            "Name" = "8:Map Editor TLCB"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+            "Folder" = "8:_C3EDE22B4DF24370A94F4EFC0EBCB47A"
+            "WorkingFolder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Icon" = "8:_08FD35008069407A8447DB1DCE0F82F7"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_E914BF7309C74AD1A7E906F7685D4D52"
+            {
+            "Name" = "8:Map Editor TLCB Fullscreen"
+            "Arguments" = "8:maximizeWindow"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_354BC3A3E4BD489DA9B887B0442AB92B"
+            "Folder" = "8:_6A82067B8B7B4971A275E74C1FFA159E"
+            "WorkingFolder" = "8:_C5004214FC864CBB9E9526042EB16441"
+            "Icon" = "8:_08FD35008069407A8447DB1DCE0F82F7"
             "Feature" = "8:"
             }
         }
