@@ -1,5 +1,8 @@
 The Little Cheeseboy aka "Den lille Ostpojken"
 ==============================================
+9 out of 10 Kings play "The Little Cheese Boy"
+
+![The little chesse boy!](https://media.indiedb.com/images/articles/1/121/120796/auto/cheesy.gif "The little chesse boy!")
 
 About
 -----
